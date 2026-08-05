@@ -191,13 +191,21 @@ export default function HomeScreen({ navigation }: Props) {
 
         {/* ── BOTTOM MENU ── */}
         <View style={styles.bottomMenu}>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Auth')}>
+            <Text style={styles.bottomIcon}>🔐</Text>
+            <Text style={styles.bottomLabel}>{t('auth.login')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Profile')}>
+            <Text style={styles.bottomIcon}>👤</Text>
+            <Text style={styles.bottomLabel}>{t('common.profile')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('LanguageSelect')}>
+            <Text style={styles.bottomIcon}>🌐</Text>
+            <Text style={styles.bottomLabel}>{t('common.language')}</Text>
+          </TouchableOpacity>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Statistics')}>
             <Text style={styles.bottomIcon}>📊</Text>
             <Text style={styles.bottomLabel}>{t('common.statistics')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('OnlinePlay')}>
-            <Text style={styles.bottomIcon}>🌐</Text>
-            <Text style={styles.bottomLabel}>{t('home.onlineLabel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Settings')}>
             <Text style={styles.bottomIcon}>⚙️</Text>
@@ -324,7 +332,7 @@ const styles = StyleSheet.create({
     borderRadius: 18, borderWidth: 1, borderColor: Colors.border,
     overflow: 'hidden',
   },
-  bottomBtn: { flex: 1, alignItems: 'center', paddingVertical: 14 },
-  bottomIcon: { fontSize: 22 },
-  bottomLabel: { fontSize: 11, color: Colors.textMuted, marginTop: 4, fontWeight: '600' },
+  bottomBtn: { flex: 1, alignItems: 'center', paddingVertical: 12, paddingHorizontal: 2 },
+  bottomIcon: { fontSize: 20 },
+  bottomLabel: { fontSize: 10, color: Colors.textMuted, marginTop: 4, fontWeight: '700', textAlign: 'center' },
 });
