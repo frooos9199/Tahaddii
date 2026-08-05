@@ -120,7 +120,7 @@
     .question { font-size: clamp(1.75rem, 4.6vw, 5.4rem); line-height: 1.08; font-weight: 900; text-wrap: balance; overflow-wrap: anywhere; }
     .meta-line { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: clamp(1rem, 1.3vw, 1.5rem); }
 
-    .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.45rem, 1.1vh, 1rem) clamp(0.5rem, 1vw, 1.2rem); min-height: 0; }
+    .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.45rem, 1.1vh, 1rem) clamp(0.5rem, 1vw, 1.2rem); min-height: 0; direction: ltr; }
     .answer {
       border: 2px solid rgba(196, 181, 253, 0.22);
       background: rgba(255,255,255,0.06);
@@ -132,6 +132,7 @@
       min-height: clamp(3.6rem, 9vh, 7.4rem);
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
+    body.rtl .answer { direction: rtl; }
     .answer-letter {
       width: 3.2rem;
       height: 3.2rem;
@@ -144,7 +145,7 @@
       font-weight: 900;
       flex: 0 0 auto;
     }
-    .answer-text { font-size: clamp(1rem, 1.9vw, 2.35rem); line-height: 1.12; font-weight: 800; overflow-wrap: anywhere; }
+    .answer-text { flex: 1; font-size: clamp(1rem, 1.9vw, 2.35rem); line-height: 1.12; font-weight: 800; overflow-wrap: anywhere; }
     .answer-text .stat-good, .player-stats .stat-good { color: var(--success); font-weight: 900; }
     .answer-text .stat-bad, .player-stats .stat-bad { color: var(--error); font-weight: 900; }
     .answer-text .stat-muted { color: var(--muted); }
@@ -422,8 +423,8 @@
     const brandSub = document.getElementById('brandSub');
 
     const labels = {
-      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ' },
-      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong' },
+      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ', returningHome: 'العودة للرئيسية خلال' },
+      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong', returningHome: 'Returning home in' },
     };
 
     const getCodeFromUrl = () => new URLSearchParams(window.location.search).get('code')?.trim().toUpperCase() || '';
@@ -436,6 +437,7 @@
 
     let unsubscribe = null;
     let pollTimer = null;
+    let finalReturnTimer = null;
 
     codeInput.value = getCodeFromUrl() || createDisplayCode();
     renderSetupCode(codeInput.value);
@@ -502,6 +504,8 @@
         return;
       }
 
+      clearFinalReturnTimer();
+
       if (state.status === 'pairing' || !state.question) {
         setText(playerLine, '');
         setText(question, copy.missing);
@@ -556,7 +560,7 @@
       setText(timer, '🏆');
       timer.style.color = 'var(--warning)';
       timer.style.borderColor = 'var(--warning)';
-      feedback.classList.add('hidden');
+      startFinalReturnTimer(copy);
 
       answers.replaceChildren();
       sortedPlayers.slice(0, 4).forEach((player, index) => {
@@ -587,7 +591,34 @@
       renderPlayers(sortedPlayers);
     }
 
+    function clearFinalReturnTimer() {
+      if (finalReturnTimer) {
+        clearInterval(finalReturnTimer);
+        finalReturnTimer = null;
+      }
+    }
+
+    function startFinalReturnTimer(copy) {
+      if (finalReturnTimer) return;
+      let secondsLeft = 30;
+      feedback.classList.remove('hidden');
+      const updateCountdown = () => {
+        setText(feedback, `${copy.returningHome} ${secondsLeft}`);
+      };
+      updateCountdown();
+      finalReturnTimer = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft <= 0) {
+          clearFinalReturnTimer();
+          window.location.href = '/';
+          return;
+        }
+        updateCountdown();
+      }, 1000);
+    }
+
     function showSetup() {
+      clearFinalReturnTimer();
       setup.hidden = false;
       setup.classList.remove('is-hidden');
       display.hidden = true;
