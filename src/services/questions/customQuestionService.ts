@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, orderBy, query, serverTimestamp, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from 'firebase/firestore';
 import { AgeGroup, CategoryId, Difficulty, Question } from '../../types';
 import { DIFFICULTY_POINTS } from '../../constants';
 import { getFirebaseDb, isFirebaseConfigured } from '../firebase/firebaseClient';
@@ -54,9 +54,11 @@ export const listCustomQuestions = async (): Promise<Question[]> => {
   }
 
   const db = getFirebaseDb();
-  const questionsQuery = query(collection(db, CUSTOM_QUESTIONS_COLLECTION), orderBy('createdAtMs', 'desc'));
-  const snapshot = await getDocs(questionsQuery);
-  return snapshot.docs.map(questionDoc => toQuestion(questionDoc.id, questionDoc.data()));
+  const snapshot = await getDocs(collection(db, CUSTOM_QUESTIONS_COLLECTION));
+  return snapshot.docs
+    .map(questionDoc => ({ id: questionDoc.id, data: questionDoc.data() }))
+    .sort((left, right) => Number(right.data.updatedAtMs ?? right.data.createdAtMs ?? 0) - Number(left.data.updatedAtMs ?? left.data.createdAtMs ?? 0))
+    .map(questionDoc => toQuestion(questionDoc.id, questionDoc.data));
 };
 
 export const addCustomQuestion = async (input: CustomQuestionInput) => {
