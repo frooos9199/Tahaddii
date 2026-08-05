@@ -39,6 +39,10 @@
       {
         "source": "/tv/**",
         "destination": "/tv/index.html"
+      },
+      {
+        "source": "/admin/**",
+        "destination": "/admin/index.html"
       }
     ]
   },

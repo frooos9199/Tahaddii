@@ -29,12 +29,25 @@
           "value": "no-store, max-age=0"
         }
       ]
+    },
+    {
+      "source": "/admin/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
     }
   ],
   "rewrites": [
     {
       "source": "/tv/:path*",
       "destination": "/tv/index.html"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/admin/index.html"
     }
   ]
 }

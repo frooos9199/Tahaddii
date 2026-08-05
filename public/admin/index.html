@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tahaddii admin | لوحة التحكم</title>
+  <style>
+    :root {
+      --bg: #080416;
+      --panel: rgba(23, 13, 48, 0.84);
+      --panel-2: rgba(255,255,255,0.055);
+      --primary: #8b5cf6;
+      --primary-light: #c4b5fd;
+      --blue: #22d3ee;
+      --gold: #f59e0b;
+      --success: #10b981;
+      --error: #ef4444;
+      --text: #ffffff;
+      --muted: #a8a2b8;
+      --line: rgba(196, 181, 253, 0.22);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Geeza Pro", "Avenir Next", ui-rounded, system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(34, 211, 238, 0.16), transparent 24rem),
+        radial-gradient(circle at 86% 8%, rgba(139, 92, 246, 0.32), transparent 28rem),
+        linear-gradient(140deg, #060210 0%, #12092a 58%, #05020d 100%);
+    }
+
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .page { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; padding: 1.2rem 0 2.5rem; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
+    .mark { width: 3.2rem; height: 3.2rem; display: grid; place-items: center; border-radius: 1rem; background: linear-gradient(145deg, var(--primary), #2563eb); font-weight: 900; font-size: 1.45rem; }
+    .brand-title { font-size: clamp(1.35rem, 3vw, 2.2rem); font-weight: 900; }
+    .brand-sub { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
+    .home-link { color: var(--primary-light); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); font-weight: 900; }
+
+    .card { border: 1px solid var(--line); border-radius: 1.4rem; background: var(--panel); box-shadow: 0 28px 80px rgba(0,0,0,0.26); backdrop-filter: blur(16px); padding: clamp(1rem, 2vw, 1.4rem); }
+    .login-card { max-width: 520px; margin: 10vh auto 0; display: grid; gap: 0.9rem; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; align-items: start; }
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+
+    .section-title { margin: 0; font-size: 1.25rem; font-weight: 900; }
+    .section-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .hint { color: var(--muted); line-height: 1.6; font-size: 0.9rem; margin: 0; }
+    .status { min-height: 1.5rem; color: var(--primary-light); font-weight: 800; }
+    .error { color: var(--error); }
+    .success { color: var(--success); }
+
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
+    .stat { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: var(--panel-2); }
+    .stat-num { color: var(--gold); font-size: 1.8rem; font-weight: 900; direction: ltr; }
+    .stat-label { color: var(--muted); margin-top: 0.25rem; font-size: 0.85rem; }
+
+    .tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+    .tab { border: 1px solid var(--line); border-radius: 999px; padding: 0.7rem 1rem; background: rgba(255,255,255,0.05); color: var(--text); font-weight: 900; }
+    .tab.active { border-color: var(--primary-light); background: rgba(139,92,246,0.26); color: var(--primary-light); }
+    .panel { display: none; }
+    .panel.active { display: grid; gap: 1rem; }
+
+    .form { display: grid; gap: 0.75rem; }
+    .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    label { display: grid; gap: 0.35rem; color: var(--primary-light); font-weight: 900; font-size: 0.86rem; }
+    input, textarea, select {
+      width: 100%; border: 1px solid var(--line); border-radius: 0.9rem; background: rgba(255,255,255,0.06); color: var(--text);
+      padding: 0.85rem 0.95rem; outline: none;
+    }
+    textarea { min-height: 7rem; resize: vertical; }
+    input::placeholder, textarea::placeholder { color: rgba(168,162,184,0.7); }
+    [dir="ltr"] { text-align: left; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+    .primary, .secondary, .danger {
+      border: 0; border-radius: 0.95rem; padding: 0.85rem 1rem; font-weight: 900; color: var(--text);
+    }
+    .primary { background: linear-gradient(135deg, var(--primary), #2563eb); }
+    .secondary { background: rgba(255,255,255,0.08); border: 1px solid var(--line); }
+    .danger { background: rgba(239,68,68,0.18); border: 1px solid rgba(239,68,68,0.45); color: #fecaca; }
+    .file-label { display: inline-grid; place-items: center; border: 1px dashed rgba(196,181,253,0.42); border-radius: 1rem; padding: 1rem; color: var(--primary-light); background: rgba(255,255,255,0.04); cursor: pointer; }
+    .file-label input { display: none; }
+
+    .table-wrap { overflow: auto; border: 1px solid var(--line); border-radius: 1rem; }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { padding: 0.8rem; border-bottom: 1px solid rgba(196,181,253,0.14); text-align: right; vertical-align: top; }
+    th { color: var(--primary-light); background: rgba(255,255,255,0.045); font-size: 0.82rem; }
+    td { color: var(--text); font-size: 0.9rem; }
+    tr:last-child td { border-bottom: 0; }
+    .badge { display: inline-flex; border-radius: 999px; padding: 0.3rem 0.55rem; font-size: 0.76rem; font-weight: 900; background: rgba(16,185,129,0.16); color: #a7f3d0; }
+    .badge.paused { background: rgba(245,158,11,0.16); color: #fde68a; }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 820px) {
+      .page { width: min(100% - 1rem, 1180px); padding-top: 0.8rem; }
+      .topbar { align-items: flex-start; }
+      .home-link { padding: 0.6rem 0.8rem; }
+      .grid { display: grid; grid-template-columns: 1fr; }
+      .span-8, .span-6, .span-4, .span-12 { grid-column: span 1; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .row { grid-template-columns: 1fr; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark">ت</div>
+        <div>
+          <div class="brand-title">لوحة تحكم tahaddii</div>
+          <div class="brand-sub">دخول، إحصائيات، Excel، وإعلانات الشركات</div>
+        </div>
+      </div>
+      <a class="home-link" href="/">الرئيسية</a>
+    </header>
+
+    <section id="loginView" class="card login-card">
+      <h1 class="section-title">دخول الإدارة</h1>
+      <p class="hint">سجل دخولك بحساب الأدمن. الصلاحيات مربوطة بقواعد Firebase.</p>
+      <label>البريد الإلكتروني<input id="email" dir="ltr" autocomplete="email" placeholder="admin@email.com" /></label>
+      <label>كلمة المرور<input id="password" dir="ltr" type="password" autocomplete="current-password" placeholder="••••••••" /></label>
+      <div class="actions">
+        <button id="loginBtn" class="primary" type="button">دخول</button>
+      </div>
+      <div id="loginStatus" class="status"></div>
+    </section>
+
+    <section id="adminView" class="hidden">
+      <div class="grid">
+        <div class="span-12 card">
+          <div class="section-head">
+            <div>
+              <h1 class="section-title">التحكم الكامل</h1>
+              <p id="userLine" class="hint"></p>
+            </div>
+            <div class="actions">
+              <button id="refreshBtn" class="secondary" type="button">تحديث البيانات</button>
+              <button id="logoutBtn" class="danger" type="button">خروج</button>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div id="usersCount" class="stat-num">--</div><div class="stat-label">المستخدمين</div></div>
+            <div class="stat"><div id="questionsCount" class="stat-num">--</div><div class="stat-label">كل الأسئلة</div></div>
+            <div class="stat"><div id="adsCount" class="stat-num">--</div><div class="stat-label">إعلانات فعالة</div></div>
+            <div class="stat"><div id="tvCount" class="stat-num">--</div><div class="stat-label">جلسات التلفاز</div></div>
+          </div>
+        </div>
+
+        <div class="span-12 card">
+          <div class="tabs" role="tablist">
+            <button class="tab active" type="button" data-tab="questionsPanel">Excel الأسئلة</button>
+            <button class="tab" type="button" data-tab="adsPanel">إعلانات الشركات</button>
+            <button class="tab" type="button" data-tab="statsPanel">الإحصائيات</button>
+          </div>
+
+          <section id="questionsPanel" class="panel active">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">رفع وجلب Excel</h2>
+                <p class="hint">جلب Excel يسحب بنك التطبيق كاملًا مع أي تعديلات من الأدمن. إذا رفعت ID موجود، يتم حفظه كتعديل أدمن ويغطي السؤال الأصلي داخل التطبيق.</p>
+              </div>
+              <div class="actions">
+                <button id="downloadTemplateBtn" class="secondary" type="button">تحميل قالب Excel</button>
+                <button id="exportQuestionsBtn" class="primary" type="button">جلب Excel</button>
+              </div>
+            </div>
+            <label class="file-label">
+              رفع ملف CSV من Excel
+              <input id="questionsFile" type="file" accept=".csv,text/csv" />
+            </label>
+            <div class="actions">
+              <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
+            </div>
+            <div id="questionStatus" class="status"></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>ID</th><th>التصنيف</th><th>الصعوبة</th><th>السؤال</th><th>الإجابة الصحيحة</th></tr></thead>
+                <tbody id="questionsBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="adsPanel" class="panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">إعلانات الشركات</h2>
+                <p class="hint">الإعلانات الفعالة تظهر تلقائيًا داخل شاشة اللعب بالتلفاز.</p>
+              </div>
+            </div>
+            <form id="adForm" class="form">
+              <input id="adId" type="hidden" />
+              <div class="row">
+                <label>اسم الشركة<input id="adCompany" placeholder="Q8NEXDEV" /></label>
+                <label>الأولوية<input id="adPriority" dir="ltr" type="number" value="0" /></label>
+              </div>
+              <label>نص الإعلان بالعربي<input id="adHeadlineAr" placeholder="عبارة قصيرة تظهر على التلفاز" /></label>
+              <label>نص الإعلان بالإنجليزي<input id="adHeadlineEn" dir="ltr" placeholder="Short English headline" /></label>
+              <div class="row">
+                <label>رابط شعار/صورة اختياري<input id="adImageUrl" dir="ltr" placeholder="https://..." /></label>
+                <label>لون الإعلان<input id="adAccentColor" dir="ltr" value="#f59e0b" /></label>
+              </div>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ الإعلان</button>
+                <button id="clearAdBtn" class="secondary" type="button">إعلان جديد</button>
+              </div>
+              <div id="adStatus" class="status"></div>
+            </form>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>الشركة</th><th>الإعلان</th><th>الحالة</th><th>أولوية</th><th>تحكم</th></tr></thead>
+                <tbody id="adsBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="statsPanel" class="panel">
+            <h2 class="section-title">الإحصائيات</h2>
+            <p class="hint">إحصائيات مباشرة من Firebase: المستخدمين، أسئلة الأدمن، إعلانات الشركات، وجلسات التلفاز.</p>
+            <div id="statsDetails" class="table-wrap"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
+    import { addDoc, collection, doc, getDocs, getFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+    import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
+
+    const firebaseConfig = {
+      apiKey: 'AIzaSyC0Hcollocb_GErLjJSjluM6DiiuYYg42E',
+      authDomain: 'tahaddi-77a5d.firebaseapp.com',
+      projectId: 'tahaddi-77a5d',
+      databaseURL: 'https://tahaddi-77a5d-default-rtdb.asia-southeast1.firebasedatabase.app',
+      storageBucket: 'tahaddi-77a5d.firebasestorage.app',
+      messagingSenderId: '611215576327',
+      appId: '1:611215576327:web:4aaa75e31b38864de8c9a2',
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+    const db = getDatabase(app);
+
+    const $ = id => document.getElementById(id);
+    const loginView = $('loginView');
+    const adminView = $('adminView');
+    const headers = [
+      'id', 'categoryId', 'difficulty', 'type', 'ageGroups', 'questionAr', 'questionEn',
+      'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar', 'answer1En', 'answer2En', 'answer3En', 'answer4En',
+      'correctAnswerNumber', 'explanationAr', 'explanationEn', 'points', 'isKidsSafe', 'isActive', 'isPremium',
+    ];
+    const categories = [
+      'generalKnowledge','sports','football','cars','movies','cartoons','anime','history','geography','science','space','animals','capitals','riddles','math','arabicLang','englishLang','technology','inventions','celebrities','music','islamicCulture','kuwait','flags','guessImage','trueFalse','completeSentence','whoAmI','wouldYouRather','familyChallenges'
+    ];
+    const difficulties = ['easy', 'medium', 'hard'];
+    let currentUser = null;
+    let builtinQuestions = [];
+    let customQuestions = [];
+    let allQuestions = [];
+    let sponsorAds = [];
+    let users = [];
+    let tvSessions = [];
+    let pendingQuestionRows = [];
+
+    const setStatus = (element, message, type = '') => {
+      element.className = `status ${type}`.trim();
+      element.textContent = message || '';
+    };
+
+    const escapeCsv = value => `"${String(value ?? '').replace(/"/g, '""')}"`;
+    const downloadText = (filename, text) => {
+      const blob = new Blob([text], { type: 'text/csv;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(link.href);
+    };
+
+    const parseCsv = text => {
+      const rows = [];
+      let row = [];
+      let cell = '';
+      let quoted = false;
+      const input = text.replace(/^\uFEFF/, '');
+      for (let index = 0; index < input.length; index += 1) {
+        const char = input[index];
+        const next = input[index + 1];
+        if (char === '"') {
+          if (quoted && next === '"') {
+            cell += '"';
+            index += 1;
+          } else {
+            quoted = !quoted;
+          }
+        } else if (char === ',' && !quoted) {
+          row.push(cell);
+          cell = '';
+        } else if ((char === '\n' || char === '\r') && !quoted) {
+          if (char === '\r' && next === '\n') index += 1;
+          row.push(cell);
+          if (row.some(value => value.trim())) rows.push(row);
+          row = [];
+          cell = '';
+        } else {
+          cell += char;
+        }
+      }
+      row.push(cell);
+      if (row.some(value => value.trim())) rows.push(row);
+      return rows;
+    };
+
+    const rowsToObjects = rows => {
+      const rowHeaders = rows[0].map(header => header.trim());
+      return rows.slice(1).map(row => Object.fromEntries(rowHeaders.map((header, index) => [header, row[index] ?? ''])));
+    };
+
+    const normalizeQuestion = item => {
+      const categoryId = item.categoryId?.trim();
+      const difficulty = item.difficulty?.trim();
+      const answersAr = [item.answer1Ar, item.answer2Ar, item.answer3Ar, item.answer4Ar].map(value => String(value ?? '').trim()).filter(Boolean);
+      const answersEnRaw = [item.answer1En, item.answer2En, item.answer3En, item.answer4En].map(value => String(value ?? '').trim());
+      const answersEn = answersEnRaw.some(Boolean) ? answersEnRaw.slice(0, answersAr.length) : answersAr;
+      const correctAnswerIndex = Math.max(0, Number(item.correctAnswerNumber || 1) - 1);
+      const pointsByDifficulty = { easy: 10, medium: 20, hard: 30 };
+
+      if (!categoryId || !categories.includes(categoryId)) throw new Error(`تصنيف غير صحيح: ${categoryId || 'فارغ'}`);
+      if (!difficulty || !difficulties.includes(difficulty)) throw new Error(`صعوبة غير صحيحة: ${difficulty || 'فارغ'}`);
+      if (!String(item.questionAr || '').trim()) throw new Error('يوجد سؤال بدون نص عربي');
+      if (answersAr.length < 2) throw new Error(`السؤال ${item.id || item.questionAr} يحتاج اختيارين على الأقل`);
+      if (correctAnswerIndex < 0 || correctAnswerIndex >= answersAr.length) throw new Error(`رقم الإجابة الصحيحة غير صحيح في ${item.id || item.questionAr}`);
+
+      return {
+        id: String(item.id || '').trim(),
+        payload: {
+          categoryId,
+          difficulty,
+          type: item.type?.trim() || 'multiple_choice',
+          ageGroups: String(item.ageGroups || 'kids5|kids8|kids11|teens|adults|family').split('|').map(value => value.trim()).filter(Boolean),
+          questionAr: String(item.questionAr || '').trim(),
+          questionEn: String(item.questionEn || item.questionAr || '').trim(),
+          answersAr,
+          answersEn,
+          correctAnswerIndex,
+          correctAnswerAr: answersAr[correctAnswerIndex] || '',
+          correctAnswerEn: answersEn[correctAnswerIndex] || answersAr[correctAnswerIndex] || '',
+          explanationAr: String(item.explanationAr || '').trim() || null,
+          explanationEn: String(item.explanationEn || '').trim() || null,
+          points: Number(item.points || pointsByDifficulty[difficulty] || 10),
+          isKidsSafe: String(item.isKidsSafe || 'TRUE').toUpperCase() !== 'FALSE',
+          isActive: String(item.isActive || 'TRUE').toUpperCase() !== 'FALSE',
+          isPremium: String(item.isPremium || 'FALSE').toUpperCase() === 'TRUE',
+          updatedAtMs: Date.now(),
+          createdAt: serverTimestamp(),
+          source: 'admin',
+        },
+      };
+    };
+
+    const questionToRow = question => [
+      question.id,
+      question.categoryId,
+      question.difficulty,
+      question.type || 'multiple_choice',
+      Array.isArray(question.ageGroups) ? question.ageGroups.join('|') : '',
+      question.questionAr,
+      question.questionEn,
+      question.answersAr?.[0] || '', question.answersAr?.[1] || '', question.answersAr?.[2] || '', question.answersAr?.[3] || '',
+      question.answersEn?.[0] || '', question.answersEn?.[1] || '', question.answersEn?.[2] || '', question.answersEn?.[3] || '',
+      Number(question.correctAnswerIndex ?? 0) + 1,
+      question.explanationAr || '', question.explanationEn || '', question.points || '',
+      question.isKidsSafe === false ? 'FALSE' : 'TRUE',
+      question.isActive === false ? 'FALSE' : 'TRUE',
+      question.isPremium === true ? 'TRUE' : 'FALSE',
+    ];
+
+    const mergeQuestions = () => {
+      const customById = new Map(customQuestions.map(question => [question.id, question]));
+      const builtinIds = new Set(builtinQuestions.map(question => question.id));
+      const mergedBuiltin = builtinQuestions.map(question => ({ ...question, ...(customById.get(question.id) || {}) }));
+      const newCustom = customQuestions.filter(question => !builtinIds.has(question.id));
+      allQuestions = [...mergedBuiltin, ...newCustom];
+    };
+
+    const renderQuestions = () => {
+      $('questionsBody').replaceChildren(...allQuestions.slice(0, 80).map(question => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${question.categoryId || ''}</td><td>${question.difficulty || ''}</td><td>${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td>`;
+        return tr;
+      }));
+    };
+
+    const renderAds = () => {
+      $('adsBody').replaceChildren(...sponsorAds.map(ad => {
+        const tr = document.createElement('tr');
+        const status = ad.isActive === false ? '<span class="badge paused">متوقف</span>' : '<span class="badge">فعال</span>';
+        tr.innerHTML = `<td>${ad.companyName || ''}</td><td>${ad.headlineAr || ''}</td><td>${status}</td><td dir="ltr">${ad.priority || 0}</td><td class="actions"><button class="secondary" data-edit="${ad.id}">تعديل</button><button class="secondary" data-toggle="${ad.id}">${ad.isActive === false ? 'تفعيل' : 'إيقاف'}</button><button class="danger" data-delete="${ad.id}">حذف</button></td>`;
+        return tr;
+      }));
+    };
+
+    const renderStats = () => {
+      $('usersCount').textContent = users.length;
+      $('questionsCount').textContent = allQuestions.length;
+      $('adsCount').textContent = sponsorAds.filter(ad => ad.isActive !== false).length;
+      $('tvCount').textContent = tvSessions.length;
+      $('statsDetails').innerHTML = `<table><tbody>
+        <tr><th>آخر تحديث</th><td>${new Date().toLocaleString('ar-KW')}</td></tr>
+        <tr><th>المستخدمين المسجلين</th><td>${users.length}</td></tr>
+        <tr><th>أسئلة التطبيق الأساسية</th><td>${builtinQuestions.length}</td></tr>
+        <tr><th>أسئلة/تعديلات الأدمن</th><td>${customQuestions.length}</td></tr>
+        <tr><th>إجمالي الأسئلة في ملف Excel</th><td>${allQuestions.length}</td></tr>
+        <tr><th>الإعلانات الكاملة</th><td>${sponsorAds.length}</td></tr>
+        <tr><th>الإعلانات الفعالة</th><td>${sponsorAds.filter(ad => ad.isActive !== false).length}</td></tr>
+        <tr><th>جلسات التلفاز الحالية</th><td>${tvSessions.length}</td></tr>
+      </tbody></table>`;
+    };
+
+    const loadData = async () => {
+      setStatus($('questionStatus'), 'جاري تحميل البيانات...');
+      const [questionBankResponse, usersSnapshot, questionsSnapshot, adsSnapshot, tvSnapshot] = await Promise.all([
+        fetch('/admin/question-bank.json', { cache: 'no-store' }),
+        getDocs(query(collection(firestore, 'users'), orderBy('displayName', 'asc'))),
+        getDocs(query(collection(firestore, 'customQuestions'), orderBy('updatedAtMs', 'desc'))).catch(() => getDocs(collection(firestore, 'customQuestions'))),
+        get(ref(db, 'sponsorAds')),
+        get(ref(db, 'tvDisplaySessions')),
+      ]);
+
+      if (!questionBankResponse.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
+      const questionBank = await questionBankResponse.json();
+
+      users = usersSnapshot.docs.map(userDoc => ({ id: userDoc.id, ...userDoc.data() }));
+      builtinQuestions = Array.isArray(questionBank.questions) ? questionBank.questions : [];
+      customQuestions = questionsSnapshot.docs.map(questionDoc => ({ id: questionDoc.id, ...questionDoc.data() }));
+      sponsorAds = Object.entries(adsSnapshot.val() || {}).map(([id, value]) => ({ id, ...value })).sort((a, b) => Number(b.priority || 0) - Number(a.priority || 0));
+      tvSessions = Object.entries(tvSnapshot.val() || {}).map(([id, value]) => ({ id, ...value }));
+      mergeQuestions();
+
+      renderQuestions();
+      renderAds();
+      renderStats();
+      setStatus($('questionStatus'), `تم تحميل ${allQuestions.length} سؤال (${builtinQuestions.length} من التطبيق + ${customQuestions.length} من الأدمن)`, 'success');
+    };
+
+    const requireLogin = async user => {
+      currentUser = user;
+      if (!user) {
+        loginView.classList.remove('hidden');
+        adminView.classList.add('hidden');
+        return;
+      }
+      const token = await user.getIdTokenResult(true);
+      $('userLine').textContent = `${user.email || user.uid} · ${token.claims.role || (token.claims.isSuperAdmin ? 'super_admin' : token.claims.isAdmin ? 'admin' : 'user')}`;
+      loginView.classList.add('hidden');
+      adminView.classList.remove('hidden');
+      await loadData().catch(error => {
+        setStatus($('questionStatus'), error.message, 'error');
+        setStatus($('adStatus'), error.message, 'error');
+      });
+    };
+
+    $('loginBtn').addEventListener('click', async () => {
+      setStatus($('loginStatus'), 'جاري الدخول...');
+      try {
+        await signInWithEmailAndPassword(auth, $('email').value.trim(), $('password').value);
+        setStatus($('loginStatus'), 'تم الدخول', 'success');
+      } catch (error) {
+        setStatus($('loginStatus'), error.message, 'error');
+      }
+    });
+
+    $('logoutBtn').addEventListener('click', () => signOut(auth));
+    $('refreshBtn').addEventListener('click', () => loadData().catch(error => setStatus($('questionStatus'), error.message, 'error')));
+
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(item => item.classList.remove('active'));
+        tab.classList.add('active');
+        $(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    $('downloadTemplateBtn').addEventListener('click', () => {
+      const sample = [
+        headers,
+        ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '10', 'TRUE', 'TRUE', 'FALSE'],
+      ];
+      downloadText('tahaddii-question-template.csv', `\uFEFF${sample.map(row => row.map(escapeCsv).join(',')).join('\n')}`);
+    });
+
+    $('exportQuestionsBtn').addEventListener('click', () => {
+      const csv = `\uFEFF${[headers, ...allQuestions.map(questionToRow)].map(row => row.map(escapeCsv).join(',')).join('\n')}`;
+      downloadText(`tahaddii-custom-questions-${new Date().toISOString().slice(0, 10)}.csv`, csv);
+      setStatus($('questionStatus'), `تم تجهيز ${allQuestions.length} سؤال للتحميل`, 'success');
+    });
+
+    $('questionsFile').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      pendingQuestionRows = [];
+      if (!file) return;
+      const text = await file.text();
+      const rows = parseCsv(text);
+      pendingQuestionRows = rowsToObjects(rows);
+      setStatus($('questionStatus'), `تمت قراءة ${pendingQuestionRows.length} صف من الملف. اضغط رفع الأسئلة للحفظ.`, 'success');
+    });
+
+    $('importQuestionsBtn').addEventListener('click', async () => {
+      if (!pendingQuestionRows.length) {
+        setStatus($('questionStatus'), 'اختر ملف CSV أولاً', 'error');
+        return;
+      }
+      setStatus($('questionStatus'), 'جاري رفع الأسئلة...');
+      try {
+        const normalized = pendingQuestionRows.map(normalizeQuestion);
+        for (const item of normalized) {
+          if (item.id) {
+            await setDoc(doc(firestore, 'customQuestions', item.id), item.payload, { merge: true });
+          } else {
+            await addDoc(collection(firestore, 'customQuestions'), item.payload);
+          }
+        }
+        setStatus($('questionStatus'), `تم رفع ${normalized.length} سؤال بنجاح`, 'success');
+        pendingQuestionRows = [];
+        $('questionsFile').value = '';
+        await loadData();
+      } catch (error) {
+        setStatus($('questionStatus'), error.message, 'error');
+      }
+    });
+
+    const clearAdForm = () => {
+      $('adId').value = '';
+      $('adCompany').value = '';
+      $('adPriority').value = '0';
+      $('adHeadlineAr').value = '';
+      $('adHeadlineEn').value = '';
+      $('adImageUrl').value = '';
+      $('adAccentColor').value = '#f59e0b';
+      setStatus($('adStatus'), '');
+    };
+
+    $('clearAdBtn').addEventListener('click', clearAdForm);
+
+    $('adForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('adStatus'), 'جاري حفظ الإعلان...');
+      const id = $('adId').value;
+      const payload = {
+        companyName: $('adCompany').value.trim(),
+        headlineAr: $('adHeadlineAr').value.trim(),
+        headlineEn: $('adHeadlineEn').value.trim() || $('adHeadlineAr').value.trim(),
+        imageUrl: $('adImageUrl').value.trim(),
+        accentColor: $('adAccentColor').value.trim() || '#f59e0b',
+        priority: Number($('adPriority').value || 0),
+        isActive: true,
+        updatedAtMs: Date.now(),
+      };
+      if (!payload.companyName || !payload.headlineAr) {
+        setStatus($('adStatus'), 'اكتب اسم الشركة ونص الإعلان', 'error');
+        return;
+      }
+      try {
+        if (id) {
+          await update(ref(db, `sponsorAds/${id}`), payload);
+        } else {
+          await set(push(ref(db, 'sponsorAds')), { ...payload, createdAtMs: Date.now() });
+        }
+        clearAdForm();
+        setStatus($('adStatus'), 'تم حفظ الإعلان', 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('adStatus'), error.message, 'error');
+      }
+    });
+
+    $('adsBody').addEventListener('click', async event => {
+      const editId = event.target.closest('[data-edit]')?.dataset.edit;
+      const toggleId = event.target.closest('[data-toggle]')?.dataset.toggle;
+      const deleteId = event.target.closest('[data-delete]')?.dataset.delete;
+      if (editId) {
+        const ad = sponsorAds.find(item => item.id === editId);
+        if (!ad) return;
+        $('adId').value = ad.id;
+        $('adCompany').value = ad.companyName || '';
+        $('adPriority').value = ad.priority || 0;
+        $('adHeadlineAr').value = ad.headlineAr || '';
+        $('adHeadlineEn').value = ad.headlineEn || '';
+        $('adImageUrl').value = ad.imageUrl || '';
+        $('adAccentColor').value = ad.accentColor || '#f59e0b';
+        window.scrollTo({ top: $('adsPanel').offsetTop, behavior: 'smooth' });
+      }
+      if (toggleId) {
+        const ad = sponsorAds.find(item => item.id === toggleId);
+        await update(ref(db, `sponsorAds/${toggleId}`), { isActive: ad?.isActive === false, updatedAtMs: Date.now() });
+        await loadData();
+      }
+      if (deleteId && confirm('حذف الإعلان؟')) {
+        await remove(ref(db, `sponsorAds/${deleteId}`));
+        await loadData();
+      }
+    });
+
+    onAuthStateChanged(auth, requireLogin);
+  </script>
+</body>
+</html>

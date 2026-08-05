@@ -7,6 +7,7 @@
     "android:bundle": "cd android && ./gradlew bundleRelease",
     "admin:create-user": "node scripts/create-admin-user.cjs",
     "admin:delete-user": "node scripts/delete-firebase-user.cjs",
+    "admin:export-questions": "node scripts/export-admin-question-bank.cjs",
     "admin:set-role": "node scripts/create-admin-user.cjs",
     "ios": "react-native run-ios",
     "lint": "eslint .",
