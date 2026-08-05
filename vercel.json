@@ -1,0 +1,40 @@
+{
+  "installCommand": "echo 'Static site: skipping install'",
+  "buildCommand": "echo 'Static site ready'",
+  "outputDirectory": "public",
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/tv/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/tv/:path*",
+      "destination": "/tv/index.html"
+    }
+  ]
+}

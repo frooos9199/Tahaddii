@@ -1,0 +1,136 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn()
+        && (
+          request.auth.token.isSuperAdmin == true
+          || request.auth.token.role == 'super_admin'
+        );
+    }
+
+    function isAdmin() {
+      return isSuperAdmin()
+        || (
+          isSignedIn()
+          && (
+            request.auth.token.isAdmin == true
+            || request.auth.token.role == 'admin'
+          )
+        );
+    }
+
+    function isPrivilegedUser() {
+      return isAdmin() || isSuperAdmin();
+    }
+
+    function isOwnUser(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isHost(roomId) {
+      return isSignedIn()
+        && get(/databases/$(database)/documents/rooms/$(roomId)).data.hostId == request.auth.uid;
+    }
+
+    function isRoomManager(roomId) {
+      return isHost(roomId) || isPrivilegedUser();
+    }
+
+    function canCreateOwnUser(userId) {
+      return isOwnUser(userId)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.role == 'user'
+        && request.resource.data.isAdmin == false
+        && request.resource.data.isSuperAdmin == false;
+    }
+
+    function canUpdateOwnUser() {
+      return request.resource.data.uid == resource.data.uid
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.roles == resource.data.roles
+        && request.resource.data.isAdmin == resource.data.isAdmin
+        && request.resource.data.isSuperAdmin == resource.data.isSuperAdmin
+        && request.resource.data.isGuest == resource.data.isGuest
+        && request.resource.data.authProvider == resource.data.authProvider;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwnUser(userId) || isPrivilegedUser();
+
+      allow create: if canCreateOwnUser(userId) || isSuperAdmin();
+
+      allow update: if (isOwnUser(userId) && canUpdateOwnUser()) || isSuperAdmin();
+
+      allow delete: if isSuperAdmin();
+    }
+
+    match /onlinePresence/{userId} {
+      allow read: if isSignedIn();
+      allow create, update: if isOwnUser(userId);
+      allow delete: if isOwnUser(userId) || isPrivilegedUser();
+    }
+
+    match /customQuestions/{questionId} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isPrivilegedUser();
+    }
+
+    match /rooms/{roomId} {
+      allow read: if isSignedIn();
+
+      allow create: if isSignedIn()
+        && request.resource.data.hostId == request.auth.uid
+        && request.resource.data.status == 'lobby';
+
+      allow update: if isRoomManager(roomId)
+        || (
+          isSignedIn()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['playerCount'])
+          && request.resource.data.playerCount == resource.data.playerCount + 1
+        )
+        || (
+          isSignedIn()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['playerCount'])
+          && request.resource.data.playerCount == resource.data.playerCount - 1
+        )
+        || (
+          isSignedIn()
+          && resource.data.status == 'playing'
+          && resource.data.revealedAnswer == false
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'answeredPlayerIds',
+            'lastAnswerAtMs',
+            'locked',
+            'lastWrongAnswer',
+            'revealedAnswer',
+            'winnerPlayerId',
+          ])
+          && request.resource.data.answeredPlayerIds.size() == resource.data.answeredPlayerIds.size() + 1
+          && request.resource.data.answeredPlayerIds.hasAll(resource.data.answeredPlayerIds)
+          && request.resource.data.answeredPlayerIds.hasAny([request.auth.uid])
+          && (
+            request.resource.data.winnerPlayerId == null
+            || request.resource.data.winnerPlayerId == request.auth.uid
+          )
+        );
+
+      allow delete: if isRoomManager(roomId);
+
+      match /players/{playerId} {
+        allow read: if isSignedIn();
+
+        allow create, update: if (isSignedIn() && request.auth.uid == playerId)
+          || isRoomManager(roomId);
+
+        allow delete: if isSignedIn()
+          && (request.auth.uid == playerId || isRoomManager(roomId));
+      }
+    }
+  }
+}
