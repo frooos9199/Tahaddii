@@ -342,6 +342,7 @@ export default function GameScreen({ navigation }: Props) {
                 <TouchableOpacity
                   key={i}
                   style={[styles.answerBtn,
+                    language !== 'en' && styles.answerBtnRtl,
                     isSelected && !revealed && styles.answerSelected,
                     showGreen && styles.answerCorrect,
                     showRed && styles.answerWrong,
@@ -349,7 +350,7 @@ export default function GameScreen({ navigation }: Props) {
                   disabled={revealed}
                   onPress={() => { setSelectedIndex(i); registerAnswer(i === question.correctAnswerIndex); }}>
                   <Text style={styles.answerLetter}>{answerLetters[i]}</Text>
-                  <Text style={styles.answerText} adjustsFontSizeToFit numberOfLines={2}>{ans}</Text>
+                  <Text style={[styles.answerText, language !== 'en' && styles.answerTextRtl]} adjustsFontSizeToFit numberOfLines={2}>{ans}</Text>
                 </TouchableOpacity>
               );
             })}
@@ -477,7 +478,7 @@ const styles = StyleSheet.create({
   },
 
   answersBlock: { flex: 1, paddingHorizontal: 16, marginTop: 12 },
-  answersGrid: { flex: 1, flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  answersGrid: { flex: 1, flexDirection: 'row', flexWrap: 'wrap', gap: 10, direction: 'ltr' },
   answerBtn: {
     width: (W - 42) / 2,
     flex: 0,
@@ -487,6 +488,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', gap: 8,
     minHeight: 64,
   },
+  answerBtnRtl: { direction: 'rtl' },
   answerSelected: { borderColor: Colors.primaryLight, backgroundColor: Colors.primary + '22' },
   answerCorrect: { borderColor: Colors.success, backgroundColor: Colors.success + '22' },
   answerWrong: { borderColor: Colors.error, backgroundColor: Colors.error + '22' },
@@ -498,6 +500,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   answerText: { flex: 1, fontSize: 14, color: Colors.text, fontWeight: '500' },
+  answerTextRtl: { textAlign: 'right', writingDirection: 'rtl' },
 
   manualRow: { flex: 1, flexDirection: 'row', gap: 12 },
   manualBtn: { flex: 1, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
