@@ -8,6 +8,7 @@ import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { AVATAR_EMOJIS } from '../constants';
+import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Results'> };
 
@@ -23,8 +24,13 @@ const FIREWORKS = Array.from({ length: 18 }, (_, index) => ({
 
 export default function ResultsScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const language = useAppStore(s => s.language);
   const game = useGameStore(s => s.game);
   const resetGame = useGameStore(s => s.resetGame);
+  const setPendingPlayers = useGameStore(s => s.setPendingPlayers);
+  const setPendingTeams = useGameStore(s => s.setPendingTeams);
+  const pendingTvDisplayCode = useGameStore(s => s.pendingTvDisplayCode);
+  const clearSavedGame = useGameStore(s => s.clearSavedGame);
   const addGameResult = useAppStore(s => s.addGameResult);
   const saved = useRef(false);
   const celebration = useRef(new Animated.Value(0)).current;
@@ -95,6 +101,56 @@ export default function ResultsScreen({ navigation }: Props) {
     </View>
   );
 
+  const handlePlayAgain = async () => {
+    const replayPlayers = game.players.map(player => ({
+      ...player,
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      totalAnswerTime: 0,
+      fastAnswers: 0,
+    }));
+    const replayTeams = game.teams.map(team => ({
+      ...team,
+      score: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+    }));
+
+    setPendingPlayers(replayPlayers);
+    setPendingTeams(replayTeams);
+    await clearSavedGame();
+
+    if (pendingTvDisplayCode) {
+      await updateTvDisplaySession(pendingTvDisplayCode, {
+        gameId: '',
+        status: 'pairing',
+        syncSource: 'results-play-again',
+        language: language === 'en' ? 'en' : 'ar',
+        questionIndex: 0,
+        totalQuestions: 0,
+        timeLeft: null,
+        question: null,
+        answers: [],
+        currentPlayer: null,
+        players: replayPlayers.map(player => ({
+          id: player.id,
+          name: player.name,
+          score: player.score,
+          correctAnswers: player.correctAnswers,
+          wrongAnswers: player.wrongAnswers,
+          color: player.color,
+        })),
+        correctAnswer: '',
+        explanation: '',
+      }).catch(error => {
+        console.warn('Failed to reset TV display for replay', error);
+      });
+    }
+
+    navigation.replace('GameSetup');
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
@@ -162,7 +218,7 @@ export default function ResultsScreen({ navigation }: Props) {
 
       {/* Footer Buttons */}
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.primaryBtn} onPress={() => navigation.replace('GameModeSelect')}>
+        <TouchableOpacity style={styles.primaryBtn} onPress={() => { void handlePlayAgain(); }}>
           <Text style={styles.primaryBtnText}>🎮 {t('common.playAgain')}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.secondaryBtn} onPress={() => { resetGame(); navigation.replace('Home'); }}>
