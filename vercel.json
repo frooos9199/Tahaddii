@@ -1,7 +1,7 @@
 {
   "installCommand": "echo 'Static site: skipping install'",
-  "buildCommand": "echo 'Static site ready'",
-  "outputDirectory": "public",
+  "buildCommand": "rm -rf dist && cp -R public dist",
+  "outputDirectory": "dist",
   "headers": [
     {
       "source": "/",
