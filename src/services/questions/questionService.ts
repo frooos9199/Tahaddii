@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Question, GameSettings } from '../../types';
 import { shuffle, calcProgressivePoints } from '../../utils/helpers';
 import { DIFFICULTY_POINTS } from '../../constants';
-import { getCategoriesWithQuestionsForAge, mergeQuestionBank } from './questionCatalog';
-import { canQuestionAppearForAge } from './questionPolicies';
+import { mergeQuestionBank } from './questionCatalog';
+import { canQuestionAppearForAge, canQuestionAppearForDifficulty, DIFFICULTY_MIX } from './questionPolicies';
 import { listCustomQuestions } from './customQuestionService';
 const QUESTION_HISTORY_KEY = 'questionHistory';
 const QUESTION_HISTORY_LIMIT = 250;
@@ -74,14 +74,36 @@ const shuffleQuestionAnswers = (question: Question): Question => {
   };
 };
 
+const orderQuestionsByDifficultyMix = (questions: Question[], difficulty: GameSettings['difficulty']) => {
+  const buckets = {
+    easy: shuffle(questions.filter(question => question.difficulty === 'easy')),
+    medium: shuffle(questions.filter(question => question.difficulty === 'medium')),
+    hard: shuffle(questions.filter(question => question.difficulty === 'hard')),
+  };
+  const ordered: Question[] = [];
+
+  while (ordered.length < questions.length) {
+    const before = ordered.length;
+    DIFFICULTY_MIX[difficulty].forEach(level => {
+      const next = buckets[level].shift();
+      if (next) ordered.push(next);
+    });
+
+    if (before === ordered.length) break;
+  }
+
+  return ordered;
+};
+
 export async function getQuestions(settings: GameSettings): Promise<Question[]> {
   const { categories, ageGroup, difficulty, questionCount, questionLanguage, allowRepeat } = settings;
   const customQuestions = await listCustomQuestions().catch(() => []);
   const allQuestions = mergeQuestionBank(customQuestions);
-  const requestedCategories = categories.length ? categories : getCategoriesWithQuestionsForAge(ageGroup);
+  const categoriesWithQuestions = [...new Set(allQuestions.filter(question => question.isActive).map(question => question.categoryId))];
+  const requestedCategories = categories.length ? categories : categoriesWithQuestions;
   const activeCategories = requestedCategories.length
     ? requestedCategories
-    : getCategoriesWithQuestionsForAge(ageGroup);
+    : categoriesWithQuestions;
 
   const matchesLanguage = (question: Question) => {
     if (questionLanguage === 'ar') {
@@ -100,7 +122,7 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
     if (!activeCategories.includes(q.categoryId)) return false;
     if (!canQuestionAppearForAge(q, ageGroup)) return false;
     if (!matchesLanguage(q)) return false;
-    if (difficulty !== 'progressive' && q.difficulty !== difficulty) return false;
+    if (!canQuestionAppearForDifficulty(q, difficulty)) return false;
     return true;
   });
 
@@ -121,7 +143,7 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
 
   if (!allowRepeat && pool.length > 0) {
     const history = await readHistory();
-    const neverSeenPool = shuffle(pool.filter(question => history[question.id] == null));
+    const neverSeenPool = orderQuestionsByDifficultyMix(pool.filter(question => history[question.id] == null), difficulty);
     const recentBlockedCount = Math.min(pool.length, Math.max(questionCount, questionCount * RECENT_HISTORY_BLOCK_MULTIPLIER));
     const recentlySeenIds = new Set(
       Object.entries(history)
@@ -131,7 +153,7 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
     );
     const freshPool = pool.filter(question => !recentlySeenIds.has(question.id));
     const fallbackPool = pool.filter(question => recentlySeenIds.has(question.id));
-    const orderByLeastUsed = (questions: Question[]) => shuffle(questions).sort((a, b) => {
+    const orderByLeastUsed = (questions: Question[]) => orderQuestionsByDifficultyMix(questions, difficulty).sort((a, b) => {
       const left = history[a.id] ?? { lastSeenAt: 0, seenCount: 0 };
       const right = history[b.id] ?? { lastSeenAt: 0, seenCount: 0 };
       if (left.seenCount !== right.seenCount) return left.seenCount - right.seenCount;
@@ -159,7 +181,7 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
       await writeHistory(nextHistory);
     }
   } else {
-    selected = shuffle(pool).slice(0, questionCount);
+    selected = orderQuestionsByDifficultyMix(pool, difficulty).slice(0, questionCount);
   }
 
   const randomizedSelection = shuffle(selected).map(shuffleQuestionAnswers);

@@ -1,6 +1,6 @@
 import { AgeGroup, CategoryId, Difficulty, GameSettings, Question } from '../../types';
 import { QUESTIONS } from './questionsData';
-import { canQuestionAppearForAge } from './questionPolicies';
+import { canQuestionAppearForAge, canQuestionAppearForDifficulty } from './questionPolicies';
 import { listCustomQuestions } from './customQuestionService';
 
 export const CATEGORY_CONTENT_TARGET = 200;
@@ -52,9 +52,9 @@ export const getDifficultyQuestionCountForAgeFromBank = (
   ageGroup: AgeGroup,
   categories: CategoryId[],
 ): Record<Difficulty, number> => ({
-  easy: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'easy' && canQuestionAppearForAge(question, ageGroup)).length,
-  medium: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'medium' && canQuestionAppearForAge(question, ageGroup)).length,
-  hard: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'hard' && canQuestionAppearForAge(question, ageGroup)).length,
+  easy: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
+  medium: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
+  hard: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
 });
 
 export const getAvailableQuestionCountFromBank = (
@@ -82,7 +82,7 @@ export const getAvailableQuestionCountFromBank = (
     if (!activeCategories.includes(question.categoryId)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
-    if (settings.difficulty !== 'progressive' && question.difficulty !== settings.difficulty) return false;
+    if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;
     return true;
   }).length;
 };
@@ -103,9 +103,9 @@ export const getDifficultyQuestionCountForAge = (
   ageGroup: AgeGroup,
   categories: CategoryId[],
 ): Record<Difficulty, number> => ({
-  easy: QUESTIONS.filter(question => categories.includes(question.categoryId) && question.difficulty === 'easy' && canQuestionAppearForAge(question, ageGroup)).length,
-  medium: QUESTIONS.filter(question => categories.includes(question.categoryId) && question.difficulty === 'medium' && canQuestionAppearForAge(question, ageGroup)).length,
-  hard: QUESTIONS.filter(question => categories.includes(question.categoryId) && question.difficulty === 'hard' && canQuestionAppearForAge(question, ageGroup)).length,
+  easy: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
+  medium: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
+  hard: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
 });
 
 export const getPlayableCategories = (): CategoryId[] => CATEGORY_IDS.filter(isCategoryPlayable);
@@ -137,7 +137,7 @@ export const getAvailableQuestionCount = (settings: Pick<GameSettings, 'categori
     if (!activeCategories.includes(question.categoryId)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
-    if (settings.difficulty !== 'progressive' && question.difficulty !== settings.difficulty) return false;
+    if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;
     return true;
   }).length;
 };

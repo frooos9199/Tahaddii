@@ -92,20 +92,17 @@ export const getAllowedDifficultiesForCategoryAge = (categoryId: CategoryId, age
   return [...CATEGORY_AGE_POLICIES[policyName][ageGroup]];
 };
 
-export const canQuestionAppearForAge = (question: Question, ageGroup: AgeGroup) => {
-  const allowedDifficulties = getAllowedDifficultiesForCategoryAge(question.categoryId, ageGroup);
-
-  if (!question.ageGroups.includes(ageGroup)) {
-    return false;
-  }
-
-  if ((ageGroup === 'family' || KIDS_AGE_GROUPS.includes(ageGroup)) && !question.isKidsSafe) {
-    return false;
-  }
-
-  if (!(AGE_DIFFICULTY_RULES[ageGroup] as readonly string[]).includes(question.difficulty)) {
-    return false;
-  }
-
-  return (allowedDifficulties as readonly string[]).includes(question.difficulty);
+export const DIFFICULTY_MIX: Record<Difficulty | 'progressive', Difficulty[]> = {
+  easy: ['easy', 'easy', 'easy', 'medium'],
+  medium: ['medium', 'medium', 'medium', 'easy', 'hard'],
+  hard: ['hard', 'hard', 'hard', 'medium'],
+  progressive: ['easy', 'medium', 'hard'],
 };
+
+export const getAllowedDifficultiesForLevel = (difficulty: Difficulty | 'progressive'): Difficulty[] =>
+  [...new Set(DIFFICULTY_MIX[difficulty])];
+
+export const canQuestionAppearForDifficulty = (question: Question, difficulty: Difficulty | 'progressive') =>
+  getAllowedDifficultiesForLevel(difficulty).includes(question.difficulty);
+
+export const canQuestionAppearForAge = (_question: Question, _ageGroup: AgeGroup) => true;
