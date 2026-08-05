@@ -80,15 +80,89 @@
     .brand-title { font-size: clamp(1.45rem, 2.6vw, 2.4rem); font-weight: 900; }
     .brand-sub { color: var(--muted); font-size: clamp(0.75rem, 1vw, 1rem); margin-top: 0.15rem; direction: ltr; text-align: right; }
 
-    .company {
+    .menu-wrap {
+      position: relative;
+      z-index: 5;
+    }
+
+    .menu-btn {
       border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.72rem 1rem;
+      border-radius: 1rem;
+      width: clamp(3rem, 4.4vw, 3.8rem);
+      height: clamp(3rem, 4.4vw, 3.8rem);
+      display: grid;
+      place-items: center;
       color: var(--primary-light);
       background: rgba(255,255,255,0.06);
       font-weight: 900;
-      direction: ltr;
-      white-space: nowrap;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+    }
+
+    .menu-icon,
+    .menu-icon::before,
+    .menu-icon::after {
+      content: "";
+      display: block;
+      width: 1.25rem;
+      height: 0.14rem;
+      border-radius: 99px;
+      background: var(--primary-light);
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .menu-icon::before { transform: translateY(-0.42rem); }
+    .menu-icon::after { transform: translateY(0.28rem); }
+
+    .menu-btn[aria-expanded="true"] .menu-icon { transform: rotate(45deg); }
+    .menu-btn[aria-expanded="true"] .menu-icon::before { opacity: 0; }
+    .menu-btn[aria-expanded="true"] .menu-icon::after { transform: translateY(-0.14rem) rotate(-90deg); }
+
+    .menu-panel {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      left: 0;
+      width: min(82vw, 21rem);
+      border: 1px solid rgba(196, 181, 253, 0.28);
+      border-radius: 1.35rem;
+      background: rgba(14, 7, 31, 0.92);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(18px);
+      padding: 0.65rem;
+      display: grid;
+      gap: 0.35rem;
+      opacity: 0;
+      transform: translateY(-0.45rem) scale(0.98);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .menu-panel.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .menu-item {
+      border: 1px solid transparent;
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+      color: var(--text);
+      text-decoration: none;
+      background: rgba(255,255,255,0.045);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      font-weight: 900;
+    }
+    .menu-item:hover { border-color: rgba(196, 181, 253, 0.28); background: rgba(139, 92, 246, 0.18); }
+    .menu-item span:first-child { color: var(--primary-light); }
+    .menu-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+      padding: 0.45rem 0.6rem 0.25rem;
+      text-align: center;
     }
 
     .hero {
@@ -290,8 +364,9 @@
       .character-stage { order: 3; align-self: center; transform: translateY(-0.4rem); }
       .character { width: min(42vw, 11rem); max-height: 16vh; }
       .character-stage::after { width: 8rem; bottom: -0.15rem; }
-      .topbar, .footer { flex-direction: column; text-align: center; }
-      .company { white-space: normal; }
+      .topbar { flex-direction: row; text-align: initial; }
+      .footer { flex-direction: column; text-align: center; }
+      .menu-panel { left: 0; }
       .footer { display: none; }
     }
 
@@ -299,7 +374,7 @@
       .topbar { gap: 0.5rem; }
       .mark { width: 2.65rem; height: 2.65rem; border-radius: 0.9rem; }
       .brand-title { font-size: 1.35rem; }
-      .brand-sub, .company { display: none; }
+      .brand-sub { display: none; }
       h1 { margin-top: 0.3rem; font-size: clamp(2.8rem, 14vw, 4.2rem); }
       .english { margin-top: 0.15rem; font-size: 1.15rem; }
       .eyebrow { padding: 0.45rem 0.7rem; font-size: 0.78rem; }
@@ -312,7 +387,7 @@
       .hero { grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.75fr); gap: 1rem; }
       .mark { width: 2.8rem; height: 2.8rem; border-radius: 0.9rem; }
       .brand-title { font-size: 1.25rem; }
-      .brand-sub, .company, .tagline { display: none; }
+      .brand-sub, .tagline { display: none; }
       h1 { font-size: clamp(3rem, 9vw, 5.6rem); }
       .english { font-size: 1.2rem; margin-top: 0.3rem; }
       .chips { margin-top: 0.7rem; }
@@ -339,7 +414,18 @@
           <div class="brand-sub">A Q8NEXDEV product</div>
         </div>
       </div>
-      <div class="company">© Q8NEXDEV</div>
+      <div class="menu-wrap">
+        <button id="menuBtn" class="menu-btn" type="button" aria-label="فتح المنيو" aria-expanded="false" aria-controls="siteMenu">
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <nav id="siteMenu" class="menu-panel" aria-label="منيو الموقع">
+          <a id="menuOpenTv" class="menu-item" href="/tv/"><span>شاشة التلفاز</span><strong>TV</strong></a>
+          <a class="menu-item" href="#qr"><span>رمز الغرفة</span><strong>QR</strong></a>
+          <a class="menu-item" href="https://tahaddii.com" lang="en"><span>tahaddii.com</span><strong>Web</strong></a>
+          <div class="menu-note">الدخول، البروفايل، الإعدادات، اللغة والإحصائيات تكون من داخل التطبيق.</div>
+          <div class="menu-note" lang="en">Q8NEXDEV</div>
+        </nav>
+      </div>
     </header>
 
     <section class="hero">
@@ -359,7 +445,7 @@
         <img class="character" src="/assets/tahaddii-character-transparent.png" alt="" />
       </div>
 
-      <aside class="qr-panel" aria-label="رمز ربط التلفاز">
+      <aside id="qr" class="qr-panel" aria-label="رمز ربط التلفاز">
         <h2 class="qr-title">امسح للربط بالتلفاز</h2>
         <div class="qr-card"><img id="qrImage" alt="Tahaddii TV QR" /></div>
         <div id="setupCode" class="code">-----</div>
@@ -394,6 +480,9 @@
     const setupCode = document.getElementById('setupCode');
     const statusText = document.getElementById('statusText');
     const openTv = document.getElementById('openTv');
+    const menuBtn = document.getElementById('menuBtn');
+    const siteMenu = document.getElementById('siteMenu');
+    const menuOpenTv = document.getElementById('menuOpenTv');
     const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let unsubscribe = null;
 
@@ -401,11 +490,31 @@
     const tvUrl = code => `${location.origin}/tv/?code=${encodeURIComponent(code)}`;
     const qrUrl = payload => `https://api.qrserver.com/v1/create-qr-code/?size=440x440&margin=20&data=${encodeURIComponent(payload)}`;
 
+    function setMenuOpen(isOpen) {
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      siteMenu.classList.toggle('open', isOpen);
+    }
+
+    menuBtn.addEventListener('click', event => {
+      event.stopPropagation();
+      setMenuOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
+    });
+
+    siteMenu.addEventListener('click', event => {
+      event.stopPropagation();
+      if (event.target.closest('a')) setMenuOpen(false);
+    });
+    document.addEventListener('click', () => setMenuOpen(false));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    });
+
     function renderCode(code) {
       const url = tvUrl(code);
       setupCode.textContent = code;
       qrImage.src = qrUrl(url);
       openTv.href = url;
+      menuOpenTv.href = url;
       statusText.textContent = 'جاهز للمسح من التطبيق';
       if (unsubscribe) unsubscribe();
       unsubscribe = onValue(ref(db, `tvDisplaySessions/${code}`), snapshot => {
