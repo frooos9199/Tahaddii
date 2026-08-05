@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
   ScrollView,
@@ -11,8 +11,12 @@ import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { CATEGORY_EMOJIS } from '../constants';
 import {
+  CATEGORY_IDS,
+  getCategoriesWithQuestionsForAgeFromBank,
   getCategoriesWithQuestionsForAge,
   getCategoryQuestionCountForAge,
+  getCategoryQuestionCountForAgeFromBank,
+  loadQuestionBank,
 } from '../services/questions/questionCatalog';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'CategorySelect'> };
@@ -20,12 +24,42 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Catego
 export default function CategorySelectScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { settings, updateSettings } = useGameStore();
-  const availableCategories = getCategoriesWithQuestionsForAge(settings.ageGroup);
+  const [categoryData, setCategoryData] = useState(() => ({
+    availableCategories: getCategoriesWithQuestionsForAge(settings.ageGroup),
+    counts: Object.fromEntries(
+      CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCountForAge(categoryId, settings.ageGroup)]),
+    ) as Record<CategoryId, number>,
+  }));
+  const availableCategories = categoryData.availableCategories;
   const [selected, setSelected] = useState<CategoryId[]>(
     settings.categories.filter(categoryId => availableCategories.includes(categoryId)).length
       ? settings.categories.filter(categoryId => availableCategories.includes(categoryId))
       : availableCategories,
   );
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadQuestionBank().then(questions => {
+      if (!isMounted) return;
+
+      const nextAvailableCategories = getCategoriesWithQuestionsForAgeFromBank(questions, settings.ageGroup);
+      setCategoryData({
+        availableCategories: nextAvailableCategories,
+        counts: Object.fromEntries(
+          CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCountForAgeFromBank(questions, categoryId, settings.ageGroup)]),
+        ) as Record<CategoryId, number>,
+      });
+      setSelected(previous => {
+        const nextSelected = previous.filter(categoryId => nextAvailableCategories.includes(categoryId));
+        return nextSelected.length ? nextSelected : nextAvailableCategories;
+      });
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [settings.ageGroup]);
 
   const toggle = (id: CategoryId) => {
     setSelected(prev =>
@@ -65,7 +99,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
       <ScrollView contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
         {availableCategories.map(id => {
           const isSelected = selected.includes(id);
-          const count = getCategoryQuestionCountForAge(id, settings.ageGroup);
+          const count = categoryData.counts[id] ?? getCategoryQuestionCountForAge(id, settings.ageGroup);
           return (
             <TouchableOpacity
               key={id}

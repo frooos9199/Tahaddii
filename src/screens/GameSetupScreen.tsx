@@ -12,7 +12,7 @@ import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { TIME_OPTIONS } from '../constants';
 import { getQuestions } from '../services/questions/questionService';
-import { getAvailableQuestionCount } from '../services/questions/questionCatalog';
+import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, loadQuestionBank } from '../services/questions/questionCatalog';
 import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'> };
@@ -23,10 +23,21 @@ export default function GameSetupScreen({ navigation }: Props) {
   const { settings, updateSettings, initGame, pendingPlayers, pendingTvDisplayCode, setPendingTvDisplayCode } = useGameStore();
   const [isStarting, setIsStarting] = useState(false);
   const playerTurnUnit = Math.max(1, pendingPlayers.length || 1);
-  const availableQuestionCount = useMemo(
-    () => getAvailableQuestionCount(settings),
-    [settings],
-  );
+  const [availableQuestionCount, setAvailableQuestionCount] = useState(() => getAvailableQuestionCount(settings));
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadQuestionBank().then(questions => {
+      if (isMounted) {
+        setAvailableQuestionCount(getAvailableQuestionCountFromBank(questions, settings));
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [settings]);
   const availableQuestionOptions = useMemo(() => {
     if (availableQuestionCount <= 0) {
       return [];

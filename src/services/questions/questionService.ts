@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Question, GameSettings } from '../../types';
-import { QUESTIONS } from './questionsData';
 import { shuffle, calcProgressivePoints } from '../../utils/helpers';
 import { DIFFICULTY_POINTS } from '../../constants';
-import { getCategoriesWithQuestionsForAge } from './questionCatalog';
+import { getCategoriesWithQuestionsForAge, mergeQuestionBank } from './questionCatalog';
 import { canQuestionAppearForAge } from './questionPolicies';
 import { listCustomQuestions } from './customQuestionService';
 const QUESTION_HISTORY_KEY = 'questionHistory';
@@ -78,11 +77,7 @@ const shuffleQuestionAnswers = (question: Question): Question => {
 export async function getQuestions(settings: GameSettings): Promise<Question[]> {
   const { categories, ageGroup, difficulty, questionCount, questionLanguage, allowRepeat } = settings;
   const customQuestions = await listCustomQuestions().catch(() => []);
-  const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
-  const builtinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
-  const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
-  const newCustomQuestions = customQuestions.filter(question => !builtinQuestionIds.has(question.id));
-  const allQuestions = [...builtinQuestions, ...newCustomQuestions];
+  const allQuestions = mergeQuestionBank(customQuestions);
   const requestedCategories = categories.length ? categories : getCategoriesWithQuestionsForAge(ageGroup);
   const activeCategories = requestedCategories.length
     ? requestedCategories

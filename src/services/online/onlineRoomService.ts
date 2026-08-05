@@ -20,7 +20,7 @@ import { OnlinePlayer, OnlinePresencePlayer, OnlineQuestion, OnlineRoom, OnlineR
 import { getFirebaseDb, getFirebaseFunctions, getFirebaseRealtimeDb } from '../firebase/firebaseClient';
 import { ensureAuthenticatedUser } from '../auth/authService';
 import { getQuestions } from '../questions/questionService';
-import { getAvailableQuestionCount, getRecommendedFairQuestionCount } from '../questions/questionCatalog';
+import { getAvailableQuestionCountFromBank, getRecommendedFairQuestionCount, loadQuestionBank } from '../questions/questionCatalog';
 import { Coordinates, NEARBY_ROOM_RADIUS_KM, getCurrentCoordinates, getDistanceKm } from '../location/locationService';
 
 const ROOM_TTL_MS = 3 * 24 * 60 * 60 * 1000;
@@ -500,7 +500,8 @@ export const startRoom = async (roomId: string) => {
   const room = serializeRoom(snapshot.id, snapshot.data());
   const playersSnapshot = await getDocs(query(collection(db, ROOMS_COLLECTION, roomId, PLAYERS_SUBCOLLECTION), orderBy('joinedAtMs', 'asc')));
   const playerCount = Math.max(1, playersSnapshot.size || room.playerCount || 1);
-  const availableQuestionCount = getAvailableQuestionCount({
+  const questionBank = await loadQuestionBank();
+  const availableQuestionCount = getAvailableQuestionCountFromBank(questionBank, {
     categories: room.settings.categories,
     ageGroup: room.settings.ageGroup,
     difficulty: room.settings.difficulty,

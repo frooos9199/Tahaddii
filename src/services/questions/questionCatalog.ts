@@ -1,11 +1,12 @@
-import { AgeGroup, CategoryId, Difficulty, GameSettings } from '../../types';
+import { AgeGroup, CategoryId, Difficulty, GameSettings, Question } from '../../types';
 import { QUESTIONS } from './questionsData';
 import { canQuestionAppearForAge } from './questionPolicies';
+import { listCustomQuestions } from './customQuestionService';
 
 export const CATEGORY_CONTENT_TARGET = 200;
 export const MIN_PLAYABLE_CATEGORY_QUESTIONS = 20;
 
-const CATEGORY_IDS: CategoryId[] = [
+export const CATEGORY_IDS: CategoryId[] = [
   'generalKnowledge', 'sports', 'football', 'cars', 'movies',
   'cartoons', 'anime', 'history', 'geography', 'science',
   'space', 'animals', 'capitals', 'riddles', 'math',
@@ -25,6 +26,66 @@ for (const question of QUESTIONS) {
 }
 
 export const CATEGORY_QUESTION_COUNT: Record<CategoryId, number> = counts;
+
+export const mergeQuestionBank = (customQuestions: Question[] = []): Question[] => {
+  const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
+  const builtinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
+  const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
+  const newCustomQuestions = customQuestions.filter(question => !builtinQuestionIds.has(question.id));
+
+  return [...builtinQuestions, ...newCustomQuestions];
+};
+
+export const loadQuestionBank = async (): Promise<Question[]> => mergeQuestionBank(await listCustomQuestions().catch(() => []));
+
+export const getCategoryQuestionCountFromBank = (questions: Question[], categoryId: CategoryId) =>
+  questions.filter(question => question.categoryId === categoryId && question.isActive).length;
+
+export const getCategoryQuestionCountForAgeFromBank = (questions: Question[], categoryId: CategoryId, ageGroup: AgeGroup) =>
+  questions.filter(question => question.categoryId === categoryId && question.isActive && canQuestionAppearForAge(question, ageGroup)).length;
+
+export const getCategoriesWithQuestionsForAgeFromBank = (questions: Question[], ageGroup: AgeGroup): CategoryId[] =>
+  CATEGORY_IDS.filter(categoryId => getCategoryQuestionCountForAgeFromBank(questions, categoryId, ageGroup) > 0);
+
+export const getDifficultyQuestionCountForAgeFromBank = (
+  questions: Question[],
+  ageGroup: AgeGroup,
+  categories: CategoryId[],
+): Record<Difficulty, number> => ({
+  easy: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'easy' && canQuestionAppearForAge(question, ageGroup)).length,
+  medium: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'medium' && canQuestionAppearForAge(question, ageGroup)).length,
+  hard: questions.filter(question => question.isActive && categories.includes(question.categoryId) && question.difficulty === 'hard' && canQuestionAppearForAge(question, ageGroup)).length,
+});
+
+export const getAvailableQuestionCountFromBank = (
+  questions: Question[],
+  settings: Pick<GameSettings, 'categories' | 'ageGroup' | 'difficulty' | 'questionLanguage'>,
+) => {
+  const activeCategories = settings.categories.length
+    ? settings.categories
+    : getCategoriesWithQuestionsForAgeFromBank(questions, settings.ageGroup);
+
+  const matchesLanguage = (question: Question) => {
+    if (settings.questionLanguage === 'ar') {
+      return Boolean(question.questionAr);
+    }
+
+    if (settings.questionLanguage === 'en') {
+      return Boolean(question.questionEn);
+    }
+
+    return true;
+  };
+
+  return questions.filter(question => {
+    if (!question.isActive) return false;
+    if (!activeCategories.includes(question.categoryId)) return false;
+    if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
+    if (!matchesLanguage(question)) return false;
+    if (settings.difficulty !== 'progressive' && question.difficulty !== settings.difficulty) return false;
+    return true;
+  }).length;
+};
 
 export const getCategoryQuestionCount = (categoryId: CategoryId) => CATEGORY_QUESTION_COUNT[categoryId] ?? 0;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -6,7 +6,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList, Difficulty } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
-import { getCategoriesWithQuestionsForAge, getDifficultyQuestionCountForAge } from '../services/questions/questionCatalog';
+import {
+  getCategoriesWithQuestionsForAge,
+  getCategoriesWithQuestionsForAgeFromBank,
+  getDifficultyQuestionCountForAge,
+  getDifficultyQuestionCountForAgeFromBank,
+  loadQuestionBank,
+} from '../services/questions/questionCatalog';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'DifficultySelect'> };
 
@@ -23,7 +29,24 @@ export default function DifficultySelectScreen({ navigation }: Props) {
   const activeCategories = settings.categories.length
     ? settings.categories
     : getCategoriesWithQuestionsForAge(settings.ageGroup);
-  const difficultyCounts = getDifficultyQuestionCountForAge(settings.ageGroup, activeCategories);
+  const [difficultyCounts, setDifficultyCounts] = useState(() => getDifficultyQuestionCountForAge(settings.ageGroup, activeCategories));
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadQuestionBank().then(questions => {
+      if (!isMounted) return;
+
+      const nextActiveCategories = settings.categories.length
+        ? settings.categories
+        : getCategoriesWithQuestionsForAgeFromBank(questions, settings.ageGroup);
+      setDifficultyCounts(getDifficultyQuestionCountForAgeFromBank(questions, settings.ageGroup, nextActiveCategories));
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [settings.ageGroup, settings.categories]);
 
   const select = (id: Difficulty | 'progressive') => {
     updateSettings({ difficulty: id });

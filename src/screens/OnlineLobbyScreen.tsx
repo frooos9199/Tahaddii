@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, Linking, ScrollView, Share, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,7 +7,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import { RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useOnlineStore } from '../store/onlineStore';
-import { getAvailableQuestionCount, getRecommendedFairQuestionCount } from '../services/questions/questionCatalog';
+import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, getRecommendedFairQuestionCount, loadQuestionBank } from '../services/questions/questionCatalog';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'OnlineLobby'> };
 
@@ -23,6 +23,7 @@ const getRoomInviteLink = (roomCode: string) => `tahaddi://online/join/${encodeU
 export default function OnlineLobbyScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { room, players, currentPlayerId, loading, error, clearError, startCurrentRoom, leaveCurrentRoom, deleteCurrentRoom } = useOnlineStore();
+  const [availableQuestionCount, setAvailableQuestionCount] = useState(0);
 
   useEffect(() => {
     if (!room) {
@@ -43,17 +44,39 @@ export default function OnlineLobbyScreen({ navigation }: Props) {
     }
   }, [clearError, error, t]);
 
+  useEffect(() => {
+    if (!room) return;
+
+    let isMounted = true;
+    const fallbackCount = getAvailableQuestionCount({
+      categories: room.settings.categories,
+      ageGroup: room.settings.ageGroup,
+      difficulty: room.settings.difficulty,
+      questionLanguage: room.settings.questionLanguage,
+    });
+    setAvailableQuestionCount(fallbackCount);
+
+    loadQuestionBank().then(questions => {
+      if (isMounted) {
+        setAvailableQuestionCount(getAvailableQuestionCountFromBank(questions, {
+          categories: room.settings.categories,
+          ageGroup: room.settings.ageGroup,
+          difficulty: room.settings.difficulty,
+          questionLanguage: room.settings.questionLanguage,
+        }));
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [room]);
+
   if (!room) {
     return null;
   }
 
   const isHost = room.hostId === currentPlayerId;
-  const availableQuestionCount = getAvailableQuestionCount({
-    categories: room.settings.categories,
-    ageGroup: room.settings.ageGroup,
-    difficulty: room.settings.difficulty,
-    questionLanguage: room.settings.questionLanguage,
-  });
   const recommendedQuestionCount = getRecommendedFairQuestionCount({
     availableQuestionCount,
     playerCount: players.length,

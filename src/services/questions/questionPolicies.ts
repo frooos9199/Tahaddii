@@ -7,7 +7,7 @@ export const AGE_DIFFICULTY_RULES = {
   kids8: ['easy', 'medium'],
   kids11: ['easy', 'medium', 'hard'],
   teens: ['easy', 'medium', 'hard'],
-  adults: ['easy', 'medium', 'hard'],
+  adults: ['medium', 'hard'],
   family: ['easy', 'medium', 'hard'],
 } as const;
 
@@ -17,7 +17,7 @@ export const CATEGORY_AGE_POLICIES = {
     kids8: ['easy'],
     kids11: ['easy', 'medium'],
     teens: ['easy', 'medium', 'hard'],
-    adults: ['easy', 'medium', 'hard'],
+    adults: ['medium', 'hard'],
     family: ['easy', 'medium'],
   },
   youthGeneral: {
@@ -25,7 +25,7 @@ export const CATEGORY_AGE_POLICIES = {
     kids8: ['easy'],
     kids11: ['easy', 'medium'],
     teens: ['easy', 'medium', 'hard'],
-    adults: ['easy', 'medium', 'hard'],
+    adults: ['medium', 'hard'],
     family: ['easy', 'medium'],
   },
   preteenUp: {
@@ -33,7 +33,7 @@ export const CATEGORY_AGE_POLICIES = {
     kids8: [],
     kids11: ['easy'],
     teens: ['easy', 'medium', 'hard'],
-    adults: ['easy', 'medium', 'hard'],
+    adults: ['medium', 'hard'],
     family: [],
   },
   olderOnly: {
@@ -41,7 +41,7 @@ export const CATEGORY_AGE_POLICIES = {
     kids8: [],
     kids11: [],
     teens: ['easy', 'medium'],
-    adults: ['easy', 'medium', 'hard'],
+    adults: ['medium', 'hard'],
     family: [],
   },
   familyPlay: {
@@ -49,7 +49,7 @@ export const CATEGORY_AGE_POLICIES = {
     kids8: ['easy', 'medium'],
     kids11: ['easy', 'medium'],
     teens: ['easy', 'medium', 'hard'],
-    adults: ['easy', 'medium', 'hard'],
+    adults: ['medium', 'hard'],
     family: ['easy', 'medium'],
   },
 } satisfies Record<string, Record<AgeGroup, Difficulty[]>>;

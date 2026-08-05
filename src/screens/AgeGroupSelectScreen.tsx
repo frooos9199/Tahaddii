@@ -23,7 +23,7 @@ export default function AgeGroupSelectScreen({ navigation }: Props) {
   const { settings, updateSettings } = useGameStore();
 
   const select = (id: AgeGroup) => {
-    updateSettings({ ageGroup: id });
+    updateSettings({ ageGroup: id, difficulty: id === 'adults' ? 'hard' : settings.difficulty });
     navigation.navigate('CategorySelect');
   };
 

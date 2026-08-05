@@ -13,7 +13,12 @@ import { useGameStore } from '../store/gameStore';
 import { useOnlineStore } from '../store/onlineStore';
 import { useProfileStore } from '../store/profileStore';
 import { CATEGORY_EMOJIS } from '../constants';
-import { getCategoryQuestionCount, isCategoryPlayable } from '../services/questions/questionCatalog';
+import {
+  getCategoryQuestionCount,
+  getCategoryQuestionCountFromBank,
+  isCategoryPlayable,
+  loadQuestionBank,
+} from '../services/questions/questionCatalog';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Home'> };
 
@@ -51,6 +56,10 @@ export default function HomeScreen({ navigation }: Props) {
   const { publicRooms, subscribeDiscoverableRooms, clearDiscoverableRooms } = useOnlineStore();
   const profile = useProfileStore(s => s.profile);
   const [hasSaved, setHasSaved] = useState(false);
+  const [featuredCategories, setFeaturedCategories] = useState(PLAYABLE_FEATURED_CATEGORIES);
+  const [categoryCounts, setCategoryCounts] = useState<Record<CategoryId, number>>(() => Object.fromEntries(
+    FEATURED_CATEGORIES.map(item => [item.id, getCategoryQuestionCount(item.id)]),
+  ) as Record<CategoryId, number>);
 
   // pulse animation for online dot
   const pulse = useRef(new Animated.Value(1)).current;
@@ -68,6 +77,28 @@ export default function HomeScreen({ navigation }: Props) {
     void subscribeDiscoverableRooms();
     return () => clearDiscoverableRooms();
   }, [clearDiscoverableRooms, loadSavedGame, subscribeDiscoverableRooms]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadQuestionBank().then(questions => {
+      if (!isMounted) return;
+
+      const nextCounts = Object.fromEntries(
+        FEATURED_CATEGORIES.map(item => [item.id, getCategoryQuestionCountFromBank(questions, item.id)]),
+      ) as Record<CategoryId, number>;
+      setCategoryCounts(nextCounts);
+      setFeaturedCategories(
+        FEATURED_CATEGORIES
+          .filter(item => (nextCounts[item.id] ?? 0) > 0)
+          .sort((left, right) => (nextCounts[right.id] ?? 0) - (nextCounts[left.id] ?? 0)),
+      );
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const startCategoryGame = (categoryId: CategoryId) => {
     updateSettings({ categories: [categoryId], mode: 'group' });
@@ -173,7 +204,7 @@ export default function HomeScreen({ navigation }: Props) {
         {/* ── CATEGORIES ── */}
         <Text style={styles.sectionTitle}>{t('home.playByCategory')}</Text>
         <FlatList
-          data={PLAYABLE_FEATURED_CATEGORIES}
+          data={featuredCategories}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item.id}
@@ -184,7 +215,7 @@ export default function HomeScreen({ navigation }: Props) {
               onPress={() => startCategoryGame(item.id)}>
               <Text style={styles.catEmoji}>{CATEGORY_EMOJIS[item.id]}</Text>
               <Text style={[styles.catLabel, { color: item.color }]}>{t(`categories.${item.id}`)}</Text>
-              <Text style={styles.catCount}>{getCategoryQuestionCount(item.id)}</Text>
+              <Text style={styles.catCount}>{categoryCounts[item.id] ?? getCategoryQuestionCount(item.id)}</Text>
             </TouchableOpacity>
           )}
         />
