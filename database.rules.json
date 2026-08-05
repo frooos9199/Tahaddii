@@ -11,6 +11,10 @@
         ".read": true,
         ".write": true
       }
+    },
+    "sponsorAds": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.isAdmin == true || auth.token.isSuperAdmin == true || auth.token.role == 'admin' || auth.token.role == 'super_admin')"
     }
   }
 }

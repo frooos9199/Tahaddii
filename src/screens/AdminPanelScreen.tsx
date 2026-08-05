@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, RefreshControl, SafeAreaView, ScrollView, Share, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { adminDeleteRoom, listActiveRooms, listAppUsers } from '../services/admin/adminService';
 import { deleteUserDirectly, setUserRoleDirectly } from '../services/admin/adminActionService';
+import { SponsorAd, listSponsorAds, saveSponsorAd, setSponsorAdActive } from '../services/admin/sponsorAdService';
 import { addCustomQuestion, listCustomQuestions } from '../services/questions/customQuestionService';
 import { QUESTIONS } from '../services/questions/questionsData';
 import { useAuthStore } from '../store/authStore';
@@ -15,6 +17,15 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'AdminP
 
 const CATEGORY_IDS = Object.keys(CATEGORY_EMOJIS) as CategoryId[];
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard'];
+const QUESTION_EXPORT_HEADERS = [
+  'id', 'source', 'categoryId', 'categoryNameAr', 'difficulty', 'type', 'ageGroups',
+  'questionAr', 'questionEn', 'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar',
+  'answer1En', 'answer2En', 'answer3En', 'answer4En', 'correctAnswerNumber',
+  'correctAnswerAr', 'correctAnswerEn', 'explanationAr', 'explanationEn', 'points',
+  'isKidsSafe', 'isActive', 'isPremium',
+];
+
+const escapeCsvValue = (value: unknown) => `"${String(value ?? '').replace(/"/g, '""')}"`;
 
 const createEmptyQuestionForm = () => ({
   id: undefined as string | undefined,
@@ -28,15 +39,28 @@ const createEmptyQuestionForm = () => ({
   explanationAr: '',
 });
 
+const createEmptyAdForm = () => ({
+  id: undefined as string | undefined,
+  companyName: '',
+  headlineAr: '',
+  headlineEn: '',
+  imageUrl: '',
+  accentColor: '#f59e0b',
+  priority: '0',
+});
+
 export default function AdminPanelScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { userRecord, refreshUserRecord } = useAuthStore();
   const [users, setUsers] = useState<AppUserRecord[]>([]);
   const [rooms, setRooms] = useState<OnlineRoom[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [sponsorAds, setSponsorAds] = useState<SponsorAd[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('generalKnowledge');
   const [questionForm, setQuestionForm] = useState(createEmptyQuestionForm);
+  const [adForm, setAdForm] = useState(createEmptyAdForm);
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
+  const [editingAdId, setEditingAdId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [busyKey, setBusyKey] = useState<string | null>(null);
 
@@ -47,9 +71,10 @@ export default function AdminPanelScreen({ navigation }: Props) {
     setRefreshing(true);
     try {
       await refreshUserRecord();
-      const [nextUsers, nextRooms, customQuestions] = await Promise.all([listAppUsers(), listActiveRooms(), listCustomQuestions()]);
+      const [nextUsers, nextRooms, customQuestions, nextSponsorAds] = await Promise.all([listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds()]);
       setUsers(nextUsers);
       setRooms(nextRooms);
+      setSponsorAds(nextSponsorAds);
       const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
       const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
       const mergedBuiltinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
@@ -202,6 +227,99 @@ export default function AdminPanelScreen({ navigation }: Props) {
     setQuestionForm(createEmptyQuestionForm());
   };
 
+  const saveAd = async () => {
+    setBusyKey('save-ad');
+    try {
+      await saveSponsorAd({
+        id: editingAdId ?? undefined,
+        companyName: adForm.companyName,
+        headlineAr: adForm.headlineAr,
+        headlineEn: adForm.headlineEn,
+        imageUrl: adForm.imageUrl,
+        accentColor: adForm.accentColor,
+        priority: Number(adForm.priority || 0),
+        isActive: true,
+      });
+      setAdForm(createEmptyAdForm());
+      setEditingAdId(null);
+      await loadData();
+      Alert.alert('', editingAdId ? t('admin.adEditedSuccess') : t('admin.adAddedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.adSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const editAd = (ad: SponsorAd) => {
+    setEditingAdId(ad.id);
+    setAdForm({
+      id: ad.id,
+      companyName: ad.companyName,
+      headlineAr: ad.headlineAr,
+      headlineEn: ad.headlineEn,
+      imageUrl: ad.imageUrl,
+      accentColor: ad.accentColor,
+      priority: String(ad.priority),
+    });
+  };
+
+  const toggleAd = async (ad: SponsorAd) => {
+    setBusyKey(`ad-${ad.id}`);
+    try {
+      await setSponsorAdActive(ad.id, !ad.isActive);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.adSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const exportQuestionsToCsv = async () => {
+    if (!questions.length) {
+      Alert.alert('', t('admin.noQuestionsToExport'));
+      return;
+    }
+
+    const rows = questions.map(question => [
+      question.id,
+      question.source === 'admin' ? 'admin' : 'app',
+      question.categoryId,
+      t(`categories.${question.categoryId}`),
+      question.difficulty,
+      question.type,
+      question.ageGroups.join('|'),
+      question.questionAr,
+      question.questionEn,
+      question.answersAr[0] ?? '',
+      question.answersAr[1] ?? '',
+      question.answersAr[2] ?? '',
+      question.answersAr[3] ?? '',
+      question.answersEn[0] ?? '',
+      question.answersEn[1] ?? '',
+      question.answersEn[2] ?? '',
+      question.answersEn[3] ?? '',
+      question.correctAnswerIndex == null ? '' : question.correctAnswerIndex + 1,
+      question.correctAnswerAr,
+      question.correctAnswerEn,
+      question.explanationAr ?? '',
+      question.explanationEn ?? '',
+      question.points,
+      question.isKidsSafe ? 'TRUE' : 'FALSE',
+      question.isActive ? 'TRUE' : 'FALSE',
+      question.isPremium ? 'TRUE' : 'FALSE',
+    ]);
+    const csv = `\uFEFF${[QUESTION_EXPORT_HEADERS, ...rows].map(row => row.map(escapeCsvValue).join(',')).join('\n')}`;
+
+    Clipboard.setString(csv);
+    await Share.share({
+      title: 'tahaddii-questions.csv',
+      message: csv,
+    });
+    Alert.alert('', t('admin.questionsExported', { count: questions.length }));
+  };
+
   const categoryRows = CATEGORY_IDS.map(categoryId => ({
     id: categoryId,
     count: questions.filter(question => question.categoryId === categoryId).length,
@@ -241,10 +359,20 @@ export default function AdminPanelScreen({ navigation }: Props) {
             <Text style={styles.summaryNum}>{questions.length}</Text>
             <Text style={styles.summaryLabel}>{t('admin.questionsCount')}</Text>
           </View>
+          <View style={styles.summaryCard}>
+            <Text style={styles.summaryNum}>{sponsorAds.filter(ad => ad.isActive).length}</Text>
+            <Text style={styles.summaryLabel}>{t('admin.adsCount')}</Text>
+          </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>{t('admin.categoriesAndQuestions')}</Text>
+          <View style={styles.sectionHeaderRow}>
+            <Text style={styles.sectionTitle}>{t('admin.categoriesAndQuestions')}</Text>
+            <TouchableOpacity style={styles.exportBtn} onPress={() => { void exportQuestionsToCsv(); }}>
+              <Text style={styles.exportBtnText}>{t('admin.exportQuestions')}</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.exportHint}>{t('admin.exportQuestionsHint')}</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
             {categoryRows.map(category => {
               const isSelected = category.id === selectedCategory;
@@ -338,6 +466,63 @@ export default function AdminPanelScreen({ navigation }: Props) {
         </View>
 
         <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.adsSection')}</Text>
+          <View style={styles.questionFormCard}>
+            <View style={styles.questionHeaderRow}>
+              <Text style={styles.formTitle}>{editingAdId ? t('admin.editAd') : t('admin.addAd')}</Text>
+              {editingAdId ? (
+                <TouchableOpacity style={styles.cancelEditBtn} onPress={() => { setEditingAdId(null); setAdForm(createEmptyAdForm()); }}>
+                  <Text style={styles.cancelEditBtnText}>{t('admin.cancelEdit')}</Text>
+                </TouchableOpacity>
+              ) : null}
+            </View>
+            <Text style={styles.inputLabel}>{t('admin.companyName')}</Text>
+            <TextInput style={styles.textInput} value={adForm.companyName} onChangeText={companyName => setAdForm(current => ({ ...current, companyName }))} placeholder={t('admin.companyNamePlaceholder')} placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.adHeadlineAr')}</Text>
+            <TextInput style={styles.textInput} value={adForm.headlineAr} onChangeText={headlineAr => setAdForm(current => ({ ...current, headlineAr }))} placeholder={t('admin.adHeadlineArPlaceholder')} placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.adHeadlineEn')}</Text>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.headlineEn} onChangeText={headlineEn => setAdForm(current => ({ ...current, headlineEn }))} placeholder="Ad headline in English" placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.adImageUrl')}</Text>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.imageUrl} onChangeText={imageUrl => setAdForm(current => ({ ...current, imageUrl }))} placeholder="https://..." placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            <View style={styles.adMetaRow}>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.adAccentColor')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.accentColor} onChangeText={accentColor => setAdForm(current => ({ ...current, accentColor }))} placeholder="#f59e0b" placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+              </View>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.adPriority')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.priority} onChangeText={priority => setAdForm(current => ({ ...current, priority }))} placeholder="0" placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+              </View>
+            </View>
+            <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-ad' && styles.roleBtnDisabled]} disabled={busyKey === 'save-ad'} onPress={() => { void saveAd(); }}>
+              <Text style={styles.createQuestionBtnText}>{editingAdId ? t('admin.saveEdit') : t('admin.saveAd')}</Text>
+            </TouchableOpacity>
+          </View>
+
+          {sponsorAds.map(ad => (
+            <View key={ad.id} style={styles.adCard}>
+              <View style={styles.userTop}>
+                <View style={styles.userInfo}>
+                  <Text style={styles.userName}>{ad.companyName}</Text>
+                  <Text style={styles.userMeta}>{ad.headlineAr}</Text>
+                  <Text style={styles.userMeta}>{ad.isActive ? t('admin.adActive') : t('admin.adPaused')} · {t('admin.adPriority')}: {ad.priority}</Text>
+                </View>
+                <View style={[styles.adColorDot, { backgroundColor: ad.accentColor }]} />
+              </View>
+              <View style={styles.actionsRow}>
+                <TouchableOpacity style={styles.roleBtn} onPress={() => editAd(ad)}>
+                  <Text style={styles.roleBtnText}>{t('common.edit')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.roleBtn, busyKey === `ad-${ad.id}` && styles.roleBtnDisabled]} disabled={busyKey === `ad-${ad.id}`} onPress={() => { void toggleAd(ad); }}>
+                  <Text style={styles.roleBtnText}>{ad.isActive ? t('admin.pauseAd') : t('admin.activateAd')}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))}
+          {!sponsorAds.length ? <Text style={styles.emptyText}>{t('admin.noAds')}</Text> : null}
+        </View>
+
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.usersSection')}</Text>
           {users.map(item => (
             <View key={item.uid} style={styles.userCard}>
@@ -425,7 +610,16 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 12,
   },
+  sectionHeaderRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   sectionTitle: { color: Colors.text, fontSize: 18, fontWeight: '800' },
+  exportBtn: {
+    backgroundColor: Colors.accent,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  exportBtnText: { color: Colors.background, fontSize: 12, fontWeight: '900' },
+  exportHint: { color: Colors.textMuted, fontSize: 12, lineHeight: 18 },
   categoryStrip: { gap: 8, paddingVertical: 2 },
   categoryChip: {
     minWidth: 116,
@@ -483,6 +677,8 @@ const styles = StyleSheet.create({
   answerInputRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   answerPairRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   answerInputsStack: { flex: 1, gap: 6 },
+  adMetaRow: { flexDirection: 'row', gap: 10 },
+  adMetaInputWrap: { flex: 1, gap: 6 },
   correctPick: {
     width: 46,
     height: 46,
@@ -561,6 +757,15 @@ const styles = StyleSheet.create({
     borderColor: Colors.border,
     padding: 14,
   },
+  adCard: {
+    backgroundColor: Colors.background,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    padding: 14,
+    gap: 12,
+  },
+  adColorDot: { width: 36, height: 36, borderRadius: 18, borderWidth: 2, borderColor: Colors.border },
   userTop: { flexDirection: 'row', justifyContent: 'space-between', gap: 12 },
   userInfo: { flex: 1, gap: 4 },
   userName: { color: Colors.text, fontSize: 16, fontWeight: '800' },

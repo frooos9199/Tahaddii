@@ -88,7 +88,7 @@
     }
 
     .main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 22vw); gap: clamp(0.8rem, 1.6vw, 2rem); min-height: 0; overflow: hidden; }
-    .stage { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(0.55rem, 1.35vh, 1.2rem); min-height: 0; overflow: hidden; }
+    .stage { display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: clamp(0.55rem, 1.35vh, 1.2rem); min-height: 0; overflow: hidden; }
 
     .progress-row { display: flex; align-items: center; gap: 1.4vw; }
     .progress-track { flex: 1; height: 0.75rem; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.1); }
@@ -209,6 +209,31 @@
     .feedback.hidden { display: none; }
     .feedback .sub { color: var(--text); opacity: 0.8; font-size: 0.68em; margin-top: 0.5rem; font-weight: 700; }
 
+    .sponsor-ad {
+      border: 1px solid rgba(245, 158, 11, 0.34);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.17), rgba(139, 92, 246, 0.14));
+      padding: clamp(0.5rem, 1.1vh, 0.9rem) clamp(0.7rem, 1.4vw, 1.3rem);
+      display: flex;
+      align-items: center;
+      gap: 1vw;
+      min-height: clamp(3rem, 6.5vh, 5.2rem);
+      overflow: hidden;
+    }
+    .sponsor-ad.hidden { display: none; }
+    .sponsor-logo {
+      width: clamp(2.2rem, 4vw, 4rem);
+      height: clamp(2.2rem, 4vw, 4rem);
+      border-radius: 16px;
+      object-fit: cover;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      flex: 0 0 auto;
+    }
+    .sponsor-copy { min-width: 0; flex: 1; }
+    .sponsor-kicker { color: var(--primary-light); font-size: clamp(0.7rem, 0.9vw, 0.9rem); font-weight: 900; }
+    .sponsor-title { color: var(--text); font-size: clamp(1rem, 1.65vw, 1.9rem); line-height: 1.1; font-weight: 900; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
     .scoreboard {
       border-radius: 30px;
       padding: clamp(0.7rem, 1.5vh, 1.4rem) clamp(0.65rem, 1.2vw, 1.4rem);
@@ -311,6 +336,9 @@
       .answer-letter { width: 2.45rem; height: 2.45rem; border-radius: 12px; font-size: 1.05rem; }
       .answer-text { font-size: clamp(0.95rem, 1.65vw, 1.8rem); }
       .feedback { padding: 0.55rem 0.75rem; font-size: 1rem; }
+      .sponsor-ad { min-height: 2.7rem; padding: 0.45rem 0.6rem; border-radius: 16px; }
+      .sponsor-logo { width: 2rem; height: 2rem; border-radius: 10px; }
+      .sponsor-title { font-size: 0.95rem; }
     }
 
     @media (max-width: 900px) and (orientation: landscape) {
@@ -376,6 +404,7 @@
         </section>
 
         <div id="feedback" class="feedback hidden"></div>
+        <div id="sponsorAd" class="sponsor-ad hidden"></div>
       </section>
 
       <aside class="scoreboard">
@@ -418,13 +447,14 @@
     const questionMeta = document.getElementById('questionMeta');
     const pointsMeta = document.getElementById('pointsMeta');
     const feedback = document.getElementById('feedback');
+    const sponsorAd = document.getElementById('sponsorAd');
     const players = document.getElementById('players');
     const scoreTitle = document.getElementById('scoreTitle');
     const brandSub = document.getElementById('brandSub');
 
     const labels = {
-      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ', returningHome: 'العودة للرئيسية خلال' },
-      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong', returningHome: 'Returning home in' },
+      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ', returningHome: 'العودة للرئيسية خلال', sponsor: 'برعاية' },
+      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong', returningHome: 'Returning home in', sponsor: 'Sponsored by' },
     };
 
     const getCodeFromUrl = () => new URLSearchParams(window.location.search).get('code')?.trim().toUpperCase() || '';
@@ -438,10 +468,14 @@
     let unsubscribe = null;
     let pollTimer = null;
     let finalReturnTimer = null;
+    let sponsorAds = [];
+    let sponsorIndex = 0;
+    let sponsorTimer = null;
 
     codeInput.value = getCodeFromUrl() || createDisplayCode();
     renderSetupCode(codeInput.value);
     connect(codeInput.value);
+    subscribeSponsorAds();
 
     codeInput.addEventListener('input', () => {
       codeInput.value = normalizeCode(codeInput.value);
@@ -499,6 +533,7 @@
       setText(codePill, state.code || '');
       setText(brandSub, copy.display);
       setText(scoreTitle, copy.score);
+      renderSponsorAd(lang, copy);
       if (state.status === 'finished') {
         renderFinalResults(state, copy);
         return;
@@ -619,6 +654,7 @@
 
     function showSetup() {
       clearFinalReturnTimer();
+      sponsorAd.classList.add('hidden');
       setup.hidden = false;
       setup.classList.remove('is-hidden');
       display.hidden = true;
@@ -630,6 +666,56 @@
       setup.classList.add('is-hidden');
       display.hidden = false;
       display.classList.remove('is-hidden');
+    }
+
+    function subscribeSponsorAds() {
+      onValue(ref(db, 'sponsorAds'), snapshot => {
+        const value = snapshot.val() || {};
+        sponsorAds = Object.entries(value)
+          .map(([id, ad]) => ({ id, ...ad }))
+          .filter(ad => ad.isActive !== false && (ad.companyName || ad.headlineAr || ad.headlineEn))
+          .sort((left, right) => Number(right.priority || 0) - Number(left.priority || 0));
+        sponsorIndex = 0;
+        if (sponsorTimer) clearInterval(sponsorTimer);
+        if (sponsorAds.length > 1) {
+          sponsorTimer = setInterval(() => {
+            sponsorIndex = (sponsorIndex + 1) % sponsorAds.length;
+            const lang = document.body.classList.contains('rtl') ? 'ar' : 'en';
+            renderSponsorAd(lang, labels[lang]);
+          }, 9000);
+        }
+        const lang = document.body.classList.contains('rtl') ? 'ar' : 'en';
+        renderSponsorAd(lang, labels[lang]);
+      });
+    }
+
+    function renderSponsorAd(lang, copy) {
+      const ad = sponsorAds[sponsorIndex];
+      sponsorAd.replaceChildren();
+      if (!ad) {
+        sponsorAd.classList.add('hidden');
+        return;
+      }
+
+      sponsorAd.classList.remove('hidden');
+      sponsorAd.style.borderColor = ad.accentColor || 'rgba(245, 158, 11, 0.34)';
+      if (ad.imageUrl) {
+        const logo = document.createElement('img');
+        logo.className = 'sponsor-logo';
+        logo.src = ad.imageUrl;
+        logo.alt = ad.companyName || '';
+        sponsorAd.append(logo);
+      }
+      const body = document.createElement('div');
+      body.className = 'sponsor-copy';
+      const kicker = document.createElement('div');
+      kicker.className = 'sponsor-kicker';
+      kicker.textContent = `${copy.sponsor} ${ad.companyName || ''}`.trim();
+      const title = document.createElement('div');
+      title.className = 'sponsor-title';
+      title.textContent = lang === 'en' ? (ad.headlineEn || ad.headlineAr || '') : (ad.headlineAr || ad.headlineEn || '');
+      body.append(kicker, title);
+      sponsorAd.append(body);
     }
 
     function renderAnswers(state, lang) {
