@@ -81,6 +81,11 @@ service cloud.firestore {
       allow create, update, delete: if isPrivilegedUser();
     }
 
+    match /categoryCards/{categoryId} {
+      allow read: if true;
+      allow create, update, delete: if isPrivilegedUser();
+    }
+
     match /rooms/{roomId} {
       allow read: if isSignedIn();
 

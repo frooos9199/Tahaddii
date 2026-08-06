@@ -17,5 +17,16 @@ service firebase.storage {
           || request.auth.token.role == 'super_admin'
         );
     }
+
+    match /categoryMedia/{fileName=**} {
+      allow read: if true;
+      allow write: if request.auth != null
+        && (
+          request.auth.token.isAdmin == true
+          || request.auth.token.isSuperAdmin == true
+          || request.auth.token.role == 'admin'
+          || request.auth.token.role == 'super_admin'
+        );
+    }
   }
 }

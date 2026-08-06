@@ -54,7 +54,7 @@ export const CATEGORY_AGE_POLICIES = {
   },
 } satisfies Record<string, Record<AgeGroup, Difficulty[]>>;
 
-export const CATEGORY_POLICY_BY_ID: Record<CategoryId, keyof typeof CATEGORY_AGE_POLICIES> = {
+export const CATEGORY_POLICY_BY_ID: Record<string, keyof typeof CATEGORY_AGE_POLICIES> = {
   generalKnowledge: 'broadKids',
   sports: 'youthGeneral',
   football: 'youthGeneral',
@@ -88,7 +88,7 @@ export const CATEGORY_POLICY_BY_ID: Record<CategoryId, keyof typeof CATEGORY_AGE
 };
 
 export const getAllowedDifficultiesForCategoryAge = (categoryId: CategoryId, ageGroup: AgeGroup): Difficulty[] => {
-  const policyName = CATEGORY_POLICY_BY_ID[categoryId];
+  const policyName = CATEGORY_POLICY_BY_ID[categoryId] || 'youthGeneral';
   return [...CATEGORY_AGE_POLICIES[policyName][ageGroup]];
 };
 

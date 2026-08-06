@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Animated, Dimensions, FlatList, Image, ScrollView,
+  Animated, Dimensions, Image, ScrollView,
   StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { RootStackParamList, CategoryId } from '../types';
+import { CategoryCard, RootStackParamList, CategoryId } from '../types';
 import { Colors } from '../theme/colors';
 import { useAppStore } from '../store/appStore';
 import { useGameStore } from '../store/gameStore';
 import { useOnlineStore } from '../store/onlineStore';
 import { useProfileStore } from '../store/profileStore';
 import { CATEGORY_EMOJIS } from '../constants';
+import { getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
 import {
   getCategoryQuestionCount,
   getCategoryQuestionCountFromBank,
-  isCategoryPlayable,
   loadQuestionBank,
 } from '../services/questions/questionCatalog';
 
@@ -24,42 +24,18 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Home'>
 
 const { width: W } = Dimensions.get('window');
 
-const FEATURED_CATEGORIES: { id: CategoryId; color: string; bg: string }[] = [
-  { id: 'football',        color: '#10B981', bg: '#10B98122' },
-  { id: 'science',         color: '#3B82F6', bg: '#3B82F622' },
-  { id: 'geography',       color: '#F59E0B', bg: '#F59E0B22' },
-  { id: 'cars',            color: '#EF4444', bg: '#EF444422' },
-  { id: 'movies',          color: '#8B5CF6', bg: '#8B5CF622' },
-  { id: 'animals',         color: '#EC4899', bg: '#EC489922' },
-  { id: 'history',         color: '#F97316', bg: '#F9731622' },
-  { id: 'space',           color: '#06B6D4', bg: '#06B6D422' },
-  { id: 'generalKnowledge',color: '#7C3AED', bg: '#7C3AED22' },
-  { id: 'math',            color: '#84CC16', bg: '#84CC1622' },
-];
-
-const PLAYABLE_FEATURED_CATEGORIES = FEATURED_CATEGORIES
-  .filter(item => isCategoryPlayable(item.id))
-  .sort((left, right) => getCategoryQuestionCount(right.id) - getCategoryQuestionCount(left.id));
-
-const GAME_MODES = [
-  { icon: '👥', labelKey: 'gameModes.group',  color: '#7C3AED', screen: 'GameModeSelect' as const },
-  { icon: '🧒', labelKey: 'gameModes.kids',   color: '#EC4899', screen: 'GameModeSelect' as const },
-  { icon: '🏆', labelKey: 'gameModes.teams',  color: '#F59E0B', screen: 'GameModeSelect' as const },
-  { icon: '⚡', labelKey: 'gameModes.speedChallenge', color: '#EF4444', screen: 'GameModeSelect' as const },
-];
-
 export default function HomeScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const language = useAppStore(s => s.language);
   const stats = useAppStore(s => s.stats);
   const loadSavedGame = useGameStore(s => s.loadSavedGame);
   const updateSettings = useGameStore(s => s.updateSettings);
   const { publicRooms, subscribeDiscoverableRooms, clearDiscoverableRooms } = useOnlineStore();
   const profile = useProfileStore(s => s.profile);
   const [hasSaved, setHasSaved] = useState(false);
-  const [featuredCategories, setFeaturedCategories] = useState(PLAYABLE_FEATURED_CATEGORIES);
-  const [categoryCounts, setCategoryCounts] = useState<Record<CategoryId, number>>(() => Object.fromEntries(
-    FEATURED_CATEGORIES.map(item => [item.id, getCategoryQuestionCount(item.id)]),
-  ) as Record<CategoryId, number>);
+  const [categoryCards, setCategoryCards] = useState<CategoryCard[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
+  const [categoryCounts, setCategoryCounts] = useState<Record<CategoryId, number>>({});
 
   // pulse animation for online dot
   const pulse = useRef(new Animated.Value(1)).current;
@@ -81,18 +57,14 @@ export default function HomeScreen({ navigation }: Props) {
   useEffect(() => {
     let isMounted = true;
 
-    loadQuestionBank().then(questions => {
+    Promise.all([listCategoryCards(), loadQuestionBank()]).then(([cards, questions]) => {
       if (!isMounted) return;
 
       const nextCounts = Object.fromEntries(
-        FEATURED_CATEGORIES.map(item => [item.id, getCategoryQuestionCountFromBank(questions, item.id)]),
+        cards.map(item => [item.id, getCategoryQuestionCountFromBank(questions, item.id)]),
       ) as Record<CategoryId, number>;
       setCategoryCounts(nextCounts);
-      setFeaturedCategories(
-        FEATURED_CATEGORIES
-          .filter(item => (nextCounts[item.id] ?? 0) > 0)
-          .sort((left, right) => (nextCounts[right.id] ?? 0) - (nextCounts[left.id] ?? 0)),
-      );
+      setCategoryCards(cards.filter(item => (nextCounts[item.id] ?? getCategoryQuestionCount(item.id)) > 0));
     });
 
     return () => {
@@ -100,8 +72,20 @@ export default function HomeScreen({ navigation }: Props) {
     };
   }, []);
 
-  const startCategoryGame = (categoryId: CategoryId) => {
-    updateSettings({ categories: [categoryId], mode: 'group' });
+  const visibleCards = useMemo(() => categoryCards.filter(card => (categoryCounts[card.id] ?? getCategoryQuestionCount(card.id)) > 0), [categoryCards, categoryCounts]);
+
+  const toggleCategory = (categoryId: CategoryId) => {
+    setSelectedCategories(current => current.includes(categoryId)
+      ? current.filter(item => item !== categoryId)
+      : [...current, categoryId]);
+  };
+
+  const selectAllCategories = () => setSelectedCategories(visibleCards.map(card => card.id));
+  const clearCategories = () => setSelectedCategories([]);
+
+  const startChallenge = () => {
+    const categories = selectedCategories.length ? selectedCategories : visibleCards.map(card => card.id);
+    updateSettings({ categories, mode: 'group' });
     navigation.navigate('AddPlayers');
   };
 
@@ -151,18 +135,6 @@ export default function HomeScreen({ navigation }: Props) {
           </View>
         </View>
 
-        {/* ── QUICK PLAY ── */}
-        <TouchableOpacity style={styles.quickBtn} onPress={() => navigation.navigate('GameModeSelect')}>
-          <View style={styles.quickLeft}>
-            <Text style={styles.quickIcon}>⚡</Text>
-            <View>
-              <Text style={styles.quickTitle}>{t('home.quickPlay')}</Text>
-              <Text style={styles.quickSub}>{t('home.quickPlaySub')}</Text>
-            </View>
-          </View>
-          <Text style={styles.quickArrow}>›</Text>
-        </TouchableOpacity>
-
         {/* ── CONTINUE ── */}
         {hasSaved && (
           <TouchableOpacity style={styles.continueBtn} onPress={() => navigation.navigate('Game')}>
@@ -187,38 +159,49 @@ export default function HomeScreen({ navigation }: Props) {
           </View>
         </TouchableOpacity>
 
-        {/* ── GAME MODES ── */}
-        <Text style={styles.sectionTitle}>{t('home.gameModesSection')}</Text>
-        <View style={styles.modesRow}>
-          {GAME_MODES.map((m, i) => (
-            <TouchableOpacity
-              key={i}
-              style={[styles.modeCard, { borderColor: m.color + '66' }]}
-              onPress={() => navigation.navigate(m.screen)}>
-              <Text style={styles.modeIcon}>{m.icon}</Text>
-              <Text style={styles.modeLabel}>{t(m.labelKey)}</Text>
+        <View style={styles.categoryHeader}>
+          <View>
+            <Text style={styles.sectionTitle}>اختار التصنيفات</Text>
+            <Text style={styles.sectionSub}>تقدر تختار الكل أو بطاقات معينة للتحدي</Text>
+          </View>
+          <View style={styles.categoryActions}>
+            <TouchableOpacity style={styles.smallAction} onPress={selectAllCategories}>
+              <Text style={styles.smallActionText}>الكل</Text>
             </TouchableOpacity>
-          ))}
+            <TouchableOpacity style={styles.smallAction} onPress={clearCategories}>
+              <Text style={styles.smallActionText}>مسح</Text>
+            </TouchableOpacity>
+          </View>
         </View>
 
-        {/* ── CATEGORIES ── */}
-        <Text style={styles.sectionTitle}>{t('home.playByCategory')}</Text>
-        <FlatList
-          data={featuredCategories}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={item => item.id}
-          contentContainerStyle={styles.catList}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              style={[styles.catCard, { borderColor: item.color, backgroundColor: item.bg }]}
-              onPress={() => startCategoryGame(item.id)}>
-              <Text style={styles.catEmoji}>{CATEGORY_EMOJIS[item.id]}</Text>
-              <Text style={[styles.catLabel, { color: item.color }]}>{t(`categories.${item.id}`)}</Text>
-              <Text style={styles.catCount}>{categoryCounts[item.id] ?? getCategoryQuestionCount(item.id)}</Text>
-            </TouchableOpacity>
-          )}
-        />
+        <View style={styles.categoryGrid}>
+          {visibleCards.map(card => {
+            const selected = selectedCategories.includes(card.id);
+            const count = categoryCounts[card.id] ?? getCategoryQuestionCount(card.id);
+            return (
+              <TouchableOpacity
+                key={card.id}
+                style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected]}
+                onPress={() => toggleCategory(card.id)}>
+                {card.imageUrl ? (
+                  <Image source={{ uri: card.imageUrl }} style={styles.categoryImage} />
+                ) : (
+                  <View style={[styles.categoryImageFallback, { backgroundColor: card.accentColor + '33' }]}>
+                    <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[card.id] || getCategoryFallbackEmoji(card.id)}</Text>
+                  </View>
+                )}
+                <View style={styles.categoryShade} />
+                <Text style={styles.categoryTitle} numberOfLines={2}>{getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar')}</Text>
+                <Text style={styles.categoryMeta}>{count} سؤال</Text>
+                {selected ? <View style={[styles.categoryCheck, { backgroundColor: card.accentColor }]}><Text style={styles.categoryCheckText}>✓</Text></View> : null}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
+        <TouchableOpacity style={[styles.startChallengeBtn, !visibleCards.length && styles.startChallengeDisabled]} disabled={!visibleCards.length} onPress={startChallenge}>
+          <Text style={styles.startChallengeText}>{selectedCategories.length ? `ابدأ التحدي (${selectedCategories.length})` : 'ابدأ بكل التصنيفات'}</Text>
+        </TouchableOpacity>
 
         {/* ── BOTTOM MENU ── */}
         <View style={styles.bottomMenu}>
@@ -335,6 +318,89 @@ const styles = StyleSheet.create({
     fontSize: 17, fontWeight: '800', color: Colors.text,
     paddingHorizontal: 20, marginBottom: 12,
   },
+  sectionSub: { fontSize: 12, color: Colors.textMuted, paddingHorizontal: 20, marginTop: -8 },
+  categoryHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: 10,
+    marginBottom: 10,
+  },
+  categoryActions: { flexDirection: 'row', gap: 6, paddingRight: 20, paddingTop: 2 },
+  smallAction: {
+    borderWidth: 1,
+    borderColor: Colors.border,
+    backgroundColor: Colors.backgroundCard,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
+  },
+  smallActionText: { color: Colors.primaryLight, fontSize: 12, fontWeight: '800' },
+  categoryGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+    paddingHorizontal: 20,
+    marginBottom: 14,
+  },
+  categoryCard: {
+    width: (W - 60) / 3,
+    aspectRatio: 0.82,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: Colors.backgroundCard,
+    borderWidth: 1.5,
+    justifyContent: 'flex-end',
+  },
+  categoryCardSelected: { transform: [{ scale: 0.98 }] },
+  categoryImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },
+  categoryImageFallback: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },
+  categoryEmoji: { fontSize: 34 },
+  categoryShade: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(0,0,0,0.26)',
+  },
+  categoryTitle: {
+    color: Colors.text,
+    fontSize: 12,
+    fontWeight: '900',
+    paddingHorizontal: 8,
+    textAlign: 'center',
+    textShadowColor: 'rgba(0,0,0,0.55)',
+    textShadowRadius: 8,
+  },
+  categoryMeta: {
+    color: Colors.text,
+    opacity: 0.82,
+    fontSize: 10,
+    fontWeight: '800',
+    textAlign: 'center',
+    paddingBottom: 8,
+    marginTop: 3,
+  },
+  categoryCheck: {
+    position: 'absolute',
+    top: 7,
+    right: 7,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.text,
+  },
+  categoryCheckText: { color: Colors.text, fontWeight: '900', fontSize: 13 },
+  startChallengeBtn: {
+    marginHorizontal: 20,
+    marginBottom: 18,
+    backgroundColor: Colors.primary,
+    borderRadius: 16,
+    padding: 16,
+    alignItems: 'center',
+  },
+  startChallengeDisabled: { opacity: 0.45 },
+  startChallengeText: { color: Colors.text, fontSize: 17, fontWeight: '900' },
 
   modesRow: {
     flexDirection: 'row', flexWrap: 'wrap',

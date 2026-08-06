@@ -13,14 +13,20 @@ export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export type AgeGroup = 'kids5' | 'kids8' | 'kids11' | 'teens' | 'adults' | 'family';
 
-export type CategoryId =
-  | 'generalKnowledge' | 'sports' | 'football' | 'cars' | 'movies'
-  | 'cartoons' | 'anime' | 'history' | 'geography' | 'science'
-  | 'space' | 'animals' | 'capitals' | 'riddles' | 'math'
-  | 'arabicLang' | 'englishLang' | 'technology' | 'inventions'
-  | 'celebrities' | 'music' | 'islamicCulture' | 'kuwait'
-  | 'flags' | 'guessImage' | 'trueFalse' | 'completeSentence'
-  | 'whoAmI' | 'wouldYouRather' | 'familyChallenges';
+export type CategoryId = string;
+
+export interface CategoryCard {
+  id: CategoryId;
+  nameAr: string;
+  nameEn: string;
+  imageUrl: string;
+  accentColor: string;
+  sortOrder: number;
+  isActive: boolean;
+  questionTypes: QuestionType[];
+  createdAtMs?: number;
+  updatedAtMs?: number;
+}
 
 export type QuestionLanguage = 'ar' | 'en' | 'both' | 'mixed';
 

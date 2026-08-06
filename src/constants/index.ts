@@ -18,7 +18,7 @@ export const AVATAR_EMOJIS: Record<AvatarType, string> = {
   lion: '🦁', tiger: '🐯', robot: '🤖', car: '🚗', ball: '⚽', star: '⭐',
 };
 
-export const CATEGORY_EMOJIS: Record<CategoryId, string> = {
+export const CATEGORY_EMOJIS: Record<string, string> = {
   generalKnowledge: '🧠', sports: '🏅', football: '⚽', cars: '🚗',
   movies: '🎬', cartoons: '🎨', anime: '⛩️', history: '📜',
   geography: '🌍', science: '🔬', space: '🚀', animals: '🦁',

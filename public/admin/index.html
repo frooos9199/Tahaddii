@@ -108,6 +108,8 @@
     .ad-logo { width: 3.4rem; height: 3.4rem; object-fit: cover; border-radius: 0.8rem; border: 1px solid var(--line); background: rgba(255,255,255,0.08); }
     .ad-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .ad-actions button { padding: 0.62rem 0.75rem; border-radius: 0.75rem; }
+    .category-preview { width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: 1rem; border: 1px solid var(--line); background: rgba(255,255,255,0.08); }
+    .category-id { color: var(--muted); direction: ltr; font-size: 0.78rem; }
 
     .hidden { display: none !important; }
 
@@ -171,6 +173,7 @@
         <div class="span-12 card">
           <div class="tabs" role="tablist">
             <button class="tab active" type="button" data-tab="questionsPanel">Excel الأسئلة</button>
+            <button class="tab" type="button" data-tab="categoriesPanel">بطاقات الرئيسية</button>
             <button class="tab" type="button" data-tab="adsPanel">إعلانات الشركات</button>
             <button class="tab" type="button" data-tab="statsPanel">الإحصائيات</button>
           </div>
@@ -219,6 +222,40 @@
             </div>
           </section>
 
+          <section id="categoriesPanel" class="panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">بطاقات الشاشة الرئيسية</h2>
+                <p class="hint">أضف كاتيجري جديد بصورة واسم. استخدم نفس ID داخل Excel في عمود categoryId حتى تظهر أسئلته في البطاقة.</p>
+              </div>
+            </div>
+            <form id="categoryForm" class="form">
+              <input id="categoryEditId" type="hidden" />
+              <div class="row">
+                <label>ID التصنيف<input id="categoryId" dir="ltr" placeholder="sgame-celebrities" /></label>
+                <label>ترتيب الظهور<input id="categorySortOrder" dir="ltr" type="number" value="0" /></label>
+              </div>
+              <div class="row">
+                <label>الاسم بالعربي<input id="categoryNameAr" placeholder="مشاهير بالصور" /></label>
+                <label>الاسم بالإنجليزي<input id="categoryNameEn" dir="ltr" placeholder="Celebrity Images" /></label>
+              </div>
+              <div class="row">
+                <label>رابط الصورة<input id="categoryImageUrl" dir="ltr" placeholder="https://..." /></label>
+                <label>لون البطاقة<input id="categoryAccentColor" dir="ltr" value="#8b5cf6" /></label>
+              </div>
+              <label class="file-label">
+                رفع صورة للبطاقة
+                <input id="categoryImageFile" type="file" accept="image/*" />
+              </label>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ البطاقة</button>
+                <button id="clearCategoryBtn" class="secondary" type="button">بطاقة جديدة</button>
+              </div>
+              <div id="categoryStatus" class="status"></div>
+            </form>
+            <div id="categoriesBody" class="ads-grid"></div>
+          </section>
+
           <section id="adsPanel" class="panel">
             <div class="section-head">
               <div>
@@ -260,7 +297,7 @@
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
-    import { addDoc, collection, doc, getDocs, getFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+    import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
     import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
     import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js';
 
@@ -296,6 +333,7 @@
     let builtinQuestions = [];
     let customQuestions = [];
     let allQuestions = [];
+    let categoryCards = [];
     let sponsorAds = [];
     let users = [];
     let tvSessions = [];
@@ -366,7 +404,8 @@
       const correctAnswerIndex = Math.max(0, Number(item.correctAnswerNumber || 1) - 1);
       const pointsByDifficulty = { easy: 10, medium: 20, hard: 30 };
 
-      if (!categoryId || !categories.includes(categoryId)) throw new Error(`تصنيف غير صحيح: ${categoryId || 'فارغ'}`);
+      const allowedCategories = new Set([...categories, ...categoryCards.map(card => card.id)]);
+      if (!categoryId || !allowedCategories.has(categoryId)) throw new Error(`تصنيف غير صحيح: ${categoryId || 'فارغ'}. أضفه أولاً من تبويب بطاقات الرئيسية.`);
       if (!difficulty || !difficulties.includes(difficulty)) throw new Error(`صعوبة غير صحيحة: ${difficulty || 'فارغ'}`);
       if (!String(item.questionAr || '').trim()) throw new Error('يوجد سؤال بدون نص عربي');
       if (answersAr.length < 2) throw new Error(`السؤال ${item.id || item.questionAr} يحتاج اختيارين على الأقل`);
@@ -508,6 +547,78 @@
       }));
     };
 
+    const renderCategoryCards = () => {
+      if (!categoryCards.length) {
+        const empty = document.createElement('div');
+        empty.className = 'hint';
+        empty.textContent = 'لا توجد بطاقات محفوظة حتى الآن. سيستخدم التطبيق البطاقات الافتراضية.';
+        $('categoriesBody').replaceChildren(empty);
+        return;
+      }
+
+      $('categoriesBody').replaceChildren(...categoryCards.map(cardItem => {
+        const card = document.createElement('article');
+        card.className = 'ad-card';
+        card.style.setProperty('--ad-accent', cardItem.accentColor || '#8b5cf6');
+
+        const top = document.createElement('div');
+        top.className = 'ad-top';
+        const info = document.createElement('div');
+        const name = document.createElement('div');
+        name.className = 'ad-company';
+        name.textContent = cardItem.nameAr || cardItem.id;
+        const idLine = document.createElement('div');
+        idLine.className = 'category-id';
+        idLine.textContent = cardItem.id;
+        const english = document.createElement('div');
+        english.className = 'ad-headline';
+        english.textContent = cardItem.nameEn || '';
+        info.append(name, idLine, english);
+        top.append(info);
+
+        if (cardItem.imageUrl) {
+          const image = document.createElement('img');
+          image.className = 'category-preview';
+          image.alt = cardItem.nameAr || '';
+          image.src = cardItem.imageUrl;
+          top.append(image);
+        }
+
+        const meta = document.createElement('div');
+        meta.className = 'ad-meta';
+        const status = document.createElement('span');
+        status.className = cardItem.isActive === false ? 'badge paused' : 'badge';
+        status.textContent = cardItem.isActive === false ? 'متوقفة' : 'فعالة';
+        const sortOrder = document.createElement('span');
+        sortOrder.textContent = `الترتيب: ${cardItem.sortOrder || 0}`;
+        const questionCount = document.createElement('span');
+        questionCount.textContent = `الأسئلة: ${allQuestions.filter(question => question.categoryId === cardItem.id).length}`;
+        meta.append(status, sortOrder, questionCount);
+
+        const actions = document.createElement('div');
+        actions.className = 'ad-actions';
+        const editButton = document.createElement('button');
+        editButton.className = 'secondary';
+        editButton.dataset.editCategory = cardItem.id;
+        editButton.type = 'button';
+        editButton.textContent = 'تعديل';
+        const toggleButton = document.createElement('button');
+        toggleButton.className = 'secondary';
+        toggleButton.dataset.toggleCategory = cardItem.id;
+        toggleButton.type = 'button';
+        toggleButton.textContent = cardItem.isActive === false ? 'تفعيل' : 'إيقاف';
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'danger';
+        deleteButton.dataset.deleteCategory = cardItem.id;
+        deleteButton.type = 'button';
+        deleteButton.textContent = 'حذف';
+        actions.append(editButton, toggleButton, deleteButton);
+
+        card.append(top, meta, actions);
+        return card;
+      }));
+    };
+
     const renderStats = () => {
       $('usersCount').textContent = users.length;
       $('questionsCount').textContent = allQuestions.length;
@@ -519,6 +630,7 @@
         <tr><th>أسئلة التطبيق الأساسية</th><td>${builtinQuestions.length}</td></tr>
         <tr><th>أسئلة/تعديلات الأدمن</th><td>${customQuestions.length}</td></tr>
         <tr><th>إجمالي الأسئلة في ملف Excel</th><td>${allQuestions.length}</td></tr>
+        <tr><th>بطاقات الشاشة الرئيسية</th><td>${categoryCards.length}</td></tr>
         <tr><th>الإعلانات الكاملة</th><td>${sponsorAds.length}</td></tr>
         <tr><th>الإعلانات الفعالة</th><td>${sponsorAds.filter(ad => ad.isActive !== false).length}</td></tr>
         <tr><th>جلسات التلفاز الحالية</th><td>${tvSessions.length}</td></tr>
@@ -527,16 +639,18 @@
 
     const loadData = async () => {
       setStatus($('questionStatus'), 'جاري تحميل البيانات...');
+      setStatus($('categoryStatus'), 'جاري تحميل البطاقات...');
       setStatus($('adStatus'), 'جاري تحميل الإعلانات...');
 
       const failures = [];
-      const [questionBankResult, usersResult, questionsResult, adsResult, tvResult] = await Promise.allSettled([
+      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult] = await Promise.allSettled([
         fetch('/admin/question-bank.json', { cache: 'no-store' }).then(async response => {
           if (!response.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
           return response.json();
         }),
         getDocs(query(collection(firestore, 'users'), orderBy('displayName', 'asc'))),
         getDocs(collection(firestore, 'customQuestions')),
+        getDocs(query(collection(firestore, 'categoryCards'), orderBy('sortOrder', 'asc'))),
         get(ref(db, 'sponsorAds')),
         get(ref(db, 'tvDisplaySessions')),
       ]);
@@ -562,6 +676,13 @@
         failures.push(questionsResult.reason?.message || 'تعذر تحميل أسئلة الأدمن');
       }
 
+      if (categoriesResult.status === 'fulfilled') {
+        categoryCards = categoriesResult.value.docs.map(categoryDoc => ({ id: categoryDoc.id, ...categoryDoc.data() })).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+      } else {
+        categoryCards = [];
+        failures.push(categoriesResult.reason?.message || 'تعذر تحميل بطاقات الرئيسية');
+      }
+
       if (adsResult.status === 'fulfilled') {
         sponsorAds = Object.entries(adsResult.value.val() || {}).map(([id, value]) => ({ id, ...value })).sort((a, b) => Number(b.priority || 0) - Number(a.priority || 0));
       } else {
@@ -579,9 +700,11 @@
       mergeQuestions();
 
       renderQuestions();
+      renderCategoryCards();
       renderAds();
       renderStats();
       setStatus($('questionStatus'), failures.length ? `تم تحميل البيانات المتاحة، وتنبيه: ${failures[0]}` : `تم تحميل ${allQuestions.length} سؤال (${builtinQuestions.length} من التطبيق + ${customQuestions.length} من الأدمن)`, failures.length ? 'error' : 'success');
+      setStatus($('categoryStatus'), categoriesResult.status === 'fulfilled' ? `تم تحميل ${categoryCards.length} بطاقة` : 'تعذر تحميل بطاقات الرئيسية', categoriesResult.status === 'fulfilled' ? 'success' : 'error');
       setStatus($('adStatus'), adsResult.status === 'fulfilled' ? `تم تحميل ${sponsorAds.length} إعلان محفوظ` : 'تعذر تحميل إعلانات الشركات', adsResult.status === 'fulfilled' ? 'success' : 'error');
     };
 
@@ -713,6 +836,112 @@
         await loadData();
       } catch (error) {
         setStatus($('mediaStatus'), error.message, 'error');
+      }
+    });
+
+    const clearCategoryForm = () => {
+      $('categoryEditId').value = '';
+      $('categoryId').value = '';
+      $('categoryId').disabled = false;
+      $('categorySortOrder').value = '0';
+      $('categoryNameAr').value = '';
+      $('categoryNameEn').value = '';
+      $('categoryImageUrl').value = '';
+      $('categoryAccentColor').value = '#8b5cf6';
+      $('categoryImageFile').value = '';
+      setStatus($('categoryStatus'), '');
+    };
+
+    const cleanCategoryId = value => String(value || '').trim().replace(/[^a-zA-Z0-9_-]/g, '-');
+
+    $('clearCategoryBtn').addEventListener('click', clearCategoryForm);
+
+    $('categoryImageFile').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      const categoryId = cleanCategoryId($('categoryId').value || $('categoryEditId').value);
+      if (!file) return;
+      if (!categoryId) {
+        setStatus($('categoryStatus'), 'اكتب ID التصنيف قبل رفع الصورة', 'error');
+        event.target.value = '';
+        return;
+      }
+
+      setStatus($('categoryStatus'), 'جاري رفع صورة البطاقة...');
+      try {
+        const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+        const path = `categoryMedia/${categoryId}/cover-${Date.now()}.${extension}`;
+        const imageRef = storageRef(storage, path);
+        await uploadBytes(imageRef, file, {
+          contentType: file.type || 'image/jpeg',
+          cacheControl: 'public,max-age=31536000,immutable',
+          customMetadata: { categoryId },
+        });
+        const url = await getDownloadURL(imageRef);
+        $('categoryImageUrl').value = url;
+        setStatus($('categoryStatus'), 'تم رفع الصورة. اضغط حفظ البطاقة.', 'success');
+      } catch (error) {
+        setStatus($('categoryStatus'), error.message, 'error');
+      }
+    });
+
+    $('categoryForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('categoryStatus'), 'جاري حفظ البطاقة...');
+      const existingId = $('categoryEditId').value.trim();
+      const categoryId = cleanCategoryId($('categoryId').value || existingId);
+      const nameAr = $('categoryNameAr').value.trim();
+      if (!categoryId || !nameAr) {
+        setStatus($('categoryStatus'), 'اكتب ID التصنيف والاسم العربي', 'error');
+        return;
+      }
+
+      const payload = {
+        nameAr,
+        nameEn: $('categoryNameEn').value.trim() || nameAr,
+        imageUrl: $('categoryImageUrl').value.trim(),
+        accentColor: $('categoryAccentColor').value.trim() || '#8b5cf6',
+        sortOrder: Number($('categorySortOrder').value || 0),
+        isActive: true,
+        questionTypes: ['multiple_choice', 'image'],
+        updatedAtMs: Date.now(),
+      };
+
+      try {
+        await setDoc(doc(firestore, 'categoryCards', categoryId), existingId ? payload : { ...payload, createdAtMs: Date.now() }, { merge: true });
+        if (existingId && existingId !== categoryId) await deleteDoc(doc(firestore, 'categoryCards', existingId));
+        clearCategoryForm();
+        setStatus($('categoryStatus'), 'تم حفظ البطاقة', 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('categoryStatus'), error.message, 'error');
+      }
+    });
+
+    $('categoriesBody').addEventListener('click', async event => {
+      const editId = event.target.closest('[data-edit-category]')?.dataset.editCategory;
+      const toggleId = event.target.closest('[data-toggle-category]')?.dataset.toggleCategory;
+      const deleteId = event.target.closest('[data-delete-category]')?.dataset.deleteCategory;
+      if (editId) {
+        const category = categoryCards.find(item => item.id === editId);
+        if (!category) return;
+        $('categoryEditId').value = category.id;
+        $('categoryId').value = category.id;
+        $('categoryId').disabled = false;
+        $('categorySortOrder').value = category.sortOrder || 0;
+        $('categoryNameAr').value = category.nameAr || '';
+        $('categoryNameEn').value = category.nameEn || '';
+        $('categoryImageUrl').value = category.imageUrl || '';
+        $('categoryAccentColor').value = category.accentColor || '#8b5cf6';
+        window.scrollTo({ top: $('categoriesPanel').offsetTop, behavior: 'smooth' });
+      }
+      if (toggleId) {
+        const category = categoryCards.find(item => item.id === toggleId);
+        await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: category?.isActive === false, updatedAtMs: Date.now() }, { merge: true });
+        await loadData();
+      }
+      if (deleteId && confirm('حذف بطاقة التصنيف؟ الأسئلة لن تنحذف، فقط البطاقة من الرئيسية.')) {
+        await deleteDoc(doc(firestore, 'categoryCards', deleteId));
+        await loadData();
       }
     });
 

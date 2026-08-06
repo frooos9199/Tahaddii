@@ -44,8 +44,15 @@ export const getCategoryQuestionCountFromBank = (questions: Question[], category
 export const getCategoryQuestionCountForAgeFromBank = (questions: Question[], categoryId: CategoryId, ageGroup: AgeGroup) =>
   questions.filter(question => question.categoryId === categoryId && question.isActive && canQuestionAppearForAge(question, ageGroup)).length;
 
+const getCategoryIdsFromBank = (questions: Question[]) => [
+  ...new Set([
+    ...CATEGORY_IDS,
+    ...questions.filter(question => question.isActive).map(question => question.categoryId),
+  ]),
+];
+
 export const getCategoriesWithQuestionsForAgeFromBank = (questions: Question[], ageGroup: AgeGroup): CategoryId[] =>
-  CATEGORY_IDS.filter(categoryId => getCategoryQuestionCountForAgeFromBank(questions, categoryId, ageGroup) > 0);
+  getCategoryIdsFromBank(questions).filter(categoryId => getCategoryQuestionCountForAgeFromBank(questions, categoryId, ageGroup) > 0);
 
 export const getDifficultyQuestionCountForAgeFromBank = (
   questions: Question[],
