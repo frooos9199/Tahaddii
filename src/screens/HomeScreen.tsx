@@ -177,24 +177,25 @@ export default function HomeScreen({ navigation }: Props) {
         <View style={styles.categoryGrid}>
           {visibleCards.map(card => {
             const selected = selectedCategories.includes(card.id);
-            const count = categoryCounts[card.id] ?? getCategoryQuestionCount(card.id);
             return (
-              <TouchableOpacity
+              <View
                 key={card.id}
-                style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected]}
-                onPress={() => toggleCategory(card.id)}>
-                {card.imageUrl ? (
-                  <Image source={{ uri: card.imageUrl }} style={styles.categoryImage} />
-                ) : (
-                  <View style={[styles.categoryImageFallback, { backgroundColor: card.accentColor + '33' }]}>
-                    <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[card.id] || getCategoryFallbackEmoji(card.id)}</Text>
-                  </View>
-                )}
-                <View style={styles.categoryShade} />
+                style={styles.categoryItem}>
+                <TouchableOpacity
+                  style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected]}
+                  onPress={() => toggleCategory(card.id)}>
+                  {card.imageUrl ? (
+                    <Image source={{ uri: card.imageUrl }} style={styles.categoryImage} />
+                  ) : (
+                    <View style={[styles.categoryImageFallback, { backgroundColor: card.accentColor + '33' }]}>
+                      <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[card.id] || getCategoryFallbackEmoji(card.id)}</Text>
+                    </View>
+                  )}
+                  <View style={styles.categoryShade} />
+                  {selected ? <View style={[styles.categoryCheck, { backgroundColor: card.accentColor }]}><Text style={styles.categoryCheckText}>✓</Text></View> : null}
+                </TouchableOpacity>
                 <Text style={styles.categoryTitle} numberOfLines={2}>{getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar')}</Text>
-                <Text style={styles.categoryMeta}>{count} سؤال</Text>
-                {selected ? <View style={[styles.categoryCheck, { backgroundColor: card.accentColor }]}><Text style={styles.categoryCheckText}>✓</Text></View> : null}
-              </TouchableOpacity>
+              </View>
             );
           })}
         </View>
@@ -343,14 +344,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 14,
   },
-  categoryCard: {
+  categoryItem: {
     width: (W - 60) / 3,
-    aspectRatio: 0.82,
+    alignItems: 'center',
+    gap: 7,
+  },
+  categoryCard: {
+    width: '100%',
+    aspectRatio: 0.86,
     borderRadius: 16,
     overflow: 'hidden',
     backgroundColor: Colors.backgroundCard,
     borderWidth: 1.5,
-    justifyContent: 'flex-end',
   },
   categoryCardSelected: { transform: [{ scale: 0.98 }] },
   categoryImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },
@@ -364,19 +369,9 @@ const styles = StyleSheet.create({
     color: Colors.text,
     fontSize: 12,
     fontWeight: '900',
-    paddingHorizontal: 8,
+    minHeight: 34,
+    paddingHorizontal: 2,
     textAlign: 'center',
-    textShadowColor: 'rgba(0,0,0,0.55)',
-    textShadowRadius: 8,
-  },
-  categoryMeta: {
-    color: Colors.text,
-    opacity: 0.82,
-    fontSize: 10,
-    fontWeight: '800',
-    textAlign: 'center',
-    paddingBottom: 8,
-    marginTop: 3,
   },
   categoryCheck: {
     position: 'absolute',
