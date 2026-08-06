@@ -57,6 +57,7 @@
     .status { min-height: 1.5rem; color: var(--primary-light); font-weight: 800; }
     .error { color: var(--error); }
     .success { color: var(--success); }
+    .upload-note { color: #d8ccff; background: rgba(139,92,246,0.12); border: 1px solid rgba(196,181,253,0.22); border-radius: 0.9rem; padding: 0.75rem 0.9rem; line-height: 1.7; font-size: 0.84rem; margin: 0; }
 
     .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
     .stat { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: var(--panel-2); }
@@ -193,6 +194,7 @@
               رفع ملف CSV من Excel
               <input id="questionsFile" type="file" accept=".csv,text/csv" />
             </label>
+            <p class="upload-note">ملاحظة Excel: ارفع ملف CSV من Excel بترميز UTF-8. لا تغيّر أسماء الأعمدة، واستخدم نفس ID التصنيف الموجود في تبويب بطاقات الرئيسية.</p>
             <div class="actions">
               <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
             </div>
@@ -207,6 +209,7 @@
                 اختيار ملف صورة/فيديو
                 <input id="questionMediaFile" type="file" accept="image/*,video/*" />
               </label>
+              <p class="upload-note">أفضل مقاس لصورة السؤال: 1200×900 أو 1600×1200 بنسبة 4:3. لصورة المشاهير/التخمين استخدم صورة واضحة وحجم أقل من 1MB إذا تقدر. للفيديو: MP4 أفقي 1280×720، مدة قصيرة 5-15 ثانية، وحجم أقل من 10MB عشان يفتح بسرعة.</p>
               <div class="actions">
                 <button id="uploadQuestionMediaBtn" class="primary" type="button">رفع وربط الوسائط</button>
               </div>
@@ -247,6 +250,7 @@
                 رفع صورة للبطاقة
                 <input id="categoryImageFile" type="file" accept="image/*" />
               </label>
+              <p class="upload-note">أفضل مقاس لصورة بطاقة الرئيسية: 900×1100 أو 1080×1350 بنسبة عمودية 4:5. خل العنصر المهم في الوسط لأن التطبيق يقصها داخل الكرت. استخدم JPG أو WebP، وحاول يكون الحجم أقل من 700KB.</p>
               <div class="actions">
                 <button class="primary" type="submit">حفظ البطاقة</button>
                 <button id="clearCategoryBtn" class="secondary" type="button">بطاقة جديدة</button>
@@ -275,6 +279,7 @@
                 <label>رابط شعار/صورة اختياري<input id="adImageUrl" dir="ltr" placeholder="https://..." /></label>
                 <label>لون الإعلان<input id="adAccentColor" dir="ltr" value="#f59e0b" /></label>
               </div>
+              <p class="upload-note">ملاحظة صورة الإعلان: الأفضل شعار PNG بخلفية شفافة أو صورة مربعة 800×800. إذا كانت بانر استخدم 1200×400. خفف الحجم لأقل من 500KB حتى يظهر بسرعة على شاشة التلفاز.</p>
               <div class="actions">
                 <button class="primary" type="submit">حفظ الإعلان</button>
                 <button id="clearAdBtn" class="secondary" type="button">إعلان جديد</button>
