@@ -23,7 +23,14 @@ export default function AddPlayersScreen({ navigation }: Props) {
   const [colorIdx, setColorIdx] = useState(0);
 
   const isSolo = settings.mode === 'solo';
+  const isTeams = settings.mode === 'teams';
+  const isKids = settings.mode === 'kids';
   const minPlayers = isSolo ? 1 : MIN_PLAYERS_GROUP;
+  const maxEntries = isSolo ? 1 : MAX_PLAYERS;
+  const screenTitle = isTeams ? t('players.teamsTitle') : isKids ? t('players.kidsTitle') : t('players.title');
+  const namePlaceholder = isTeams ? t('players.teamName') : isKids ? t('players.childName') : t('players.enterName');
+  const addLabel = isTeams ? t('players.addTeam') : isKids ? t('players.addChild') : t('players.addPlayer');
+  const hintText = isTeams ? t('players.minTeams') : isSolo ? t('players.minSoloPlayers') : t('players.minPlayers');
 
   const handleAdd = () => {
     const trimmed = name.trim();
@@ -32,8 +39,8 @@ export default function AddPlayersScreen({ navigation }: Props) {
       Alert.alert('', t('players.duplicateName'));
       return;
     }
-    if (pendingPlayers.length >= MAX_PLAYERS) {
-      Alert.alert('', t('players.maxPlayers'));
+    if (pendingPlayers.length >= maxEntries) {
+      Alert.alert('', isSolo ? t('players.maxSoloPlayers') : t('players.maxPlayers'));
       return;
     }
     addPlayer(trimmed, avatar, PLAYER_COLORS[colorIdx % PLAYER_COLORS.length]);
@@ -49,7 +56,7 @@ export default function AddPlayersScreen({ navigation }: Props) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.back}>
           <Text style={styles.backText}>{'‹'}</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>{t('players.title')}</Text>
+        <Text style={styles.title}>{screenTitle}</Text>
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -58,7 +65,7 @@ export default function AddPlayersScreen({ navigation }: Props) {
         <View style={styles.form}>
           <TextInput
             style={styles.input}
-            placeholder={t('players.enterName')}
+            placeholder={namePlaceholder}
             placeholderTextColor={Colors.textMuted}
             value={name}
             onChangeText={setName}
@@ -91,7 +98,7 @@ export default function AddPlayersScreen({ navigation }: Props) {
           </ScrollView>
 
           <TouchableOpacity style={styles.addBtn} onPress={handleAdd}>
-            <Text style={styles.addBtnText}>+ {t('players.addPlayer')}</Text>
+            <Text style={styles.addBtnText}>+ {addLabel}</Text>
           </TouchableOpacity>
         </View>
 
@@ -110,7 +117,7 @@ export default function AddPlayersScreen({ navigation }: Props) {
 
         {pendingPlayers.length < minPlayers && (
           <Text style={styles.hint}>
-            👆 {isSolo ? t('players.minSoloPlayers') : t('players.minPlayers')}
+            👆 {hintText}
           </Text>
         )}
       </ScrollView>

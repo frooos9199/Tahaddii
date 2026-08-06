@@ -85,8 +85,8 @@ export default function HomeScreen({ navigation }: Props) {
 
   const startChallenge = () => {
     const categories = selectedCategories.length ? selectedCategories : visibleCards.map(card => card.id);
-    updateSettings({ categories, mode: 'group' });
-    navigation.navigate('AddPlayers');
+    updateSettings({ categories });
+    navigation.navigate('GameModeSelect');
   };
 
   const onlineCount = publicRooms.length;

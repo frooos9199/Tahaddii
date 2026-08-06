@@ -10,7 +10,7 @@ import { RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
-import { TIME_OPTIONS } from '../constants';
+import { QUESTION_COUNT_OPTIONS, TIME_OPTIONS } from '../constants';
 import { getQuestions } from '../services/questions/questionService';
 import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, loadQuestionBank } from '../services/questions/questionCatalog';
 import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
@@ -44,23 +44,20 @@ export default function GameSetupScreen({ navigation }: Props) {
       return [];
     }
 
-    if (playerTurnUnit <= 1) {
-      return [5, 10, 15, 20, 30, 40, 50]
-        .filter(option => option <= availableQuestionCount);
-    }
-
-    const multipliers = [1, 2, 3, 4, 5, 6, 8, 10];
-    const options = multipliers
-      .map(multiplier => multiplier * playerTurnUnit)
-      .filter(option => option <= availableQuestionCount);
-
-    return [...new Set(options)].sort((left, right) => left - right);
+    return QUESTION_COUNT_OPTIONS.filter(option => option * playerTurnUnit <= availableQuestionCount);
   }, [availableQuestionCount, playerTurnUnit]);
   const canStart = availableQuestionCount > 0;
+  const participantUnit = settings.mode === 'teams'
+    ? t('players.teamUnit')
+    : settings.mode === 'kids'
+      ? t('players.childUnit')
+      : t('players.personUnit');
 
   useEffect(() => {
-    if (availableQuestionOptions.length > 0 && !availableQuestionOptions.includes(settings.questionCount)) {
-      updateSettings({ questionCount: availableQuestionOptions[availableQuestionOptions.length - 1] });
+    const currentPerUnit = Math.max(1, Math.floor((settings.questionCount || 0) / playerTurnUnit));
+
+    if (availableQuestionOptions.length > 0 && !availableQuestionOptions.includes(currentPerUnit)) {
+      updateSettings({ questionCount: availableQuestionOptions[0] * playerTurnUnit });
       return;
     }
 
@@ -68,6 +65,17 @@ export default function GameSetupScreen({ navigation }: Props) {
       updateSettings({ questionCount: playerTurnUnit });
     }
   }, [availableQuestionOptions, playerTurnUnit, settings.questionCount, updateSettings]);
+
+  const selectedQuestionsPerUnit = Math.max(1, Math.floor((settings.questionCount || 0) / playerTurnUnit));
+  const formatTime = (seconds: number) => {
+    if (seconds === 0) return t('common.noLimit');
+    if (seconds === 30) return t('gameSetup.time30');
+    if (seconds === 60) return t('gameSetup.time60');
+    if (seconds === 90) return t('gameSetup.time90');
+    if (seconds === 120) return t('gameSetup.time120');
+    if (seconds === 150) return t('gameSetup.time150');
+    return `${seconds}s`;
+  };
 
   const startGame = async () => {
     if (isStarting) {
@@ -186,7 +194,7 @@ export default function GameSetupScreen({ navigation }: Props) {
 
         {/* Summary */}
         <View style={styles.summary}>
-          <Text style={styles.summaryItem}>👥 {pendingPlayers.length} {t('common.player')}</Text>
+          <Text style={styles.summaryItem}>👥 {pendingPlayers.length} {participantUnit}</Text>
           <Text style={styles.summaryItem}>📂 {settings.categories.length} {t('common.categories')}</Text>
           <Text style={styles.summaryItem}>⚡ {t(`difficulty.${settings.difficulty}`)}</Text>
           <Text style={styles.summaryItem}>❓ {availableQuestionCount} {t('gameSetup.availableQuestions')}</Text>
@@ -198,17 +206,10 @@ export default function GameSetupScreen({ navigation }: Props) {
             <>
               <Chips
                 options={availableQuestionOptions}
-                value={settings.questionCount}
-                onSelect={v => updateSettings({ questionCount: v })}
+                value={selectedQuestionsPerUnit}
+                onSelect={v => updateSettings({ questionCount: v * playerTurnUnit })}
               />
-              {pendingPlayers.length > 1 ? (
-                <Text style={styles.helperText}>
-                  {t('gameSetup.fairTurnsHint', {
-                    players: pendingPlayers.length,
-                    turns: Math.floor((settings.questionCount || 0) / playerTurnUnit),
-                  })}
-                </Text>
-              ) : null}
+              <Text style={styles.helperText}>{t('gameSetup.perPlayerQuestionHint', { total: settings.questionCount, unit: participantUnit })}</Text>
             </>
           ) : (
             <Text style={styles.helperText}>{t('gameSetup.notEnoughQuestionsForSettings')}</Text>
@@ -221,14 +222,14 @@ export default function GameSetupScreen({ navigation }: Props) {
             options={TIME_OPTIONS}
             value={settings.timePerQuestion}
             onSelect={v => updateSettings({ timePerQuestion: v })}
-            format={v => v === 0 ? t('common.noLimit') : `${v}s`}
+            format={formatTime}
           />
         </View>
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('gameSetup.questionLanguage')}</Text>
           <View style={styles.chips}>
-            {(['ar', 'en', 'both', 'mixed'] as const).map(lang => (
+            {(['ar', 'en', 'both'] as const).map(lang => (
               <TouchableOpacity
                 key={lang}
                 style={[styles.chip, settings.questionLanguage === lang && styles.chipActive]}

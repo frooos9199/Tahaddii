@@ -33,8 +33,8 @@ export const DIFFICULTY_POINTS = { easy: 10, medium: 20, hard: 30 };
 export const FAST_ANSWER_BONUS = 5;
 export const LIFELINE_PENALTY = 0.5;
 
-export const QUESTION_COUNT_OPTIONS = [5, 10, 15, 20];
-export const TIME_OPTIONS = [0, 5, 10, 15, 20, 30];
+export const QUESTION_COUNT_OPTIONS = [3, 5, 10, 15];
+export const TIME_OPTIONS = [0, 30, 60, 90, 120, 150];
 
 export const MAX_PLAYERS = 12;
 export const MIN_PLAYERS_GROUP = 2;

@@ -10,12 +10,9 @@ import { useGameStore } from '../store/gameStore';
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'AgeGroupSelect'> };
 
 const AGE_GROUPS: { id: AgeGroup; icon: string; key: string; color: string }[] = [
-  { id: 'kids5', icon: '🧒', key: 'ageGroups.kids5', color: '#EC4899' },
-  { id: 'kids8', icon: '👦', key: 'ageGroups.kids8', color: '#F97316' },
-  { id: 'kids11', icon: '🧑', key: 'ageGroups.kids11', color: Colors.accent },
+  { id: 'kids11', icon: '🧒', key: 'ageGroups.kids11', color: Colors.accent },
   { id: 'teens', icon: '👨', key: 'ageGroups.teens', color: Colors.secondary },
   { id: 'adults', icon: '🧔', key: 'ageGroups.adults', color: Colors.primary },
-  { id: 'family', icon: '👨‍👩‍👧‍👦', key: 'ageGroups.family', color: Colors.success },
 ];
 
 export default function AgeGroupSelectScreen({ navigation }: Props) {
@@ -24,7 +21,7 @@ export default function AgeGroupSelectScreen({ navigation }: Props) {
 
   const select = (id: AgeGroup) => {
     updateSettings({ ageGroup: id });
-    navigation.navigate('CategorySelect');
+    navigation.navigate('DifficultySelect');
   };
 
   return (

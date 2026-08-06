@@ -77,7 +77,7 @@ export default function DifficultySelectScreen({ navigation }: Props) {
             </View>
             <View style={styles.badgeWrap}>
               <View style={[styles.badge, { backgroundColor: item.color + '33' }]}>
-                <Text style={[styles.badgeText, { color: item.color }]}>{item.pts} pts</Text>
+                <Text style={[styles.badgeText, { color: item.color }]}>{t('difficulty.pointsBadge', { points: item.pts })}</Text>
               </View>
               {item.id !== 'progressive' ? <Text style={styles.countText}>{difficultyCounts[item.id]}</Text> : null}
             </View>

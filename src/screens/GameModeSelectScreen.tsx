@@ -10,20 +10,19 @@ import { useGameStore } from '../store/gameStore';
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameModeSelect'> };
 
 const MODES: { mode: GameMode; icon: string; key: string; descKey: string; color: string }[] = [
-  { mode: 'solo', icon: '👤', key: 'gameModes.solo', descKey: 'gameModes.soloDesc', color: Colors.secondary },
-  { mode: 'group', icon: '👥', key: 'gameModes.group', descKey: 'gameModes.groupDesc', color: Colors.primary },
   { mode: 'teams', icon: '🏆', key: 'gameModes.teams', descKey: 'gameModes.teamsDesc', color: Colors.accent },
+  { mode: 'solo', icon: '👤', key: 'gameModes.solo', descKey: 'gameModes.soloDesc', color: Colors.secondary },
   { mode: 'kids', icon: '🧒', key: 'gameModes.kids', descKey: 'gameModes.kidsDesc', color: '#EC4899' },
-  { mode: 'family', icon: '👨‍👩‍👧‍👦', key: 'gameModes.family', descKey: 'gameModes.familyDesc', color: Colors.success },
-  { mode: 'speedChallenge', icon: '⚡', key: 'gameModes.speedChallenge', descKey: 'gameModes.speedChallengeDesc', color: Colors.warning },
 ];
 
 export default function GameModeSelectScreen({ navigation }: Props) {
   const { t } = useTranslation();
-  const updateSettings = useGameStore(s => s.updateSettings);
+  const { updateSettings, setPendingPlayers, setPendingTeams } = useGameStore();
 
   const select = (mode: GameMode) => {
     updateSettings({ mode });
+    setPendingPlayers([]);
+    setPendingTeams([]);
     navigation.navigate('AddPlayers');
   };
 
