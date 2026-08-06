@@ -373,6 +373,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
             </TouchableOpacity>
           </View>
           <Text style={styles.exportHint}>{t('admin.exportQuestionsHint')}</Text>
+          <Text style={styles.noteBox}>{t('admin.excelUploadNote')}</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
             {categoryRows.map(category => {
               const isSelected = category.id === selectedCategory;
@@ -433,6 +434,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
 
             <Text style={styles.inputLabel}>{t('admin.optionalExplanation')}</Text>
             <TextInput style={styles.textInput} value={questionForm.explanationAr} onChangeText={explanationAr => setQuestionForm(current => ({ ...current, explanationAr }))} placeholder={t('admin.explanationPlaceholder')} placeholderTextColor={Colors.textMuted} multiline />
+            <Text style={styles.noteBox}>{t('admin.questionMediaUploadNote')}</Text>
 
             <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'create-question' && styles.roleBtnDisabled]} disabled={busyKey === 'create-question'} onPress={() => { void createQuestion(); }}>
               <Text style={styles.createQuestionBtnText}>{editingQuestionId ? t('admin.saveEdit') : t('admin.saveQuestion')}</Text>
@@ -484,6 +486,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
             <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.headlineEn} onChangeText={headlineEn => setAdForm(current => ({ ...current, headlineEn }))} placeholder="Ad headline in English" placeholderTextColor={Colors.textMuted} />
             <Text style={styles.inputLabel}>{t('admin.adImageUrl')}</Text>
             <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.imageUrl} onChangeText={imageUrl => setAdForm(current => ({ ...current, imageUrl }))} placeholder="https://..." placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            <Text style={styles.noteBox}>{t('admin.adImageUploadNote')}</Text>
             <View style={styles.adMetaRow}>
               <View style={styles.adMetaInputWrap}>
                 <Text style={styles.inputLabel}>{t('admin.adAccentColor')}</Text>
@@ -620,6 +623,16 @@ const styles = StyleSheet.create({
   },
   exportBtnText: { color: Colors.background, fontSize: 12, fontWeight: '900' },
   exportHint: { color: Colors.textMuted, fontSize: 12, lineHeight: 18 },
+  noteBox: {
+    color: Colors.primaryLight,
+    backgroundColor: Colors.primary + '18',
+    borderWidth: 1,
+    borderColor: Colors.primary + '44',
+    borderRadius: 12,
+    padding: 12,
+    fontSize: 12,
+    lineHeight: 20,
+  },
   categoryStrip: { gap: 8, paddingVertical: 2 },
   categoryChip: {
     minWidth: 116,
