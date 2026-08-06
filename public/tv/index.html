@@ -118,6 +118,16 @@
 
     .player-line { color: var(--primary-light); font-size: clamp(1.1rem, 1.7vw, 2rem); font-weight: 800; }
     .question { font-size: clamp(1.75rem, 4.6vw, 5.4rem); line-height: 1.08; font-weight: 900; text-wrap: balance; overflow-wrap: anywhere; }
+    .question-media {
+      width: min(100%, 52vw);
+      max-height: 34vh;
+      object-fit: cover;
+      justify-self: center;
+      border-radius: 28px;
+      border: 1px solid rgba(196, 181, 253, 0.25);
+      box-shadow: 0 22px 70px rgba(0,0,0,0.32);
+      background: rgba(255,255,255,0.08);
+    }
     .meta-line { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: clamp(1rem, 1.3vw, 1.5rem); }
 
     .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.45rem, 1.1vh, 1rem) clamp(0.5rem, 1vw, 1.2rem); min-height: 0; direction: ltr; }
@@ -555,7 +565,7 @@
       }
 
       setText(playerLine, state.currentPlayer ? `${copy.turn}: ${state.currentPlayer.name} · ${state.currentPlayer.score} ${copy.points}` : '');
-      setText(question, state.question?.text || '');
+      renderQuestionPrompt(state);
       setText(questionMeta, `${copy.question} ${(state.questionIndex ?? 0) + 1} / ${state.totalQuestions ?? 1}`);
       setText(pointsMeta, `${state.question?.points ?? 0} ${copy.points}`);
 
@@ -572,6 +582,30 @@
       renderAnswers(state, lang);
       renderFeedback(state, copy);
       renderPlayers(state.players || []);
+    }
+
+    function renderQuestionPrompt(state) {
+      question.replaceChildren();
+      const media = state.question || {};
+      const imageUrl = state.status === 'revealed'
+        ? (media.revealImageUrl || media.imageUrl || media.thumbnailUrl || '')
+        : (media.imageUrl || media.thumbnailUrl || media.revealImageUrl || '');
+
+      if (imageUrl) {
+        const image = document.createElement('img');
+        image.className = 'question-media';
+        image.src = imageUrl;
+        image.alt = media.text || '';
+        if (state.status !== 'revealed' && media.revealMode !== 'none') {
+          image.style.filter = `blur(${Number(media.blurAmount || 18)}px)`;
+          image.style.transform = 'scale(1.04)';
+        }
+        question.append(image);
+      }
+
+      const text = document.createElement('div');
+      text.textContent = media.text || '';
+      question.append(text);
     }
 
     function renderFinalResults(state, copy) {

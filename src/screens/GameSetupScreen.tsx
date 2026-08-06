@@ -14,6 +14,7 @@ import { TIME_OPTIONS } from '../constants';
 import { getQuestions } from '../services/questions/questionService';
 import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, loadQuestionBank } from '../services/questions/questionCatalog';
 import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
+import { getQuestionPrimaryImageUrl, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'> };
 
@@ -81,6 +82,7 @@ export default function GameSetupScreen({ navigation }: Props) {
       return;
     }
     initGame(questions);
+    preloadUpcomingQuestionMedia(questions, 0, 5);
     const createdGame = useGameStore.getState().game;
     const firstQuestion = createdGame?.questions[createdGame.currentQuestionIndex];
     const firstPlayer = createdGame?.players[createdGame.currentPlayerIndex];
@@ -110,6 +112,13 @@ export default function GameSetupScreen({ navigation }: Props) {
           id: firstQuestion.id,
           text: questionText,
           points: firstQuestion.points,
+          imageUrl: getQuestionPrimaryImageUrl(firstQuestion, false),
+          revealImageUrl: firstQuestion.revealImageUrl || firstQuestion.imageUrl || '',
+          thumbnailUrl: firstQuestion.thumbnailUrl || '',
+          videoUrl: firstQuestion.videoUrl || '',
+          mediaType: firstQuestion.mediaType || (firstQuestion.videoUrl ? 'video' : firstQuestion.imageUrl ? 'image' : undefined),
+          revealMode: firstQuestion.revealMode || 'blur',
+          blurAmount: Number(firstQuestion.blurAmount ?? 18),
         },
         answers: answers.map(answer => ({
           text: answer,

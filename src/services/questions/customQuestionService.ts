@@ -40,6 +40,18 @@ const toQuestion = (questionId: string, payload: any): Question => {
     correctAnswerAr: answersAr[correctAnswerIndex] ?? '',
     correctAnswerEn: answersEn[correctAnswerIndex] ?? answersAr[correctAnswerIndex] ?? '',
     explanationAr: payload.explanationAr || undefined,
+    explanationEn: payload.explanationEn || undefined,
+    imageUrl: String(payload.imageUrl ?? '').trim() || undefined,
+    revealImageUrl: String(payload.revealImageUrl ?? '').trim() || undefined,
+    thumbnailUrl: String(payload.thumbnailUrl ?? '').trim() || undefined,
+    videoUrl: String(payload.videoUrl ?? '').trim() || undefined,
+    mediaType: payload.mediaType === 'video'
+      ? 'video'
+      : String(payload.imageUrl ?? payload.revealImageUrl ?? payload.thumbnailUrl ?? '').trim()
+        ? 'image'
+        : undefined,
+    revealMode: payload.revealMode || undefined,
+    blurAmount: Number(payload.blurAmount ?? 18),
     points: DIFFICULTY_POINTS[difficulty] ?? DIFFICULTY_POINTS.easy,
     isKidsSafe: payload.isKidsSafe ?? true,
     isActive: payload.isActive ?? true,

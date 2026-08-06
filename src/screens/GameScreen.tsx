@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import {
-  Alert, Dimensions, StatusBar, StyleSheet,
+  Alert, Dimensions, Image, StatusBar, StyleSheet,
   Text, TouchableOpacity, View,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -13,6 +13,7 @@ import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { createTvDisplaySession, getTvDisplayUrl, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestions } from '../services/questions/questionService';
+import { getQuestionPrimaryImageUrl, preloadQuestionMedia, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Game'> };
 
@@ -73,6 +74,10 @@ export default function GameScreen({ navigation }: Props) {
       ? question.correctAnswerEn || question.correctAnswerAr
       : question.correctAnswerAr || question.correctAnswerEn;
   }, [language, question]);
+  const questionImageUrl = getQuestionPrimaryImageUrl(question, revealed);
+  const questionBlurRadius = question && questionImageUrl && !revealed && question.revealMode !== 'none'
+    ? Number(question.blurAmount ?? 18)
+    : 0;
 
   const timerProgress = isTimed && timeLeft != null ? Math.max(0, timeLeft / timeLimit) : 1;
   const timerColor = !isTimed ? Colors.secondary
@@ -97,6 +102,13 @@ export default function GameScreen({ navigation }: Props) {
         id: question.id,
         text: displayQuestion,
         points: question.points,
+        imageUrl: getQuestionPrimaryImageUrl(question, revealed),
+        revealImageUrl: question.revealImageUrl || question.imageUrl || '',
+        thumbnailUrl: question.thumbnailUrl || '',
+        videoUrl: question.videoUrl || '',
+        mediaType: question.mediaType || (question.videoUrl ? 'video' : questionImageUrl ? 'image' : undefined),
+        revealMode: question.revealMode || 'blur',
+        blurAmount: Number(question.blurAmount ?? 18),
       },
       answers: answers.map((answer, index) => ({
         text: answer,
@@ -190,6 +202,10 @@ export default function GameScreen({ navigation }: Props) {
     setSelectedIndex(null);
     setAnsweredCorrectly(null);
     setRevealed(false);
+    void preloadQuestionMedia(question);
+    if (game?.questions.length) {
+      preloadUpcomingQuestionMedia(game.questions, game.currentQuestionIndex + 1, 4);
+    }
   }, [game?.currentQuestionIndex, isTimed, question, timeLimit]);
 
   // countdown
@@ -324,6 +340,14 @@ export default function GameScreen({ navigation }: Props) {
 
       {/* ── QUESTION ── */}
       <View style={styles.questionCard}>
+        {!!questionImageUrl && (
+          <Image
+            source={{ uri: questionImageUrl }}
+            style={styles.questionImage}
+            blurRadius={questionBlurRadius}
+            resizeMode="cover"
+          />
+        )}
         <Text style={styles.questionText} adjustsFontSizeToFit numberOfLines={4}>
           {displayQuestion}
         </Text>
@@ -475,6 +499,13 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 20, color: Colors.text,
     textAlign: 'center', lineHeight: 30, fontWeight: '600',
+  },
+  questionImage: {
+    width: '100%',
+    height: SCREEN_H * 0.24,
+    borderRadius: 16,
+    marginBottom: 14,
+    backgroundColor: Colors.border,
   },
 
   answersBlock: { flex: 1, paddingHorizontal: 16, marginTop: 12 },

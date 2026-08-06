@@ -42,6 +42,12 @@ export interface Question {
   hintAr?: string;
   hintEn?: string;
   imageUrl?: string;
+  revealImageUrl?: string;
+  thumbnailUrl?: string;
+  videoUrl?: string;
+  mediaType?: 'image' | 'video';
+  revealMode?: 'none' | 'blur' | 'crop' | 'mask';
+  blurAmount?: number;
   points: number;
   timeLimit?: number;
   isKidsSafe: boolean;

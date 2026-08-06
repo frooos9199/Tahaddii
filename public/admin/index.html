@@ -193,6 +193,22 @@
             <div class="actions">
               <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
             </div>
+            <div class="card form">
+              <h3 class="section-title">رفع صورة/فيديو لسؤال</h3>
+              <p class="hint">ارفع الوسائط على Firebase Storage واربطها مباشرة بنفس ID السؤال. الصور والفيديوهات تحفظ بكاش طويل عشان تفتح بسرعة.</p>
+              <div class="row">
+                <label>ID السؤال<input id="questionMediaId" dir="ltr" placeholder="celeb-actor-1" /></label>
+                <label>نوع الوسائط<select id="questionMediaRole"><option value="imageUrl">صورة السؤال المخفية</option><option value="revealImageUrl">صورة الكشف بعد الإجابة</option><option value="thumbnailUrl">صورة مصغرة سريعة</option><option value="videoUrl">فيديو السؤال</option></select></label>
+              </div>
+              <label class="file-label">
+                اختيار ملف صورة/فيديو
+                <input id="questionMediaFile" type="file" accept="image/*,video/*" />
+              </label>
+              <div class="actions">
+                <button id="uploadQuestionMediaBtn" class="primary" type="button">رفع وربط الوسائط</button>
+              </div>
+              <div id="mediaStatus" class="status"></div>
+            </div>
             <div id="questionStatus" class="status"></div>
             <p id="questionsShown" class="hint"></p>
             <div class="table-wrap">
@@ -246,6 +262,7 @@
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
     import { addDoc, collection, doc, getDocs, getFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
     import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
+    import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js';
 
     const firebaseConfig = {
       apiKey: 'AIzaSyC0Hcollocb_GErLjJSjluM6DiiuYYg42E',
@@ -261,6 +278,7 @@
     const auth = getAuth(app);
     const firestore = getFirestore(app);
     const db = getDatabase(app);
+    const storage = getStorage(app);
 
     const $ = id => document.getElementById(id);
     const loginView = $('loginView');
@@ -268,7 +286,7 @@
     const headers = [
       'id', 'categoryId', 'difficulty', 'type', 'ageGroups', 'questionAr', 'questionEn',
       'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar', 'answer1En', 'answer2En', 'answer3En', 'answer4En',
-      'correctAnswerNumber', 'explanationAr', 'explanationEn', 'points', 'isKidsSafe', 'isActive', 'isPremium',
+      'correctAnswerNumber', 'explanationAr', 'explanationEn', 'imageUrl', 'revealImageUrl', 'thumbnailUrl', 'videoUrl', 'mediaType', 'revealMode', 'blurAmount', 'points', 'isKidsSafe', 'isActive', 'isPremium',
     ];
     const categories = [
       'generalKnowledge','sports','football','cars','movies','cartoons','anime','history','geography','science','space','animals','capitals','riddles','math','arabicLang','englishLang','technology','inventions','celebrities','music','islamicCulture','kuwait','flags','guessImage','trueFalse','completeSentence','whoAmI','wouldYouRather','familyChallenges'
@@ -370,6 +388,13 @@
           correctAnswerEn: answersEn[correctAnswerIndex] || answersAr[correctAnswerIndex] || '',
           explanationAr: String(item.explanationAr || '').trim() || null,
           explanationEn: String(item.explanationEn || '').trim() || null,
+          imageUrl: String(item.imageUrl || '').trim(),
+          revealImageUrl: String(item.revealImageUrl || '').trim(),
+          thumbnailUrl: String(item.thumbnailUrl || '').trim(),
+          videoUrl: String(item.videoUrl || '').trim(),
+          mediaType: String(item.mediaType || (item.videoUrl ? 'video' : item.imageUrl || item.revealImageUrl || item.thumbnailUrl ? 'image' : '')).trim(),
+          revealMode: String(item.revealMode || 'blur').trim(),
+          blurAmount: Number(item.blurAmount || 18),
           points: Number(item.points || pointsByDifficulty[difficulty] || 10),
           isKidsSafe: String(item.isKidsSafe || 'TRUE').toUpperCase() !== 'FALSE',
           isActive: String(item.isActive || 'TRUE').toUpperCase() !== 'FALSE',
@@ -393,7 +418,7 @@
       question.answersAr?.[0] || '', question.answersAr?.[1] || '', question.answersAr?.[2] || '', question.answersAr?.[3] || '',
       question.answersEn?.[0] || '', question.answersEn?.[1] || '', question.answersEn?.[2] || '', question.answersEn?.[3] || '',
       Number(question.correctAnswerIndex ?? 0) + 1,
-      question.explanationAr || '', question.explanationEn || '', question.points || '',
+      question.explanationAr || '', question.explanationEn || '', question.imageUrl || '', question.revealImageUrl || '', question.thumbnailUrl || '', question.videoUrl || '', question.mediaType || '', question.revealMode || '', question.blurAmount || '', question.points || '',
       question.isKidsSafe === false ? 'FALSE' : 'TRUE',
       question.isActive === false ? 'FALSE' : 'TRUE',
       question.isPremium === true ? 'TRUE' : 'FALSE',
@@ -602,7 +627,7 @@
     $('downloadTemplateBtn').addEventListener('click', () => {
       const sample = [
         headers,
-        ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '10', 'TRUE', 'TRUE', 'FALSE'],
+        ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '', '', '', '', '', 'blur', '18', '10', 'TRUE', 'TRUE', 'FALSE'],
       ];
       downloadText('tahaddii-question-template.csv', `\uFEFF${sample.map(row => row.map(escapeCsv).join(',')).join('\n')}`);
     });
@@ -644,6 +669,50 @@
         await loadData();
       } catch (error) {
         setStatus($('questionStatus'), error.message, 'error');
+      }
+    });
+
+    $('uploadQuestionMediaBtn').addEventListener('click', async () => {
+      const questionId = $('questionMediaId').value.trim();
+      const role = $('questionMediaRole').value;
+      const file = $('questionMediaFile').files?.[0];
+      if (!questionId) {
+        setStatus($('mediaStatus'), 'اكتب ID السؤال أولاً', 'error');
+        return;
+      }
+      if (!file) {
+        setStatus($('mediaStatus'), 'اختر ملف صورة أو فيديو', 'error');
+        return;
+      }
+
+      setStatus($('mediaStatus'), 'جاري رفع الوسائط...');
+      try {
+        const extension = file.name.split('.').pop()?.toLowerCase() || (file.type.startsWith('video/') ? 'mp4' : 'jpg');
+        const cleanId = questionId.replace(/[^a-zA-Z0-9_-]/g, '-');
+        const path = `questionMedia/${cleanId}/${role}-${Date.now()}.${extension}`;
+        const mediaRef = storageRef(storage, path);
+        await uploadBytes(mediaRef, file, {
+          contentType: file.type || (role === 'videoUrl' ? 'video/mp4' : 'image/jpeg'),
+          cacheControl: 'public,max-age=31536000,immutable',
+          customMetadata: { questionId, role },
+        });
+        const url = await getDownloadURL(mediaRef);
+        const payload = {
+          [role]: url,
+          mediaType: role === 'videoUrl' ? 'video' : 'image',
+          updatedAtMs: Date.now(),
+        };
+        if (role === 'imageUrl') {
+          payload.revealMode = 'blur';
+          payload.blurAmount = 18;
+        }
+        await setDoc(doc(firestore, 'customQuestions', questionId), payload, { merge: true });
+        await navigator.clipboard?.writeText(url).catch(() => {});
+        $('questionMediaFile').value = '';
+        setStatus($('mediaStatus'), 'تم الرفع والربط ونسخ الرابط', 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('mediaStatus'), error.message, 'error');
       }
     });
 

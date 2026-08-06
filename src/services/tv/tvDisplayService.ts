@@ -34,6 +34,13 @@ export type TvDisplayState = {
     id: string;
     text: string;
     points: number;
+    imageUrl?: string;
+    revealImageUrl?: string;
+    thumbnailUrl?: string;
+    videoUrl?: string;
+    mediaType?: 'image' | 'video';
+    revealMode?: 'none' | 'blur' | 'crop' | 'mask';
+    blurAmount?: number;
   } | null;
   answers: TvDisplayAnswer[];
   currentPlayer: Pick<TvDisplayPlayer, 'id' | 'name' | 'score' | 'color'> | null;

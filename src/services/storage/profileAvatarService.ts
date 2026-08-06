@@ -11,6 +11,9 @@ export const uploadProfileAvatar = async (userId: string, avatarUri: string) => 
   const extension = blob.type.includes('png') ? 'png' : 'jpg';
   const avatarRef = ref(getFirebaseStorage(), `profileAvatars/${userId}/avatar.${extension}`);
 
-  await uploadBytes(avatarRef, blob, { contentType: blob.type || 'image/jpeg' });
+  await uploadBytes(avatarRef, blob, {
+    contentType: blob.type || 'image/jpeg',
+    cacheControl: 'public,max-age=31536000,immutable',
+  });
   return getDownloadURL(avatarRef);
 };
