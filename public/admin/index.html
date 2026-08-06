@@ -328,11 +328,22 @@
     const categories = [
       'generalKnowledge','sports','football','cars','movies','cartoons','anime','history','geography','science','space','animals','capitals','riddles','math','arabicLang','englishLang','technology','inventions','celebrities','music','islamicCulture','kuwait','flags','guessImage','trueFalse','completeSentence','whoAmI','wouldYouRather','familyChallenges'
     ];
+    const categoryNamesAr = {
+      generalKnowledge: 'معلومات عامة', sports: 'رياضة', football: 'كرة القدم', cars: 'سيارات', movies: 'أفلام ومسلسلات', cartoons: 'كرتون', anime: 'أنمي', history: 'تاريخ', geography: 'جغرافيا', science: 'علوم', space: 'فضاء', animals: 'حيوانات', capitals: 'دول وعواصم', riddles: 'ألغاز', math: 'حساب ورياضيات', arabicLang: 'لغة عربية', englishLang: 'لغة إنجليزية', technology: 'تكنولوجيا', inventions: 'اختراعات', celebrities: 'مشاهير', music: 'موسيقى', islamicCulture: 'ثقافة إسلامية', kuwait: 'معلومات عن الكويت', flags: 'أعلام الدول', guessImage: 'تخمين الصورة', trueFalse: 'صح أو خطأ', completeSentence: 'أكمل الجملة', whoAmI: 'من أنا؟', wouldYouRather: 'ماذا تفضل؟', familyChallenges: 'تحديات عائلية'
+    };
+    const categoryNamesEn = {
+      generalKnowledge: 'General Knowledge', sports: 'Sports', football: 'Football', cars: 'Cars', movies: 'Movies & TV', cartoons: 'Cartoons', anime: 'Anime', history: 'History', geography: 'Geography', science: 'Science', space: 'Space', animals: 'Animals', capitals: 'Countries & Capitals', riddles: 'Riddles', math: 'Math', arabicLang: 'Arabic Language', englishLang: 'English Language', technology: 'Technology', inventions: 'Inventions', celebrities: 'Celebrities', music: 'Music', islamicCulture: 'Islamic Culture', kuwait: 'Kuwait Facts', flags: 'Country Flags', guessImage: 'Guess the Image', trueFalse: 'True or False', completeSentence: 'Complete the Sentence', whoAmI: 'Who Am I?', wouldYouRather: 'Would You Rather?', familyChallenges: 'Family Challenges'
+    };
+    const categoryAccentColors = {
+      generalKnowledge: '#7C3AED', sports: '#10B981', football: '#84CC16', cars: '#EF4444', movies: '#8B5CF6', cartoons: '#EC4899', anime: '#F97316', history: '#A16207', geography: '#22C55E', science: '#3B82F6', space: '#06B6D4', animals: '#F59E0B', capitals: '#14B8A6', riddles: '#EC4899', math: '#84CC16', arabicLang: '#F43F5E', englishLang: '#2563EB', technology: '#6366F1', inventions: '#EAB308', celebrities: '#F59E0B', music: '#D946EF', islamicCulture: '#059669', kuwait: '#10B981', flags: '#06B6D4', guessImage: '#0EA5E9', trueFalse: '#22C55E', completeSentence: '#F97316', whoAmI: '#F97316', wouldYouRather: '#DB2777', familyChallenges: '#14B8A6'
+    };
+    const colorPalette = ['#7C3AED', '#2563EB', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#06B6D4', '#84CC16', '#F97316'];
     const difficulties = ['easy', 'medium', 'hard'];
     let currentUser = null;
     let builtinQuestions = [];
     let customQuestions = [];
     let allQuestions = [];
+    let categoryCardOverrides = [];
     let categoryCards = [];
     let sponsorAds = [];
     let users = [];
@@ -471,6 +482,34 @@
       allQuestions = [...mergedBuiltin, ...newCustom];
     };
 
+    const createDefaultCategoryCard = (categoryId, index) => ({
+      id: categoryId,
+      nameAr: categoryNamesAr[categoryId] || categoryId,
+      nameEn: categoryNamesEn[categoryId] || categoryNamesAr[categoryId] || categoryId,
+      imageUrl: '',
+      accentColor: categoryAccentColors[categoryId] || colorPalette[index % colorPalette.length],
+      sortOrder: (index + 1) * 10,
+      isActive: true,
+      questionTypes: ['multiple_choice', 'image'],
+      source: categories.includes(categoryId) ? 'app' : 'question-bank',
+    });
+
+    const mergeCategoryCards = () => {
+      const categoryIds = [...new Set([
+        ...categories,
+        ...allQuestions.map(question => question.categoryId).filter(Boolean),
+        ...categoryCardOverrides.map(card => card.id).filter(Boolean),
+      ])];
+      const overridesById = new Map(categoryCardOverrides.map(card => [card.id, card]));
+      categoryCards = categoryIds
+        .map((categoryId, index) => {
+          const fallback = createDefaultCategoryCard(categoryId, index);
+          const override = overridesById.get(categoryId);
+          return { ...fallback, ...(override || {}), id: categoryId, source: override ? 'saved' : fallback.source };
+        })
+        .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0) || String(a.nameAr || a.id).localeCompare(String(b.nameAr || b.id)));
+    };
+
     const renderQuestions = () => {
       $('questionsShown').textContent = `المعروض ${allQuestions.length} من ${allQuestions.length} سؤال. الأسئلة المرفوعة من الأدمن تظهر هنا وفي التطبيق إذا طابقت العمر والتصنيف والصعوبة.`;
       $('questionsBody').replaceChildren(...allQuestions.map(question => {
@@ -551,12 +590,14 @@
       if (!categoryCards.length) {
         const empty = document.createElement('div');
         empty.className = 'hint';
-        empty.textContent = 'لا توجد بطاقات محفوظة حتى الآن. سيستخدم التطبيق البطاقات الافتراضية.';
+        empty.textContent = 'لا توجد تصنيفات للعرض حتى الآن.';
         $('categoriesBody').replaceChildren(empty);
         return;
       }
 
       $('categoriesBody').replaceChildren(...categoryCards.map(cardItem => {
+        const isBuiltIn = categories.includes(cardItem.id);
+        const hasSavedOverride = categoryCardOverrides.some(item => item.id === cardItem.id);
         const card = document.createElement('article');
         card.className = 'ad-card';
         card.style.setProperty('--ad-accent', cardItem.accentColor || '#8b5cf6');
@@ -582,6 +623,14 @@
           image.alt = cardItem.nameAr || '';
           image.src = cardItem.imageUrl;
           top.append(image);
+        } else {
+          const placeholder = document.createElement('div');
+          placeholder.className = 'category-preview';
+          placeholder.style.display = 'grid';
+          placeholder.style.placeItems = 'center';
+          placeholder.style.background = cardItem.accentColor || '#8b5cf6';
+          placeholder.textContent = 'صورة';
+          top.append(placeholder);
         }
 
         const meta = document.createElement('div');
@@ -593,7 +642,9 @@
         sortOrder.textContent = `الترتيب: ${cardItem.sortOrder || 0}`;
         const questionCount = document.createElement('span');
         questionCount.textContent = `الأسئلة: ${allQuestions.filter(question => question.categoryId === cardItem.id).length}`;
-        meta.append(status, sortOrder, questionCount);
+        const source = document.createElement('span');
+        source.textContent = hasSavedOverride ? 'محفوظ في Firebase' : (isBuiltIn ? 'من التطبيق' : 'من الأسئلة');
+        meta.append(status, sortOrder, questionCount, source);
 
         const actions = document.createElement('div');
         actions.className = 'ad-actions';
@@ -607,12 +658,15 @@
         toggleButton.dataset.toggleCategory = cardItem.id;
         toggleButton.type = 'button';
         toggleButton.textContent = cardItem.isActive === false ? 'تفعيل' : 'إيقاف';
-        const deleteButton = document.createElement('button');
-        deleteButton.className = 'danger';
-        deleteButton.dataset.deleteCategory = cardItem.id;
-        deleteButton.type = 'button';
-        deleteButton.textContent = 'حذف';
-        actions.append(editButton, toggleButton, deleteButton);
+        actions.append(editButton, toggleButton);
+        if (hasSavedOverride) {
+          const deleteButton = document.createElement('button');
+          deleteButton.className = 'danger';
+          deleteButton.dataset.deleteCategory = cardItem.id;
+          deleteButton.type = 'button';
+          deleteButton.textContent = isBuiltIn ? 'إعادة ضبط' : 'حذف';
+          actions.append(deleteButton);
+        }
 
         card.append(top, meta, actions);
         return card;
@@ -677,9 +731,9 @@
       }
 
       if (categoriesResult.status === 'fulfilled') {
-        categoryCards = categoriesResult.value.docs.map(categoryDoc => ({ id: categoryDoc.id, ...categoryDoc.data() })).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
+        categoryCardOverrides = categoriesResult.value.docs.map(categoryDoc => ({ id: categoryDoc.id, ...categoryDoc.data() })).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
       } else {
-        categoryCards = [];
+        categoryCardOverrides = [];
         failures.push(categoriesResult.reason?.message || 'تعذر تحميل بطاقات الرئيسية');
       }
 
@@ -698,13 +752,14 @@
       }
 
       mergeQuestions();
+      mergeCategoryCards();
 
       renderQuestions();
       renderCategoryCards();
       renderAds();
       renderStats();
       setStatus($('questionStatus'), failures.length ? `تم تحميل البيانات المتاحة، وتنبيه: ${failures[0]}` : `تم تحميل ${allQuestions.length} سؤال (${builtinQuestions.length} من التطبيق + ${customQuestions.length} من الأدمن)`, failures.length ? 'error' : 'success');
-      setStatus($('categoryStatus'), categoriesResult.status === 'fulfilled' ? `تم تحميل ${categoryCards.length} بطاقة` : 'تعذر تحميل بطاقات الرئيسية', categoriesResult.status === 'fulfilled' ? 'success' : 'error');
+      setStatus($('categoryStatus'), categoriesResult.status === 'fulfilled' ? `تم عرض ${categoryCards.length} تصنيف (${categoryCardOverrides.length} تعديل محفوظ)` : 'تعذر تحميل بطاقات الرئيسية', categoriesResult.status === 'fulfilled' ? 'success' : 'error');
       setStatus($('adStatus'), adsResult.status === 'fulfilled' ? `تم تحميل ${sponsorAds.length} إعلان محفوظ` : 'تعذر تحميل إعلانات الشركات', adsResult.status === 'fulfilled' ? 'success' : 'error');
     };
 
