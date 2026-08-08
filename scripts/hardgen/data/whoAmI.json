@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "من أنا؟ مؤرخ وفيلسوف من المغرب الإسلامي، اشتهرتُ بكتابي «المقدمة»، ويُنسب إليّ تأسيس علم العمران.",
+    "en": "Who am I? I was a historian and philosopher from the Islamic West, famed for my “Muqaddimah,” and I am associated with founding sociology/civilization studies.",
+    "aAr": [
+      "الطبري",
+      "ابن الأثير",
+      "ابن خلدون",
+      "المسعودي"
+    ],
+    "aEn": [
+      "al-Ṭabarī",
+      "Ibn al-Athīr",
+      "Ibn Khaldun",
+      "al-Masʿūdī"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ فيزيائي نظري وُلدت في ألمانيا، وضعتُ النسبية الخاصة والعامة، ونلتُ نوبل عن تفسير التأثير الكهروضوئي.",
+    "en": "Who am I? I was a theoretical physicist born in Germany, formulated special and general relativity, and won the Nobel Prize for explaining the photoelectric effect.",
+    "aAr": [
+      "ألبرت أينشتاين",
+      "ماكس بلانك",
+      "نيلز بور",
+      "فيرنر هايزنبرغ"
+    ],
+    "aEn": [
+      "Albert Einstein",
+      "Max Planck",
+      "Niels Bohr",
+      "Werner Heisenberg"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ طبيب وعالم جراثيم اسكتلندي اكتشفتُ البنسلين بالمصادفة عام 1928.",
+    "en": "Who am I? I was a Scottish physician and bacteriologist who discovered penicillin by accident in 1928.",
+    "aAr": [
+      "روبرت كوخ",
+      "ألكسندر فليمنغ",
+      "جوزيف ليستر",
+      "لويس باستور"
+    ],
+    "aEn": [
+      "Robert Koch",
+      "Alexander Fleming",
+      "Joseph Lister",
+      "Louis Pasteur"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ بحّار برتغالي ارتبط اسمي بأول رحلة دار أسطولُها حول الأرض، رغم أنني لم أُكملها حيًّا.",
+    "en": "Who am I? I was a Portuguese navigator whose expedition completed the first circumnavigation of the globe, though I did not survive it.",
+    "aAr": [
+      "فاسكو دا غاما",
+      "فرديناند ماجلان",
+      "بارتولوميو دياز",
+      "أميرغو فسبوتشي"
+    ],
+    "aEn": [
+      "Vasco da Gama",
+      "Ferdinand Magellan",
+      "Bartolomeu Dias",
+      "Amerigo Vespucci"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ عالمة وُلدت في بولندا وعملت في فرنسا، ونلتُ جائزتَي نوبل في الفيزياء والكيمياء.",
+    "en": "Who am I? I was born in Poland, worked in France, and won Nobel Prizes in both Physics and Chemistry.",
+    "aAr": [
+      "إيرين جوليو-كوري",
+      "ليز مايتنر",
+      "روزاليند فرانكلين",
+      "ماري كوري"
+    ],
+    "aEn": [
+      "Irène Joliot-Curie",
+      "Lise Meitner",
+      "Rosalind Franklin",
+      "Marie Curie"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ قائد قرطاجي شهير عبر جبال الألب مصطحبًا الفيلة في حربه مع روما.",
+    "en": "Who am I? I was the Carthaginian commander famous for crossing the Alps with elephants in war against Rome.",
+    "aAr": [
+      "سكيبيو",
+      "ماريوس",
+      "بيروس",
+      "هنيبعل"
+    ],
+    "aEn": [
+      "Scipio",
+      "Marius",
+      "Pyrrhus",
+      "Hannibal"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ شاعر وفيلسوف عربي كفيف، من أشهر كتبي «رسالة الغفران».",
+    "en": "Who am I? I was a blind Arab poet and philosopher, and one of my best-known works is “The Epistle of Forgiveness.”",
+    "aAr": [
+      "البحتري",
+      "المتنبي",
+      "أبو تمام",
+      "أبو العلاء المعري"
+    ],
+    "aEn": [
+      "al-Buḥturī",
+      "al-Mutanabbī",
+      "Abū Tammām",
+      "Abū al-ʿAlāʾ al-Maʿarrī"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ سلطان عثماني شاب فتح القسطنطينية سنة 1453.",
+    "en": "Who am I? I was the young Ottoman sultan who conquered Constantinople in 1453.",
+    "aAr": [
+      "بايزيد الأول",
+      "محمد الفاتح",
+      "سليمان القانوني",
+      "سليم الأول"
+    ],
+    "aEn": [
+      "Bayezid I",
+      "Mehmed the Conqueror",
+      "Suleiman the Magnificent",
+      "Selim I"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ راهب وعالم وراثة، أجريتُ تجاربي الشهيرة على نبات البازلاء وأسستُ علم الوراثة الحديث.",
+    "en": "Who am I? I was a monk and scientist whose pea-plant experiments founded modern genetics.",
+    "aAr": [
+      "تشارلز داروين",
+      "غريغور مندل",
+      "توماس مورغان",
+      "أنطوني فان ليفينهوك"
+    ],
+    "aEn": [
+      "Charles Darwin",
+      "Gregor Mendel",
+      "Thomas Hunt Morgan",
+      "Antonie van Leeuwenhoek"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ فيلسوف يوناني لم يكتب مؤلفات بنفسه، وحُكم عليّ بالموت بتجرّع الشوكران.",
+    "en": "Who am I? I was a Greek philosopher who wrote nothing himself and was sentenced to death by drinking hemlock.",
+    "aAr": [
+      "أرسطو",
+      "ديوجين",
+      "سقراط",
+      "أفلاطون"
+    ],
+    "aEn": [
+      "Aristotle",
+      "Diogenes",
+      "Socrates",
+      "Plato"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ رحالة مغربي جبتُ العالم القديم قرابة ثلاثة عقود، ودوّنت رحلتي في «تحفة النظار».",
+    "en": "Who am I? I was a Moroccan traveler who spent nearly three decades journeying the Old World and recorded it in the “Rihla.”",
+    "aAr": [
+      "المقدسي",
+      "ابن بطوطة",
+      "ياقوت الحموي",
+      "ابن جبير"
+    ],
+    "aEn": [
+      "al-Maqdisī",
+      "Ibn Battuta",
+      "Yāqūt al-Ḥamawī",
+      "Ibn Jubayr"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ جرّاح أندلسي مسلم يُعرف بكتابه «التصريف لمن عجز عن التأليف».",
+    "en": "Who am I? I was an Andalusian Muslim surgeon known for the medical encyclopedia “al-Taṣrīf.”",
+    "aAr": [
+      "الزهراوي",
+      "ابن النفيس",
+      "ابن البيطار",
+      "الرازي"
+    ],
+    "aEn": [
+      "al-Zahrawi",
+      "Ibn al-Nafīs",
+      "Ibn al-Bayṭār",
+      "al-Rāzī"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ فلكي ألماني صغتُ القوانين الثلاثة لحركة الكواكب.",
+    "en": "Who am I? I was the German astronomer who formulated the three laws of planetary motion.",
+    "aAr": [
+      "يوهانس كبلر",
+      "نيكولاس كوبرنيكوس",
+      "تيخو براهي",
+      "غاليليو غاليلي"
+    ],
+    "aEn": [
+      "Johannes Kepler",
+      "Nicolaus Copernicus",
+      "Tycho Brahe",
+      "Galileo Galilei"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ زعيم هندي ارتبطتُ بالمقاومة السلمية ومفهوم الساتياغراها ضد الاستعمار البريطاني.",
+    "en": "Who am I? I was an Indian leader associated with nonviolent resistance and the idea of satyagraha against British rule.",
+    "aAr": [
+      "محمد علي جناح",
+      "المهاتما غاندي",
+      "سوبهاس تشاندرا بوس",
+      "جواهر لال نهرو"
+    ],
+    "aEn": [
+      "Muhammad Ali Jinnah",
+      "Mahatma Gandhi",
+      "Subhas Chandra Bose",
+      "Jawaharlal Nehru"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ ملكة فرعونية حكمت مصر، وأرسلت بعثة مشهورة إلى بلاد بونت.",
+    "en": "Who am I? I was a pharaonic queen of Egypt who sent a famous expedition to the Land of Punt.",
+    "aAr": [
+      "حتشبسوت",
+      "تيي",
+      "نفرتيتي",
+      "كليوباترا"
+    ],
+    "aEn": [
+      "Hatshepsut",
+      "Tiye",
+      "Nefertiti",
+      "Cleopatra"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ عالم رياضيات مسلم اقترن اسمي بعلم الجبر وبكتاب المختصر في الحساب والجبر والمقابلة.",
+    "en": "Who am I? I was a Muslim mathematician associated with algebra and the book on completion and balancing.",
+    "aAr": [
+      "ابن الهيثم",
+      "البيروني",
+      "الخوارزمي",
+      "ثابت بن قرة"
+    ],
+    "aEn": [
+      "Ibn al-Haytham",
+      "al-Biruni",
+      "al-Khwarizmi",
+      "Thābit ibn Qurra"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ رسام ونحّات ومهندس إيطالي من عصر النهضة، من أشهر أعمالي «الموناليزا» و«العشاء الأخير».",
+    "en": "Who am I? I was an Italian Renaissance painter, sculptor, and engineer best known for the “Mona Lisa” and “The Last Supper.”",
+    "aAr": [
+      "رافائيل",
+      "ميكيلانجيلو",
+      "بوتيتشيلي",
+      "ليوناردو دا فينشي"
+    ],
+    "aEn": [
+      "Raphael",
+      "Michelangelo",
+      "Botticelli",
+      "Leonardo da Vinci"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ شاعر إنجليزي فقد بصره، وكتب الملحمة «Paradise Lost».",
+    "en": "Who am I? I was an English poet who lost his sight and wrote “Paradise Lost.”",
+    "aAr": [
+      "ويليام بليك",
+      "جون ميلتون",
+      "ألكسندر بوب",
+      "جون دن"
+    ],
+    "aEn": [
+      "William Blake",
+      "John Milton",
+      "Alexander Pope",
+      "John Donne"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ روائي إسباني كتب «دون كيخوتة»، إحدى أشهر روايات العالم.",
+    "en": "Who am I? I was the Spanish novelist who wrote “Don Quixote.”",
+    "aAr": [
+      "بيدرو كالديرون",
+      "فيديريكو غارسيا لوركا",
+      "ميغيل دي ثيربانتس",
+      "كاميلو خوسيه ثيلا"
+    ],
+    "aEn": [
+      "Pedro Calderón",
+      "Federico García Lorca",
+      "Miguel de Cervantes",
+      "Camilo José Cela"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ زعيم من جنوب أفريقيا أمضيتُ 27 عامًا في السجن ثم أصبحتُ أول رئيس أسود لبلادي.",
+    "en": "Who am I? I was a South African leader who spent 27 years in prison and later became my country’s first Black president.",
+    "aAr": [
+      "نيلسون مانديلا",
+      "ستيف بيكو",
+      "ثابو مبيكي",
+      "ديزموند توتو"
+    ],
+    "aEn": [
+      "Nelson Mandela",
+      "Steve Biko",
+      "Thabo Mbeki",
+      "Desmond Tutu"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ طبيب وفيلسوف فارسي ألّفتُ «القانون في الطب».",
+    "en": "Who am I? I was a Persian physician-philosopher who authored “The Canon of Medicine.”",
+    "aAr": [
+      "ابن سينا",
+      "الرازي",
+      "ابن زهر",
+      "ابن رشد"
+    ],
+    "aEn": [
+      "Ibn Sina / Avicenna",
+      "al-Razi",
+      "Ibn Zuhr",
+      "Ibn Rushd"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ طبيب نمساوي ارتبط اسمي بتأسيس التحليل النفسي.",
+    "en": "Who am I? I was the Austrian physician associated with founding psychoanalysis.",
+    "aAr": [
+      "ألفرد أدلر",
+      "كارل يونغ",
+      "سيغموند فرويد",
+      "إيفان بافلوف"
+    ],
+    "aEn": [
+      "Alfred Adler",
+      "Carl Jung",
+      "Sigmund Freud",
+      "Ivan Pavlov"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ كاتبة بريطانية معاصرة خلقتُ عالم «هاري بوتر».",
+    "en": "Who am I? I am the contemporary British author who created the world of Harry Potter.",
+    "aAr": [
+      "ج. ك. رولينغ",
+      "سوزان كولينز",
+      "ديانا وين جونز",
+      "فيليب بولمان"
+    ],
+    "aEn": [
+      "J. K. Rowling",
+      "Suzanne Collins",
+      "Diana Wynne Jones",
+      "Philip Pullman"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ قائد فرنسي صعد من أجواء الثورة إلى الإمبراطورية، ثم هُزمتُ في واترلو.",
+    "en": "Who am I? I was a French leader who rose out of the Revolution into empire and was defeated at Waterloo.",
+    "aAr": [
+      "نابليون بونابرت",
+      "لويس الرابع عشر",
+      "لافاييت",
+      "شارل ديغول"
+    ],
+    "aEn": [
+      "Napoleon Bonaparte",
+      "Louis XIV",
+      "Lafayette",
+      "Charles de Gaulle"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ رائد فضاء سوفيتي كنتُ أول إنسان يدور حول الأرض.",
+    "en": "Who am I? I was the Soviet cosmonaut who became the first human to orbit Earth.",
+    "aAr": [
+      "جون غلين",
+      "أليكسي ليونوف",
+      "يوري غاغارين",
+      "غيرمان تيتوف"
+    ],
+    "aEn": [
+      "John Glenn",
+      "Alexei Leonov",
+      "Yuri Gagarin",
+      "Gherman Titov"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ مهندس ومخترع صربي-أمريكي ارتبط اسمي بالتيار المتناوب.",
+    "en": "Who am I? I was the Serbian-American inventor closely associated with alternating current.",
+    "aAr": [
+      "مايكل فاراداي",
+      "نيكولا تسلا",
+      "توماس إديسون",
+      "جورج وستنغهاوس"
+    ],
+    "aEn": [
+      "Michael Faraday",
+      "Nikola Tesla",
+      "Thomas Edison",
+      "George Westinghouse"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ كاتب مسرحي إيرلندي كتب «في انتظار غودو».",
+    "en": "Who am I? I was the Irish playwright who wrote “Waiting for Godot.”",
+    "aAr": [
+      "أوسكار وايلد",
+      "صموئيل بيكيت",
+      "برنارد شو",
+      "شون أوكيسي"
+    ],
+    "aEn": [
+      "Oscar Wilde",
+      "Samuel Beckett",
+      "George Bernard Shaw",
+      "Seán O’Casey"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ كيميائي عربي قديم يُنسب إليّ تطوير التقطير ولقّبني بعض المؤرخين بأبي الكيمياء.",
+    "en": "Who am I? I was an early Arabic alchemist often credited with developing distillation and dubbed by some the father of chemistry.",
+    "aAr": [
+      "الكندي",
+      "الجلدكي",
+      "جابر بن حيان",
+      "ابن البيطار"
+    ],
+    "aEn": [
+      "al-Kindi",
+      "al-Jildaki",
+      "Jabir ibn Hayyan",
+      "Ibn al-Bayṭār"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ مصلح ديني ألماني ارتبط اسمي بالأطروحات الخمس والتسعين سنة 1517.",
+    "en": "Who am I? I was the German religious reformer associated with the Ninety-Five Theses of 1517.",
+    "aAr": [
+      "أولريخ زوينغلي",
+      "مارتن لوثر",
+      "إيراسموس",
+      "جون كالفن"
+    ],
+    "aEn": [
+      "Ulrich Zwingli",
+      "Martin Luther",
+      "Erasmus",
+      "John Calvin"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ عالمة بريطانية في سلوك الحيوان اشتهرتُ بدراسة الشمبانزي في غومبي.",
+    "en": "Who am I? I am the British primatologist famous for studying chimpanzees at Gombe.",
+    "aAr": [
+      "تمبل غراندن",
+      "جين غودال",
+      "ديان فوسي",
+      "بيروتيه غالديكاس"
+    ],
+    "aEn": [
+      "Temple Grandin",
+      "Jane Goodall",
+      "Dian Fossey",
+      "Birutė Galdikas"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ أكبر بحيرة مغلقة في العالم، ورغم اسمي فإنني محاط باليابسة تمامًا.",
+    "en": "Who am I? I am the largest enclosed lake in the world, and despite my name I am completely landlocked.",
+    "aAr": [
+      "البحر الميت",
+      "بحيرة فيكتوريا",
+      "بحر قزوين",
+      "البحر الأسود"
+    ],
+    "aEn": [
+      "Dead Sea",
+      "Lake Victoria",
+      "Caspian Sea",
+      "Black Sea"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ أعمق خندق محيطي معروف على الأرض، وفي داخلي تقع منطقة تشالنجر ديب.",
+    "en": "Who am I? I am the deepest known ocean trench on Earth, containing the Challenger Deep.",
+    "aAr": [
+      "خندق كيرمادك",
+      "خندق ماريانا",
+      "خندق تونغا",
+      "خندق بورتوريكو"
+    ],
+    "aEn": [
+      "Kermadec Trench",
+      "Mariana Trench",
+      "Tonga Trench",
+      "Puerto Rico Trench"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ مجموعة مخطوطات قديمة اكتُشفت قرب البحر الميت في كهوف قمران.",
+    "en": "Who am I? I am the ancient manuscript collection discovered in caves near the Dead Sea at Qumran.",
+    "aAr": [
+      "مخطوطات نجع حمادي",
+      "برديات أوكسيرنخوس",
+      "مخطوطات البحر الميت",
+      "لفائف هركولانيوم"
+    ],
+    "aEn": [
+      "Nag Hammadi library",
+      "Oxyrhynchus papyri",
+      "Dead Sea Scrolls",
+      "Herculaneum scrolls"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ مدينة أندلسية تحتضن قصر الحمراء، وكانت آخر معاقل المسلمين في الأندلس.",
+    "en": "Who am I? I am the Andalusian city that holds the Alhambra and was the last Muslim stronghold in Iberia.",
+    "aAr": [
+      "إشبيلية",
+      "غرناطة",
+      "قرطبة",
+      "طليطلة"
+    ],
+    "aEn": [
+      "Seville",
+      "Granada",
+      "Córdoba",
+      "Toledo"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ آلة موسيقية ذات مفاتيح، يبلغ العدد التقليدي لمفاتيحي 88 مفتاحًا.",
+    "en": "Who am I? I am a keyboard instrument whose standard modern form has 88 keys.",
+    "aAr": [
+      "الأورغن",
+      "البيانو",
+      "الهاربسكورد",
+      "الأكورديون"
+    ],
+    "aEn": [
+      "organ",
+      "piano",
+      "harpsichord",
+      "accordion"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ خط وهمي يقسم الكرة الأرضية إلى نصفين شمالي وجنوبي.",
+    "en": "Who am I? I am the imaginary line that divides Earth into northern and southern halves.",
+    "aAr": [
+      "الدائرة القطبية",
+      "مدار السرطان",
+      "خط غرينتش",
+      "خط الاستواء"
+    ],
+    "aEn": [
+      "Arctic Circle",
+      "Tropic of Cancer",
+      "Prime Meridian",
+      "Equator"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ مضيق يربط البحر الأحمر بخليج عدن ويشكّل معبرًا بحريًا حيويًا.",
+    "en": "Who am I? I am the strait linking the Red Sea to the Gulf of Aden and forming a vital sea passage.",
+    "aAr": [
+      "ملقا",
+      "هرمز",
+      "باب المندب",
+      "البوسفور"
+    ],
+    "aEn": [
+      "Malacca",
+      "Hormuz",
+      "Bab el-Mandeb",
+      "Bosporus"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ جهاز أستخدم فيه حزمة إلكترونات بدل الضوء للحصول على تكبير عالٍ جدًا.",
+    "en": "Who am I? I am an instrument that uses a beam of electrons rather than light for very high magnification.",
+    "aAr": [
+      "البيرومتر",
+      "التلسكوب الراديوي",
+      "المجهر الإلكتروني",
+      "المطياف"
+    ],
+    "aEn": [
+      "pyrometer",
+      "radio telescope",
+      "electron microscope",
+      "spectrometer"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ معدن سائل في درجة حرارة الغرفة، واستُخدمت مركباتي قديمًا في موازين الحرارة.",
+    "en": "Who am I? I am a metal that is liquid at room temperature and whose compounds were long used in thermometers.",
+    "aAr": [
+      "الرصاص",
+      "الغاليوم",
+      "الزئبق",
+      "القصدير"
+    ],
+    "aEn": [
+      "lead",
+      "gallium",
+      "mercury",
+      "tin"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من أنا؟ أكبر أقمار زحل، وأتميّز بغلاف جوي كثيف وبحيرات من الهيدروكربونات.",
+    "en": "Who am I? I am Saturn’s largest moon, noted for a thick atmosphere and lakes of hydrocarbons.",
+    "aAr": [
+      "ريا",
+      "تيتان",
+      "إنسيلادوس",
+      "إيابيتوس"
+    ],
+    "aEn": [
+      "Rhea",
+      "Titan",
+      "Enceladus",
+      "Iapetus"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ أثر حجري دائري من عصور ما قبل التاريخ في جنوب إنجلترا.",
+    "en": "Who am I? I am the prehistoric stone circle monument in southern England.",
+    "aAr": [
+      "سكارا براي",
+      "إيڤبري",
+      "هادريانز وول",
+      "ستونهنج"
+    ],
+    "aEn": [
+      "Skara Brae",
+      "Avebury",
+      "Hadrian’s Wall",
+      "Stonehenge"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ كوكبة سماوية صغيرة، تضم النجم القطبي في ذيلها تقريبًا.",
+    "en": "Who am I? I am the small constellation that includes Polaris near the end of my tail.",
+    "aAr": [
+      "الدب الأصغر",
+      "ذات الكرسي",
+      "الدب الأكبر",
+      "التنين"
+    ],
+    "aEn": [
+      "Ursa Minor",
+      "Cassiopeia",
+      "Ursa Major",
+      "Draco"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ الجزيرة النائية في الأطلسي التي نُفي إليها نابليون آخر مرة.",
+    "en": "Who am I? I am the remote Atlantic island to which Napoleon was exiled for the last time.",
+    "aAr": [
+      "إلبا",
+      "سانت هيلانة",
+      "صقلية",
+      "كورسيكا"
+    ],
+    "aEn": [
+      "Elba",
+      "Saint Helena",
+      "Sicily",
+      "Corsica"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من أنا؟ سلسلة اتفاقيات سنة 1648 التي أنهت حرب الثلاثين عامًا في أوروبا.",
+    "en": "Who am I? I am the 1648 set of treaties that ended the Thirty Years’ War in Europe.",
+    "aAr": [
+      "صلح وستفاليا",
+      "مؤتمر فيينا",
+      "صلح أوترخت",
+      "صلح نيميغن"
+    ],
+    "aEn": [
+      "Peace of Westphalia",
+      "Congress of Vienna",
+      "Treaty of Utrecht",
+      "Treaties of Nijmegen"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ مقياس ارتبط تاريخيًا بتقدير مقدار الزلازل على نحو لوغاريتمي.",
+    "en": "Who am I? I am the scale historically associated with logarithmic measurement of earthquake magnitude.",
+    "aAr": [
+      "مقياس ريختر",
+      "مقياس سكوروف",
+      "مقياس بوفورت",
+      "مقياس موهس"
+    ],
+    "aEn": [
+      "Richter scale",
+      "Scoville scale",
+      "Beaufort scale",
+      "Mohs scale"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ أطول عظم في جسم الإنسان، وأمتد من الورك إلى الركبة.",
+    "en": "Who am I? I am the longest bone in the human body, extending from hip to knee.",
+    "aAr": [
+      "الشظية",
+      "الظنبوب",
+      "العضد",
+      "عظم الفخذ"
+    ],
+    "aEn": [
+      "fibula",
+      "tibia",
+      "humerus",
+      "femur"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من أنا؟ طبقة من الغلاف الجوي تحتوي معظم الأوزون الذي يحمي الأرض من الأشعة فوق البنفسجية.",
+    "en": "Who am I? I am the atmospheric layer containing most of the ozone that shields Earth from ultraviolet radiation.",
+    "aAr": [
+      "الستراتوسفير",
+      "التروبوسفير",
+      "الإكسوسفير",
+      "الميزوسفير"
+    ],
+    "aEn": [
+      "stratosphere",
+      "troposphere",
+      "exosphere",
+      "mesosphere"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ مدينة أوروبية يُشار إليها أدبيًا بلقب «مدينة الضباب».",
+    "en": "Who am I? I am the European city often referred to in literature as “the city of fog.”",
+    "aAr": [
+      "لندن",
+      "أمستردام",
+      "دبلن",
+      "براغ"
+    ],
+    "aEn": [
+      "London",
+      "Amsterdam",
+      "Dublin",
+      "Prague"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ وثيقة إنجليزية صدرت سنة 1215 وقيّدت جانبًا من سلطة الملك.",
+    "en": "Who am I? I am the English charter issued in 1215 that limited aspects of royal power.",
+    "aAr": [
+      "الماغنا كارتا",
+      "قانون التسوية",
+      "العريضة الحقوقية",
+      "إعلان الحقوق"
+    ],
+    "aEn": [
+      "Magna Carta",
+      "Act of Settlement",
+      "Petition of Right",
+      "Bill of Rights"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أنا؟ قناة افتُتحت سنة 1869 واختصرت الطريق البحري بين أوروبا وآسيا عبر مصر.",
+    "en": "Who am I? I am the canal opened in 1869 that shortened the sea route between Europe and Asia through Egypt.",
+    "aAr": [
+      "قناة بنما",
+      "قناة كيل",
+      "قناة السويس",
+      "قناة كورنث"
+    ],
+    "aEn": [
+      "Panama Canal",
+      "Kiel Canal",
+      "Suez Canal",
+      "Corinth Canal"
+    ],
+    "correct": 2
+  }
+]

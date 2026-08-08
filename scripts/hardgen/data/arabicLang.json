@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "ما إعراب كلمة «العلماءُ» في قوله تعالى: «إنما يخشى اللهَ من عباده العلماءُ»؟",
+    "en": "What is the grammatical function of “al-ʿulamāʾu” in the verse “Only those of His servants with knowledge truly fear God”?",
+    "aAr": [
+      "فاعل مؤخر",
+      "حال",
+      "بدل",
+      "مفعول به أول"
+    ],
+    "aEn": [
+      "delayed subject",
+      "circumstantial accusative",
+      "appositive بدل",
+      "first object"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما جمع كلمة «قاضٍ»؟",
+    "en": "What is the plural of the Arabic word “qāḍin” (judge)?",
+    "aAr": [
+      "قاضيون",
+      "قضاة",
+      "أقضية",
+      "قواضٍ"
+    ],
+    "aEn": [
+      "qāḍiyūn",
+      "quḍāt / judges",
+      "aqḍiyah",
+      "qawāḍin"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما المثنّى في حالة الرفع من كلمة «عصا»؟",
+    "en": "What is the dual nominative form of the word “ʿaṣā” (staff)?",
+    "aAr": [
+      "عصيان",
+      "عصاوَان",
+      "عصوان",
+      "عصاتان"
+    ],
+    "aEn": [
+      "ʿaṣyān",
+      "ʿaṣāwān",
+      "ʿaṣawān",
+      "ʿaṣātān"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيّ الكلمات الآتية ممنوعة من الصرف للعَلَمية ووزن الفعل؟",
+    "en": "Which of the following is diptote because it is a proper noun on the pattern of a verb?",
+    "aAr": [
+      "جعفر",
+      "أحمد",
+      "مالك",
+      "حاتم"
+    ],
+    "aEn": [
+      "Jaʿfar",
+      "Aḥmad",
+      "Mālik",
+      "Ḥātim"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما المصدر القياسي للفعل «استخرج»؟",
+    "en": "What is the standard verbal noun (maṣdar) of “istakhraja”?",
+    "aAr": [
+      "تخريج",
+      "استخراج",
+      "استخرجة",
+      "خروج"
+    ],
+    "aEn": [
+      "bringing out",
+      "extraction",
+      "istakhraja-form",
+      "exit"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما نوع «ما» في قولنا: «ربما ينجح المجتهد»؟",
+    "en": "What kind of “mā” appears in “rubba-mā yanjaḥu al-mujtahid”?",
+    "aAr": [
+      "استفهامية",
+      "نافية",
+      "كافة",
+      "موصولة"
+    ],
+    "aEn": [
+      "interrogative",
+      "negative",
+      "inhibitive/kāffah",
+      "relative pronoun"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما نوع المنادى في قولنا: «يا طالبَ العلم»؟",
+    "en": "What type of vocative noun appears in “Yā ṭāliba al-ʿilm”?",
+    "aAr": [
+      "مفرد علم",
+      "شبيه بالمضاف",
+      "نكرة غير مقصودة",
+      "مضاف"
+    ],
+    "aEn": [
+      "proper noun vocative",
+      "quasi-construct",
+      "non-specific indefinite",
+      "construct-state vocative"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما نوع الاستثناء في جملة «حضر القوم إلا زيدًا»؟",
+    "en": "What type of exception is in the sentence “The people came except Zayd”?",
+    "aAr": [
+      "تام مثبت",
+      "منقطع",
+      "مفرغ",
+      "تام منفي"
+    ],
+    "aEn": [
+      "complete affirmative",
+      "disconnected",
+      "empty exception",
+      "complete negative"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما نوع «لا» في جملة «لا طالبَ علمٍ مهملٌ»؟",
+    "en": "What type of “lā” is used in “No seeker of knowledge is neglectful”?",
+    "aAr": [
+      "زائدة",
+      "عاطفة",
+      "ناهية",
+      "نافية للجنس"
+    ],
+    "aEn": [
+      "redundant",
+      "coordinating",
+      "prohibitive",
+      "absolute negator of genus"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أيُّ الكلمات الآتية اسم منقوص؟",
+    "en": "Which of the following is a defective noun (ism manqūṣ)?",
+    "aAr": [
+      "القاضي",
+      "الفتى",
+      "صحراء",
+      "كتاب"
+    ],
+    "aEn": [
+      "the judge",
+      "the youth",
+      "desert",
+      "book"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أيُّ الكلمات الآتية اسم مقصور؟",
+    "en": "Which of the following is a maqṣūr noun?",
+    "aAr": [
+      "مصباح",
+      "الفتى",
+      "القاضي",
+      "سماء"
+    ],
+    "aEn": [
+      "lamp",
+      "the youth",
+      "the judge",
+      "sky"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أيُّ الكلمات الآتية اسم ممدود؟",
+    "en": "Which of the following is a mamdūd noun?",
+    "aAr": [
+      "صحراء",
+      "الهدى",
+      "ندى",
+      "القاضي"
+    ],
+    "aEn": [
+      "desert",
+      "guidance",
+      "dew",
+      "the judge"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما جمع كلمة «مفتاح»؟",
+    "en": "What is the plural of “miftāḥ” (key)?",
+    "aAr": [
+      "مفاتيح",
+      "مفتاحات",
+      "مفاتيحون",
+      "فتوح"
+    ],
+    "aEn": [
+      "mafātīḥ",
+      "miftāḥāt",
+      "mafātīḥūn",
+      "futūḥ"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما المضارع الفصيح للفعل «استحيا»؟",
+    "en": "What is the standard present tense of the verb “istaḥyā”?",
+    "aAr": [
+      "يستحي",
+      "يستحيا",
+      "يستحوي",
+      "يستحيي"
+    ],
+    "aEn": [
+      "yastaḥī",
+      "yustaḥyā",
+      "yastaḥwī",
+      "yastaḥyī"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما الجذر الثلاثي لكلمة «مستشفى»؟",
+    "en": "What is the triliteral root of “mustashfā” (hospital)?",
+    "aAr": [
+      "ش ف ي",
+      "ش ي ف",
+      "س ت ش",
+      "ش ف و"
+    ],
+    "aEn": [
+      "sh-f-y",
+      "sh-y-f",
+      "s-t-sh",
+      "sh-f-w"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من واضع علم العَروض؟",
+    "en": "Who founded the science of Arabic prosody (ʿarūḍ)?",
+    "aAr": [
+      "المبرِّد",
+      "سيبويه",
+      "الخليل بن أحمد الفراهيدي",
+      "ابن جني"
+    ],
+    "aEn": [
+      "al-Mubarrad",
+      "Sībawayh",
+      "al-Khalīl ibn Aḥmad al-Farāhīdī",
+      "Ibn Jinnī"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من صاحب كتاب «الخصائص»؟",
+    "en": "Who authored the book “al-Khaṣāʾiṣ”?",
+    "aAr": [
+      "عبد القاهر الجرجاني",
+      "ابن هشام",
+      "الجاحظ",
+      "ابن جني"
+    ],
+    "aEn": [
+      "ʿAbd al-Qāhir al-Jurjānī",
+      "Ibn Hishām",
+      "al-Jāḥiẓ",
+      "Ibn Jinnī"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف «دلائل الإعجاز»؟",
+    "en": "Who wrote “Dalāʾil al-Iʿjāz”?",
+    "aAr": [
+      "عبد القاهر الجرجاني",
+      "ابن رشيق",
+      "أبو حيان التوحيدي",
+      "ابن قتيبة"
+    ],
+    "aEn": [
+      "ʿAbd al-Qāhir al-Jurjānī",
+      "Ibn Rashīq",
+      "Abū Ḥayyān al-Tawḥīdī",
+      "Ibn Qutaybah"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من لُقِّب بأمير الشعراء؟",
+    "en": "Who was known as the “Prince of Poets”?",
+    "aAr": [
+      "حافظ إبراهيم",
+      "إيليا أبو ماضي",
+      "أحمد شوقي",
+      "محمود سامي البارودي"
+    ],
+    "aEn": [
+      "Ḥāfiẓ Ibrāhīm",
+      "Īlyā Abū Māḍī",
+      "Aḥmad Shawqī",
+      "Maḥmūd Sāmī al-Bārūdī"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من لُقِّب بشاعر النيل؟",
+    "en": "Who was known as the “Poet of the Nile”?",
+    "aAr": [
+      "أحمد شوقي",
+      "أبو القاسم الشابي",
+      "حافظ إبراهيم",
+      "نزار قباني"
+    ],
+    "aEn": [
+      "Aḥmad Shawqī",
+      "Abū al-Qāsim al-Shābbī",
+      "Ḥāfiẓ Ibrāhīm",
+      "Nizār Qabbānī"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من صاحب «رسالة الغفران»؟",
+    "en": "Who authored “Risālat al-Ghufrān” (The Epistle of Forgiveness)?",
+    "aAr": [
+      "المتنبي",
+      "الجاحظ",
+      "أبو العلاء المعري",
+      "ابن المقفع"
+    ],
+    "aEn": [
+      "al-Mutanabbī",
+      "al-Jāḥiẓ",
+      "Abū al-ʿAlāʾ al-Maʿarrī",
+      "Ibn al-Muqaffaʿ"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من صاحب «مقامات الهمذاني»؟",
+    "en": "Who authored the Maqāmāt of al-Hamadhānī?",
+    "aAr": [
+      "ابن العميد",
+      "الحريري",
+      "بديع الزمان الهمذاني",
+      "أبو تمام"
+    ],
+    "aEn": [
+      "Ibn al-ʿAmīd",
+      "al-Ḥarīrī",
+      "Badīʿ al-Zamān al-Hamadhānī",
+      "Abū Tammām"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من قائل البيت: «أنا البحر في أحشائه الدر كامن...»؟",
+    "en": "Who wrote the line “I am the sea with pearls hidden within me…”?",
+    "aAr": [
+      "إبراهيم طوقان",
+      "المتنبي",
+      "أحمد شوقي",
+      "حافظ إبراهيم"
+    ],
+    "aEn": [
+      "Ibrāhīm Ṭūqān",
+      "al-Mutanabbī",
+      "Aḥmad Shawqī",
+      "Ḥāfiẓ Ibrāhīm"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "إلى أي بحر ينتمي صدر البيت «قفا نبكِ من ذكرى حبيبٍ ومنزلِ»؟",
+    "en": "To which meter does the hemistich “Qifā nabki…” belong?",
+    "aAr": [
+      "الكامل",
+      "البسيط",
+      "الطويل",
+      "الوافر"
+    ],
+    "aEn": [
+      "al-Kāmil",
+      "al-Basīṭ",
+      "al-Ṭawīl",
+      "al-Wāfir"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "إلى أي بحر ينتمي بيت «إذا الشعب يومًا أراد الحياة»؟",
+    "en": "To which meter does the line “If the people one day desire life” belong?",
+    "aAr": [
+      "الرمل",
+      "المتقارب",
+      "الرجز",
+      "الخفيف"
+    ],
+    "aEn": [
+      "al-Ramal",
+      "al-Mutaqārib",
+      "al-Rajaz",
+      "al-Khafīf"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما نوع الأسلوب في قول الشاعر: «ألا ليت الشباب يعود يومًا»؟",
+    "en": "What rhetorical mode is used in “Would that youth might return one day”?",
+    "aAr": [
+      "استفهام",
+      "تعجب",
+      "نداء",
+      "تمنٍّ"
+    ],
+    "aEn": [
+      "interrogation",
+      "exclamation",
+      "vocative",
+      "wishful longing"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما المحسن البديعي في الجمع بين «يحيي» و«يميت»؟",
+    "en": "What rhetorical ornament is illustrated by pairing “gives life” and “causes death”?",
+    "aAr": [
+      "جناس",
+      "طباق",
+      "حسن تعليل",
+      "سجع"
+    ],
+    "aEn": [
+      "paronomasia",
+      "antithesis",
+      "poetic justification",
+      "rhymed prose"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما المحسن البديعي في قوله تعالى: «وهم ينهون عنه وينأون عنه»؟",
+    "en": "What rhetorical ornament appears in the pair “yanhawna” and “yanʾawna”?",
+    "aAr": [
+      "التفات",
+      "جناس ناقص",
+      "مقابلة",
+      "طباق إيجاب"
+    ],
+    "aEn": [
+      "shifting address",
+      "imperfect paronomasia",
+      "counterbalancing",
+      "direct antithesis"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما الصورة البيانية في التعبير «تكلّمتْ عيونُه»؟",
+    "en": "What figurative image is found in the expression “His eyes spoke”?",
+    "aAr": [
+      "كناية",
+      "استعارة مكنية",
+      "مجاز مرسل",
+      "تشبيه مرسل"
+    ],
+    "aEn": [
+      "metonymic allusion",
+      "implicit metaphor",
+      "metonymy",
+      "explicit simile"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما الصورة البيانية في قولنا: «الجندي أسدٌ في الميدان»؟",
+    "en": "What figure of speech is in “The soldier is a lion on the battlefield”?",
+    "aAr": [
+      "استعارة تصريحية",
+      "مجاز عقلي",
+      "كناية عن صفة",
+      "تشبيه بليغ"
+    ],
+    "aEn": [
+      "explicit metaphor",
+      "logical metaphor",
+      "metonymy of attribute",
+      "eloquent simile"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما نوع الخبر في جملة «العلم نور»؟",
+    "en": "What type of predicate appears in the sentence “Knowledge is light”?",
+    "aAr": [
+      "جملة اسمية",
+      "جملة فعلية",
+      "شبه جملة",
+      "مفرد"
+    ],
+    "aEn": [
+      "nominal sentence predicate",
+      "verbal sentence predicate",
+      "quasi-sentence predicate",
+      "single-word predicate"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما نوع الخبر في جملة «الطالب أخلاقه عالية»؟",
+    "en": "What type of predicate appears in “The student—his morals are lofty”?",
+    "aAr": [
+      "جملة اسمية",
+      "مفعول مطلق",
+      "مفرد",
+      "شبه جملة"
+    ],
+    "aEn": [
+      "nominal sentence predicate",
+      "absolute object",
+      "single-word predicate",
+      "quasi-sentence predicate"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما نوع الخبر في جملة «المعلم يشرح الدرس»؟",
+    "en": "What type of predicate appears in “The teacher explains the lesson”?",
+    "aAr": [
+      "جملة اسمية",
+      "مفرد",
+      "شبه جملة",
+      "جملة فعلية"
+    ],
+    "aEn": [
+      "nominal sentence predicate",
+      "single-word predicate",
+      "quasi-sentence predicate",
+      "verbal sentence predicate"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "التمييز في قولنا «اشتعل الرأس شيبًا» هو تمييز ____.",
+    "en": "The tamyīz in “The head blazed with gray hair” is a tamyīz transformed from a ____.",
+    "aAr": [
+      "ملحوظ ملفوظ",
+      "محوّل عن فاعل",
+      "نسبة جامد",
+      "محوّل عن مفعول به"
+    ],
+    "aEn": [
+      "explicitly noted",
+      "transformed from a subject",
+      "static relation",
+      "transformed from an object"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما إعراب «خالدًا» في جملة «جاء الطالب خالدًا»؟",
+    "en": "What is the grammatical function of “Khālidan” in “The student came as Khālid”?",
+    "aAr": [
+      "تمييز",
+      "مفعول لأجله",
+      "حال",
+      "بدل"
+    ],
+    "aEn": [
+      "specification",
+      "object of purpose",
+      "circumstantial accusative",
+      "apposition"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما نوع المشتق «مكتوب»؟",
+    "en": "What derived form is “maktūb”?",
+    "aAr": [
+      "اسم فاعل",
+      "اسم مفعول",
+      "صفة مشبهة",
+      "اسم زمان"
+    ],
+    "aEn": [
+      "active participle",
+      "passive participle",
+      "quasi-adjective",
+      "noun of time"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما نوع المشتق «سميع»؟",
+    "en": "What kind of derived form is “samīʿ”?",
+    "aAr": [
+      "اسم آلة",
+      "اسم مفعول",
+      "مصدر ميمي",
+      "صيغة مبالغة"
+    ],
+    "aEn": [
+      "instrument noun",
+      "passive participle",
+      "mīm-infinitive",
+      "intensive form"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما الوزن الصرفي لكلمة «استغفار»؟",
+    "en": "What is the morphological pattern of “istighfār”?",
+    "aAr": [
+      "افتعال",
+      "مفاعلة",
+      "استفعال",
+      "تفعيل"
+    ],
+    "aEn": [
+      "iftiʿāl",
+      "mufāʿalah",
+      "istifʿāl",
+      "tafʿīl"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما الوزن الصرفي لكلمة «مكتبة»؟",
+    "en": "What is the morphological pattern of “maktabah”?",
+    "aAr": [
+      "مفعول",
+      "فعالة",
+      "مفعلة",
+      "مِفعال"
+    ],
+    "aEn": [
+      "mafʿūl",
+      "fiʿālah",
+      "mafʿalah",
+      "mifʿāl"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما نوع الإعلال في أصل الفعل «قال»؟",
+    "en": "What kind of weak-letter change appears in the origin of the verb “qāla”?",
+    "aAr": [
+      "إدغام",
+      "إبدال صرفي",
+      "إعلال بالقلب",
+      "إعلال بالحذف"
+    ],
+    "aEn": [
+      "assimilation",
+      "phonetic substitution",
+      "substitution by vowel change",
+      "deletion"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيُّ الكلمات التالية همزتها همزة قطع؟",
+    "en": "Which of the following begins with hamzat qaṭʿ?",
+    "aAr": [
+      "اثنان",
+      "ابن",
+      "أكرم",
+      "امرأة"
+    ],
+    "aEn": [
+      "ithnān",
+      "ibn",
+      "akrama",
+      "imraʾah"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما نوع «أل» في جملة «الإنسان ضعيف»؟",
+    "en": "What kind of “al-” appears in the sentence “Man is weak”?",
+    "aAr": [
+      "للاستغراق العرفي",
+      "للعهد الذهني",
+      "موصولة",
+      "للجنس"
+    ],
+    "aEn": [
+      "customary totality",
+      "mental-known reference",
+      "relative",
+      "generic"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما المرادف الأقرب لكلمة «أريب»؟",
+    "en": "What is the closest synonym of the Arabic word “arīb”?",
+    "aAr": [
+      "فطن",
+      "صبور",
+      "جريء",
+      "متواضع"
+    ],
+    "aEn": [
+      "shrewd",
+      "patient",
+      "bold",
+      "humble"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما ضد كلمة «وَجِل»؟",
+    "en": "What is the opposite of the Arabic word “wajil” (fearful)?",
+    "aAr": [
+      "حزين",
+      "صامت",
+      "متعب",
+      "آمن"
+    ],
+    "aEn": [
+      "sad",
+      "silent",
+      "tired",
+      "secure"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما معنى «سجى» في قوله تعالى: «والليل إذا سجى»؟",
+    "en": "What does “sajā” mean in the verse “By the night when it settles”?",
+    "aAr": [
+      "أضاء",
+      "امتد",
+      "سكن",
+      "اشتد"
+    ],
+    "aEn": [
+      "shone",
+      "stretched",
+      "became still",
+      "intensified"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما معنى كلمة «أفول»؟",
+    "en": "What does the Arabic word “ufūl” mean?",
+    "aAr": [
+      "طلوع",
+      "ثبات",
+      "لمعان",
+      "غروب"
+    ],
+    "aEn": [
+      "rising",
+      "steadiness",
+      "gleaming",
+      "setting/disappearance"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما جمع كلمة «أفق»؟",
+    "en": "What is the plural of “ufuq” (horizon)?",
+    "aAr": [
+      "آفاق",
+      "أُفُقون",
+      "أفاويق",
+      "أفُق"
+    ],
+    "aEn": [
+      "āfāq",
+      "ufuqūn",
+      "afāwīq",
+      "afuq"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما مفرد كلمة «معالم»؟",
+    "en": "What is the singular of “maʿālim”?",
+    "aAr": [
+      "معلمة",
+      "مِعلَم",
+      "عَلَم",
+      "مَعلَم"
+    ],
+    "aEn": [
+      "female teacher",
+      "teacher",
+      "flag",
+      "landmark"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما النسبة الصحيحة إلى «صنعاء»؟",
+    "en": "What is the correct nisbah adjective from “Ṣanʿāʾ”?",
+    "aAr": [
+      "صنعوي",
+      "صنعي",
+      "صنعاني",
+      "صنعائي"
+    ],
+    "aEn": [
+      "Ṣanʿawī",
+      "Ṣanʿī",
+      "Ṣanʿānī",
+      "Ṣanʿāʾī"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من صاحب كتاب «العقد الفريد»؟",
+    "en": "Who authored “al-ʿIqd al-Farīd”?",
+    "aAr": [
+      "ابن قتيبة",
+      "ابن عبد ربه",
+      "الثعالبي",
+      "التوحيدي"
+    ],
+    "aEn": [
+      "Ibn Qutaybah",
+      "Ibn ʿAbd Rabbih",
+      "al-Thaʿālibī",
+      "al-Tawḥīdī"
+    ],
+    "correct": 1
+  }
+]

@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "ما الاسم الحقيقي الكامل للمغنية ليدي غاغا؟",
+    "en": "What is Lady Gaga's full real name?",
+    "aAr": [
+      "Stefani Joanne Angelina Germanotta",
+      "Stephanie Maria Gagliano",
+      "Francesca Joanne Germanotta",
+      "Angela Stefania Romano"
+    ],
+    "aEn": [
+      "Stefani Joanne Angelina Germanotta",
+      "Stephanie Maria Gagliano",
+      "Francesca Joanne Germanotta",
+      "Angela Stefania Romano"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي لإلتون جون قبل شهرته؟",
+    "en": "What was Elton John's birth name?",
+    "aAr": [
+      "Reginald Kenneth Dwight",
+      "Ronald Keith Douglas",
+      "Richard Kevin Dyer",
+      "Raymond Kenneth Doyle"
+    ],
+    "aEn": [
+      "Reginald Kenneth Dwight",
+      "Ronald Keith Douglas",
+      "Richard Kevin Dyer",
+      "Raymond Kenneth Doyle"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي لبرونو مارس؟",
+    "en": "What is Bruno Mars' real name?",
+    "aAr": [
+      "Peter Gene Hernandez",
+      "Pedro Gabriel Martinez",
+      "Paul Gerard Morales",
+      "Philip George Ramirez"
+    ],
+    "aEn": [
+      "Peter Gene Hernandez",
+      "Pedro Gabriel Martinez",
+      "Paul Gerard Morales",
+      "Philip George Ramirez"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي للممثل فين ديزل؟",
+    "en": "What is Vin Diesel's birth name?",
+    "aAr": [
+      "Mark Sinclair",
+      "Vincent DiMarco",
+      "Michael Sinclair",
+      "Mark Dominic Vito"
+    ],
+    "aEn": [
+      "Mark Sinclair",
+      "Vincent DiMarco",
+      "Michael Sinclair",
+      "Mark Dominic Vito"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت ناتالي بورتمان بجائزة الأوسكار لأفضل ممثلة؟",
+    "en": "For which film did Natalie Portman win the Best Actress Oscar?",
+    "aAr": [
+      "Black Swan",
+      "Closer",
+      "Jackie",
+      "V for Vendetta"
+    ],
+    "aEn": [
+      "Black Swan",
+      "Closer",
+      "Jackie",
+      "V for Vendetta"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت ماريون كوتيار بالأوسكار؟",
+    "en": "For which film did Marion Cotillard win the Oscar?",
+    "aAr": [
+      "La Vie en Rose",
+      "Rust and Bone",
+      "Two Days, One Night",
+      "Annette"
+    ],
+    "aEn": [
+      "La Vie en Rose",
+      "Rust and Bone",
+      "Two Days, One Night",
+      "Annette"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز فيليب سيمور هوفمان بأوسكار أفضل ممثل؟",
+    "en": "For which film did Philip Seymour Hoffman win the Best Actor Oscar?",
+    "aAr": [
+      "Capote",
+      "Doubt",
+      "The Master",
+      "Charlie Wilson's War"
+    ],
+    "aEn": [
+      "Capote",
+      "Doubt",
+      "The Master",
+      "Charlie Wilson's War"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز رامي مالك بجائزة الأوسكار لأفضل ممثل؟",
+    "en": "For which film did Rami Malek win the Best Actor Oscar?",
+    "aAr": [
+      "Bohemian Rhapsody",
+      "No Time to Die",
+      "Amsterdam",
+      "The Little Things"
+    ],
+    "aEn": [
+      "Bohemian Rhapsody",
+      "No Time to Die",
+      "Amsterdam",
+      "The Little Things"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز جيمي فوكس بالأوسكار بعد تجسيده لأسطورة موسيقية؟",
+    "en": "For which film did Jamie Foxx win the Oscar after portraying a music legend?",
+    "aAr": [
+      "Ray",
+      "Collateral",
+      "Dreamgirls",
+      "Ali"
+    ],
+    "aEn": [
+      "Ray",
+      "Collateral",
+      "Dreamgirls",
+      "Ali"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت تشارليز ثيرون بالأوسكار لأفضل ممثلة؟",
+    "en": "For which film did Charlize Theron win the Best Actress Oscar?",
+    "aAr": [
+      "Monster",
+      "North Country",
+      "Bombshell",
+      "Tully"
+    ],
+    "aEn": [
+      "Monster",
+      "North Country",
+      "Bombshell",
+      "Tully"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز خواكين فينيكس بأوسكار أفضل ممثل؟",
+    "en": "For which film did Joaquin Phoenix win the Best Actor Oscar?",
+    "aAr": [
+      "Joker",
+      "Walk the Line",
+      "Her",
+      "The Master"
+    ],
+    "aEn": [
+      "Joker",
+      "Walk the Line",
+      "Her",
+      "The Master"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما أول فيلم فازت عنه ميريل ستريب بجائزة الأوسكار؟",
+    "en": "What was the first film for which Meryl Streep won an Oscar?",
+    "aAr": [
+      "Kramer vs. Kramer",
+      "Sophie's Choice",
+      "The Iron Lady",
+      "Out of Africa"
+    ],
+    "aEn": [
+      "Kramer vs. Kramer",
+      "Sophie's Choice",
+      "The Iron Lady",
+      "Out of Africa"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت كيت وينسلت بالأوسكار؟",
+    "en": "For which film did Kate Winslet win the Oscar?",
+    "aAr": [
+      "The Reader",
+      "Revolutionary Road",
+      "Titanic",
+      "Iris"
+    ],
+    "aEn": [
+      "The Reader",
+      "Revolutionary Road",
+      "Titanic",
+      "Iris"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز جيف بريدجز بأوسكار أفضل ممثل؟",
+    "en": "For which film did Jeff Bridges win the Best Actor Oscar?",
+    "aAr": [
+      "Crazy Heart",
+      "True Grit",
+      "The Contender",
+      "Starman"
+    ],
+    "aEn": [
+      "Crazy Heart",
+      "True Grit",
+      "The Contender",
+      "Starman"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي فيلم ظهرت لوبيتا نيونغو عندما فازت بأول أوسكار لها؟",
+    "en": "In which film did Lupita Nyong'o appear when she won her first Oscar?",
+    "aAr": [
+      "12 Years a Slave",
+      "Us",
+      "Black Panther",
+      "Queen of Katwe"
+    ],
+    "aEn": [
+      "12 Years a Slave",
+      "Us",
+      "Black Panther",
+      "Queen of Katwe"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم ألبوم أديل الأول؟",
+    "en": "What is Adele's debut album called?",
+    "aAr": [
+      "19",
+      "21",
+      "25",
+      "30"
+    ],
+    "aEn": [
+      "19",
+      "21",
+      "25",
+      "30"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما أول ألبوم لتايلور سويفت فاز بجائزة ألبوم العام في الغرامي؟",
+    "en": "What was the first Taylor Swift album to win Grammy Album of the Year?",
+    "aAr": [
+      "Fearless",
+      "1989",
+      "folklore",
+      "Red"
+    ],
+    "aEn": [
+      "Fearless",
+      "1989",
+      "folklore",
+      "Red"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي لبونو، مغني فرقة U2؟",
+    "en": "What is Bono's real name, the singer of U2?",
+    "aAr": [
+      "Paul David Hewson",
+      "Patrick John Hughes",
+      "Peter Daniel Hume",
+      "Philip Dean Hudson"
+    ],
+    "aEn": [
+      "Paul David Hewson",
+      "Patrick John Hughes",
+      "Peter Daniel Hume",
+      "Philip Dean Hudson"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للمغني Sting؟",
+    "en": "What is Sting's real name?",
+    "aAr": [
+      "Gordon Matthew Thomas Sumner",
+      "George Martin Thomas Summer",
+      "Graham Matthew Turner",
+      "Gordon Miles Tanner"
+    ],
+    "aEn": [
+      "Gordon Matthew Thomas Sumner",
+      "George Martin Thomas Summer",
+      "Graham Matthew Turner",
+      "Gordon Miles Tanner"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي لفريدي ميركوري عند الولادة؟",
+    "en": "What was Freddie Mercury's birth name?",
+    "aAr": [
+      "Farrokh Bulsara",
+      "Feroze Mercury",
+      "Frederick Bulsar",
+      "Farid Balsera"
+    ],
+    "aEn": [
+      "Farrokh Bulsara",
+      "Feroze Mercury",
+      "Frederick Bulsar",
+      "Farid Balsera"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للمغنية لورد؟",
+    "en": "What is Lorde's real name?",
+    "aAr": [
+      "Ella Marija Lani Yelich-O'Connor",
+      "Ella Maria Lane O'Connor",
+      "Elena Marika Connor",
+      "Ella Yelich-Lane"
+    ],
+    "aEn": [
+      "Ella Marija Lani Yelich-O'Connor",
+      "Ella Maria Lane O'Connor",
+      "Elena Marika Connor",
+      "Ella Yelich-Lane"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للمغني The Weeknd؟",
+    "en": "What is The Weeknd's real name?",
+    "aAr": [
+      "Abel Makkonen Tesfaye",
+      "Abdul Michael Tesfaye",
+      "Avery Malcolm Tesh",
+      "Adam Mekonnen Tesfay"
+    ],
+    "aEn": [
+      "Abel Makkonen Tesfaye",
+      "Abdul Michael Tesfaye",
+      "Avery Malcolm Tesh",
+      "Adam Mekonnen Tesfay"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الكامل الحقيقي للمغنية سيا؟",
+    "en": "What is singer Sia's full real name?",
+    "aAr": [
+      "Sia Kate Isobelle Furler",
+      "Sienna Kate Isabella Fuller",
+      "Sia Katherine Furley",
+      "Sibyl Kate Furler"
+    ],
+    "aEn": [
+      "Sia Kate Isobelle Furler",
+      "Sienna Kate Isabella Fuller",
+      "Sia Katherine Furley",
+      "Sibyl Kate Furler"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الكامل الحقيقي لريهانا؟",
+    "en": "What is Rihanna's full real name?",
+    "aAr": [
+      "Robyn Rihanna Fenty",
+      "Rihanna Robyn Fenty",
+      "Roberta Rhianna Fenton",
+      "Rina Robyn Fenty"
+    ],
+    "aEn": [
+      "Robyn Rihanna Fenty",
+      "Rihanna Robyn Fenty",
+      "Roberta Rhianna Fenton",
+      "Rina Robyn Fenty"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الكامل للمغنية شاكيرا؟",
+    "en": "What is Shakira's full name?",
+    "aAr": [
+      "Shakira Isabel Mebarak Ripoll",
+      "Shakira Ines Marquez Ripoll",
+      "Shakira Isadora Mercado Rivas",
+      "Shakira Isabel Miranda Ruiz"
+    ],
+    "aEn": [
+      "Shakira Isabel Mebarak Ripoll",
+      "Shakira Ines Marquez Ripoll",
+      "Shakira Isadora Mercado Rivas",
+      "Shakira Isabel Miranda Ruiz"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأول الحقيقي للممثلة جودي فوستر؟",
+    "en": "What is actress Jodie Foster's given first name?",
+    "aAr": [
+      "Alicia",
+      "Judith",
+      "Joanne",
+      "Amelia"
+    ],
+    "aEn": [
+      "Alicia",
+      "Judith",
+      "Joanne",
+      "Amelia"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي الكامل للممثلة ووبي غولدبرغ؟",
+    "en": "What is Whoopi Goldberg's birth name?",
+    "aAr": [
+      "Caryn Elaine Johnson",
+      "Karen Eliza Gold",
+      "Carol Elaine Johnston",
+      "Catherine Ellen Jordan"
+    ],
+    "aEn": [
+      "Caryn Elaine Johnson",
+      "Karen Eliza Gold",
+      "Carol Elaine Johnston",
+      "Catherine Ellen Jordan"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما لقب العائلة عند الولادة للممثلة هيلين ميرين؟",
+    "en": "What was Helen Mirren's surname at birth?",
+    "aAr": [
+      "Mironoff",
+      "Mirov",
+      "Miranova",
+      "Mikhailova"
+    ],
+    "aEn": [
+      "Mironoff",
+      "Mirov",
+      "Miranova",
+      "Mikhailova"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما لقب عائلة نيكولاس كيج الأصلي قبل تغييره فنيًا؟",
+    "en": "What was Nicolas Cage's original family surname before his stage change?",
+    "aAr": [
+      "Coppola",
+      "Capra",
+      "Corleone",
+      "Cavalli"
+    ],
+    "aEn": [
+      "Coppola",
+      "Capra",
+      "Corleone",
+      "Cavalli"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي لمايكل كيتون؟",
+    "en": "What is Michael Keaton's birth name?",
+    "aAr": [
+      "Michael John Douglas",
+      "Michael James Keaton",
+      "Mickey Douglas Keane",
+      "Mark Jonathan Douglas"
+    ],
+    "aEn": [
+      "Michael John Douglas",
+      "Michael James Keaton",
+      "Mickey Douglas Keane",
+      "Mark Jonathan Douglas"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للممثلة إيما ستون؟",
+    "en": "What is Emma Stone's real name?",
+    "aAr": [
+      "Emily Jean Stone",
+      "Emma Jane Stone",
+      "Emily Joanne Stone",
+      "Emma Jeanette Stone"
+    ],
+    "aEn": [
+      "Emily Jean Stone",
+      "Emma Jane Stone",
+      "Emily Joanne Stone",
+      "Emma Jeanette Stone"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما لقب عائلة ديمي مور عند الولادة؟",
+    "en": "What was Demi Moore's surname at birth?",
+    "aAr": [
+      "Guynes",
+      "Moore",
+      "Douglas",
+      "Harmon"
+    ],
+    "aEn": [
+      "Guynes",
+      "Moore",
+      "Douglas",
+      "Harmon"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي للممثل كاري غرانت؟",
+    "en": "What was Cary Grant's birth name?",
+    "aAr": [
+      "Archibald Alec Leach",
+      "Arthur Colin Grant",
+      "Alfred George Lacey",
+      "Arnold Cary Leeds"
+    ],
+    "aEn": [
+      "Archibald Alec Leach",
+      "Arthur Colin Grant",
+      "Alfred George Lacey",
+      "Arnold Cary Leeds"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي للممثل كيرك دوغلاس؟",
+    "en": "What was Kirk Douglas's birth name?",
+    "aAr": [
+      "Issur Danielovitch",
+      "Irving Danielson",
+      "Isaac Danelow",
+      "Israel Daniels"
+    ],
+    "aEn": [
+      "Issur Danielovitch",
+      "Irving Danielson",
+      "Isaac Danelow",
+      "Israel Daniels"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للمغني ديفيد بوي؟",
+    "en": "What was David Bowie's birth name?",
+    "aAr": [
+      "David Robert Jones",
+      "David Richard Bowie",
+      "Daniel Robert Jones",
+      "David Ronald Johns"
+    ],
+    "aEn": [
+      "David Robert Jones",
+      "David Richard Bowie",
+      "Daniel Robert Jones",
+      "David Ronald Johns"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي لبوب ديلان؟",
+    "en": "What is Bob Dylan's birth name?",
+    "aAr": [
+      "Robert Zimmerman",
+      "Robert Dylan",
+      "Richard Zane",
+      "Robin Zuckerman"
+    ],
+    "aEn": [
+      "Robert Zimmerman",
+      "Robert Dylan",
+      "Richard Zane",
+      "Robin Zuckerman"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت آن هاثاواي بجائزة الأوسكار؟",
+    "en": "For which film did Anne Hathaway win the Oscar?",
+    "aAr": [
+      "Les Misérables",
+      "Rachel Getting Married",
+      "The Devil Wears Prada",
+      "Interstellar"
+    ],
+    "aEn": [
+      "Les Misérables",
+      "Rachel Getting Married",
+      "The Devil Wears Prada",
+      "Interstellar"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت مونيك بجائزة الأوسكار؟",
+    "en": "For which film did Mo'Nique win the Oscar?",
+    "aAr": [
+      "Precious",
+      "Bessie",
+      "Almost Christmas",
+      "Phat Girlz"
+    ],
+    "aEn": [
+      "Precious",
+      "Bessie",
+      "Almost Christmas",
+      "Phat Girlz"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز فورست ويتاكر بالأوسكار لأفضل ممثل؟",
+    "en": "For which film did Forest Whitaker win the Best Actor Oscar?",
+    "aAr": [
+      "The Last King of Scotland",
+      "Bird",
+      "The Butler",
+      "Ghost Dog"
+    ],
+    "aEn": [
+      "The Last King of Scotland",
+      "Bird",
+      "The Butler",
+      "Ghost Dog"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز كولين فيرث بالأوسكار؟",
+    "en": "For which film did Colin Firth win the Oscar?",
+    "aAr": [
+      "The King's Speech",
+      "A Single Man",
+      "Pride and Prejudice",
+      "1917"
+    ],
+    "aEn": [
+      "The King's Speech",
+      "A Single Man",
+      "Pride and Prejudice",
+      "1917"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما أول فيلم فازت عنه رينيه زيلويغر بجائزة الأوسكار؟",
+    "en": "What was the first film for which Renée Zellweger won an Oscar?",
+    "aAr": [
+      "Cold Mountain",
+      "Judy",
+      "Bridget Jones's Diary",
+      "Chicago"
+    ],
+    "aEn": [
+      "Cold Mountain",
+      "Judy",
+      "Bridget Jones's Diary",
+      "Chicago"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز ماهرشالا علي بأول أوسكار له؟",
+    "en": "For which film did Mahershala Ali win his first Oscar?",
+    "aAr": [
+      "Moonlight",
+      "Green Book",
+      "Hidden Figures",
+      "True Detective"
+    ],
+    "aEn": [
+      "Moonlight",
+      "Green Book",
+      "Hidden Figures",
+      "True Detective"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت أليسون جاني بجائزة الأوسكار؟",
+    "en": "For which film did Allison Janney win the Oscar?",
+    "aAr": [
+      "I, Tonya",
+      "The Help",
+      "Juno",
+      "Bombshell"
+    ],
+    "aEn": [
+      "I, Tonya",
+      "The Help",
+      "Juno",
+      "Bombshell"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت أوليفيا كولمان بالأوسكار لأفضل ممثلة؟",
+    "en": "For which film did Olivia Colman win the Best Actress Oscar?",
+    "aAr": [
+      "The Favourite",
+      "The Father",
+      "Empire of Light",
+      "Tyrannosaur"
+    ],
+    "aEn": [
+      "The Favourite",
+      "The Father",
+      "Empire of Light",
+      "Tyrannosaur"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز غاري أولدمان بأوسكار أفضل ممثل؟",
+    "en": "For which film did Gary Oldman win the Best Actor Oscar?",
+    "aAr": [
+      "Darkest Hour",
+      "Tinker Tailor Soldier Spy",
+      "Mank",
+      "Sid and Nancy"
+    ],
+    "aEn": [
+      "Darkest Hour",
+      "Tinker Tailor Soldier Spy",
+      "Mank",
+      "Sid and Nancy"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت بري لارسون بالأوسكار؟",
+    "en": "For which film did Brie Larson win the Oscar?",
+    "aAr": [
+      "Room",
+      "Short Term 12",
+      "Captain Marvel",
+      "The Glass Castle"
+    ],
+    "aEn": [
+      "Room",
+      "Short Term 12",
+      "Captain Marvel",
+      "The Glass Castle"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فاز ماثيو ماكونهي بأوسكار أفضل ممثل؟",
+    "en": "For which film did Matthew McConaughey win the Best Actor Oscar?",
+    "aAr": [
+      "Dallas Buyers Club",
+      "Interstellar",
+      "Mud",
+      "The Lincoln Lawyer"
+    ],
+    "aEn": [
+      "Dallas Buyers Club",
+      "Interstellar",
+      "Mud",
+      "The Lincoln Lawyer"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "عن أي فيلم فازت جوليان مور بجائزة الأوسكار لأفضل ممثلة؟",
+    "en": "For which film did Julianne Moore win the Best Actress Oscar?",
+    "aAr": [
+      "Still Alice",
+      "Far from Heaven",
+      "Maps to the Stars",
+      "The Hours"
+    ],
+    "aEn": [
+      "Still Alice",
+      "Far from Heaven",
+      "Maps to the Stars",
+      "The Hours"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي الكامل للممثلة بورتيا دي روسي؟",
+    "en": "What is Portia de Rossi's birth name?",
+    "aAr": [
+      "Amanda Lee Rogers",
+      "Patricia Leigh Ross",
+      "Amelia Rose Rogers",
+      "Portia Anne Rogers"
+    ],
+    "aEn": [
+      "Amanda Lee Rogers",
+      "Patricia Leigh Ross",
+      "Amelia Rose Rogers",
+      "Portia Anne Rogers"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الكامل الأصلي لميندي كالينغ؟",
+    "en": "What is Mindy Kaling's birth name?",
+    "aAr": [
+      "Vera Mindy Chokalingam",
+      "Mira Vani Chokalinga",
+      "Veda Mindi Kalam",
+      "Mina Devi Chokalan"
+    ],
+    "aEn": [
+      "Vera Mindy Chokalingam",
+      "Mira Vani Chokalinga",
+      "Veda Mindi Kalam",
+      "Mina Devi Chokalan"
+    ],
+    "correct": 0
+  }
+]

@@ -1,0 +1,652 @@
+[
+  {
+    "ar": "تمّ التنبؤ بكوكب نبتون رياضيًا قبل رصده بالتلسكوب.",
+    "en": "Neptune was predicted mathematically before it was observed through a telescope.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "وقعت معركة هاستينغز سنة 1066م.",
+    "en": "The Battle of Hastings took place in 1066 CE.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "يتكوّن الجينوم البشري عادةً من 23 زوجًا من الكروموسومات.",
+    "en": "The human genome normally consists of 23 pairs of chromosomes.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "وُقّعت معاهدة توردسيلاس سنة 1494م.",
+    "en": "The Treaty of Tordesillas was signed in 1494.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "يدور كوكب الزهرة حول محوره باتجاه تراجعي مقارنة بمعظم الكواكب.",
+    "en": "Venus rotates in a retrograde direction compared with most planets.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "الرمز الكيميائي لعنصر التنغستن هو W.",
+    "en": "The chemical symbol for tungsten is W.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "بدأ حريق لندن الكبير سنة 1666 في مخبزٍ بشارع بودينغ لين.",
+    "en": "The Great Fire of London began in a bakery on Pudding Lane in 1666.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "تُعد بحيرة بايكال أعمق بحيرة مياه عذبة في العالم.",
+    "en": "Lake Baikal is the deepest freshwater lake in the world.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أُعلن عن الحاسوب ENIAC، وهو من أوائل الحواسيب الإلكترونية العامة الغرض، سنة 1946.",
+    "en": "ENIAC, one of the earliest general-purpose electronic computers, was unveiled in 1946.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "افتُتحت قناة السويس رسميًا سنة 1869.",
+    "en": "The Suez Canal officially opened in 1869.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "اليوم الشمسي على كوكب عطارد أطول من مدته المدارية حول الشمس.",
+    "en": "Mercury has a longer solar day than its orbital period around the Sun.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أُسست بغداد عاصمةً للعباسيين سنة 762م.",
+    "en": "Baghdad was founded as the Abbasid capital in 762 CE.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "نقش حجر رشيد كُتب بثلاثة أنظمة كتابية.",
+    "en": "The Rosetta Stone inscription was written in three scripts.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "تبلغ سرعة الصوت في الهواء الجاف عند 20°م نحو 343 مترًا في الثانية.",
+    "en": "The speed of sound in dry air at 20°C is about 343 meters per second.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "يقع جبل إيفرست على الحدود بين نيبال والصين.",
+    "en": "Mount Everest lies on the border between Nepal and China.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "يُعد اليورانيوم أثقل عنصر طبيعي يوجد على الأرض بكميات قابلة للقياس على نطاق واسع.",
+    "en": "Uranium is the heaviest naturally occurring element found on Earth in measurable quantities on a broad scale.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "طُبعت نسخة غوتنبرغ من الإنجيل في خمسينيات القرن الخامس عشر.",
+    "en": "The Gutenberg Bible was printed in the 1450s.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "مخطوط فوينيتش مكتوب بنظام كتابي لم يُفكّ رمزه على نحو متفق عليه حتى اليوم.",
+    "en": "The Voynich manuscript is written in a script that remains undeciphered in any generally accepted way.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "انعقد مجمع نيقية الأول سنة 325م.",
+    "en": "The First Council of Nicaea convened in 325 CE.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "الدم في الأوردة البشرية أحمر داكن وليس أزرق.",
+    "en": "Blood in human veins is dark red, not blue.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أول امرأة وصلت إلى الفضاء كانت فالنتينا تيريشكوفا سنة 1963.",
+    "en": "The first woman in space was Valentina Tereshkova in 1963.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "متوسط كثافة كوكب زحل أقل من كثافة الماء.",
+    "en": "Saturn has a lower average density than water.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "وصل النظام العشري الموضعي إلى أوروبا من الهند عبر العالم الإسلامي.",
+    "en": "The decimal positional numeral system reached Europe from India via the Islamic world.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "الكولاجين هو البروتين الأكثر وفرة في جسم الإنسان.",
+    "en": "Collagen is the most abundant protein in the human body.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ازدهرت تمبكتو مركزًا للتجارة عبر الصحراء في القرنين الخامس عشر والسادس عشر.",
+    "en": "Timbuktu flourished as a trans-Saharan trade center in the 15th and 16th centuries.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "تكون الأرض أقرب إلى الشمس في شهر يوليو.",
+    "en": "Earth is closest to the Sun in July.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "حُلّت الإمبراطورية العثمانية رسميًا سنة 1918.",
+    "en": "The Ottoman Empire was formally dissolved in 1918.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "يرمز الاختصار DNA إلى “Deoxynitric Acid”.",
+    "en": "DNA stands for “Deoxynitric Acid.”",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "كان الرسام كارافاجيو فنانًا هولنديًا من عصر الباروك.",
+    "en": "The painter Caravaggio was a Dutch Baroque artist.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكبر أقمار المشتري هو كاليستو.",
+    "en": "The largest moon of Jupiter is Callisto.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أُصدرت الماغنا كارتا لأول مرة سنة 1315.",
+    "en": "The Magna Carta was first issued in 1315.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "العدد الذري للفضة هو 49.",
+    "en": "The atomic number of silver is 49.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "وصل الطاعون الأسود إلى أوروبا بعد سنة 1500.",
+    "en": "The Black Death reached Europe after 1500.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "مجرة أندروميدا تبتعد حاليًا عن درب التبانة.",
+    "en": "The Andromeda Galaxy is currently moving away from the Milky Way.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أقيمت أول دورة ألعاب أولمبية حديثة في باريس سنة 1896.",
+    "en": "The first modern Olympic Games were held in Paris in 1896.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "الصيغة الكيميائية للأوزون هي O2.",
+    "en": "The chemical formula of ozone is O2.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "بدأت الثورة الفرنسية سنة 1783.",
+    "en": "The French Revolution began in 1783.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أطول نهر في آسيا هو نهر الغانج.",
+    "en": "The longest river in Asia is the Ganges.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "رواية “1984” كتبها ألدوس هكسلي.",
+    "en": "The novel “1984” was written by Aldous Huxley.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "قلب الإنسان يتكوّن من خمس حجرات.",
+    "en": "The human heart has five chambers.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أُطلق تلسكوب هابل الفضائي سنة 1980.",
+    "en": "The Hubble Space Telescope was launched in 1980.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "في الجدول الدوري، يُعد الكلور من الفلزات القلوية الترابية.",
+    "en": "In the periodic table, chlorine is an alkaline earth metal.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أنهت معاهدة فرساي الحرب العالمية الثانية.",
+    "en": "The Treaty of Versailles ended World War II.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "عاصمة كندا هي تورونتو.",
+    "en": "The capital of Canada is Toronto.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أُجريت أول عملية زراعة قلب بشري ناجحة في الولايات المتحدة.",
+    "en": "The first successful human heart transplant was performed in the United States.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ينتقل الصوت في الهواء أسرع مما ينتقل في الماء.",
+    "en": "Sound travels faster in air than in water.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "البحر الميت خليج محيطي متصل مباشرة بالبحر المتوسط.",
+    "en": "The Dead Sea is an oceanic gulf directly connected to the Mediterranean Sea.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "التمدد العشري للعدد π ينتهي بعد عدد محدود من الأرقام.",
+    "en": "The decimal expansion of pi terminates after a finite number of digits.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "بنى شعب المايا مدينة ماتشو بيتشو.",
+    "en": "Machu Picchu was built by the Maya civilization.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "اكتُشف كوكب أورانوس في القرن العشرين.",
+    "en": "The planet Uranus was discovered in the 20th century.",
+    "aAr": [
+      "صح",
+      "خطأ"
+    ],
+    "aEn": [
+      "True",
+      "False"
+    ],
+    "correct": 1
+  }
+]

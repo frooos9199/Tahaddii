@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "في أي مجلة نُشرت مانغا \"فولميتال ألكيميست\" أصلًا؟",
+    "en": "In which magazine was the Fullmetal Alchemist manga originally serialized?",
+    "aAr": [
+      "مانثلي شونِن غانغان",
+      "ويكلي شونِن جمب",
+      "يونغ غانغان",
+      "شونِن سنداي"
+    ],
+    "aEn": [
+      "Monthly Shonen Gangan",
+      "Weekly Shonen Jump",
+      "Young Gangan",
+      "Shonen Sunday"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من ألّفت الموسيقى التصويرية لمسلسل \"كاوبوي بيبوب\"؟",
+    "en": "Who composed the soundtrack for Cowboy Bebop?",
+    "aAr": [
+      "يوكو كانّو",
+      "جو هيسايشي",
+      "كيفن بينكن",
+      "شيرو ساغيسو"
+    ],
+    "aEn": [
+      "Yoko Kanno",
+      "Joe Hisaishi",
+      "Kevin Penkin",
+      "Shiro Sagisu"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما لقب العائلة الحقيقي للشخصية \"L\" في \"ديث نوت\"؟",
+    "en": "What is L's actual surname in Death Note?",
+    "aAr": [
+      "لولايت",
+      "ياجامي",
+      "أماني",
+      "نيات"
+    ],
+    "aEn": [
+      "Lawliet",
+      "Yagami",
+      "Amane",
+      "Near"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المركبة الشخصية لسبايك شبيغل في \"كاوبوي بيبوب\"؟",
+    "en": "What is Spike Spiegel's personal craft called in Cowboy Bebop?",
+    "aAr": [
+      "سوردفيش 2",
+      "ريد تايل",
+      "هامر هِد",
+      "بلو مون"
+    ],
+    "aEn": [
+      "Swordfish II",
+      "Red Tail",
+      "Hammer Head",
+      "Blue Moon"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز أنمي \"مونستر\" التلفزيوني؟",
+    "en": "Which studio animated the Monster TV anime?",
+    "aAr": [
+      "مادهاوس",
+      "ويت ستوديو",
+      "غونزو",
+      "بونز"
+    ],
+    "aEn": [
+      "Madhouse",
+      "Wit Studio",
+      "Gonzo",
+      "Bones"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما العنوان الياباني لأنمي \"Erased\"؟",
+    "en": "What is the Japanese title of Erased?",
+    "aAr": [
+      "بوكو داكي غا إيناي ماتشي",
+      "كيمي نو نا وا",
+      "أنو هانا",
+      "شيغاتسو وا كيمي نو أوسو"
+    ],
+    "aEn": [
+      "Boku dake ga Inai Machi",
+      "Kimi no Na wa",
+      "Anohana",
+      "Shigatsu wa Kimi no Uso"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف مانغا \"سلام دانك\"؟",
+    "en": "Who created the Slam Dunk manga?",
+    "aAr": [
+      "تاكيهيكو إينويه",
+      "تايتي كوبو",
+      "إينيو أسانو",
+      "ماساشي كيشيموتو"
+    ],
+    "aEn": [
+      "Takehiko Inoue",
+      "Tite Kubo",
+      "Inio Asano",
+      "Masashi Kishimoto"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي مجلة نُشرت مانغا \"ديث نوت\" أصلًا؟",
+    "en": "In which magazine was Death Note originally serialized?",
+    "aAr": [
+      "ويكلي شونن جمب",
+      "مانثلي أفترنون",
+      "ألترا جمب",
+      "يونغ أنيمال"
+    ],
+    "aEn": [
+      "Weekly Shonen Jump",
+      "Monthly Afternoon",
+      "Ultra Jump",
+      "Young Animal"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الهيئة النهارية لإله الغابة في فيلم \"الأميرة مونونوكي\"؟",
+    "en": "What is the daytime form of the Forest Spirit in Princess Mononoke called?",
+    "aAr": [
+      "شيشيغامي",
+      "دايدارابوتشي",
+      "كوداما",
+      "ياكول"
+    ],
+    "aEn": [
+      "Shishigami",
+      "Daidarabotchi",
+      "Kodama",
+      "Yakul"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم أول \"ملاك\" يظهر في \"إيفانجيليون\" التلفزيوني؟",
+    "en": "What is the first Angel encountered in the Evangelion TV series?",
+    "aAr": [
+      "ساتشيئيل",
+      "راميئيل",
+      "شامشئيل",
+      "زروئيل"
+    ],
+    "aEn": [
+      "Sachiel",
+      "Ramiel",
+      "Shamshel",
+      "Zeruel"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"Ping Pong the Animation\"؟",
+    "en": "Which studio animated Ping Pong the Animation?",
+    "aAr": [
+      "تاتسونكو برودكشن",
+      "ساينس سارو",
+      "مابا",
+      "برينز بيس"
+    ],
+    "aEn": [
+      "Tatsunoko Production",
+      "Science SARU",
+      "MAPPA",
+      "Brain's Base"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من تقود منظمة هيلسينغ في أنمي \"هيلسينغ\"؟",
+    "en": "Who leads the Hellsing Organization in Hellsing?",
+    "aAr": [
+      "سير إنتيغرا فيربروك وينغيتس هيلسينغ",
+      "ألكسندر أندرسون",
+      "والتر دولنيز",
+      "ألُكارد"
+    ],
+    "aEn": [
+      "Sir Integra Fairbrook Wingates Hellsing",
+      "Alexander Anderson",
+      "Walter Dornez",
+      "Alucard"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي مجلة نُشرت مانغا \"Steel Ball Run\" (الجزء السابع من جوجو)؟",
+    "en": "In which magazine was Steel Ball Run (JoJo Part 7) serialized?",
+    "aAr": [
+      "ألترا جمب",
+      "ويكلي شونن جمب",
+      "يونغ جمب",
+      "شونن ماغازين"
+    ],
+    "aEn": [
+      "Ultra Jump",
+      "Weekly Shonen Jump",
+      "Young Jump",
+      "Shonen Magazine"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الرتبة العسكرية لموتوكو كوساناغي في \"غوست إن ذا شِل\"؟",
+    "en": "What is Motoko Kusanagi's military rank in Ghost in the Shell?",
+    "aAr": [
+      "ميجور",
+      "كابتن",
+      "كولونيل",
+      "ليفتنانت"
+    ],
+    "aEn": [
+      "Major",
+      "Captain",
+      "Colonel",
+      "Lieutenant"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"Serial Experiments Lain\"؟",
+    "en": "Which studio animated Serial Experiments Lain?",
+    "aAr": [
+      "تراينغل ستاف",
+      "مادهاوس",
+      "برودكشن آي جي",
+      "شافت"
+    ],
+    "aEn": [
+      "Triangle Staff",
+      "Madhouse",
+      "Production I.G",
+      "Shaft"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج فيلم \"أكيرا\"؟",
+    "en": "Who directed Akira?",
+    "aAr": [
+      "كاتسوهيرو أوتومو",
+      "مامورو أوشي",
+      "ساتوشي كون",
+      "هاياو ميازاكي"
+    ],
+    "aEn": [
+      "Katsuhiro Otomo",
+      "Mamoru Oshii",
+      "Satoshi Kon",
+      "Hayao Miyazaki"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما نوع النِن الخاص بهيسوكا في \"هنتر × هنتر\"؟",
+    "en": "What is Hisoka's Nen type in Hunter x Hunter?",
+    "aAr": [
+      "التحويل",
+      "التقوية",
+      "التجسيد",
+      "التحكم"
+    ],
+    "aEn": [
+      "Transmutation",
+      "Enhancement",
+      "Conjuration",
+      "Manipulation"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنتج \"Made in Abyss\"؟",
+    "en": "Which studio produced Made in Abyss?",
+    "aAr": [
+      "كينيما سيتروس",
+      "أورانج",
+      "بونز",
+      "غيبلي"
+    ],
+    "aEn": [
+      "Kinema Citrus",
+      "Orange",
+      "Bones",
+      "Ghibli"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الهوية الحقيقية لفارس \"رايدر\" في \"Fate/Zero\"؟",
+    "en": "What is Rider's true identity in Fate/Zero?",
+    "aAr": [
+      "إسكندر",
+      "غيلغامش",
+      "ديارمويد",
+      "أرتوريا"
+    ],
+    "aEn": [
+      "Iskandar",
+      "Gilgamesh",
+      "Diarmuid",
+      "Artoria"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما لقب لولوش الإمبراطوري الكامل في \"كود غياس\"؟",
+    "en": "What is Lelouch's full imperial surname in Code Geass?",
+    "aAr": [
+      "في بريتانيا",
+      "لامبيروج",
+      "أشْفورد",
+      "بِندرايغ"
+    ],
+    "aEn": [
+      "vi Britannia",
+      "Lamperouge",
+      "Ashford",
+      "Pendragon"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما العنوان الياباني الأصلي لأنمي \"Attack on Titan\"؟",
+    "en": "What is the original Japanese title of Attack on Titan?",
+    "aAr": [
+      "شينغيكي نو كيوجين",
+      "كيميتسو نو يايبا",
+      "توكيو غول",
+      "أواري نو سيراف"
+    ],
+    "aEn": [
+      "Shingeki no Kyojin",
+      "Kimetsu no Yaiba",
+      "Tokyo Ghoul",
+      "Owari no Seraph"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف مانغا \"تشينسو مان\"؟",
+    "en": "Who created the Chainsaw Man manga?",
+    "aAr": [
+      "تاتسوكي فوجيموتو",
+      "غِغِه أكوتامي",
+      "كويهارو غوتوغه",
+      "بارو إيتاغاكي"
+    ],
+    "aEn": [
+      "Tatsuki Fujimoto",
+      "Gege Akutami",
+      "Koyoharu Gotouge",
+      "Paru Itagaki"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"A Place Further than the Universe\"؟",
+    "en": "Which studio animated A Place Further than the Universe?",
+    "aAr": [
+      "مادهاوس",
+      "شافت",
+      "با أ وركس",
+      "ديوغو"
+    ],
+    "aEn": [
+      "Madhouse",
+      "Shaft",
+      "P.A. Works",
+      "Doga Kobo"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الرسمي للجهاز الذي يرسل الرسائل عبر الزمن في \"Steins;Gate\"؟",
+    "en": "What is the official name of the device that sends messages through time in Steins;Gate?",
+    "aAr": [
+      "Phone Microwave (name subject to change)",
+      "Future Toaster",
+      "Chrono Pager",
+      "D-Mail Engine"
+    ],
+    "aEn": [
+      "Phone Microwave (name subject to change)",
+      "Future Toaster",
+      "Chrono Pager",
+      "D-Mail Engine"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من ألّف موسيقى \"Made in Abyss\"؟",
+    "en": "Who composed the music for Made in Abyss?",
+    "aAr": [
+      "كيفن بينكن",
+      "يوكي كاجيورا",
+      "يوكو كانّو",
+      "هيرويوكي ساوانو"
+    ],
+    "aEn": [
+      "Kevin Penkin",
+      "Yuki Kajiura",
+      "Yoko Kanno",
+      "Hiroyuki Sawano"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الأكاديمية في \"Revolutionary Girl Utena\"؟",
+    "en": "What is the academy in Revolutionary Girl Utena called?",
+    "aAr": [
+      "أوتوري أكاديمي",
+      "أوران أكاديمي",
+      "سيكا أكاديمي",
+      "سيرين أكاديمي"
+    ],
+    "aEn": [
+      "Ohtori Academy",
+      "Ouran Academy",
+      "Seika Academy",
+      "Seirin Academy"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج أنمي \"Paranoia Agent\"؟",
+    "en": "Who directed Paranoia Agent?",
+    "aAr": [
+      "ساتوشي كون",
+      "مامورو هوسودا",
+      "ماساكي يواسا",
+      "شينيتشيرو واتانابي"
+    ],
+    "aEn": [
+      "Satoshi Kon",
+      "Mamoru Hosoda",
+      "Masaaki Yuasa",
+      "Shinichiro Watanabe"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف مانغا \"مونستر\"؟",
+    "en": "Who created the Monster manga?",
+    "aAr": [
+      "ناوكي أوراساوا",
+      "أوسامو تيزوكا",
+      "تاكاشي ناغاساكي",
+      "تاكيهيكو إينويه"
+    ],
+    "aEn": [
+      "Naoki Urasawa",
+      "Osamu Tezuka",
+      "Takashi Nagasaki",
+      "Takehiko Inoue"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما المهنة التي يُعرف بها غينكو في \"موشيشي\"؟",
+    "en": "What profession is Ginko known for in Mushishi?",
+    "aAr": [
+      "موشي-شي",
+      "أونميوجي",
+      "ساموراي جوال",
+      "طبيب قرى"
+    ],
+    "aEn": [
+      "Mushi-shi",
+      "Onmyoji",
+      "Wandering samurai",
+      "Village doctor"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"Keep Your Hands Off Eizouken!\"؟",
+    "en": "Which studio animated Keep Your Hands Off Eizouken!?",
+    "aAr": [
+      "ساينس سارو",
+      "مادهاوس",
+      "أورانج",
+      "كيوتو أنيميشن"
+    ],
+    "aEn": [
+      "Science SARU",
+      "Madhouse",
+      "Orange",
+      "Kyoto Animation"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي مجلة نُشرت مانغا \"Blue Period\"؟",
+    "en": "In which magazine was Blue Period serialized?",
+    "aAr": [
+      "مانثلي أفترنون",
+      "ويكلي شونن جمب",
+      "بيغ كوميك سبيرتس",
+      "هانا تو يومي"
+    ],
+    "aEn": [
+      "Monthly Afternoon",
+      "Weekly Shonen Jump",
+      "Big Comic Spirits",
+      "Hana to Yume"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الحكم/المُحكِّم الرئيسي في \"ديث باريد\"؟",
+    "en": "What is the main arbiter's name in Death Parade?",
+    "aAr": [
+      "ديسِم",
+      "نانا",
+      "كوين",
+      "غينتي"
+    ],
+    "aEn": [
+      "Decim",
+      "Nona",
+      "Quin",
+      "Ginti"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف مانغا \"فينلاند ساغا\"؟",
+    "en": "Who created the Vinland Saga manga?",
+    "aAr": [
+      "ماكوتو يوكيمورا",
+      "كينتارو ميورا",
+      "هيديو ياماموتو",
+      "ريو ميزونو"
+    ],
+    "aEn": [
+      "Makoto Yukimura",
+      "Kentaro Miura",
+      "Hideo Yamamoto",
+      "Ryo Mizuno"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من يقود فارس \"لانسلوت\" في \"كود غياس\"؟",
+    "en": "Who pilots the Knightmare Frame Lancelot in Code Geass?",
+    "aAr": [
+      "سوزاكو كوروروغي",
+      "لولوش لامبروج",
+      "كالين شتادتفِلد",
+      "جيرمايا غوتفالد"
+    ],
+    "aEn": [
+      "Suzaku Kururugi",
+      "Lelouch Lamperouge",
+      "Kallen Stadtfeld",
+      "Jeremiah Gottwald"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من صاحب العمل الأصلي/المؤلف المرتبط بـ \"Haibane Renmei\"؟",
+    "en": "Who is the original creator associated with Haibane Renmei?",
+    "aAr": [
+      "يوشيتوشي آبيه",
+      "ياسوهيرو نايتو",
+      "كازويا تسورُماكي",
+      "يوشيآكي كاواجيري"
+    ],
+    "aEn": [
+      "Yoshitoshi ABe",
+      "Yasuhiro Nightow",
+      "Kazuya Tsurumaki",
+      "Yoshiaki Kawajiri"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"The Tatami Galaxy\"؟",
+    "en": "Which studio animated The Tatami Galaxy?",
+    "aAr": [
+      "مادهاوس",
+      "ساينس سارو",
+      "شافت",
+      "ويت ستوديو"
+    ],
+    "aEn": [
+      "Madhouse",
+      "Science SARU",
+      "Shaft",
+      "Wit Studio"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج سلسلة \"FLCL\" الأصلية؟",
+    "en": "Who directed the original FLCL series?",
+    "aAr": [
+      "كازويا تسورُماكي",
+      "هيدياكي آنّو",
+      "شينغو ناتسومي",
+      "هيرويوكي إيمايشي"
+    ],
+    "aEn": [
+      "Kazuya Tsurumaki",
+      "Hideaki Anno",
+      "Shingo Natsume",
+      "Hiroyuki Imaishi"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج فيلم \"5 Centimeters per Second\"؟",
+    "en": "Who directed 5 Centimeters per Second?",
+    "aAr": [
+      "ماكوتو شينكاي",
+      "مامورو هوسودا",
+      "ساتوشي كون",
+      "مامورو أوشي"
+    ],
+    "aEn": [
+      "Makoto Shinkai",
+      "Mamoru Hosoda",
+      "Satoshi Kon",
+      "Mamoru Oshii"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"March Comes in like a Lion\"؟",
+    "en": "Which studio animated March Comes in like a Lion?",
+    "aAr": [
+      "شافت",
+      "مابا",
+      "بونز",
+      "أيه-1 بيكتشرز"
+    ],
+    "aEn": [
+      "Shaft",
+      "MAPPA",
+      "Bones",
+      "A-1 Pictures"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من كاتب النص/السيناريو الرئيسي لـ \"Puella Magi Madoka Magica\"؟",
+    "en": "Who was the main writer for Puella Magi Madoka Magica?",
+    "aAr": [
+      "غِن أوروبوتشي",
+      "ناسو كينوكو",
+      "ماري أوكادا",
+      "ريوكو كاميتاني"
+    ],
+    "aEn": [
+      "Gen Urobuchi",
+      "Kinoko Nasu",
+      "Mari Okada",
+      "Ryoko Kamitani"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلفة مانغا \"وردة فرساي\"؟",
+    "en": "Who created The Rose of Versailles manga?",
+    "aAr": [
+      "ريوكو إيكيدا",
+      "كيكو تاكانيشي",
+      "موتوكو آراي",
+      "ناوكو تاكيوتشي"
+    ],
+    "aEn": [
+      "Riyoko Ikeda",
+      "Keiko Takanishi",
+      "Motoko Arai",
+      "Naoko Takeuchi"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من الرسّام المسؤول عن مانغا \"د. ستون\" إلى جانب القصة المكتوبة من إيناتشي؟",
+    "en": "Who is the illustrator of Dr. Stone alongside the story writer?",
+    "aAr": [
+      "بويتشي",
+      "ريوهي تامورا",
+      "يوسوكي موراتا",
+      "شينيتشي ساكاموتو"
+    ],
+    "aEn": [
+      "Boichi",
+      "Ryuhei Tamura",
+      "Yusuke Murata",
+      "Shinichi Sakamoto"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"Land of the Lustrous\"؟",
+    "en": "Which studio animated Land of the Lustrous?",
+    "aAr": [
+      "أورانج",
+      "بوليغون بيكتشرز",
+      "مابا",
+      "غونزو"
+    ],
+    "aEn": [
+      "Orange",
+      "Polygon Pictures",
+      "MAPPA",
+      "Gonzo"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم بطل \"دوروهيدورو\" المصاب بفقدان الذاكرة؟",
+    "en": "What is the name of the amnesiac protagonist in Dorohedoro?",
+    "aAr": [
+      "كايمان",
+      "نيكايدو",
+      "إن",
+      "شين"
+    ],
+    "aEn": [
+      "Kaiman",
+      "Nikaido",
+      "En",
+      "Shin"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج أنمي \"Keep Your Hands Off Eizouken!\"؟",
+    "en": "Who directed Keep Your Hands Off Eizouken!?",
+    "aAr": [
+      "ماساكي يواسا",
+      "ساتوشي كون",
+      "شينيتشيرو واتانابي",
+      "ياماكان"
+    ],
+    "aEn": [
+      "Masaaki Yuasa",
+      "Satoshi Kon",
+      "Shinichiro Watanabe",
+      "Yamakan"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من كاتب سيناريو \"Serial Experiments Lain\"؟",
+    "en": "Who wrote the screenplay for Serial Experiments Lain?",
+    "aAr": [
+      "تشياكي جيه. كوناكا",
+      "داي ساتو",
+      "يوهي ساكوراغي",
+      "شو آيكاوا"
+    ],
+    "aEn": [
+      "Chiaki J. Konaka",
+      "Dai Sato",
+      "Yuhei Sakuragi",
+      "Sho Aikawa"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم السلاح/النظام المسدسي المستخدم في \"Psycho-Pass\"؟",
+    "en": "What is the name of the handgun system used in Psycho-Pass?",
+    "aAr": [
+      "دوميناتور",
+      "إينفورسر",
+      "سايبر آرم",
+      "سيبِل غَن"
+    ],
+    "aEn": [
+      "Dominator",
+      "Enforcer",
+      "Cyber Arm",
+      "Sybil Gun"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف مانغا \"Initial D\"؟",
+    "en": "Who created the Initial D manga?",
+    "aAr": [
+      "شويتشي شيغينو",
+      "ريوإيتشي إيكيغامي",
+      "تسوتومو نيهِي",
+      "كويتشي ماشيزُكي"
+    ],
+    "aEn": [
+      "Shuichi Shigeno",
+      "Ryoichi Ikegami",
+      "Tsutomu Nihei",
+      "Koichi Mashizuki"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من أخرج \"Revolutionary Girl Utena\"؟",
+    "en": "Who directed Revolutionary Girl Utena?",
+    "aAr": [
+      "كونيهيكو إيكوهارا",
+      "مامورو هوسودا",
+      "هاياو ميازاكي",
+      "هيدياكي آنّو"
+    ],
+    "aEn": [
+      "Kunihiko Ikuhara",
+      "Mamoru Hosoda",
+      "Hayao Miyazaki",
+      "Hideaki Anno"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أي استوديو أنجز \"Tengen Toppa Gurren Lagann\"؟",
+    "en": "Which studio animated Tengen Toppa Gurren Lagann?",
+    "aAr": [
+      "غايناكس",
+      "تريغر",
+      "بونز",
+      "أيه-1 بيكتشرز"
+    ],
+    "aEn": [
+      "Gainax",
+      "Trigger",
+      "Bones",
+      "A-1 Pictures"
+    ],
+    "correct": 0
+  }
+]

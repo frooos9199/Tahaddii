@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "في الجملة الإنجليزية: “Had I known, I would have acted sooner”، ما نوع الشرط؟",
+    "en": "In the sentence “Had I known, I would have acted sooner,” what type of conditional is used?",
+    "aAr": [
+      "الشرط الأول",
+      "الشرط المختلط",
+      "الشرط الصفري",
+      "الشرط الثالث"
+    ],
+    "aEn": [
+      "First conditional",
+      "Mixed conditional",
+      "Zero conditional",
+      "Third conditional"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية تعني: “واضحًا جليًّا؛ lucid”؟",
+    "en": "Which English word means “expressed clearly; lucid”?",
+    "aAr": [
+      "أوباك",
+      "برسبيكيوس",
+      "ردندنت",
+      "فاربوز"
+    ],
+    "aEn": [
+      "opaque",
+      "perspicuous",
+      "redundant",
+      "verbose"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ما الجمع الصحيح لكلمة “curriculum”؟",
+    "en": "What is the correct plural of “curriculum”?",
+    "aAr": [
+      "كُريكيولمز",
+      "كُريكيولا",
+      "كُريكيولاي",
+      "كُريكيولاتا"
+    ],
+    "aEn": [
+      "curriculums",
+      "curricula",
+      "curriculai",
+      "curriculata"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية هي الأقرب معنى إلى “ubiquitous”؟",
+    "en": "Which word is closest in meaning to “ubiquitous”?",
+    "aAr": [
+      "إيفيميرال",
+      "سبارش",
+      "ريتيسنت",
+      "أومنيبرِزِنت"
+    ],
+    "aEn": [
+      "ephemeral",
+      "sparse",
+      "reticent",
+      "omnipresent"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما المصطلح الأدبي للرواية التي تُروى عبر الرسائل أو الوثائق؟",
+    "en": "What literary term describes a novel told through letters or documents?",
+    "aAr": [
+      "إيليجي",
+      "آليغوري",
+      "ساتير",
+      "إبستولاري"
+    ],
+    "aEn": [
+      "elegy",
+      "allegory",
+      "satire",
+      "epistolary"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف “The Waste Land”؟",
+    "en": "Who wrote “The Waste Land”?",
+    "aAr": [
+      "ت. س. إليوت",
+      "إزرا باوند",
+      "و. ب. ييتس",
+      "تيد هيوز"
+    ],
+    "aEn": [
+      "T. S. Eliot",
+      "Ezra Pound",
+      "W. B. Yeats",
+      "Ted Hughes"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي مسرحية لشكسبير ترد العبارة: “To thine own self be true”؟",
+    "en": "In which Shakespeare play does the line “To thine own self be true” appear?",
+    "aAr": [
+      "ماكبث",
+      "الملك لير",
+      "العاصفة",
+      "هاملت"
+    ],
+    "aEn": [
+      "Macbeth",
+      "King Lear",
+      "The Tempest",
+      "Hamlet"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “pellucid”؟",
+    "en": "What does the English word “pellucid” mean?",
+    "aAr": [
+      "غامض عمدًا",
+      "متشعب",
+      "شفاف/واضح جدًا",
+      "صاخب"
+    ],
+    "aEn": [
+      "deliberately obscure",
+      "rambling",
+      "transparently clear",
+      "noisy"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيّ كلمة تُعدّ ضدًّا لكلمة “laconic”؟",
+    "en": "Which word is an antonym of “laconic”?",
+    "aAr": [
+      "ستيرن",
+      "بريسك",
+      "فارْبوز",
+      "كريسب"
+    ],
+    "aEn": [
+      "stern",
+      "brisk",
+      "verbose",
+      "crisp"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "في علم اللغة، ما الاسم الذي يُطلق على كلمة مؤلفة من الحروف الأولى لعبارة مثل NATO؟",
+    "en": "In linguistics, what is a word formed from the initial letters of a phrase, like NATO, called?",
+    "aAr": [
+      "أوفونيم",
+      "أكرونِم",
+      "يونيم",
+      "أنَغرام"
+    ],
+    "aEn": [
+      "euphemism",
+      "acronym",
+      "eponym",
+      "anagram"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من الشخصية الأدبية التي ابتكرها آرثر كونان دويل؟",
+    "en": "Which famous literary character was created by Arthur Conan Doyle?",
+    "aAr": [
+      "فيليب مارلو",
+      "هيركيول بوارو",
+      "السيد دارسي",
+      "شيرلوك هولمز"
+    ],
+    "aEn": [
+      "Philip Marlowe",
+      "Hercule Poirot",
+      "Mr Darcy",
+      "Sherlock Holmes"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف “Paradise Lost”؟",
+    "en": "Who wrote “Paradise Lost”?",
+    "aAr": [
+      "جيفري تشوسر",
+      "ألكسندر بوب",
+      "جون ميلتون",
+      "جون درايدن"
+    ],
+    "aEn": [
+      "Geoffrey Chaucer",
+      "Alexander Pope",
+      "John Milton",
+      "John Dryden"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية تعني: “عنيد يرفض تغيير رأيه”؟",
+    "en": "Which English word means “stubbornly refusing to change one’s opinion”?",
+    "aAr": [
+      "إيلوكوينت",
+      "أوبدورِت",
+      "كريدولس",
+      "بليكابل"
+    ],
+    "aEn": [
+      "eloquent",
+      "obdurate",
+      "credulous",
+      "pliable"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "ماذا يعني التعبير الإنجليزي “to gild the lily”؟",
+    "en": "What does the idiom “to gild the lily” mean?",
+    "aAr": [
+      "إخفاء الحقيقة بالمجاملة",
+      "إضافة زينة لا حاجة لها",
+      "تجميل الكلام القاسي",
+      "إفساد أمرٍ جيد بالتسرع"
+    ],
+    "aEn": [
+      "to hide the truth politely",
+      "to add unnecessary ornament",
+      "to soften harsh speech",
+      "to ruin a good thing through haste"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "في العبارة الإنجليزية “between you and me”، ما الحالة الإعرابية للضمير “me”؟",
+    "en": "In the phrase “between you and me,” what grammatical case is “me”?",
+    "aAr": [
+      "حالة المفعول/الجر",
+      "حالة الرفع",
+      "حالة الملكية",
+      "حالة النداء"
+    ],
+    "aEn": [
+      "objective case",
+      "nominative case",
+      "possessive case",
+      "vocative case"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما المصطلح الإنجليزي للقول الموجز الذي يتضمن حكمة عامة؟",
+    "en": "What English term means a brief saying expressing a general truth?",
+    "aAr": [
+      "أفورِزم",
+      "سولِلوكوي",
+      "بارودي",
+      "بانِجيرِك"
+    ],
+    "aEn": [
+      "aphorism",
+      "soliloquy",
+      "parody",
+      "panegyric"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف “Brave New World”؟",
+    "en": "Who wrote “Brave New World”?",
+    "aAr": [
+      "إي. إم. فورستر",
+      "جورج أورويل",
+      "إيفلين وو",
+      "ألدوس هكسلي"
+    ],
+    "aEn": [
+      "E. M. Forster",
+      "George Orwell",
+      "Evelyn Waugh",
+      "Aldous Huxley"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما المصطلح للفظة التي تحاكي صوتًا طبيعيًا مثل “buzz”؟",
+    "en": "What is the term for a word that imitates a natural sound, such as “buzz”?",
+    "aAr": [
+      "أونوماتوبيا",
+      "ألِتريشن",
+      "سينِكدوكي",
+      "أسوننس"
+    ],
+    "aEn": [
+      "onomatopoeia",
+      "alliteration",
+      "synecdoche",
+      "assonance"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أيّ صفة إنجليزية تعني “متعلقًا بالخيول”؟",
+    "en": "Which English adjective means “relating to horses”?",
+    "aAr": [
+      "أڤيان",
+      "أربوريال",
+      "إكواين",
+      "بيسكاين"
+    ],
+    "aEn": [
+      "avian",
+      "arboreal",
+      "equine",
+      "piscine"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "في الجملة “The book that you lent me”، ما وظيفة “that”؟",
+    "en": "In the sentence “The book that you lent me,” what is the function of “that”?",
+    "aAr": [
+      "حرف عطف",
+      "حال",
+      "أداة تعريف",
+      "ضمير وصل"
+    ],
+    "aEn": [
+      "conjunction",
+      "adverbial marker",
+      "article",
+      "relative pronoun"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف “Middlemarch”؟",
+    "en": "Who wrote “Middlemarch”?",
+    "aAr": [
+      "إليزابيث غاسكل",
+      "جين أوستن",
+      "جورج إليوت",
+      "الأخوات برونتي"
+    ],
+    "aEn": [
+      "Elizabeth Gaskell",
+      "Jane Austen",
+      "George Eliot",
+      "the Brontë sisters"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “mellifluous”؟",
+    "en": "What does the English word “mellifluous” mean?",
+    "aAr": [
+      "عذب رنان",
+      "حاد جارح",
+      "غزير التفاصيل",
+      "قصير جدًا"
+    ],
+    "aEn": [
+      "sweet-sounding",
+      "cutting and harsh",
+      "densely detailed",
+      "extremely brief"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ماذا يعني التعبير الإنجليزي “let the cat out of the bag”؟",
+    "en": "What does the idiom “let the cat out of the bag” mean?",
+    "aAr": [
+      "يضيّع فرصة ثمينة",
+      "يتورط بلا قصد",
+      "يتراجع في اللحظة الأخيرة",
+      "يفشي سرًا"
+    ],
+    "aEn": [
+      "to waste a valuable opportunity",
+      "to get entangled unintentionally",
+      "to back out at the last moment",
+      "to reveal a secret"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف “Waiting for Godot”؟",
+    "en": "Who wrote “Waiting for Godot”?",
+    "aAr": [
+      "توم ستوبارد",
+      "هارولد بنتر",
+      "يوجين أونيل",
+      "صموئيل بيكيت"
+    ],
+    "aEn": [
+      "Tom Stoppard",
+      "Harold Pinter",
+      "Eugene O’Neill",
+      "Samuel Beckett"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما المصطلح البلاغي للمقارنة التي لا تستخدم “like” أو “as”؟",
+    "en": "What is the term for a comparison that does not use “like” or “as”?",
+    "aAr": [
+      "ميتونيمي",
+      "هيبربولي",
+      "مِتافور",
+      "سِميلي"
+    ],
+    "aEn": [
+      "metonymy",
+      "hyperbole",
+      "metaphor",
+      "simile"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية تعني “قابل لأن يُفهم بطريقتين”؟",
+    "en": "Which English word means “capable of being understood in two ways”?",
+    "aAr": [
+      "ترانسبرِنت",
+      "كونكريت",
+      "أمبيغيوس",
+      "إكزاكت"
+    ],
+    "aEn": [
+      "transparent",
+      "concrete",
+      "ambiguous",
+      "exact"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من مؤلف “The Canterbury Tales”؟",
+    "en": "Who wrote “The Canterbury Tales”?",
+    "aAr": [
+      "توماس مور",
+      "جون ملتون",
+      "جيفري تشوسر",
+      "إدموند سبنسر"
+    ],
+    "aEn": [
+      "Thomas More",
+      "John Milton",
+      "Geoffrey Chaucer",
+      "Edmund Spenser"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "في العبارة الإنجليزية “If I were you”، ما الصيغة النحوية المستخدمة؟",
+    "en": "In the phrase “If I were you,” what grammatical mood is used?",
+    "aAr": [
+      "المزاج الشرطي الافتراضي/السابجَنكتِف",
+      "المضارع التام",
+      "الماضي البسيط",
+      "صيغة الأمر"
+    ],
+    "aEn": [
+      "subjunctive mood",
+      "present perfect",
+      "simple past",
+      "imperative mood"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “parsimonious”؟",
+    "en": "What does the English word “parsimonious” mean?",
+    "aAr": [
+      "كريم جدًا",
+      "متحمس",
+      "بخيل/شحيح",
+      "متردد"
+    ],
+    "aEn": [
+      "generous",
+      "eager",
+      "miserly",
+      "hesitant"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من مؤلفة رواية “Mrs Dalloway”؟",
+    "en": "Who wrote “Mrs Dalloway”?",
+    "aAr": [
+      "أيريس مردوخ",
+      "إديث وارتون",
+      "فرجينيا وولف",
+      "دوريس ليسينغ"
+    ],
+    "aEn": [
+      "Iris Murdoch",
+      "Edith Wharton",
+      "Virginia Woolf",
+      "Doris Lessing"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ما المقصود بمصطلح “oxymoron”؟",
+    "en": "What is meant by the term “oxymoron”?",
+    "aAr": [
+      "استبدال الجزء بالكل",
+      "تكرار كلمة في بداية الجمل",
+      "حذف كلمة مفهومة من السياق",
+      "جمع لفظين متناقضين في تركيب واحد"
+    ],
+    "aEn": [
+      "using a part for the whole",
+      "repetition at clause beginnings",
+      "omission of an expected word",
+      "a figure combining contradictory terms"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أيّ كلمة هي الأقرب معنى إلى “ephemeral”؟",
+    "en": "Which word is closest in meaning to “ephemeral”?",
+    "aAr": [
+      "راسخ",
+      "قديم للغاية",
+      "بطيء النمو",
+      "قصير العمر"
+    ],
+    "aEn": [
+      "enduring",
+      "very ancient",
+      "slow-growing",
+      "short-lived"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف “Heart of Darkness”؟",
+    "en": "Who wrote “Heart of Darkness”?",
+    "aAr": [
+      "جوزيف كونراد",
+      "روبرت لويس ستيفنسون",
+      "جراهام غرين",
+      "إي. إم. فورستر"
+    ],
+    "aEn": [
+      "Joseph Conrad",
+      "Robert Louis Stevenson",
+      "Graham Greene",
+      "E. M. Forster"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “impecunious”؟",
+    "en": "What does the English word “impecunious” mean?",
+    "aAr": [
+      "فقير أو قليل المال",
+      "حاد الذكاء",
+      "كثير الإنفاق",
+      "متفائل بلا حدود"
+    ],
+    "aEn": [
+      "having little money",
+      "very sharp-minded",
+      "extravagant",
+      "wildly optimistic"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ماذا يعني التعبير الإنجليزي “bite the bullet”؟",
+    "en": "What does the idiom “bite the bullet” mean?",
+    "aAr": [
+      "يتحمّل موقفًا مؤلمًا بشجاعة",
+      "يفشل بعد بداية جيدة",
+      "يؤجل القرار عمدًا",
+      "يتكلم بصراحة زائدة"
+    ],
+    "aEn": [
+      "to endure a painful situation bravely",
+      "to fail after a strong start",
+      "to delay a decision deliberately",
+      "to speak too bluntly"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما المصطلح اللغوي لحذف كلمة مفهومة من السياق اختصارًا؟",
+    "en": "What is the linguistic term for omitting an expected word for brevity?",
+    "aAr": [
+      "بيريفراز",
+      "إليبسِس",
+      "بارالِلِزم",
+      "إينفِرجِن"
+    ],
+    "aEn": [
+      "periphrasis",
+      "ellipsis",
+      "parallelism",
+      "inversion"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من مؤلف “The Portrait of a Lady”؟",
+    "en": "Who wrote “The Portrait of a Lady”?",
+    "aAr": [
+      "ناثانيال هوثورن",
+      "إديث وارتون",
+      "ويليام دين هاولز",
+      "هنري جيمس"
+    ],
+    "aEn": [
+      "Nathaniel Hawthorne",
+      "Edith Wharton",
+      "William Dean Howells",
+      "Henry James"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “reticent”؟",
+    "en": "What does the English word “reticent” mean?",
+    "aAr": [
+      "ثرثار جدًا",
+      "متحفظ قليل الكلام",
+      "مبتهج",
+      "عدائي"
+    ],
+    "aEn": [
+      "very talkative",
+      "reserved",
+      "cheerful",
+      "hostile"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "في البلاغة الإنجليزية، ما اسم تكرار الكلمة أو العبارة في أوائل الجمل المتتالية؟",
+    "en": "In English rhetoric, what is the repetition of a word or phrase at the beginnings of successive clauses called?",
+    "aAr": [
+      "أنَفورا",
+      "إيبيستروف",
+      "كيازمس",
+      "أسيندتُن"
+    ],
+    "aEn": [
+      "anaphora",
+      "epistrophe",
+      "chiasmus",
+      "asyndeton"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مؤلف “The Importance of Being Earnest”؟",
+    "en": "Who wrote “The Importance of Being Earnest”?",
+    "aAr": [
+      "أوسكار وايلد",
+      "جورج برنارد شو",
+      "نويل كوارد",
+      "ريتشارد برنسلي شيريدان"
+    ],
+    "aEn": [
+      "Oscar Wilde",
+      "George Bernard Shaw",
+      "Noël Coward",
+      "Richard Brinsley Sheridan"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية تعني “ملتبسًا أو مراوغًا عمدًا”؟",
+    "en": "Which English word means “deliberately ambiguous or evasive”?",
+    "aAr": [
+      "ترانشَنت",
+      "ديسِسِف",
+      "بينيڤولنت",
+      "إكويفُكَل"
+    ],
+    "aEn": [
+      "trenchant",
+      "decisive",
+      "benevolent",
+      "equivocal"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "من مؤلف الرواية التي تبدأ بعبارة “Call me Ishmael”؟",
+    "en": "Who wrote the novel that begins with “Call me Ishmael”?",
+    "aAr": [
+      "جاك لندن",
+      "مارك توين",
+      "هرمان ملفيل",
+      "ناثانيال هوثورن"
+    ],
+    "aEn": [
+      "Jack London",
+      "Mark Twain",
+      "Herman Melville",
+      "Nathaniel Hawthorne"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "ماذا يعني التعبير الإنجليزي “cut to the chase”؟",
+    "en": "What does the idiom “cut to the chase” mean?",
+    "aAr": [
+      "غادر قبل النهاية",
+      "تجنّب المواجهة",
+      "اختصر الطريق حرفيًا",
+      "ادخل في صلب الموضوع"
+    ],
+    "aEn": [
+      "leave before the end",
+      "avoid confrontation",
+      "take a literal shortcut",
+      "get to the point"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أيّ كلمة هي الأقرب معنى إلى “sycophant”؟",
+    "en": "Which word is closest in meaning to “sycophant”?",
+    "aAr": [
+      "متمرّد",
+      "مُترجم",
+      "متملّق",
+      "مُصلح"
+    ],
+    "aEn": [
+      "rebel",
+      "translator",
+      "flatterer",
+      "reformer"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "في النحو الإنجليزي، ما نوع الفعل الذي يتعدّى إلى مفعولين: مباشر وغير مباشر؟",
+    "en": "In English grammar, what is a verb that takes both a direct and an indirect object called?",
+    "aAr": [
+      "كوبولر",
+      "إنترانزِتف",
+      "دايترانزِتف",
+      "مودَل"
+    ],
+    "aEn": [
+      "copular",
+      "intransitive",
+      "ditransitive",
+      "modal"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "من مؤلف “Sons and Lovers”؟",
+    "en": "Who wrote “Sons and Lovers”?",
+    "aAr": [
+      "توماس هاردي",
+      "غراهام غرين",
+      "إي. إم. فورستر",
+      "د. هـ. لورنس"
+    ],
+    "aEn": [
+      "Thomas Hardy",
+      "Graham Greene",
+      "E. M. Forster",
+      "D. H. Lawrence"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "ما معنى الكلمة الإنجليزية “intransigent”؟",
+    "en": "What does the English word “intransigent” mean?",
+    "aAr": [
+      "رافض للتسوية أو التنازل",
+      "سريع التكيّف",
+      "مشوش الذهن",
+      "متعاون جدًا"
+    ],
+    "aEn": [
+      "unwilling to compromise",
+      "quick to adapt",
+      "mentally confused",
+      "highly cooperative"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الشكل البلاغي الذي يُخاطَب فيه غائبٌ أو فكرة مجردة كما لو كانت حاضرة؟",
+    "en": "What figure of speech addresses an absent person or abstract idea as if present?",
+    "aAr": [
+      "زيوغما",
+      "أبوستروف",
+      "لِتوتِس",
+      "بولي سيندتُن"
+    ],
+    "aEn": [
+      "zeugma",
+      "apostrophe",
+      "litotes",
+      "polysyndeton"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "من مؤلف “A Passage to India”؟",
+    "en": "Who wrote “A Passage to India”?",
+    "aAr": [
+      "روديارد كبلنغ",
+      "إي. إم. ديلفيلد",
+      "إي. إم. فورستر",
+      "جوزيف كونراد"
+    ],
+    "aEn": [
+      "Rudyard Kipling",
+      "E. M. Delafield",
+      "E. M. Forster",
+      "Joseph Conrad"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أيّ كلمة إنجليزية تعني “غير مؤذٍ أو غير جارح”؟",
+    "en": "Which English word means “harmless; not likely to offend or cause harm”?",
+    "aAr": [
+      "إينوكيوس",
+      "بلَيزِنغ",
+      "أوبنُكسِس",
+      "فيرولنت"
+    ],
+    "aEn": [
+      "innocuous",
+      "blazing",
+      "obnoxious",
+      "virulent"
+    ],
+    "correct": 0
+  }
+]

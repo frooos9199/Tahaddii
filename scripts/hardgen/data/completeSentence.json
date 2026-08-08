@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "أكمل الجملة: ومن جدَّ وجد، ومن زرع ____.",
+    "en": "Complete the sentence: He who strives finds, and he who sows ____.",
+    "aAr": [
+      "عبر",
+      "صبر",
+      "نجا",
+      "حصد"
+    ],
+    "aEn": [
+      "crosses",
+      "endures",
+      "survives",
+      "reaps"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: الصديق وقت ____.",
+    "en": "Complete the sentence: A friend is known in times of ____.",
+    "aAr": [
+      "الثراء",
+      "الفرح",
+      "السفر",
+      "الضيق"
+    ],
+    "aEn": [
+      "wealth",
+      "joy",
+      "travel",
+      "hardship"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: الوقت كالسيف إن لم تقطعه ____.",
+    "en": "Complete the sentence: Time is like a sword; if you do not cut it, it ____.",
+    "aAr": [
+      "أضعفك",
+      "قطعك",
+      "سبقك",
+      "خانك"
+    ],
+    "aEn": [
+      "weakens you",
+      "cuts you",
+      "overtakes you",
+      "betrays you"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: إذا الشعب يومًا أراد الحياة فلا بد أن يستجيب ____.",
+    "en": "Complete the sentence: If a people one day desire life, then fate must ____.",
+    "aAr": [
+      "الليل",
+      "الزمن",
+      "القدر",
+      "الكون"
+    ],
+    "aEn": [
+      "the night",
+      "time",
+      "fate",
+      "the universe"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: على قدر أهل العزم تأتي ____.",
+    "en": "Complete the sentence: In proportion to people of resolve come the ____.",
+    "aAr": [
+      "المنازل",
+      "العزائم",
+      "المكارم",
+      "البشائر"
+    ],
+    "aEn": [
+      "stations",
+      "great resolves",
+      "honors",
+      "glad tidings"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: تجري الرياح بما لا تشتهي ____.",
+    "en": "Complete the sentence: The winds blow in ways the ____.",
+    "aAr": [
+      "السفن",
+      "النفوس",
+      "العيون",
+      "الحقول"
+    ],
+    "aEn": [
+      "ships do not desire",
+      "souls do not desire",
+      "eyes do not desire",
+      "fields do not desire"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: وقل رب زدني ____.",
+    "en": "Complete the sentence: Say: My Lord, increase me in ____.",
+    "aAr": [
+      "علمًا",
+      "صبرًا",
+      "رزقًا",
+      "نورًا"
+    ],
+    "aEn": [
+      "knowledge",
+      "patience",
+      "provision",
+      "light"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: فإن مع العسر ____.",
+    "en": "Complete the sentence: Indeed, with hardship comes ____.",
+    "aAr": [
+      "نصرًا",
+      "يسرًا",
+      "علمًا",
+      "قوة"
+    ],
+    "aEn": [
+      "victory",
+      "ease",
+      "knowledge",
+      "strength"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: واعتصموا بحبل الله جميعًا ولا ____.",
+    "en": "Complete the sentence: Hold fast to the rope of God all together and do not ____.",
+    "aAr": [
+      "تيأسوا",
+      "تتراجعوا",
+      "تغفلوا",
+      "تفرقوا"
+    ],
+    "aEn": [
+      "despair",
+      "retreat",
+      "be heedless",
+      "be divided"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: ولا تزر وازرة وزر ____.",
+    "en": "Complete the sentence: No bearer of burdens shall bear the burden of ____.",
+    "aAr": [
+      "نفسها",
+      "الناس",
+      "أخرى",
+      "زمانها"
+    ],
+    "aEn": [
+      "itself",
+      "people",
+      "another",
+      "its time"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: إن الله لا يغير ما بقوم حتى يغيروا ما ____.",
+    "en": "Complete the sentence: God does not change the condition of a people until they change what is ____.",
+    "aAr": [
+      "بأنفسهم",
+      "حولهم",
+      "في بيوتهم",
+      "بأيديهم"
+    ],
+    "aEn": [
+      "within themselves",
+      "around them",
+      "in their homes",
+      "in their hands"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: إن أكرمكم عند الله ____.",
+    "en": "Complete the sentence: The most honored of you in the sight of God are the most ____.",
+    "aAr": [
+      "أقواكم",
+      "أتقاكم",
+      "أغناكم",
+      "أعلمكم"
+    ],
+    "aEn": [
+      "strong",
+      "God-fearing",
+      "wealthy",
+      "learned"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: وفوق كل ذي علم ____.",
+    "en": "Complete the sentence: Above every possessor of knowledge is one more ____.",
+    "aAr": [
+      "عليم",
+      "قدير",
+      "حليم",
+      "بصير"
+    ],
+    "aEn": [
+      "knowing",
+      "powerful",
+      "forbearing",
+      "seeing"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: كل نفس ذائقة ____.",
+    "en": "Complete the sentence: Every soul shall taste ____.",
+    "aAr": [
+      "الفراق",
+      "الموت",
+      "الندم",
+      "الحياة"
+    ],
+    "aEn": [
+      "separation",
+      "death",
+      "regret",
+      "life"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: إن الله مع ____.",
+    "en": "Complete the sentence: Indeed, God is with the ____.",
+    "aAr": [
+      "الصابرين",
+      "المتقين",
+      "المجتهدين",
+      "الصادقين"
+    ],
+    "aEn": [
+      "patient",
+      "righteous",
+      "diligent",
+      "truthful"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: إذا كان الكلام من فضة فالسكوت من ____.",
+    "en": "Complete the sentence: If speech is silver, then silence is ____.",
+    "aAr": [
+      "در",
+      "سلام",
+      "نور",
+      "ذهب"
+    ],
+    "aEn": [
+      "pearls",
+      "peace",
+      "light",
+      "gold"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: يد واحدة لا ____.",
+    "en": "Complete the sentence: One hand does not ____.",
+    "aAr": [
+      "تصفق",
+      "تشفى",
+      "تكتب",
+      "تبني"
+    ],
+    "aEn": [
+      "clap",
+      "heal",
+      "write",
+      "build"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: خير الكلام ما قلَّ و____.",
+    "en": "Complete the sentence: The best speech is that which is brief and ____.",
+    "aAr": [
+      "اتسع",
+      "دلَّ",
+      "علا",
+      "استمر"
+    ],
+    "aEn": [
+      "expanded",
+      "clear/meaningful",
+      "elevated",
+      "continued"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: رب أخ لك لم تلده ____.",
+    "en": "Complete the sentence: Many a brother to you was not born of your ____.",
+    "aAr": [
+      "لغتك",
+      "أمك",
+      "قبيلتك",
+      "مدينتك"
+    ],
+    "aEn": [
+      "language",
+      "mother",
+      "tribe",
+      "city"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: لكل مقام ____.",
+    "en": "Complete the sentence: Every situation has its proper ____.",
+    "aAr": [
+      "رجال",
+      "أدوات",
+      "مقال",
+      "جواب"
+    ],
+    "aEn": [
+      "men",
+      "tools",
+      "speech",
+      "answer"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: من راقب الناس مات ____.",
+    "en": "Complete the sentence: He who watches people too closely dies of ____.",
+    "aAr": [
+      "غيظًا",
+      "وحدة",
+      "تعبًا",
+      "همًّا"
+    ],
+    "aEn": [
+      "rage",
+      "loneliness",
+      "fatigue",
+      "worry"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: مصائب قوم عند قوم ____.",
+    "en": "Complete the sentence: One people’s misfortunes are another people’s ____.",
+    "aAr": [
+      "عبر",
+      "حكايات",
+      "أحلام",
+      "فوائد"
+    ],
+    "aEn": [
+      "lessons",
+      "stories",
+      "dreams",
+      "benefits"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: بلادي وإن جارت عليَّ عزيزة وأهلي وإن ضنّوا عليَّ ____.",
+    "en": "Complete the sentence: My homeland is dear even if it wrongs me, and my people are ____.",
+    "aAr": [
+      "قليلون",
+      "بعيدون",
+      "أقوياء",
+      "كرام"
+    ],
+    "aEn": [
+      "few",
+      "distant",
+      "strong",
+      "noble"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: إذا أنت أكرمت الكريم ____.",
+    "en": "Complete the sentence: If you honor the noble, you ____.",
+    "aAr": [
+      "ملكته",
+      "حررته",
+      "فاجأته",
+      "أضعفته"
+    ],
+    "aEn": [
+      "win him over",
+      "free him",
+      "surprise him",
+      "weaken him"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: ومن يهن يسهل الهوان ____.",
+    "en": "Complete the sentence: For one who is humiliated, humiliation becomes easy ____.",
+    "aAr": [
+      "عليه",
+      "به",
+      "منه",
+      "فيه"
+    ],
+    "aEn": [
+      "for him",
+      "through him",
+      "from him",
+      "within him"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: ومن طلب العلا سهر ____.",
+    "en": "Complete the sentence: Whoever seeks high distinction stays awake through the ____.",
+    "aAr": [
+      "الليالي",
+      "الصحارى",
+      "المواسم",
+      "السنين"
+    ],
+    "aEn": [
+      "nights",
+      "deserts",
+      "seasons",
+      "years"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: إذا غامرت في شرف مروم فلا تقنع بما دون ____.",
+    "en": "Complete the sentence: If you venture toward lofty honor, do not settle for less than the ____.",
+    "aAr": [
+      "القصور",
+      "النجوم",
+      "البحار",
+      "القمم"
+    ],
+    "aEn": [
+      "palaces",
+      "stars",
+      "seas",
+      "peaks"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: ومن لا يحب صعود الجبال يعش أبد الدهر بين ____.",
+    "en": "Complete the sentence: He who does not love climbing mountains will live forever among the ____.",
+    "aAr": [
+      "الأطلال",
+      "الأودية",
+      "الظلال",
+      "الحفر"
+    ],
+    "aEn": [
+      "ruins",
+      "valleys",
+      "shadows",
+      "pits"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: إذا هبّت رياحك فاغتنمها فإن لكل خافقة ____.",
+    "en": "Complete the sentence: When your winds blow, seize them, for every fluttering thing has its ____.",
+    "aAr": [
+      "ميعاد",
+      "زوال",
+      "نهاية",
+      "سكون"
+    ],
+    "aEn": [
+      "appointed time",
+      "passing",
+      "end",
+      "stillness"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: السيف أصدق أنباءً من ____.",
+    "en": "Complete the sentence: The sword is more truthful in report than ____.",
+    "aAr": [
+      "الرسل",
+      "العهود",
+      "الكتب",
+      "الخطابة"
+    ],
+    "aEn": [
+      "messengers",
+      "pledges",
+      "books",
+      "oratory"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: قِفْ دون رأيك في الحياة مجاهدًا إن الحياة عقيدة و____.",
+    "en": "Complete the sentence: Stand for your conviction struggling, for life is creed and ____.",
+    "aAr": [
+      "عمل",
+      "جهاد",
+      "صبر",
+      "أمل"
+    ],
+    "aEn": [
+      "work",
+      "struggle",
+      "patience",
+      "hope"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: إنما الأمم الأخلاق ما بقيت فإن هم ذهبت أخلاقهم ____.",
+    "en": "Complete the sentence: Nations endure so long as their morals endure; when their morals vanish, they ____.",
+    "aAr": [
+      "ذهبوا",
+      "ضعفوا",
+      "سقطوا",
+      "اختلفوا"
+    ],
+    "aEn": [
+      "vanish",
+      "weaken",
+      "fall",
+      "divide"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: لسان الفتى نصف ونصف ____.",
+    "en": "Complete the sentence: A young man is half his tongue and half his ____.",
+    "aAr": [
+      "مظهره",
+      "فؤاده",
+      "نسبه",
+      "علمه"
+    ],
+    "aEn": [
+      "appearance",
+      "heart/mind",
+      "lineage",
+      "knowledge"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: أنا البحر في أحشائه الدر كامن فهل سألوا الغواص عن ____.",
+    "en": "Complete the sentence: I am the sea with pearls hidden inside; did they ask the diver about my ____.",
+    "aAr": [
+      "شواطئي",
+      "صدفاتي",
+      "أمواجي",
+      "جواهري"
+    ],
+    "aEn": [
+      "shores",
+      "shells",
+      "waves",
+      "jewels"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: أعطِ القوس ____.",
+    "en": "Complete the sentence: Give the bow to its proper ____.",
+    "aAr": [
+      "راميها",
+      "وترها",
+      "موضعها",
+      "باريها"
+    ],
+    "aEn": [
+      "archer",
+      "string",
+      "place",
+      "craftsman/handler"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: آخر الدواء ____.",
+    "en": "Complete the sentence: The last remedy is ____.",
+    "aAr": [
+      "السكوت",
+      "الصبر",
+      "الكي",
+      "الرحيل"
+    ],
+    "aEn": [
+      "silence",
+      "patience",
+      "cauterization",
+      "departure"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: أسمع جعجعة ولا أرى ____.",
+    "en": "Complete the sentence: I hear grinding, but I see no ____.",
+    "aAr": [
+      "طحنا",
+      "نارا",
+      "ماءً",
+      "قمحا"
+    ],
+    "aEn": [
+      "flour",
+      "fire",
+      "water",
+      "wheat"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: وافق شن ____.",
+    "en": "Complete the sentence: Shan found his perfect match in ____.",
+    "aAr": [
+      "طبقة",
+      "رفقة",
+      "صاحبة",
+      "حكمة"
+    ],
+    "aEn": [
+      "Tabaqa",
+      "company",
+      "a companion",
+      "wisdom"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: سبق السيف ____.",
+    "en": "Complete the sentence: The sword has outstripped ____.",
+    "aAr": [
+      "العذل",
+      "الحذر",
+      "الندم",
+      "الوعيد"
+    ],
+    "aEn": [
+      "reproach",
+      "caution",
+      "regret",
+      "warning"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: يداك أوكتا وفوك ____.",
+    "en": "Complete the sentence: Your hands tied it, and your mouth ____.",
+    "aAr": [
+      "نفخ",
+      "سكت",
+      "فتح",
+      "شهد"
+    ],
+    "aEn": [
+      "blew",
+      "fell silent",
+      "opened",
+      "testified"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: على نفسها جنت ____.",
+    "en": "Complete the sentence: It was against itself that ____.",
+    "aAr": [
+      "دعد",
+      "براقش",
+      "زرقاء",
+      "ليلى"
+    ],
+    "aEn": [
+      "Daad",
+      "Baraqish",
+      "Zarqa",
+      "Layla"
+    ],
+    "correct": 1
+  },
+  {
+    "ar": "أكمل الجملة: الصيف ضيعت ____.",
+    "en": "Complete the sentence: In the summer, you wasted the ____.",
+    "aAr": [
+      "الماء",
+      "الوقت",
+      "اللبن",
+      "الزاد"
+    ],
+    "aEn": [
+      "water",
+      "time",
+      "milk",
+      "provisions"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: عند الامتحان يكرم المرء أو ____.",
+    "en": "Complete the sentence: In the test, a person is honored or ____.",
+    "aAr": [
+      "يربح",
+      "يصمت",
+      "ينسى",
+      "يهان"
+    ],
+    "aEn": [
+      "wins",
+      "falls silent",
+      "forgotten",
+      "disgraced"
+    ],
+    "correct": 3
+  },
+  {
+    "ar": "أكمل الجملة: لكل جواد ____.",
+    "en": "Complete the sentence: Every fine horse has a ____.",
+    "aAr": [
+      "كبوة",
+      "ساحة",
+      "هيبة",
+      "حدّ"
+    ],
+    "aEn": [
+      "stumble",
+      "arena",
+      "majesty",
+      "limit"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: دوام الحال من ____.",
+    "en": "Complete the sentence: The permanence of any condition is ____.",
+    "aAr": [
+      "المحال",
+      "السراب",
+      "العجب",
+      "الخيال"
+    ],
+    "aEn": [
+      "impossible",
+      "mirage",
+      "astonishing",
+      "fantasy"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أكمل الجملة: إذا لم تستح فاصنع ما ____.",
+    "en": "Complete the sentence: If you feel no shame, then do as you ____.",
+    "aAr": [
+      "علمت",
+      "قلت",
+      "شئت",
+      "استطعت"
+    ],
+    "aEn": [
+      "know",
+      "say",
+      "wish",
+      "can"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: كما تدين ____.",
+    "en": "Complete the sentence: As you judge/deal, so shall you ____.",
+    "aAr": [
+      "تغنم",
+      "تعش",
+      "تدان",
+      "ترى"
+    ],
+    "aEn": [
+      "gain",
+      "live",
+      "be judged/repaid",
+      "see"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: في التأني السلامة وفي العجلة ____.",
+    "en": "Complete the sentence: In deliberation there is safety, and in haste there is ____.",
+    "aAr": [
+      "الحيرة",
+      "الخسارة",
+      "الندامة",
+      "الخيبة"
+    ],
+    "aEn": [
+      "confusion",
+      "loss",
+      "regret",
+      "disappointment"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: الوقاية خير من ____.",
+    "en": "Complete the sentence: Prevention is better than ____.",
+    "aAr": [
+      "الدواء",
+      "الراحة",
+      "العلاج",
+      "الجراحة"
+    ],
+    "aEn": [
+      "medicine",
+      "rest",
+      "cure",
+      "surgery"
+    ],
+    "correct": 2
+  },
+  {
+    "ar": "أكمل الجملة: العقل السليم في الجسم ____.",
+    "en": "Complete the sentence: A sound mind is in a sound ____.",
+    "aAr": [
+      "المعتدل",
+      "السليم",
+      "القوي",
+      "النشيط"
+    ],
+    "aEn": [
+      "balanced body",
+      "body",
+      "strong body",
+      "active body"
+    ],
+    "correct": 1
+  }
+]

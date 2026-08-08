@@ -1,0 +1,852 @@
+[
+  {
+    "ar": "ما الاسم الكامل لشخصية ليلا في مسلسل \"فيوتشراما\"؟",
+    "en": "What is Leela's full name in Futurama?",
+    "aAr": [
+      "تورانغا ليلا",
+      "ليلا بلانيت إكسبرس",
+      "ليلا فاي",
+      "إيفا ليلا"
+    ],
+    "aEn": [
+      "Turanga Leela",
+      "Leela Planet Express",
+      "Leela Fry",
+      "Eva Leela"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأول للبروفيسور فارنسورث في \"فيوتشراما\"؟",
+    "en": "What is Professor Farnsworth's first name in Futurama?",
+    "aAr": [
+      "هيوبرت",
+      "هيرمان",
+      "هوارد",
+      "هارولد"
+    ],
+    "aEn": [
+      "Hubert",
+      "Herman",
+      "Howard",
+      "Harold"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من هو الشريك الإبداعي لمات غرونينغ في ابتكار \"فيوتشراما\"؟",
+    "en": "Who was Matt Groening's creative partner in creating Futurama?",
+    "aAr": [
+      "ديفيد إكس كوهين",
+      "أليكس هيرش",
+      "جيندي تارتاكوفسكي",
+      "لورين فوست"
+    ],
+    "aEn": [
+      "David X. Cohen",
+      "Alex Hirsch",
+      "Genndy Tartakovsky",
+      "Lauren Faust"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر مسلسل \"مختبر دكستر\"؟",
+    "en": "Who created Dexter's Laboratory?",
+    "aAr": [
+      "جيندي تارتاكوفسكي",
+      "كريغ ماكراكين",
+      "بوتش هارتمان",
+      "جو موراي"
+    ],
+    "aEn": [
+      "Genndy Tartakovsky",
+      "Craig McCracken",
+      "Butch Hartman",
+      "Joe Murray"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الخصم المتحول سيد الظلام في \"ساموراي جاك\"؟",
+    "en": "What is the name of the shapeshifting master of darkness in Samurai Jack?",
+    "aAr": [
+      "آكو",
+      "أوشي",
+      "أوروتشي",
+      "أزامي"
+    ],
+    "aEn": [
+      "Aku",
+      "Oshi",
+      "Orochi",
+      "Azami"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المدينة التي تدور فيها أحداث \"سوات كاتس\"؟",
+    "en": "What is the city where SWAT Kats takes place?",
+    "aAr": [
+      "ميغاكات سيتي",
+      "نيون فيل",
+      "ثاندركات هاربور",
+      "سكايلاين سيتي"
+    ],
+    "aEn": [
+      "Megakat City",
+      "Neon Ville",
+      "Thundercat Harbor",
+      "Skyline City"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر مسلسل \"حياة روكو الحديثة\"؟",
+    "en": "Who created Rocko's Modern Life?",
+    "aAr": [
+      "جو موراي",
+      "جون كريكالوسي",
+      "ميتش شاور",
+      "كلاسكاي تشوبو"
+    ],
+    "aEn": [
+      "Joe Murray",
+      "John Kricfalusi",
+      "Mitch Schauer",
+      "Klasky Csupo"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المدرسة الابتدائية في مسلسل \"ريسس\"؟",
+    "en": "What is the elementary school in Recess called?",
+    "aAr": [
+      "ثِرد ستريت سكول",
+      "ليبرتي إليمينتري",
+      "غرينوود سكول",
+      "سَنِيسايد سكول"
+    ],
+    "aEn": [
+      "Third Street School",
+      "Liberty Elementary",
+      "Greenwood School",
+      "Sunnyside School"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم عائلة أرنولد في مسلسل \"هي أرنولد!\"؟",
+    "en": "What is Arnold's surname in Hey Arnold!?",
+    "aAr": [
+      "شورتمان",
+      "تيرنر",
+      "باتاكي",
+      "جونسون"
+    ],
+    "aEn": [
+      "Shortman",
+      "Turner",
+      "Pataki",
+      "Johnson"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الهوية المدنية لشخصية \"دارك وينغ داك\"؟",
+    "en": "What is Darkwing Duck's civilian identity?",
+    "aAr": [
+      "دريك مالارد",
+      "لانشباد ماكواك",
+      "نيغادَك",
+      "فلينت هارتغلوم"
+    ],
+    "aEn": [
+      "Drake Mallard",
+      "Launchpad McQuack",
+      "Negaduck",
+      "Flintheart Glomgold"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "أين يقيم الإخوة وارنر في \"أنيمانياكس\"؟",
+    "en": "Where do the Warner siblings live in Animaniacs?",
+    "aAr": [
+      "في برج المياه في استوديو وارنر برذرز",
+      "في قصر آكمي",
+      "في مختبر سري تحت الأرض",
+      "في مدرسة لونيفيرسيتي"
+    ],
+    "aEn": [
+      "In the Warner Bros. studio water tower",
+      "In Acme Mansion",
+      "In a secret underground lab",
+      "At Looniversity"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الجامعة في \"تايني تون أدفنتشرز\"؟",
+    "en": "What is the university in Tiny Toon Adventures called?",
+    "aAr": [
+      "آكمي لونيفيرسيتي",
+      "وورنر كوليدج",
+      "تُون أكاديمي",
+      "لوني ستيت"
+    ],
+    "aEn": [
+      "Acme Looniversity",
+      "Warner College",
+      "Toon Academy",
+      "Looney State"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الفأرة المخترعة في \"تشيب آند ديل: رِسكو رينجرز\"؟",
+    "en": "What is the inventor mouse in Chip 'n Dale: Rescue Rangers called?",
+    "aAr": [
+      "غادجيت هاكوِرنش",
+      "زِبر ديل",
+      "مونتيري جاك",
+      "فوكسغلَف"
+    ],
+    "aEn": [
+      "Gadget Hackwrench",
+      "Zipper Dale",
+      "Monterey Jack",
+      "Foxglove"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر مسلسل \"الغضبانان\" (The Angry Beavers)؟",
+    "en": "Who created The Angry Beavers?",
+    "aAr": [
+      "ميتش شاور",
+      "جو موراي",
+      "بوتش هارتمان",
+      "كريغ ماكراكين"
+    ],
+    "aEn": [
+      "Mitch Schauer",
+      "Joe Murray",
+      "Butch Hartman",
+      "Craig McCracken"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر \"رين آند ستيمبي\"؟",
+    "en": "Who created The Ren & Stimpy Show?",
+    "aAr": [
+      "جون كريكالوسي",
+      "ميتش شاور",
+      "روبان فازكيز",
+      "كريس سافينو"
+    ],
+    "aEn": [
+      "John Kricfalusi",
+      "Mitch Schauer",
+      "Ruben Vazquez",
+      "Chris Savino"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم عائلة دوغ في مسلسل \"دوغ\"؟",
+    "en": "What is Doug's surname in Doug?",
+    "aAr": [
+      "فَني",
+      "دِنك",
+      "بلَف",
+      "والترز"
+    ],
+    "aEn": [
+      "Funnie",
+      "Dink",
+      "Bluff",
+      "Walters"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الشركة التي يعمل فيها فريد فلينستون؟",
+    "en": "What company does Fred Flintstone work for?",
+    "aAr": [
+      "سليت روك آند غرافل كومباني",
+      "بيدروك باور",
+      "دينو ترانسپورت",
+      "روكفيل كوارّيز"
+    ],
+    "aEn": [
+      "Slate Rock and Gravel Company",
+      "Bedrock Power",
+      "Dino Transport",
+      "Rockville Quarries"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي شركة يعمل جورج جيتسون؟",
+    "en": "Which company does George Jetson work for?",
+    "aAr": [
+      "سبايسلي سبروكِتس",
+      "كوغزويل كوغز",
+      "أوربت تك",
+      "غالاكسي موتورز"
+    ],
+    "aEn": [
+      "Spacely Sprockets",
+      "Cogswell Cogs",
+      "Orbit Tech",
+      "Galaxy Motors"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المدرسة الثانوية في \"داريا\"؟",
+    "en": "What is the high school in Daria called?",
+    "aAr": [
+      "لوندايل هاي",
+      "لينوود هاي",
+      "مورنينغسايد هاي",
+      "ريفرسايد هاي"
+    ],
+    "aEn": [
+      "Lawndale High",
+      "Lynwood High",
+      "Morningside High",
+      "Riverside High"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من هو بطل \"باتمان بيوند\" الذي يخلف بروس واين؟",
+    "en": "Who is the Batman successor in Batman Beyond?",
+    "aAr": [
+      "تيري ماكغينِس",
+      "ديك غرايسون",
+      "تيم دريك",
+      "جايسون تود"
+    ],
+    "aEn": [
+      "Terry McGinnis",
+      "Dick Grayson",
+      "Tim Drake",
+      "Jason Todd"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الحقيقي للبطل \"ستاتك شوك\"؟",
+    "en": "What is Static Shock's real name?",
+    "aAr": [
+      "فيرجل هوكنز",
+      "ريتشي فولي",
+      "وايد إيلينغتون",
+      "كورتيس ميتكالف"
+    ],
+    "aEn": [
+      "Virgil Hawkins",
+      "Richie Foley",
+      "Wade Eilington",
+      "Curtis Metcalf"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المنظمة الحكومية في \"مغامرات جاكي شان\"؟",
+    "en": "What is the government organization in Jackie Chan Adventures called?",
+    "aAr": [
+      "سيكشن 13",
+      "ألفا ديفيجن",
+      "دراغون غيت",
+      "أوميغا فورس"
+    ],
+    "aEn": [
+      "Section 13",
+      "Alpha Division",
+      "Dragon Gate",
+      "Omega Force"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الرفيق المقرب لشخصية \"ذا تيك\"؟",
+    "en": "What is the name of The Tick's sidekick?",
+    "aAr": [
+      "آرثر",
+      "بليپ",
+      "ديدالوس",
+      "موليكيول مان"
+    ],
+    "aEn": [
+      "Arthur",
+      "Blip",
+      "Daedalus",
+      "Molecule Man"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الديناصور/الوحش التجاري الشهير في \"راغراتس\"؟",
+    "en": "What is the famous dinosaur mascot in Rugrats called?",
+    "aAr": [
+      "ريبتار",
+      "غودزيلا",
+      "دينوكس",
+      "تيراكس"
+    ],
+    "aEn": [
+      "Reptar",
+      "Godzilla",
+      "Dinox",
+      "Terrax"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكرة مسلسل \"As Told by Ginger\"؟",
+    "en": "Who created As Told by Ginger?",
+    "aAr": [
+      "إيميلي كابنك",
+      "لورين فوست",
+      "سوزان لويس",
+      "كارين ديشر"
+    ],
+    "aEn": [
+      "Emily Kapnek",
+      "Lauren Faust",
+      "Susan Lewis",
+      "Karen Disher"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر \"داني فانتوم\"؟",
+    "en": "Who created Danny Phantom?",
+    "aAr": [
+      "بوتش هارتمان",
+      "جيندي تارتاكوفسكي",
+      "بوشكو",
+      "كريغ بارتليت"
+    ],
+    "aEn": [
+      "Butch Hartman",
+      "Genndy Tartakovsky",
+      "Bosco",
+      "Craig Bartlett"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم كتاب القواعد السحري في \"فيرلي أودبارنتس\"؟",
+    "en": "What is the magical rulebook called in The Fairly OddParents?",
+    "aAr": [
+      "دا رولز",
+      "ذا كودكس",
+      "بوك أوف واندز",
+      "فيري تشارتر"
+    ],
+    "aEn": [
+      "Da Rules",
+      "The Codex",
+      "Book of Wands",
+      "Fairy Charter"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم التنظيم السري في \"أفاتار: آخر مسخر هواء\"؟",
+    "en": "What is the secret order in Avatar: The Last Airbender called?",
+    "aAr": [
+      "نظام اللوتس الأبيض",
+      "مجلس التنين الأحمر",
+      "حراس القمر",
+      "رابطة العناصر الأربع"
+    ],
+    "aEn": [
+      "Order of the White Lotus",
+      "Red Dragon Council",
+      "Moon Guardians",
+      "League of the Four Elements"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم فريق كورا في رياضة البرو-بندينغ في \"أسطورة كورا\"؟",
+    "en": "What is Korra's pro-bending team called in The Legend of Korra?",
+    "aAr": [
+      "فاير فيرِتس",
+      "سكاي بايسونز",
+      "تيرتل دوكس",
+      "ميتال هوكس"
+    ],
+    "aEn": [
+      "Fire Ferrets",
+      "Sky Bisons",
+      "Turtle Ducks",
+      "Metal Hawks"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من هو المؤلف الأصلي للمجلات الثلاث في \"غرافيتي فولز\"؟",
+    "en": "Who is the original author of the three journals in Gravity Falls?",
+    "aAr": [
+      "ستانفورد باينز",
+      "ستانلي باينز",
+      "بيل سايفر",
+      "ديدوسيوس ماكغَكِت"
+    ],
+    "aEn": [
+      "Stanford Pines",
+      "Stanley Pines",
+      "Bill Cipher",
+      "Fiddleford McGucket"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر \"أدفنشر تايم\"؟",
+    "en": "Who created Adventure Time?",
+    "aAr": [
+      "بندلتون وورد",
+      "أليكس هيرش",
+      "ج. ج. كوينتل",
+      "ريبيكا شغر"
+    ],
+    "aEn": [
+      "Pendleton Ward",
+      "Alex Hirsch",
+      "J. G. Quintel",
+      "Rebecca Sugar"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم المدينة التي تدور فيها أحداث \"ذا أميزينغ وورلد أوف غامبول\"؟",
+    "en": "What is the town in The Amazing World of Gumball called?",
+    "aAr": [
+      "إلمور",
+      "ليكوود",
+      "غرينديل",
+      "أوكفايل"
+    ],
+    "aEn": [
+      "Elmore",
+      "Lakewood",
+      "Greendale",
+      "Oakvale"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر \"ذا بوندوكس\"؟",
+    "en": "Who created The Boondocks?",
+    "aAr": [
+      "آرون ماكغرودر",
+      "تايلر بيري",
+      "كارل جونز",
+      "كيث نايت"
+    ],
+    "aEn": [
+      "Aaron McGruder",
+      "Tyler Perry",
+      "Carl Jones",
+      "Keith Knight"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الهوية الحقيقية لروز كوارتز في \"ستيفن يونيفرس\"؟",
+    "en": "What is Rose Quartz's true identity in Steven Universe?",
+    "aAr": [
+      "بينك دايموند",
+      "وايت دايموند",
+      "بلو دايموند",
+      "بيرل الأصلية"
+    ],
+    "aEn": [
+      "Pink Diamond",
+      "White Diamond",
+      "Blue Diamond",
+      "The original Pearl"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من المخرجة/الكاتبة المشرفة على \"She-Ra and the Princesses of Power\"؟",
+    "en": "Who was the showrunner of She-Ra and the Princesses of Power?",
+    "aAr": [
+      "نويل ستيفنسون",
+      "لورين فوست",
+      "ريبيكا شغر",
+      "جينيفر يو نيلسون"
+    ],
+    "aEn": [
+      "Noelle Stevenson",
+      "Lauren Faust",
+      "Rebecca Sugar",
+      "Jennifer Yuh Nelson"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر مسلسل \"ديسينتشانتمنت\"؟",
+    "en": "Who created Disenchantment?",
+    "aAr": [
+      "مات غرونينغ",
+      "سيث ماكفارلن",
+      "أليكس هيرش",
+      "ديفيد إكس كوهين"
+    ],
+    "aEn": [
+      "Matt Groening",
+      "Seth MacFarlane",
+      "Alex Hirsch",
+      "David X. Cohen"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم البطلة البشرية في \"ذا أول هاوس\"؟",
+    "en": "What is the human protagonist's name in The Owl House?",
+    "aAr": [
+      "لوز نوسيدا",
+      "إيدا كلاوثورن",
+      "أميتي بلايت",
+      "وِلو بارك"
+    ],
+    "aEn": [
+      "Luz Noceda",
+      "Eda Clawthorne",
+      "Amity Blight",
+      "Willow Park"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم البلدة التي تعيش فيها آن في \"أمفيبيا\"؟",
+    "en": "What is the town where Anne lives in Amphibia called?",
+    "aAr": [
+      "وورتوود",
+      "فروغسبيرغ",
+      "نيوتوبيا",
+      "ليليباد فورد"
+    ],
+    "aEn": [
+      "Wartwood",
+      "Frogsburg",
+      "Newtopia",
+      "Lilypad Ford"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر سلسلة \"هيلدا\"؟",
+    "en": "Who created Hilda?",
+    "aAr": [
+      "لوك بيرسن",
+      "توف يانسون",
+      "كريس ريدل",
+      "براين لي أومالي"
+    ],
+    "aEn": [
+      "Luke Pearson",
+      "Tove Jansson",
+      "Chris Riddell",
+      "Bryan Lee O'Malley"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من مبتكر مسلسل \"برايمَل\"؟",
+    "en": "Who created Primal?",
+    "aAr": [
+      "جيندي تارتاكوفسكي",
+      "كريغ ماكراكين",
+      "دانا تيراس",
+      "مات برالي"
+    ],
+    "aEn": [
+      "Genndy Tartakovsky",
+      "Craig McCracken",
+      "Dana Terrace",
+      "Matt Braly"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم القلعة الاسكتلندية التي انطلقت منها حكاية \"غارغويلز\"؟",
+    "en": "What is the Scottish castle from which Gargoyles begins?",
+    "aAr": [
+      "قلعة وايفرن",
+      "قلعة دونبروخ",
+      "قلعة موراي",
+      "قلعة لوثيان"
+    ],
+    "aEn": [
+      "Castle Wyvern",
+      "Castle Dunbroch",
+      "Castle Moray",
+      "Castle Lothian"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "في أي بلدة خيالية يعيش \"كاردج الجبان\" مع موريل ويوستاس؟",
+    "en": "In which fictional town does Courage the Cowardly Dog live with Muriel and Eustace?",
+    "aAr": [
+      "نووير، كانساس",
+      "سايلنت هِل، كانساس",
+      "ريفرتون، أوكلاهوما",
+      "دَستفيل، نبراسكا"
+    ],
+    "aEn": [
+      "Nowhere, Kansas",
+      "Silent Hill, Kansas",
+      "Riverton, Oklahoma",
+      "Dustville, Nebraska"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما الاسم الأصلي للدكتور دراكن في \"كيم بوسيبل\"؟",
+    "en": "What is Dr. Drakken's original name in Kim Possible?",
+    "aAr": [
+      "درو ثيودور بي. ليبسكي",
+      "دانيال دراكنر",
+      "ديريك ليبسكي",
+      "دوايت كراسنر"
+    ],
+    "aEn": [
+      "Drew Theodore P. Lipsky",
+      "Daniel Drakner",
+      "Derek Lipsky",
+      "Dwight Krasner"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الطيار الشخصي لسكروج ماكداك في \"DuckTales\"؟",
+    "en": "What is Scrooge McDuck's pilot called in DuckTales?",
+    "aAr": [
+      "لانشباد ماكواك",
+      "دريك مالارد",
+      "فلنتهارت غلومغولد",
+      "غيزيكيا سكامب"
+    ],
+    "aEn": [
+      "Launchpad McQuack",
+      "Drake Mallard",
+      "Flintheart Glomgold",
+      "Gyro Scrooge"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم شركة الشحن التي يديرها بالو في \"تايل سبين\"؟",
+    "en": "What is Baloo's cargo company called in TaleSpin?",
+    "aAr": [
+      "هاير فور هاير",
+      "سكايواي كارغو",
+      "كلاود 9 فريت",
+      "سيبورن وينغز"
+    ],
+    "aEn": [
+      "Higher for Hire",
+      "Skyway Cargo",
+      "Cloud 9 Freight",
+      "Seaborn Wings"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الشرطية المتحالفة مع الغارغويلز في مسلسل \"غارغويلز\"؟",
+    "en": "What is the name of the detective allied with the Gargoyles?",
+    "aAr": [
+      "إليسا مازا",
+      "مارغو ييل",
+      "ليزا ونتروث",
+      "كاثرين فيرا"
+    ],
+    "aEn": [
+      "Elisa Maza",
+      "Margo Yale",
+      "Lisa Wentworth",
+      "Catherine Vera"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم العدو البشري الرئيسي لزِم في \"إنفايدر زِم\"؟",
+    "en": "What is the name of Zim's main human nemesis in Invader Zim?",
+    "aAr": [
+      "ديب مِمبرين",
+      "غَز مِمبرين",
+      "البروفيسور مِمبرين",
+      "كِف كيتون"
+    ],
+    "aEn": [
+      "Dib Membrane",
+      "Gaz Membrane",
+      "Professor Membrane",
+      "Kev Keaton"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم قائد النيو-سابينت في مسلسل \"إكسوسكواد\"؟",
+    "en": "What is the name of the Neo-Sapien leader in Exosquad?",
+    "aAr": [
+      "فايثون",
+      "ماركوس دراكون",
+      "سيريس فالور",
+      "ريكس برودريك"
+    ],
+    "aEn": [
+      "Phaeton",
+      "Marcus Drakon",
+      "Ceres Valor",
+      "Rex Broderick"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "من كان الشريك البشري الأول لشخصية \"بونكرز\" في بداية المسلسل؟",
+    "en": "Who was Bonkers' original human partner at the start of the series?",
+    "aAr": [
+      "ميراندا رايت",
+      "لاكي بيكيل",
+      "شيرلي شارمر",
+      "مارلين روبِرتس"
+    ],
+    "aEn": [
+      "Miranda Wright",
+      "Lucky Piquel",
+      "Shirley Charmer",
+      "Marilyn Roberts"
+    ],
+    "correct": 0
+  },
+  {
+    "ar": "ما اسم الحارس الشخصي/المرافق الشهير للدكتور كويست في \"جوني كويست\"؟",
+    "en": "What is the name of Dr. Quest's famous bodyguard/associate in Jonny Quest?",
+    "aAr": [
+      "ريس بانون",
+      "هادجي سينغ",
+      "جِسّي بانون",
+      "جيريمي سَرد"
+    ],
+    "aEn": [
+      "Race Bannon",
+      "Hadji Singh",
+      "Jessie Bannon",
+      "Jeremiah Surd"
+    ],
+    "correct": 0
+  }
+]

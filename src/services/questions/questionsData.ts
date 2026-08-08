@@ -1,5 +1,6 @@
 import { CategoryId, Difficulty, Question, QuestionType } from '../../types';
 import { GENERATED_QUESTIONS } from './generatedQuestions';
+import { HARD_QUESTIONS_PACK } from './hardQuestionsPack';
 
 type AgeBucket = 'all' | 'older';
 
@@ -206,4 +207,4 @@ const seeds: QuestionSeed[] = [
   { id: 'who-h2', categoryId: 'whoAmI', difficulty: 'hard', questionAr: 'من أنا؟ أنا القارة التي تضم أكبر عدد من السكان.', questionEn: 'Who am I? I am the continent with the largest population.', answersAr: ['إفريقيا', 'آسيا', 'أوروبا', 'أمريكا الجنوبية'], answersEn: ['Africa', 'Asia', 'Europe', 'South America'], correctAnswerIndex: 1 },
 ];
 
-export const QUESTIONS: Question[] = [...seeds.map(createQuestion), ...GENERATED_QUESTIONS];
+export const QUESTIONS: Question[] = [...seeds.map(createQuestion), ...GENERATED_QUESTIONS, ...HARD_QUESTIONS_PACK];
