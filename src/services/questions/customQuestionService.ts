@@ -19,6 +19,8 @@ export interface CustomQuestionInput {
   explanationAr?: string;
   imageUrl?: string;
   revealImageUrl?: string;
+  revealMode?: 'none' | 'blur';
+  blurAmount?: number;
 }
 
 const toQuestion = (questionId: string, payload: any): Question => {
@@ -99,6 +101,8 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
   const answersEn = input.answersEn?.map(answer => answer.trim()).filter(Boolean);
   const db = getFirebaseDb();
   const now = Date.now();
+  const revealMode: 'none' | 'blur' = input.revealMode === 'blur' ? 'blur' : 'none';
+  const blurAmount = revealMode === 'blur' ? Math.max(1, Number(input.blurAmount ?? 18)) : 0;
 
   const payload = {
     categoryId: input.categoryId,
@@ -114,8 +118,8 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
     imageUrl: input.imageUrl?.trim() || '',
     revealImageUrl: input.revealImageUrl?.trim() || '',
     mediaType: input.imageUrl?.trim() || input.revealImageUrl?.trim() ? 'image' : '',
-    revealMode: 'none',
-    blurAmount: 0,
+    revealMode,
+    blurAmount,
     isKidsSafe: true,
     isActive: true,
     createdAtMs: now,
@@ -124,7 +128,8 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
   };
 
   if (input.id) {
-    await setDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, input.id), payload, { merge: true });
+    const cleanPayload = Object.fromEntries(Object.entries(payload).filter(([, value]) => value !== undefined));
+    await setDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, input.id), cleanPayload, { merge: true });
     return input.id;
   }
 

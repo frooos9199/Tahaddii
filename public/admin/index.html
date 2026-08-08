@@ -141,6 +141,7 @@
     .question-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
     .answer-row { display: grid; grid-template-columns: 3rem 1fr 1fr; gap: 0.55rem; align-items: end; }
     .answer-row.hidden-answer { display: none; }
+    .row.manual-answer-row.hidden-answer { display: none; }
     .answer-index { min-height: 2.9rem; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 0.8rem; background: rgba(255,255,255,0.06); color: var(--primary-light); font-weight: 900; }
     .question-text { max-width: 28rem; line-height: 1.55; }
     .question-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; }
@@ -264,8 +265,7 @@
                 <label>النقاط<input id="questionPointsInput" dir="ltr" type="number" value="10" /></label>
               </div>
               <label>السؤال بالعربي<textarea id="questionArInput" placeholder="اكتب السؤال هنا"></textarea></label>
-              <label>السؤال بالإنجليزي اختياري<textarea id="questionEnInput" dir="ltr" placeholder="Optional English question"></textarea></label>
-              <div class="row">
+              <div class="row manual-answer-row hidden-answer">
                 <label>الإجابة الصحيحة بالعربي<input id="manualCorrectArInput" placeholder="اكتب الجواب الصحيح للأسئلة بدون خيارات" /></label>
                 <label>Correct answer<input id="manualCorrectEnInput" dir="ltr" placeholder="Optional English answer" /></label>
               </div>
@@ -276,27 +276,8 @@
                 <div class="answer-row"><div class="answer-index">4</div><label>الخيار عربي<input id="answer4ArInput" placeholder="اختيار 4" /></label><label>English<input id="answer4EnInput" dir="ltr" placeholder="Answer 4" /></label></div>
               </div>
               <div class="row">
-                <label>شرح الإجابة بالعربي<textarea id="questionExplanationArInput" placeholder="اختياري"></textarea></label>
-                <label>English explanation<textarea id="questionExplanationEnInput" dir="ltr" placeholder="Optional"></textarea></label>
-              </div>
-              <div class="row">
                 <label>رابط صورة السؤال<input id="questionImageUrlInput" dir="ltr" placeholder="يتعبأ تلقائيًا عند الرفع" /></label>
                 <label>رابط صورة الجواب<input id="questionRevealImageUrlInput" dir="ltr" placeholder="اختياري، تظهر بنفس مكان صورة السؤال بعد الكشف" /></label>
-              </div>
-              <div class="row">
-                <label>تأثير صورة السؤال قبل الإجابة
-                  <select id="questionRevealModeInput">
-                    <option value="none">بدون تغبيش</option>
-                    <option value="blur">تغبيش</option>
-                  </select>
-                </label>
-                <label>درجة التغبيش (عند تفعيل التغبيش)
-                  <input id="questionBlurAmountInput" dir="ltr" type="number" min="0" max="50" step="1" value="18" />
-                </label>
-              </div>
-              <div class="row">
-                <label>السؤال فعال<select id="questionActiveInput"><option value="TRUE">نعم</option><option value="FALSE">لا</option></select></label>
-                <label>حالة الصورة<input id="questionImageStatusInput" readonly placeholder="لم يتم رفع صورة" /></label>
               </div>
               <div class="row">
                 <label class="file-label">
@@ -309,6 +290,31 @@
                 </label>
               </div>
               <div id="questionPreview" class="preview-box"></div>
+              <details class="advanced">
+                <summary>خيارات متقدمة (اختياري): تغبيش، إنجليزي، شرح</summary>
+                <div class="form" style="margin-top: 0.85rem;">
+                  <div class="row">
+                    <label>تأثير صورة السؤال قبل الإجابة
+                      <select id="questionRevealModeInput">
+                        <option value="none">بدون تغبيش</option>
+                        <option value="blur">تغبيش</option>
+                      </select>
+                    </label>
+                    <label>درجة التغبيش (عند تفعيل التغبيش)
+                      <input id="questionBlurAmountInput" dir="ltr" type="number" min="0" max="50" step="1" value="18" />
+                    </label>
+                  </div>
+                  <label>السؤال بالإنجليزي<textarea id="questionEnInput" dir="ltr" placeholder="Optional English question"></textarea></label>
+                  <div class="row">
+                    <label>شرح الإجابة بالعربي<textarea id="questionExplanationArInput" placeholder="اختياري"></textarea></label>
+                    <label>English explanation<textarea id="questionExplanationEnInput" dir="ltr" placeholder="Optional"></textarea></label>
+                  </div>
+                  <div class="row">
+                    <label>السؤال فعال<select id="questionActiveInput"><option value="TRUE">نعم</option><option value="FALSE">لا</option></select></label>
+                    <label>حالة الصورة<input id="questionImageStatusInput" readonly placeholder="لم يتم رفع صورة" /></label>
+                  </div>
+                </div>
+              </details>
               <details class="advanced">
                 <summary>مقاسات صور الأسئلة المقترحة</summary>
                 <div class="upload-note">
@@ -468,7 +474,7 @@
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
-    import { addDoc, collection, deleteDoc, doc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+    import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
     import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
     import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js';
 
@@ -844,6 +850,8 @@
       const type = $('questionTypeInput').value;
       const answerMode = $('questionAnswerModeInput').value;
       const answerInputs = getAnswerInputs();
+      const manualRow = document.querySelector('.manual-answer-row');
+      if (manualRow) manualRow.classList.toggle('hidden-answer', answerMode !== 'manual');
       answerInputs.forEach(({ ar, en }) => {
         ar.disabled = false;
         en.disabled = false;
@@ -1011,6 +1019,12 @@
       if (answerMode === 'choices' && answersAr.length < 2) throw new Error('أضف اختيارين على الأقل أو اختر بدون خيارات');
       if (answerMode === 'choices' && (correctAnswerIndex < 0 || correctAnswerIndex >= answersAr.length)) throw new Error('اختر الإجابة الصحيحة من الخيارات الموجودة');
       if (answerMode === 'manual' && !manualCorrectAr) throw new Error('اكتب الإجابة الصحيحة للأسئلة بدون خيارات');
+      if (answerMode === 'choices') {
+        const normalizedAnswers = answersAr.map(answer => answer.toLowerCase().trim());
+        if (new Set(normalizedAnswers).size !== normalizedAnswers.length) {
+          throw new Error('فيه إجابتين متطابقتين. كل خيار لازم يكون مختلف عن الباقي');
+        }
+      }
 
       return {
         id,
@@ -1508,6 +1522,8 @@
 
     $('questionForm').addEventListener('submit', async event => {
       event.preventDefault();
+      const submitBtn = event.target.querySelector('[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
       setStatus($('questionStatus'), 'جاري حفظ السؤال...');
       try {
         const item = buildQuestionPayloadFromForm();
@@ -1519,6 +1535,8 @@
         renderQuestions();
       } catch (error) {
         setStatus($('questionStatus'), error.message, 'error');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
       }
     });
 
@@ -1570,26 +1588,57 @@
         setStatus($('questionStatus'), 'اختر ملف CSV أولاً', 'error');
         return;
       }
+      const importBtn = $('importQuestionsBtn');
+      importBtn.disabled = true;
       setStatus($('questionStatus'), 'جاري رفع الأسئلة...');
       try {
-        const normalized = pendingQuestionRows.map(normalizeQuestion);
+        const rowErrors = [];
+        const normalized = [];
+        pendingQuestionRows.forEach((row, index) => {
+          try {
+            normalized.push(normalizeQuestion(row));
+          } catch (error) {
+            rowErrors.push(`صف ${index + 2}: ${error.message}`);
+          }
+        });
+
+        let savedCount = 0;
         for (const item of normalized) {
-          if (item.id) {
-            await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields(item.payload), { merge: true });
-          } else {
-            await addDoc(collection(firestore, 'customQuestions'), removeUndefinedFields(item.payload));
+          try {
+            if (item.id) {
+              await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields(item.payload), { merge: true });
+            } else {
+              await addDoc(collection(firestore, 'customQuestions'), removeUndefinedFields(item.payload));
+            }
+            savedCount += 1;
+          } catch (error) {
+            rowErrors.push(`${item.id || item.payload.questionAr}: ${error.message}`);
           }
         }
-        setStatus($('questionStatus'), `تم رفع ${normalized.length} سؤال بنجاح`, 'success');
+
+        if (rowErrors.length) {
+          setStatus(
+            $('questionStatus'),
+            `تم حفظ ${savedCount} سؤال. فشل ${rowErrors.length}:\n${rowErrors.slice(0, 10).join('\n')}${rowErrors.length > 10 ? `\n...و${rowErrors.length - 10} خطأ إضافي` : ''}`,
+            savedCount ? 'success' : 'error'
+          );
+        } else {
+          setStatus($('questionStatus'), `تم رفع ${savedCount} سؤال بنجاح`, 'success');
+        }
         pendingQuestionRows = [];
         $('questionsFile').value = '';
         await loadData();
       } catch (error) {
         setStatus($('questionStatus'), error.message, 'error');
+      } finally {
+        importBtn.disabled = false;
       }
     });
 
+    const MAX_MEDIA_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB
+
     $('uploadQuestionMediaBtn').addEventListener('click', async () => {
+      const uploadBtn = $('uploadQuestionMediaBtn');
       const questionId = $('questionMediaId').value.trim();
       const role = $('questionMediaRole').value;
       const file = $('questionMediaFile').files?.[0];
@@ -1601,9 +1650,20 @@
         setStatus($('mediaStatus'), 'اختر ملف صورة أو فيديو', 'error');
         return;
       }
+      if (file.size > MAX_MEDIA_FILE_SIZE_BYTES) {
+        setStatus($('mediaStatus'), `الملف كبير جداً (${(file.size / 1024 / 1024).toFixed(1)}MB). الحد الأقصى 10MB`, 'error');
+        return;
+      }
 
+      uploadBtn.disabled = true;
       setStatus($('mediaStatus'), 'جاري رفع الوسائط...');
       try {
+        const existingQuestionSnapshot = await getDoc(doc(firestore, 'customQuestions', questionId));
+        if (!existingQuestionSnapshot.exists()) {
+          throw new Error('السؤال غير موجود. احفظ السؤال أولاً بنفس الـ ID ثم ارفع الصورة.');
+        }
+        const existingQuestion = existingQuestionSnapshot.data() || {};
+
         const extension = file.name.split('.').pop()?.toLowerCase() || (file.type.startsWith('video/') ? 'mp4' : 'jpg');
         const cleanId = questionId.replace(/[^a-zA-Z0-9_-]/g, '-');
         const path = `questionMedia/${cleanId}/${role}-${Date.now()}.${extension}`;
@@ -1619,7 +1679,8 @@
           mediaType: role === 'videoUrl' ? 'video' : 'image',
           updatedAtMs: Date.now(),
         };
-        if (role === 'imageUrl') {
+        // Only reset blur settings the first time an image is attached; keep existing choice on re-upload.
+        if (role === 'imageUrl' && !existingQuestion.imageUrl) {
           payload.revealMode = 'none';
           payload.blurAmount = 0;
         }
@@ -1630,6 +1691,8 @@
         await loadData();
       } catch (error) {
         setStatus($('mediaStatus'), error.message, 'error');
+      } finally {
+        uploadBtn.disabled = false;
       }
     });
 
