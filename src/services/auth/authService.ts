@@ -59,9 +59,31 @@ const toDisplayName = (user: User, displayName?: string) => {
   return 'Guest';
 };
 
+// Guests (anonymous auth) never get a Firestore document — this keeps the
+// `users` collection limited to real (email/password) accounts and avoids
+// unbounded storage/read/write growth from one-time visitors. Anonymous users
+// still get a Firebase Auth UID (needed for online rooms/presence), just no
+// persisted Firestore record.
+const buildGuestUserRecord = (user: User, displayName?: string): AppUserRecord => ({
+  uid: user.uid,
+  email: null,
+  displayName: toDisplayName(user, displayName),
+  avatarUri: user.photoURL ?? null,
+  role: 'user',
+  roles: ['user'],
+  isAdmin: false,
+  isSuperAdmin: false,
+  isGuest: true,
+  authProvider: 'anonymous',
+});
+
 export const ensureUserDocument = async (user: User, displayName?: string): Promise<AppUserRecord> => {
   if (!isFirebaseConfigured()) {
     throw new Error('Firebase not configured');
+  }
+
+  if (user.isAnonymous) {
+    return buildGuestUserRecord(user, displayName);
   }
 
   const db = getFirebaseDb();
@@ -79,8 +101,8 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     roles: [...tokenRole.roles],
     isAdmin: tokenRole.isAdmin,
     isSuperAdmin: tokenRole.isSuperAdmin,
-    isGuest: user.isAnonymous,
-    authProvider: user.isAnonymous ? 'anonymous' : 'password',
+    isGuest: false,
+    authProvider: 'password',
     updatedAt: serverTimestamp(),
   };
 
@@ -101,8 +123,8 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     roles: [...tokenRole.roles],
     isAdmin: tokenRole.isAdmin,
     isSuperAdmin: tokenRole.isSuperAdmin,
-    isGuest: user.isAnonymous,
-    authProvider: user.isAnonymous ? 'anonymous' : 'password',
+    isGuest: false,
+    authProvider: 'password',
   };
 };
 
@@ -205,13 +227,15 @@ export const updateCurrentUserProfile = async ({
     photoURL: avatarUri && avatarUri.startsWith('http') ? avatarUri : user.photoURL,
   });
 
-  await setDoc(doc(getFirebaseDb(), USERS_COLLECTION, user.uid), {
-    displayName: trimmedName,
-    avatarUri: avatarUri ?? null,
-    avatarEmoji: avatarEmoji ?? null,
-    color: color ?? null,
-    updatedAt: serverTimestamp(),
-  }, { merge: true });
+  if (!user.isAnonymous) {
+    await setDoc(doc(getFirebaseDb(), USERS_COLLECTION, user.uid), {
+      displayName: trimmedName,
+      avatarUri: avatarUri ?? null,
+      avatarEmoji: avatarEmoji ?? null,
+      color: color ?? null,
+      updatedAt: serverTimestamp(),
+    }, { merge: true });
+  }
 
   return ensureUserDocument(user, trimmedName);
 };

@@ -1,9 +1,19 @@
 import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AgeGroup, CategoryId, Difficulty, Question } from '../../types';
 import { DIFFICULTY_POINTS } from '../../constants';
 import { getFirebaseDb, isFirebaseConfigured } from '../firebase/firebaseClient';
 
 const CUSTOM_QUESTIONS_COLLECTION = 'customQuestions';
+const CACHE_STORAGE_KEY = 'customQuestions.cache.v1';
+// Custom questions rarely change minute-to-minute; caching for a few minutes
+// keeps the "add from admin panel shows up quickly" behaviour while avoiding
+// a full collection read on every screen navigation (Home, Category, Difficulty,
+// GameSetup, OnlineLobby previously each triggered their own full fetch).
+const CACHE_TTL_MS = 5 * 60 * 1000;
+
+let memoryCache: { fetchedAtMs: number; questions: Question[] } | null = null;
+let inFlightFetch: Promise<Question[]> | null = null;
 
 export interface CustomQuestionInput {
   id?: string;
@@ -69,17 +79,85 @@ const toQuestion = (questionId: string, payload: any): Question => {
   };
 };
 
-export const listCustomQuestions = async (): Promise<Question[]> => {
-  if (!isFirebaseConfigured()) {
-    return [];
+const readPersistedCache = async (): Promise<{ fetchedAtMs: number; questions: Question[] } | null> => {
+  try {
+    const raw = await AsyncStorage.getItem(CACHE_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.fetchedAtMs !== 'number' || !Array.isArray(parsed.questions)) return null;
+    return parsed;
+  } catch {
+    return null;
   }
+};
 
+const writePersistedCache = async (cache: { fetchedAtMs: number; questions: Question[] }) => {
+  try {
+    await AsyncStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(cache));
+  } catch {
+    // Ignore persistence failures — memory cache still applies for this session.
+  }
+};
+
+const fetchCustomQuestionsFromFirestore = async (): Promise<Question[]> => {
   const db = getFirebaseDb();
   const snapshot = await getDocs(collection(db, CUSTOM_QUESTIONS_COLLECTION));
   return snapshot.docs
     .map(questionDoc => ({ id: questionDoc.id, data: questionDoc.data() }))
     .sort((left, right) => Number(right.data.updatedAtMs ?? right.data.createdAtMs ?? 0) - Number(left.data.updatedAtMs ?? left.data.createdAtMs ?? 0))
     .map(questionDoc => toQuestion(questionDoc.id, questionDoc.data));
+};
+
+/**
+ * Returns admin-added custom questions, backed by an in-memory + persisted
+ * cache (TTL-based) to avoid re-reading the full `customQuestions` collection
+ * from Firestore on every screen (Home, Category, Difficulty, GameSetup,
+ * OnlineLobby, etc. previously each triggered their own independent read).
+ * Pass `forceRefresh: true` to bypass the cache (e.g. after the admin edits
+ * a question from inside the same running session).
+ */
+export const listCustomQuestions = async ({ forceRefresh = false }: { forceRefresh?: boolean } = {}): Promise<Question[]> => {
+  if (!isFirebaseConfigured()) {
+    return [];
+  }
+
+  const now = Date.now();
+
+  if (!forceRefresh && memoryCache && now - memoryCache.fetchedAtMs < CACHE_TTL_MS) {
+    return memoryCache.questions;
+  }
+
+  if (!forceRefresh && !memoryCache) {
+    const persisted = await readPersistedCache();
+    if (persisted && now - persisted.fetchedAtMs < CACHE_TTL_MS) {
+      memoryCache = persisted;
+      return persisted.questions;
+    }
+  }
+
+  if (!forceRefresh && inFlightFetch) {
+    return inFlightFetch;
+  }
+
+  const fetchPromise = (async () => {
+    try {
+      const questions = await fetchCustomQuestionsFromFirestore();
+      const cache = { fetchedAtMs: Date.now(), questions };
+      memoryCache = cache;
+      void writePersistedCache(cache);
+      return questions;
+    } finally {
+      inFlightFetch = null;
+    }
+  })();
+
+  inFlightFetch = fetchPromise;
+  return fetchPromise;
+};
+
+export const invalidateCustomQuestionsCache = () => {
+  memoryCache = null;
+  void AsyncStorage.removeItem(CACHE_STORAGE_KEY).catch(() => {});
 };
 
 export const addCustomQuestion = async (input: CustomQuestionInput) => {
@@ -131,10 +209,12 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
   if (input.id) {
     const cleanPayload = Object.fromEntries(Object.entries(payload).filter(([, value]) => value !== undefined));
     await setDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, input.id), cleanPayload, { merge: true });
+    invalidateCustomQuestionsCache();
     return input.id;
   }
 
   const docRef = await addDoc(collection(db, CUSTOM_QUESTIONS_COLLECTION), payload);
 
+  invalidateCustomQuestionsCache();
   return docRef.id;
 };
