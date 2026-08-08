@@ -506,6 +506,7 @@
     }
     .setup-card h1 { margin: 0 0 0.7rem; font-size: clamp(2rem, 5vw, 4rem); }
     .setup-card p { color: var(--muted); font-size: 1.1rem; line-height: 1.55; }
+    .setup-sponsor-ad { margin-top: 1.6rem; text-align: start; }
     .qr-wrap {
       display: grid;
       justify-items: center;
@@ -637,6 +638,7 @@
         <button type="submit">Connect</button>
       </form>
       <div id="setupError" class="error-text"></div>
+      <div id="setupSponsorAd" class="sponsor-ad setup-sponsor-ad hidden"></div>
     </div>
   </div>
 
@@ -740,6 +742,8 @@
     const pointsMeta = document.getElementById('pointsMeta');
     const feedback = document.getElementById('feedback');
     const sponsorAd = document.getElementById('sponsorAd');
+    const setupSponsorAd = document.getElementById('setupSponsorAd');
+    const sponsorAdTargets = [sponsorAd, setupSponsorAd].filter(Boolean);
     const players = document.getElementById('players');
     const scoreTitle = document.getElementById('scoreTitle');
     const brandSub = document.getElementById('brandSub');
@@ -1351,26 +1355,9 @@
       });
     }
 
-    function renderSponsorAd(lang, copy) {
-      const ad = sponsorAds[sponsorIndex];
-      if (!ad) {
-        if (sponsorRenderKey !== 'none') {
-          sponsorAd.replaceChildren();
-          sponsorRenderKey = 'none';
-        }
-        sponsorAd.classList.add('hidden');
-        return;
-      }
-
-      const titleText = lang === 'en' ? (ad.headlineEn || ad.headlineAr || '') : (ad.headlineAr || ad.headlineEn || '');
-      const nextRenderKey = [ad.id || sponsorIndex, ad.imageUrl || '', ad.companyName || '', titleText, ad.accentColor || '', lang].join('|');
-      if (sponsorRenderKey === nextRenderKey && !sponsorAd.classList.contains('hidden')) return;
-
-      sponsorRenderKey = nextRenderKey;
-      sponsorAd.replaceChildren();
-
-      sponsorAd.classList.remove('hidden');
-      sponsorAd.style.borderColor = ad.accentColor || 'rgba(245, 158, 11, 0.34)';
+    function fillSponsorAdTarget(target, ad, titleText, copy) {
+      target.replaceChildren();
+      target.style.borderColor = ad.accentColor || 'rgba(245, 158, 11, 0.34)';
       const logoUrls = getSponsorLogoUrls(ad.imageUrl);
       if (logoUrls.length) {
         const logo = document.createElement('img');
@@ -1389,7 +1376,7 @@
           logo.remove();
         };
         logo.src = logoUrls[logoIndex];
-        sponsorAd.append(logo);
+        target.append(logo);
       }
       const body = document.createElement('div');
       body.className = 'sponsor-copy';
@@ -1400,7 +1387,30 @@
       title.className = 'sponsor-title';
       title.textContent = titleText;
       body.append(kicker, title);
-      sponsorAd.append(body);
+      target.append(body);
+    }
+
+    function renderSponsorAd(lang, copy) {
+      const ad = sponsorAds[sponsorIndex];
+      if (!ad) {
+        if (sponsorRenderKey !== 'none') {
+          sponsorAdTargets.forEach(target => target.replaceChildren());
+          sponsorRenderKey = 'none';
+        }
+        sponsorAdTargets.forEach(target => target.classList.add('hidden'));
+        return;
+      }
+
+      const titleText = lang === 'en' ? (ad.headlineEn || ad.headlineAr || '') : (ad.headlineAr || ad.headlineEn || '');
+      const nextRenderKey = [ad.id || sponsorIndex, ad.imageUrl || '', ad.companyName || '', titleText, ad.accentColor || '', lang].join('|');
+      const allVisible = sponsorAdTargets.every(target => !target.classList.contains('hidden'));
+      if (sponsorRenderKey === nextRenderKey && allVisible) return;
+
+      sponsorRenderKey = nextRenderKey;
+      sponsorAdTargets.forEach(target => {
+        target.classList.remove('hidden');
+        fillSponsorAdTarget(target, ad, titleText, copy);
+      });
     }
 
     function getSponsorLogoUrls(rawUrl) {
