@@ -133,7 +133,7 @@ export default function GameSetupScreen({ navigation }: Props) {
           thumbnailUrl: firstQuestion.thumbnailUrl || '',
           videoUrl: firstQuestion.videoUrl || '',
           mediaType: firstQuestion.mediaType || (firstQuestion.videoUrl ? 'video' : firstQuestion.imageUrl ? 'image' : undefined),
-          revealMode: firstQuestion.revealMode || 'blur',
+          revealMode: (firstQuestion.revealMode === 'blur' ? 'blur' : 'none') as 'blur' | 'none',
           blurAmount: Number(firstQuestion.blurAmount ?? 18),
         },
         answers: answers.map(answer => ({

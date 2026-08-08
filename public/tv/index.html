@@ -1049,7 +1049,7 @@
           image.remove();
           fitQuestionLayout();
         };
-        if (state.status !== 'revealed' && media.revealMode !== 'none') {
+        if (state.status !== 'revealed' && media.revealMode === 'blur') {
           image.style.filter = `blur(${Number(media.blurAmount || 18)}px)`;
           image.style.transform = 'none';
         }

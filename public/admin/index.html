@@ -281,7 +281,18 @@
               </div>
               <div class="row">
                 <label>رابط صورة السؤال<input id="questionImageUrlInput" dir="ltr" placeholder="يتعبأ تلقائيًا عند الرفع" /></label>
-                <label>رابط صورة الجواب<input id="questionRevealImageUrlInput" dir="ltr" placeholder="اختياري، صورة تظهر بعد كشف الإجابة" /></label>
+                <label>رابط صورة الجواب<input id="questionRevealImageUrlInput" dir="ltr" placeholder="اختياري، تظهر بنفس مكان صورة السؤال بعد الكشف" /></label>
+              </div>
+              <div class="row">
+                <label>تأثير صورة السؤال قبل الإجابة
+                  <select id="questionRevealModeInput">
+                    <option value="none">بدون تغبيش</option>
+                    <option value="blur">تغبيش</option>
+                  </select>
+                </label>
+                <label>درجة التغبيش (عند تفعيل التغبيش)
+                  <input id="questionBlurAmountInput" dir="ltr" type="number" min="0" max="50" step="1" value="18" />
+                </label>
               </div>
               <div class="row">
                 <label>السؤال فعال<select id="questionActiveInput"><option value="TRUE">نعم</option><option value="FALSE">لا</option></select></label>
@@ -307,10 +318,14 @@
                   <strong>قاعدة عامة:</strong> استخدم JPG أو WebP، وخلي الحجم أقل من 800KB قدر الإمكان. صورة السؤال تظهر قبل الإجابة، وصورة الجواب تظهر بعد الكشف.
                 </div>
               </details>
-              <p class="upload-note">الأسهل: اكتب السؤال، ارفع صورة السؤال أو صورة الجواب من هنا، وتأكد من المعاينة ثم اضغط حفظ السؤال.</p>
+              <p class="upload-note">
+                الطريقة الأسهل (سريع):
+                1) ارفع "صورة السؤال". 2) اختياريًا ارفع "صورة الجواب" (ستظهر بنفس مكان صورة السؤال بعد الكشف).
+                3) اختر "بدون تغبيش" أو "تغبيش" ثم احفظ السؤال.
+              </p>
             </form>
             <details class="advanced">
-              <summary>أدوات متقدمة: Excel ورفع فيديو/وسائط خارج نموذج السؤال</summary>
+              <summary>اختياري: Excel ورفع فيديو/وسائط خارج النموذج</summary>
               <div class="form" style="margin-top: 0.85rem;">
                 <div class="actions">
                   <button id="downloadTemplateBtn" class="secondary" type="button">تحميل قالب Excel</button>
@@ -327,7 +342,7 @@
               </div>
             </details>
             <details class="advanced">
-              <summary>رفع فيديو أو وسائط متقدمة لسؤال محفوظ</summary>
+              <summary>اختياري: رفع فيديو/وسائط لسؤال محفوظ</summary>
               <div class="card form" style="margin-top: 0.85rem;">
               <h3 class="section-title">رفع صورة/فيديو لسؤال</h3>
               <p class="hint">ارفع الوسائط على Firebase Storage واربطها مباشرة بنفس ID السؤال. الصور والفيديوهات تحفظ بكاش طويل عشان تفتح بسرعة.</p>
@@ -701,8 +716,8 @@
           thumbnailUrl: String(item.thumbnailUrl || '').trim(),
           videoUrl: String(item.videoUrl || '').trim(),
           mediaType: String(item.mediaType || (item.videoUrl ? 'video' : item.imageUrl || item.revealImageUrl || item.thumbnailUrl ? 'image' : '')).trim(),
-          revealMode: String(item.revealMode || 'blur').trim(),
-          blurAmount: Number(item.blurAmount || 18),
+          revealMode: String(item.revealMode || 'none').trim(),
+          blurAmount: Number(item.blurAmount || 0),
           points: Number(item.points || pointsByDifficulty[difficulty] || 10),
           isKidsSafe: String(item.isKidsSafe || 'TRUE').toUpperCase() !== 'FALSE',
           isActive: String(item.isActive || 'TRUE').toUpperCase() !== 'FALSE',
@@ -775,6 +790,8 @@
     const renderQuestionPreview = () => {
       const imageUrl = $('questionImageUrlInput').value.trim();
       const revealImageUrl = $('questionRevealImageUrlInput').value.trim();
+      const revealMode = $('questionRevealModeInput').value;
+      const blurAmount = Number($('questionBlurAmountInput').value || 0);
       const categoryLabel = $('questionCategoryInput').selectedOptions[0]?.textContent || 'بدون كاتيجوري';
       const linkedLabels = [...$('questionLinkedCategoriesInput').selectedOptions].map(option => option.textContent).join('، ');
       const answerMode = $('questionAnswerModeInput').value === 'manual' ? 'بدون خيارات' : 'بخيارات';
@@ -788,9 +805,21 @@
         </div>
         <div class="preview-line"><strong>المعاينة:</strong> ${$('questionArInput').value.trim() || 'اكتب السؤال لعرضه هنا'}</div>
         <div class="preview-line">${categoryLabel} · ${$('questionTypeInput').selectedOptions[0]?.textContent || ''} · ${answerMode} · ${$('questionDifficultyInput').value}</div>
+        <div class="preview-line">تأثير الصورة: ${revealMode === 'blur' ? `تغبيش (${blurAmount})` : 'بدون تغبيش'}</div>
         <div class="preview-line">التصنيفات الإضافية: ${linkedLabels || 'لا يوجد'}</div>
         <div class="preview-line">الإجابة الصحيحة: ${correctAnswer || 'لم تكتب بعد'}</div>
       `;
+    };
+
+    const syncQuestionMediaControls = () => {
+      const hasMedia = Boolean($('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim());
+      const revealMode = $('questionRevealModeInput').value;
+      $('questionBlurAmountInput').disabled = revealMode !== 'blur' || !hasMedia;
+      if (revealMode !== 'blur') {
+        $('questionBlurAmountInput').value = '0';
+      } else if (Number($('questionBlurAmountInput').value || 0) <= 0) {
+        $('questionBlurAmountInput').value = '18';
+      }
     };
 
     const renderCategoryPreview = () => {
@@ -871,12 +900,15 @@
       $('questionExplanationEnInput').value = '';
       $('questionImageUrlInput').value = '';
       $('questionRevealImageUrlInput').value = '';
+      $('questionRevealModeInput').value = 'none';
+      $('questionBlurAmountInput').value = '18';
       $('questionActiveInput').value = 'TRUE';
       $('questionImageStatusInput').value = '';
       $('questionInlineImageFile').value = '';
       $('questionInlineRevealImageFile').value = '';
       getAnswerInputs().forEach(({ ar, en }) => { ar.value = ''; en.value = ''; });
       updateQuestionTypeFields();
+      syncQuestionMediaControls();
       renderQuestionPreview();
     };
 
@@ -922,12 +954,15 @@
       $('questionExplanationEnInput').value = question.explanationEn || '';
       $('questionImageUrlInput').value = question.imageUrl || '';
       $('questionRevealImageUrlInput').value = question.revealImageUrl || '';
+      $('questionRevealModeInput').value = question.revealMode === 'blur' ? 'blur' : 'none';
+      $('questionBlurAmountInput').value = String(Number(question.blurAmount ?? 18));
       $('questionActiveInput').value = question.isActive === false ? 'FALSE' : 'TRUE';
       $('questionImageStatusInput').value = question.imageUrl || question.revealImageUrl ? 'تم ربط صورة' : '';
       getAnswerInputs().forEach(({ ar, en }, index) => {
         ar.value = question.answersAr?.[index] || '';
         en.value = question.answersEn?.[index] || '';
       });
+      syncQuestionMediaControls();
       renderQuestionPreview();
       window.scrollTo({ top: $('questionsPanel').offsetTop, behavior: 'smooth' });
     };
@@ -958,6 +993,11 @@
       const answerMode = $('questionAnswerModeInput').value;
       const questionAr = $('questionArInput').value.trim();
       const questionEn = $('questionEnInput').value.trim() || questionAr;
+      const imageUrl = $('questionImageUrlInput').value.trim();
+      const revealImageUrl = $('questionRevealImageUrlInput').value.trim();
+      const hasImageMedia = Boolean(imageUrl || revealImageUrl);
+      const revealMode = hasImageMedia && $('questionRevealModeInput').value === 'blur' ? 'blur' : 'none';
+      const blurAmount = revealMode === 'blur' ? Math.max(1, Number($('questionBlurAmountInput').value || 18)) : 0;
       const answerInputs = getAnswerInputs();
       const answersAr = answerInputs.map(({ ar }) => ar.value.trim()).filter(Boolean);
       const answersEnRaw = answerInputs.map(({ en }) => en.value.trim());
@@ -990,11 +1030,11 @@
           answerMode,
           explanationAr: $('questionExplanationArInput').value.trim() || null,
           explanationEn: $('questionExplanationEnInput').value.trim() || null,
-          imageUrl: $('questionImageUrlInput').value.trim(),
-          revealImageUrl: $('questionRevealImageUrlInput').value.trim(),
-          mediaType: $('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim() ? 'image' : '',
-          revealMode: $('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim() ? 'blur' : '',
-          blurAmount: $('questionImageUrlInput').value.trim() ? 18 : 0,
+          imageUrl,
+          revealImageUrl,
+          mediaType: hasImageMedia ? 'image' : '',
+          revealMode,
+          blurAmount,
           points: Number($('questionPointsInput').value || pointsByDifficulty[difficulty] || 10),
           isKidsSafe: true,
           isActive: $('questionActiveInput').value !== 'FALSE',
@@ -1400,7 +1440,7 @@
     $('downloadTemplateBtn').addEventListener('click', () => {
       const sample = [
         headers,
-        ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '', '', '', '', '', 'blur', '18', '10', 'TRUE', 'TRUE', 'FALSE'],
+        ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '', '', '', '', '', 'none', '0', '10', 'TRUE', 'TRUE', 'FALSE'],
       ];
       downloadText('Tahaddii-question-template.csv', `\uFEFF${sample.map(row => row.map(escapeCsv).join(',')).join('\n')}`);
     });
@@ -1426,9 +1466,13 @@
     $('questionCategoryInput').addEventListener('change', refreshQuestionAutoId);
     $('questionArInput').addEventListener('input', refreshQuestionAutoId);
     $('questionEnInput').addEventListener('input', refreshQuestionAutoId);
-    ['questionCategoryInput', 'questionTypeInput', 'questionAnswerModeInput', 'questionDifficultyInput', 'questionCorrectInput', 'questionArInput', 'questionEnInput', 'manualCorrectArInput', 'manualCorrectEnInput', 'questionImageUrlInput', 'questionRevealImageUrlInput', 'answer1ArInput', 'answer2ArInput', 'answer3ArInput', 'answer4ArInput'].forEach(id => {
+    ['questionCategoryInput', 'questionTypeInput', 'questionAnswerModeInput', 'questionDifficultyInput', 'questionCorrectInput', 'questionArInput', 'questionEnInput', 'manualCorrectArInput', 'manualCorrectEnInput', 'questionImageUrlInput', 'questionRevealImageUrlInput', 'questionRevealModeInput', 'questionBlurAmountInput', 'answer1ArInput', 'answer2ArInput', 'answer3ArInput', 'answer4ArInput'].forEach(id => {
       $(id).addEventListener('input', renderQuestionPreview);
       $(id).addEventListener('change', renderQuestionPreview);
+    });
+    ['questionImageUrlInput', 'questionRevealImageUrlInput', 'questionRevealModeInput'].forEach(id => {
+      $(id).addEventListener('input', syncQuestionMediaControls);
+      $(id).addEventListener('change', syncQuestionMediaControls);
     });
     $('questionInlineImageFile').addEventListener('change', async event => {
       const file = event.target.files?.[0];
@@ -1438,6 +1482,7 @@
         const url = await uploadInlineQuestionImage(file, 'imageUrl');
         $('questionImageUrlInput').value = url;
         $('questionImageStatusInput').value = 'تم رفع صورة السؤال';
+        syncQuestionMediaControls();
         renderQuestionPreview();
         setStatus($('questionStatus'), 'تم رفع صورة السؤال. أكمل البيانات واضغط حفظ السؤال.', 'success');
       } catch (error) {
@@ -1452,6 +1497,7 @@
         const url = await uploadInlineQuestionImage(file, 'revealImageUrl');
         $('questionRevealImageUrlInput').value = url;
         $('questionImageStatusInput').value = 'تم رفع صورة الجواب';
+        syncQuestionMediaControls();
         renderQuestionPreview();
         setStatus($('questionStatus'), 'تم رفع صورة الجواب. أكمل البيانات واضغط حفظ السؤال.', 'success');
       } catch (error) {
@@ -1574,8 +1620,8 @@
           updatedAtMs: Date.now(),
         };
         if (role === 'imageUrl') {
-          payload.revealMode = 'blur';
-          payload.blurAmount = 18;
+          payload.revealMode = 'none';
+          payload.blurAmount = 0;
         }
         await setDoc(doc(firestore, 'customQuestions', questionId), removeUndefinedFields(payload), { merge: true });
         await navigator.clipboard?.writeText(url).catch(() => {});
@@ -1829,6 +1875,9 @@
       }
     });
 
+    updateQuestionTypeFields();
+    syncQuestionMediaControls();
+    renderQuestionPreview();
     onAuthStateChanged(auth, requireLogin);
   </script>
 </body>

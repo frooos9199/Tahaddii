@@ -101,7 +101,7 @@ export default function GameScreen({ navigation }: Props) {
   }, [language, question]);
   const questionImageUrls = useMemo(() => getQuestionDisplayImageUrls(question, revealed), [question, revealed]);
   const questionImageUrl = questionImageUrls[imageFallbackIndex] || '';
-  const questionBlurRadius = question && questionImageUrl && !revealed && question.revealMode !== 'none'
+  const questionBlurRadius = question && questionImageUrl && !revealed && question.revealMode === 'blur'
     ? Number(question.blurAmount ?? 18)
     : 0;
 
@@ -140,7 +140,7 @@ export default function GameScreen({ navigation }: Props) {
         thumbnailUrl: question.thumbnailUrl || '',
         videoUrl: question.videoUrl || '',
         mediaType: question.mediaType || (question.videoUrl ? 'video' : questionImageUrl ? 'image' : undefined),
-        revealMode: question.revealMode || 'blur',
+        revealMode: (question.revealMode === 'blur' ? 'blur' : 'none') as 'blur' | 'none',
         blurAmount: Number(question.blurAmount ?? 18),
       },
       answers: answers.map((answer, index) => ({
