@@ -178,4 +178,17 @@ describe('questionQueue', () => {
     expect(scienceIndex).toBeGreaterThan(0);
     expect(scienceIndex).toBeLessThan(4);
   });
+
+  test('prioritizes newly added unseen questions (by createdAtMs) over older unseen ones', () => {
+    const oldQuestions = Array.from({ length: 20 }, (_, index) => makeQuestion(`sports-old-${index}`, 'sports'));
+    const brandNewQuestion = makeQuestion('sports-new', 'sports', { createdAtMs: Date.now() });
+
+    const queue = buildSmartMixedQuestionQueue({
+      pool: [...oldQuestions, brandNewQuestion],
+      categoryIds: ['sports'],
+      questionCount: 1,
+    });
+
+    expect(queue[0].id).toBe(brandNewQuestion.id);
+  });
 });

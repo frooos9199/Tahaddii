@@ -35,7 +35,14 @@ type BucketName = keyof CategoryQuestionBuckets;
 
 const buildCategoryBuckets = (questions: Question[], history: QuestionHistoryState): CategoryQuestionBuckets => {
   const recentIds = getRecentQuestionIds(history);
-  const unseen = getUnseenQuestions(questions, history).sort(() => Math.random() - 0.5);
+  // New questions (with a createdAtMs timestamp) are boosted to the front of the
+  // unseen pool so they surface soon after being added, instead of waiting for
+  // a random shuffle to eventually pick them. Questions without a timestamp
+  // (built-in bank questions) all tie at 0 and stay randomly shuffled among themselves.
+  const unseen = getUnseenQuestions(questions, history)
+    .map(question => ({ question, jitter: Math.random() }))
+    .sort((left, right) => (right.question.createdAtMs ?? 0) - (left.question.createdAtMs ?? 0) || left.jitter - right.jitter)
+    .map(({ question }) => question);
   const seen = getOldestSeenQuestions(questions, history);
 
   return {

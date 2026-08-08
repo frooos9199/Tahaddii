@@ -54,6 +54,7 @@ export interface Question {
   thumbnailUrl?: string;
   videoUrl?: string;
   queueCategoryId?: CategoryId;
+  createdAtMs?: number;
   mediaType?: 'image' | 'video';
   revealMode?: 'none' | 'blur' | 'crop' | 'mask';
   blurAmount?: number;

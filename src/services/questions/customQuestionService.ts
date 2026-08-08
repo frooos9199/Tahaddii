@@ -60,6 +60,7 @@ const toQuestion = (questionId: string, payload: any): Question => {
         : undefined,
     revealMode: payload.revealMode || undefined,
     blurAmount: Number(payload.blurAmount ?? 18),
+    createdAtMs: Number(payload.createdAtMs ?? payload.updatedAtMs ?? 0) || undefined,
     points: Number(payload.points ?? DIFFICULTY_POINTS[difficulty] ?? DIFFICULTY_POINTS.easy),
     isKidsSafe: payload.isKidsSafe ?? true,
     isActive: payload.isActive ?? true,
