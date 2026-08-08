@@ -102,6 +102,15 @@
     .stage.compact-secondary { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) auto auto; gap: clamp(0.28rem, 0.65vh, 0.7rem); }
     .stage.extreme-content .feedback,
     .stage.extreme-content .sponsor-ad { display: none; }
+    /* Pin each stage child to its own grid row so hiding one (e.g. category strip via
+       display:none) doesn't shift the rest up and squeeze the question card into a
+       tiny row. Without this, CSS grid auto-placement re-flows remaining items into
+       the earlier rows, which is what caused the "finished" screen to appear blank. */
+    .stage > .progress-row { grid-row: 1; }
+    .stage > .category-strip { grid-row: 2; }
+    .stage > .question-card { grid-row: 3; }
+    .stage > .feedback { grid-row: 4; }
+    .stage > .sponsor-ad { grid-row: 5; }
 
     .progress-row { display: flex; align-items: center; gap: 1.4vw; }
     .progress-track { flex: 1; height: 0.75rem; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.1); }
