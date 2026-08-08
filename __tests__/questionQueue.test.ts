@@ -109,6 +109,24 @@ describe('questionQueue', () => {
     expect(queue[0].id).toBe(oldSeenQuestion.id);
   });
 
+  test('prefers unseen questions from other categories before using seen fallback', () => {
+    const sportsSeen = makeQuestion('sports-seen', 'sports');
+    const scienceUnseen1 = makeQuestion('science-unseen-1', 'science');
+    const scienceUnseen2 = makeQuestion('science-unseen-2', 'science');
+
+    const queue = buildSmartMixedQuestionQueue({
+      pool: [sportsSeen, scienceUnseen1, scienceUnseen2],
+      categoryIds: ['sports', 'science'],
+      questionCount: 2,
+      history: makeHistory({
+        [sportsSeen.id]: { questionId: sportsSeen.id, categoryId: 'sports', lastSeenAt: Date.now(), seenCount: 4 },
+      }),
+    });
+
+    expect(queue).toHaveLength(2);
+    expect(queue.map(question => question.id)).not.toContain(sportsSeen.id);
+  });
+
   test('keeps mixed question types in one queue without changing their content', () => {
     const trueFalseQuestion = makeQuestion('true-false', 'sports', {
       type: 'true_false',
