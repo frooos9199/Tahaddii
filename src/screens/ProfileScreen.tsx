@@ -12,7 +12,7 @@ import { Colors } from '../theme/colors';
 import { useProfileStore } from '../store/profileStore';
 import { useAppStore } from '../store/appStore';
 import { useAuthStore } from '../store/authStore';
-import { updateCurrentUserDisplayName } from '../services/auth/authService';
+import { updateCurrentUserProfile } from '../services/auth/authService';
 import { uploadProfileAvatar } from '../services/storage/profileAvatarService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Profile'> };
@@ -65,8 +65,13 @@ export default function ProfileScreen({ navigation }: Props) {
         sharedAvatarUri = await uploadProfileAvatar(user.uid, avatarUri).catch(() => avatarUri);
       }
       await updateProfile({ name: trimmedName, avatarEmoji: emoji, color, avatarUri: sharedAvatarUri });
-      if (userRecord && !userRecord.isGuest) {
-        await updateCurrentUserDisplayName(trimmedName);
+      if (userRecord) {
+        await updateCurrentUserProfile({
+          displayName: trimmedName,
+          avatarUri: sharedAvatarUri,
+          avatarEmoji: emoji,
+          color,
+        });
         await refreshUserRecord();
       }
       Alert.alert('✅', t('profileScreen.saved'));

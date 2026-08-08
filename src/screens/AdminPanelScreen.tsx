@@ -1,15 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, RefreshControl, SafeAreaView, ScrollView, Share, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, RefreshControl, SafeAreaView, ScrollView, Share, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { launchImageLibrary } from 'react-native-image-picker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { adminDeleteRoom, listActiveRooms, listAppUsers } from '../services/admin/adminService';
 import { deleteUserDirectly, setUserRoleDirectly } from '../services/admin/adminActionService';
 import { SponsorAd, listSponsorAds, saveSponsorAd, setSponsorAdActive } from '../services/admin/sponsorAdService';
 import { addCustomQuestion, listCustomQuestions } from '../services/questions/customQuestionService';
+import { listCategoryCards, saveCategoryCard, setCategoryCardActive } from '../services/categories/categoryCardService';
+import { uploadAdminImage, uploadQuestionMedia, QuestionMediaRole } from '../services/storage/questionMediaUploadService';
 import { QUESTIONS } from '../services/questions/questionsData';
+import { questionBelongsToCategory } from '../services/questions/questionCatalog';
 import { useAuthStore } from '../store/authStore';
-import { AppUserRecord, CategoryId, Difficulty, OnlineRoom, Question, RootStackParamList } from '../types';
+import { AppUserRecord, CategoryCard, CategoryId, Difficulty, OnlineRoom, Question, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { CATEGORY_EMOJIS } from '../constants';
 
@@ -22,7 +26,7 @@ const QUESTION_EXPORT_HEADERS = [
   'questionAr', 'questionEn', 'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar',
   'answer1En', 'answer2En', 'answer3En', 'answer4En', 'correctAnswerNumber',
   'correctAnswerAr', 'correctAnswerEn', 'explanationAr', 'explanationEn', 'points',
-  'isKidsSafe', 'isActive', 'isPremium',
+  'imageUrl', 'revealImageUrl', 'isKidsSafe', 'isActive', 'isPremium',
 ];
 
 const escapeCsvValue = (value: unknown) => `"${String(value ?? '').replace(/"/g, '""')}"`;
@@ -30,6 +34,7 @@ const escapeCsvValue = (value: unknown) => `"${String(value ?? '').replace(/"/g,
 const createEmptyQuestionForm = () => ({
   id: undefined as string | undefined,
   categoryId: 'generalKnowledge' as CategoryId,
+  linkedCategoryIds: [] as CategoryId[],
   difficulty: 'easy' as Difficulty,
   questionAr: '',
   questionEn: '',
@@ -37,6 +42,8 @@ const createEmptyQuestionForm = () => ({
   answersEn: ['', '', '', ''],
   correctAnswerIndex: 0,
   explanationAr: '',
+  imageUrl: '',
+  revealImageUrl: '',
 });
 
 const createEmptyAdForm = () => ({
@@ -49,17 +56,30 @@ const createEmptyAdForm = () => ({
   priority: '0',
 });
 
+const createEmptyCategoryForm = () => ({
+  id: '',
+  nameAr: '',
+  nameEn: '',
+  imageUrl: '',
+  accentColor: '#8b5cf6',
+  sortOrder: '0',
+  isActive: true,
+});
+
 export default function AdminPanelScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { userRecord, refreshUserRecord } = useAuthStore();
   const [users, setUsers] = useState<AppUserRecord[]>([]);
   const [rooms, setRooms] = useState<OnlineRoom[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
+  const [categoryCards, setCategoryCards] = useState<CategoryCard[]>([]);
   const [sponsorAds, setSponsorAds] = useState<SponsorAd[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('generalKnowledge');
   const [questionForm, setQuestionForm] = useState(createEmptyQuestionForm);
+  const [categoryForm, setCategoryForm] = useState(createEmptyCategoryForm);
   const [adForm, setAdForm] = useState(createEmptyAdForm);
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
+  const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
   const [editingAdId, setEditingAdId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [busyKey, setBusyKey] = useState<string | null>(null);
@@ -71,10 +91,11 @@ export default function AdminPanelScreen({ navigation }: Props) {
     setRefreshing(true);
     try {
       await refreshUserRecord();
-      const [nextUsers, nextRooms, customQuestions, nextSponsorAds] = await Promise.all([listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds()]);
+      const [nextUsers, nextRooms, customQuestions, nextSponsorAds, nextCategoryCards] = await Promise.all([listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds(), listCategoryCards({ includeInactive: true })]);
       setUsers(nextUsers);
       setRooms(nextRooms);
       setSponsorAds(nextSponsorAds);
+      setCategoryCards(nextCategoryCards);
       const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
       const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
       const mergedBuiltinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
@@ -186,14 +207,81 @@ export default function AdminPanelScreen({ navigation }: Props) {
     }));
   };
 
+  const toggleLinkedCategory = (categoryId: CategoryId) => {
+    setQuestionForm(current => {
+      const linkedCategoryIds = current.linkedCategoryIds.includes(categoryId)
+        ? current.linkedCategoryIds.filter(item => item !== categoryId)
+        : [...current.linkedCategoryIds, categoryId];
+
+      return { ...current, linkedCategoryIds: linkedCategoryIds.filter(item => item !== current.categoryId) };
+    });
+  };
+
+  const pickQuestionImage = (role: QuestionMediaRole) => {
+    const label = role === 'imageUrl' ? t('admin.questionImage') : t('admin.answerImage');
+    launchImageLibrary({ mediaType: 'photo', quality: 0.8, includeBase64: false }, async response => {
+      const uri = response.assets?.[0]?.uri;
+      if (!uri) return;
+
+      const questionId = editingQuestionId || questionForm.id || `app-${Date.now()}`;
+      setBusyKey(`upload-${role}`);
+      try {
+        const url = await uploadQuestionMedia({ questionId, mediaUri: uri, role });
+        setQuestionForm(current => ({ ...current, id: questionId, [role]: url }));
+        Alert.alert('', t('admin.questionImageUploaded', { label }));
+      } catch (error) {
+        Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.questionImageUploadFailed'));
+      } finally {
+        setBusyKey(null);
+      }
+    });
+  };
+
+  const pickCategoryImage = () => {
+    launchImageLibrary({ mediaType: 'photo', quality: 0.7, maxWidth: 900, maxHeight: 1100, includeBase64: false }, async response => {
+      try {
+        if (response.didCancel) return;
+        const uri = response.assets?.[0]?.uri;
+        if (!uri) return;
+        const categoryId = editingCategoryId || categoryForm.id.trim() || `category-${Date.now()}`;
+        const url = await uploadAdminImage({ folder: 'categoryMedia', itemId: categoryId, mediaUri: uri, role: 'imageUrl' });
+        setCategoryForm(previous => ({ ...previous, id: previous.id || categoryId, imageUrl: url }));
+        Alert.alert(t('common.success'), t('admin.categoryImageUploaded'));
+      } catch (error) {
+        console.warn('Category image upload failed', error);
+        Alert.alert(t('common.error'), t('admin.adminImageUploadFailed'));
+      }
+    });
+  };
+
+  const pickAdImage = () => {
+    launchImageLibrary({ mediaType: 'photo', quality: 0.8, includeBase64: false }, async response => {
+      try {
+        if (response.didCancel) return;
+        const uri = response.assets?.[0]?.uri;
+        if (!uri) return;
+        const adId = editingAdId || adForm.id?.trim() || `ad-${Date.now()}`;
+        const url = await uploadAdminImage({ folder: 'sponsorMedia', itemId: adId, mediaUri: uri, role: 'imageUrl' });
+        setAdForm(previous => ({ ...previous, id: previous.id || adId, imageUrl: url }));
+        Alert.alert(t('common.success'), t('admin.adImageUploaded'));
+      } catch (error) {
+        console.warn('Sponsor image upload failed', error);
+        Alert.alert(t('common.error'), t('admin.adminImageUploadFailed'));
+      }
+    });
+  };
+
   const createQuestion = async () => {
     setBusyKey('create-question');
     try {
       await addCustomQuestion({
         ...questionForm,
         id: editingQuestionId ?? undefined,
+        linkedCategoryIds: questionForm.linkedCategoryIds.filter(categoryId => categoryId !== questionForm.categoryId),
         questionEn: questionForm.questionEn,
         answersEn: questionForm.answersEn,
+        imageUrl: questionForm.imageUrl,
+        revealImageUrl: questionForm.revealImageUrl,
       });
       setQuestionForm(createEmptyQuestionForm());
       setEditingQuestionId(null);
@@ -206,12 +294,61 @@ export default function AdminPanelScreen({ navigation }: Props) {
     }
   };
 
+  const submitCategory = async () => {
+    try {
+      const categoryId = (editingCategoryId || categoryForm.id.trim()) as CategoryId;
+      await saveCategoryCard({
+        id: categoryId,
+        nameAr: categoryForm.nameAr,
+        nameEn: categoryForm.nameEn,
+        imageUrl: categoryForm.imageUrl,
+        accentColor: categoryForm.accentColor,
+        sortOrder: Number(categoryForm.sortOrder || 0),
+        isActive: categoryForm.isActive,
+      });
+      setCategoryForm(createEmptyCategoryForm());
+      setEditingCategoryId(null);
+      Alert.alert(t('common.success'), t('admin.categorySavedSuccess'));
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.categorySaveFailed'));
+    }
+  };
+
+  const editCategory = (category: CategoryCard) => {
+    setEditingCategoryId(category.id);
+    setCategoryForm({
+      id: category.id,
+      nameAr: category.nameAr,
+      nameEn: category.nameEn,
+      imageUrl: category.imageUrl || '',
+      accentColor: category.accentColor || '#8b5cf6',
+      sortOrder: String(category.sortOrder ?? 0),
+      isActive: category.isActive,
+    });
+  };
+
+  const cancelEditCategory = () => {
+    setEditingCategoryId(null);
+    setCategoryForm(createEmptyCategoryForm());
+  };
+
+  const toggleCategory = async (category: CategoryCard) => {
+    try {
+      await setCategoryCardActive(category.id, !category.isActive);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), t('admin.categorySaveFailed'));
+    }
+  };
+
   const editQuestion = (question: Question) => {
     setEditingQuestionId(question.id);
     setSelectedCategory(question.categoryId);
     setQuestionForm({
       id: question.id,
       categoryId: question.categoryId,
+      linkedCategoryIds: question.linkedCategoryIds ?? [],
       difficulty: question.difficulty,
       questionAr: question.questionAr,
       questionEn: question.questionEn,
@@ -219,6 +356,8 @@ export default function AdminPanelScreen({ navigation }: Props) {
       answersEn: [...question.answersEn, '', '', '', ''].slice(0, 4),
       correctAnswerIndex: question.correctAnswerIndex ?? 0,
       explanationAr: question.explanationAr ?? '',
+      imageUrl: question.imageUrl ?? '',
+      revealImageUrl: question.revealImageUrl ?? '',
     });
   };
 
@@ -306,6 +445,8 @@ export default function AdminPanelScreen({ navigation }: Props) {
       question.explanationAr ?? '',
       question.explanationEn ?? '',
       question.points,
+      question.imageUrl ?? '',
+      question.revealImageUrl ?? '',
       question.isKidsSafe ? 'TRUE' : 'FALSE',
       question.isActive ? 'TRUE' : 'FALSE',
       question.isPremium ? 'TRUE' : 'FALSE',
@@ -314,17 +455,22 @@ export default function AdminPanelScreen({ navigation }: Props) {
 
     Clipboard.setString(csv);
     await Share.share({
-      title: 'tahaddii-questions.csv',
+      title: 'Tahaddii-questions.csv',
       message: csv,
     });
     Alert.alert('', t('admin.questionsExported', { count: questions.length }));
   };
 
-  const categoryRows = CATEGORY_IDS.map(categoryId => ({
+  const adminCategoryIds = categoryCards.length ? categoryCards.map(category => category.id) : CATEGORY_IDS;
+  const getAdminCategoryName = (categoryId: CategoryId) => {
+    const category = categoryCards.find(item => item.id === categoryId);
+    return category?.nameAr || t(`categories.${categoryId}`, { defaultValue: categoryId });
+  };
+  const categoryRows = adminCategoryIds.map(categoryId => ({
     id: categoryId,
-    count: questions.filter(question => question.categoryId === categoryId).length,
+    count: questions.filter(question => questionBelongsToCategory(question, categoryId)).length,
   }));
-  const visibleQuestions = questions.filter(question => question.categoryId === selectedCategory);
+  const visibleQuestions = questions.filter(question => questionBelongsToCategory(question, selectedCategory));
 
   if (!canOpen) {
     return null;
@@ -380,7 +526,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
               return (
                 <TouchableOpacity key={category.id} style={[styles.categoryChip, isSelected && styles.categoryChipActive]} onPress={() => setSelectedCategory(category.id)}>
                   <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[category.id]}</Text>
-                  <Text style={styles.categoryChipText}>{t(`categories.${category.id}`)}</Text>
+                  <Text style={styles.categoryChipText}>{getAdminCategoryName(category.id)}</Text>
                   <Text style={styles.categoryCount}>{category.count}</Text>
                 </TouchableOpacity>
               );
@@ -398,12 +544,22 @@ export default function AdminPanelScreen({ navigation }: Props) {
             </View>
             <Text style={styles.inputLabel}>{t('admin.category')}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
-              {CATEGORY_IDS.map(categoryId => (
-                <TouchableOpacity key={categoryId} style={[styles.smallChip, questionForm.categoryId === categoryId && styles.smallChipActive]} onPress={() => setQuestionForm(current => ({ ...current, categoryId }))}>
-                  <Text style={styles.smallChipText}>{CATEGORY_EMOJIS[categoryId]} {t(`categories.${categoryId}`)}</Text>
+              {adminCategoryIds.map(categoryId => (
+                <TouchableOpacity key={categoryId} style={[styles.smallChip, questionForm.categoryId === categoryId && styles.smallChipActive]} onPress={() => setQuestionForm(current => ({ ...current, categoryId, linkedCategoryIds: current.linkedCategoryIds.filter(item => item !== categoryId) }))}>
+                  <Text style={styles.smallChipText}>{CATEGORY_EMOJIS[categoryId]} {getAdminCategoryName(categoryId)}</Text>
                 </TouchableOpacity>
               ))}
             </ScrollView>
+
+            <Text style={styles.inputLabel}>{t('admin.linkedCategories')}</Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
+              {adminCategoryIds.filter(categoryId => categoryId !== questionForm.categoryId).map(categoryId => (
+                <TouchableOpacity key={categoryId} style={[styles.smallChip, questionForm.linkedCategoryIds.includes(categoryId) && styles.linkedChipActive]} onPress={() => toggleLinkedCategory(categoryId)}>
+                  <Text style={styles.smallChipText}>{CATEGORY_EMOJIS[categoryId]} {getAdminCategoryName(categoryId)}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+            <Text style={styles.exportHint}>{t('admin.linkedCategoriesHint')}</Text>
 
             <Text style={styles.inputLabel}>{t('common.difficulty')}</Text>
             <View style={styles.actionsRow}>
@@ -434,14 +590,33 @@ export default function AdminPanelScreen({ navigation }: Props) {
 
             <Text style={styles.inputLabel}>{t('admin.optionalExplanation')}</Text>
             <TextInput style={styles.textInput} value={questionForm.explanationAr} onChangeText={explanationAr => setQuestionForm(current => ({ ...current, explanationAr }))} placeholder={t('admin.explanationPlaceholder')} placeholderTextColor={Colors.textMuted} multiline />
+
+            <Text style={styles.inputLabel}>{t('admin.questionMedia')}</Text>
+            <View style={styles.mediaActionsRow}>
+              <TouchableOpacity style={[styles.mediaPickBtn, busyKey === 'upload-imageUrl' && styles.roleBtnDisabled]} disabled={busyKey === 'upload-imageUrl'} onPress={() => pickQuestionImage('imageUrl')}>
+                <Text style={styles.mediaPickBtnText}>{busyKey === 'upload-imageUrl' ? '...' : t('admin.uploadQuestionImage')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.mediaPickBtn, busyKey === 'upload-revealImageUrl' && styles.roleBtnDisabled]} disabled={busyKey === 'upload-revealImageUrl'} onPress={() => pickQuestionImage('revealImageUrl')}>
+                <Text style={styles.mediaPickBtnText}>{busyKey === 'upload-revealImageUrl' ? '...' : t('admin.uploadAnswerImage')}</Text>
+              </TouchableOpacity>
+            </View>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={questionForm.imageUrl} onChangeText={imageUrl => setQuestionForm(current => ({ ...current, imageUrl }))} placeholder={t('admin.questionImageUrl')} placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            <TextInput style={[styles.textInput, styles.englishInput]} value={questionForm.revealImageUrl} onChangeText={revealImageUrl => setQuestionForm(current => ({ ...current, revealImageUrl }))} placeholder={t('admin.answerImageUrl')} placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            {questionForm.imageUrl || questionForm.revealImageUrl ? (
+              <View style={styles.mediaPreviewRow}>
+                {questionForm.imageUrl ? <Image source={{ uri: questionForm.imageUrl }} style={styles.questionMediaPreview} /> : null}
+                {questionForm.revealImageUrl ? <Image source={{ uri: questionForm.revealImageUrl }} style={styles.questionMediaPreview} /> : null}
+              </View>
+            ) : null}
             <Text style={styles.noteBox}>{t('admin.questionMediaUploadNote')}</Text>
+            <Text style={styles.noteBox}>{t('admin.questionImageSizeGuide')}</Text>
 
             <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'create-question' && styles.roleBtnDisabled]} disabled={busyKey === 'create-question'} onPress={() => { void createQuestion(); }}>
               <Text style={styles.createQuestionBtnText}>{editingQuestionId ? t('admin.saveEdit') : t('admin.saveQuestion')}</Text>
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.sectionTitle}>{t('admin.questionsForCategory', { category: t(`categories.${selectedCategory}`), count: visibleQuestions.length })}</Text>
+          <Text style={styles.sectionTitle}>{t('admin.questionsForCategory', { category: getAdminCategoryName(selectedCategory), count: visibleQuestions.length })}</Text>
           {visibleQuestions.slice(0, 80).map(question => (
             <View key={question.id} style={styles.questionCard}>
               <View style={styles.questionHeaderRow}>
@@ -455,6 +630,13 @@ export default function AdminPanelScreen({ navigation }: Props) {
               </View>
               <Text style={styles.questionText}>{question.questionAr}</Text>
               <Text style={styles.questionEnglishText}>{question.questionEn}</Text>
+              {question.linkedCategoryIds?.length ? <Text style={styles.questionLinkedText}>{t('admin.linkedCategories')}: {question.linkedCategoryIds.map(getAdminCategoryName).join('، ')}</Text> : null}
+              {question.imageUrl || question.revealImageUrl ? (
+                <View style={styles.mediaPreviewRow}>
+                  {question.imageUrl ? <Image source={{ uri: question.imageUrl }} style={styles.questionMediaPreview} /> : null}
+                  {question.revealImageUrl ? <Image source={{ uri: question.revealImageUrl }} style={styles.questionMediaPreview} /> : null}
+                </View>
+              ) : null}
               {question.answersAr.map((answer, index) => (
                 <View key={`${question.id}-${index}`} style={[styles.answerPreview, index === question.correctAnswerIndex && styles.answerPreviewCorrect]}>
                   <Text style={styles.answerPreviewText}>{index + 1}. {answer}</Text>
@@ -465,6 +647,71 @@ export default function AdminPanelScreen({ navigation }: Props) {
             </View>
           ))}
           {visibleQuestions.length > 80 ? <Text style={styles.emptyText}>{t('admin.firstQuestionsOnly', { count: 80 })}</Text> : null}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.categoryCardsSection')}</Text>
+          <View style={styles.questionFormCard}>
+            <View style={styles.questionHeaderRow}>
+              <Text style={styles.formTitle}>{editingCategoryId ? t('admin.editCategoryCard') : t('admin.addCategoryCard')}</Text>
+              {editingCategoryId ? (
+                <TouchableOpacity style={styles.cancelEditBtn} onPress={cancelEditCategory}>
+                  <Text style={styles.cancelEditBtnText}>{t('admin.cancelEdit')}</Text>
+                </TouchableOpacity>
+              ) : null}
+            </View>
+            <Text style={styles.inputLabel}>{t('admin.categoryId')}</Text>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={categoryForm.id} onChangeText={id => setCategoryForm(current => ({ ...current, id }))} placeholder="food" placeholderTextColor={Colors.textMuted} autoCapitalize="none" editable={!editingCategoryId} />
+            <Text style={styles.inputLabel}>{t('admin.categoryNameAr')}</Text>
+            <TextInput style={styles.textInput} value={categoryForm.nameAr} onChangeText={nameAr => setCategoryForm(current => ({ ...current, nameAr }))} placeholder={t('admin.categoryNameAr')} placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.categoryNameEn')}</Text>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={categoryForm.nameEn} onChangeText={nameEn => setCategoryForm(current => ({ ...current, nameEn }))} placeholder="Food" placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.categoryImageUrl')}</Text>
+            <TouchableOpacity style={styles.mediaPickBtn} onPress={pickCategoryImage}>
+              <Text style={styles.mediaPickBtnText}>{t('admin.uploadCategoryImage')}</Text>
+            </TouchableOpacity>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={categoryForm.imageUrl} onChangeText={imageUrl => setCategoryForm(current => ({ ...current, imageUrl }))} placeholder="https://..." placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            {categoryForm.imageUrl ? <Image source={{ uri: categoryForm.imageUrl }} style={styles.singleMediaPreview} /> : null}
+            <Text style={styles.noteBox}>{t('admin.categoryImageUploadNote')}</Text>
+            <View style={styles.adMetaRow}>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.categoryAccentColor')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={categoryForm.accentColor} onChangeText={accentColor => setCategoryForm(current => ({ ...current, accentColor }))} placeholder="#8b5cf6" placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+              </View>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.categorySortOrder')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={categoryForm.sortOrder} onChangeText={sortOrder => setCategoryForm(current => ({ ...current, sortOrder }))} placeholder="0" placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+              </View>
+            </View>
+            <TouchableOpacity style={[styles.roleBtn, categoryForm.isActive && styles.roleBtnActive]} onPress={() => setCategoryForm(current => ({ ...current, isActive: !current.isActive }))}>
+              <Text style={styles.roleBtnText}>{categoryForm.isActive ? t('admin.categoryActive') : t('admin.categoryPaused')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.createQuestionBtn} onPress={() => { void submitCategory(); }}>
+              <Text style={styles.createQuestionBtnText}>{t('admin.saveCategoryCard')}</Text>
+            </TouchableOpacity>
+          </View>
+
+          {categoryCards.map(category => (
+            <View key={category.id} style={styles.adCard}>
+              {category.imageUrl ? <Image source={{ uri: category.imageUrl }} style={styles.singleMediaPreview} /> : null}
+              <View style={styles.userTop}>
+                <View style={styles.userInfo}>
+                  <Text style={styles.userName}>{category.nameAr}</Text>
+                  <Text style={styles.userMeta}>{category.nameEn} · {category.id}</Text>
+                  <Text style={styles.userMeta}>{category.isActive ? t('admin.categoryActive') : t('admin.categoryPaused')} · {t('admin.categorySortOrder')}: {category.sortOrder}</Text>
+                </View>
+                <View style={[styles.adColorDot, { backgroundColor: category.accentColor }]} />
+              </View>
+              <View style={styles.actionsRow}>
+                <TouchableOpacity style={styles.roleBtn} onPress={() => editCategory(category)}>
+                  <Text style={styles.roleBtnText}>{t('common.edit')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.roleBtn} onPress={() => { void toggleCategory(category); }}>
+                  <Text style={styles.roleBtnText}>{category.isActive ? t('admin.pauseCategory') : t('admin.activateCategory')}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))}
         </View>
 
         <View style={styles.section}>
@@ -485,7 +732,11 @@ export default function AdminPanelScreen({ navigation }: Props) {
             <Text style={styles.inputLabel}>{t('admin.adHeadlineEn')}</Text>
             <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.headlineEn} onChangeText={headlineEn => setAdForm(current => ({ ...current, headlineEn }))} placeholder="Ad headline in English" placeholderTextColor={Colors.textMuted} />
             <Text style={styles.inputLabel}>{t('admin.adImageUrl')}</Text>
+            <TouchableOpacity style={styles.mediaPickBtn} onPress={pickAdImage}>
+              <Text style={styles.mediaPickBtnText}>{t('admin.uploadAdImage')}</Text>
+            </TouchableOpacity>
             <TextInput style={[styles.textInput, styles.englishInput]} value={adForm.imageUrl} onChangeText={imageUrl => setAdForm(current => ({ ...current, imageUrl }))} placeholder="https://..." placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            {adForm.imageUrl ? <Image source={{ uri: adForm.imageUrl }} style={styles.singleMediaPreview} /> : null}
             <Text style={styles.noteBox}>{t('admin.adImageUploadNote')}</Text>
             <View style={styles.adMetaRow}>
               <View style={styles.adMetaInputWrap}>
@@ -504,6 +755,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
 
           {sponsorAds.map(ad => (
             <View key={ad.id} style={styles.adCard}>
+              {ad.imageUrl ? <Image source={{ uri: ad.imageUrl }} style={styles.singleMediaPreview} /> : null}
               <View style={styles.userTop}>
                 <View style={styles.userInfo}>
                   <Text style={styles.userName}>{ad.companyName}</Text>
@@ -674,6 +926,7 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
   },
   smallChipActive: { borderColor: Colors.primaryLight, backgroundColor: Colors.primary + '22' },
+  linkedChipActive: { borderColor: Colors.accent, backgroundColor: Colors.accent + '22' },
   smallChipText: { color: Colors.text, fontSize: 12, fontWeight: '800' },
   textInput: {
     backgroundColor: Colors.backgroundCard,
@@ -692,6 +945,32 @@ const styles = StyleSheet.create({
   answerInputsStack: { flex: 1, gap: 6 },
   adMetaRow: { flexDirection: 'row', gap: 10 },
   adMetaInputWrap: { flex: 1, gap: 6 },
+  mediaActionsRow: { flexDirection: 'row', gap: 8 },
+  mediaPickBtn: {
+    flex: 1,
+    backgroundColor: Colors.primary,
+    borderRadius: 12,
+    paddingVertical: 12,
+    alignItems: 'center',
+  },
+  mediaPickBtnText: { color: Colors.text, fontSize: 12, fontWeight: '900' },
+  mediaPreviewRow: { flexDirection: 'row', gap: 8 },
+  questionMediaPreview: {
+    flex: 1,
+    height: 120,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    backgroundColor: Colors.backgroundCard,
+  },
+  singleMediaPreview: {
+    width: '100%',
+    height: 150,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    backgroundColor: Colors.backgroundCard,
+  },
   correctPick: {
     width: 46,
     height: 46,
@@ -743,6 +1022,7 @@ const styles = StyleSheet.create({
   editQuestionBtnText: { color: Colors.text, fontSize: 12, fontWeight: '900' },
   questionText: { color: Colors.text, fontSize: 15, fontWeight: '800', lineHeight: 22, textAlign: 'right' },
   questionEnglishText: { color: Colors.textMuted, fontSize: 14, lineHeight: 20, textAlign: 'left' },
+  questionLinkedText: { color: Colors.accent, fontSize: 11, fontWeight: '800', textAlign: 'right' },
   answerPreview: {
     borderRadius: 12,
     borderWidth: 1,

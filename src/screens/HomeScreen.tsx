@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated, Dimensions, Image, ScrollView,
-  StatusBar, StyleSheet, Text, TouchableOpacity, View,
+  InteractionManager, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -13,7 +13,8 @@ import { useGameStore } from '../store/gameStore';
 import { useOnlineStore } from '../store/onlineStore';
 import { useProfileStore } from '../store/profileStore';
 import { CATEGORY_EMOJIS } from '../constants';
-import { getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
+import { getCachedCategoryCards, getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
+import { getQuestionImageUrls, preloadImageUrl } from '../services/media/questionMediaService';
 import {
   getCategoryQuestionCount,
   getCategoryQuestionCountFromBank,
@@ -23,6 +24,96 @@ import {
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Home'> };
 
 const { width: W } = Dimensions.get('window');
+const CATEGORY_IMAGE_PREFETCH_BATCH_SIZE = 8;
+
+const CATEGORY_IMAGE_ASSETS = {
+  generalKnowledge: require('../assets/categories/generalKnowledge.png'),
+  sports: require('../assets/categories/sports.png'),
+  football: require('../assets/categories/football.png'),
+  cars: require('../assets/categories/cars.png'),
+  movies: require('../assets/categories/movies.png'),
+  cartoons: require('../assets/categories/cartoons.png'),
+  anime: require('../assets/categories/anime.png'),
+  history: require('../assets/categories/history.png'),
+  geography: require('../assets/categories/geography.png'),
+  science: require('../assets/categories/science.png'),
+  space: require('../assets/categories/space.png'),
+  animals: require('../assets/categories/animals.png'),
+  capitals: require('../assets/categories/capitals.png'),
+  riddles: require('../assets/categories/riddles.png'),
+  math: require('../assets/categories/math.png'),
+  arabicLang: require('../assets/categories/arabicLang.png'),
+  englishLang: require('../assets/categories/englishLang.png'),
+  technology: require('../assets/categories/technology.png'),
+  inventions: require('../assets/categories/inventions.png'),
+  celebrities: require('../assets/categories/celebrities.png'),
+  music: require('../assets/categories/music.png'),
+  islamicCulture: require('../assets/categories/islamicCulture.png'),
+  kuwait: require('../assets/categories/kuwait.png'),
+  flags: require('../assets/categories/flags.png'),
+  guessImage: require('../assets/categories/guessImage.png'),
+  trueFalse: require('../assets/categories/trueFalse.png'),
+  completeSentence: require('../assets/categories/completeSentence.png'),
+  whoAmI: require('../assets/categories/whoAmI.png'),
+  wouldYouRather: require('../assets/categories/wouldYouRather.png'),
+  familyChallenges: require('../assets/categories/familyChallenges.png'),
+} as const;
+
+const getLocalCategoryImage = (card: CategoryCard) => CATEGORY_IMAGE_ASSETS[(card.iconKey || card.id) as keyof typeof CATEGORY_IMAGE_ASSETS];
+
+const prefetchCategoryImages = (cards: CategoryCard[]) => {
+  const urls = [...new Set(cards.filter(card => !getLocalCategoryImage(card)).map(card => card.imageUrl?.trim()).filter((url): url is string => Boolean(url)))];
+  for (let index = 0; index < urls.length; index += CATEGORY_IMAGE_PREFETCH_BATCH_SIZE) {
+    const batch = urls.slice(index, index + CATEGORY_IMAGE_PREFETCH_BATCH_SIZE);
+    void Promise.all(batch.map(preloadImageUrl));
+  }
+};
+
+const prefetchQuestionImages = (questions: { imageUrl?: string; revealImageUrl?: string; thumbnailUrl?: string }[], limit = 18) => {
+  InteractionManager.runAfterInteractions(() => {
+    questions.slice(0, limit).flatMap(getQuestionImageUrls).forEach(url => {
+      void preloadImageUrl(url);
+    });
+  });
+};
+
+function CategoryCardImage({ card }: { card: CategoryCard }) {
+  const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const localImage = getLocalCategoryImage(card);
+
+  useEffect(() => {
+    setLoaded(false);
+    setFailed(false);
+    if (!localImage && card.imageUrl) {
+      void preloadImageUrl(card.imageUrl);
+    }
+  }, [card.imageUrl, localImage]);
+
+  return (
+    <>
+      <View style={[styles.categoryImageFallback, { backgroundColor: card.accentColor + '33' }]}> 
+        <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[card.id] || getCategoryFallbackEmoji(card.id)}</Text>
+      </View>
+      {localImage ? (
+        <Image
+          source={localImage}
+          style={[styles.categoryImage, styles.categoryImageLoaded]}
+          resizeMode="cover"
+        />
+      ) : card.imageUrl && !failed ? (
+        <Image
+          source={{ uri: card.imageUrl, cache: 'force-cache' }}
+          style={[styles.categoryImage, loaded && styles.categoryImageLoaded]}
+          resizeMode="cover"
+          fadeDuration={120}
+          onLoadEnd={() => setLoaded(true)}
+          onError={() => setFailed(true)}
+        />
+      ) : null}
+    </>
+  );
+}
 
 export default function HomeScreen({ navigation }: Props) {
   const { t } = useTranslation();
@@ -57,14 +148,25 @@ export default function HomeScreen({ navigation }: Props) {
   useEffect(() => {
     let isMounted = true;
 
-    Promise.all([listCategoryCards(), loadQuestionBank()]).then(([cards, questions]) => {
+    getCachedCategoryCards().then(cachedCards => {
       if (!isMounted) return;
+      setCategoryCards(cachedCards);
+      prefetchCategoryImages(cachedCards);
+    });
 
-      const nextCounts = Object.fromEntries(
-        cards.map(item => [item.id, getCategoryQuestionCountFromBank(questions, item.id)]),
-      ) as Record<CategoryId, number>;
+    listCategoryCards().then(cards => {
+      if (!isMounted) return;
+      setCategoryCards(cards);
+      prefetchCategoryImages(cards);
+    });
+
+    loadQuestionBank().then(questions => {
+      if (!isMounted) return;
+      prefetchQuestionImages(questions);
+
+      const categoryIds = [...new Set([...Object.keys(CATEGORY_EMOJIS), ...questions.map(question => question.categoryId)])] as CategoryId[];
+      const nextCounts = Object.fromEntries(categoryIds.map(categoryId => [categoryId, getCategoryQuestionCountFromBank(questions, categoryId)])) as Record<CategoryId, number>;
       setCategoryCounts(nextCounts);
-      setCategoryCards(cards.filter(item => (nextCounts[item.id] ?? getCategoryQuestionCount(item.id)) > 0));
     });
 
     return () => {
@@ -72,7 +174,8 @@ export default function HomeScreen({ navigation }: Props) {
     };
   }, []);
 
-  const visibleCards = useMemo(() => categoryCards.filter(card => (categoryCounts[card.id] ?? getCategoryQuestionCount(card.id)) > 0), [categoryCards, categoryCounts]);
+  const categoryCountsLoaded = Object.keys(categoryCounts).length > 0;
+  const visibleCards = useMemo(() => categoryCards.filter(card => !categoryCountsLoaded || (categoryCounts[card.id] ?? getCategoryQuestionCount(card.id)) > 0), [categoryCards, categoryCounts, categoryCountsLoaded]);
 
   const toggleCategory = (categoryId: CategoryId) => {
     setSelectedCategories(current => current.includes(categoryId)
@@ -184,14 +287,7 @@ export default function HomeScreen({ navigation }: Props) {
                 <TouchableOpacity
                   style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected]}
                   onPress={() => toggleCategory(card.id)}>
-                  {card.imageUrl ? (
-                    <Image source={{ uri: card.imageUrl }} style={styles.categoryImage} />
-                  ) : (
-                    <View style={[styles.categoryImageFallback, { backgroundColor: card.accentColor + '33' }]}>
-                      <Text style={styles.categoryEmoji}>{CATEGORY_EMOJIS[card.id] || getCategoryFallbackEmoji(card.id)}</Text>
-                    </View>
-                  )}
-                  <View style={styles.categoryShade} />
+                  <CategoryCardImage card={card} />
                   {selected ? <View style={[styles.categoryCheck, { backgroundColor: card.accentColor }]}><Text style={styles.categoryCheckText}>✓</Text></View> : null}
                 </TouchableOpacity>
                 <Text style={styles.categoryTitle} numberOfLines={2}>{getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar')}</Text>
@@ -358,13 +454,10 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   categoryCardSelected: { transform: [{ scale: 0.98 }] },
-  categoryImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },
+  categoryImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%', opacity: 0 },
+  categoryImageLoaded: { opacity: 1 },
   categoryImageFallback: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },
   categoryEmoji: { fontSize: 34 },
-  categoryShade: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: 'rgba(0,0,0,0.26)',
-  },
   categoryTitle: {
     color: Colors.text,
     fontSize: 12,

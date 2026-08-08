@@ -17,6 +17,7 @@ export type CategoryId = string;
 
 export interface CategoryCard {
   id: CategoryId;
+  iconKey?: string;
   nameAr: string;
   nameEn: string;
   imageUrl: string;
@@ -34,6 +35,7 @@ export interface Question {
   id: string;
   type: QuestionType;
   categoryId: CategoryId;
+  linkedCategoryIds?: CategoryId[];
   ageGroups: AgeGroup[];
   difficulty: Difficulty;
   questionAr: string;
@@ -51,6 +53,7 @@ export interface Question {
   revealImageUrl?: string;
   thumbnailUrl?: string;
   videoUrl?: string;
+  queueCategoryId?: CategoryId;
   mediaType?: 'image' | 'video';
   revealMode?: 'none' | 'blur' | 'crop' | 'mask';
   blurAmount?: number;
@@ -308,6 +311,9 @@ export interface AppUserRecord {
   uid: string;
   email: string | null;
   displayName: string;
+  avatarUri?: string | null;
+  avatarEmoji?: string;
+  color?: string;
   role: AppUserRole;
   roles: AppUserRole[];
   isAdmin: boolean;

@@ -57,6 +57,7 @@ const normalizeQuestion = question => ({
   id: question.id,
   source: 'app',
   categoryId: question.categoryId,
+  linkedCategoryIds: Array.isArray(question.linkedCategoryIds) ? question.linkedCategoryIds : [],
   difficulty: question.difficulty,
   type: question.type || 'multiple_choice',
   ageGroups: Array.isArray(question.ageGroups) ? question.ageGroups : [],

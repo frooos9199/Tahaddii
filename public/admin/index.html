@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>tahaddii admin | لوحة التحكم</title>
+  <title>Tahaddii admin | لوحة التحكم</title>
   <style>
     :root {
       --bg: #080416;
@@ -58,6 +58,32 @@
     .error { color: var(--error); }
     .success { color: var(--success); }
     .upload-note { color: #d8ccff; background: rgba(139,92,246,0.12); border: 1px solid rgba(196,181,253,0.22); border-radius: 0.9rem; padding: 0.75rem 0.9rem; line-height: 1.7; font-size: 0.84rem; margin: 0; }
+    .log-box { border: 1px solid rgba(239,68,68,0.35); border-radius: 1rem; background: rgba(8,4,22,0.72); padding: 0.85rem; display: grid; gap: 0.65rem; }
+    .log-head { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+    .log-title { margin: 0; color: #fecaca; font-size: 0.95rem; font-weight: 900; }
+    .log-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+    .log-btn { border: 1px solid var(--line); border-radius: 0.7rem; padding: 0.4rem 0.62rem; background: rgba(255,255,255,0.06); color: var(--text); font-size: 0.78rem; font-weight: 800; }
+    .log-list {
+      max-height: 14rem;
+      overflow: auto;
+      margin: 0;
+      padding: 0.25rem 0.35rem;
+      list-style: none;
+      display: grid;
+      gap: 0.35rem;
+      direction: ltr;
+      text-align: left;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.76rem;
+      line-height: 1.45;
+      color: #fde68a;
+      border: 1px solid rgba(196,181,253,0.2);
+      border-radius: 0.8rem;
+      background: rgba(255,255,255,0.03);
+    }
+    .log-list li { white-space: pre-wrap; overflow-wrap: anywhere; padding: 0.3rem 0.35rem; border-bottom: 1px dashed rgba(196,181,253,0.18); }
+    .log-list li:last-child { border-bottom: none; }
+    .log-empty { color: var(--muted); font-family: inherit; direction: rtl; text-align: right; }
 
     .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; }
     .stat { border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; background: var(--panel-2); }
@@ -111,6 +137,21 @@
     .ad-actions button { padding: 0.62rem 0.75rem; border-radius: 0.75rem; }
     .category-preview { width: 4.5rem; height: 4.5rem; object-fit: cover; border-radius: 1rem; border: 1px solid var(--line); background: rgba(255,255,255,0.08); }
     .category-id { color: var(--muted); direction: ltr; font-size: 0.78rem; }
+    .toolbar { display: grid; grid-template-columns: 1.2fr 0.8fr 0.7fr 0.7fr; gap: 0.75rem; align-items: end; }
+    .question-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+    .answer-row { display: grid; grid-template-columns: 3rem 1fr 1fr; gap: 0.55rem; align-items: end; }
+    .answer-row.hidden-answer { display: none; }
+    .answer-index { min-height: 2.9rem; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 0.8rem; background: rgba(255,255,255,0.06); color: var(--primary-light); font-weight: 900; }
+    .question-text { max-width: 28rem; line-height: 1.55; }
+    .question-actions { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .question-actions button { padding: 0.48rem 0.65rem; border-radius: 0.7rem; font-size: 0.78rem; }
+    .warning-note { color: #fde68a; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.35); border-radius: 0.85rem; padding: 0.6rem 0.75rem; line-height: 1.6; font-size: 0.82rem; }
+    .preview-box { border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,0.045); padding: 0.85rem; display: grid; gap: 0.7rem; }
+    .preview-img { width: min(100%, 18rem); aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.9rem; border: 1px solid var(--line); background: rgba(255,255,255,0.08); }
+    .preview-images { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .preview-line { color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
+    details.advanced { border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,0.035); padding: 0.85rem; }
+    details.advanced summary { cursor: pointer; color: var(--primary-light); font-weight: 900; }
 
     .hidden { display: none !important; }
 
@@ -122,6 +163,8 @@
       .span-8, .span-6, .span-4, .span-12 { grid-column: span 1; }
       .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .row { grid-template-columns: 1fr; }
+      .toolbar { grid-template-columns: 1fr; }
+      .question-form-grid, .answer-row { grid-template-columns: 1fr; }
       .section-head { align-items: flex-start; flex-direction: column; }
     }
   </style>
@@ -132,7 +175,7 @@
       <div class="brand">
         <div class="mark">ت</div>
         <div>
-          <div class="brand-title">لوحة تحكم tahaddii</div>
+          <div class="brand-title">لوحة تحكم Tahaddii</div>
           <div class="brand-sub">دخول، إحصائيات، Excel، وإعلانات الشركات</div>
         </div>
       </div>
@@ -169,11 +212,23 @@
             <div class="stat"><div id="adsCount" class="stat-num">--</div><div class="stat-label">إعلانات فعالة</div></div>
             <div class="stat"><div id="tvCount" class="stat-num">--</div><div class="stat-label">جلسات التلفاز</div></div>
           </div>
+          <div class="log-box" style="margin-top: 0.9rem;">
+            <div class="log-head">
+              <h3 class="log-title">Error Log (Live)</h3>
+              <div class="log-actions">
+                <button id="copyErrorLogBtn" type="button" class="log-btn">نسخ اللوق</button>
+                <button id="clearErrorLogBtn" type="button" class="log-btn">تفريغ اللوق</button>
+              </div>
+            </div>
+            <ul id="errorLogList" class="log-list">
+              <li class="log-empty">لا يوجد أخطاء حالياً</li>
+            </ul>
+          </div>
         </div>
 
         <div class="span-12 card">
           <div class="tabs" role="tablist">
-            <button class="tab active" type="button" data-tab="questionsPanel">Excel الأسئلة</button>
+            <button class="tab active" type="button" data-tab="questionsPanel">إدارة الأسئلة</button>
             <button class="tab" type="button" data-tab="categoriesPanel">بطاقات الرئيسية</button>
             <button class="tab" type="button" data-tab="adsPanel">إعلانات الشركات</button>
             <button class="tab" type="button" data-tab="statsPanel">الإحصائيات</button>
@@ -182,23 +237,98 @@
           <section id="questionsPanel" class="panel active">
             <div class="section-head">
               <div>
-                <h2 class="section-title">رفع وجلب Excel</h2>
-                <p class="hint">جلب Excel يسحب بنك التطبيق كاملًا مع أي تعديلات من الأدمن. إذا رفعت ID موجود، يتم حفظه كتعديل أدمن ويغطي السؤال الأصلي داخل التطبيق.</p>
-              </div>
-              <div class="actions">
-                <button id="downloadTemplateBtn" class="secondary" type="button">تحميل قالب Excel</button>
-                <button id="exportQuestionsBtn" class="primary" type="button">جلب Excel</button>
+                <h2 class="section-title">إدارة الأسئلة</h2>
+                <p class="hint">أضف السؤال والصور من نفس المكان. اختر الكاتيجوري، نوع السؤال، طريقة الإجابة، ثم احفظه مباشرة في النظام.</p>
               </div>
             </div>
-            <label class="file-label">
-              رفع ملف CSV من Excel
-              <input id="questionsFile" type="file" accept=".csv,text/csv" />
-            </label>
-            <p class="upload-note">ملاحظة Excel: ارفع ملف CSV من Excel بترميز UTF-8. لا تغيّر أسماء الأعمدة، واستخدم نفس ID التصنيف الموجود في تبويب بطاقات الرئيسية.</p>
-            <div class="actions">
-              <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
-            </div>
-            <div class="card form">
+            <form id="questionForm" class="card form">
+              <div class="section-head">
+                <div>
+                  <h3 class="section-title">إضافة سؤال سريع</h3>
+                  <p class="hint">اختر الكاتيجوري من البطاقات الموجودة، اختر نوع السؤال، وحدد الإجابة الصحيحة. أي كاتيجري تضيفه في تبويب البطاقات يظهر هنا تلقائيًا.</p>
+                </div>
+                <div class="actions">
+                  <button id="clearQuestionFormBtn" class="secondary" type="button">سؤال جديد</button>
+                  <button class="primary" type="submit">حفظ السؤال</button>
+                </div>
+              </div>
+              <input id="questionEditId" type="hidden" />
+              <div class="question-form-grid">
+                <label>ID السؤال<input id="questionIdInput" dir="ltr" placeholder="يتولد تلقائيًا" /></label>
+                <label>الكاتيجوري الأساسي<select id="questionCategoryInput"><option value="">اختر كاتيجوري</option></select></label>
+                <label>تصنيفات إضافية لنفس السؤال<select id="questionLinkedCategoriesInput" multiple size="5"></select></label>
+                <label>نوع السؤال<select id="questionTypeInput"><option value="multiple_choice">اختيارات</option><option value="true_false">صح أو خطأ</option><option value="image">صورة/تخمين</option><option value="complete">أكمل الجملة</option><option value="who_am_i">من أنا؟</option><option value="direct">سؤال مباشر</option></select></label>
+                <label>طريقة الإجابة<select id="questionAnswerModeInput"><option value="choices">بخيارات</option><option value="manual">بدون خيارات - تحكيم يدوي</option></select></label>
+                <label>الصعوبة<select id="questionDifficultyInput"><option value="easy">easy</option><option value="medium">medium</option><option value="hard">hard</option></select></label>
+                <label>الإجابة الصحيحة<select id="questionCorrectInput"><option value="0">الخيار 1</option><option value="1">الخيار 2</option><option value="2">الخيار 3</option><option value="3">الخيار 4</option></select></label>
+                <label>النقاط<input id="questionPointsInput" dir="ltr" type="number" value="10" /></label>
+              </div>
+              <label>السؤال بالعربي<textarea id="questionArInput" placeholder="اكتب السؤال هنا"></textarea></label>
+              <label>السؤال بالإنجليزي اختياري<textarea id="questionEnInput" dir="ltr" placeholder="Optional English question"></textarea></label>
+              <div class="row">
+                <label>الإجابة الصحيحة بالعربي<input id="manualCorrectArInput" placeholder="اكتب الجواب الصحيح للأسئلة بدون خيارات" /></label>
+                <label>Correct answer<input id="manualCorrectEnInput" dir="ltr" placeholder="Optional English answer" /></label>
+              </div>
+              <div id="answerRows" class="form">
+                <div class="answer-row"><div class="answer-index">1</div><label>الخيار عربي<input id="answer1ArInput" placeholder="الإجابة أو اختيار 1" /></label><label>English<input id="answer1EnInput" dir="ltr" placeholder="Answer 1" /></label></div>
+                <div class="answer-row"><div class="answer-index">2</div><label>الخيار عربي<input id="answer2ArInput" placeholder="اختيار 2" /></label><label>English<input id="answer2EnInput" dir="ltr" placeholder="Answer 2" /></label></div>
+                <div class="answer-row"><div class="answer-index">3</div><label>الخيار عربي<input id="answer3ArInput" placeholder="اختيار 3" /></label><label>English<input id="answer3EnInput" dir="ltr" placeholder="Answer 3" /></label></div>
+                <div class="answer-row"><div class="answer-index">4</div><label>الخيار عربي<input id="answer4ArInput" placeholder="اختيار 4" /></label><label>English<input id="answer4EnInput" dir="ltr" placeholder="Answer 4" /></label></div>
+              </div>
+              <div class="row">
+                <label>شرح الإجابة بالعربي<textarea id="questionExplanationArInput" placeholder="اختياري"></textarea></label>
+                <label>English explanation<textarea id="questionExplanationEnInput" dir="ltr" placeholder="Optional"></textarea></label>
+              </div>
+              <div class="row">
+                <label>رابط صورة السؤال<input id="questionImageUrlInput" dir="ltr" placeholder="يتعبأ تلقائيًا عند الرفع" /></label>
+                <label>رابط صورة الجواب<input id="questionRevealImageUrlInput" dir="ltr" placeholder="اختياري، صورة تظهر بعد كشف الإجابة" /></label>
+              </div>
+              <div class="row">
+                <label>السؤال فعال<select id="questionActiveInput"><option value="TRUE">نعم</option><option value="FALSE">لا</option></select></label>
+                <label>حالة الصورة<input id="questionImageStatusInput" readonly placeholder="لم يتم رفع صورة" /></label>
+              </div>
+              <div class="row">
+                <label class="file-label">
+                  رفع صورة السؤال
+                  <input id="questionInlineImageFile" type="file" accept="image/*" />
+                </label>
+                <label class="file-label">
+                  رفع صورة الجواب
+                  <input id="questionInlineRevealImageFile" type="file" accept="image/*" />
+                </label>
+              </div>
+              <div id="questionPreview" class="preview-box"></div>
+              <details class="advanced">
+                <summary>مقاسات صور الأسئلة المقترحة</summary>
+                <div class="upload-note">
+                  <strong>عيون شخص / تخمين شخصية:</strong> صورة السؤال تكون قصّة عيون أفقية 1600×700 أو 1200×600. صورة الجواب تكون صورة الشخص كاملة 1080×1350 أو 1200×1600، وخلي الوجه في الوسط.<br />
+                  <strong>منتج / شعار:</strong> صورة السؤال تكون المنتج أو جزء منه 1600×900. صورة الجواب تكون الشعار واضح على خلفية نظيفة 1200×800 أو PNG مربع 1000×1000.<br />
+                  <strong>معلم / مكان:</strong> صورة السؤال تكون لقطة واسعة للمعلم 1600×900. صورة الجواب تكون صورة أوضح وكاملة للمعلم 1600×900، وخلي اسم المعلم خارج الصورة إذا السؤال يعتمد على التخمين.<br />
+                  <strong>قاعدة عامة:</strong> استخدم JPG أو WebP، وخلي الحجم أقل من 800KB قدر الإمكان. صورة السؤال تظهر قبل الإجابة، وصورة الجواب تظهر بعد الكشف.
+                </div>
+              </details>
+              <p class="upload-note">الأسهل: اكتب السؤال، ارفع صورة السؤال أو صورة الجواب من هنا، وتأكد من المعاينة ثم اضغط حفظ السؤال.</p>
+            </form>
+            <details class="advanced">
+              <summary>أدوات متقدمة: Excel ورفع فيديو/وسائط خارج نموذج السؤال</summary>
+              <div class="form" style="margin-top: 0.85rem;">
+                <div class="actions">
+                  <button id="downloadTemplateBtn" class="secondary" type="button">تحميل قالب Excel</button>
+                  <button id="exportQuestionsBtn" class="primary" type="button">جلب Excel</button>
+                </div>
+                <label class="file-label">
+                  رفع ملف CSV من Excel
+                  <input id="questionsFile" type="file" accept=".csv,text/csv" />
+                </label>
+                <p class="upload-note">ملاحظة Excel: ارفع ملف CSV من Excel بترميز UTF-8. لا تغيّر أسماء الأعمدة، واستخدم نفس ID التصنيف الموجود في تبويب بطاقات الرئيسية.</p>
+                <div class="actions">
+                  <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
+                </div>
+              </div>
+            </details>
+            <details class="advanced">
+              <summary>رفع فيديو أو وسائط متقدمة لسؤال محفوظ</summary>
+              <div class="card form" style="margin-top: 0.85rem;">
               <h3 class="section-title">رفع صورة/فيديو لسؤال</h3>
               <p class="hint">ارفع الوسائط على Firebase Storage واربطها مباشرة بنفس ID السؤال. الصور والفيديوهات تحفظ بكاش طويل عشان تفتح بسرعة.</p>
               <div class="row">
@@ -214,12 +344,23 @@
                 <button id="uploadQuestionMediaBtn" class="primary" type="button">رفع وربط الوسائط</button>
               </div>
               <div id="mediaStatus" class="status"></div>
-            </div>
+              </div>
+            </details>
             <div id="questionStatus" class="status"></div>
+            <div class="card form">
+              <h3 class="section-title">البحث وتعديل الأسئلة</h3>
+              <div class="toolbar">
+                <label>بحث بالـ ID أو نص السؤال<input id="questionSearch" placeholder="اكتب جزء من السؤال أو ID" /></label>
+                <label>التصنيف<select id="questionCategoryFilter"><option value="">كل التصنيفات</option></select></label>
+                <label>الصعوبة<select id="questionDifficultyFilter"><option value="">كل الصعوبات</option><option value="easy">easy</option><option value="medium">medium</option><option value="hard">hard</option></select></label>
+                <label>المصدر<select id="questionSourceFilter"><option value="">الكل</option><option value="custom">أسئلة الأدمن فقط</option><option value="builtin">أسئلة التطبيق فقط</option></select></label>
+              </div>
+              <p class="hint">اضغط تعديل لتحميل صف السؤال في ملف CSV جاهز للتعديل، أو حذف لإزالة سؤال الأدمن. الأسئلة الأصلية من التطبيق لا تُحذف، لكن تقدر تعدلها برفع نفس الـ ID في CSV.</p>
+            </div>
             <p id="questionsShown" class="hint"></p>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>ID</th><th>التصنيف</th><th>الصعوبة</th><th>السؤال</th><th>الإجابة الصحيحة</th></tr></thead>
+                <thead><tr><th>ID</th><th>التصنيف</th><th>الصعوبة</th><th>السؤال</th><th>الإجابة الصحيحة</th><th>إدارة</th></tr></thead>
                 <tbody id="questionsBody"></tbody>
               </table>
             </div>
@@ -229,13 +370,13 @@
             <div class="section-head">
               <div>
                 <h2 class="section-title">بطاقات الشاشة الرئيسية</h2>
-                <p class="hint">أضف كاتيجري جديد بصورة واسم. استخدم نفس ID داخل Excel في عمود categoryId حتى تظهر أسئلته في البطاقة.</p>
+                <p class="hint">أضف كاتيجوري بصورة واسم. بعد الحفظ يظهر مباشرة في قائمة كاتيجوري السؤال.</p>
               </div>
             </div>
             <form id="categoryForm" class="form">
               <input id="categoryEditId" type="hidden" />
               <div class="row">
-                <label>ID التصنيف<input id="categoryId" dir="ltr" placeholder="sgame-celebrities" /></label>
+                <label>ID التصنيف<input id="categoryId" dir="ltr" placeholder="يتولد تلقائيًا من الاسم" /></label>
                 <label>ترتيب الظهور<input id="categorySortOrder" dir="ltr" type="number" value="0" /></label>
               </div>
               <div class="row">
@@ -246,11 +387,16 @@
                 <label>رابط الصورة<input id="categoryImageUrl" dir="ltr" placeholder="https://..." /></label>
                 <label>لون البطاقة<input id="categoryAccentColor" dir="ltr" value="#8b5cf6" /></label>
               </div>
+              <label>حالة التصنيف<select id="categoryActive"><option value="TRUE">فعال</option><option value="FALSE">متوقف</option></select></label>
               <label class="file-label">
                 رفع صورة للبطاقة
                 <input id="categoryImageFile" type="file" accept="image/*" />
               </label>
-              <p class="upload-note">أفضل مقاس لصورة بطاقة الرئيسية: 900×1100 أو 1080×1350 بنسبة عمودية 4:5. خل العنصر المهم في الوسط لأن التطبيق يقصها داخل الكرت. استخدم JPG أو WebP، وحاول يكون الحجم أقل من 700KB.</p>
+              <div id="categoryPreview" class="preview-box"></div>
+              <details class="advanced">
+                <summary>إرشادات صورة الكاتيجوري</summary>
+                <p class="upload-note">أفضل مقاس: 900×1100 أو 1080×1350 بنسبة عمودية 4:5. خل العنصر المهم في الوسط لأن التطبيق يقصها داخل الكرت. استخدم JPG أو WebP، وحاول يكون الحجم أقل من 700KB.</p>
+              </details>
               <div class="actions">
                 <button class="primary" type="submit">حفظ البطاقة</button>
                 <button id="clearCategoryBtn" class="secondary" type="button">بطاقة جديدة</button>
@@ -279,6 +425,11 @@
                 <label>رابط شعار/صورة اختياري<input id="adImageUrl" dir="ltr" placeholder="https://..." /></label>
                 <label>لون الإعلان<input id="adAccentColor" dir="ltr" value="#f59e0b" /></label>
               </div>
+              <label class="file-label">
+                رفع شعار/صورة الإعلان
+                <input id="adImageFile" type="file" accept="image/*" />
+              </label>
+              <div id="adPreview" class="preview-box"></div>
               <p class="upload-note">ملاحظة صورة الإعلان: الأفضل شعار PNG بخلفية شفافة أو صورة مربعة 800×800. إذا كانت بانر استخدم 1200×400. خفف الحجم لأقل من 500KB حتى يظهر بسرعة على شاشة التلفاز.</p>
               <div class="actions">
                 <button class="primary" type="submit">حفظ الإعلان</button>
@@ -302,7 +453,7 @@
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
-    import { addDoc, collection, deleteDoc, doc, getDocs, getFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+    import { addDoc, collection, deleteDoc, doc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
     import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
     import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js';
 
@@ -318,7 +469,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const firestore = getFirestore(app);
+    const firestore = initializeFirestore(app, { ignoreUndefinedProperties: true });
     const db = getDatabase(app);
     const storage = getStorage(app);
 
@@ -326,13 +477,14 @@
     const loginView = $('loginView');
     const adminView = $('adminView');
     const headers = [
-      'id', 'categoryId', 'difficulty', 'type', 'ageGroups', 'questionAr', 'questionEn',
+      'id', 'categoryId', 'linkedCategoryIds', 'difficulty', 'type', 'ageGroups', 'questionAr', 'questionEn',
       'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar', 'answer1En', 'answer2En', 'answer3En', 'answer4En',
       'correctAnswerNumber', 'explanationAr', 'explanationEn', 'imageUrl', 'revealImageUrl', 'thumbnailUrl', 'videoUrl', 'mediaType', 'revealMode', 'blurAmount', 'points', 'isKidsSafe', 'isActive', 'isPremium',
     ];
     const categories = [
       'generalKnowledge','sports','football','cars','movies','cartoons','anime','history','geography','science','space','animals','capitals','riddles','math','arabicLang','englishLang','technology','inventions','celebrities','music','islamicCulture','kuwait','flags','guessImage','trueFalse','completeSentence','whoAmI','wouldYouRather','familyChallenges'
     ];
+    const pointsByDifficulty = { easy: 10, medium: 20, hard: 30 };
     const categoryNamesAr = {
       generalKnowledge: 'معلومات عامة', sports: 'رياضة', football: 'كرة القدم', cars: 'سيارات', movies: 'أفلام ومسلسلات', cartoons: 'كرتون', anime: 'أنمي', history: 'تاريخ', geography: 'جغرافيا', science: 'علوم', space: 'فضاء', animals: 'حيوانات', capitals: 'دول وعواصم', riddles: 'ألغاز', math: 'حساب ورياضيات', arabicLang: 'لغة عربية', englishLang: 'لغة إنجليزية', technology: 'تكنولوجيا', inventions: 'اختراعات', celebrities: 'مشاهير', music: 'موسيقى', islamicCulture: 'ثقافة إسلامية', kuwait: 'معلومات عن الكويت', flags: 'أعلام الدول', guessImage: 'تخمين الصورة', trueFalse: 'صح أو خطأ', completeSentence: 'أكمل الجملة', whoAmI: 'من أنا؟', wouldYouRather: 'ماذا تفضل؟', familyChallenges: 'تحديات عائلية'
     };
@@ -354,10 +506,55 @@
     let users = [];
     let tvSessions = [];
     let pendingQuestionRows = [];
+    let visibleQuestions = [];
+    const errorLogEntries = [];
+    const MAX_ERROR_LOG_ENTRIES = 120;
+    let logDomReady = false;
+
+    const errorToMessage = error => {
+      if (!error) return 'Unknown error';
+      if (typeof error === 'string') return error;
+      if (error instanceof Error) return `${error.name}: ${error.message}`;
+      if (typeof error === 'object' && 'message' in error && error.message) return String(error.message);
+      try {
+        return JSON.stringify(error);
+      } catch {
+        return String(error);
+      }
+    };
+
+    const renderErrorLog = () => {
+      const list = $('errorLogList');
+      if (!list) return;
+      if (!errorLogEntries.length) {
+        list.innerHTML = '<li class="log-empty">لا يوجد أخطاء حالياً</li>';
+        return;
+      }
+      list.innerHTML = errorLogEntries
+        .map(entry => `<li>${entry}</li>`)
+        .join('');
+    };
+
+    const appendErrorLog = (kind, message, details = '') => {
+      const stamp = new Date().toLocaleTimeString('en-GB', { hour12: false });
+      const cleanMessage = String(message || 'Unknown error').trim();
+      const cleanDetails = String(details || '').trim();
+      const entry = `[${stamp}] [${kind}] ${cleanMessage}${cleanDetails ? `\n  ↳ ${cleanDetails}` : ''}`;
+      errorLogEntries.unshift(entry);
+      if (errorLogEntries.length > MAX_ERROR_LOG_ENTRIES) {
+        errorLogEntries.length = MAX_ERROR_LOG_ENTRIES;
+      }
+      if (logDomReady) renderErrorLog();
+      console.error(entry);
+    };
 
     const setStatus = (element, message, type = '') => {
       element.className = `status ${type}`.trim();
       element.textContent = message || '';
+      if (type === 'error' && message) {
+        const scope = element?.id ? `scope=${element.id}` : '';
+        appendErrorLog('status', message, scope);
+      }
     };
 
     const escapeCsv = value => `"${String(value ?? '').replace(/"/g, '""')}"`;
@@ -370,6 +567,60 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(link.href);
+    };
+
+    const arabicSlugMap = {
+      ا: 'a', أ: 'a', إ: 'i', آ: 'a', ب: 'b', ت: 't', ث: 'th', ج: 'j', ح: 'h', خ: 'kh', د: 'd', ذ: 'th', ر: 'r', ز: 'z', س: 's', ش: 'sh', ص: 's', ض: 'd', ط: 't', ظ: 'z', ع: 'a', غ: 'gh', ف: 'f', ق: 'q', ك: 'k', ل: 'l', م: 'm', ن: 'n', ه: 'h', و: 'w', ي: 'y', ى: 'a', ة: 'h', ء: '', ئ: 'e', ؤ: 'o',
+    };
+
+    const slugify = value => String(value || '')
+      .trim()
+      .split('')
+      .map(char => arabicSlugMap[char] ?? char)
+      .join('')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 44);
+
+    const normalizeExistingCategoryId = value => {
+      const trimmed = String(value || '').trim();
+      if (/^[a-zA-Z0-9_-]+$/.test(trimmed)) return trimmed;
+      return slugify(trimmed) || trimmed.replace(/[^a-zA-Z0-9_-]/g, '-');
+    };
+
+    const uniqueId = (base, exists, fallbackPrefix) => {
+      const cleanBase = slugify(base) || `${fallbackPrefix}-${Date.now().toString(36)}`;
+      let candidate = cleanBase;
+      let counter = 2;
+      while (exists(candidate)) {
+        candidate = `${cleanBase}-${counter}`;
+        counter += 1;
+      }
+      return candidate;
+    };
+
+    const compressImageFile = async (file, { maxWidth = 900, maxHeight = 1100, quality = 0.72 } = {}) => {
+      if (!file.type.startsWith('image/')) return file;
+      const image = await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+      });
+
+      const scale = Math.min(1, maxWidth / image.width, maxHeight / image.height);
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      const context = canvas.getContext('2d', { alpha: true });
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(image.src);
+
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, file.type === 'image/png' ? 'image/png' : 'image/webp', quality));
+      if (!blob || blob.size >= file.size) return file;
+      const extension = blob.type.includes('png') ? 'png' : 'webp';
+      return new File([blob], `${file.name.replace(/\.[^.]+$/, '')}.${extension}`, { type: blob.type || 'image/webp' });
     };
 
     const parseCsv = text => {
@@ -413,15 +664,16 @@
 
     const normalizeQuestion = item => {
       const categoryId = item.categoryId?.trim();
+      const linkedCategoryIds = String(item.linkedCategoryIds || '').split('|').map(value => value.trim()).filter(Boolean);
       const difficulty = item.difficulty?.trim();
       const answersAr = [item.answer1Ar, item.answer2Ar, item.answer3Ar, item.answer4Ar].map(value => String(value ?? '').trim()).filter(Boolean);
       const answersEnRaw = [item.answer1En, item.answer2En, item.answer3En, item.answer4En].map(value => String(value ?? '').trim());
       const answersEn = answersEnRaw.some(Boolean) ? answersEnRaw.slice(0, answersAr.length) : answersAr;
       const correctAnswerIndex = Math.max(0, Number(item.correctAnswerNumber || 1) - 1);
-      const pointsByDifficulty = { easy: 10, medium: 20, hard: 30 };
-
       const allowedCategories = new Set([...categories, ...categoryCards.map(card => card.id)]);
       if (!categoryId || !allowedCategories.has(categoryId)) throw new Error(`تصنيف غير صحيح: ${categoryId || 'فارغ'}. أضفه أولاً من تبويب بطاقات الرئيسية.`);
+      const invalidLinkedCategoryId = linkedCategoryIds.find(linkedCategoryId => !allowedCategories.has(linkedCategoryId));
+      if (invalidLinkedCategoryId) throw new Error(`تصنيف إضافي غير صحيح: ${invalidLinkedCategoryId}. أضفه أولاً من تبويب بطاقات الرئيسية.`);
       if (!difficulty || !difficulties.includes(difficulty)) throw new Error(`صعوبة غير صحيحة: ${difficulty || 'فارغ'}`);
       if (!String(item.questionAr || '').trim()) throw new Error('يوجد سؤال بدون نص عربي');
       if (answersAr.length < 2) throw new Error(`السؤال ${item.id || item.questionAr} يحتاج اختيارين على الأقل`);
@@ -431,6 +683,7 @@
         id: String(item.id || '').trim(),
         payload: {
           categoryId,
+          linkedCategoryIds: [...new Set(linkedCategoryIds.filter(linkedCategoryId => linkedCategoryId !== categoryId))],
           difficulty,
           type: item.type?.trim() || 'multiple_choice',
           ageGroups: String(item.ageGroups || 'kids5|kids8|kids11|teens|adults|family').split('|').map(value => value.trim()).filter(Boolean),
@@ -465,6 +718,7 @@
     const questionToRow = question => [
       question.id,
       question.categoryId,
+      Array.isArray(question.linkedCategoryIds) ? question.linkedCategoryIds.join('|') : '',
       question.difficulty,
       question.type || 'multiple_choice',
       Array.isArray(question.ageGroups) ? question.ageGroups.join('|') : '',
@@ -479,12 +733,305 @@
       question.isPremium === true ? 'TRUE' : 'FALSE',
     ];
 
+    const questionToCsv = question => `\uFEFF${[headers, questionToRow(question)].map(row => row.map(escapeCsv).join(',')).join('\n')}`;
+
+    const getQuestionSource = question => customQuestions.some(item => item.id === question.id) ? 'custom' : 'builtin';
+
+    const getQuestionCategoryIds = question => [...new Set([question.categoryId, ...(Array.isArray(question.linkedCategoryIds) ? question.linkedCategoryIds : [])].filter(Boolean))];
+
+    const questionBelongsToCategory = (question, categoryId) => getQuestionCategoryIds(question).includes(categoryId);
+
+    const getCategoryLabel = categoryId => {
+      const cardItem = categoryCards.find(item => item.id === categoryId);
+      return cardItem ? `${cardItem.nameAr || cardItem.id} (${cardItem.id})` : categoryId;
+    };
+
+    const updateQuestionCategoryControls = () => {
+      const previousFilter = $('questionCategoryFilter').value;
+      const previousInput = $('questionCategoryInput').value;
+      const previousLinked = new Set([...$('questionLinkedCategoriesInput').selectedOptions].map(option => option.value));
+      const options = categoryCards.map(cardItem => {
+        const option = document.createElement('option');
+        option.value = cardItem.id;
+        option.textContent = `${cardItem.nameAr || cardItem.id} (${cardItem.id})`;
+        return option;
+      });
+      const formOptions = options.map(option => option.cloneNode(true));
+      const linkedOptions = options.map(option => option.cloneNode(true));
+      $('questionCategoryFilter').replaceChildren(new Option('كل التصنيفات', ''), ...options);
+      $('questionCategoryInput').replaceChildren(new Option('اختر كاتيجوري', ''), ...formOptions);
+      $('questionLinkedCategoriesInput').replaceChildren(...linkedOptions);
+      $('questionCategoryFilter').value = categoryCards.some(item => item.id === previousFilter) ? previousFilter : '';
+      $('questionCategoryInput').value = categoryCards.some(item => item.id === previousInput) ? previousInput : '';
+      [...$('questionLinkedCategoriesInput').options].forEach(option => { option.selected = previousLinked.has(option.value); });
+    };
+
+    const getAnswerInputs = () => [1, 2, 3, 4].map(number => ({
+      ar: $(`answer${number}ArInput`),
+      en: $(`answer${number}EnInput`),
+      row: $(`answer${number}ArInput`).closest('.answer-row'),
+    }));
+
+    const renderQuestionPreview = () => {
+      const imageUrl = $('questionImageUrlInput').value.trim();
+      const revealImageUrl = $('questionRevealImageUrlInput').value.trim();
+      const categoryLabel = $('questionCategoryInput').selectedOptions[0]?.textContent || 'بدون كاتيجوري';
+      const linkedLabels = [...$('questionLinkedCategoriesInput').selectedOptions].map(option => option.textContent).join('، ');
+      const answerMode = $('questionAnswerModeInput').value === 'manual' ? 'بدون خيارات' : 'بخيارات';
+      const correctAnswer = $('questionAnswerModeInput').value === 'manual'
+        ? $('manualCorrectArInput').value.trim()
+        : getAnswerInputs()[Number($('questionCorrectInput').value || 0)]?.ar.value.trim();
+      $('questionPreview').innerHTML = `
+        <div class="preview-images">
+          ${imageUrl ? `<img class="preview-img" src="${imageUrl}" alt="معاينة صورة السؤال" />` : ''}
+          ${revealImageUrl ? `<img class="preview-img" src="${revealImageUrl}" alt="معاينة صورة الجواب" />` : ''}
+        </div>
+        <div class="preview-line"><strong>المعاينة:</strong> ${$('questionArInput').value.trim() || 'اكتب السؤال لعرضه هنا'}</div>
+        <div class="preview-line">${categoryLabel} · ${$('questionTypeInput').selectedOptions[0]?.textContent || ''} · ${answerMode} · ${$('questionDifficultyInput').value}</div>
+        <div class="preview-line">التصنيفات الإضافية: ${linkedLabels || 'لا يوجد'}</div>
+        <div class="preview-line">الإجابة الصحيحة: ${correctAnswer || 'لم تكتب بعد'}</div>
+      `;
+    };
+
+    const renderCategoryPreview = () => {
+      const imageUrl = $('categoryImageUrl').value.trim();
+      $('categoryPreview').innerHTML = `
+        ${imageUrl ? `<img class="preview-img" src="${imageUrl}" alt="معاينة صورة التصنيف" />` : ''}
+        <div class="preview-line"><strong>${$('categoryNameAr').value.trim() || 'اسم الكاتيجوري'}</strong></div>
+        <div class="preview-line" dir="ltr">${$('categoryId').value.trim() || 'category-id'}</div>
+      `;
+    };
+
+    const renderAdPreview = () => {
+      const imageUrl = $('adImageUrl').value.trim();
+      $('adPreview').innerHTML = `
+        ${imageUrl ? `<img class="preview-img" src="${imageUrl}" alt="معاينة شعار الإعلان" />` : ''}
+        <div class="preview-line"><strong>${$('adCompany').value.trim() || 'اسم الشركة'}</strong></div>
+        <div class="preview-line">${$('adHeadlineAr').value.trim() || 'نص الإعلان يظهر هنا'}</div>
+      `;
+    };
+
+    const updateQuestionTypeFields = () => {
+      const type = $('questionTypeInput').value;
+      const answerMode = $('questionAnswerModeInput').value;
+      const answerInputs = getAnswerInputs();
+      answerInputs.forEach(({ ar, en }) => {
+        ar.disabled = false;
+        en.disabled = false;
+        ar.closest('.answer-row').classList.remove('hidden-answer');
+      });
+      $('questionCorrectInput').disabled = answerMode === 'manual';
+
+      if (answerMode === 'manual') {
+        answerInputs.forEach(({ ar, en, row }) => { ar.disabled = true; en.disabled = true; row.classList.add('hidden-answer'); });
+        $('questionCorrectInput').replaceChildren(new Option('تحكيم يدوي بعد كشف الإجابة', '0'));
+        return;
+      }
+
+      if (type === 'true_false') {
+        answerInputs[0].ar.value = 'صح';
+        answerInputs[1].ar.value = 'خطأ';
+        answerInputs[0].en.value = 'True';
+        answerInputs[1].en.value = 'False';
+        answerInputs.slice(2).forEach(({ ar, en }) => { ar.value = ''; en.value = ''; ar.disabled = true; en.disabled = true; });
+        $('questionCorrectInput').replaceChildren(new Option('صح', '0'), new Option('خطأ', '1'));
+        return;
+      }
+
+      const labels = type === 'complete'
+        ? ['الإجابة الصحيحة', 'خيار خاطئ 1', 'خيار خاطئ 2', 'خيار خاطئ 3']
+        : type === 'direct'
+          ? ['الإجابة الصحيحة', 'اختيار آخر', 'اختيار آخر', 'اختيار آخر']
+          : ['الخيار 1', 'الخيار 2', 'الخيار 3', 'الخيار 4'];
+      answerInputs.forEach(({ ar }, index) => { ar.placeholder = labels[index]; });
+      $('questionCorrectInput').replaceChildren(
+        new Option(labels[0], '0'),
+        new Option(labels[1], '1'),
+        new Option(labels[2], '2'),
+        new Option(labels[3], '3'),
+      );
+    };
+
+    const clearQuestionForm = () => {
+      $('questionEditId').value = '';
+      $('questionIdInput').value = '';
+      $('questionIdInput').dataset.auto = 'true';
+      $('questionCategoryInput').value = '';
+      [...$('questionLinkedCategoriesInput').options].forEach(option => { option.selected = false; });
+      $('questionTypeInput').value = 'multiple_choice';
+      $('questionAnswerModeInput').value = 'choices';
+      $('questionDifficultyInput').value = 'easy';
+      $('questionPointsInput').value = '10';
+      $('questionCorrectInput').value = '0';
+      $('questionArInput').value = '';
+      $('questionEnInput').value = '';
+      $('manualCorrectArInput').value = '';
+      $('manualCorrectEnInput').value = '';
+      $('questionExplanationArInput').value = '';
+      $('questionExplanationEnInput').value = '';
+      $('questionImageUrlInput').value = '';
+      $('questionRevealImageUrlInput').value = '';
+      $('questionActiveInput').value = 'TRUE';
+      $('questionImageStatusInput').value = '';
+      $('questionInlineImageFile').value = '';
+      $('questionInlineRevealImageFile').value = '';
+      getAnswerInputs().forEach(({ ar, en }) => { ar.value = ''; en.value = ''; });
+      updateQuestionTypeFields();
+      renderQuestionPreview();
+    };
+
+    const removeUndefinedFields = value => {
+      if (Array.isArray(value)) return value.map(removeUndefinedFields);
+      if (!value || typeof value !== 'object') return value;
+      return Object.fromEntries(
+        Object.entries(value)
+          .filter(([, entryValue]) => entryValue !== undefined)
+          .map(([entryKey, entryValue]) => [entryKey, removeUndefinedFields(entryValue)]),
+      );
+    };
+
+    const shouldAutoFillQuestionId = () => !$('questionEditId').value && (!$('questionIdInput').value.trim() || $('questionIdInput').dataset.auto === 'true');
+
+    const refreshQuestionAutoId = () => {
+      if (!shouldAutoFillQuestionId()) return;
+      const categoryPrefix = $('questionCategoryInput').value || 'question';
+      const sourceText = $('questionArInput').value || $('questionEnInput').value || categoryPrefix;
+      const generatedId = uniqueId(`${categoryPrefix}-${sourceText}`, id => allQuestions.some(question => question.id === id), 'question');
+      $('questionIdInput').value = generatedId;
+      $('questionIdInput').dataset.auto = 'true';
+    };
+
+    const fillQuestionForm = question => {
+      $('questionEditId').value = question.id || '';
+      $('questionIdInput').value = question.id || '';
+      $('questionIdInput').dataset.auto = 'false';
+      $('questionCategoryInput').value = question.categoryId || '';
+      const linkedCategoryIds = new Set(Array.isArray(question.linkedCategoryIds) ? question.linkedCategoryIds : []);
+      [...$('questionLinkedCategoriesInput').options].forEach(option => { option.selected = linkedCategoryIds.has(option.value); });
+      $('questionTypeInput').value = question.type || 'multiple_choice';
+      $('questionAnswerModeInput').value = question.answersAr?.length ? 'choices' : 'manual';
+      $('questionDifficultyInput').value = question.difficulty || 'easy';
+      $('questionPointsInput').value = question.points || pointsByDifficulty[question.difficulty] || 10;
+      updateQuestionTypeFields();
+      $('questionCorrectInput').value = String(question.correctAnswerIndex ?? 0);
+      $('questionArInput').value = question.questionAr || '';
+      $('questionEnInput').value = question.questionEn || '';
+      $('manualCorrectArInput').value = question.correctAnswerAr || '';
+      $('manualCorrectEnInput').value = question.correctAnswerEn || '';
+      $('questionExplanationArInput').value = question.explanationAr || '';
+      $('questionExplanationEnInput').value = question.explanationEn || '';
+      $('questionImageUrlInput').value = question.imageUrl || '';
+      $('questionRevealImageUrlInput').value = question.revealImageUrl || '';
+      $('questionActiveInput').value = question.isActive === false ? 'FALSE' : 'TRUE';
+      $('questionImageStatusInput').value = question.imageUrl || question.revealImageUrl ? 'تم ربط صورة' : '';
+      getAnswerInputs().forEach(({ ar, en }, index) => {
+        ar.value = question.answersAr?.[index] || '';
+        en.value = question.answersEn?.[index] || '';
+      });
+      renderQuestionPreview();
+      window.scrollTo({ top: $('questionsPanel').offsetTop, behavior: 'smooth' });
+    };
+
+    const uploadInlineQuestionImage = async (file, role = 'imageUrl') => {
+      refreshQuestionAutoId();
+      const questionId = $('questionIdInput').value.trim();
+      if (!questionId) throw new Error('اكتب السؤال أولًا حتى يتولد ID');
+      const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+      const cleanId = questionId.replace(/[^a-zA-Z0-9_-]/g, '-');
+      const path = `questionMedia/${cleanId}/${role}-${Date.now()}.${extension}`;
+      const imageRef = storageRef(storage, path);
+      await uploadBytes(imageRef, file, {
+        contentType: file.type || 'image/jpeg',
+        cacheControl: 'public,max-age=31536000,immutable',
+        customMetadata: { questionId, role },
+      });
+      return getDownloadURL(imageRef);
+    };
+
+    const buildQuestionPayloadFromForm = () => {
+      refreshQuestionAutoId();
+      const id = ($('questionIdInput').value.trim() || $('questionEditId').value.trim() || `q-${Date.now()}`).replace(/[^a-zA-Z0-9_-]/g, '-');
+      const categoryId = $('questionCategoryInput').value;
+      const linkedCategoryIds = [...$('questionLinkedCategoriesInput').selectedOptions].map(option => option.value).filter(value => value && value !== categoryId);
+      const difficulty = $('questionDifficultyInput').value;
+      const type = $('questionTypeInput').value;
+      const answerMode = $('questionAnswerModeInput').value;
+      const questionAr = $('questionArInput').value.trim();
+      const questionEn = $('questionEnInput').value.trim() || questionAr;
+      const answerInputs = getAnswerInputs();
+      const answersAr = answerInputs.map(({ ar }) => ar.value.trim()).filter(Boolean);
+      const answersEnRaw = answerInputs.map(({ en }) => en.value.trim());
+      const answersEn = answersEnRaw.some(Boolean) ? answersEnRaw.slice(0, answersAr.length).map((value, index) => value || answersAr[index]) : answersAr;
+      const correctAnswerIndex = Number($('questionCorrectInput').value || 0);
+      const manualCorrectAr = $('manualCorrectArInput').value.trim();
+      const manualCorrectEn = $('manualCorrectEnInput').value.trim() || manualCorrectAr;
+
+      if (!categoryId) throw new Error('اختر الكاتيجوري أولاً');
+      if (!questionAr) throw new Error('اكتب نص السؤال بالعربي');
+      if (answerMode === 'choices' && answersAr.length < 2) throw new Error('أضف اختيارين على الأقل أو اختر بدون خيارات');
+      if (answerMode === 'choices' && (correctAnswerIndex < 0 || correctAnswerIndex >= answersAr.length)) throw new Error('اختر الإجابة الصحيحة من الخيارات الموجودة');
+      if (answerMode === 'manual' && !manualCorrectAr) throw new Error('اكتب الإجابة الصحيحة للأسئلة بدون خيارات');
+
+      return {
+        id,
+        payload: {
+          categoryId,
+          linkedCategoryIds: [...new Set(linkedCategoryIds)],
+          difficulty,
+          type,
+          ageGroups: ['kids5', 'kids8', 'kids11', 'teens', 'adults', 'family'],
+          questionAr,
+          questionEn,
+          answersAr: answerMode === 'manual' ? [] : answersAr,
+          answersEn: answerMode === 'manual' ? [] : answersEn,
+          correctAnswerIndex: answerMode === 'manual' ? null : correctAnswerIndex,
+          correctAnswerAr: answerMode === 'manual' ? manualCorrectAr : answersAr[correctAnswerIndex],
+          correctAnswerEn: answerMode === 'manual' ? manualCorrectEn : answersEn[correctAnswerIndex] || answersAr[correctAnswerIndex],
+          answerMode,
+          explanationAr: $('questionExplanationArInput').value.trim() || null,
+          explanationEn: $('questionExplanationEnInput').value.trim() || null,
+          imageUrl: $('questionImageUrlInput').value.trim(),
+          revealImageUrl: $('questionRevealImageUrlInput').value.trim(),
+          mediaType: $('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim() ? 'image' : '',
+          revealMode: $('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim() ? 'blur' : '',
+          blurAmount: $('questionImageUrlInput').value.trim() ? 18 : 0,
+          points: Number($('questionPointsInput').value || pointsByDifficulty[difficulty] || 10),
+          isKidsSafe: true,
+          isActive: $('questionActiveInput').value !== 'FALSE',
+          isPremium: false,
+          updatedAtMs: Date.now(),
+          createdAt: serverTimestamp(),
+          source: 'admin',
+        },
+      };
+    };
+
+    const getFilteredQuestions = () => {
+      const term = $('questionSearch').value.trim().toLowerCase();
+      const categoryId = $('questionCategoryFilter').value;
+      const difficulty = $('questionDifficultyFilter').value;
+      const source = $('questionSourceFilter').value;
+
+      return allQuestions.filter(question => {
+        if (categoryId && !questionBelongsToCategory(question, categoryId)) return false;
+        if (difficulty && question.difficulty !== difficulty) return false;
+        if (source && getQuestionSource(question) !== source) return false;
+        if (!term) return true;
+        return [question.id, question.categoryId, question.questionAr, question.questionEn, question.correctAnswerAr, ...(question.answersAr || [])]
+          .some(value => String(value || '').toLowerCase().includes(term));
+      });
+    };
+
     const mergeQuestions = () => {
       const customById = new Map(customQuestions.map(question => [question.id, question]));
       const builtinIds = new Set(builtinQuestions.map(question => question.id));
       const mergedBuiltin = builtinQuestions.map(question => ({ ...question, ...(customById.get(question.id) || {}) }));
       const newCustom = customQuestions.filter(question => !builtinIds.has(question.id));
-      allQuestions = [...mergedBuiltin, ...newCustom];
+      allQuestions = [...mergedBuiltin, ...newCustom].sort((left, right) => {
+        const leftTime = Number(left.updatedAtMs || left.createdAtMs || 0);
+        const rightTime = Number(right.updatedAtMs || right.createdAtMs || 0);
+        return rightTime - leftTime || String(left.id || '').localeCompare(String(right.id || ''));
+      });
     };
 
     const createDefaultCategoryCard = (categoryId, index) => ({
@@ -502,7 +1049,7 @@
     const mergeCategoryCards = () => {
       const categoryIds = [...new Set([
         ...categories,
-        ...allQuestions.map(question => question.categoryId).filter(Boolean),
+        ...allQuestions.flatMap(getQuestionCategoryIds).filter(Boolean),
         ...categoryCardOverrides.map(card => card.id).filter(Boolean),
       ])];
       const overridesById = new Map(categoryCardOverrides.map(card => [card.id, card]));
@@ -516,10 +1063,13 @@
     };
 
     const renderQuestions = () => {
-      $('questionsShown').textContent = `المعروض ${allQuestions.length} من ${allQuestions.length} سؤال. الأسئلة المرفوعة من الأدمن تظهر هنا وفي التطبيق إذا طابقت العمر والتصنيف والصعوبة.`;
-      $('questionsBody').replaceChildren(...allQuestions.map(question => {
+      visibleQuestions = getFilteredQuestions();
+      $('questionsShown').textContent = `المعروض ${visibleQuestions.length} من ${allQuestions.length} سؤال. اربط السؤال بالتصنيف عن طريق نفس categoryId، ثم ستظهر البطاقة في التطبيق إذا فيها سؤال فعال واحد على الأقل.`;
+      $('questionsBody').replaceChildren(...visibleQuestions.map(question => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${question.categoryId || ''}</td><td>${question.difficulty || ''}</td><td>${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td>`;
+        const source = getQuestionSource(question);
+        const categoryText = [getCategoryLabel(question.categoryId || ''), ...(question.linkedCategoryIds || []).map(getCategoryLabel)].join(' + ');
+        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.difficulty || ''}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button>${source === 'custom' ? `<button class="danger" type="button" data-delete-question="${question.id}">حذف</button>` : ''}</div></td>`;
         return tr;
       }));
     };
@@ -645,8 +1195,9 @@
         status.textContent = cardItem.isActive === false ? 'متوقفة' : 'فعالة';
         const sortOrder = document.createElement('span');
         sortOrder.textContent = `الترتيب: ${cardItem.sortOrder || 0}`;
+        const categoryQuestionCount = allQuestions.filter(question => questionBelongsToCategory(question, cardItem.id) && question.isActive !== false).length;
         const questionCount = document.createElement('span');
-        questionCount.textContent = `الأسئلة: ${allQuestions.filter(question => question.categoryId === cardItem.id).length}`;
+        questionCount.textContent = `الأسئلة الفعالة: ${categoryQuestionCount}`;
         const source = document.createElement('span');
         source.textContent = hasSavedOverride ? 'محفوظ في Firebase' : (isBuiltIn ? 'من التطبيق' : 'من الأسئلة');
         meta.append(status, sortOrder, questionCount, source);
@@ -673,7 +1224,14 @@
           actions.append(deleteButton);
         }
 
-        card.append(top, meta, actions);
+        card.append(top, meta);
+        if (categoryQuestionCount === 0) {
+          const warning = document.createElement('div');
+          warning.className = 'warning-note';
+          warning.textContent = 'لن تظهر هذه البطاقة في التطبيق لأن ما فيها أسئلة مربوطة بنفس ID التصنيف. ارفع سؤال في Excel واجعل categoryId مطابقًا لهذا الـ ID.';
+          card.append(warning);
+        }
+        card.append(actions);
         return card;
       }));
     };
@@ -701,7 +1259,8 @@
       setStatus($('categoryStatus'), 'جاري تحميل البطاقات...');
       setStatus($('adStatus'), 'جاري تحميل الإعلانات...');
 
-      const failures = [];
+      const questionFailures = [];
+      const adminWarnings = [];
       const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult] = await Promise.allSettled([
         fetch('/admin/question-bank.json', { cache: 'no-store' }).then(async response => {
           if (!response.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
@@ -718,52 +1277,56 @@
         builtinQuestions = Array.isArray(questionBankResult.value.questions) ? questionBankResult.value.questions : [];
       } else {
         builtinQuestions = [];
-        failures.push(questionBankResult.reason?.message || 'تعذر تحميل بنك أسئلة التطبيق');
+        questionFailures.push(questionBankResult.reason?.message || 'تعذر تحميل بنك أسئلة التطبيق');
       }
 
       if (usersResult.status === 'fulfilled') {
         users = usersResult.value.docs.map(userDoc => ({ id: userDoc.id, ...userDoc.data() }));
       } else {
         users = [];
-        failures.push(usersResult.reason?.message || 'تعذر تحميل المستخدمين');
+        adminWarnings.push('تعذر تحميل المستخدمين');
       }
 
       if (questionsResult.status === 'fulfilled') {
         customQuestions = questionsResult.value.docs.map(questionDoc => ({ id: questionDoc.id, ...questionDoc.data() }));
       } else {
         customQuestions = [];
-        failures.push(questionsResult.reason?.message || 'تعذر تحميل أسئلة الأدمن');
+        questionFailures.push(questionsResult.reason?.message || 'تعذر تحميل أسئلة الأدمن');
       }
 
       if (categoriesResult.status === 'fulfilled') {
         categoryCardOverrides = categoriesResult.value.docs.map(categoryDoc => ({ id: categoryDoc.id, ...categoryDoc.data() })).sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0));
       } else {
         categoryCardOverrides = [];
-        failures.push(categoriesResult.reason?.message || 'تعذر تحميل بطاقات الرئيسية');
+        adminWarnings.push('تعذر تحميل بطاقات الرئيسية');
       }
 
       if (adsResult.status === 'fulfilled') {
         sponsorAds = Object.entries(adsResult.value.val() || {}).map(([id, value]) => ({ id, ...value })).sort((a, b) => Number(b.priority || 0) - Number(a.priority || 0));
       } else {
         sponsorAds = [];
-        failures.push(adsResult.reason?.message || 'تعذر تحميل إعلانات الشركات');
+        adminWarnings.push('تعذر تحميل إعلانات الشركات');
       }
 
       if (tvResult.status === 'fulfilled') {
         tvSessions = Object.entries(tvResult.value.val() || {}).map(([id, value]) => ({ id, ...value }));
       } else {
         tvSessions = [];
-        failures.push(tvResult.reason?.message || 'تعذر تحميل جلسات التلفاز');
+        adminWarnings.push('تعذر تحميل جلسات التلفاز');
       }
 
       mergeQuestions();
       mergeCategoryCards();
+      updateQuestionCategoryControls();
 
       renderQuestions();
       renderCategoryCards();
       renderAds();
       renderStats();
-      setStatus($('questionStatus'), failures.length ? `تم تحميل البيانات المتاحة، وتنبيه: ${failures[0]}` : `تم تحميل ${allQuestions.length} سؤال (${builtinQuestions.length} من التطبيق + ${customQuestions.length} من الأدمن)`, failures.length ? 'error' : 'success');
+      const questionMessage = questionFailures.length
+        ? `تعذر تحميل جزء من الأسئلة: ${questionFailures[0]}`
+        : `تم تحميل ${allQuestions.length} سؤال (${builtinQuestions.length} من التطبيق + ${customQuestions.length} من الأدمن)${adminWarnings.length ? `، ملاحظة: ${adminWarnings.join('، ')}` : ''}`;
+      setStatus($('questionStatus'), questionMessage, questionFailures.length ? 'error' : 'success');
       setStatus($('categoryStatus'), categoriesResult.status === 'fulfilled' ? `تم عرض ${categoryCards.length} تصنيف (${categoryCardOverrides.length} تعديل محفوظ)` : 'تعذر تحميل بطاقات الرئيسية', categoriesResult.status === 'fulfilled' ? 'success' : 'error');
       setStatus($('adStatus'), adsResult.status === 'fulfilled' ? `تم تحميل ${sponsorAds.length} إعلان محفوظ` : 'تعذر تحميل إعلانات الشركات', adsResult.status === 'fulfilled' ? 'success' : 'error');
     };
@@ -795,6 +1358,33 @@
       }
     });
 
+    $('clearErrorLogBtn')?.addEventListener('click', () => {
+      errorLogEntries.length = 0;
+      renderErrorLog();
+    });
+
+    $('copyErrorLogBtn')?.addEventListener('click', async () => {
+      const output = errorLogEntries.join('\n\n') || 'No errors logged.';
+      try {
+        await navigator.clipboard.writeText(output);
+        appendErrorLog('log', 'Error log copied to clipboard');
+      } catch (error) {
+        appendErrorLog('log', 'Failed to copy error log', errorToMessage(error));
+      }
+    });
+
+    window.addEventListener('error', event => {
+      const source = event?.filename ? `${event.filename}:${event.lineno || 0}:${event.colno || 0}` : 'window';
+      appendErrorLog('window', errorToMessage(event?.error || event?.message), source);
+    });
+
+    window.addEventListener('unhandledrejection', event => {
+      appendErrorLog('promise', errorToMessage(event?.reason), 'unhandledrejection');
+    });
+
+    logDomReady = true;
+    renderErrorLog();
+
     $('logoutBtn').addEventListener('click', () => signOut(auth));
     $('refreshBtn').addEventListener('click', () => loadData().catch(error => setStatus($('questionStatus'), error.message, 'error')));
 
@@ -812,13 +1402,111 @@
         headers,
         ['sample-1', 'generalKnowledge', 'easy', 'multiple_choice', 'kids5|kids8|kids11|teens|adults|family', 'سؤال تجريبي؟', 'Sample question?', 'اختيار 1', 'اختيار 2', 'اختيار 3', 'اختيار 4', 'Choice 1', 'Choice 2', 'Choice 3', 'Choice 4', '1', 'شرح اختياري', 'Optional explanation', '', '', '', '', '', 'blur', '18', '10', 'TRUE', 'TRUE', 'FALSE'],
       ];
-      downloadText('tahaddii-question-template.csv', `\uFEFF${sample.map(row => row.map(escapeCsv).join(',')).join('\n')}`);
+      downloadText('Tahaddii-question-template.csv', `\uFEFF${sample.map(row => row.map(escapeCsv).join(',')).join('\n')}`);
     });
 
     $('exportQuestionsBtn').addEventListener('click', () => {
-      const csv = `\uFEFF${[headers, ...allQuestions.map(questionToRow)].map(row => row.map(escapeCsv).join(',')).join('\n')}`;
-      downloadText(`tahaddii-custom-questions-${new Date().toISOString().slice(0, 10)}.csv`, csv);
-      setStatus($('questionStatus'), `تم تجهيز ${allQuestions.length} سؤال للتحميل`, 'success');
+      const exportRows = visibleQuestions.length ? visibleQuestions : allQuestions;
+      const csv = `\uFEFF${[headers, ...exportRows.map(questionToRow)].map(row => row.map(escapeCsv).join(',')).join('\n')}`;
+      downloadText(`Tahaddii-custom-questions-${new Date().toISOString().slice(0, 10)}.csv`, csv);
+      setStatus($('questionStatus'), `تم تجهيز ${exportRows.length} سؤال للتحميل`, 'success');
+    });
+
+    ['questionSearch', 'questionCategoryFilter', 'questionDifficultyFilter', 'questionSourceFilter'].forEach(id => {
+      $(id).addEventListener('input', renderQuestions);
+      $(id).addEventListener('change', renderQuestions);
+    });
+
+    $('questionDifficultyInput').addEventListener('change', () => {
+      $('questionPointsInput').value = pointsByDifficulty[$('questionDifficultyInput').value] || 10;
+    });
+    $('questionTypeInput').addEventListener('change', updateQuestionTypeFields);
+    $('questionAnswerModeInput').addEventListener('change', updateQuestionTypeFields);
+    $('questionIdInput').addEventListener('input', () => { $('questionIdInput').dataset.auto = 'false'; });
+    $('questionCategoryInput').addEventListener('change', refreshQuestionAutoId);
+    $('questionArInput').addEventListener('input', refreshQuestionAutoId);
+    $('questionEnInput').addEventListener('input', refreshQuestionAutoId);
+    ['questionCategoryInput', 'questionTypeInput', 'questionAnswerModeInput', 'questionDifficultyInput', 'questionCorrectInput', 'questionArInput', 'questionEnInput', 'manualCorrectArInput', 'manualCorrectEnInput', 'questionImageUrlInput', 'questionRevealImageUrlInput', 'answer1ArInput', 'answer2ArInput', 'answer3ArInput', 'answer4ArInput'].forEach(id => {
+      $(id).addEventListener('input', renderQuestionPreview);
+      $(id).addEventListener('change', renderQuestionPreview);
+    });
+    $('questionInlineImageFile').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      setStatus($('questionStatus'), 'جاري رفع صورة السؤال...');
+      try {
+        const url = await uploadInlineQuestionImage(file, 'imageUrl');
+        $('questionImageUrlInput').value = url;
+        $('questionImageStatusInput').value = 'تم رفع صورة السؤال';
+        renderQuestionPreview();
+        setStatus($('questionStatus'), 'تم رفع صورة السؤال. أكمل البيانات واضغط حفظ السؤال.', 'success');
+      } catch (error) {
+        setStatus($('questionStatus'), error.message, 'error');
+      }
+    });
+    $('questionInlineRevealImageFile').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      setStatus($('questionStatus'), 'جاري رفع صورة الجواب...');
+      try {
+        const url = await uploadInlineQuestionImage(file, 'revealImageUrl');
+        $('questionRevealImageUrlInput').value = url;
+        $('questionImageStatusInput').value = 'تم رفع صورة الجواب';
+        renderQuestionPreview();
+        setStatus($('questionStatus'), 'تم رفع صورة الجواب. أكمل البيانات واضغط حفظ السؤال.', 'success');
+      } catch (error) {
+        setStatus($('questionStatus'), error.message, 'error');
+      }
+    });
+    $('clearQuestionFormBtn').addEventListener('click', clearQuestionForm);
+
+    $('questionForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('questionStatus'), 'جاري حفظ السؤال...');
+      try {
+        const item = buildQuestionPayloadFromForm();
+        await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields(item.payload), { merge: true });
+        setStatus($('questionStatus'), 'تم حفظ السؤال وربطه بالكاتيجوري', 'success');
+        clearQuestionForm();
+        await loadData();
+        $('questionSearch').value = item.id;
+        renderQuestions();
+      } catch (error) {
+        setStatus($('questionStatus'), error.message, 'error');
+      }
+    });
+
+    $('questionsBody').addEventListener('click', async event => {
+      const fillId = event.target.closest('[data-fill-question]')?.dataset.fillQuestion;
+      const editId = event.target.closest('[data-edit-question]')?.dataset.editQuestion;
+      const mediaId = event.target.closest('[data-media-question]')?.dataset.mediaQuestion;
+      const deleteId = event.target.closest('[data-delete-question]')?.dataset.deleteQuestion;
+
+      if (fillId) {
+        const question = allQuestions.find(item => item.id === fillId);
+        if (!question) return;
+        fillQuestionForm(question);
+        setStatus($('questionStatus'), 'تم تحميل السؤال في نموذج التعديل. عدل ثم اضغط حفظ السؤال.', 'success');
+      }
+
+      if (editId) {
+        const question = allQuestions.find(item => item.id === editId);
+        if (!question) return;
+        downloadText(`Tahaddii-edit-${editId}.csv`, questionToCsv(question));
+        setStatus($('questionStatus'), 'تم تحميل ملف CSV لهذا السؤال. عدله ثم ارفعه من نفس التبويب.', 'success');
+      }
+
+      if (mediaId) {
+        $('questionMediaId').value = mediaId;
+        setStatus($('mediaStatus'), 'تم اختيار السؤال. اختر صورة/فيديو ثم اضغط رفع وربط الوسائط.', 'success');
+        window.scrollTo({ top: $('questionsPanel').offsetTop, behavior: 'smooth' });
+      }
+
+      if (deleteId && confirm('حذف سؤال الأدمن؟ إذا كان هذا تعديل على سؤال من التطبيق، سيعود السؤال الأصلي للظهور.')) {
+        await deleteDoc(doc(firestore, 'customQuestions', deleteId));
+        setStatus($('questionStatus'), 'تم حذف سؤال/تعديل الأدمن', 'success');
+        await loadData();
+      }
     });
 
     $('questionsFile').addEventListener('change', async event => {
@@ -841,9 +1529,9 @@
         const normalized = pendingQuestionRows.map(normalizeQuestion);
         for (const item of normalized) {
           if (item.id) {
-            await setDoc(doc(firestore, 'customQuestions', item.id), item.payload, { merge: true });
+            await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields(item.payload), { merge: true });
           } else {
-            await addDoc(collection(firestore, 'customQuestions'), item.payload);
+            await addDoc(collection(firestore, 'customQuestions'), removeUndefinedFields(item.payload));
           }
         }
         setStatus($('questionStatus'), `تم رفع ${normalized.length} سؤال بنجاح`, 'success');
@@ -889,7 +1577,7 @@
           payload.revealMode = 'blur';
           payload.blurAmount = 18;
         }
-        await setDoc(doc(firestore, 'customQuestions', questionId), payload, { merge: true });
+        await setDoc(doc(firestore, 'customQuestions', questionId), removeUndefinedFields(payload), { merge: true });
         await navigator.clipboard?.writeText(url).catch(() => {});
         $('questionMediaFile').value = '';
         setStatus($('mediaStatus'), 'تم الرفع والربط ونسخ الرابط', 'success');
@@ -902,22 +1590,42 @@
     const clearCategoryForm = () => {
       $('categoryEditId').value = '';
       $('categoryId').value = '';
+      $('categoryId').dataset.auto = 'true';
       $('categoryId').disabled = false;
       $('categorySortOrder').value = '0';
       $('categoryNameAr').value = '';
       $('categoryNameEn').value = '';
       $('categoryImageUrl').value = '';
       $('categoryAccentColor').value = '#8b5cf6';
+      $('categoryActive').value = 'TRUE';
       $('categoryImageFile').value = '';
+      renderCategoryPreview();
       setStatus($('categoryStatus'), '');
     };
 
-    const cleanCategoryId = value => String(value || '').trim().replace(/[^a-zA-Z0-9_-]/g, '-');
+    const cleanCategoryId = value => normalizeExistingCategoryId(value);
+
+    const shouldAutoFillCategoryId = () => !$('categoryEditId').value && (!$('categoryId').value.trim() || $('categoryId').dataset.auto === 'true');
+
+    const refreshCategoryAutoId = () => {
+      if (!shouldAutoFillCategoryId()) return;
+      const generatedId = uniqueId($('categoryNameEn').value || $('categoryNameAr').value, id => categoryCards.some(card => card.id === id), 'category');
+      $('categoryId').value = generatedId;
+      $('categoryId').dataset.auto = 'true';
+      renderCategoryPreview();
+    };
 
     $('clearCategoryBtn').addEventListener('click', clearCategoryForm);
+    $('categoryId').addEventListener('input', () => { $('categoryId').dataset.auto = 'false'; renderCategoryPreview(); });
+    $('categoryNameAr').addEventListener('input', refreshCategoryAutoId);
+    $('categoryNameEn').addEventListener('input', refreshCategoryAutoId);
+    ['categoryNameAr', 'categoryNameEn', 'categoryImageUrl'].forEach(id => {
+      $(id).addEventListener('input', renderCategoryPreview);
+    });
 
     $('categoryImageFile').addEventListener('change', async event => {
       const file = event.target.files?.[0];
+      refreshCategoryAutoId();
       const categoryId = cleanCategoryId($('categoryId').value || $('categoryEditId').value);
       if (!file) return;
       if (!categoryId) {
@@ -928,16 +1636,18 @@
 
       setStatus($('categoryStatus'), 'جاري رفع صورة البطاقة...');
       try {
-        const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+        const uploadFile = await compressImageFile(file);
+        const extension = uploadFile.name.split('.').pop()?.toLowerCase() || 'webp';
         const path = `categoryMedia/${categoryId}/cover-${Date.now()}.${extension}`;
         const imageRef = storageRef(storage, path);
-        await uploadBytes(imageRef, file, {
-          contentType: file.type || 'image/jpeg',
+        await uploadBytes(imageRef, uploadFile, {
+          contentType: uploadFile.type || 'image/webp',
           cacheControl: 'public,max-age=31536000,immutable',
           customMetadata: { categoryId },
         });
         const url = await getDownloadURL(imageRef);
         $('categoryImageUrl').value = url;
+        renderCategoryPreview();
         setStatus($('categoryStatus'), 'تم رفع الصورة. اضغط حفظ البطاقة.', 'success');
       } catch (error) {
         setStatus($('categoryStatus'), error.message, 'error');
@@ -948,6 +1658,7 @@
       event.preventDefault();
       setStatus($('categoryStatus'), 'جاري حفظ البطاقة...');
       const existingId = $('categoryEditId').value.trim();
+      refreshCategoryAutoId();
       const categoryId = cleanCategoryId($('categoryId').value || existingId);
       const nameAr = $('categoryNameAr').value.trim();
       if (!categoryId || !nameAr) {
@@ -961,7 +1672,7 @@
         imageUrl: $('categoryImageUrl').value.trim(),
         accentColor: $('categoryAccentColor').value.trim() || '#8b5cf6',
         sortOrder: Number($('categorySortOrder').value || 0),
-        isActive: true,
+        isActive: $('categoryActive').value !== 'FALSE',
         questionTypes: ['multiple_choice', 'image'],
         updatedAtMs: Date.now(),
       };
@@ -986,17 +1697,22 @@
         if (!category) return;
         $('categoryEditId').value = category.id;
         $('categoryId').value = category.id;
-        $('categoryId').disabled = false;
+        $('categoryId').dataset.auto = 'false';
+          $('categoryId').disabled = true;
         $('categorySortOrder').value = category.sortOrder || 0;
         $('categoryNameAr').value = category.nameAr || '';
         $('categoryNameEn').value = category.nameEn || '';
         $('categoryImageUrl').value = category.imageUrl || '';
         $('categoryAccentColor').value = category.accentColor || '#8b5cf6';
+        $('categoryActive').value = category.isActive === false ? 'FALSE' : 'TRUE';
+        renderCategoryPreview();
         window.scrollTo({ top: $('categoriesPanel').offsetTop, behavior: 'smooth' });
       }
       if (toggleId) {
         const category = categoryCards.find(item => item.id === toggleId);
-        await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: category?.isActive === false, updatedAtMs: Date.now() }, { merge: true });
+        const nextActive = category?.isActive === false;
+        await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: nextActive, updatedAtMs: Date.now() }, { merge: true });
+        setStatus($('categoryStatus'), nextActive ? 'تم تفعيل التصنيف' : 'تم إيقاف التصنيف وسيختفي من التطبيق بعد التحديث', 'success');
         await loadData();
       }
       if (deleteId && confirm('حذف بطاقة التصنيف؟ الأسئلة لن تنحذف، فقط البطاقة من الرئيسية.')) {
@@ -1012,11 +1728,45 @@
       $('adHeadlineAr').value = '';
       $('adHeadlineEn').value = '';
       $('adImageUrl').value = '';
+      $('adImageFile').value = '';
       $('adAccentColor').value = '#f59e0b';
+      renderAdPreview();
       setStatus($('adStatus'), '');
     };
 
     $('clearAdBtn').addEventListener('click', clearAdForm);
+
+    ['adCompany', 'adHeadlineAr', 'adImageUrl'].forEach(id => {
+      $(id).addEventListener('input', renderAdPreview);
+    });
+
+    $('adImageFile').addEventListener('change', async event => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const existingId = $('adId').value.trim();
+      const adId = existingId || uniqueId($('adCompany').value || 'ad', id => sponsorAds.some(ad => ad.id === id), 'ad');
+      $('adId').value = adId;
+
+      setStatus($('adStatus'), 'جاري رفع صورة الإعلان...');
+      try {
+        const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+        const cleanId = adId.replace(/[^a-zA-Z0-9_-]/g, '-');
+        const path = `sponsorMedia/${cleanId}/image-${Date.now()}.${extension}`;
+        const imageRef = storageRef(storage, path);
+        await uploadBytes(imageRef, file, {
+          contentType: file.type || 'image/jpeg',
+          cacheControl: 'public,max-age=31536000,immutable',
+          customMetadata: { adId, role: 'imageUrl' },
+        });
+        const url = await getDownloadURL(imageRef);
+        $('adImageUrl').value = url;
+        renderAdPreview();
+        setStatus($('adStatus'), 'تم رفع صورة الإعلان. اضغط حفظ الإعلان.', 'success');
+      } catch (error) {
+        setStatus($('adStatus'), error.message, 'error');
+      }
+    });
 
     $('adForm').addEventListener('submit', async event => {
       event.preventDefault();
@@ -1064,6 +1814,8 @@
         $('adHeadlineEn').value = ad.headlineEn || '';
         $('adImageUrl').value = ad.imageUrl || '';
         $('adAccentColor').value = ad.accentColor || '#f59e0b';
+        $('adImageFile').value = '';
+        renderAdPreview();
         window.scrollTo({ top: $('adsPanel').offsetTop, behavior: 'smooth' });
       }
       if (toggleId) {

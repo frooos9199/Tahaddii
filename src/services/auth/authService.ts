@@ -67,6 +67,7 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
   const db = getFirebaseDb();
   const userRef = doc(db, USERS_COLLECTION, user.uid);
   const existingSnapshot = await getDoc(userRef);
+  const existingData = existingSnapshot.exists() ? existingSnapshot.data() as Partial<AppUserRecord> : {};
   const resolvedDisplayName = toDisplayName(user, displayName);
   const tokenRole = await resolveRoleFromToken(user);
 
@@ -93,6 +94,9 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     uid: user.uid,
     email: user.email ?? null,
     displayName: resolvedDisplayName,
+    avatarUri: existingData.avatarUri ?? user.photoURL ?? null,
+    avatarEmoji: existingData.avatarEmoji,
+    color: existingData.color,
     role: tokenRole.role,
     roles: [...tokenRole.roles],
     isAdmin: tokenRole.isAdmin,
@@ -174,6 +178,41 @@ export const updateCurrentUserDisplayName = async (displayName: string) => {
   }
 
   await updateProfile(user, { displayName: trimmedName });
+  return ensureUserDocument(user, trimmedName);
+};
+
+export const updateCurrentUserProfile = async ({
+  displayName,
+  avatarUri,
+  avatarEmoji,
+  color,
+}: {
+  displayName: string;
+  avatarUri?: string | null;
+  avatarEmoji?: string;
+  color?: string;
+}) => {
+  const auth = getFirebaseAuth();
+  const user = auth.currentUser;
+  const trimmedName = displayName.trim();
+
+  if (!user || !trimmedName) {
+    return null;
+  }
+
+  await updateProfile(user, {
+    displayName: trimmedName,
+    photoURL: avatarUri && avatarUri.startsWith('http') ? avatarUri : user.photoURL,
+  });
+
+  await setDoc(doc(getFirebaseDb(), USERS_COLLECTION, user.uid), {
+    displayName: trimmedName,
+    avatarUri: avatarUri ?? null,
+    avatarEmoji: avatarEmoji ?? null,
+    color: color ?? null,
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
+
   return ensureUserDocument(user, trimmedName);
 };
 

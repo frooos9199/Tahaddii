@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
-  Alert, Dimensions, Image, StatusBar, StyleSheet,
+  Alert, Animated, Dimensions, Image, StatusBar, StyleSheet,
   Text, TouchableOpacity, View,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -11,9 +11,11 @@ import { GameState, Player, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
+import { CATEGORY_EMOJIS, FAST_ANSWER_BONUS } from '../constants';
 import { createTvDisplaySession, getTvDisplayUrl, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestions } from '../services/questions/questionService';
-import { getQuestionPrimaryImageUrl, preloadQuestionMedia, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
+import { getQuestionDisplayImageUrls, getQuestionPrimaryImageUrl, preloadQuestionMedia, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
+import { markQuestionsAsSeen, syncQuestionHistory } from '../services/questions/questionHistoryService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Game'> };
 
@@ -35,9 +37,17 @@ export default function GameScreen({ navigation }: Props) {
   const { game, startGame, submitAnswer, nextQuestion, startTieBreaker, finishGame, clearSavedGame, pendingTvDisplayCode } = useGameStore();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null);
+  const [lastPointsEarned, setLastPointsEarned] = useState(0);
+  const [lastFastBonus, setLastFastBonus] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [tvDisplayCode, setTvDisplayCode] = useState<string | null>(pendingTvDisplayCode);
+  const [imageFallbackIndex, setImageFallbackIndex] = useState(0);
+  const [transitionCategoryId, setTransitionCategoryId] = useState<string | null>(null);
+  const categoryTransitionOpacity = useRef(new Animated.Value(0)).current;
+  const categoryTransitionScale = useRef(new Animated.Value(0.96)).current;
+  const previousCategoryIdRef = useRef<string | null>(null);
+  const markedQuestionKeysRef = useRef<Set<string>>(new Set());
 
   useEffect(() => {
     if (pendingTvDisplayCode && !tvDisplayCode) {
@@ -46,10 +56,25 @@ export default function GameScreen({ navigation }: Props) {
   }, [pendingTvDisplayCode, tvDisplayCode]);
 
   const question = game?.questions[game.currentQuestionIndex];
+  const gameQuestions = game?.questions;
+  const gameId = game?.id;
+  const gameCurrentQuestionIndex = game?.currentQuestionIndex;
   const player = game?.players[game.currentPlayerIndex];
   const total = game?.questions.length ?? 0;
   const timeLimit = game?.settings.timePerQuestion ?? 0;
   const isTimed = timeLimit > 0;
+  const displayCategoryId = question?.queueCategoryId || question?.categoryId || '';
+  const previousQuestion = game && game.currentQuestionIndex > 0
+    ? game.questions[game.currentQuestionIndex - 1]
+    : undefined;
+  const previousDisplayCategoryId = previousQuestion?.queueCategoryId || previousQuestion?.categoryId || '';
+  const displayCategoryTransitionKey = game && displayCategoryId
+    ? `${game.id}:${game.currentQuestionIndex}:${displayCategoryId}`
+    : '';
+  const displayCategoryEmoji = CATEGORY_EMOJIS[displayCategoryId] || '🎯';
+  const displayCategoryName = displayCategoryId
+    ? t(`categories.${displayCategoryId}`, { defaultValue: displayCategoryId })
+    : t('categories.generalKnowledge');
 
   const displayQuestion = useMemo(() => {
     if (!question) return '';
@@ -74,7 +99,8 @@ export default function GameScreen({ navigation }: Props) {
       ? question.correctAnswerEn || question.correctAnswerAr
       : question.correctAnswerAr || question.correctAnswerEn;
   }, [language, question]);
-  const questionImageUrl = getQuestionPrimaryImageUrl(question, revealed);
+  const questionImageUrls = useMemo(() => getQuestionDisplayImageUrls(question, revealed), [question, revealed]);
+  const questionImageUrl = questionImageUrls[imageFallbackIndex] || '';
   const questionBlurRadius = question && questionImageUrl && !revealed && question.revealMode !== 'none'
     ? Number(question.blurAmount ?? 18)
     : 0;
@@ -86,6 +112,7 @@ export default function GameScreen({ navigation }: Props) {
     : Colors.success;
 
   const elapsed = isTimed ? Math.max(0, timeLimit - (timeLeft ?? timeLimit)) : 0;
+  const fastAnswerLimit = isTimed ? Math.max(5, Math.ceil(timeLimit * 0.25)) : 0;
 
   const buildTvDisplayState = useCallback(() => {
     if (!game || !question || !player) return null;
@@ -100,6 +127,12 @@ export default function GameScreen({ navigation }: Props) {
       timeLeft: isTimed ? (timeLeft ?? timeLimit) : null,
       question: {
         id: question.id,
+        type: question.type,
+        categoryId: displayCategoryId,
+        previousCategoryId: previousDisplayCategoryId,
+        categoryTransitionKey: displayCategoryTransitionKey,
+        categoryName: displayCategoryName,
+        categoryEmoji: displayCategoryEmoji,
         text: displayQuestion,
         points: question.points,
         imageUrl: getQuestionPrimaryImageUrl(question, revealed),
@@ -132,7 +165,7 @@ export default function GameScreen({ navigation }: Props) {
       correctAnswer: revealed ? correctAnswer : '',
       explanation: revealed ? (language === 'en' ? question.explanationEn || question.explanationAr || '' : question.explanationAr || question.explanationEn || '') : '',
     };
-  }, [answers, correctAnswer, displayQuestion, game, isTimed, language, player, question, revealed, selectedIndex, timeLeft, timeLimit]);
+  }, [answers, correctAnswer, displayCategoryEmoji, displayCategoryId, displayCategoryName, displayCategoryTransitionKey, displayQuestion, game, isTimed, language, player, previousDisplayCategoryId, question, questionImageUrl, revealed, selectedIndex, timeLeft, timeLimit]);
 
   const syncTvDisplay = useCallback(() => {
     if (!tvDisplayCode || !game || !question || !player) return;
@@ -191,6 +224,8 @@ export default function GameScreen({ navigation }: Props) {
   const resetLocal = useCallback(() => {
     setSelectedIndex(null);
     setAnsweredCorrectly(null);
+    setLastPointsEarned(0);
+    setLastFastBonus(0);
     setRevealed(false);
     setTimeLeft(null);
   }, []);
@@ -201,12 +236,68 @@ export default function GameScreen({ navigation }: Props) {
     setTimeLeft(isTimed ? timeLimit : null);
     setSelectedIndex(null);
     setAnsweredCorrectly(null);
+    setLastPointsEarned(0);
+    setLastFastBonus(0);
     setRevealed(false);
-    void preloadQuestionMedia(question);
-    if (game?.questions.length) {
-      preloadUpcomingQuestionMedia(game.questions, game.currentQuestionIndex + 1, 4);
+    setImageFallbackIndex(0);
+    const questionHistoryKey = `${gameId ?? 'game'}:${gameCurrentQuestionIndex ?? 0}:${question.id}`;
+    if (!markedQuestionKeysRef.current.has(questionHistoryKey)) {
+      markedQuestionKeysRef.current.add(questionHistoryKey);
+      markQuestionsAsSeen([question]).catch(error => {
+        console.warn('Failed to mark question as seen', error);
+      });
     }
-  }, [game?.currentQuestionIndex, isTimed, question, timeLimit]);
+    void preloadQuestionMedia(question);
+    if (gameQuestions?.length && gameCurrentQuestionIndex != null) {
+      preloadUpcomingQuestionMedia(gameQuestions, gameCurrentQuestionIndex + 1, 4);
+    }
+  }, [gameCurrentQuestionIndex, gameId, gameQuestions, isTimed, question, timeLimit]);
+
+  useEffect(() => {
+    setImageFallbackIndex(0);
+  }, [question?.id, revealed]);
+
+  useEffect(() => {
+    if (!question || !displayCategoryId) return;
+
+    const categoryChanged = previousCategoryIdRef.current !== displayCategoryId;
+    previousCategoryIdRef.current = displayCategoryId;
+    if (!categoryChanged) return;
+
+    setTransitionCategoryId(displayCategoryId);
+    categoryTransitionOpacity.setValue(0);
+    categoryTransitionScale.setValue(0.96);
+
+    Animated.parallel([
+      Animated.timing(categoryTransitionOpacity, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }),
+      Animated.timing(categoryTransitionScale, {
+        toValue: 1,
+        duration: 180,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
+    const hideTimer = setTimeout(() => {
+      Animated.parallel([
+        Animated.timing(categoryTransitionOpacity, {
+          toValue: 0,
+          duration: 220,
+          useNativeDriver: true,
+        }),
+        Animated.timing(categoryTransitionScale, {
+          toValue: 1.02,
+          duration: 220,
+          useNativeDriver: true,
+        }),
+      ]).start(() => setTransitionCategoryId(null));
+    }, 950);
+
+    return () => clearTimeout(hideTimer);
+  }, [categoryTransitionOpacity, categoryTransitionScale, displayCategoryId, question]);
 
   // countdown
   useEffect(() => {
@@ -220,13 +311,19 @@ export default function GameScreen({ navigation }: Props) {
     if (!isTimed || !question || !player || revealed || timeLeft !== 0) return;
     submitAnswer({ questionId: question.id, playerId: player.id, isCorrect: false, timeSpent: timeLimit, pointsEarned: 0 });
     setAnsweredCorrectly(false);
+    setLastPointsEarned(0);
+    setLastFastBonus(0);
     setRevealed(true);
   }, [isTimed, player, question, revealed, submitAnswer, timeLeft, timeLimit]);
 
   const registerAnswer = (isCorrect: boolean) => {
     if (!game || !question || !player || revealed) return;
-    submitAnswer({ questionId: question.id, playerId: player.id, isCorrect, timeSpent: elapsed, pointsEarned: isCorrect ? question.points : 0 });
+    const fastBonus = isCorrect && isTimed && elapsed <= fastAnswerLimit ? FAST_ANSWER_BONUS : 0;
+    const pointsEarned = isCorrect ? question.points + fastBonus : 0;
+    submitAnswer({ questionId: question.id, playerId: player.id, isCorrect, timeSpent: elapsed, pointsEarned });
     setAnsweredCorrectly(isCorrect);
+    setLastPointsEarned(pointsEarned);
+    setLastFastBonus(fastBonus);
     setRevealed(true);
   };
 
@@ -256,6 +353,9 @@ export default function GameScreen({ navigation }: Props) {
       await syncFinalTvDisplay().catch(error => {
         console.warn('Failed to sync final TV display results', error);
       });
+      await syncQuestionHistory().catch(error => {
+        console.warn('Failed to sync question history', error);
+      });
       finishGame();
       await clearSavedGame();
       navigation.replace('Results');
@@ -268,7 +368,17 @@ export default function GameScreen({ navigation }: Props) {
   const confirmExit = () => {
     Alert.alert(t('game.exitGame'), t('game.exitConfirm'), [
       { text: t('common.cancel'), style: 'cancel' },
-      { text: t('game.exitGame'), style: 'destructive', onPress: async () => { await clearSavedGame(); navigation.replace('Home'); } },
+      {
+        text: t('game.exitGame'),
+        style: 'destructive',
+        onPress: async () => {
+          await syncQuestionHistory().catch(error => {
+            console.warn('Failed to sync question history on exit', error);
+          });
+          await clearSavedGame();
+          navigation.replace('Home');
+        },
+      },
     ]);
   };
 
@@ -293,6 +403,11 @@ export default function GameScreen({ navigation }: Props) {
 
   const isLast = game.currentQuestionIndex >= game.questions.length - 1;
   const answerLetters = language === 'en' ? ['A', 'B', 'C', 'D'] : ['أ', 'ب', 'ج', 'د'];
+  const isTrueFalseQuestion = question.type === 'true_false' && answers.length >= 2;
+  const transitionCategoryEmoji = transitionCategoryId ? CATEGORY_EMOJIS[transitionCategoryId] || '🎯' : displayCategoryEmoji;
+  const transitionCategoryName = transitionCategoryId
+    ? t(`categories.${transitionCategoryId}`, { defaultValue: transitionCategoryId })
+    : displayCategoryName;
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -329,6 +444,13 @@ export default function GameScreen({ navigation }: Props) {
         </View>
       </View>
 
+      {/* ── CATEGORY ── */}
+      <View style={styles.categoryHeader}>
+        <Text style={styles.categoryIcon}>{displayCategoryEmoji}</Text>
+        <Text style={styles.categoryName} numberOfLines={1}>{displayCategoryName}</Text>
+        <Text style={styles.categoryCount}>{game.currentQuestionIndex + 1} / {total}</Text>
+      </View>
+
       {/* ── PLAYER ── */}
       <View style={[styles.playerRow, { borderColor: player.color }]}>
         <Text style={styles.playerEmoji}>{player.name.charAt(0).toUpperCase()}</Text>
@@ -342,10 +464,14 @@ export default function GameScreen({ navigation }: Props) {
       <View style={styles.questionCard}>
         {!!questionImageUrl && (
           <Image
+            key={`${question.id}-${revealed ? 'revealed' : 'hidden'}-${questionImageUrl}`}
             source={{ uri: questionImageUrl }}
             style={styles.questionImage}
             blurRadius={questionBlurRadius}
             resizeMode="cover"
+            onError={() => setImageFallbackIndex(currentIndex => (
+              currentIndex + 1 < questionImageUrls.length ? currentIndex + 1 : currentIndex
+            ))}
           />
         )}
         <Text style={styles.questionText} adjustsFontSizeToFit numberOfLines={4}>
@@ -355,7 +481,31 @@ export default function GameScreen({ navigation }: Props) {
 
       {/* ── ANSWERS or MANUAL ── */}
       <View style={styles.answersBlock}>
-        {answers.length > 0 ? (
+        {isTrueFalseQuestion ? (
+          <View style={styles.trueFalseRow}>
+            {answers.slice(0, 2).map((ans, i) => {
+              const isSelected = selectedIndex === i;
+              const isCorrect = i === question.correctAnswerIndex;
+              const showGreen = revealed && isCorrect;
+              const showRed = revealed && isSelected && !isCorrect;
+              return (
+                <TouchableOpacity
+                  key={i}
+                  style={[styles.trueFalseBtn,
+                    i === 0 ? styles.trueBtn : styles.falseBtn,
+                    isSelected && !revealed && styles.answerSelected,
+                    showGreen && styles.answerCorrect,
+                    showRed && styles.answerWrong,
+                  ]}
+                  disabled={revealed}
+                  onPress={() => { setSelectedIndex(i); registerAnswer(i === question.correctAnswerIndex); }}>
+                  <Text style={styles.trueFalseMark}>{i === 0 ? '✓' : '✕'}</Text>
+                  <Text style={styles.trueFalseText} adjustsFontSizeToFit numberOfLines={1}>{ans}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ) : answers.length > 0 ? (
           <View style={styles.answersGrid}>
             {answers.map((ans, i) => {
               const isSelected = selectedIndex === i;
@@ -395,8 +545,9 @@ export default function GameScreen({ navigation }: Props) {
       {revealed && (
         <View style={[styles.feedbackBar, answeredCorrectly ? styles.feedbackCorrect : styles.feedbackWrong]}>
           <Text style={styles.feedbackLabel}>
-            {answeredCorrectly ? `✓ ${t('common.correct')}` : `✕ ${t('game.correctAnswer')}: ${correctAnswer}`}
+            {answeredCorrectly ? `✓ ${t('common.correct')} · ${t('game.pointsEarned', { points: lastPointsEarned })}` : `✕ ${t('game.correctAnswer')}: ${correctAnswer}`}
           </Text>
+          {lastFastBonus > 0 && <Text style={styles.feedbackExpl}>{t('game.fastAnswer')}</Text>}
           {!!question.explanationAr && language !== 'en' && (
             <Text style={styles.feedbackExpl}>{question.explanationAr}</Text>
           )}
@@ -414,6 +565,24 @@ export default function GameScreen({ navigation }: Props) {
           </Text>
         </TouchableOpacity>
       </View>
+
+      {!!transitionCategoryId && (
+        <Animated.View
+          pointerEvents="none"
+          style={[
+            styles.categoryTransition,
+            {
+              opacity: categoryTransitionOpacity,
+              transform: [{ scale: categoryTransitionScale }],
+            },
+          ]}>
+          <View style={styles.categoryTransitionPanel}>
+            <Text style={styles.categoryTransitionKicker}>{t('game.nextRound')}</Text>
+            <Text style={styles.categoryTransitionIcon}>{transitionCategoryEmoji}</Text>
+            <Text style={styles.categoryTransitionName}>{transitionCategoryName}</Text>
+          </View>
+        </Animated.View>
+      )}
     </SafeAreaView>
   );
 }
@@ -470,6 +639,18 @@ const styles = StyleSheet.create({
     borderWidth: 2, backgroundColor: Colors.backgroundCard,
   },
   timerNum: { fontSize: 18, fontWeight: '800' },
+
+  categoryHeader: {
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+    marginHorizontal: 16, marginTop: 10,
+    paddingHorizontal: 14, paddingVertical: 9,
+    borderRadius: 14,
+    backgroundColor: Colors.backgroundCard,
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  categoryIcon: { fontSize: 22 },
+  categoryName: { flex: 1, color: Colors.text, fontSize: 14, fontWeight: '900' },
+  categoryCount: { color: Colors.accent, fontSize: 12, fontWeight: '900' },
 
   playerRow: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
@@ -539,6 +720,21 @@ const styles = StyleSheet.create({
   wrongBtn: { backgroundColor: Colors.error },
   manualText: { color: Colors.text, fontSize: 20, fontWeight: '800' },
 
+  trueFalseRow: { flex: 1, flexDirection: 'row', gap: 12 },
+  trueFalseBtn: {
+    flex: 1,
+    minHeight: 128,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    paddingHorizontal: 14,
+  },
+  trueBtn: { backgroundColor: Colors.success + '22', borderColor: Colors.success },
+  falseBtn: { backgroundColor: Colors.error + '22', borderColor: Colors.error },
+  trueFalseMark: { color: Colors.text, fontSize: 38, fontWeight: '900', marginBottom: 8 },
+  trueFalseText: { color: Colors.text, fontSize: 22, fontWeight: '900', textAlign: 'center' },
+
   feedbackBar: {
     marginHorizontal: 16, marginTop: 10,
     borderRadius: 14, padding: 12,
@@ -553,4 +749,30 @@ const styles = StyleSheet.create({
   nextBtn: { backgroundColor: Colors.primary, borderRadius: 16, padding: 16, alignItems: 'center' },
   nextDisabled: { opacity: 0.4 },
   nextText: { color: Colors.text, fontSize: 18, fontWeight: '800' },
+
+  categoryTransition: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.background + 'D9',
+    paddingHorizontal: 24,
+  },
+  categoryTransitionPanel: {
+    width: '100%',
+    maxWidth: 360,
+    borderRadius: 22,
+    paddingVertical: 28,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    backgroundColor: Colors.backgroundCard,
+    borderWidth: 1,
+    borderColor: Colors.primaryLight,
+  },
+  categoryTransitionKicker: { color: Colors.accent, fontSize: 13, fontWeight: '900', marginBottom: 8 },
+  categoryTransitionIcon: { fontSize: 52, marginBottom: 8 },
+  categoryTransitionName: { color: Colors.text, fontSize: 24, fontWeight: '900', textAlign: 'center' },
 });

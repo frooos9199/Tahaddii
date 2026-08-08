@@ -105,4 +105,7 @@ export const getAllowedDifficultiesForLevel = (difficulty: Difficulty | 'progres
 export const canQuestionAppearForDifficulty = (question: Question, difficulty: Difficulty | 'progressive') =>
   getAllowedDifficultiesForLevel(difficulty).includes(question.difficulty);
 
-export const canQuestionAppearForAge = (_question: Question, _ageGroup: AgeGroup) => true;
+export const canQuestionAppearForAge = (question: Question, ageGroup: AgeGroup) => {
+  const categoryIds = [question.categoryId, ...(question.linkedCategoryIds ?? [])];
+  return categoryIds.some(categoryId => getAllowedDifficultiesForCategoryAge(categoryId, ageGroup).includes(question.difficulty));
+};

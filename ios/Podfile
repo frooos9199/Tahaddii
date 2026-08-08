@@ -30,5 +30,41 @@ target 'tahaddi' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |build_config|
+        next unless build_config.name == 'Release'
+
+        build_config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf-with-dsym'
+        build_config.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'YES'
+        build_config.build_settings['STRIP_INSTALLED_PRODUCT'] = 'NO'
+      end
+    end
+
+    app_project = installer.aggregate_targets.first.user_project
+    app_project.targets.each do |target|
+      next unless target.name == 'tahaddi'
+
+      phase_name = '[Tahaddi] Generate React Native framework dSYMs'
+      phase = target.shell_script_build_phases.find { |build_phase| build_phase.name == phase_name } || target.new_shell_script_build_phase(phase_name)
+      phase.shell_script = <<~SCRIPT
+        set -e
+
+        if [ "${CONFIGURATION}" != "Release" ]; then
+          exit 0
+        fi
+
+        for FRAMEWORK_NAME in React ReactNativeDependencies hermesvm; do
+          FRAMEWORK_BINARY="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/${FRAMEWORK_NAME}.framework/${FRAMEWORK_NAME}"
+          DSYM_PATH="${DWARF_DSYM_FOLDER_PATH}/${FRAMEWORK_NAME}.framework.dSYM"
+
+          if [ -f "${FRAMEWORK_BINARY}" ] && [ ! -d "${DSYM_PATH}" ]; then
+            echo "Generating dSYM for ${FRAMEWORK_NAME}.framework"
+            dsymutil "${FRAMEWORK_BINARY}" -o "${DSYM_PATH}" || true
+          fi
+        done
+      SCRIPT
+    end
+    app_project.save
   end
 end

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tahaddii TV Display</title>
+  <title>Tahaddii.com</title>
   <style>
     :root {
       --bg: #080416;
@@ -17,9 +17,12 @@
       --error: #ef4444;
       --warning: #f59e0b;
       --border: #3b1d78;
+      --question-font-size: clamp(1.35rem, 2.75vw, 3.05rem);
+      --answer-font-size: clamp(0.95rem, 1.55vw, 1.9rem);
     }
 
     * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
     .is-hidden { display: none !important; }
 
     body {
@@ -33,17 +36,24 @@
       color: var(--text);
       font-family: ui-rounded, "Avenir Next", "Trebuchet MS", sans-serif;
       overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      place-items: center;
     }
 
     body.rtl { direction: rtl; font-family: "Geeza Pro", "Avenir Next", ui-rounded, sans-serif; }
 
     .shell {
-      height: 100vh;
-      height: 100svh;
+      width: min(92vw, 2200px);
+      height: min(92vh, 1220px);
+      height: min(92dvh, 1220px);
+      margin: auto;
       display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-      gap: clamp(0.55rem, 1.4vh, 1.25rem);
-      padding: clamp(0.7rem, 2vh, 1.8rem) clamp(0.9rem, 3vw, 3rem);
+      grid-template-rows: minmax(3.8rem, 10vh) minmax(0, 1fr);
+      gap: clamp(0.45rem, 1.1vh, 1rem);
+      padding: 0;
       overflow: hidden;
     }
 
@@ -87,8 +97,11 @@
       font-size: clamp(1rem, 1.3vw, 1.35rem);
     }
 
-    .main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 22vw); gap: clamp(0.8rem, 1.6vw, 2rem); min-height: 0; overflow: hidden; }
-    .stage { display: grid; grid-template-rows: auto minmax(0, 1fr) auto auto; gap: clamp(0.55rem, 1.35vh, 1.2rem); min-height: 0; overflow: hidden; }
+    .main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 21vw); gap: clamp(0.65rem, 1.25vw, 1.55rem); min-height: 0; overflow: hidden; }
+    .stage { display: grid; grid-template-rows: minmax(2.8rem, 7vh) minmax(2.8rem, 8vh) minmax(0, 1fr) auto auto; gap: clamp(0.38rem, 0.85vh, 0.9rem); min-height: 0; overflow: hidden; }
+    .stage.compact-secondary { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) auto auto; gap: clamp(0.28rem, 0.65vh, 0.7rem); }
+    .stage.extreme-content .feedback,
+    .stage.extreme-content .sponsor-ad { display: none; }
 
     .progress-row { display: flex; align-items: center; gap: 1.4vw; }
     .progress-track { flex: 1; height: 0.75rem; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.1); }
@@ -108,39 +121,152 @@
 
     .question-card {
       border-radius: 34px;
-      padding: clamp(0.8rem, 2.1vh, 2rem) clamp(0.9rem, 2.4vw, 2.4rem);
+      padding: clamp(0.7rem, 1.55vh, 1.35rem) clamp(0.8rem, 1.7vw, 1.8rem);
       display: grid;
-      align-content: center;
-      gap: clamp(0.6rem, 1.7vh, 1.5rem);
+      grid-template-rows: auto minmax(10rem, 1fr) minmax(7.4rem, 28vh) auto;
+      align-content: stretch;
+      gap: clamp(0.42rem, 0.9vh, 0.85rem);
       min-height: 0;
       overflow: hidden;
+      transition: padding 180ms ease, gap 180ms ease;
     }
+    .question-card.no-answers { grid-template-rows: auto minmax(0, 1fr) auto; }
+    .question-card.layout-long {
+      grid-template-rows: auto minmax(13rem, 1.45fr) minmax(6.2rem, 23vh) auto;
+      gap: clamp(0.32rem, 0.7vh, 0.7rem);
+      padding: clamp(0.55rem, 1.2vh, 1.1rem) clamp(0.65rem, 1.35vw, 1.45rem);
+    }
+    .question-card.layout-extreme {
+      grid-template-rows: auto minmax(15rem, 1.8fr) minmax(5.8rem, 20vh) auto;
+      gap: clamp(0.25rem, 0.55vh, 0.55rem);
+      padding: clamp(0.45rem, 1vh, 0.9rem) clamp(0.55rem, 1vw, 1.15rem);
+    }
+    .question-card.has-media.has-answers {
+      align-content: stretch;
+      grid-template-rows: auto minmax(11rem, 1.35fr) minmax(5.8rem, 22vh) auto;
+      gap: clamp(0.35rem, 0.75vh, 0.7rem);
+      padding-block: clamp(0.55rem, 1.15vh, 1rem);
+    }
+    .question-card.has-media.has-answers.layout-long { grid-template-rows: auto minmax(13rem, 1.55fr) minmax(5.3rem, 19vh) auto; }
+    .question-card.has-media.has-answers.layout-extreme { grid-template-rows: auto minmax(14rem, 1.8fr) minmax(4.9rem, 17vh) auto; }
 
-    .player-line { color: var(--primary-light); font-size: clamp(1.1rem, 1.7vw, 2rem); font-weight: 800; }
-    .question { font-size: clamp(1.75rem, 4.6vw, 5.4rem); line-height: 1.08; font-weight: 900; text-wrap: balance; overflow-wrap: anywhere; }
+    .player-line { color: var(--primary-light); font-size: clamp(0.95rem, 1.35vw, 1.55rem); font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .question {
+      min-height: 6.5rem;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      font-size: var(--question-font-size);
+      line-height: var(--question-line-height, 1.16);
+      font-weight: 900;
+      text-wrap: balance;
+      overflow-wrap: break-word;
+      word-break: normal;
+      white-space: normal;
+      transition: line-height 180ms ease;
+    }
+    .question-card.has-media .question {
+      display: grid;
+      justify-items: start;
+      gap: clamp(0.45rem, 1vh, 0.9rem);
+    }
+    body.rtl .question-card.has-media .question { justify-items: start; }
+    .question-card.has-media.has-answers .question {
+      grid-template-rows: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: clamp(0.28rem, 0.65vh, 0.55rem);
+      min-height: 0;
+      font-size: var(--question-font-size);
+      line-height: var(--question-line-height, 1.12);
+    }
     .question-media {
       width: min(100%, 52vw);
-      max-height: 34vh;
-      object-fit: cover;
+      max-height: 30vh;
+      object-fit: contain;
       justify-self: center;
       border-radius: 28px;
       border: 1px solid rgba(196, 181, 253, 0.25);
       box-shadow: 0 22px 70px rgba(0,0,0,0.32);
       background: rgba(255,255,255,0.08);
     }
-    .meta-line { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: clamp(1rem, 1.3vw, 1.5rem); }
+    .question-card.has-media.has-answers .question-media {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      min-height: 0;
+      justify-self: stretch;
+      align-self: stretch;
+      border-radius: 22px;
+    }
+    .question-text-panel {
+      max-width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+      text-shadow: 0 3px 16px rgba(0,0,0,0.72);
+      text-align: center;
+      margin-inline: auto;
+    }
+    .question-card.has-media .question-text-panel {
+      width: fit-content;
+      justify-self: start;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(8, 4, 22, 0.9), rgba(23, 13, 48, 0.78));
+      box-shadow: 0 18px 50px rgba(0,0,0,0.34);
+      backdrop-filter: blur(14px);
+      padding: clamp(0.45rem, 1vh, 0.9rem) clamp(0.75rem, 1.35vw, 1.35rem);
+    }
+    body.rtl .question-card.has-media .question-text-panel { justify-self: start; }
+    .question-card.has-media.has-answers .question-text-panel { justify-self: start; }
+    body.rtl .question-card.has-media.has-answers .question-text-panel { justify-self: start; }
+    .meta-line { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--muted); font-size: clamp(0.82rem, 1.05vw, 1.2rem); min-height: 1.35rem; overflow: hidden; }
+    .meta-line span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-    .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.45rem, 1.1vh, 1rem) clamp(0.5rem, 1vw, 1.2rem); min-height: 0; direction: ltr; }
+    .category-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-height: clamp(2.55rem, 5vh, 4rem);
+      border: 1px solid rgba(196, 181, 253, 0.22);
+      border-radius: 22px;
+      padding: clamp(0.55rem, 1vh, 0.95rem) clamp(0.8rem, 1.6vw, 1.55rem);
+      background: rgba(23, 13, 48, 0.62);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.2);
+    }
+    .category-strip.hidden { display: none; }
+    .category-icon {
+      width: clamp(2.2rem, 4vw, 3.8rem);
+      height: clamp(2.2rem, 4vw, 3.8rem);
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      font-size: clamp(1.2rem, 2.2vw, 2.25rem);
+    }
+    .category-name { flex: 1; min-width: 0; font-size: clamp(1rem, 1.45vw, 1.65rem); font-weight: 900; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .category-count { color: var(--primary-light); font-size: clamp(0.95rem, 1.2vw, 1.3rem); font-weight: 900; }
+
+    .answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); gap: clamp(0.42rem, 0.82vh, 0.78rem) clamp(0.5rem, 0.85vw, 1rem); min-height: 0; overflow: hidden; direction: ltr; }
     .answer {
       border: 2px solid rgba(196, 181, 253, 0.22);
       background: rgba(255,255,255,0.06);
       border-radius: 24px;
-      padding: clamp(0.55rem, 1.1vh, 1.2rem) clamp(0.65rem, 1.2vw, 1.35rem);
+      padding: clamp(0.45rem, 0.82vh, 0.9rem) clamp(0.58rem, 0.95vw, 1.1rem);
       display: flex;
       align-items: center;
       gap: 1vw;
-      min-height: clamp(3.6rem, 9vh, 7.4rem);
+      min-height: 0;
+      height: 100%;
+      overflow: hidden;
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+    .question-card.layout-long .answer { padding: clamp(0.35rem, 0.7vh, 0.75rem) clamp(0.48rem, 0.8vw, 0.95rem); border-radius: 20px; }
+    .question-card.layout-extreme .answer { padding: clamp(0.28rem, 0.55vh, 0.6rem) clamp(0.42rem, 0.7vw, 0.8rem); border-radius: 18px; }
+    .question-card.has-media.has-answers .answers { gap: clamp(0.35rem, 0.75vh, 0.7rem) clamp(0.45rem, 0.8vw, 0.9rem); }
+    .question-card.has-media.has-answers .answer {
+      min-height: 0;
+      padding: clamp(0.42rem, 0.75vh, 0.85rem) clamp(0.55rem, 0.9vw, 1rem);
+      border-radius: 18px;
     }
     body.rtl .answer { direction: rtl; }
     .answer-letter {
@@ -155,13 +281,86 @@
       font-weight: 900;
       flex: 0 0 auto;
     }
-    .answer-text { flex: 1; font-size: clamp(1rem, 1.9vw, 2.35rem); line-height: 1.12; font-weight: 800; overflow-wrap: anywhere; }
+    .answer-text { flex: 1; min-width: 0; max-height: 100%; font-size: var(--answer-font-size); line-height: var(--answer-line-height, 1.18); font-weight: 800; overflow: hidden; overflow-wrap: break-word; word-break: normal; white-space: normal; text-align: center; transition: line-height 180ms ease; }
+    .question-card.has-media.has-answers .answer-text { font-size: var(--answer-font-size); line-height: var(--answer-line-height, 1.12); }
     .answer-text .stat-good, .player-stats .stat-good { color: var(--success); font-weight: 900; }
     .answer-text .stat-bad, .player-stats .stat-bad { color: var(--error); font-weight: 900; }
     .answer-text .stat-muted { color: var(--muted); }
     .answer.selected { border-color: var(--warning); background: rgba(245, 158, 11, 0.15); }
     .answer.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.18); transform: scale(1.015); }
     .answer.wrong { border-color: var(--error); background: rgba(239, 68, 68, 0.18); }
+
+    .answers.true-false { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(0.8rem, 1.6vw, 1.8rem); }
+    .answers.true-false .answer {
+      min-height: 0;
+      justify-content: center;
+      border-radius: 30px;
+      flex-direction: column;
+      text-align: center;
+    }
+    .answers.true-false .answer-letter {
+      width: clamp(3.6rem, 6vw, 6rem);
+      height: clamp(3.6rem, 6vw, 6rem);
+      border-radius: 50%;
+      font-size: clamp(1.8rem, 3.2vw, 3.4rem);
+    }
+    .answers.true-false .answer-text { font-size: var(--answer-font-size, clamp(1.45rem, 2.65vw, 3rem)); flex: 0 1 auto; max-height: none; line-height: 1.05; }
+
+    .question-card.measuring .question,
+    .question-card.measuring .answer-text { transition: none; }
+
+    .tv-layout-debug {
+      position: fixed;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 80;
+      display: none;
+      width: min(28rem, 88vw);
+      max-height: 42vh;
+      overflow: hidden;
+      border: 1px solid rgba(34, 211, 238, 0.8);
+      background: rgba(0, 0, 0, 0.72);
+      color: #dffcff;
+      border-radius: 12px;
+      padding: 0.75rem;
+      direction: ltr;
+      font: 700 0.78rem/1.35 ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: pre-wrap;
+    }
+    body.tv-debug .tv-layout-debug { display: block; }
+    body.tv-debug .shell { outline: 2px solid rgba(34, 211, 238, 0.9); outline-offset: -2px; }
+    body.tv-debug .topbar { outline: 1px solid rgba(245, 158, 11, 0.9); }
+    body.tv-debug .category-strip { outline: 1px solid rgba(16, 185, 129, 0.9); }
+    body.tv-debug .question { outline: 1px solid rgba(239, 68, 68, 0.9); }
+    body.tv-debug .answers { outline: 1px solid rgba(196, 181, 253, 0.9); }
+
+    .category-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      background: rgba(8, 4, 22, 0.86);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.98);
+      transition: opacity 190ms ease, transform 190ms ease;
+    }
+    .category-transition.show { opacity: 1; transform: scale(1); }
+    .category-transition.restart { transition: none; }
+    .category-transition-card {
+      width: min(38rem, 86vw);
+      border: 1px solid rgba(196, 181, 253, 0.34);
+      border-radius: 34px;
+      padding: clamp(1.6rem, 4vh, 3rem);
+      text-align: center;
+      background: rgba(23, 13, 48, 0.94);
+      box-shadow: 0 26px 90px rgba(0,0,0,0.42);
+    }
+    .category-transition-kicker { color: var(--warning); font-size: clamp(1rem, 1.4vw, 1.45rem); font-weight: 900; margin-bottom: 0.9rem; }
+    .category-transition-icon { font-size: clamp(4rem, 8vw, 8rem); line-height: 1; margin-bottom: 1rem; }
+    .category-transition-name { font-size: clamp(2rem, 4.2vw, 4.8rem); font-weight: 900; line-height: 1.05; }
 
     .shell.celebrating::before,
     .shell.celebrating::after {
@@ -206,6 +405,21 @@
       font-size: clamp(2.3rem, 5vw, 5.2rem);
       vertical-align: middle;
     }
+    .question-card.is-final .question {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.65rem, 1.2vw, 1.4rem);
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .question-card.is-final .winner-crown {
+      flex: 0 0 auto;
+      margin-inline-end: 0;
+      width: clamp(3.2rem, 6.5vw, 6.4rem);
+      height: clamp(3.2rem, 6.5vw, 6.4rem);
+      font-size: clamp(1.8rem, 4vw, 4.2rem);
+    }
 
     .feedback {
       border-radius: 24px;
@@ -235,11 +449,14 @@
       width: clamp(2.2rem, 4vw, 4rem);
       height: clamp(2.2rem, 4vw, 4rem);
       border-radius: 16px;
-      object-fit: cover;
+      object-fit: contain;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.16);
       flex: 0 0 auto;
+      opacity: 0;
+      transition: opacity 180ms ease;
     }
+    .sponsor-logo.is-loaded { opacity: 1; }
     .sponsor-copy { min-width: 0; flex: 1; }
     .sponsor-kicker { color: var(--primary-light); font-size: clamp(0.7rem, 0.9vw, 0.9rem); font-weight: 900; }
     .sponsor-title { color: var(--text); font-size: clamp(1rem, 1.65vw, 1.9rem); line-height: 1.1; font-weight: 900; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -328,7 +545,7 @@
 
     @media (max-width: 900px) {
       body { overflow: hidden; }
-      .shell { height: 100vh; height: 100svh; }
+      .shell { width: 92vw; height: 92vh; height: 92dvh; }
       .main { grid-template-columns: 1fr; }
       .answers { grid-template-columns: 1fr; }
       .scoreboard { display: none; }
@@ -342,26 +559,56 @@
       .timer { width: 3.35rem; height: 3.35rem; font-size: 1.55rem; }
       .progress-track { height: 0.55rem; }
       .player-line, .meta-line { font-size: 0.95rem; }
-      .question { font-size: clamp(1.45rem, 4.1vw, 3.4rem); }
+      .question-card { grid-template-rows: auto minmax(5.2rem, 1fr) minmax(4.8rem, var(--answers-row-size, 22vh)) auto; gap: 0.38rem; }
+      .question-card.has-media.has-answers { grid-template-rows: auto minmax(5.2rem, 1fr) minmax(4.8rem, var(--answers-row-size, 18vh)) auto; }
+      .question { min-height: 5rem; font-size: var(--question-font-size, clamp(1.15rem, 3vw, 2.2rem)); line-height: 1.04; }
       .answer-letter { width: 2.45rem; height: 2.45rem; border-radius: 12px; font-size: 1.05rem; }
-      .answer-text { font-size: clamp(0.95rem, 1.65vw, 1.8rem); }
+      .answer-text { font-size: var(--answer-font-size, clamp(0.85rem, 1.35vw, 1.35rem)); }
       .feedback { padding: 0.55rem 0.75rem; font-size: 1rem; }
       .sponsor-ad { min-height: 2.7rem; padding: 0.45rem 0.6rem; border-radius: 16px; }
       .sponsor-logo { width: 2rem; height: 2rem; border-radius: 10px; }
       .sponsor-title { font-size: 0.95rem; }
     }
 
+    @media (max-height: 520px) {
+      .shell { gap: 0.32rem; padding-block: 0.45rem; }
+      .shell.layout-extreme-active { grid-template-rows: minmax(0, 1fr); }
+      .shell.layout-extreme-active .topbar { display: none; }
+      .topbar { min-height: 2.9rem; padding-block: 0.35rem; }
+      .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(0, 1fr); }
+      .stage.extreme-content .progress-row { display: none; }
+      .category-strip { min-height: 2.6rem; padding-block: 0.36rem; border-radius: 16px; }
+      .category-icon { width: 2rem; height: 2rem; border-radius: 12px; font-size: 1.1rem; }
+      .question-card { grid-template-rows: auto minmax(4.6rem, 1fr) minmax(4.4rem, var(--answers-row-size, 20vh)) auto; }
+      .question-card.layout-long { grid-template-rows: auto minmax(6.2rem, 1.5fr) minmax(4.2rem, 18vh) auto; }
+      .question-card.layout-extreme { grid-template-rows: minmax(7rem, 1.2fr) minmax(6rem, 30vh); }
+      .question-card.has-media.has-answers.layout-extreme { grid-template-rows: minmax(8.4rem, 1fr) minmax(5.6rem, 28vh); }
+      .question-card.layout-extreme .player-line,
+      .question-card.layout-extreme .meta-line { display: none; }
+      .question { min-height: 4.4rem; }
+      .sponsor-ad { display: none; }
+    }
+
     @media (max-width: 900px) and (orientation: landscape) {
       .shell { gap: 0.45rem; padding: 0.55rem 0.7rem; }
+      .shell.layout-extreme-active { grid-template-rows: minmax(0, 1fr); }
+      .shell.layout-extreme-active .topbar { display: none; }
       .topbar { padding: 0.45rem 0.7rem; border-radius: 16px; }
       .stage { gap: 0.35rem; }
-      .question-card { gap: 0.42rem; padding: 0.55rem 0.65rem; border-radius: 18px; }
+      .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(0, 1fr); }
+      .stage.extreme-content .progress-row { display: none; }
+      .question-card { grid-template-rows: auto minmax(5rem, 1fr) minmax(4.8rem, var(--answers-row-size, 24vh)) auto; gap: 0.42rem; padding: 0.55rem 0.65rem; border-radius: 18px; }
+      .question-card.layout-long { grid-template-rows: auto minmax(6.2rem, 1.5fr) minmax(4.2rem, 20vh) auto; }
+      .question-card.layout-extreme { grid-template-rows: minmax(7rem, 1.2fr) minmax(6rem, 30vh); }
+      .question-card.has-media.has-answers.layout-extreme { grid-template-rows: minmax(8.4rem, 1fr) minmax(5.6rem, 28vh); }
+      .question-card.layout-extreme .player-line,
+      .question-card.layout-extreme .meta-line { display: none; }
       .player-line, .meta-line { font-size: 0.82rem; }
-      .question { font-size: clamp(1.05rem, 3.2vw, 1.75rem); line-height: 1.03; }
+      .question { min-height: 4.8rem; font-size: var(--question-font-size, clamp(1rem, 2.8vw, 1.65rem)); line-height: 1.03; }
       .answers { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem; }
-      .answer { min-height: 2.55rem; padding: 0.38rem 0.45rem; border-radius: 14px; gap: 0.45rem; }
-      .answer-letter { width: 2rem; height: 2rem; border-radius: 10px; font-size: 0.9rem; }
-      .answer-text { font-size: 0.82rem; line-height: 1.05; }
+      .answer { min-height: 0; padding: 0.24rem 0.38rem; border-radius: 14px; gap: 0.35rem; }
+      .answer-letter { width: 1.62rem; height: 1.62rem; border-radius: 9px; font-size: 0.78rem; }
+      .answer-text { font-size: var(--answer-font-size, 0.8rem); line-height: 1.12; }
       .timer { width: 2.65rem; height: 2.65rem; font-size: 1.15rem; border-width: 0.16rem; }
     }
   </style>
@@ -369,7 +616,7 @@
 <body>
   <div id="setup" class="setup">
     <div class="setup-card">
-      <h1>Tahaddii TV</h1>
+      <h1>Tahaddii.com</h1>
       <p>Open the app, press TV before starting the game, then scan this QR code.</p>
       <div class="qr-wrap">
         <div class="qr-card"><img id="qrImage" alt="TV pairing QR code" /></div>
@@ -390,7 +637,7 @@
         <div class="brand-mark">T</div>
         <div>
           <div class="brand-title">Tahaddii</div>
-          <div id="brandSub" class="brand-sub">TV Display</div>
+          <div id="brandSub" class="brand-sub">Tahaddii.com</div>
         </div>
       </div>
       <div id="codePill" class="code-pill"></div>
@@ -401,6 +648,12 @@
         <div class="progress-row">
           <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
           <div id="timer" class="timer">--</div>
+        </div>
+
+        <div id="categoryStrip" class="category-strip hidden">
+          <div id="categoryIcon" class="category-icon"></div>
+          <div id="categoryName" class="category-name"></div>
+          <div id="categoryCount" class="category-count"></div>
         </div>
 
         <section class="question-card">
@@ -422,7 +675,17 @@
         <div id="players" class="players"></div>
       </aside>
     </main>
+
+    <div id="categoryTransition" class="category-transition">
+      <div class="category-transition-card">
+        <div id="categoryTransitionKicker" class="category-transition-kicker"></div>
+        <div id="categoryTransitionIcon" class="category-transition-icon"></div>
+        <div id="categoryTransitionName" class="category-transition-name"></div>
+      </div>
+    </div>
   </div>
+
+  <div id="layoutDebug" class="tv-layout-debug"></div>
 
   <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
@@ -451,6 +714,16 @@
     const codePill = document.getElementById('codePill');
     const progressFill = document.getElementById('progressFill');
     const timer = document.getElementById('timer');
+    const categoryStrip = document.getElementById('categoryStrip');
+    const categoryIcon = document.getElementById('categoryIcon');
+    const categoryName = document.getElementById('categoryName');
+    const categoryCount = document.getElementById('categoryCount');
+    const categoryTransition = document.getElementById('categoryTransition');
+    const categoryTransitionKicker = document.getElementById('categoryTransitionKicker');
+    const categoryTransitionIcon = document.getElementById('categoryTransitionIcon');
+    const categoryTransitionName = document.getElementById('categoryTransitionName');
+    const stage = document.querySelector('.stage');
+    const questionCard = document.querySelector('.question-card');
     const playerLine = document.getElementById('playerLine');
     const question = document.getElementById('question');
     const answers = document.getElementById('answers');
@@ -461,10 +734,15 @@
     const players = document.getElementById('players');
     const scoreTitle = document.getElementById('scoreTitle');
     const brandSub = document.getElementById('brandSub');
+    const layoutDebug = document.getElementById('layoutDebug');
+
+    const TV_LAYOUT_DEBUG = false;
+    const FIT_TOLERANCE_PX = 3;
+    const FIT_ITERATIONS = 9;
 
     const labels = {
-      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ', returningHome: 'العودة للرئيسية خلال', sponsor: 'برعاية' },
-      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong', returningHome: 'Returning home in', sponsor: 'Sponsored by' },
+      ar: { display: 'عرض التلفاز', score: 'النتيجة', question: 'سؤال', points: 'نقطة', turn: 'الدور', correct: 'الإجابة الصحيحة', missing: 'بانتظار بدء العرض من الجوال', final: 'النتيجة النهائية', winner: 'الفائز', correctCount: 'صح', wrongCount: 'خطأ', returningHome: 'العودة للرئيسية خلال', sponsor: 'برعاية', nextRound: 'الجولة القادمة' },
+      en: { display: 'TV Display', score: 'Scoreboard', question: 'Question', points: 'pts', turn: 'Turn', correct: 'Correct Answer', missing: 'Waiting for the phone to start the display', final: 'Final Results', winner: 'Winner', correctCount: 'Correct', wrongCount: 'Wrong', returningHome: 'Returning home in', sponsor: 'Sponsored by', nextRound: 'Next round' },
     };
 
     const getCodeFromUrl = () => new URLSearchParams(window.location.search).get('code')?.trim().toUpperCase() || '';
@@ -473,7 +751,10 @@
       const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
       return Array.from({ length: 5 }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
     };
-    const setText = (element, value) => { element.textContent = value ?? ''; };
+    const setText = (element, value) => {
+      const nextText = String(value ?? '');
+      if (element.textContent !== nextText) element.textContent = nextText;
+    };
 
     let unsubscribe = null;
     let pollTimer = null;
@@ -481,6 +762,21 @@
     let sponsorAds = [];
     let sponsorIndex = 0;
     let sponsorTimer = null;
+    let sponsorRenderKey = '';
+    let previousCategoryKey = null;
+    let previousQuestionKey = null;
+    let lastQuestionLayoutKey = null;
+    let lastQuestionPromptKey = null;
+    let lastAnswersStructureKey = null;
+    let lastWaitingRenderKey = null;
+    let lastPlayersRenderKey = null;
+    let lastCategoryTransitionKey = null;
+    let categoryTransitionTimer = null;
+    let layoutFitFrame = null;
+    let layoutFitRevision = 0;
+    const failedQuestionMediaUrls = new Set();
+
+    document.body.classList.toggle('tv-debug', TV_LAYOUT_DEBUG);
 
     codeInput.value = getCodeFromUrl() || createDisplayCode();
     renderSetupCode(codeInput.value);
@@ -496,11 +792,22 @@
       event.preventDefault();
       connect(normalizeCode(codeInput.value));
     });
+    window.addEventListener('resize', fitQuestionLayout);
+    window.addEventListener('orientationchange', fitQuestionLayout);
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(fitQuestionLayout).catch(() => {});
+    }
+    if ('ResizeObserver' in window) {
+      const layoutResizeObserver = new ResizeObserver(() => fitQuestionLayout());
+      [display, questionCard].forEach(element => {
+        if (element) layoutResizeObserver.observe(element);
+      });
+    }
 
     function renderSetupCode(code) {
       const normalizedCode = normalizeCode(code);
       setText(setupCode, normalizedCode);
-      const payload = `https://tahaddi-77a5d.web.app/tv/?code=${encodeURIComponent(normalizedCode)}`;
+      const payload = `https://tahaddii.com/tv/?code=${encodeURIComponent(normalizedCode)}`;
       qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=20&data=${encodeURIComponent(payload)}`;
     }
 
@@ -545,6 +852,16 @@
       setText(scoreTitle, copy.score);
       renderSponsorAd(lang, copy);
       if (state.status === 'finished') {
+        categoryStrip.classList.add('hidden');
+        categoryTransition.classList.remove('show');
+        previousCategoryKey = null;
+        previousQuestionKey = null;
+        lastQuestionLayoutKey = null;
+        lastQuestionPromptKey = null;
+        lastAnswersStructureKey = null;
+        lastWaitingRenderKey = null;
+        lastPlayersRenderKey = null;
+        lastCategoryTransitionKey = null;
         renderFinalResults(state, copy);
         return;
       }
@@ -552,6 +869,22 @@
       clearFinalReturnTimer();
 
       if (state.status === 'pairing' || !state.question) {
+        const waitingRenderKey = [lang, copy.missing, state.code || '', (state.players || []).length].join('::');
+        if (waitingRenderKey === lastWaitingRenderKey && questionCard.classList.contains('no-answers')) return;
+        questionCard.classList.remove('has-media', 'has-answers', 'layout-long', 'layout-extreme', 'measuring', 'is-final');
+        questionCard.classList.add('no-answers');
+        display.classList.remove('layout-extreme-active');
+        stage.classList.remove('compact-secondary', 'extreme-content');
+        categoryStrip.classList.add('hidden');
+        categoryTransition.classList.remove('show');
+        previousCategoryKey = null;
+        previousQuestionKey = null;
+        lastQuestionLayoutKey = null;
+        lastQuestionPromptKey = null;
+        lastAnswersStructureKey = null;
+        lastWaitingRenderKey = waitingRenderKey;
+        lastPlayersRenderKey = null;
+        lastCategoryTransitionKey = null;
         setText(playerLine, '');
         setText(question, copy.missing);
         setText(questionMeta, '');
@@ -564,8 +897,21 @@
         return;
       }
 
+      const hasQuestionMedia = Boolean(state.question?.imageUrl || state.question?.thumbnailUrl || state.question?.revealImageUrl);
+      const hasAnswers = Array.isArray(state.answers) && state.answers.length > 0;
+      const questionLayoutKey = getQuestionLayoutKey(state, lang);
+      const questionPromptKey = getQuestionPromptKey(state, lang);
+      const shouldHideDuringFit = questionLayoutKey !== lastQuestionLayoutKey;
+      const shouldRenderQuestionPrompt = questionPromptKey !== lastQuestionPromptKey;
+      lastWaitingRenderKey = null;
+      questionCard.classList.remove('is-final');
+      questionCard.classList.toggle('has-media', hasQuestionMedia);
+      questionCard.classList.toggle('has-answers', hasAnswers);
+      questionCard.classList.toggle('no-answers', !hasAnswers);
+
+      renderCategoryStrip(state, copy);
       setText(playerLine, state.currentPlayer ? `${copy.turn}: ${state.currentPlayer.name} · ${state.currentPlayer.score} ${copy.points}` : '');
-      renderQuestionPrompt(state);
+      if (shouldRenderQuestionPrompt) renderQuestionPrompt(state);
       setText(questionMeta, `${copy.question} ${(state.questionIndex ?? 0) + 1} / ${state.totalQuestions ?? 1}`);
       setText(pointsMeta, `${state.question?.points ?? 0} ${copy.points}`);
 
@@ -582,33 +928,301 @@
       renderAnswers(state, lang);
       renderFeedback(state, copy);
       renderPlayers(state.players || []);
+      if (shouldHideDuringFit) questionCard.classList.add('measuring');
+      lastQuestionLayoutKey = questionLayoutKey;
+      lastQuestionPromptKey = questionPromptKey;
+      fitQuestionLayout();
+    }
+
+    function renderCategoryStrip(state, copy) {
+      const category = getQuestionCategory(state);
+      const questionKey = getQuestionRenderKey(state);
+      const categoryKey = category.id || category.name || 'unknown';
+      if (!category.id && !category.name) {
+        categoryStrip.classList.add('hidden');
+        return;
+      }
+
+      categoryStrip.classList.remove('hidden');
+      setText(categoryIcon, category.emoji);
+      setText(categoryName, category.name);
+      setText(categoryCount, `${(state.questionIndex ?? 0) + 1} / ${state.totalQuestions ?? 1}`);
+
+      const transitionKey = category.transitionKey || `${questionKey}|${categoryKey}`;
+      const explicitCategoryChanged = category.previousId && category.id && category.previousId !== category.id;
+      const categoryChanged = explicitCategoryChanged || (previousCategoryKey && categoryKey !== previousCategoryKey);
+      if (categoryChanged && lastCategoryTransitionKey !== transitionKey) {
+        showCategoryTransition(category, copy);
+        lastCategoryTransitionKey = transitionKey;
+      }
+      previousCategoryKey = categoryKey;
+      previousQuestionKey = questionKey;
+    }
+
+    function getQuestionCategory(state) {
+      const item = state.question || {};
+      const id = String(item.categoryId || '').trim();
+      return {
+        id,
+        previousId: String(item.previousCategoryId || '').trim(),
+        transitionKey: String(item.categoryTransitionKey || '').trim(),
+        name: String(item.categoryName || id || '').trim(),
+        emoji: String(item.categoryEmoji || '🎯').trim(),
+      };
+    }
+
+    function showCategoryTransition(category, copy) {
+      if (categoryTransitionTimer) clearTimeout(categoryTransitionTimer);
+      setText(categoryTransitionKicker, copy.nextRound);
+      setText(categoryTransitionIcon, category.emoji);
+      setText(categoryTransitionName, category.name);
+      categoryTransition.classList.remove('show');
+      categoryTransition.classList.add('restart');
+      void categoryTransition.offsetWidth;
+      categoryTransition.classList.remove('restart');
+      categoryTransition.classList.add('show');
+      categoryTransitionTimer = setTimeout(() => {
+        categoryTransition.classList.remove('show');
+      }, 1800);
+    }
+
+    function getQuestionRenderKey(state) {
+      return [state.gameId || '', state.question?.id || state.question?.text || '', state.questionIndex ?? ''].join('|');
+    }
+
+    function getQuestionLayoutKey(state, lang) {
+      const item = state.question || {};
+      const answerText = (state.answers || []).map(answer => answer?.text || '').join('|');
+      return [
+        lang,
+        state.gameId || '',
+        state.questionIndex ?? '',
+        item.id || item.text || '',
+        item.type || '',
+        item.categoryId || '',
+        item.categoryName || '',
+        item.imageUrl || '',
+        item.thumbnailUrl || '',
+        item.revealImageUrl || '',
+        answerText,
+      ].join('::');
+    }
+
+    function getQuestionPromptKey(state, lang) {
+      const item = state.question || {};
+      const revealState = state.status === 'revealed' ? 'revealed' : 'hidden';
+      return [
+        lang,
+        state.gameId || '',
+        state.questionIndex ?? '',
+        item.id || item.text || '',
+        item.text || '',
+        item.imageUrl || '',
+        item.thumbnailUrl || '',
+        item.revealImageUrl || '',
+        item.revealMode || '',
+        item.blurAmount || '',
+        revealState,
+      ].join('::');
     }
 
     function renderQuestionPrompt(state) {
       question.replaceChildren();
       const media = state.question || {};
-      const imageUrl = state.status === 'revealed'
-        ? (media.revealImageUrl || media.imageUrl || media.thumbnailUrl || '')
-        : (media.imageUrl || media.thumbnailUrl || media.revealImageUrl || '');
+      const imageUrls = getQuestionDisplayImageUrls(media, state.status === 'revealed');
+      const imageUrl = imageUrls.find(url => !failedQuestionMediaUrls.has(url)) || imageUrls[0] || '';
 
       if (imageUrl) {
         const image = document.createElement('img');
         image.className = 'question-media';
-        image.src = imageUrl;
         image.alt = media.text || '';
+        image.decoding = 'async';
+        image.loading = 'eager';
+        image.onload = fitQuestionLayout;
+        image.onerror = () => {
+          failedQuestionMediaUrls.add(image.src);
+          const nextUrl = imageUrls.find(url => url !== image.src && !failedQuestionMediaUrls.has(url));
+          if (nextUrl) {
+            image.src = nextUrl;
+            return;
+          }
+          image.remove();
+          fitQuestionLayout();
+        };
         if (state.status !== 'revealed' && media.revealMode !== 'none') {
           image.style.filter = `blur(${Number(media.blurAmount || 18)}px)`;
-          image.style.transform = 'scale(1.04)';
+          image.style.transform = 'none';
         }
+        image.src = imageUrl;
         question.append(image);
       }
 
       const text = document.createElement('div');
+      text.className = 'question-text-panel';
       text.textContent = media.text || '';
       question.append(text);
     }
 
+    function fitQuestionLayout() {
+      const revision = ++layoutFitRevision;
+      if (layoutFitFrame) cancelAnimationFrame(layoutFitFrame);
+      layoutFitFrame = requestAnimationFrame(() => runQuestionFitPass(0, revision));
+      setTimeout(() => runQuestionFitPass(1, revision), 90);
+      setTimeout(() => runQuestionFitPass(2, revision), 240);
+    }
+
+    function runQuestionFitPass(attempt, revision) {
+      if (revision !== layoutFitRevision) return;
+      const cardRect = questionCard.getBoundingClientRect();
+      if (cardRect.width <= 0 || cardRect.height <= 0) {
+        if (attempt < 2) setTimeout(() => runQuestionFitPass(attempt + 1, revision), 90);
+        return;
+      }
+
+      requestAnimationFrame(() => {
+        fitAdaptiveLayout();
+        questionCard.classList.remove('measuring');
+        updateLayoutDebug();
+      });
+    }
+
+    function fitAdaptiveLayout() {
+      const modes = ['normal', 'long', 'extreme'];
+      let fitted = null;
+
+      for (const mode of modes) {
+        applyLayoutMode(mode);
+        const limits = getFitLimits(mode);
+        let questionSize = fitQuestionText(limits.questionMax, limits.questionMin);
+        const answerSize = fitAnswerGroup(limits.answerMax, limits.answerMin);
+        questionSize = fitQuestionText(limits.questionMax, limits.questionMin);
+        const overflow = getLayoutOverflow();
+        fitted = { mode, questionSize, answerSize, overflow };
+        if (!overflow.any) break;
+      }
+
+      if (fitted) {
+        questionCard.dataset.layoutMode = fitted.mode;
+        questionCard.dataset.questionFontSize = String(Math.round(fitted.questionSize));
+        questionCard.dataset.answerFontSize = String(Math.round(fitted.answerSize));
+      }
+    }
+
+    function applyLayoutMode(mode) {
+      questionCard.classList.toggle('layout-long', mode === 'long');
+      questionCard.classList.toggle('layout-extreme', mode === 'extreme');
+      display.classList.toggle('layout-extreme-active', mode === 'extreme');
+      stage.classList.toggle('compact-secondary', mode !== 'normal');
+      stage.classList.toggle('extreme-content', mode === 'extreme');
+      void questionCard.offsetWidth;
+    }
+
+    function getFitLimits(mode) {
+      const viewportMin = Math.max(320, Math.min(window.innerWidth || 1280, window.innerHeight || 720));
+      const isTrueFalse = answers.classList.contains('true-false');
+      const hasMedia = questionCard.classList.contains('has-media');
+      const modeMaxOffset = mode === 'normal' ? 0 : mode === 'long' ? -4 : -8;
+      const modeMinOffset = mode === 'extreme' ? -2 : 0;
+
+      return {
+        questionMax: clampNumber(viewportMin * (hasMedia ? 0.06 : 0.078) + modeMaxOffset, 34, hasMedia ? 58 : 86),
+        questionMin: clampNumber(viewportMin * 0.038 + modeMinOffset, 20, 34),
+        answerMax: clampNumber(viewportMin * (isTrueFalse ? 0.058 : 0.045) + modeMaxOffset, 18, isTrueFalse ? 54 : 42),
+        answerMin: clampNumber(viewportMin * 0.026 + modeMinOffset, 12, isTrueFalse ? 24 : 22),
+      };
+    }
+
+    function fitQuestionText(maxFontSize, minFontSize) {
+      const textPanel = question.querySelector('.question-text-panel') || question;
+      return fitTextByBinarySearch({
+        styleElement: question,
+        measureElements: [textPanel, question],
+        variableName: '--question-font-size',
+        minFontSize,
+        maxFontSize,
+      });
+    }
+
+    function fitAnswerGroup(maxFontSize, minFontSize) {
+      const answerTextElements = [...answers.querySelectorAll('.answer-text')];
+      if (!answerTextElements.length) {
+        answers.style.setProperty('--answer-font-size', `${Math.round(maxFontSize)}px`);
+        return maxFontSize;
+      }
+
+      return fitTextByBinarySearch({
+        styleElement: answers,
+        measureElements: [...answerTextElements, answers],
+        variableName: '--answer-font-size',
+        minFontSize,
+        maxFontSize,
+      });
+    }
+
+    function fitTextByBinarySearch({ styleElement, measureElements, variableName, minFontSize, maxFontSize }) {
+      let low = minFontSize;
+      let high = Math.max(minFontSize, maxFontSize);
+      let best = minFontSize;
+
+      for (let index = 0; index < FIT_ITERATIONS; index += 1) {
+        const candidate = (low + high) / 2;
+        styleElement.style.setProperty(variableName, `${candidate}px`);
+        if (measureElements.every(element => !isOverflowing(element))) {
+          best = candidate;
+          low = candidate;
+        } else {
+          high = candidate;
+        }
+      }
+
+      styleElement.style.setProperty(variableName, `${Math.floor(best)}px`);
+      return Math.floor(best);
+    }
+
+    function getLayoutOverflow() {
+      const elements = [questionCard, question, answers, ...answers.querySelectorAll('.answer-text')];
+      const overflowingElements = elements.filter(isOverflowing);
+      return { any: overflowingElements.length > 0, count: overflowingElements.length };
+    }
+
+    function isOverflowing(element) {
+      if (!element) return false;
+      if (element.classList?.contains('answer-text')) {
+        return element.scrollHeight > element.clientHeight + FIT_TOLERANCE_PX;
+      }
+      return element.scrollHeight > element.clientHeight + FIT_TOLERANCE_PX
+        || element.scrollWidth > element.clientWidth + FIT_TOLERANCE_PX;
+    }
+
+    function clampNumber(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function updateLayoutDebug() {
+      if (!TV_LAYOUT_DEBUG) return;
+      const overflow = getLayoutOverflow();
+      layoutDebug.textContent = [
+        `viewport: ${window.innerWidth}x${window.innerHeight}`,
+        `safe area: ${Math.round(display.getBoundingClientRect().width)}x${Math.round(display.getBoundingClientRect().height)}`,
+        `mode: ${questionCard.dataset.layoutMode || 'normal'}`,
+        `question font: ${questionCard.dataset.questionFontSize || '?'}px`,
+        `answer font: ${questionCard.dataset.answerFontSize || '?'}px`,
+        `overflow: ${overflow.any ? `yes (${overflow.count})` : 'no'}`,
+      ].join('\n');
+    }
+
+    function getQuestionDisplayImageUrls(media, revealed) {
+      const orderedUrls = revealed
+        ? [media.revealImageUrl, media.imageUrl, media.thumbnailUrl]
+        : [media.imageUrl, media.thumbnailUrl, media.revealImageUrl];
+      return orderedUrls
+        .map(url => String(url || '').trim())
+        .filter((url, index, urls) => url && urls.indexOf(url) === index);
+    }
+
     function renderFinalResults(state, copy) {
+      questionCard.classList.remove('has-media', 'no-answers');
+      questionCard.classList.add('has-answers', 'is-final');
       const sortedPlayers = [...(state.players || [])].sort((left, right) => (right.score || 0) - (left.score || 0));
       const winner = sortedPlayers[0];
       setText(playerLine, copy.final);
@@ -632,6 +1246,7 @@
       startFinalReturnTimer(copy);
 
       answers.replaceChildren();
+      lastAnswersStructureKey = null;
       sortedPlayers.slice(0, 4).forEach((player, index) => {
         const item = document.createElement('div');
         item.className = 'answer';
@@ -658,6 +1273,8 @@
       });
 
       renderPlayers(sortedPlayers);
+      questionCard.classList.add('measuring');
+      fitQuestionLayout();
     }
 
     function clearFinalReturnTimer() {
@@ -689,6 +1306,7 @@
     function showSetup() {
       clearFinalReturnTimer();
       sponsorAd.classList.add('hidden');
+      if (!setup.hidden && display.hidden) return;
       setup.hidden = false;
       setup.classList.remove('is-hidden');
       display.hidden = true;
@@ -696,6 +1314,7 @@
     }
 
     function showDisplay() {
+      if (setup.hidden && !display.hidden) return;
       setup.hidden = true;
       setup.classList.add('is-hidden');
       display.hidden = false;
@@ -725,19 +1344,42 @@
 
     function renderSponsorAd(lang, copy) {
       const ad = sponsorAds[sponsorIndex];
-      sponsorAd.replaceChildren();
       if (!ad) {
+        if (sponsorRenderKey !== 'none') {
+          sponsorAd.replaceChildren();
+          sponsorRenderKey = 'none';
+        }
         sponsorAd.classList.add('hidden');
         return;
       }
 
+      const titleText = lang === 'en' ? (ad.headlineEn || ad.headlineAr || '') : (ad.headlineAr || ad.headlineEn || '');
+      const nextRenderKey = [ad.id || sponsorIndex, ad.imageUrl || '', ad.companyName || '', titleText, ad.accentColor || '', lang].join('|');
+      if (sponsorRenderKey === nextRenderKey && !sponsorAd.classList.contains('hidden')) return;
+
+      sponsorRenderKey = nextRenderKey;
+      sponsorAd.replaceChildren();
+
       sponsorAd.classList.remove('hidden');
       sponsorAd.style.borderColor = ad.accentColor || 'rgba(245, 158, 11, 0.34)';
-      if (ad.imageUrl) {
+      const logoUrls = getSponsorLogoUrls(ad.imageUrl);
+      if (logoUrls.length) {
         const logo = document.createElement('img');
         logo.className = 'sponsor-logo';
-        logo.src = ad.imageUrl;
         logo.alt = ad.companyName || '';
+        logo.decoding = 'async';
+        logo.loading = 'eager';
+        logo.onload = () => logo.classList.add('is-loaded');
+        let logoIndex = 0;
+        logo.onerror = () => {
+          logoIndex += 1;
+          if (logoUrls[logoIndex]) {
+            logo.src = logoUrls[logoIndex];
+            return;
+          }
+          logo.remove();
+        };
+        logo.src = logoUrls[logoIndex];
         sponsorAd.append(logo);
       }
       const body = document.createElement('div');
@@ -747,30 +1389,74 @@
       kicker.textContent = `${copy.sponsor} ${ad.companyName || ''}`.trim();
       const title = document.createElement('div');
       title.className = 'sponsor-title';
-      title.textContent = lang === 'en' ? (ad.headlineEn || ad.headlineAr || '') : (ad.headlineAr || ad.headlineEn || '');
+      title.textContent = titleText;
       body.append(kicker, title);
       sponsorAd.append(body);
     }
 
+    function getSponsorLogoUrls(rawUrl) {
+      if (!rawUrl) return [];
+      try {
+        const parsedUrl = new URL(rawUrl);
+        const isDirectImage = /\.(avif|gif|jpe?g|png|svg|webp)(\?.*)?$/i.test(parsedUrl.pathname)
+          || parsedUrl.hostname.includes('firebasestorage.googleapis.com')
+          || parsedUrl.hostname.includes('storage.googleapis.com')
+          || parsedUrl.hostname.includes('cloudinary.com');
+        const faviconUrls = [
+          `https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(parsedUrl.origin)}&sz=128`,
+          `https://icons.duckduckgo.com/ip3/${parsedUrl.hostname}.ico`,
+        ];
+        return isDirectImage ? [rawUrl, ...faviconUrls] : faviconUrls;
+      } catch (error) {
+        return [];
+      }
+    }
+
     function renderAnswers(state, lang) {
-      answers.replaceChildren();
+      const stateAnswers = state.answers || [];
+      const isTrueFalse = state.question?.type === 'true_false' && (state.answers || []).length >= 2;
+      answers.classList.toggle('true-false', isTrueFalse);
+      const structureKey = getAnswersStructureKey(state, lang, isTrueFalse);
       const letters = lang === 'ar' ? ['أ', 'ب', 'ج', 'د'] : ['A', 'B', 'C', 'D'];
-      (state.answers || []).forEach((answer, index) => {
+
+      if (structureKey === lastAnswersStructureKey && answers.children.length === stateAnswers.length) {
+        stateAnswers.forEach((answer, index) => {
+          const item = answers.children[index];
+          updateAnswerState(item, answer, state);
+        });
+        return;
+      }
+
+      answers.replaceChildren();
+      stateAnswers.forEach((answer, index) => {
         const item = document.createElement('div');
         item.className = 'answer';
-        if (answer.isSelected) item.classList.add('selected');
-        if (answer.isCorrect) item.classList.add('correct');
-        if (answer.isSelected && state.status === 'revealed' && !answer.isCorrect) item.classList.add('wrong');
+        updateAnswerState(item, answer, state);
 
         const letter = document.createElement('div');
         letter.className = 'answer-letter';
-        letter.textContent = letters[index] || String(index + 1);
+        letter.textContent = isTrueFalse ? (index === 0 ? '✓' : '✕') : letters[index] || String(index + 1);
         const text = document.createElement('div');
         text.className = 'answer-text';
         text.textContent = answer.text || '';
         item.append(letter, text);
         answers.append(item);
       });
+      lastAnswersStructureKey = structureKey;
+    }
+
+    function getAnswersStructureKey(state, lang, isTrueFalse) {
+      return [
+        lang,
+        isTrueFalse ? 'true-false' : 'multi',
+        ...(state.answers || []).map(answer => answer?.text || ''),
+      ].join('::');
+    }
+
+    function updateAnswerState(item, answer, state) {
+      item.classList.toggle('selected', Boolean(answer.isSelected));
+      item.classList.toggle('correct', Boolean(answer.isCorrect));
+      item.classList.toggle('wrong', Boolean(answer.isSelected && state.status === 'revealed' && !answer.isCorrect));
     }
 
     function renderFeedback(state, copy) {
@@ -792,9 +1478,14 @@
     }
 
     function renderPlayers(playerList) {
+      const sortedPlayers = [...playerList].sort((left, right) => (right.score || 0) - (left.score || 0));
+      const playersRenderKey = sortedPlayers
+        .map(player => [player.id || player.name || '', player.name || '', player.color || '', player.score || 0, player.correctAnswers || 0, player.wrongAnswers || 0].join('|'))
+        .join('::');
+      if (playersRenderKey === lastPlayersRenderKey) return;
+      lastPlayersRenderKey = playersRenderKey;
       players.replaceChildren();
-      [...playerList]
-        .sort((left, right) => (right.score || 0) - (left.score || 0))
+      sortedPlayers
         .forEach(player => {
           const row = document.createElement('div');
           row.className = 'player';

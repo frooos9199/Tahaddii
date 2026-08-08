@@ -10,9 +10,9 @@ import { RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
-import { QUESTION_COUNT_OPTIONS, TIME_OPTIONS } from '../constants';
+import { CATEGORY_EMOJIS, TIME_OPTIONS } from '../constants';
 import { getQuestions } from '../services/questions/questionService';
-import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, loadQuestionBank } from '../services/questions/questionCatalog';
+import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, getFairQuestionCountOptions, getRecommendedFairQuestionCount, loadQuestionBank } from '../services/questions/questionCatalog';
 import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestionPrimaryImageUrl, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 
@@ -44,7 +44,8 @@ export default function GameSetupScreen({ navigation }: Props) {
       return [];
     }
 
-    return QUESTION_COUNT_OPTIONS.filter(option => option * playerTurnUnit <= availableQuestionCount);
+    return [...new Set(getFairQuestionCountOptions({ availableQuestionCount, playerCount: playerTurnUnit })
+      .map(totalQuestions => Math.max(1, Math.floor(totalQuestions / playerTurnUnit))))];
   }, [availableQuestionCount, playerTurnUnit]);
   const canStart = availableQuestionCount > 0;
   const participantUnit = settings.mode === 'teams'
@@ -55,16 +56,17 @@ export default function GameSetupScreen({ navigation }: Props) {
 
   useEffect(() => {
     const currentPerUnit = Math.max(1, Math.floor((settings.questionCount || 0) / playerTurnUnit));
+    const normalizedQuestionCount = currentPerUnit * playerTurnUnit;
 
-    if (availableQuestionOptions.length > 0 && !availableQuestionOptions.includes(currentPerUnit)) {
-      updateSettings({ questionCount: availableQuestionOptions[0] * playerTurnUnit });
+    if (availableQuestionOptions.length > 0 && (!availableQuestionOptions.includes(currentPerUnit) || settings.questionCount !== normalizedQuestionCount)) {
+      updateSettings({ questionCount: getRecommendedFairQuestionCount({ availableQuestionCount, playerCount: playerTurnUnit }) });
       return;
     }
 
     if (availableQuestionOptions.length === 0 && settings.questionCount !== playerTurnUnit) {
       updateSettings({ questionCount: playerTurnUnit });
     }
-  }, [availableQuestionOptions, playerTurnUnit, settings.questionCount, updateSettings]);
+  }, [availableQuestionCount, availableQuestionOptions, playerTurnUnit, settings.questionCount, updateSettings]);
 
   const selectedQuestionsPerUnit = Math.max(1, Math.floor((settings.questionCount || 0) / playerTurnUnit));
   const formatTime = (seconds: number) => {
@@ -107,6 +109,8 @@ export default function GameSetupScreen({ navigation }: Props) {
       const answers = questionLanguage === 'en'
         ? firstQuestion.answersEn?.length ? firstQuestion.answersEn : firstQuestion.answersAr
         : firstQuestion.answersAr?.length ? firstQuestion.answersAr : firstQuestion.answersEn;
+      const displayCategoryId = firstQuestion.queueCategoryId || firstQuestion.categoryId;
+      const displayCategoryName = t(`categories.${displayCategoryId}`, { defaultValue: displayCategoryId });
 
       await updateTvDisplaySession(pendingTvDisplayCode, {
         gameId: createdGame.id,
@@ -118,6 +122,10 @@ export default function GameSetupScreen({ navigation }: Props) {
         timeLeft: createdGame.settings.timePerQuestion > 0 ? createdGame.settings.timePerQuestion : null,
         question: {
           id: firstQuestion.id,
+          type: firstQuestion.type,
+          categoryId: displayCategoryId,
+          categoryName: displayCategoryName,
+          categoryEmoji: CATEGORY_EMOJIS[displayCategoryId] || '🎯',
           text: questionText,
           points: firstQuestion.points,
           imageUrl: getQuestionPrimaryImageUrl(firstQuestion, false),
@@ -247,14 +255,6 @@ export default function GameSetupScreen({ navigation }: Props) {
             <Switch
               value={settings.randomOrder}
               onValueChange={v => updateSettings({ randomOrder: v })}
-              trackColor={{ true: Colors.primary }}
-              thumbColor={Colors.text}
-            />
-          </Row>
-          <Row label={t('gameSetup.soundEnabled')}>
-            <Switch
-              value={settings.soundEnabled}
-              onValueChange={v => updateSettings({ soundEnabled: v })}
               trackColor={{ true: Colors.primary }}
               thumbColor={Colors.text}
             />

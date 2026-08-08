@@ -142,9 +142,13 @@ export const useGameStore = create<GameStore>((set, get) => ({
   },
 
   startGame: () =>
-    set(state => ({
-      game: state.game ? { ...state.game, status: 'playing' } : null,
-    })),
+    set(state => {
+      const game = state.game ? { ...state.game, status: 'playing' as const } : null;
+      if (game) {
+        AsyncStorage.setItem(SAVED_GAME_KEY, JSON.stringify(game)).catch(() => {});
+      }
+      return { game };
+    }),
 
   pauseGame: () =>
     set(state => ({
@@ -190,6 +194,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
         answerHistory: [...game.answerHistory, record],
       },
     });
+    get().saveGame();
   },
 
   nextQuestion: () => {

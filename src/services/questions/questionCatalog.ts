@@ -38,16 +38,26 @@ export const mergeQuestionBank = (customQuestions: Question[] = []): Question[] 
 
 export const loadQuestionBank = async (): Promise<Question[]> => mergeQuestionBank(await listCustomQuestions().catch(() => []));
 
+export const getQuestionCategoryIds = (question: Pick<Question, 'categoryId' | 'linkedCategoryIds'>): CategoryId[] => [
+  ...new Set([question.categoryId, ...(question.linkedCategoryIds ?? [])].filter(Boolean)),
+];
+
+export const questionBelongsToCategory = (question: Pick<Question, 'categoryId' | 'linkedCategoryIds'>, categoryId: CategoryId) =>
+  getQuestionCategoryIds(question).includes(categoryId);
+
+export const questionBelongsToAnyCategory = (question: Pick<Question, 'categoryId' | 'linkedCategoryIds'>, categoryIds: CategoryId[]) =>
+  getQuestionCategoryIds(question).some(categoryId => categoryIds.includes(categoryId));
+
 export const getCategoryQuestionCountFromBank = (questions: Question[], categoryId: CategoryId) =>
-  questions.filter(question => question.categoryId === categoryId && question.isActive).length;
+  questions.filter(question => question.isActive && questionBelongsToCategory(question, categoryId)).length;
 
 export const getCategoryQuestionCountForAgeFromBank = (questions: Question[], categoryId: CategoryId, ageGroup: AgeGroup) =>
-  questions.filter(question => question.categoryId === categoryId && question.isActive && canQuestionAppearForAge(question, ageGroup)).length;
+  questions.filter(question => question.isActive && questionBelongsToCategory(question, categoryId) && canQuestionAppearForAge(question, ageGroup)).length;
 
 const getCategoryIdsFromBank = (questions: Question[]) => [
   ...new Set([
     ...CATEGORY_IDS,
-    ...questions.filter(question => question.isActive).map(question => question.categoryId),
+    ...questions.filter(question => question.isActive).flatMap(getQuestionCategoryIds),
   ]),
 ];
 
@@ -59,9 +69,9 @@ export const getDifficultyQuestionCountForAgeFromBank = (
   ageGroup: AgeGroup,
   categories: CategoryId[],
 ): Record<Difficulty, number> => ({
-  easy: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
-  medium: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
-  hard: questions.filter(question => question.isActive && categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
+  easy: questions.filter(question => question.isActive && questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
+  medium: questions.filter(question => question.isActive && questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
+  hard: questions.filter(question => question.isActive && questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
 });
 
 export const getAvailableQuestionCountFromBank = (
@@ -86,7 +96,7 @@ export const getAvailableQuestionCountFromBank = (
 
   return questions.filter(question => {
     if (!question.isActive) return false;
-    if (!activeCategories.includes(question.categoryId)) return false;
+    if (!questionBelongsToAnyCategory(question, activeCategories)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
     if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;
@@ -97,7 +107,7 @@ export const getAvailableQuestionCountFromBank = (
 export const getCategoryQuestionCount = (categoryId: CategoryId) => CATEGORY_QUESTION_COUNT[categoryId] ?? 0;
 
 export const getCategoryQuestionCountForAge = (categoryId: CategoryId, ageGroup: AgeGroup) =>
-  QUESTIONS.filter(question => question.categoryId === categoryId && canQuestionAppearForAge(question, ageGroup)).length;
+  QUESTIONS.filter(question => questionBelongsToCategory(question, categoryId) && canQuestionAppearForAge(question, ageGroup)).length;
 
 export const isCategoryPlayable = (categoryId: CategoryId) => getCategoryQuestionCount(categoryId) >= MIN_PLAYABLE_CATEGORY_QUESTIONS;
 
@@ -110,9 +120,9 @@ export const getDifficultyQuestionCountForAge = (
   ageGroup: AgeGroup,
   categories: CategoryId[],
 ): Record<Difficulty, number> => ({
-  easy: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
-  medium: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
-  hard: QUESTIONS.filter(question => categories.includes(question.categoryId) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
+  easy: QUESTIONS.filter(question => questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'easy') && canQuestionAppearForAge(question, ageGroup)).length,
+  medium: QUESTIONS.filter(question => questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'medium') && canQuestionAppearForAge(question, ageGroup)).length,
+  hard: QUESTIONS.filter(question => questionBelongsToAnyCategory(question, categories) && canQuestionAppearForDifficulty(question, 'hard') && canQuestionAppearForAge(question, ageGroup)).length,
 });
 
 export const getPlayableCategories = (): CategoryId[] => CATEGORY_IDS.filter(isCategoryPlayable);
@@ -141,7 +151,7 @@ export const getAvailableQuestionCount = (settings: Pick<GameSettings, 'categori
 
   return QUESTIONS.filter(question => {
     if (!question.isActive) return false;
-    if (!activeCategories.includes(question.categoryId)) return false;
+    if (!questionBelongsToAnyCategory(question, activeCategories)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
     if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;

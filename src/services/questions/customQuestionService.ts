@@ -8,6 +8,7 @@ const CUSTOM_QUESTIONS_COLLECTION = 'customQuestions';
 export interface CustomQuestionInput {
   id?: string;
   categoryId: CategoryId;
+  linkedCategoryIds?: CategoryId[];
   difficulty: Difficulty;
   questionAr: string;
   answersAr: string[];
@@ -16,6 +17,8 @@ export interface CustomQuestionInput {
   questionEn?: string;
   answersEn?: string[];
   explanationAr?: string;
+  imageUrl?: string;
+  revealImageUrl?: string;
 }
 
 const toQuestion = (questionId: string, payload: any): Question => {
@@ -26,8 +29,11 @@ const toQuestion = (questionId: string, payload: any): Question => {
 
   return {
     id: questionId,
-    type: 'multiple_choice',
+    type: payload.type || 'multiple_choice',
     categoryId: payload.categoryId as CategoryId,
+    linkedCategoryIds: Array.isArray(payload.linkedCategoryIds)
+      ? payload.linkedCategoryIds.map(String).filter((categoryId: string) => categoryId && categoryId !== payload.categoryId)
+      : [],
     ageGroups: Array.isArray(payload.ageGroups) && payload.ageGroups.length
       ? payload.ageGroups
       : ['kids5', 'kids8', 'kids11', 'teens', 'adults', 'family'],
@@ -37,8 +43,8 @@ const toQuestion = (questionId: string, payload: any): Question => {
     answersAr,
     answersEn,
     correctAnswerIndex,
-    correctAnswerAr: answersAr[correctAnswerIndex] ?? '',
-    correctAnswerEn: answersEn[correctAnswerIndex] ?? answersAr[correctAnswerIndex] ?? '',
+    correctAnswerAr: payload.correctAnswerAr ?? answersAr[correctAnswerIndex] ?? '',
+    correctAnswerEn: payload.correctAnswerEn ?? answersEn[correctAnswerIndex] ?? answersAr[correctAnswerIndex] ?? '',
     explanationAr: payload.explanationAr || undefined,
     explanationEn: payload.explanationEn || undefined,
     imageUrl: String(payload.imageUrl ?? '').trim() || undefined,
@@ -52,10 +58,10 @@ const toQuestion = (questionId: string, payload: any): Question => {
         : undefined,
     revealMode: payload.revealMode || undefined,
     blurAmount: Number(payload.blurAmount ?? 18),
-    points: DIFFICULTY_POINTS[difficulty] ?? DIFFICULTY_POINTS.easy,
+    points: Number(payload.points ?? DIFFICULTY_POINTS[difficulty] ?? DIFFICULTY_POINTS.easy),
     isKidsSafe: payload.isKidsSafe ?? true,
     isActive: payload.isActive ?? true,
-    isPremium: false,
+    isPremium: payload.isPremium ?? false,
     source: 'admin',
   };
 };
@@ -76,6 +82,7 @@ export const listCustomQuestions = async (): Promise<Question[]> => {
 export const addCustomQuestion = async (input: CustomQuestionInput) => {
   const questionAr = input.questionAr.trim();
   const answersAr = input.answersAr.map(answer => answer.trim()).filter(Boolean);
+  const correctAnswerIndex = Number.isInteger(input.correctAnswerIndex) ? input.correctAnswerIndex : 0;
 
   if (!questionAr) {
     throw new Error('اكتب نص السؤال');
@@ -85,7 +92,7 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
     throw new Error('أضف اختيارين على الأقل');
   }
 
-  if (input.correctAnswerIndex < 0 || input.correctAnswerIndex >= answersAr.length) {
+  if (correctAnswerIndex < 0 || correctAnswerIndex >= answersAr.length) {
     throw new Error('اختر الإجابة الصحيحة');
   }
 
@@ -95,14 +102,20 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
 
   const payload = {
     categoryId: input.categoryId,
+    linkedCategoryIds: [...new Set((input.linkedCategoryIds ?? []).filter(categoryId => categoryId && categoryId !== input.categoryId))],
     difficulty: input.difficulty,
     questionAr,
     questionEn: input.questionEn?.trim() || questionAr,
     answersAr,
     answersEn: answersEn?.length === answersAr.length ? answersEn : answersAr,
-    correctAnswerIndex: input.correctAnswerIndex,
+    correctAnswerIndex,
     ageGroups: input.ageGroups?.length ? input.ageGroups : ['kids5', 'kids8', 'kids11', 'teens', 'adults', 'family'],
     explanationAr: input.explanationAr?.trim() || null,
+    imageUrl: input.imageUrl?.trim() || '',
+    revealImageUrl: input.revealImageUrl?.trim() || '',
+    mediaType: input.imageUrl?.trim() || input.revealImageUrl?.trim() ? 'image' : '',
+    revealMode: input.imageUrl?.trim() || input.revealImageUrl?.trim() ? 'blur' : '',
+    blurAmount: input.imageUrl?.trim() ? 18 : 0,
     isKidsSafe: true,
     isActive: true,
     createdAtMs: now,

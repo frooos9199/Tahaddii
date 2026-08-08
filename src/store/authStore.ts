@@ -10,6 +10,20 @@ import {
 } from '../services/auth/authService';
 import { getFirebaseAuth, isFirebaseConfigured } from '../services/firebase/firebaseClient';
 import { useProfileStore } from './profileStore';
+import { mergeLocalHistoryWithFirebase, syncQuestionHistory } from '../services/questions/questionHistoryService';
+
+const syncProfileFromUserRecord = async (userRecord: AppUserRecord) => {
+  const profilePatch = {
+    ...(userRecord.displayName ? { name: userRecord.displayName } : {}),
+    ...(userRecord.avatarUri !== undefined ? { avatarUri: userRecord.avatarUri } : {}),
+    ...(userRecord.avatarEmoji ? { avatarEmoji: userRecord.avatarEmoji } : {}),
+    ...(userRecord.color ? { color: userRecord.color } : {}),
+  };
+
+  if (Object.keys(profilePatch).length) {
+    await useProfileStore.getState().updateProfile(profilePatch);
+  }
+};
 
 interface AuthStore {
   user: User | null;
@@ -52,8 +66,11 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
       try {
         const userRecord = await ensureUserDocument(user);
-        if (!userRecord.isGuest && userRecord.displayName) {
-          await useProfileStore.getState().updateProfile({ name: userRecord.displayName });
+        await syncProfileFromUserRecord(userRecord);
+        if (!user.isAnonymous) {
+          await mergeLocalHistoryWithFirebase(user.uid).catch(error => {
+            console.warn('Failed to merge question history', error);
+          });
         }
         set({ user, userRecord, isReady: true, loading: false, error: null });
       } catch (error) {
@@ -97,9 +114,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     try {
       const user = await signInWithEmail({ email, password });
       const userRecord = await ensureUserDocument(user);
-      if (userRecord.displayName) {
-        await useProfileStore.getState().updateProfile({ name: userRecord.displayName });
-      }
+      await syncProfileFromUserRecord(userRecord);
+      await mergeLocalHistoryWithFirebase(user.uid).catch(error => {
+        console.warn('Failed to merge question history after login', error);
+      });
       set({ user, userRecord, loading: false, isReady: true });
     } catch (error) {
       set({ loading: false, error: error instanceof Error ? error.message : 'Login failed' });
@@ -111,9 +129,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     try {
       const user = await signUpWithEmail({ email, password, displayName });
       const userRecord = await ensureUserDocument(user, displayName);
-      if (userRecord.displayName) {
-        await useProfileStore.getState().updateProfile({ name: userRecord.displayName });
-      }
+      await syncProfileFromUserRecord(userRecord);
+      await mergeLocalHistoryWithFirebase(user.uid).catch(error => {
+        console.warn('Failed to merge question history after registration', error);
+      });
       set({ user, userRecord, loading: false, isReady: true });
     } catch (error) {
       set({ loading: false, error: error instanceof Error ? error.message : 'Registration failed' });
@@ -123,6 +142,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   logout: async () => {
     set({ loading: true, error: null });
     try {
+      const currentUser = get().user;
+      if (currentUser && !currentUser.isAnonymous) {
+        await syncQuestionHistory(currentUser.uid).catch(error => {
+          console.warn('Failed to sync question history before logout', error);
+        });
+      }
       await signOutCurrentUser();
       set({ user: null, userRecord: null, loading: false });
     } catch (error) {

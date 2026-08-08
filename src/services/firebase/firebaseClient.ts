@@ -1,13 +1,13 @@
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import { createAsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Auth, Persistence, getAuth, initializeAuth } from 'firebase/auth';
-import { Firestore, getFirestore } from 'firebase/firestore';
+import { Firestore, getFirestore, initializeFirestore } from 'firebase/firestore';
 import { Functions, getFunctions } from 'firebase/functions';
 import { Database, getDatabase } from 'firebase/database';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 
 const { getReactNativePersistence } = require('@firebase/auth/dist/rn/index.js') as {
-  getReactNativePersistence: (storage: ReturnType<typeof createAsyncStorage>) => Persistence;
+  getReactNativePersistence: (storage: typeof AsyncStorage) => Persistence;
 };
 
 // ⚠️ لا ترفع هذا الملف على GitHub
@@ -32,12 +32,20 @@ export const isFirebaseConfigured = () =>
 // Initialize the app eagerly so auth is the very first SDK consumer — prevents the
 // "without AsyncStorage" warning that fires when getAuth() runs before initializeAuth().
 const firebaseApp: FirebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
+let firestoreInstance: Firestore;
+try {
+  firestoreInstance = initializeFirestore(firebaseApp, {
+    ignoreUndefinedProperties: true,
+  });
+} catch {
+  firestoreInstance = getFirestore(firebaseApp);
+}
 
 // initializeAuth with persistence; gracefully handles hot-reload where auth is already registered.
 let authInstance: Auth;
 try {
   authInstance = initializeAuth(firebaseApp, {
-    persistence: getReactNativePersistence(createAsyncStorage('auth')),
+    persistence: getReactNativePersistence(AsyncStorage),
   });
 } catch {
   authInstance = getAuth(firebaseApp);
@@ -47,7 +55,7 @@ export const getFirebaseAppInstance = (): FirebaseApp => firebaseApp;
 
 export const getFirebaseAuth = (): Auth => authInstance;
 
-export const getFirebaseDb = (): Firestore => getFirestore(getFirebaseAppInstance());
+export const getFirebaseDb = (): Firestore => firestoreInstance;
 
 export const getFirebaseRealtimeDb = (): Database => getDatabase(getFirebaseAppInstance());
 

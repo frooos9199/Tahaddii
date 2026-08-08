@@ -1,4 +1,5 @@
 import { ref, remove, set } from 'firebase/database';
+import { CategoryId, QuestionType } from '../../types';
 import { getFirebaseRealtimeDb } from '../firebase/firebaseClient';
 
 const TV_DISPLAY_SESSIONS_PATH = 'tvDisplaySessions';
@@ -32,6 +33,12 @@ export type TvDisplayState = {
   timeLeft: number | null;
   question: {
     id: string;
+    type?: QuestionType;
+    categoryId?: CategoryId;
+    previousCategoryId?: CategoryId;
+    categoryTransitionKey?: string;
+    categoryName?: string;
+    categoryEmoji?: string;
     text: string;
     points: number;
     imageUrl?: string;
@@ -73,7 +80,7 @@ const removeUndefinedValues = <T>(value: T): T => {
   return value;
 };
 
-export const getTvDisplayUrl = (code: string) => `https://tahaddi-77a5d.web.app/tv/?code=${encodeURIComponent(code)}`;
+export const getTvDisplayUrl = (code: string) => `https://tahaddii.com/tv/?code=${encodeURIComponent(code)}`;
 
 export const createTvDisplaySession = async () => createDisplayCode();
 

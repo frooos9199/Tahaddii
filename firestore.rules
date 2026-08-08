@@ -70,6 +70,16 @@ service cloud.firestore {
       allow delete: if isSuperAdmin();
     }
 
+    match /users/{userId}/questionHistory/{questionId} {
+      allow read, create, update: if isOwnUser(userId) || isPrivilegedUser();
+      allow delete: if isOwnUser(userId) || isSuperAdmin();
+    }
+
+    match /users/{userId}/questionHistoryMeta/{docId} {
+      allow read, create, update: if isOwnUser(userId) || isPrivilegedUser();
+      allow delete: if isOwnUser(userId) || isSuperAdmin();
+    }
+
     match /onlinePresence/{userId} {
       allow read: if isSignedIn();
       allow create, update: if isOwnUser(userId);
@@ -77,7 +87,7 @@ service cloud.firestore {
     }
 
     match /customQuestions/{questionId} {
-      allow read: if isSignedIn();
+      allow read: if true;
       allow create, update, delete: if isPrivilegedUser();
     }
 

@@ -526,7 +526,7 @@ export const startRoom = async (roomId: string) => {
     timePerQuestion: room.settings.timePerQuestion,
     questionLanguage: room.settings.questionLanguage,
     randomOrder: false,
-    allowRepeat: true,
+    allowRepeat: false,
     soundEnabled: true,
     readQuestion: false,
     lifelines: { enabled: false, fiftyFifty: 0, extraTime: 0, changeQuestion: 0, hint: 0 },
