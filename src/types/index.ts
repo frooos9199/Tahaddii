@@ -55,6 +55,7 @@ export interface Question {
   videoUrl?: string;
   queueCategoryId?: CategoryId;
   createdAtMs?: number;
+  updatedAtMs?: number;
   mediaType?: 'image' | 'video';
   revealMode?: 'none' | 'blur' | 'crop' | 'mask';
   blurAmount?: number;

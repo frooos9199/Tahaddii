@@ -1,19 +1,40 @@
-import { addDoc, collection, doc, getDocs, serverTimestamp, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AgeGroup, CategoryId, Difficulty, Question } from '../../types';
 import { DIFFICULTY_POINTS } from '../../constants';
 import { getFirebaseDb, isFirebaseConfigured } from '../firebase/firebaseClient';
 
 const CUSTOM_QUESTIONS_COLLECTION = 'customQuestions';
-const CACHE_STORAGE_KEY = 'customQuestions.cache.v1';
-// Custom questions rarely change minute-to-minute; caching for a few minutes
-// keeps the "add from admin panel shows up quickly" behaviour while avoiding
-// a full collection read on every screen navigation (Home, Category, Difficulty,
-// GameSetup, OnlineLobby previously each triggered their own full fetch).
-const CACHE_TTL_MS = 5 * 60 * 1000;
+const CACHE_STORAGE_KEY = 'customQuestions.cache.v2';
+// Local-first strategy: after the first full download, we no longer re-read the
+// whole `customQuestions` collection on every screen visit. Instead we keep the
+// full question set cached on-device (AsyncStorage) forever, and only ask
+// Firestore for documents changed since the last sync ("delta sync") — this is
+// a near-free read on days nothing changed, since it returns an empty snapshot.
+// New/edited questions from the admin panel still show up automatically the
+// next time the app checks (see SYNC_CHECK_INTERVAL_MS below), without needing
+// an app store update.
+//
+// Trade-off: the admin panel hard-deletes questions (no soft-delete flag), so a
+// delta sync alone cannot detect deletions. We reconcile that with a full
+// re-download at most once every FULL_RESYNC_INTERVAL_MS — meaning a deleted
+// question can keep appearing locally for up to that long in the worst case.
+const SYNC_CHECK_INTERVAL_MS = 2 * 60 * 1000; // how often we bother checking for changes at all
+const FULL_RESYNC_INTERVAL_MS = 24 * 60 * 60 * 1000; // safety net to catch deletions
 
-let memoryCache: { fetchedAtMs: number; questions: Question[] } | null = null;
+interface PersistedCache {
+  questionsById: Record<string, Question>;
+  lastSyncMs: number; // last time we checked Firestore for anything new/changed
+  lastFullSyncMs: number; // last time we did a full collection re-download
+}
+
+let memoryCache: PersistedCache | null = null;
 let inFlightFetch: Promise<Question[]> | null = null;
+
+const cacheToOrderedQuestions = (cache: PersistedCache): Question[] =>
+  Object.values(cache.questionsById).sort(
+    (left, right) => Number(right.updatedAtMs ?? right.createdAtMs ?? 0) - Number(left.updatedAtMs ?? left.createdAtMs ?? 0),
+  );
 
 export interface CustomQuestionInput {
   id?: string;
@@ -71,6 +92,7 @@ const toQuestion = (questionId: string, payload: any): Question => {
     revealMode: payload.revealMode || undefined,
     blurAmount: Number(payload.blurAmount ?? 18),
     createdAtMs: Number(payload.createdAtMs ?? payload.updatedAtMs ?? 0) || undefined,
+    updatedAtMs: Number(payload.updatedAtMs ?? payload.createdAtMs ?? 0) || undefined,
     points: Number(payload.points ?? DIFFICULTY_POINTS[difficulty] ?? DIFFICULTY_POINTS.easy),
     isKidsSafe: payload.isKidsSafe ?? true,
     isActive: payload.isActive ?? true,
@@ -79,19 +101,23 @@ const toQuestion = (questionId: string, payload: any): Question => {
   };
 };
 
-const readPersistedCache = async (): Promise<{ fetchedAtMs: number; questions: Question[] } | null> => {
+const readPersistedCache = async (): Promise<PersistedCache | null> => {
   try {
     const raw = await AsyncStorage.getItem(CACHE_STORAGE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed.fetchedAtMs !== 'number' || !Array.isArray(parsed.questions)) return null;
-    return parsed;
+    if (!parsed || typeof parsed.lastSyncMs !== 'number' || !parsed.questionsById || typeof parsed.questionsById !== 'object') return null;
+    return {
+      questionsById: parsed.questionsById,
+      lastSyncMs: parsed.lastSyncMs,
+      lastFullSyncMs: typeof parsed.lastFullSyncMs === 'number' ? parsed.lastFullSyncMs : parsed.lastSyncMs,
+    };
   } catch {
     return null;
   }
 };
 
-const writePersistedCache = async (cache: { fetchedAtMs: number; questions: Question[] }) => {
+const writePersistedCache = async (cache: PersistedCache) => {
   try {
     await AsyncStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(cache));
   } catch {
@@ -99,40 +125,53 @@ const writePersistedCache = async (cache: { fetchedAtMs: number; questions: Ques
   }
 };
 
-const fetchCustomQuestionsFromFirestore = async (): Promise<Question[]> => {
+/**
+ * Full collection read — only used for the very first download on a device,
+ * or the periodic safety-net resync that catches admin-side deletions.
+ */
+const fetchAllCustomQuestionsFromFirestore = async (): Promise<Question[]> => {
   const db = getFirebaseDb();
   const snapshot = await getDocs(collection(db, CUSTOM_QUESTIONS_COLLECTION));
-  return snapshot.docs
-    .map(questionDoc => ({ id: questionDoc.id, data: questionDoc.data() }))
-    .sort((left, right) => Number(right.data.updatedAtMs ?? right.data.createdAtMs ?? 0) - Number(left.data.updatedAtMs ?? left.data.createdAtMs ?? 0))
-    .map(questionDoc => toQuestion(questionDoc.id, questionDoc.data));
+  return snapshot.docs.map(questionDoc => toQuestion(questionDoc.id, questionDoc.data()));
 };
 
 /**
- * Returns admin-added custom questions, backed by an in-memory + persisted
- * cache (TTL-based) to avoid re-reading the full `customQuestions` collection
- * from Firestore on every screen (Home, Category, Difficulty, GameSetup,
- * OnlineLobby, etc. previously each triggered their own independent read).
- * Pass `forceRefresh: true` to bypass the cache (e.g. after the admin edits
- * a question from inside the same running session).
+ * Delta read — only returns documents changed/created after `sinceMs`. On a
+ * day with no admin activity this returns an empty snapshot, which is a very
+ * cheap Firestore read compared to pulling the whole collection.
+ */
+const fetchChangedCustomQuestionsFromFirestore = async (sinceMs: number): Promise<Question[]> => {
+  const db = getFirebaseDb();
+  const changedQuery = query(collection(db, CUSTOM_QUESTIONS_COLLECTION), where('updatedAtMs', '>', sinceMs));
+  const snapshot = await getDocs(changedQuery);
+  return snapshot.docs.map(questionDoc => toQuestion(questionDoc.id, questionDoc.data()));
+};
+
+/**
+ * Returns admin-added custom questions using a local-first strategy:
+ *  - First run on a device (or once a day): full collection download,
+ *    replacing the local cache entirely (this is what catches deletions).
+ *  - Every other check: a cheap delta query for docs changed since the last
+ *    sync, merged into the existing local cache.
+ *  - In between sync checks (SYNC_CHECK_INTERVAL_MS), gameplay reads straight
+ *    from the in-memory/local cache with zero Firestore reads.
+ * Pass `forceRefresh: true` to bypass the interval throttle (e.g. right after
+ * the admin adds/edits a question from inside the same running session).
  */
 export const listCustomQuestions = async ({ forceRefresh = false }: { forceRefresh?: boolean } = {}): Promise<Question[]> => {
   if (!isFirebaseConfigured()) {
     return [];
   }
 
-  const now = Date.now();
-
-  if (!forceRefresh && memoryCache && now - memoryCache.fetchedAtMs < CACHE_TTL_MS) {
-    return memoryCache.questions;
+  if (!memoryCache) {
+    memoryCache = await readPersistedCache();
   }
 
-  if (!forceRefresh && !memoryCache) {
-    const persisted = await readPersistedCache();
-    if (persisted && now - persisted.fetchedAtMs < CACHE_TTL_MS) {
-      memoryCache = persisted;
-      return persisted.questions;
-    }
+  const now = Date.now();
+  const dueForSyncCheck = !memoryCache || now - memoryCache.lastSyncMs >= SYNC_CHECK_INTERVAL_MS;
+
+  if (!forceRefresh && !dueForSyncCheck && memoryCache) {
+    return cacheToOrderedQuestions(memoryCache);
   }
 
   if (!forceRefresh && inFlightFetch) {
@@ -141,11 +180,26 @@ export const listCustomQuestions = async ({ forceRefresh = false }: { forceRefre
 
   const fetchPromise = (async () => {
     try {
-      const questions = await fetchCustomQuestionsFromFirestore();
-      const cache = { fetchedAtMs: Date.now(), questions };
+      const needsFullResync = !memoryCache || now - memoryCache.lastFullSyncMs >= FULL_RESYNC_INTERVAL_MS;
+
+      if (needsFullResync) {
+        const questions = await fetchAllCustomQuestionsFromFirestore();
+        const questionsById = Object.fromEntries(questions.map(question => [question.id, question]));
+        const cache: PersistedCache = { questionsById, lastSyncMs: now, lastFullSyncMs: now };
+        memoryCache = cache;
+        void writePersistedCache(cache);
+        return cacheToOrderedQuestions(cache);
+      }
+
+      const changed = await fetchChangedCustomQuestionsFromFirestore(memoryCache!.lastSyncMs);
+      const questionsById = { ...memoryCache!.questionsById };
+      for (const question of changed) {
+        questionsById[question.id] = question;
+      }
+      const cache: PersistedCache = { questionsById, lastSyncMs: now, lastFullSyncMs: memoryCache!.lastFullSyncMs };
       memoryCache = cache;
       void writePersistedCache(cache);
-      return questions;
+      return cacheToOrderedQuestions(cache);
     } finally {
       inFlightFetch = null;
     }
