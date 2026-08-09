@@ -1317,8 +1317,8 @@
       const modeMinOffset = mode === 'extreme' ? -2 : 0;
 
       return {
-        questionMax: clampNumber(viewportMin * (hasMedia ? 0.06 : 0.078) + modeMaxOffset, 34, hasMedia ? 58 : 86),
-        questionMin: clampNumber(viewportMin * 0.038 + modeMinOffset, 20, 34),
+        questionMax: clampNumber(viewportMin * (hasMedia ? 0.048 : 0.062) + modeMaxOffset, 34, hasMedia ? 58 : 86),
+        questionMin: clampNumber(viewportMin * 0.030 + modeMinOffset, 20, 34),
         answerMax: clampNumber(viewportMin * (isTrueFalse ? 0.058 : 0.045) + modeMaxOffset, 18, isTrueFalse ? 54 : 42),
         answerMin: clampNumber(viewportMin * 0.026 + modeMinOffset, 12, isTrueFalse ? 24 : 22),
       };
