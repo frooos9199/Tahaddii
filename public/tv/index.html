@@ -784,6 +784,7 @@
     let lastWaitingRenderKey = null;
     let lastPlayersRenderKey = null;
     let lastCategoryTransitionKey = null;
+    let lastFinalResultsKey = null;
     let categoryTransitionTimer = null;
     let layoutFitFrame = null;
     let layoutFitRevision = 0;
@@ -907,9 +908,11 @@
         answers.replaceChildren();
         feedback.classList.add('hidden');
         renderPlayers(state.players || []);
+        lastFinalResultsKey = null;
         return;
       }
 
+      lastFinalResultsKey = null;
       const hasQuestionMedia = Boolean(state.question?.imageUrl || state.question?.thumbnailUrl || state.question?.revealImageUrl);
       const hasAnswers = Array.isArray(state.answers) && state.answers.length > 0;
       const questionLayoutKey = getQuestionLayoutKey(state, lang);
@@ -941,10 +944,19 @@
       renderAnswers(state, lang);
       renderFeedback(state, copy);
       renderPlayers(state.players || []);
-      if (shouldHideDuringFit) questionCard.classList.add('measuring');
       lastQuestionLayoutKey = questionLayoutKey;
       lastQuestionPromptKey = questionPromptKey;
-      fitQuestionLayout();
+      // Only re-run the font-fit pass when the actual question content changed
+      // (new question, different text/answers/media). The TV screen re-renders
+      // every ~1.2s from polling + realtime updates even when nothing changed
+      // (countdown timer ticking, etc.) — re-fitting on every one of those
+      // ticks was causing long questions to visibly flicker/resize as the
+      // binary-search fit recomputed (with slightly different timing/metrics)
+      // on every poll, re-triggering the layout-mode CSS transitions.
+      if (shouldHideDuringFit) {
+        questionCard.classList.add('measuring');
+        fitQuestionLayout();
+      }
     }
 
     function renderCategoryStrip(state, copy) {
@@ -1094,7 +1106,11 @@
 
       requestAnimationFrame(() => {
         fitAdaptiveLayout();
-        questionCard.classList.remove('measuring');
+        // Keep transitions disabled ('measuring') until the LAST pass. Passes
+        // 1/90ms and 2/240ms exist to re-measure after webfonts/images finish
+        // loading — removing 'measuring' too early let those later
+        // corrections animate visibly (a "flicker") if the size changed.
+        if (attempt >= 2) questionCard.classList.remove('measuring');
         updateLayoutDebug();
       });
     }
@@ -1234,9 +1250,25 @@
     }
 
     function renderFinalResults(state, copy) {
+      const sortedPlayers = [...(state.players || [])].sort((left, right) => (right.score || 0) - (left.score || 0));
+      const resultsKey = [
+        copy.final,
+        (state.totalQuestions || 0),
+        sortedPlayers.map(player => [player.id || player.name || '', player.name || '', player.score || 0, player.correctAnswers || 0, player.wrongAnswers || 0].join('|')).join('::'),
+      ].join('##');
+
+      // The results screen keeps re-arriving via polling/realtime updates even
+      // though nothing changed, which previously rebuilt the whole podium and
+      // re-ran the font-fit pass every ~1.2s — making the screen look
+      // inconsistent/jittery. Skip all of that once nothing has actually changed.
+      if (resultsKey === lastFinalResultsKey) {
+        startFinalReturnTimer(copy);
+        return;
+      }
+      lastFinalResultsKey = resultsKey;
+
       questionCard.classList.remove('has-media', 'no-answers');
       questionCard.classList.add('has-answers', 'is-final');
-      const sortedPlayers = [...(state.players || [])].sort((left, right) => (right.score || 0) - (left.score || 0));
       const winner = sortedPlayers[0];
       setText(playerLine, copy.final);
       question.replaceChildren();
