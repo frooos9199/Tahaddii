@@ -123,8 +123,8 @@
     }
 
     .main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 21vw); gap: clamp(0.65rem, 1.25vw, 1.55rem); min-height: 0; overflow: hidden; }
-    .stage { display: grid; grid-template-rows: minmax(2.8rem, 7vh) minmax(2.8rem, 8vh) minmax(0, 1fr) auto auto; gap: clamp(0.38rem, 0.85vh, 0.9rem); min-height: 0; overflow: hidden; }
-    .stage.compact-secondary { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) auto auto; gap: clamp(0.28rem, 0.65vh, 0.7rem); }
+    .stage { display: grid; grid-template-rows: minmax(2.8rem, 7vh) minmax(2.8rem, 8vh) minmax(0, 1fr) 72px auto; gap: clamp(0.38rem, 0.85vh, 0.9rem); min-height: 0; overflow: hidden; }
+    .stage.compact-secondary { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) 72px auto; gap: clamp(0.28rem, 0.65vh, 0.7rem); }
     .stage.extreme-content .feedback,
     .stage.extreme-content .sponsor-ad { display: none; }
     /* Pin each stage child to its own grid row so hiding one (e.g. category strip via
@@ -164,7 +164,16 @@
       gap: clamp(0.42rem, 0.9vh, 0.85rem);
       min-height: 0;
       overflow: hidden;
-      transition: padding 180ms ease, gap 180ms ease;
+
+      /*
+       * مهم:
+       * لا نحرك padding/gap أثناء تغيير layout.
+       * بعض متصفحات Safari/TV كانت ترسم النسخة القديمة والجديدة
+       * بنفس اللحظة فتظهر الأسئلة والإجابات كأنها مكررة.
+       */
+      transition: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
     .question-card.no-answers { grid-template-rows: auto minmax(0, 1fr) auto; }
     .question-card.layout-long {
@@ -210,7 +219,7 @@
       overflow-wrap: break-word;
       word-break: normal;
       white-space: normal;
-      transition: line-height 180ms ease;
+      transition: none;
       text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
     }
     .question-card.has-media .question {
@@ -326,7 +335,7 @@
       font-weight: 900;
       flex: 0 0 auto;
     }
-    .answer-text { flex: 1; min-width: 0; max-height: 100%; font-size: var(--answer-font-size); line-height: var(--answer-line-height, 1.18); font-weight: 800; overflow: hidden; overflow-wrap: break-word; word-break: normal; white-space: normal; text-align: center; transition: line-height 180ms ease; }
+    .answer-text { flex: 1; min-width: 0; max-height: 100%; font-size: var(--answer-font-size); line-height: var(--answer-line-height, 1.18); font-weight: 800; overflow: hidden; overflow-wrap: break-word; word-break: normal; white-space: normal; text-align: center; transition: none; }
     .question-card.has-media.has-answers .answer-text { font-size: var(--answer-font-size); line-height: var(--answer-line-height, 1.12); }
     .answer-text .stat-good, .player-stats .stat-good { color: var(--success); font-weight: 900; }
     .answer-text .stat-bad, .player-stats .stat-bad { color: var(--error); font-weight: 900; }
@@ -351,8 +360,13 @@
     }
     .answers.true-false .answer-text { font-size: var(--answer-font-size, clamp(1.45rem, 2.65vw, 3rem)); flex: 0 1 auto; max-height: none; line-height: 1.05; }
 
+    .question-card.measuring,
     .question-card.measuring .question,
-    .question-card.measuring .answer-text { transition: none; }
+    .question-card.measuring .answers,
+    .question-card.measuring .answer,
+    .question-card.measuring .answer-text {
+      transition: none !important;
+    }
 
     /* ---- Results / podium screen ---------------------------------------
        renderFinalResults() reuses the .answers/.answer grid (adding
@@ -516,16 +530,52 @@
 
     .feedback {
       border-radius: var(--radius-md);
-      padding: 1.5vh 1.5vw;
+      padding: 0.55rem 1.2vw;
       background: rgba(34, 197, 94, 0.1);
       border: 1px solid rgba(34, 197, 94, 0.34);
       color: var(--success);
-      font-size: clamp(1.1rem, 1.6vw, 2rem);
+      font-size: clamp(1rem, 1.35vw, 1.7rem);
       font-weight: 900;
       text-align: center;
+
+      /*
+       * المساحة موجودة دائماً.
+       * ظهور الإجابة الصحيحة لن يغير ارتفاع الصفحة.
+       */
+      height: 72px;
+      min-height: 72px;
+      max-height: 72px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      visibility: visible;
+      opacity: 1;
+
+      transition: opacity 120ms ease;
     }
-    .feedback.hidden { display: none; }
-    .feedback .sub { color: var(--text); opacity: 0.82; font-size: 0.68em; margin-top: 0.5rem; font-weight: 700; }
+
+    .feedback.hidden {
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .feedback .sub {
+      color: var(--text);
+      opacity: 0.82;
+      font-size: 0.68em;
+      margin-top: 0.2rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
 
     /* ---- Sponsor banner --------------------------------------------------
        Styled as a compact "official partner" plaque: dark plaque with a gold
@@ -975,10 +1025,17 @@
       document.fonts.ready.then(fitQuestionLayout).catch(() => {});
     }
     if ('ResizeObserver' in window) {
-      const layoutResizeObserver = new ResizeObserver(() => fitQuestionLayout());
-      [display, questionCard].forEach(element => {
-        if (element) layoutResizeObserver.observe(element);
+      const layoutResizeObserver = new ResizeObserver(() => {
+        fitQuestionLayout();
       });
+
+      /*
+       * نراقب الشاشة الخارجية فقط.
+       * لا نراقب questionCard حتى لا ندخل بحلقة إعادة قياس مستمرة.
+       */
+      if (display) {
+        layoutResizeObserver.observe(display);
+      }
     }
 
     function renderSetupCode(code) {
@@ -1198,7 +1255,23 @@
 
     function getQuestionPromptKey(state, lang) {
       const item = state.question || {};
-      const revealState = state.status === 'revealed' ? 'revealed' : 'hidden';
+
+      /*
+       * السؤال النصي لا يجب إعادة رسمه عند اختيار الإجابة.
+       *
+       * نربط revealState فقط بالأسئلة التي تحتوي ميديا
+       * تتغير فعلياً بعد الكشف.
+       */
+      const revealAffectsPrompt = Boolean(
+        item.revealImageUrl ||
+        item.revealMode === 'blur'
+      );
+
+      const revealState =
+        revealAffectsPrompt && state.status === 'revealed'
+          ? 'revealed'
+          : 'stable';
+
       return [
         lang,
         state.gameId || '',
@@ -1675,33 +1748,39 @@
       item.classList.toggle('wrong', Boolean(answer.isSelected && state.status === 'revealed' && !answer.isCorrect));
     }
 
-   function renderFeedback(state, copy) {
-  feedback.replaceChildren();
+    function renderFeedback(state, copy) {
+      const shouldShow =
+        state.status === 'revealed' ||
+        state.status === 'finished';
 
-  // Keep space reserved to prevent layout jumping/flickering
-  feedback.classList.remove('hidden');
-  feedback.style.minHeight = '80px';
-  feedback.style.visibility = 'hidden';
+      feedback.replaceChildren();
 
-  if (state.status !== 'revealed' && state.status !== 'finished') {
-    return;
-  }
+      /*
+       * نخفي المحتوى فقط.
+       * المساحة نفسها تبقى موجودة دائماً.
+       */
+      if (!shouldShow) {
+        feedback.classList.add('hidden');
+        return;
+      }
 
-  feedback.style.visibility = 'visible';
+      feedback.classList.remove('hidden');
 
-  const title = document.createElement('div');
-  title.textContent = state.correctAnswer
-    ? `${copy.correct}: ${state.correctAnswer}`
-    : copy.correct;
-  feedback.append(title);
+      const title = document.createElement('div');
 
-  if (state.explanation) {
-    const sub = document.createElement('div');
-    sub.className = 'sub';
-    sub.textContent = state.explanation;
-    feedback.append(sub);
-  }
-}
+      title.textContent = state.correctAnswer
+        ? `${copy.correct}: ${state.correctAnswer}`
+        : copy.correct;
+
+      feedback.append(title);
+
+      if (state.explanation) {
+        const sub = document.createElement('div');
+        sub.className = 'sub';
+        sub.textContent = state.explanation;
+        feedback.append(sub);
+      }
+    }
 
     function renderPlayers(playerList) {
       const sortedPlayers = [...playerList].sort((left, right) => (right.score || 0) - (left.score || 0));
