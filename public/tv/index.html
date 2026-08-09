@@ -1675,23 +1675,33 @@
       item.classList.toggle('wrong', Boolean(answer.isSelected && state.status === 'revealed' && !answer.isCorrect));
     }
 
-    function renderFeedback(state, copy) {
-      feedback.replaceChildren();
-      if (state.status !== 'revealed' && state.status !== 'finished') {
-        feedback.classList.add('hidden');
-        return;
-      }
-      feedback.classList.remove('hidden');
-      const title = document.createElement('div');
-      title.textContent = state.correctAnswer ? `${copy.correct}: ${state.correctAnswer}` : copy.correct;
-      feedback.append(title);
-      if (state.explanation) {
-        const sub = document.createElement('div');
-        sub.className = 'sub';
-        sub.textContent = state.explanation;
-        feedback.append(sub);
-      }
-    }
+   function renderFeedback(state, copy) {
+  feedback.replaceChildren();
+
+  // Keep space reserved to prevent layout jumping/flickering
+  feedback.classList.remove('hidden');
+  feedback.style.minHeight = '80px';
+  feedback.style.visibility = 'hidden';
+
+  if (state.status !== 'revealed' && state.status !== 'finished') {
+    return;
+  }
+
+  feedback.style.visibility = 'visible';
+
+  const title = document.createElement('div');
+  title.textContent = state.correctAnswer
+    ? `${copy.correct}: ${state.correctAnswer}`
+    : copy.correct;
+  feedback.append(title);
+
+  if (state.explanation) {
+    const sub = document.createElement('div');
+    sub.className = 'sub';
+    sub.textContent = state.explanation;
+    feedback.append(sub);
+  }
+}
 
     function renderPlayers(playerList) {
       const sortedPlayers = [...playerList].sort((left, right) => (right.score || 0) - (left.score || 0));
