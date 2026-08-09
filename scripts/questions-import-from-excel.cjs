@@ -159,17 +159,35 @@ const header = `// AUTO-GENERATED FILE — DO NOT EDIT BY HAND.
 // To add or edit a question: open data/questions.xlsx, change the rows, then run:
 //   npm run questions:import
 // Any manual edits made here will be overwritten the next time that script runs.
+//
+// NOTE: the questions are split into multiple chunk arrays (rather than one giant array
+// literal) because TypeScript's type checker fails with "TS2590: Expression produces a union
+// type that is too complex to represent" once a single array literal of Question objects grows
+// past a few thousand elements. Splitting into chunks and concatenating keeps each literal small
+// enough for the checker while still producing one flat QUESTIONS array at runtime.
 
 import { Question } from '../../types';
 
-export const QUESTIONS: Question[] = [
 `;
 
-const footer = `];
+// Split into chunks to avoid TS2590 (see note above). Each chunk is checked independently.
+const CHUNK_SIZE = 300;
+const chunks = [];
+for (let i = 0; i < questions.length; i += CHUNK_SIZE) {
+  chunks.push(questions.slice(i, i + CHUNK_SIZE));
+}
+
+const chunkBlocks = chunks
+  .map((chunk, idx) => {
+    const body = chunk.map(questionToLiteral).join('\n');
+    return `const QUESTIONS_CHUNK_${idx}: Question[] = [\n${body}\n];\n`;
+  })
+  .join('\n');
+
+const footer = `\nexport const QUESTIONS: Question[] = [${chunks.map((_, idx) => `...QUESTIONS_CHUNK_${idx}`).join(', ')}];
 `;
 
-const body = questions.map(questionToLiteral).join('\n');
-const outputSource = `${header}${body}\n${footer}`;
+const outputSource = `${header}${chunkBlocks}${footer}`;
 
 // Sanity check: make sure the generated TypeScript is at least syntactically well-formed before
 // we overwrite the real file.
