@@ -1351,25 +1351,27 @@
       });
     }
 
-    function fitTextByBinarySearch({ styleElement, measureElements, variableName, minFontSize, maxFontSize }) {
-      let low = minFontSize;
-      let high = Math.max(minFontSize, maxFontSize);
-      let best = minFontSize;
+   function fitTextByBinarySearch({ styleElement, measureElements, variableName, minFontSize, maxFontSize }) {
+  let low = minFontSize;
+  let high = Math.max(minFontSize, maxFontSize);
+  let best = minFontSize;
 
-      for (let index = 0; index < FIT_ITERATIONS; index += 1) {
-        const candidate = (low + high) / 2;
-        styleElement.style.setProperty(variableName, `${candidate}px`);
-        if (measureElements.every(element => !isOverflowing(element))) {
-          best = candidate;
-          low = candidate;
-        } else {
-          high = candidate;
-        }
-      }
+  for (let index = 0; index < FIT_ITERATIONS; index += 1) {
+    const candidate = (low + high) / 2;
+    styleElement.style.setProperty(variableName, `${candidate}px`);
 
-      styleElement.style.setProperty(variableName, `${Math.floor(best)}px`);
-      return Math.floor(best);
+    if (measureElements.every(element => !isOverflowing(element))) {
+      best = candidate;
+      low = candidate;
+    } else {
+      high = candidate;
     }
+  }
+
+  const stableSize = Math.max(minFontSize, Math.floor(best) - 2);
+  styleElement.style.setProperty(variableName, `${stableSize}px`);
+  return stableSize;
+}
 
     function getLayoutOverflow() {
       const elements = [questionCard, question, answers, ...answers.querySelectorAll('.answer-text')];
