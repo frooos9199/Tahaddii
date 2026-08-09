@@ -24,6 +24,18 @@ const fromBoolCell = (cell, defaultValue = true) => {
   return s === 'TRUE' || s === '1' || s === 'YES' || s === 'نعم';
 };
 
+// Excel sheet-naming rules: max 31 chars, cannot contain : \ / ? * [ ], and a few names are
+// reserved by Excel itself (e.g. "History" is used internally for change-tracking). Shared here
+// so the export script (which creates sheet names from category ids) and the import script
+// (which needs to recognize "this sheet name came from that category id" for its mismatch check)
+// never drift apart.
+const RESERVED_SHEET_NAMES = new Set(['history']);
+const categoryIdToBaseSheetName = (categoryId) => {
+  let name = String(categoryId).replace(/[:\\/?*[\]]/g, '_').slice(0, 31);
+  if (RESERVED_SHEET_NAMES.has(name.toLowerCase())) name = `${name}_cat`;
+  return name;
+};
+
 const COLUMNS = [
   { header: 'id', get: (q) => q.id, set: (row, v) => (row.id = String(v ?? '').trim()) },
   { header: 'categoryId', get: (q) => q.categoryId, set: (row, v) => (row.categoryId = String(v ?? '').trim()) },
@@ -60,4 +72,4 @@ const COLUMNS = [
   { header: 'source', get: (q) => q.source || 'builtin', set: (row, v) => (row.source = String(v ?? '').trim() || 'builtin') },
 ];
 
-module.exports = { COLUMNS, LIST_SEP, toListCell, fromListCell, toBoolCell, fromBoolCell };
+module.exports = { COLUMNS, LIST_SEP, toListCell, fromListCell, toBoolCell, fromBoolCell, categoryIdToBaseSheetName };

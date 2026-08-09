@@ -2,16 +2,18 @@
 //
 // Usage: npm run questions:import
 //
-// data/questions.xlsx is now the SINGLE SOURCE OF TRUTH for all built-in questions.
-// Edit the Excel file (add rows for new questions, edit cells to fix existing ones), then run
-// this script. It validates every row and, only if everything is valid, overwrites
-// questionsData.ts with a generated QUESTIONS array. Never edit questionsData.ts by hand —
-// your changes will be lost the next time this script runs.
+// data/questions.xlsx is the SINGLE SOURCE OF TRUTH for all built-in questions. The workbook has
+// one SHEET (tab) per category (generalKnowledge, sports, football, ...) so you can open just the
+// tab you want to edit instead of scrolling through thousands of unrelated rows. Edit the sheets
+// (add rows for new questions, edit cells to fix existing ones), then run this script — it reads
+// every sheet in the workbook, validates every row, and, only if everything is valid, overwrites
+// questionsData.ts with a generated QUESTIONS array. Never edit questionsData.ts by hand — your
+// changes will be lost the next time this script runs.
 const fs = require('fs');
 const path = require('path');
 const ts = require('typescript');
 const XLSX = require('xlsx');
-const { COLUMNS } = require('./questions-excel-columns.cjs');
+const { COLUMNS, categoryIdToBaseSheetName } = require('./questions-excel-columns.cjs');
 
 const rootDir = path.resolve(__dirname, '..');
 const inputFile = path.join(rootDir, 'data', 'questions.xlsx');
@@ -39,27 +41,42 @@ if (!fs.existsSync(inputFile)) {
 }
 
 const workbook = XLSX.readFile(inputFile);
-const sheetName = workbook.SheetNames[0];
-const sheet = workbook.Sheets[sheetName];
-const raw = XLSX.utils.sheet_to_json(sheet, { defval: '', raw: false });
+
+// The workbook now has one sheet per category (see questions-export-to-excel.cjs). Read every
+// sheet and concatenate their rows into a single list — each row still carries its own
+// categoryId column, so sheets don't need to map 1:1 to a single category (e.g. rows can be
+// moved between sheets freely; the categoryId cell is what actually matters).
+const raw = [];
+const rowSheetNames = [];
+const rowNumsInSheet = [];
+for (const sheetName of workbook.SheetNames) {
+  const sheet = workbook.Sheets[sheetName];
+  const sheetRows = XLSX.utils.sheet_to_json(sheet, { defval: '', raw: false });
+  sheetRows.forEach((row, i) => {
+    raw.push(row);
+    rowSheetNames.push(sheetName);
+    rowNumsInSheet.push(i + 2); // +1 for header row, +1 for 1-based row numbers
+  });
+}
 
 if (raw.length === 0) {
-  console.error('The Excel file has no data rows — aborting import (refusing to wipe questionsData.ts).');
+  console.error('The Excel file has no data rows in any sheet — aborting import (refusing to wipe questionsData.ts).');
   process.exit(1);
 }
 
 const errors = [];
+const warnings = [];
 const seenIds = new Set();
 const questions = [];
 
 raw.forEach((cellRow, index) => {
-  const rowNum = index + 2; // +1 for header row, +1 for 1-based row numbers
+  const rowNum = rowNumsInSheet[index];
   const draft = {};
   for (const column of COLUMNS) {
     column.set(draft, cellRow[column.header]);
   }
 
-  const prefix = `Row ${rowNum} (id="${draft.id || ''}")`;
+  const prefix = `Sheet "${rowSheetNames[index]}" row ${rowNum} (id="${draft.id || ''}")`;
 
   if (!draft.id) {
     errors.push(`${prefix}: missing id`);
@@ -75,6 +92,11 @@ raw.forEach((cellRow, index) => {
     errors.push(`${prefix}: missing categoryId`);
   } else if (KNOWN_CATEGORY_IDS && !KNOWN_CATEGORY_IDS.has(draft.categoryId)) {
     errors.push(`${prefix}: unknown categoryId "${draft.categoryId}" (not in questionCatalog.ts CATEGORY_IDS)`);
+  } else if (categoryIdToBaseSheetName(draft.categoryId) !== rowSheetNames[index].replace(/~\d+$/, '')) {
+    // Not a hard error (a category's rows are allowed to live outside its "home" sheet — the
+    // categoryId cell is what actually matters at runtime) but almost always indicates the row
+    // was pasted into the wrong tab by mistake, so warn loudly.
+    warnings.push(`${prefix}: categoryId "${draft.categoryId}" does not match its sheet name "${rowSheetNames[index]}" — check it's in the right tab`);
   }
 
   if (!DIFFICULTIES.has(draft.difficulty)) {
@@ -140,6 +162,13 @@ if (errors.length > 0) {
   for (const error of errors.slice(0, 200)) console.error(`  - ${error}`);
   if (errors.length > 200) console.error(`  ... and ${errors.length - 200} more`);
   process.exit(1);
+}
+
+if (warnings.length > 0) {
+  console.warn(`${warnings.length} warning(s) (import still proceeded):\n`);
+  for (const warning of warnings.slice(0, 200)) console.warn(`  - ${warning}`);
+  if (warnings.length > 200) console.warn(`  ... and ${warnings.length - 200} more`);
+  console.warn('');
 }
 
 const stringifyField = (value) => (value === undefined ? undefined : JSON.stringify(value));
