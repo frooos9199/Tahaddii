@@ -1,16 +1,13 @@
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Auth, Persistence, getAuth, initializeAuth } from 'firebase/auth';
+import { Auth, getAuth } from 'firebase/auth';
 import { Firestore, getFirestore, initializeFirestore } from 'firebase/firestore';
 import { Functions, getFunctions } from 'firebase/functions';
 import { Database, getDatabase } from 'firebase/database';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 
-const { getReactNativePersistence } = require('@firebase/auth/dist/rn/index.js') as {
-  getReactNativePersistence: (storage: typeof AsyncStorage) => Persistence;
-};
-
+//فراس ديربالك ترفع هذا الملف في قيت هاب  او اي مكان اخر
 // ⚠️ لا ترفع هذا الملف على GitHub
+
 const firebaseConfig = {
   apiKey: 'AIzaSyC0Hcollocb_GErLjJSjluM6DiiuYYg42E',
   authDomain: 'tahaddi-77a5d.firebaseapp.com',
@@ -41,15 +38,7 @@ try {
   firestoreInstance = getFirestore(firebaseApp);
 }
 
-// initializeAuth with persistence; gracefully handles hot-reload where auth is already registered.
-let authInstance: Auth;
-try {
-  authInstance = initializeAuth(firebaseApp, {
-    persistence: getReactNativePersistence(AsyncStorage),
-  });
-} catch {
-  authInstance = getAuth(firebaseApp);
-}
+const authInstance: Auth = getAuth(firebaseApp);
 
 export const getFirebaseAppInstance = (): FirebaseApp => firebaseApp;
 

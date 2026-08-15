@@ -474,7 +474,10 @@ export default function GameScreen({ navigation }: Props) {
             ))}
           />
         )}
-        <Text style={styles.questionText} adjustsFontSizeToFit numberOfLines={4}>
+        <Text
+          style={[styles.questionText, !!questionImageUrl && styles.questionTextWithImage]}
+          adjustsFontSizeToFit
+          numberOfLines={4}>
           {displayQuestion}
         </Text>
       </View>
@@ -672,20 +675,27 @@ const styles = StyleSheet.create({
   questionCard: {
     marginHorizontal: 16, marginTop: 12,
     backgroundColor: Colors.backgroundCard,
-    borderRadius: 20, padding: 20,
+    borderRadius: 20,
     borderWidth: 1, borderColor: Colors.border,
     minHeight: SCREEN_H * 0.14,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   questionText: {
     fontSize: 20, color: Colors.text,
     textAlign: 'center', lineHeight: 30, fontWeight: '600',
+    padding: 20,
+  },
+  questionTextWithImage: {
+    backgroundColor: 'rgba(0,0,0,0.62)',
+    margin: 10,
+    borderRadius: 12,
+    padding: 12,
+    overflow: 'hidden',
   },
   questionImage: {
     width: '100%',
-    height: SCREEN_H * 0.24,
-    borderRadius: 16,
-    marginBottom: 14,
+    height: SCREEN_H * 0.22,
     backgroundColor: Colors.border,
   },
 

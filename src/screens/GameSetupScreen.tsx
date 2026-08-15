@@ -5,7 +5,10 @@ import {
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import { RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
@@ -20,6 +23,7 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSe
 
 export default function GameSetupScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const language = useAppStore(s => s.language);
   const { settings, updateSettings, initGame, pendingPlayers, pendingTvDisplayCode, setPendingTvDisplayCode } = useGameStore();
   const [isStarting, setIsStarting] = useState(false);
@@ -190,7 +194,10 @@ export default function GameSetupScreen({ navigation }: Props) {
   );
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView
+  style={styles.safe}
+  edges={['top', 'left', 'right']}
+>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.back}>
           <Text style={styles.backText}>{'‹'}</Text>
@@ -198,8 +205,13 @@ export default function GameSetupScreen({ navigation }: Props) {
         <Text style={styles.title}>{t('gameSetup.title')}</Text>
       </View>
 
-      <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-
+<ScrollView
+  contentContainerStyle={[
+    styles.scroll,
+    { paddingBottom: 190 + insets.bottom },
+  ]}
+  showsVerticalScrollIndicator={false}
+>
         {/* Summary */}
         <View style={styles.summary}>
           <Text style={styles.summaryItem}>👥 {pendingPlayers.length} {participantUnit}</Text>
@@ -271,7 +283,14 @@ export default function GameSetupScreen({ navigation }: Props) {
 
       </ScrollView>
 
-      <View style={styles.footer}>
+      <View
+  style={[
+    styles.footer,
+    {
+      paddingBottom: Math.max(insets.bottom, 16),
+    },
+  ]}
+>
         <TouchableOpacity
           style={[styles.tvBtn, pendingTvDisplayCode && styles.tvBtnActive]}
           onPress={() => navigation.navigate('TvPairingScanner')}>
@@ -301,7 +320,11 @@ const styles = StyleSheet.create({
   back: { padding: 4 },
   backText: { fontSize: 32, color: Colors.primaryLight, lineHeight: 36 },
   title: { fontSize: 22, fontWeight: 'bold', color: Colors.text },
-  scroll: { padding: 16, paddingBottom: 100, gap: 16 },
+  scroll: {
+  paddingHorizontal: 16,
+  paddingTop: 16,
+  gap: 16,
+},
   summary: {
     backgroundColor: Colors.backgroundCard,
     borderRadius: 14, padding: 14,
@@ -332,10 +355,17 @@ const styles = StyleSheet.create({
   rowLabel: { fontSize: 15, color: Colors.text },
   rowRight: {},
   footer: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    padding: 16, backgroundColor: Colors.background, gap: 8,
-    borderTopWidth: 1, borderTopColor: Colors.border,
-  },
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  paddingHorizontal: 16,
+  paddingTop: 16,
+  backgroundColor: Colors.background,
+  gap: 8,
+  borderTopWidth: 1,
+  borderTopColor: Colors.border,
+},
   tvBtn: {
     backgroundColor: Colors.backgroundCard,
     borderRadius: 14,

@@ -3,7 +3,7 @@ import {
   Animated, Dimensions, Image, ScrollView,
   InteractionManager, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { CategoryCard, RootStackParamList, CategoryId } from '../types';
@@ -27,6 +27,7 @@ const { width: W } = Dimensions.get('window');
 const CATEGORY_IMAGE_PREFETCH_BATCH_SIZE = 8;
 
 const CATEGORY_IMAGE_ASSETS = {
+  kuwaitfootball: require('../assets/categories/kuwaitfootball.png'),
   generalKnowledge: require('../assets/categories/generalKnowledge.png'),
   sports: require('../assets/categories/sports.png'),
   football: require('../assets/categories/football.png'),
@@ -193,11 +194,12 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   const onlineCount = publicRooms.length;
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView style={styles.safe}>
+    <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.scroll, { paddingBottom: insets.bottom + 16 }]}>
 
         {/* ── TOP BAR ── */}
         <View style={styles.topBar}>
@@ -301,7 +303,7 @@ export default function HomeScreen({ navigation }: Props) {
         </TouchableOpacity>
 
         {/* ── BOTTOM MENU ── */}
-        <View style={styles.bottomMenu}>
+        <View style={[styles.bottomMenu, { marginBottom: insets.bottom > 0 ? 0 : 12 }]}>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Auth')}>
             <Text style={styles.bottomIcon}>🔐</Text>
             <Text style={styles.bottomLabel}>{t('auth.login')}</Text>
@@ -436,12 +438,12 @@ const styles = StyleSheet.create({
   categoryGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 10,
-    paddingHorizontal: 20,
+    gap: 8,
+    paddingHorizontal: 16,
     marginBottom: 14,
   },
   categoryItem: {
-    width: (W - 60) / 3,
+    width: (W - 48) / 3,
     alignItems: 'center',
     gap: 7,
   },
