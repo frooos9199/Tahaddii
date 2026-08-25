@@ -224,58 +224,54 @@
     }
     .question-card.has-media .question {
       display: grid;
-      justify-items: start;
+      justify-items: stretch;
       gap: clamp(0.45rem, 1vh, 0.9rem);
+      grid-template-rows: minmax(0, 1fr) auto;
+      overflow: hidden;
     }
-    body.rtl .question-card.has-media .question { justify-items: start; }
     .question-card.has-media.has-answers .question {
       grid-template-rows: minmax(0, 1fr) auto;
       align-items: end;
       gap: clamp(0.28rem, 0.65vh, 0.55rem);
       min-height: 0;
-      font-size: var(--question-font-size);
-      line-height: var(--question-line-height, 1.12);
+      overflow: hidden;
     }
     .question-media {
-      width: min(100%, 52vw);
-      max-height: 30vh;
-      object-fit: contain;
-      justify-self: center;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--panel-border);
-      box-shadow: 0 22px 70px rgba(0,0,0,0.35);
-      background: rgba(255,255,255,0.06);
-    }
-    .question-card.has-media.has-answers .question-media {
       width: 100%;
       height: 100%;
-      max-height: none;
       min-height: 0;
+      object-fit: cover;
       justify-self: stretch;
       align-self: stretch;
       border-radius: var(--radius-md);
+      border: 1px solid var(--panel-border);
+      background: rgba(255,255,255,0.06);
+    }
+    .question-card:not(.has-answers) .question-media {
+      max-height: 38vh;
+      object-fit: contain;
     }
     .question-text-panel {
       max-width: 100%;
-      max-height: 100%;
       overflow: hidden;
       text-shadow: 0 3px 16px rgba(0,0,0,0.72);
       text-align: center;
+    }
+    .question-card:not(.has-media) .question-text-panel {
       margin-inline: auto;
     }
     .question-card.has-media .question-text-panel {
-      width: fit-content;
-      justify-self: start;
-      border: 1px solid rgba(255,255,255,0.16);
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.18);
       border-radius: var(--radius-md);
-      background: linear-gradient(135deg, rgba(6, 3, 15, 0.92), rgba(21, 12, 46, 0.82));
-      box-shadow: 0 18px 50px rgba(0,0,0,0.36);
-      backdrop-filter: blur(14px);
-      padding: clamp(0.45rem, 1vh, 0.9rem) clamp(0.75rem, 1.35vw, 1.35rem);
+      background: linear-gradient(135deg, rgba(6, 3, 15, 0.94), rgba(21, 12, 46, 0.88));
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: clamp(0.5rem, 1.1vh, 1rem) clamp(0.8rem, 1.4vw, 1.4rem);
+      text-align: center;
     }
-    body.rtl .question-card.has-media .question-text-panel { justify-self: start; }
-    .question-card.has-media.has-answers .question-text-panel { justify-self: start; }
-    body.rtl .question-card.has-media.has-answers .question-text-panel { justify-self: start; }
+    body.rtl .question-card.has-media .question-text-panel { text-align: right; }
     .meta-line { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: var(--muted); font-weight: 700; font-size: clamp(0.82rem, 1.05vw, 1.2rem); min-height: 1.35rem; overflow: hidden; }
     .meta-line span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -374,6 +370,12 @@
        dedicated ranked-list look instead of the 2-column answer-box grid —
        this is what previously made the results screen feel visually
        inconsistent with the rest of the game. */
+    /* The base .question-card grid gives the prompt row minmax(10rem, 1fr) —
+       right for a long question, but it starves the ranked-list row (which
+       needs the space) since the winner headline is just one short line. */
+    .question-card.is-final {
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+    }
     .question-card.is-final .answers {
       display: flex;
       flex-direction: column;
@@ -381,6 +383,9 @@
       direction: ltr;
     }
     .question-card.is-final .answer {
+      height: auto;
+      flex: 1 1 0;
+      min-height: 0;
       border-radius: var(--radius-md);
       justify-content: flex-start;
       background: rgba(255,255,255,0.045);
@@ -642,7 +647,7 @@
     .players { display: grid; gap: clamp(0.35rem, 0.8vh, 0.8rem); max-height: 100%; overflow: hidden; }
     .player {
       display: grid;
-      grid-template-columns: 0.34rem 1fr auto;
+      grid-template-columns: 0.34rem minmax(0, 1fr) auto;
       gap: 0.9rem;
       align-items: center;
       padding: clamp(0.55rem, 1.1vh, 1rem);
@@ -840,11 +845,11 @@
   <div id="setup" class="setup">
     <div class="setup-card">
       <h1>Tahaddii.com</h1>
-      <p>Open the app, press TV before starting the game, then scan this QR code.</p>
+      <p id="setupDesc">Open the app, press TV before starting the game, then enter the code below or scan the QR.</p>
       <div class="qr-wrap">
         <div class="qr-card"><img id="qrImage" alt="TV pairing QR code" /></div>
         <div id="setupCode" class="setup-code"></div>
-        <div class="setup-waiting">Waiting for the phone to scan...</div>
+        <div class="setup-waiting" id="setupWaiting">Waiting for the phone to connect...</div>
       </div>
       <form id="codeForm" class="code-form">
         <input id="codeInput" maxlength="8" autocomplete="off" placeholder="CODE" />
@@ -1009,6 +1014,16 @@
     renderSetupCode(codeInput.value);
     connect(codeInput.value);
     subscribeSponsorAds();
+
+    // ترجمة صفحة الإعداد حسب لغة المتصفح
+    const browserLang = (navigator.language || 'en').startsWith('ar') ? 'ar' : 'en';
+    if (browserLang === 'ar') {
+      document.body.classList.add('rtl');
+      document.getElementById('setupDesc').textContent = 'افتح التطبيق، اضغط TV قبل بدء اللعبة، ثم أدخل الكود أدناه أو امسح QR.';
+      document.getElementById('setupWaiting').textContent = 'بانتظار اتصال الجوال...';
+      document.querySelector('.code-form button').textContent = 'اتصال';
+      document.querySelector('#codeInput').placeholder = 'الكود';
+    }
 
     codeInput.addEventListener('input', () => {
       codeInput.value = normalizeCode(codeInput.value);

@@ -1,5 +1,6 @@
+import { createAsyncStorage } from '@react-native-async-storage/async-storage';
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app';
-import { Auth, getAuth } from 'firebase/auth';
+import { Auth, getReactNativePersistence, initializeAuth } from 'firebase/auth';
 import { Firestore, getFirestore, initializeFirestore } from 'firebase/firestore';
 import { Functions, getFunctions } from 'firebase/functions';
 import { Database, getDatabase } from 'firebase/database';
@@ -26,8 +27,6 @@ const REQUIRED_KEYS: Array<keyof typeof firebaseConfig> = [
 export const isFirebaseConfigured = () =>
   REQUIRED_KEYS.every(key => (firebaseConfig[key] ?? '').trim().length > 0);
 
-// Initialize the app eagerly so auth is the very first SDK consumer — prevents the
-// "without AsyncStorage" warning that fires when getAuth() runs before initializeAuth().
 const firebaseApp: FirebaseApp = getApps().length ? getApp() : initializeApp(firebaseConfig);
 let firestoreInstance: Firestore;
 try {
@@ -38,7 +37,9 @@ try {
   firestoreInstance = getFirestore(firebaseApp);
 }
 
-const authInstance: Auth = getAuth(firebaseApp);
+const authInstance: Auth = initializeAuth(firebaseApp, {
+  persistence: getReactNativePersistence(createAsyncStorage('tahaddi-firebase-auth')),
+});
 
 export const getFirebaseAppInstance = (): FirebaseApp => firebaseApp;
 

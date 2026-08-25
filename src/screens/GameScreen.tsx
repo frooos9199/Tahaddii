@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
-  Alert, Animated, Dimensions, Image, StatusBar, StyleSheet,
+  Alert, Animated, Dimensions, Image, Linking, Modal, Platform, StatusBar, StyleSheet,
   Text, TouchableOpacity, View,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
@@ -42,6 +42,8 @@ export default function GameScreen({ navigation }: Props) {
   const [revealed, setRevealed] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [tvDisplayCode, setTvDisplayCode] = useState<string | null>(pendingTvDisplayCode);
+  const [tvModalVisible, setTvModalVisible] = useState(false);
+  const [presentationMode, setPresentationMode] = useState(false);
   const [imageFallbackIndex, setImageFallbackIndex] = useState(0);
   const [transitionCategoryId, setTransitionCategoryId] = useState<string | null>(null);
   const categoryTransitionOpacity = useRef(new Animated.Value(0)).current;
@@ -384,18 +386,31 @@ export default function GameScreen({ navigation }: Props) {
 
   const startTvDisplay = async () => {
     if (!game || !question || !player) return;
-
     try {
       const code = tvDisplayCode ?? await createTvDisplaySession();
       const tvState = buildTvDisplayState();
       if (!tvState) return;
       await updateTvDisplaySession(code, tvState);
       setTvDisplayCode(code);
-      const link = getTvDisplayUrl(code);
-      Clipboard.setString(link);
-      Alert.alert(t('tvDisplay.title'), t('tvDisplay.sessionReady', { code, link }));
+      setTvModalVisible(true);
     } catch (error) {
       Alert.alert(t('common.error'), error instanceof Error ? error.message : t('tvDisplay.startFailed'));
+    }
+  };
+
+  const openMirrorSettings = () => {
+    if (Platform.OS === 'ios') {
+      // على iOS يفتح Control Center تلقائياً
+      Alert.alert(
+        '📺 ' + t('tvDisplay.mirrorTitle'),
+        t('tvDisplay.mirrorInstructionsIos'),
+        [{ text: t('common.close') }]
+      );
+    } else {
+      // على Android يفتح Cast settings
+      Linking.sendIntent('android.settings.CAST_SETTINGS').catch(() => {
+        Linking.openSettings();
+      });
     }
   };
 
@@ -408,6 +423,134 @@ export default function GameScreen({ navigation }: Props) {
   const transitionCategoryName = transitionCategoryId
     ? t(`categories.${transitionCategoryId}`, { defaultValue: transitionCategoryId })
     : displayCategoryName;
+
+  if (presentationMode) {
+    return (
+      <SafeAreaView style={pStyles.root}>
+        <StatusBar hidden />
+        <View style={pStyles.topRow}>
+          <Text style={pStyles.category} numberOfLines={1}>{displayCategoryEmoji}  {displayCategoryName}</Text>
+          <Text style={pStyles.progress}>{game.currentQuestionIndex + 1} / {total}</Text>
+        </View>
+        <View style={pStyles.progressTrack}>
+          <View style={[pStyles.progressFill, { width: `${((game.currentQuestionIndex + 1) / total) * 100}%` }]} />
+        </View>
+
+        <Text style={pStyles.playerLine} numberOfLines={1}>
+          {t('game.currentPlayer')}: {player.name} · {player.score} {t('common.points')}
+        </Text>
+
+        <View style={pStyles.questionCard}>
+          {!!questionImageUrl && (
+            <Image
+              key={`${question.id}-${revealed ? 'revealed' : 'hidden'}-${questionImageUrl}`}
+              source={{ uri: questionImageUrl }}
+              style={pStyles.questionImage}
+              blurRadius={questionBlurRadius}
+              resizeMode="cover"
+              onError={() => setImageFallbackIndex(currentIndex => (
+                currentIndex + 1 < questionImageUrls.length ? currentIndex + 1 : currentIndex
+              ))}
+            />
+          )}
+          <Text style={pStyles.questionText} adjustsFontSizeToFit numberOfLines={4}>{displayQuestion}</Text>
+        </View>
+
+        <View style={pStyles.timerRow}>
+          <View style={pStyles.timerTrack}>
+            <View style={[pStyles.timerFill, { width: `${timerProgress * 100}%`, backgroundColor: timerColor }]} />
+          </View>
+          <View style={[pStyles.timerBadge, { borderColor: timerColor }]}>
+            <Text style={[pStyles.timerNum, { color: timerColor }]}>{isTimed ? (timeLeft ?? timeLimit) : '∞'}</Text>
+          </View>
+        </View>
+
+        <View style={pStyles.answersBlock}>
+          {isTrueFalseQuestion ? (
+            <View style={pStyles.trueFalseRow}>
+              {answers.slice(0, 2).map((ans, i) => {
+                const isSelected = selectedIndex === i;
+                const isCorrect = i === question.correctAnswerIndex;
+                const showGreen = revealed && isCorrect;
+                const showRed = revealed && isSelected && !isCorrect;
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={[pStyles.trueFalseBtn,
+                      i === 0 ? pStyles.trueBtn : pStyles.falseBtn,
+                      isSelected && !revealed && pStyles.answerSelected,
+                      showGreen && pStyles.answerCorrect,
+                      showRed && pStyles.answerWrong,
+                    ]}
+                    disabled={revealed}
+                    onPress={() => { setSelectedIndex(i); registerAnswer(i === question.correctAnswerIndex); }}>
+                    <Text style={pStyles.trueFalseMark}>{i === 0 ? '✓' : '✕'}</Text>
+                    <Text style={pStyles.trueFalseText} adjustsFontSizeToFit numberOfLines={1}>{ans}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          ) : answers.length > 0 ? (
+            <View style={pStyles.answersGrid}>
+              {answers.map((ans, i) => {
+                const isSelected = selectedIndex === i;
+                const isCorrect = i === question.correctAnswerIndex;
+                const showGreen = revealed && isCorrect;
+                const showRed = revealed && isSelected && !isCorrect;
+                return (
+                  <TouchableOpacity
+                    key={i}
+                    style={[pStyles.answerBtn,
+                      isSelected && !revealed && pStyles.answerSelected,
+                      showGreen && pStyles.answerCorrect,
+                      showRed && pStyles.answerWrong,
+                    ]}
+                    disabled={revealed}
+                    onPress={() => { setSelectedIndex(i); registerAnswer(i === question.correctAnswerIndex); }}>
+                    <Text style={pStyles.answerLetter}>{answerLetters[i]}</Text>
+                    <Text style={[pStyles.answerText, language !== 'en' && pStyles.answerTextRtl]} adjustsFontSizeToFit numberOfLines={2}>{ans}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          ) : (
+            <View style={pStyles.manualRow}>
+              <TouchableOpacity style={[pStyles.manualBtn, pStyles.correctBtn]} onPress={() => registerAnswer(true)}>
+                <Text style={pStyles.manualText}>✓ {t('common.correct')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[pStyles.manualBtn, pStyles.wrongBtn]} onPress={() => registerAnswer(false)}>
+                <Text style={pStyles.manualText}>✕ {t('common.wrong')}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+
+        {revealed && (
+          <View style={[pStyles.feedbackBar, answeredCorrectly ? pStyles.feedbackCorrect : pStyles.feedbackWrong]}>
+            <Text style={pStyles.feedbackLabel}>
+              {answeredCorrectly ? `✓ ${t('common.correct')} · ${t('game.pointsEarned', { points: lastPointsEarned })}` : `✕ ${t('game.correctAnswer')}: ${correctAnswer}`}
+            </Text>
+            {lastFastBonus > 0 && <Text style={pStyles.feedbackExpl}>{t('game.fastAnswer')}</Text>}
+          </View>
+        )}
+
+        {/* ── FLOATING HOST CONTROLS ── */}
+        <View style={pStyles.controlBar}>
+          <TouchableOpacity style={pStyles.controlExitBtn} onPress={() => setPresentationMode(false)}>
+            <Text style={pStyles.controlExitText}>✕</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[pStyles.controlNextBtn, !revealed && pStyles.controlNextDisabled]}
+            disabled={!revealed}
+            onPress={goNext}>
+            <Text style={pStyles.controlNextText}>
+              {isLast ? `🏆 ${t('results.title')}` : `${t('common.next')} ›`}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -569,9 +712,51 @@ export default function GameScreen({ navigation }: Props) {
         </TouchableOpacity>
       </View>
 
+      {/* ── TV CONNECT MODAL ── */}
+      <Modal visible={tvModalVisible} transparent animationType="slide" onRequestClose={() => setTvModalVisible(false)}>
+        <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTvModalVisible(false)}>
+          <TouchableOpacity activeOpacity={1} style={styles.modalSheet}>
+            <Text style={styles.modalTitle}>📺 {t('tvDisplay.title')}</Text>
+
+            <TouchableOpacity
+              style={styles.modalMirrorBtn}
+              onPress={() => { setTvModalVisible(false); setPresentationMode(true); openMirrorSettings(); }}>
+              <Text style={styles.modalMirrorText}>📡 {t('tvDisplay.mirrorTitle')}</Text>
+              <Text style={styles.modalMirrorHint}>{t('tvDisplay.mirrorHint')}</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.modalDivider}>{t('tvDisplay.orUseCode')}</Text>
+
+            <Text style={styles.modalSubtitle}>{t('tvDisplay.openSite')}</Text>
+            <Text style={styles.modalSite}>tahaddii.com/tv</Text>
+            <Text style={styles.modalCodeLabel}>{t('tvDisplay.enterCode')}</Text>
+            <Text style={styles.modalCode}>{tvDisplayCode}</Text>
+            <TouchableOpacity
+              style={styles.modalCopyBtn}
+              onPress={() => {
+                if (tvDisplayCode) {
+                  Clipboard.setString(getTvDisplayUrl(tvDisplayCode));
+                  Alert.alert('✓', t('common.copied') ?? 'Copied!');
+                }
+              }}>
+              <Text style={styles.modalCopyText}>📋 {t('common.copyLink')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.modalScanBtn}
+              onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
+              <Text style={styles.modalScanText}>📷 {t('tvDisplay.scanQr')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.modalCloseBtn} onPress={() => setTvModalVisible(false)}>
+              <Text style={styles.modalCloseText}>{t('common.close')}</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </Modal>
+
       {!!transitionCategoryId && (
         <Animated.View
-          pointerEvents="none"
+          pointerEvents="auto"
           style={[
             styles.categoryTransition,
             {
@@ -785,4 +970,168 @@ const styles = StyleSheet.create({
   categoryTransitionKicker: { color: Colors.accent, fontSize: 13, fontWeight: '900', marginBottom: 8 },
   categoryTransitionIcon: { fontSize: 52, marginBottom: 8 },
   categoryTransitionName: { color: Colors.text, fontSize: 24, fontWeight: '900', textAlign: 'center' },
+
+  modalOverlay: {
+    flex: 1, backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'flex-end',
+  },
+  modalSheet: {
+    backgroundColor: Colors.backgroundCard,
+    borderTopLeftRadius: 28, borderTopRightRadius: 28,
+    padding: 28, gap: 12,
+    borderWidth: 1, borderColor: Colors.border,
+    alignItems: 'center',
+  },
+  modalTitle: { color: Colors.text, fontSize: 20, fontWeight: '900' },
+  modalMirrorBtn: {
+    width: '100%', backgroundColor: Colors.success,
+    borderRadius: 16, paddingVertical: 16, paddingHorizontal: 14,
+    alignItems: 'center', gap: 2,
+  },
+  modalMirrorText: { color: Colors.text, fontSize: 17, fontWeight: '900' },
+  modalMirrorHint: { color: Colors.text, opacity: 0.85, fontSize: 12, fontWeight: '600' },
+  modalDivider: { color: Colors.textMuted, fontSize: 12, fontWeight: '700', marginTop: 4 },
+  modalSubtitle: { color: Colors.textMuted, fontSize: 14, textAlign: 'center' },
+  modalSite: {
+    color: Colors.primaryLight, fontSize: 18, fontWeight: '800',
+    backgroundColor: Colors.primary + '22',
+    paddingHorizontal: 20, paddingVertical: 10,
+    borderRadius: 12, overflow: 'hidden',
+  },
+  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700', marginTop: 4 },
+  modalCode: {
+    color: Colors.accent, fontSize: 52, fontWeight: '900',
+    letterSpacing: 10, textAlign: 'center',
+  },
+  modalCopyBtn: {
+    width: '100%', backgroundColor: Colors.primary,
+    borderRadius: 14, padding: 14, alignItems: 'center',
+  },
+  modalCopyText: { color: Colors.text, fontSize: 15, fontWeight: '800' },
+  modalScanBtn: {
+    width: '100%', backgroundColor: Colors.backgroundCard,
+    borderRadius: 14, padding: 14, alignItems: 'center',
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  modalScanText: { color: Colors.text, fontSize: 15, fontWeight: '700' },
+  modalCloseBtn: { paddingVertical: 8 },
+  modalCloseText: { color: Colors.textMuted, fontSize: 14 },
+});
+
+// Presentation-mode palette — mirrors the tahaddii.com/tv web display so a
+// mirrored/cast phone screen looks like the dedicated TV page, not the
+// phone's normal controller UI.
+const P = {
+  bg: '#06030f',
+  panel: '#150c2e',
+  panelBorder: 'rgba(199,184,255,0.16)',
+  primary: '#8b5cf6',
+  gold: '#f2b93d',
+  text: '#f7f5ff',
+  muted: '#a79fc4',
+  success: '#22c55e',
+  error: '#f87171',
+};
+
+const pStyles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg, padding: 20 },
+
+  topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  category: { flex: 1, color: P.gold, fontSize: 20, fontWeight: '900' },
+  progress: { color: P.muted, fontSize: 16, fontWeight: '800' },
+  progressTrack: { height: 6, backgroundColor: P.panel, borderRadius: 99, overflow: 'hidden', marginTop: 10 },
+  progressFill: { height: '100%', backgroundColor: P.primary, borderRadius: 99 },
+
+  playerLine: { color: P.muted, fontSize: 16, fontWeight: '700', textAlign: 'center', marginTop: 14 },
+
+  questionCard: {
+    marginTop: 14,
+    backgroundColor: P.panel,
+    borderRadius: 24,
+    borderWidth: 1, borderColor: P.panelBorder,
+    minHeight: SCREEN_H * 0.24,
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  questionImage: { width: '100%', height: SCREEN_H * 0.26, backgroundColor: P.panel },
+  questionText: {
+    fontSize: 30, color: P.text, textAlign: 'center',
+    lineHeight: 42, fontWeight: '800', padding: 26,
+  },
+
+  timerRow: { flexDirection: 'row', alignItems: 'center', gap: 14, marginTop: 16 },
+  timerTrack: { flex: 1, height: 10, backgroundColor: P.panel, borderRadius: 99, overflow: 'hidden' },
+  timerFill: { height: '100%', borderRadius: 99 },
+  timerBadge: {
+    width: 56, height: 56, borderRadius: 28,
+    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 3, backgroundColor: P.panel,
+  },
+  timerNum: { fontSize: 22, fontWeight: '900' },
+
+  answersBlock: { flex: 1, marginTop: 18 },
+  answersGrid: { flex: 1, flexDirection: 'row', flexWrap: 'wrap', gap: 14, direction: 'ltr' },
+  answerBtn: {
+    width: (W - 54) / 2,
+    backgroundColor: P.panel,
+    borderRadius: 20, padding: 18,
+    borderWidth: 2, borderColor: P.panelBorder,
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+    minHeight: 84,
+  },
+  answerSelected: { borderColor: P.primary, backgroundColor: P.primary + '22' },
+  answerCorrect: { borderColor: P.success, backgroundColor: P.success + '22' },
+  answerWrong: { borderColor: P.error, backgroundColor: P.error + '22' },
+  answerLetter: {
+    width: 34, height: 34, borderRadius: 17,
+    backgroundColor: P.bg,
+    textAlign: 'center', lineHeight: 34,
+    fontSize: 15, fontWeight: '900', color: P.gold,
+    overflow: 'hidden',
+  },
+  answerText: { flex: 1, fontSize: 18, color: P.text, fontWeight: '700' },
+  answerTextRtl: { textAlign: 'right', writingDirection: 'rtl' },
+
+  manualRow: { flex: 1, flexDirection: 'row', gap: 14 },
+  manualBtn: { flex: 1, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  correctBtn: { backgroundColor: P.success },
+  wrongBtn: { backgroundColor: P.error },
+  manualText: { color: P.text, fontSize: 24, fontWeight: '900' },
+
+  trueFalseRow: { flex: 1, flexDirection: 'row', gap: 14 },
+  trueFalseBtn: {
+    flex: 1, minHeight: 140, borderRadius: 22,
+    alignItems: 'center', justifyContent: 'center',
+    borderWidth: 3, paddingHorizontal: 16,
+  },
+  trueBtn: { backgroundColor: P.success + '22', borderColor: P.success },
+  falseBtn: { backgroundColor: P.error + '22', borderColor: P.error },
+  trueFalseMark: { color: P.text, fontSize: 44, fontWeight: '900', marginBottom: 10 },
+  trueFalseText: { color: P.text, fontSize: 26, fontWeight: '900', textAlign: 'center' },
+
+  feedbackBar: { marginTop: 14, borderRadius: 18, padding: 16, borderWidth: 1 },
+  feedbackCorrect: { backgroundColor: P.success + '22', borderColor: P.success },
+  feedbackWrong: { backgroundColor: P.error + '22', borderColor: P.error },
+  feedbackLabel: { color: P.text, fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  feedbackExpl: { color: P.muted, fontSize: 14, textAlign: 'center', marginTop: 4 },
+
+  controlBar: {
+    position: 'absolute', bottom: 18, alignSelf: 'center',
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+    backgroundColor: 'rgba(6,3,15,0.92)',
+    borderRadius: 99, padding: 6,
+    borderWidth: 1, borderColor: P.panelBorder,
+  },
+  controlExitBtn: {
+    width: 40, height: 40, borderRadius: 20,
+    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: P.panel,
+  },
+  controlExitText: { color: P.muted, fontSize: 16, fontWeight: '800' },
+  controlNextBtn: {
+    backgroundColor: P.primary, borderRadius: 99,
+    paddingVertical: 10, paddingHorizontal: 22,
+  },
+  controlNextDisabled: { opacity: 0.4 },
+  controlNextText: { color: P.text, fontSize: 15, fontWeight: '800' },
 });

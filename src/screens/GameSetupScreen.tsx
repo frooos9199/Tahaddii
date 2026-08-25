@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ScrollView, Switch, Alert,
+  ScrollView, Switch, Alert, Linking, Modal, Platform,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
@@ -16,7 +17,7 @@ import { useAppStore } from '../store/appStore';
 import { CATEGORY_EMOJIS, TIME_OPTIONS } from '../constants';
 import { getQuestions } from '../services/questions/questionService';
 import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, getFairQuestionCountOptions, getRecommendedFairQuestionCount, loadQuestionBank } from '../services/questions/questionCatalog';
-import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
+import { createTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestionPrimaryImageUrl, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'> };
@@ -27,6 +28,7 @@ export default function GameSetupScreen({ navigation }: Props) {
   const language = useAppStore(s => s.language);
   const { settings, updateSettings, initGame, pendingPlayers, pendingTvDisplayCode, setPendingTvDisplayCode } = useGameStore();
   const [isStarting, setIsStarting] = useState(false);
+  const [tvModalVisible, setTvModalVisible] = useState(false);
   const playerTurnUnit = Math.max(1, pendingPlayers.length || 1);
   const [availableQuestionCount, setAvailableQuestionCount] = useState(() => getAvailableQuestionCount(settings));
 
@@ -81,6 +83,27 @@ export default function GameSetupScreen({ navigation }: Props) {
     if (seconds === 120) return t('gameSetup.time120');
     if (seconds === 150) return t('gameSetup.time150');
     return `${seconds}s`;
+  };
+
+  const openTvModal = async () => {
+    try {
+      if (!pendingTvDisplayCode) {
+        const code = await createTvDisplaySession();
+        await pairTvDisplaySession(code, language === 'en' ? 'en' : 'ar');
+        setPendingTvDisplayCode(code);
+      }
+      setTvModalVisible(true);
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('tvDisplay.startFailed'));
+    }
+  };
+
+  const openMirrorSettings = () => {
+    if (Platform.OS === 'ios') {
+      Alert.alert('📺 ' + t('tvDisplay.mirrorTitle'), t('tvDisplay.mirrorInstructionsIos'), [{ text: t('common.close') }]);
+    } else {
+      Linking.sendIntent('android.settings.CAST_SETTINGS').catch(() => Linking.openSettings());
+    }
   };
 
   const startGame = async () => {
@@ -293,7 +316,7 @@ export default function GameSetupScreen({ navigation }: Props) {
 >
         <TouchableOpacity
           style={[styles.tvBtn, pendingTvDisplayCode && styles.tvBtnActive]}
-          onPress={() => navigation.navigate('TvPairingScanner')}>
+          onPress={() => { void openTvModal(); }}>
           <Text style={styles.tvBtnText}>{pendingTvDisplayCode ? t('tvDisplay.connectedBeforeStart', { code: pendingTvDisplayCode }) : t('tvDisplay.connectBeforeStart')}</Text>
         </TouchableOpacity>
         {pendingTvDisplayCode ? (
@@ -310,6 +333,47 @@ export default function GameSetupScreen({ navigation }: Props) {
           <Text style={styles.startBtnText}>🎮  {isStarting ? t('common.loading') : t('gameSetup.startGame')}</Text>
         </TouchableOpacity>
       </View>
+
+      <Modal visible={tvModalVisible} transparent animationType="slide" onRequestClose={() => setTvModalVisible(false)}>
+        <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTvModalVisible(false)}>
+          <TouchableOpacity activeOpacity={1} style={styles.modalSheet}>
+            <Text style={styles.modalTitle}>📺 {t('tvDisplay.title')}</Text>
+
+            <TouchableOpacity
+              style={styles.modalMirrorBtn}
+              onPress={() => { setTvModalVisible(false); openMirrorSettings(); }}>
+              <Text style={styles.modalMirrorText}>📡 {t('tvDisplay.mirrorTitle')}</Text>
+              <Text style={styles.modalMirrorHint}>{t('tvDisplay.mirrorHint')}</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.modalDivider}>{t('tvDisplay.orUseCode')}</Text>
+
+            <Text style={styles.modalSubtitle}>{t('tvDisplay.openSite')}</Text>
+            <Text style={styles.modalSite}>tahaddii.com/tv</Text>
+            <Text style={styles.modalCodeLabel}>{t('tvDisplay.enterCode')}</Text>
+            <Text style={styles.modalCode}>{pendingTvDisplayCode}</Text>
+            <TouchableOpacity
+              style={styles.modalCopyBtn}
+              onPress={() => {
+                if (pendingTvDisplayCode) {
+                  Clipboard.setString(getTvDisplayUrl(pendingTvDisplayCode));
+                  Alert.alert('✓', t('common.copied') ?? 'Copied!');
+                }
+              }}>
+              <Text style={styles.modalCopyText}>📋 {t('common.copyLink')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.modalScanBtn}
+              onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
+              <Text style={styles.modalScanText}>📷 {t('tvDisplay.scanQr')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.modalCloseBtn} onPress={() => setTvModalVisible(false)}>
+              <Text style={styles.modalCloseText}>{t('common.close')}</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -381,4 +445,40 @@ const styles = StyleSheet.create({
   startBtn: { backgroundColor: Colors.primary, borderRadius: 14, padding: 18, alignItems: 'center' },
   startBtnDisabled: { opacity: 0.6 },
   startBtnText: { fontSize: 20, fontWeight: 'bold', color: Colors.text },
+
+  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'flex-end' },
+  modalSheet: {
+    backgroundColor: Colors.backgroundCard,
+    borderTopLeftRadius: 28, borderTopRightRadius: 28,
+    padding: 28, gap: 12, alignItems: 'center',
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  modalTitle: { color: Colors.text, fontSize: 20, fontWeight: '900' },
+  modalMirrorBtn: {
+    width: '100%', backgroundColor: Colors.success,
+    borderRadius: 16, paddingVertical: 16, paddingHorizontal: 14,
+    alignItems: 'center', gap: 2,
+  },
+  modalMirrorText: { color: Colors.text, fontSize: 17, fontWeight: '900' },
+  modalMirrorHint: { color: Colors.text, opacity: 0.85, fontSize: 12, fontWeight: '600' },
+  modalDivider: { color: Colors.textMuted, fontSize: 12, fontWeight: '700', marginTop: 4 },
+  modalSubtitle: { color: Colors.textMuted, fontSize: 14, textAlign: 'center' },
+  modalSite: {
+    color: Colors.primaryLight, fontSize: 18, fontWeight: '800',
+    backgroundColor: Colors.primary + '22',
+    paddingHorizontal: 20, paddingVertical: 10,
+    borderRadius: 12, overflow: 'hidden',
+  },
+  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700', marginTop: 4 },
+  modalCode: { color: Colors.accent, fontSize: 52, fontWeight: '900', letterSpacing: 10, textAlign: 'center' },
+  modalCopyBtn: { width: '100%', backgroundColor: Colors.primary, borderRadius: 14, padding: 14, alignItems: 'center' },
+  modalCopyText: { color: Colors.text, fontSize: 15, fontWeight: '800' },
+  modalScanBtn: {
+    width: '100%', backgroundColor: Colors.backgroundCard,
+    borderRadius: 14, padding: 14, alignItems: 'center',
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  modalScanText: { color: Colors.text, fontSize: 15, fontWeight: '700' },
+  modalCloseBtn: { paddingVertical: 8 },
+  modalCloseText: { color: Colors.textMuted, fontSize: 14 },
 });

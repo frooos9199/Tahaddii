@@ -13,6 +13,8 @@
     "delete": "Delete",
     "edit": "Edit",
     "close": "Close",
+    "copyLink": "Copy Link",
+    "copied": "Copied!",
     "clear": "Clear",
     "yes": "Yes",
     "no": "No",
@@ -460,7 +462,14 @@
     "scanHint": "Point the camera at the QR code shown on the TV screen",
     "cameraPermissionTitle": "Camera permission needed",
     "cameraPermissionText": "Enable the camera so the app can scan the TV QR code and pair the display automatically.",
-    "noCamera": "No camera found"
+    "noCamera": "No camera found",
+    "openSite": "Open the site on your TV",
+    "enterCode": "Enter the code",
+    "scanQr": "Scan QR instead",
+    "mirrorTitle": "Cast to TV",
+    "mirrorHint": "No typing needed — just pick your TV",
+    "orUseCode": "Or use the link and code manually",
+    "mirrorInstructionsIos": "Open Control Center by swiping down, tap 'Screen Mirror' and select your TV."
   },
   "results": {
     "title": "Results",
