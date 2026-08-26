@@ -1576,10 +1576,11 @@
               <td>${user.displayName || 'User'}${user.customerNumber ? ` · #${user.customerNumber}` : ''}</td>
               <td dir="ltr">${user.email || ''}</td>
               <td>${hasActive ? `فعّال حتى ${new Date(user.entitlementExpiresAtMs).toLocaleDateString('ar-KW')}` : '—'}</td>
+              <td><button type="button" class="secondary" data-quick-activate="${user.id}">🔓 تفعيل فئة</button></td>
             </tr>
           `;
         }).join('');
-        $('entitlementUsersBody').innerHTML = `<table><thead><tr><th></th><th>المستخدم</th><th>الإيميل</th><th>الاشتراك</th></tr></thead><tbody>${rows}</tbody></table>`;
+        $('entitlementUsersBody').innerHTML = `<table><thead><tr><th></th><th>المستخدم</th><th>الإيميل</th><th>الاشتراك</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
       }
 
       $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
@@ -2422,6 +2423,14 @@
         ? [...selectedEntitlementUids, uid]
         : selectedEntitlementUids.filter(id => id !== uid);
       $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
+    });
+
+    $('entitlementUsersBody').addEventListener('click', event => {
+      const uid = event.target.closest('[data-quick-activate]')?.dataset.quickActivate;
+      if (!uid) return;
+      selectedEntitlementUids = [uid];
+      renderEntitlementUsers();
+      $('entitlementForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     $('entitlementMethod').addEventListener('change', () => {

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Alert, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RouteProp } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { listAppUsers } from '../services/admin/adminService';
 import { listPackages } from '../services/packages/packageService';
@@ -10,16 +11,20 @@ import { AppUserRecord, CategoryId, Package, RootStackParamList } from '../types
 import { Colors } from '../theme/colors';
 import { CATEGORY_EMOJIS, FREE_CATEGORY_IDS } from '../constants';
 
-type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'AdminEntitlements'> };
+type Props = {
+  navigation: NativeStackNavigationProp<RootStackParamList, 'AdminEntitlements'>;
+  route: RouteProp<RootStackParamList, 'AdminEntitlements'>;
+};
 
 const PAID_CATEGORY_IDS = Object.keys(CATEGORY_EMOJIS).filter(id => !FREE_CATEGORY_IDS.includes(id)) as CategoryId[];
 
 const getCategoryName = (t: (key: string, options?: Record<string, unknown>) => string, categoryId: CategoryId) =>
   t(`categories.${categoryId}`, { defaultValue: categoryId });
 
-export default function AdminEntitlementsScreen({ navigation }: Props) {
+export default function AdminEntitlementsScreen({ navigation, route }: Props) {
   const { t } = useTranslation();
   const { userRecord } = useAuthStore();
+  const presetUid = route.params?.presetUid;
   const [users, setUsers] = useState<AppUserRecord[]>([]);
   const [packages, setPackages] = useState<Package[]>([]);
   const [search, setSearch] = useState('');
@@ -41,12 +46,19 @@ export default function AdminEntitlementsScreen({ navigation }: Props) {
       const [nextUsers, nextPackages] = await Promise.all([listAppUsers(), listPackages()]);
       setUsers(nextUsers);
       setPackages(nextPackages);
+      if (presetUid) {
+        const presetUser = nextUsers.find(user => user.uid === presetUid);
+        if (presetUser) {
+          setSelectedUids([presetUid]);
+          setSearch(String(presetUser.customerNumber ?? presetUser.displayName ?? ''));
+        }
+      }
     } catch (error) {
       Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.loadFailed'));
     } finally {
       setLoading(false);
     }
-  }, [t]);
+  }, [presetUid, t]);
 
   useEffect(() => {
     if (!canOpen) {

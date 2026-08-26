@@ -111,6 +111,7 @@
     "roleSuperAdmin": "Super Admin",
     "deleteRoom": "Delete room",
     "deleteUserDocument": "Delete user record",
+    "activateCategoryForUser": "🔓 Activate a category for this user",
     "guestUser": "Guest user",
     "accessDenied": "This screen is for admins only",
     "superAdminOnly": "This action is only available to the super admin",

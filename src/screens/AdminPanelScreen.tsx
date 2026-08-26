@@ -1170,6 +1170,12 @@ export default function AdminPanelScreen({ navigation }: Props) {
                 </TouchableOpacity>
               </View>
 
+              {!item.isGuest ? (
+                <TouchableOpacity style={styles.activateCategoryBtn} onPress={() => navigation.navigate('AdminEntitlements', { presetUid: item.uid })}>
+                  <Text style={styles.activateCategoryBtnText}>{t('admin.activateCategoryForUser')}</Text>
+                </TouchableOpacity>
+              ) : null}
+
               {canManageAdmins ? (
                 <TouchableOpacity style={[styles.deleteLineBtn, (item.uid === userRecord?.uid || busyKey === `delete-user-${item.uid}`) && styles.roleBtnDisabled]} disabled={item.uid === userRecord?.uid || busyKey === `delete-user-${item.uid}`} onPress={() => { void removeUserDocument(item); }}>
                   <Text style={styles.deleteLineBtnText}>{t('admin.deleteUserDocument')}</Text>
@@ -1471,6 +1477,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   killRoomBtnText: { color: Colors.text, fontWeight: '800' },
+  activateCategoryBtn: {
+    borderRadius: 12,
+    paddingVertical: 12,
+    alignItems: 'center',
+    backgroundColor: Colors.success + '22',
+    borderWidth: 1,
+    borderColor: Colors.success,
+  },
+  activateCategoryBtnText: { color: Colors.success, fontWeight: '800', fontSize: 13 },
   deleteLineBtn: {
     borderRadius: 12,
     paddingVertical: 12,

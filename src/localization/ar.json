@@ -111,6 +111,7 @@
     "roleSuperAdmin": "سوبر أدمن",
     "deleteRoom": "حذف الغرفة",
     "deleteUserDocument": "حذف سجل المستخدم",
+    "activateCategoryForUser": "🔓 تفعيل فئة لهذا المستخدم",
     "guestUser": "مستخدم ضيف",
     "accessDenied": "هذه الشاشة للمشرفين فقط",
     "superAdminOnly": "هذه العملية للسوبر أدمن فقط",

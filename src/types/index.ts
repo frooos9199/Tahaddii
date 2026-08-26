@@ -289,7 +289,7 @@ export type RootStackParamList = {
   OnlineLobby: undefined;
   OnlineGame: undefined;
   AdminPanel: undefined;
-  AdminEntitlements: undefined;
+  AdminEntitlements: { presetUid?: string } | undefined;
   PromoCodeRedeem: undefined;
   Profile: undefined;
   Privacy: undefined;
