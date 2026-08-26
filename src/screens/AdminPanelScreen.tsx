@@ -24,6 +24,16 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'AdminP
 
 const CATEGORY_IDS = Object.keys(CATEGORY_EMOJIS) as CategoryId[];
 const DIFFICULTIES: Difficulty[] = ['easy', 'medium', 'hard'];
+
+type AdminTab = 'questions' | 'categories' | 'ads' | 'subscriptions' | 'users' | 'rooms';
+const ADMIN_TABS: { id: AdminTab; labelKey: string }[] = [
+  { id: 'questions', labelKey: 'admin.tabQuestions' },
+  { id: 'categories', labelKey: 'admin.tabCategories' },
+  { id: 'ads', labelKey: 'admin.tabAds' },
+  { id: 'subscriptions', labelKey: 'admin.tabSubscriptions' },
+  { id: 'users', labelKey: 'admin.tabUsers' },
+  { id: 'rooms', labelKey: 'admin.tabRooms' },
+];
 const QUESTION_EXPORT_HEADERS = [
   'id', 'source', 'categoryId', 'categoryNameAr', 'difficulty', 'type', 'ageGroups',
   'questionAr', 'questionEn', 'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar',
@@ -112,6 +122,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
   const [editingPackageId, setEditingPackageId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [busyKey, setBusyKey] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<AdminTab>('questions');
 
   const canManageAdmins = Boolean(userRecord?.isSuperAdmin);
   const canOpen = Boolean(userRecord?.isAdmin || userRecord?.isSuperAdmin);
@@ -673,6 +684,18 @@ export default function AdminPanelScreen({ navigation }: Props) {
           </View>
         </View>
 
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tabBar}>
+          {ADMIN_TABS.map(tabItem => (
+            <TouchableOpacity
+              key={tabItem.id}
+              style={[styles.tabBtn, activeTab === tabItem.id && styles.tabBtnActive]}
+              onPress={() => setActiveTab(tabItem.id)}>
+              <Text style={[styles.tabBtnText, activeTab === tabItem.id && styles.tabBtnTextActive]}>{t(tabItem.labelKey)}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        {activeTab === 'questions' && (
         <View style={styles.section}>
           <View style={styles.sectionHeaderRow}>
             <Text style={styles.sectionTitle}>{t('admin.categoriesAndQuestions')}</Text>
@@ -810,7 +833,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
           ))}
           {visibleQuestions.length > 80 ? <Text style={styles.emptyText}>{t('admin.firstQuestionsOnly', { count: 80 })}</Text> : null}
         </View>
+        )}
 
+        {activeTab === 'categories' && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.categoryCardsSection')}</Text>
           <View style={styles.questionFormCard}>
@@ -875,7 +900,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
             </View>
           ))}
         </View>
+        )}
 
+        {activeTab === 'ads' && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.adsSection')}</Text>
           <View style={styles.questionFormCard}>
@@ -938,7 +965,10 @@ export default function AdminPanelScreen({ navigation }: Props) {
           ))}
           {!sponsorAds.length ? <Text style={styles.emptyText}>{t('admin.noAds')}</Text> : null}
         </View>
+        )}
 
+        {activeTab === 'subscriptions' && (
+        <>
         <View style={styles.section}>
           <TouchableOpacity style={styles.createQuestionBtn} onPress={() => navigation.navigate('AdminEntitlements')}>
             <Text style={styles.createQuestionBtnText}>{t('admin.manageSubscriptionsBtn')}</Text>
@@ -1106,7 +1136,10 @@ export default function AdminPanelScreen({ navigation }: Props) {
           ))}
           {!promoCodes.length ? <Text style={styles.emptyText}>{t('admin.noPromoCodes')}</Text> : null}
         </View>
+        </>
+        )}
 
+        {activeTab === 'users' && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.usersSection')}</Text>
           {users.map(item => (
@@ -1145,7 +1178,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
             </View>
           ))}
         </View>
+        )}
 
+        {activeTab === 'rooms' && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.roomsSection')}</Text>
           {rooms.map(room => (
@@ -1164,6 +1199,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
           ))}
           {!rooms.length ? <Text style={styles.emptyText}>{t('admin.noRooms')}</Text> : null}
         </View>
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -1190,6 +1226,18 @@ const styles = StyleSheet.create({
   },
   summaryNum: { color: Colors.accent, fontSize: 24, fontWeight: '900' },
   summaryLabel: { color: Colors.textMuted, marginTop: 4 },
+  tabBar: { gap: 8, paddingVertical: 2 },
+  tabBtn: {
+    backgroundColor: Colors.backgroundCard,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  tabBtnActive: { borderColor: Colors.primaryLight, backgroundColor: Colors.primary + '33' },
+  tabBtnText: { color: Colors.textMuted, fontSize: 13, fontWeight: '800' },
+  tabBtnTextActive: { color: Colors.primaryLight },
   section: {
     backgroundColor: Colors.backgroundCard,
     borderRadius: 20,
