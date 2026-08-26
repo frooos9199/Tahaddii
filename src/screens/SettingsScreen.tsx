@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Linking, ScrollView, StatusBar, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, ScrollView, Share, StatusBar, StyleSheet, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,8 @@ import { useAuthStore } from '../store/authStore';
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Settings'> };
 
 const ADMIN_WHATSAPP_NUMBER = '96550540999';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.tahaddi';
+const APP_STORE_URL = 'https://apps.apple.com/us/app/tahaddii/id6796960483';
 
 export default function SettingsScreen({ navigation }: Props) {
   const { t } = useTranslation();
@@ -48,6 +50,16 @@ export default function SettingsScreen({ navigation }: Props) {
         },
       },
     ]);
+  };
+
+  const shareApp = async () => {
+    try {
+      await Share.share({
+        message: t('settings.shareAppMessage', { playStoreUrl: PLAY_STORE_URL, appStoreUrl: APP_STORE_URL }),
+      });
+    } catch {
+      // user dismissed the share sheet — nothing to do
+    }
   };
 
   const openWhatsApp = async () => {
@@ -115,6 +127,14 @@ export default function SettingsScreen({ navigation }: Props) {
           <Row label={t('settings.vibration')} value={vibrationEnabled} onValueChange={value => {
             void setVibrationEnabled(value);
           }} />
+        </View>
+
+        <View style={styles.panel}>
+          <Text style={[styles.panelTitle, isArabic && styles.textRtl]}>{t('settings.shareSection')}</Text>
+          <Text style={[styles.panelNote, isArabic && styles.textRtl]}>{t('settings.shareSectionHint')}</Text>
+          <TouchableOpacity style={styles.shareBtn} onPress={() => { void shareApp(); }}>
+            <Text style={styles.shareBtnText}>📤 {t('settings.shareAppBtn')}</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.panel}>
@@ -206,6 +226,13 @@ const styles = StyleSheet.create({
   contactTitle: { color: Colors.text, fontSize: 16, fontWeight: '700' },
   contactNumber: { color: Colors.textMuted, fontSize: 14, marginTop: 4 },
   contactAction: { color: Colors.success, fontSize: 14, fontWeight: '700' },
+  shareBtn: {
+    backgroundColor: Colors.primary,
+    borderRadius: 16,
+    padding: 16,
+    alignItems: 'center',
+  },
+  shareBtnText: { color: Colors.text, fontSize: 16, fontWeight: '700' },
   dangerBtn: {
     backgroundColor: Colors.error,
     borderRadius: 16,

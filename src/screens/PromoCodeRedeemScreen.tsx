@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Linking, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, Platform, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { redeemPromoCode } from '../services/promo/promoRedeemService';
@@ -32,14 +32,18 @@ export default function PromoCodeRedeemScreen({ navigation }: Props) {
         }));
         await refreshUserRecord();
       } else {
-        const contact = await getContactConfig();
         const discountLabel = result.type === 'discountPercent'
           ? `${result.discountValue}%`
           : `${result.discountValue} د.ك`;
-        setResultMessage(t('promoRedeem.discountMessage', { discount: discountLabel }));
-        if (contact.whatsappNumber) {
-          const url = buildWhatsAppUrl(contact.whatsappNumber, t('promoRedeem.discountWhatsappMessage', { code: code.trim().toUpperCase(), discount: discountLabel }));
-          void Linking.openURL(url).catch(() => {});
+        if (Platform.OS === 'ios') {
+          setResultMessage(t('subscription.notAvailableIos'));
+        } else {
+          setResultMessage(t('promoRedeem.discountMessage', { discount: discountLabel }));
+          const contact = await getContactConfig();
+          if (contact.whatsappNumber) {
+            const url = buildWhatsAppUrl(contact.whatsappNumber, t('promoRedeem.discountWhatsappMessage', { code: code.trim().toUpperCase(), discount: discountLabel }));
+            void Linking.openURL(url).catch(() => {});
+          }
         }
       }
     } catch (error) {

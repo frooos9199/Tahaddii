@@ -303,6 +303,7 @@
     "availablePackages": "Available Packages",
     "buyBtn": "Buy via WhatsApp",
     "havePromoCode": "I have a promo code",
+    "notAvailableIos": "Activation isn't available on iPhone right now",
     "whatsappBuyMessage": "I'd like to buy the {{package}} package - my account number: {{customerNumber}}"
   },
   "online": {
@@ -460,6 +461,7 @@
     "whatsappUnlockMessage": "I'd like to buy the {{category}} section - my account number: {{customerNumber}}",
     "contactNotConfigured": "No contact number has been set up yet — please reach support another way",
     "whatsappOpenFailed": "Couldn't open WhatsApp — make sure it's installed on your device",
+    "notAvailableIos": "This feature isn't available right now",
     "generalKnowledge": "General Knowledge",
     "sports": "Sports",
     "football": "Football",
@@ -603,6 +605,10 @@
     "clearDataConfirm": "Are you sure? All local data will be deleted.",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
+    "shareSection": "Share the App",
+    "shareSectionHint": "Help us reach more players — share the app with your friends",
+    "shareAppBtn": "Share the App",
+    "shareAppMessage": "Try Tahaddii, the trivia game! 🎮🧠\niPhone: {{appStoreUrl}}\nAndroid: {{playStoreUrl}}",
     "contact": "Contact Us",
     "whatsAppAdmin": "Contact Admin on WhatsApp",
     "contactNow": "Open Chat",

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Alert, Linking, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -34,6 +34,8 @@ export default function SubscriptionScreen({ navigation }: Props) {
     });
     return () => { isMounted = false; };
   }, [refreshUserRecord]));
+
+  const canPurchaseInApp = Platform.OS !== 'ios';
 
   const buyPackage = (pkg: Package) => {
     if (!whatsappNumber) {
@@ -95,9 +97,13 @@ export default function SubscriptionScreen({ navigation }: Props) {
             <Text style={styles.packageCategories}>
               {pkg.categoryIds.includes('*') ? t('admin.packageAllCategories') : pkg.categoryIds.map(id => t(`categories.${id}`, { defaultValue: id })).join('، ')}
             </Text>
-            <TouchableOpacity style={styles.buyBtn} onPress={() => buyPackage(pkg)}>
-              <Text style={styles.buyBtnText}>{t('subscription.buyBtn')}</Text>
-            </TouchableOpacity>
+            {canPurchaseInApp ? (
+              <TouchableOpacity style={styles.buyBtn} onPress={() => buyPackage(pkg)}>
+                <Text style={styles.buyBtnText}>{t('subscription.buyBtn')}</Text>
+              </TouchableOpacity>
+            ) : (
+              <Text style={styles.cardMuted}>{t('subscription.notAvailableIos')}</Text>
+            )}
           </View>
         ))}
 

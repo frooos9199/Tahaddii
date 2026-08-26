@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ScrollView, Linking, Alert,
+  ScrollView, Linking, Alert, Platform,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
@@ -85,6 +85,10 @@ export default function CategorySelectScreen({ navigation }: Props) {
   };
 
   const openLockedCategoryPrompt = (id: CategoryId) => {
+    if (Platform.OS === 'ios') {
+      Alert.alert('', t('categories.notAvailableIos'));
+      return;
+    }
     if (!whatsappNumber) {
       Alert.alert('', t('categories.contactNotConfigured'));
       return;

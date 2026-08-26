@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Alert, Animated, Dimensions, Image, Linking, ScrollView,
+  Alert, Animated, Dimensions, Image, Linking, Platform, ScrollView,
   InteractionManager, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -201,6 +201,10 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   const openLockedCategoryPrompt = (categoryId: CategoryId, card: CategoryCard) => {
+    if (Platform.OS === 'ios') {
+      Alert.alert('', t('categories.notAvailableIos'));
+      return;
+    }
     if (!whatsappNumber) {
       Alert.alert('', t('categories.contactNotConfigured'));
       return;

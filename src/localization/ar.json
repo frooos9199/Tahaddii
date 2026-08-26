@@ -303,6 +303,7 @@
     "availablePackages": "الباقات المتاحة",
     "buyBtn": "اشتري عبر واتساب",
     "havePromoCode": "عندي كود ترويجي",
+    "notAvailableIos": "التفعيل غير متوفر حاليًا على آيفون",
     "whatsappBuyMessage": "أرغب بشراء باقة {{package}} - رقم حسابي: {{customerNumber}}"
   },
   "online": {
@@ -460,6 +461,7 @@
     "whatsappUnlockMessage": "أرغب بشراء قسم {{category}} - رقم حسابي: {{customerNumber}}",
     "contactNotConfigured": "لم يتم إضافة رقم تواصل بعد، تواصل مع الدعم من مكان آخر",
     "whatsappOpenFailed": "تعذر فتح واتساب، تأكد إنه مثبت على جهازك",
+    "notAvailableIos": "هذي الميزة غير متوفرة حاليًا",
     "generalKnowledge": "معلومات عامة",
     "sports": "رياضة",
     "football": "كرة القدم",
@@ -603,6 +605,10 @@
     "clearDataConfirm": "هل أنت متأكد؟ ستحذف جميع بياناتك المحلية.",
     "privacy": "سياسة الخصوصية",
     "terms": "الشروط والأحكام",
+    "shareSection": "شارك التطبيق",
+    "shareSectionHint": "ساعدنا نوصل لأكبر عدد من اللاعبين — شارك التطبيق مع أصدقائك",
+    "shareAppBtn": "شارك التطبيق",
+    "shareAppMessage": "جربوا تطبيق تحدي! 🎮🧠\nآيفون: {{appStoreUrl}}\nأندرويد: {{playStoreUrl}}",
     "contact": "تواصل معنا",
     "whatsAppAdmin": "مخاطبة الإدارة عبر واتساب",
     "contactNow": "فتح المحادثة",
