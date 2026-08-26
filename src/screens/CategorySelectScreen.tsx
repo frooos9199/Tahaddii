@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ScrollView, Linking,
+  ScrollView, Linking, Alert,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
@@ -85,12 +85,17 @@ export default function CategorySelectScreen({ navigation }: Props) {
   };
 
   const openLockedCategoryPrompt = (id: CategoryId) => {
-    if (!whatsappNumber) return;
+    if (!whatsappNumber) {
+      Alert.alert('', t('categories.contactNotConfigured'));
+      return;
+    }
     const message = t('categories.whatsappUnlockMessage', {
       category: t(`categories.${id}`),
       customerNumber: userRecord?.customerNumber ?? '-',
     });
-    void Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {});
+    Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {
+      Alert.alert('', t('categories.whatsappOpenFailed'));
+    });
   };
 
   const selectAll = () => setSelected(availableCategories.filter(id => !lockedIds.includes(id)));

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Animated, Dimensions, Image, Linking, ScrollView,
+  Alert, Animated, Dimensions, Image, Linking, ScrollView,
   InteractionManager, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -201,12 +201,17 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   const openLockedCategoryPrompt = (categoryId: CategoryId, card: CategoryCard) => {
-    if (!whatsappNumber) return;
+    if (!whatsappNumber) {
+      Alert.alert('', t('categories.contactNotConfigured'));
+      return;
+    }
     const message = t('categories.whatsappUnlockMessage', {
       category: getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar'),
       customerNumber: userRecord?.customerNumber ?? '-',
     });
-    void Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {});
+    Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {
+      Alert.alert('', t('categories.whatsappOpenFailed'));
+    });
   };
 
   const selectAllCategories = () => setSelectedCategories(visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id));

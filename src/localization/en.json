@@ -440,6 +440,8 @@
     "random": "Random",
     "lockedBadge": "Locked",
     "whatsappUnlockMessage": "I'd like to buy the {{category}} section - my account number: {{customerNumber}}",
+    "contactNotConfigured": "No contact number has been set up yet — please reach support another way",
+    "whatsappOpenFailed": "Couldn't open WhatsApp — make sure it's installed on your device",
     "generalKnowledge": "General Knowledge",
     "sports": "Sports",
     "football": "Football",

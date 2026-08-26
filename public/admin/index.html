@@ -232,6 +232,7 @@
             <button class="tab active" type="button" data-tab="questionsPanel">إدارة الأسئلة</button>
             <button class="tab" type="button" data-tab="categoriesPanel">بطاقات الرئيسية</button>
             <button class="tab" type="button" data-tab="adsPanel">إعلانات الشركات</button>
+            <button class="tab" type="button" data-tab="subscriptionsPanel">الاشتراكات</button>
             <button class="tab" type="button" data-tab="statsPanel">الإحصائيات</button>
           </div>
 
@@ -461,6 +462,123 @@
             <div id="adsBody" class="ads-grid"></div>
           </section>
 
+          <section id="subscriptionsPanel" class="panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">رقم التواصل (واتساب)</h2>
+                <p class="hint">هذا الرقم يظهر للمستخدم لما يضغط على فئة مقفلة.</p>
+              </div>
+            </div>
+            <form id="contactForm" class="form">
+              <label>رقم واتساب (بصيغة دولية بدون + أو صفر)<input id="contactWhatsapp" dir="ltr" placeholder="96550000000" /></label>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ الرقم</button>
+              </div>
+              <div id="contactStatus" class="status"></div>
+            </form>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
+                <h2 class="section-title">الباقات</h2>
+                <p class="hint">باقة تحدد الفئات المشمولة، المدة بالأيام، والسعر.</p>
+              </div>
+            </div>
+            <form id="packageForm" class="form">
+              <input id="packageEditId" type="hidden" />
+              <div class="row">
+                <label>اسم الباقة بالعربي<input id="packageNameAr" placeholder="باقة الرياضة والأفلام" /></label>
+                <label>اسم الباقة بالإنجليزي<input id="packageNameEn" dir="ltr" placeholder="Sports & Movies Bundle" /></label>
+              </div>
+              <div class="row">
+                <label>المدة (أيام)<input id="packageDurationDays" dir="ltr" type="number" value="30" /></label>
+                <label>السعر (د.ك)<input id="packagePriceKwd" dir="ltr" type="number" step="0.001" value="0" /></label>
+              </div>
+              <label style="display:flex; flex-direction:row; align-items:center; gap:0.5rem;"><input id="packageAllCategories" type="checkbox" style="width:auto;" /> كل الفئات المدفوعة</label>
+              <div id="packageCategoriesBox" class="row" style="grid-template-columns: repeat(4, minmax(0,1fr)); flex-wrap: wrap;"></div>
+              <label>حالة الباقة<select id="packageActive"><option value="TRUE">فعالة</option><option value="FALSE">متوقفة</option></select></label>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ الباقة</button>
+                <button id="clearPackageBtn" class="secondary" type="button">باقة جديدة</button>
+              </div>
+              <div id="packageStatus" class="status"></div>
+            </form>
+            <div id="packagesBody" class="ads-grid"></div>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
+                <h2 class="section-title">أكواد الترويج</h2>
+                <p class="hint">كود مجاني يفعّل الاشتراك تلقائيًا. كود الخصم إعلامي بس (المستخدم يتواصل معك).</p>
+              </div>
+            </div>
+            <form id="promoForm" class="form">
+              <div class="row">
+                <label>الكود<input id="promoCode" dir="ltr" placeholder="اكتب كود أو اتركه فارغ للتوليد" style="text-transform:uppercase;" /></label>
+                <label>النوع
+                  <select id="promoType">
+                    <option value="free">مجاني</option>
+                    <option value="discountPercent">خصم %</option>
+                    <option value="discountFixedKwd">خصم د.ك</option>
+                  </select>
+                </label>
+              </div>
+              <div class="row">
+                <label id="promoPackageLabel">الباقة المرتبطة
+                  <select id="promoPackageId"></select>
+                </label>
+                <label id="promoDiscountLabel" style="display:none;">قيمة الخصم<input id="promoDiscountValue" dir="ltr" type="number" step="0.01" /></label>
+              </div>
+              <div class="row">
+                <label>أقصى عدد استخدام<input id="promoMaxRedemptions" dir="ltr" type="number" value="1" /></label>
+                <label>ينتهي بعد (أيام، اختياري)<input id="promoExpiresInDays" dir="ltr" type="number" /></label>
+              </div>
+              <div class="actions">
+                <button class="primary" type="submit">إنشاء الكود</button>
+              </div>
+              <div id="promoStatus" class="status"></div>
+            </form>
+            <div id="promoCodesBody" class="table-wrap"></div>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
+                <h2 class="section-title">تفعيل / تمديد اشتراك مستخدم</h2>
+                <p class="hint">دور برقم العميل أو الاسم أو الإيميل، حدد مستخدم أو أكثر، وفعّل من باقة أو مدى مخصص.</p>
+              </div>
+            </div>
+            <input id="entitlementSearch" dir="rtl" placeholder="رقم العميل أو الاسم أو الإيميل" />
+            <div class="actions" style="margin-top:0.6rem;">
+              <button id="entitlementSelectAllBtn" class="secondary" type="button">تحديد كل الظاهرين</button>
+              <button id="entitlementClearBtn" class="secondary" type="button">إلغاء التحديد</button>
+              <span id="entitlementSelectedCount" class="hint"></span>
+            </div>
+            <div id="entitlementUsersBody" class="table-wrap" style="margin-top:0.6rem;"></div>
+
+            <form id="entitlementForm" class="form" style="margin-top:1rem;">
+              <label>طريقة التفعيل
+                <select id="entitlementMethod">
+                  <option value="package">من باقة</option>
+                  <option value="custom">مدى مخصص</option>
+                </select>
+              </label>
+              <label id="entitlementPackageLabel">الباقة<select id="entitlementPackageId"></select></label>
+              <div id="entitlementCustomBox" style="display:none;">
+                <label>الفئات المشمولة</label>
+                <div id="entitlementCategoriesBox" class="row" style="grid-template-columns: repeat(4, minmax(0,1fr)); flex-wrap: wrap;"></div>
+                <label>المدة (أيام)<input id="entitlementDurationDays" dir="ltr" type="number" value="30" /></label>
+              </div>
+              <label>عند وجود اشتراك سابق
+                <select id="entitlementMode">
+                  <option value="extend">تمديد (إضافة على الحالي)</option>
+                  <option value="replace">استبدال</option>
+                </select>
+              </label>
+              <label>ملاحظة (اختياري)<input id="entitlementNote" placeholder="مثلاً: دفع عبر تحويل بنكي" /></label>
+              <div class="actions">
+                <button class="primary" type="submit">تفعيل</button>
+              </div>
+              <div id="entitlementStatus" class="status"></div>
+            </form>
+          </section>
+
           <section id="statsPanel" class="panel">
             <h2 class="section-title">الإحصائيات</h2>
             <p class="hint">إحصائيات مباشرة من Firebase: المستخدمين، أسئلة الأدمن، إعلانات الشركات، وجلسات التلفاز.</p>
@@ -526,6 +644,11 @@
     let sponsorAds = [];
     let users = [];
     let tvSessions = [];
+    let packages = [];
+    let promoCodes = [];
+    let contactWhatsappNumber = '';
+    let selectedEntitlementUids = [];
+    const FREE_CATEGORY_IDS = ['generalKnowledge'];
     let pendingQuestionRows = [];
     let visibleQuestions = [];
     const errorLogEntries = [];
@@ -576,6 +699,26 @@
         const scope = element?.id ? `scope=${element.id}` : '';
         appendErrorLog('status', message, scope);
       }
+    };
+
+    const CLOUD_FUNCTIONS_PROJECT = 'tahaddi-77a5d';
+    const CLOUD_FUNCTIONS_REGION = 'us-central1';
+    const callFunction = async (name, data) => {
+      const token = currentUser ? await currentUser.getIdToken(true) : null;
+      const url = `https://${CLOUD_FUNCTIONS_REGION}-${CLOUD_FUNCTIONS_PROJECT}.cloudfunctions.net/${name}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ data }),
+      });
+      const json = await response.json();
+      if (json.error) {
+        throw new Error(`${json.error.status || 'ERROR'}: ${json.error.message || 'Unknown error'}`);
+      }
+      return json.result;
     };
 
     const escapeCsv = value => `"${String(value ?? '').replace(/"/g, '""')}"`;
@@ -1290,6 +1433,158 @@
       }));
     };
 
+    const paidCategoryIds = categories.filter(id => !FREE_CATEGORY_IDS.includes(id));
+
+    const buildCategoryCheckboxes = containerId => {
+      const container = $(containerId);
+      container.replaceChildren(...paidCategoryIds.map(id => {
+        const label = document.createElement('label');
+        label.style.display = 'flex';
+        label.style.flexDirection = 'row';
+        label.style.alignItems = 'center';
+        label.style.gap = '0.4rem';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.value = id;
+        input.style.width = 'auto';
+        input.dataset.categoryCheckbox = containerId;
+        const span = document.createElement('span');
+        span.textContent = categoryNamesAr[id] || id;
+        label.append(input, span);
+        return label;
+      }));
+    };
+
+    const getCheckedCategoryIds = containerId =>
+      [...$(containerId).querySelectorAll('input[type="checkbox"]:checked')].map(input => input.value);
+
+    const setCheckedCategoryIds = (containerId, ids) => {
+      $(containerId).querySelectorAll('input[type="checkbox"]').forEach(input => {
+        input.checked = ids.includes(input.value);
+      });
+    };
+
+    const populatePackageDropdowns = () => {
+      const activePackages = packages.filter(pkg => pkg.isActive !== false);
+      const options = activePackages.map(pkg => `<option value="${pkg.id}">${pkg.nameAr} (${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم)</option>`).join('');
+      $('promoPackageId').innerHTML = options || '<option value="">لا توجد باقات فعالة</option>';
+      $('entitlementPackageId').innerHTML = options || '<option value="">لا توجد باقات فعالة</option>';
+    };
+
+    const renderPackages = () => {
+      if (!packages.length) {
+        const empty = document.createElement('div');
+        empty.className = 'hint';
+        empty.textContent = 'لا توجد باقات بعد.';
+        $('packagesBody').replaceChildren(empty);
+        populatePackageDropdowns();
+        return;
+      }
+
+      $('packagesBody').replaceChildren(...packages.map(pkg => {
+        const card = document.createElement('article');
+        card.className = 'ad-card';
+        card.style.setProperty('--ad-accent', '#8b5cf6');
+
+        const top = document.createElement('div');
+        top.className = 'ad-top';
+        const info = document.createElement('div');
+        const name = document.createElement('div');
+        name.className = 'ad-company';
+        name.textContent = pkg.nameAr;
+        const price = document.createElement('div');
+        price.className = 'ad-headline';
+        price.textContent = `${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم`;
+        info.append(name, price);
+        top.append(info);
+
+        const meta = document.createElement('div');
+        meta.className = 'ad-meta';
+        const status = document.createElement('span');
+        status.className = pkg.isActive === false ? 'badge paused' : 'badge';
+        status.textContent = pkg.isActive === false ? 'متوقفة' : 'فعالة';
+        const catsSpan = document.createElement('span');
+        catsSpan.textContent = pkg.categoryIds?.includes('*')
+          ? 'كل الفئات'
+          : (pkg.categoryIds || []).map(id => categoryNamesAr[id] || id).join('، ');
+        meta.append(status, catsSpan);
+
+        const actions = document.createElement('div');
+        actions.className = 'ad-actions';
+        const editButton = document.createElement('button');
+        editButton.className = 'secondary';
+        editButton.dataset.editPackage = pkg.id;
+        editButton.type = 'button';
+        editButton.textContent = 'تعديل';
+        const toggleButton = document.createElement('button');
+        toggleButton.className = 'secondary';
+        toggleButton.dataset.togglePackage = pkg.id;
+        toggleButton.type = 'button';
+        toggleButton.textContent = pkg.isActive === false ? 'تفعيل' : 'إيقاف';
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'danger';
+        deleteButton.dataset.deletePackage = pkg.id;
+        deleteButton.type = 'button';
+        deleteButton.textContent = 'حذف';
+        actions.append(editButton, toggleButton, deleteButton);
+
+        card.append(top, meta, actions);
+        return card;
+      }));
+
+      populatePackageDropdowns();
+    };
+
+    const promoTypeLabels = { free: 'مجاني', discountPercent: 'خصم %', discountFixedKwd: 'خصم د.ك' };
+
+    const renderPromoCodes = () => {
+      if (!promoCodes.length) {
+        $('promoCodesBody').innerHTML = '<div class="hint">لا يوجد أكواد بعد.</div>';
+        return;
+      }
+
+      const rows = promoCodes.map(code => `
+        <tr>
+          <td dir="ltr">${code.code}</td>
+          <td>${promoTypeLabels[code.type] || code.type}</td>
+          <td>${code.redemptionCount || 0}/${code.maxRedemptions || 1}</td>
+          <td><span class="badge ${code.isActive === false ? 'paused' : ''}">${code.isActive === false ? 'متوقف' : 'فعال'}</span></td>
+          <td>${code.isActive === false ? '' : `<button class="danger" type="button" data-deactivate-promo="${code.code}">إلغاء التفعيل</button>`}</td>
+        </tr>
+      `).join('');
+      $('promoCodesBody').innerHTML = `<table><thead><tr><th>الكود</th><th>النوع</th><th>الاستخدام</th><th>الحالة</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+    };
+
+    const renderEntitlementUsers = () => {
+      const query = ($('entitlementSearch').value || '').trim().toLowerCase();
+      const filtered = users.filter(user => {
+        if (!query) return true;
+        return String(user.customerNumber || '').includes(query)
+          || (user.displayName || '').toLowerCase().includes(query)
+          || (user.email || '').toLowerCase().includes(query);
+      }).slice(0, 80);
+
+      if (!filtered.length) {
+        $('entitlementUsersBody').innerHTML = '<div class="hint">لا يوجد مستخدمين مطابقين.</div>';
+      } else {
+        const rows = filtered.map(user => {
+          const isSelected = selectedEntitlementUids.includes(user.id);
+          const hasActive = user.entitlementExpiresAtMs && user.entitlementExpiresAtMs > Date.now();
+          return `
+            <tr>
+              <td><input type="checkbox" data-entitlement-user="${user.id}" ${isSelected ? 'checked' : ''} style="width:auto;" /></td>
+              <td>${user.displayName || 'User'}${user.customerNumber ? ` · #${user.customerNumber}` : ''}</td>
+              <td dir="ltr">${user.email || ''}</td>
+              <td>${hasActive ? `فعّال حتى ${new Date(user.entitlementExpiresAtMs).toLocaleDateString('ar-KW')}` : '—'}</td>
+            </tr>
+          `;
+        }).join('');
+        $('entitlementUsersBody').innerHTML = `<table><thead><tr><th></th><th>المستخدم</th><th>الإيميل</th><th>الاشتراك</th></tr></thead><tbody>${rows}</tbody></table>`;
+      }
+
+      $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
+    };
+
     const renderStats = () => {
       $('usersCount').textContent = users.length;
       $('questionsCount').textContent = allQuestions.length;
@@ -1315,7 +1610,7 @@
 
       const questionFailures = [];
       const adminWarnings = [];
-      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult] = await Promise.allSettled([
+      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult, packagesResult, promoCodesResult, contactResult] = await Promise.allSettled([
         fetch('/admin/question-bank.json', { cache: 'no-store' }).then(async response => {
           if (!response.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
           return response.json();
@@ -1325,6 +1620,9 @@
         getDocs(query(collection(firestore, 'categoryCards'), orderBy('sortOrder', 'asc'))),
         get(ref(db, 'sponsorAds')),
         get(ref(db, 'tvDisplaySessions')),
+        getDocs(query(collection(firestore, 'packages'), orderBy('sortOrder', 'asc'))),
+        getDocs(collection(firestore, 'promoCodes')),
+        getDoc(doc(firestore, 'appConfig', 'contact')),
       ]);
 
       if (questionBankResult.status === 'fulfilled') {
@@ -1369,6 +1667,27 @@
         adminWarnings.push('تعذر تحميل جلسات التلفاز');
       }
 
+      if (packagesResult.status === 'fulfilled') {
+        packages = packagesResult.value.docs.map(pkgDoc => ({ id: pkgDoc.id, ...pkgDoc.data() }));
+      } else {
+        packages = [];
+        adminWarnings.push('تعذر تحميل الباقات');
+      }
+
+      if (promoCodesResult.status === 'fulfilled') {
+        promoCodes = promoCodesResult.value.docs.map(codeDoc => ({ code: codeDoc.id, ...codeDoc.data() })).sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
+      } else {
+        promoCodes = [];
+        adminWarnings.push('تعذر تحميل أكواد الترويج');
+      }
+
+      if (contactResult.status === 'fulfilled' && contactResult.value.exists()) {
+        contactWhatsappNumber = contactResult.value.data().whatsappNumber || '';
+      } else {
+        contactWhatsappNumber = '';
+      }
+      $('contactWhatsapp').value = contactWhatsappNumber;
+
       mergeQuestions();
       mergeCategoryCards();
       updateQuestionCategoryControls();
@@ -1376,6 +1695,9 @@
       renderQuestions();
       renderCategoryCards();
       renderAds();
+      renderPackages();
+      renderPromoCodes();
+      renderEntitlementUsers();
       renderStats();
       const questionMessage = questionFailures.length
         ? `تعذر تحميل جزء من الأسئلة: ${questionFailures[0]}`
@@ -1438,6 +1760,9 @@
 
     logDomReady = true;
     renderErrorLog();
+
+    buildCategoryCheckboxes('packageCategoriesBox');
+    buildCategoryCheckboxes('entitlementCategoriesBox');
 
     $('logoutBtn').addEventListener('click', () => signOut(auth));
     $('refreshBtn').addEventListener('click', () => loadData().catch(error => setStatus($('questionStatus'), error.message, 'error')));
@@ -1935,6 +2260,214 @@
       if (deleteId && confirm('حذف الإعلان؟')) {
         await remove(ref(db, `sponsorAds/${deleteId}`));
         await loadData();
+      }
+    });
+
+    $('contactForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('contactStatus'), 'جاري الحفظ...');
+      try {
+        const digitsOnly = $('contactWhatsapp').value.replace(/[^0-9]/g, '');
+        await setDoc(doc(firestore, 'appConfig', 'contact'), { whatsappNumber: digitsOnly, updatedAtMs: Date.now() }, { merge: true });
+        contactWhatsappNumber = digitsOnly;
+        setStatus($('contactStatus'), 'تم حفظ رقم التواصل', 'success');
+      } catch (error) {
+        setStatus($('contactStatus'), error.message, 'error');
+      }
+    });
+
+    const clearPackageForm = () => {
+      $('packageEditId').value = '';
+      $('packageNameAr').value = '';
+      $('packageNameEn').value = '';
+      $('packageDurationDays').value = '30';
+      $('packagePriceKwd').value = '0';
+      $('packageAllCategories').checked = false;
+      $('packageCategoriesBox').style.display = '';
+      setCheckedCategoryIds('packageCategoriesBox', []);
+      $('packageActive').value = 'TRUE';
+      setStatus($('packageStatus'), '');
+    };
+    $('clearPackageBtn').addEventListener('click', clearPackageForm);
+
+    $('packageAllCategories').addEventListener('change', () => {
+      $('packageCategoriesBox').style.display = $('packageAllCategories').checked ? 'none' : '';
+    });
+
+    $('packageForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('packageStatus'), 'جاري الحفظ...');
+      try {
+        const nameAr = $('packageNameAr').value.trim();
+        if (!nameAr) throw new Error('اكتب اسم الباقة');
+        const durationDays = Number($('packageDurationDays').value || 0);
+        if (!durationDays || durationDays <= 0) throw new Error('حدد مدة صحيحة بالأيام');
+        const categoryIds = $('packageAllCategories').checked ? ['*'] : getCheckedCategoryIds('packageCategoriesBox');
+        if (!categoryIds.length) throw new Error('اختر فئة واحدة على الأقل أو كل الفئات');
+
+        const existingId = $('packageEditId').value.trim();
+        const id = existingId || uniqueId(nameAr, candidateId => packages.some(pkg => pkg.id === candidateId), 'package');
+        const payload = {
+          nameAr,
+          nameEn: $('packageNameEn').value.trim() || nameAr,
+          categoryIds,
+          durationDays,
+          priceKwd: Number($('packagePriceKwd').value || 0),
+          priceLabel: `${$('packagePriceKwd').value || 0} د.ك`,
+          isActive: $('packageActive').value !== 'FALSE',
+          sortOrder: existingId ? (packages.find(pkg => pkg.id === existingId)?.sortOrder || 0) : packages.length,
+          updatedAtMs: Date.now(),
+        };
+        await setDoc(doc(firestore, 'packages', id), existingId ? payload : { ...payload, createdAtMs: Date.now() }, { merge: true });
+        clearPackageForm();
+        setStatus($('packageStatus'), 'تم حفظ الباقة', 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('packageStatus'), error.message, 'error');
+      }
+    });
+
+    $('packagesBody').addEventListener('click', async event => {
+      const editId = event.target.closest('[data-edit-package]')?.dataset.editPackage;
+      const toggleId = event.target.closest('[data-toggle-package]')?.dataset.togglePackage;
+      const deleteId = event.target.closest('[data-delete-package]')?.dataset.deletePackage;
+      if (editId) {
+        const pkg = packages.find(item => item.id === editId);
+        if (!pkg) return;
+        $('packageEditId').value = pkg.id;
+        $('packageNameAr').value = pkg.nameAr || '';
+        $('packageNameEn').value = pkg.nameEn || '';
+        $('packageDurationDays').value = pkg.durationDays || 30;
+        $('packagePriceKwd').value = pkg.priceKwd || 0;
+        const isAll = (pkg.categoryIds || []).includes('*');
+        $('packageAllCategories').checked = isAll;
+        $('packageCategoriesBox').style.display = isAll ? 'none' : '';
+        setCheckedCategoryIds('packageCategoriesBox', isAll ? [] : (pkg.categoryIds || []));
+        $('packageActive').value = pkg.isActive === false ? 'FALSE' : 'TRUE';
+        window.scrollTo({ top: $('subscriptionsPanel').offsetTop, behavior: 'smooth' });
+      }
+      if (toggleId) {
+        const pkg = packages.find(item => item.id === toggleId);
+        await setDoc(doc(firestore, 'packages', toggleId), { isActive: pkg?.isActive === false, updatedAtMs: Date.now() }, { merge: true });
+        await loadData();
+      }
+      if (deleteId && confirm('حذف الباقة؟')) {
+        await deleteDoc(doc(firestore, 'packages', deleteId));
+        await loadData();
+      }
+    });
+
+    $('promoType').addEventListener('change', () => {
+      const isFree = $('promoType').value === 'free';
+      $('promoPackageLabel').style.display = isFree ? '' : 'none';
+      $('promoDiscountLabel').style.display = isFree ? 'none' : '';
+    });
+
+    $('promoForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('promoStatus'), 'جاري الإنشاء...');
+      try {
+        const type = $('promoType').value;
+        const expiresInDays = $('promoExpiresInDays').value.trim();
+        const result = await callFunction('createPromoCode', {
+          code: $('promoCode').value.trim() || undefined,
+          type,
+          discountValue: $('promoDiscountValue').value ? Number($('promoDiscountValue').value) : undefined,
+          packageId: type === 'free' ? ($('promoPackageId').value || undefined) : undefined,
+          maxRedemptions: Number($('promoMaxRedemptions').value || 1),
+          expiresAtMs: expiresInDays ? Date.now() + Number(expiresInDays) * 86400000 : undefined,
+        });
+        $('promoCode').value = '';
+        $('promoDiscountValue').value = '';
+        setStatus($('promoStatus'), `تم إنشاء الكود: ${result?.code || ''}`, 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('promoStatus'), error.message, 'error');
+      }
+    });
+
+    $('promoCodesBody').addEventListener('click', async event => {
+      const code = event.target.closest('[data-deactivate-promo]')?.dataset.deactivatePromo;
+      if (!code) return;
+      try {
+        await callFunction('deactivatePromoCode', { code });
+        await loadData();
+      } catch (error) {
+        setStatus($('promoStatus'), error.message, 'error');
+      }
+    });
+
+    $('entitlementSearch').addEventListener('input', renderEntitlementUsers);
+
+    $('entitlementSelectAllBtn').addEventListener('click', () => {
+      const query = ($('entitlementSearch').value || '').trim().toLowerCase();
+      selectedEntitlementUids = users.filter(user => {
+        if (!query) return true;
+        return String(user.customerNumber || '').includes(query)
+          || (user.displayName || '').toLowerCase().includes(query)
+          || (user.email || '').toLowerCase().includes(query);
+      }).map(user => user.id);
+      renderEntitlementUsers();
+    });
+
+    $('entitlementClearBtn').addEventListener('click', () => {
+      selectedEntitlementUids = [];
+      renderEntitlementUsers();
+    });
+
+    $('entitlementUsersBody').addEventListener('change', event => {
+      const uid = event.target.closest('[data-entitlement-user]')?.dataset.entitlementUser;
+      if (!uid) return;
+      selectedEntitlementUids = event.target.checked
+        ? [...selectedEntitlementUids, uid]
+        : selectedEntitlementUids.filter(id => id !== uid);
+      $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
+    });
+
+    $('entitlementMethod').addEventListener('change', () => {
+      const isPackage = $('entitlementMethod').value === 'package';
+      $('entitlementPackageLabel').style.display = isPackage ? '' : 'none';
+      $('entitlementCustomBox').style.display = isPackage ? 'none' : '';
+    });
+
+    $('entitlementForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('entitlementStatus'), 'جاري التفعيل...');
+      try {
+        if (!selectedEntitlementUids.length) throw new Error('اختر مستخدم واحد على الأقل');
+
+        let categoryIds;
+        let durationDays;
+        let packageId;
+        if ($('entitlementMethod').value === 'package') {
+          const pkg = packages.find(item => item.id === $('entitlementPackageId').value);
+          if (!pkg) throw new Error('اختر باقة');
+          categoryIds = pkg.categoryIds;
+          durationDays = pkg.durationDays;
+          packageId = pkg.id;
+        } else {
+          categoryIds = getCheckedCategoryIds('entitlementCategoriesBox');
+          if (!categoryIds.length) throw new Error('اختر فئة واحدة على الأقل');
+          durationDays = Number($('entitlementDurationDays').value || 0);
+          if (!durationDays || durationDays <= 0) throw new Error('حدد مدة صحيحة بالأيام');
+        }
+
+        const expiresAtMs = Date.now() + durationDays * 86400000;
+        const result = await callFunction('grantEntitlement', {
+          uids: selectedEntitlementUids,
+          categoryIds,
+          expiresAtMs,
+          mode: $('entitlementMode').value,
+          note: $('entitlementNote').value.trim() || undefined,
+          packageId,
+        });
+        const failed = (result?.results || []).filter(item => !item.ok);
+        setStatus($('entitlementStatus'), failed.length ? `فشل التفعيل لـ ${failed.length} مستخدم` : `تم التفعيل لـ ${result.results.length} مستخدم`, failed.length ? 'error' : 'success');
+        selectedEntitlementUids = [];
+        $('entitlementNote').value = '';
+        await loadData();
+      } catch (error) {
+        setStatus($('entitlementStatus'), error.message, 'error');
       }
     });
 

@@ -440,6 +440,8 @@
     "random": "عشوائي",
     "lockedBadge": "مقفلة",
     "whatsappUnlockMessage": "أرغب بشراء قسم {{category}} - رقم حسابي: {{customerNumber}}",
+    "contactNotConfigured": "لم يتم إضافة رقم تواصل بعد، تواصل مع الدعم من مكان آخر",
+    "whatsappOpenFailed": "تعذر فتح واتساب، تأكد إنه مثبت على جهازك",
     "generalKnowledge": "معلومات عامة",
     "sports": "رياضة",
     "football": "كرة القدم",
