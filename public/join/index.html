@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tahaddii</title>
+  <style>
+    :root {
+      --bg: #06030f;
+      --panel: #150c2e;
+      --panel-border: rgba(199, 184, 255, 0.16);
+      --primary: #8b5cf6;
+      --primary-2: #2563eb;
+      --gold: #f2b93d;
+      --text: #f7f5ff;
+      --muted: #a79fc4;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      font-family: "Geeza Pro", "Avenir Next", ui-rounded, system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 60rem 40rem at 12% 8%, rgba(139, 92, 246, 0.22), transparent 60%),
+        radial-gradient(ellipse 50rem 36rem at 92% 12%, rgba(242, 185, 61, 0.10), transparent 58%),
+        linear-gradient(160deg, #050210 0%, #0c0620 45%, #04010c 100%);
+      padding: 1.5rem;
+    }
+    body.rtl { direction: rtl; }
+    body.ltr { direction: ltr; }
+    .card {
+      width: min(28rem, 100%);
+      border: 1px solid var(--panel-border);
+      border-radius: 1.6rem;
+      background: var(--panel);
+      box-shadow: 0 28px 80px rgba(0,0,0,0.4);
+      padding: 2rem 1.6rem;
+      text-align: center;
+      display: grid;
+      gap: 1.1rem;
+      justify-items: center;
+    }
+    .mark {
+      width: 4rem; height: 4rem;
+      border-radius: 1.1rem;
+      display: grid; place-items: center;
+      background: linear-gradient(145deg, var(--primary), var(--primary-2));
+      font-weight: 900; font-size: 1.9rem;
+    }
+    h1 { margin: 0; font-size: 1.4rem; font-weight: 900; }
+    .sub { margin: 0; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+    .code {
+      font-family: ui-monospace, monospace;
+      font-size: 1.6rem; font-weight: 900;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      background: rgba(242, 185, 61, 0.1);
+      border: 1px solid rgba(242, 185, 61, 0.3);
+      border-radius: 0.9rem;
+      padding: 0.6rem 1.2rem;
+    }
+    .spinner {
+      width: 2rem; height: 2rem;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.15);
+      border-top-color: var(--primary);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .actions { display: grid; gap: 0.7rem; width: 100%; margin-top: 0.4rem; }
+    .btn {
+      display: block;
+      width: 100%;
+      border-radius: 0.95rem;
+      padding: 0.9rem 1rem;
+      font-weight: 900;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-2)); }
+    .btn-secondary { background: rgba(255,255,255,0.06); border: 1px solid var(--panel-border); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">T</div>
+    <div class="spinner" id="spinner"></div>
+    <h1 id="title">جاري فتح تحدي...</h1>
+    <p class="sub" id="subtitle">إذا التطبيق مثبت بيفتح تلقائيًا خلال ثوانٍ</p>
+    <div class="code" id="codeBox" hidden></div>
+    <div class="actions">
+      <a class="btn btn-primary" id="openAppBtn" href="#">📱 فتح التطبيق</a>
+      <a class="btn btn-secondary" id="storeBtn" href="#" hidden></a>
+    </div>
+  </div>
+
+  <script>
+    const APP_STORE_URL = 'https://apps.apple.com/us/app/tahaddii/id6796960483';
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.tahaddi';
+
+    const labels = {
+      ar: {
+        title: 'جاري فتح تحدي...',
+        subtitle: 'إذا التطبيق مثبت بيفتح تلقائيًا خلال ثوانٍ',
+        openApp: '📱 فتح التطبيق',
+        getIos: '⬇️ تحميل من App Store',
+        getAndroid: '⬇️ تحميل من Google Play',
+      },
+      en: {
+        title: 'Opening Tahaddii...',
+        subtitle: 'If the app is installed it will open automatically',
+        openApp: '📱 Open the app',
+        getIos: '⬇️ Get it on the App Store',
+        getAndroid: '⬇️ Get it on Google Play',
+      },
+    };
+
+    const lang = (navigator.language || 'en').startsWith('ar') ? 'ar' : 'en';
+    const copy = labels[lang];
+    document.body.classList.add(lang === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('title').textContent = copy.title;
+    document.getElementById('subtitle').textContent = copy.subtitle;
+
+    const params = new URLSearchParams(window.location.search);
+    const code = (params.get('code') || '').trim().toUpperCase();
+    const schemeUrl = code ? `tahaddi://online/join/${encodeURIComponent(code)}` : 'tahaddi://';
+
+    if (code) {
+      const codeBox = document.getElementById('codeBox');
+      codeBox.textContent = code;
+      codeBox.hidden = false;
+    }
+
+    const openAppBtn = document.getElementById('openAppBtn');
+    openAppBtn.href = schemeUrl;
+    openAppBtn.textContent = copy.openApp;
+
+    const ua = navigator.userAgent || '';
+    const isIOS = /iPad|iPhone|iPod/.test(ua);
+    const isAndroid = /Android/.test(ua);
+    const storeUrl = isIOS ? APP_STORE_URL : isAndroid ? PLAY_STORE_URL : null;
+
+    const storeBtn = document.getElementById('storeBtn');
+    if (storeUrl) {
+      storeBtn.href = storeUrl;
+      storeBtn.textContent = isIOS ? copy.getIos : copy.getAndroid;
+      storeBtn.hidden = false;
+    }
+
+    let leftPage = false;
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) leftPage = true;
+    });
+    window.addEventListener('pagehide', () => { leftPage = true; });
+
+    // Attempt to open the app automatically.
+    window.location.href = schemeUrl;
+
+    // If we're still here after a couple of seconds, the app likely isn't
+    // installed — send the user to the right store.
+    if (storeUrl) {
+      setTimeout(() => {
+        if (!leftPage && !document.hidden) {
+          window.location.href = storeUrl;
+        }
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

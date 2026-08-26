@@ -18,7 +18,10 @@ const STATUS_KEY_MAP = {
   ended: 'online.statusEnded',
 } as const;
 
-const getRoomInviteLink = (roomCode: string) => `tahaddi://online/join/${encodeURIComponent(roomCode)}`;
+// A real https:// link (not the bare tahaddi:// scheme) so WhatsApp always
+// renders it as a tappable link. The landing page at /join opens the app via
+// the custom scheme if installed, otherwise redirects to the right app store.
+const getRoomInviteLink = (roomCode: string) => `https://tahaddii.com/join?code=${encodeURIComponent(roomCode)}`;
 
 export default function OnlineLobbyScreen({ navigation }: Props) {
   const { t } = useTranslation();

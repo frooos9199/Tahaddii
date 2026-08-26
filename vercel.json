@@ -38,6 +38,15 @@
           "value": "no-store, max-age=0"
         }
       ]
+    },
+    {
+      "source": "/join/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
     }
   ],
   "rewrites": [
@@ -48,6 +57,10 @@
     {
       "source": "/admin/:path*",
       "destination": "/admin/index.html"
+    },
+    {
+      "source": "/join/:path*",
+      "destination": "/join/index.html"
     }
   ]
 }
