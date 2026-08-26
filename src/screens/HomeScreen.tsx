@@ -233,7 +233,7 @@ export default function HomeScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.scroll, { paddingBottom: insets.bottom + 16 }]}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
 
         {/* ── TOP BAR ── */}
         <View style={styles.topBar}>
@@ -345,11 +345,7 @@ export default function HomeScreen({ navigation }: Props) {
         </TouchableOpacity>
 
         {/* ── BOTTOM MENU ── */}
-        <View style={[styles.bottomMenu, { marginBottom: insets.bottom > 0 ? 0 : 12 }]}>
-          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Auth')}>
-            <Text style={styles.bottomIcon}>🔐</Text>
-            <Text style={styles.bottomLabel}>{t('auth.login')}</Text>
-          </TouchableOpacity>
+        <View style={styles.bottomMenu}>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Profile')}>
             <Text style={styles.bottomIcon}>👤</Text>
             <Text style={styles.bottomLabel}>{t('common.profile')}</Text>
@@ -358,9 +354,13 @@ export default function HomeScreen({ navigation }: Props) {
             <Text style={styles.bottomIcon}>🌐</Text>
             <Text style={styles.bottomLabel}>{t('common.language')}</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Statistics')}>
-            <Text style={styles.bottomIcon}>📊</Text>
-            <Text style={styles.bottomLabel}>{t('common.statistics')}</Text>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Subscription')}>
+            <Text style={styles.bottomIcon}>💳</Text>
+            <Text style={styles.bottomLabel}>{t('home.subscriptionMenuLabel')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('PromoCodeRedeem')}>
+            <Text style={styles.bottomIcon}>🎫</Text>
+            <Text style={styles.bottomLabel}>{t('home.promoMenuLabel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Settings')}>
             <Text style={styles.bottomIcon}>⚙️</Text>

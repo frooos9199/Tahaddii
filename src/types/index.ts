@@ -291,6 +291,7 @@ export type RootStackParamList = {
   AdminPanel: undefined;
   AdminEntitlements: { presetUid?: string } | undefined;
   PromoCodeRedeem: undefined;
+  Subscription: undefined;
   Profile: undefined;
   Privacy: undefined;
   Terms: undefined;

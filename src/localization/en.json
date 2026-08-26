@@ -49,6 +49,8 @@
     "noLimit": "No Limit"
   },
   "home": {
+    "subscriptionMenuLabel": "My Subscription",
+    "promoMenuLabel": "Promo Code",
     "newGame": "New Game",
     "quickPlay": "Quick Play",
     "quickPlaySub": "Start an instant game",
@@ -293,6 +295,15 @@
     "failed": "Invalid code",
     "guestNotice": "Please create an account first to redeem a promo code",
     "registerNow": "Create Account"
+  },
+  "subscription": {
+    "title": "My Subscription",
+    "activeTitle": "Your subscription is active",
+    "noneActive": "You don't have an active subscription yet — browse the packages below and buy the one that fits you",
+    "availablePackages": "Available Packages",
+    "buyBtn": "Buy via WhatsApp",
+    "havePromoCode": "I have a promo code",
+    "whatsappBuyMessage": "I'd like to buy the {{package}} package - my account number: {{customerNumber}}"
   },
   "online": {
     "title": "Online Play",

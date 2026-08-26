@@ -49,6 +49,8 @@
     "noLimit": "بدون حد"
   },
   "home": {
+    "subscriptionMenuLabel": "اشتراكي",
+    "promoMenuLabel": "كود ترويجي",
     "newGame": "لعبة جديدة",
     "quickPlay": "ابدأ سريعاً",
     "quickPlaySub": "ابدأ لعبة فورية",
@@ -293,6 +295,15 @@
     "failed": "الكود غير صالح",
     "guestNotice": "لازم تسجّل حساب أولاً عشان تقدر تستخدم كود ترويجي",
     "registerNow": "سجّل حساب"
+  },
+  "subscription": {
+    "title": "اشتراكي",
+    "activeTitle": "اشتراكك فعّال",
+    "noneActive": "ما عندك اشتراك فعّال حاليًا — تصفح الباقات تحت واشتر اللي يناسبك",
+    "availablePackages": "الباقات المتاحة",
+    "buyBtn": "اشتري عبر واتساب",
+    "havePromoCode": "عندي كود ترويجي",
+    "whatsappBuyMessage": "أرغب بشراء باقة {{package}} - رقم حسابي: {{customerNumber}}"
   },
   "online": {
     "title": "اللعب أونلاين",
