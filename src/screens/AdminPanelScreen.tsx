@@ -12,10 +12,13 @@ import { listCategoryCards, saveCategoryCard, setCategoryCardActive } from '../s
 import { uploadAdminImage, uploadQuestionMedia, QuestionMediaRole } from '../services/storage/questionMediaUploadService';
 import { QUESTIONS } from '../services/questions/questionsData';
 import { questionBelongsToCategory } from '../services/questions/questionCatalog';
+import { deletePackage, listPackages, savePackage, setPackageActive } from '../services/packages/packageService';
+import { createPromoCode, deactivatePromoCode, generateRandomCode, listPromoCodes } from '../services/promo/promoAdminService';
+import { getContactConfig, saveContactConfig } from '../services/config/appConfigService';
 import { useAuthStore } from '../store/authStore';
-import { AppUserRecord, CategoryCard, CategoryId, Difficulty, OnlineRoom, Question, RootStackParamList } from '../types';
+import { AppUserRecord, CategoryCard, CategoryId, Difficulty, OnlineRoom, Package, PromoCode, PromoCodeType, Question, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
-import { CATEGORY_EMOJIS } from '../constants';
+import { CATEGORY_EMOJIS, FREE_CATEGORY_IDS } from '../constants';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'AdminPanel'> };
 
@@ -66,6 +69,26 @@ const createEmptyCategoryForm = () => ({
   isActive: true,
 });
 
+const createEmptyPackageForm = () => ({
+  id: undefined as string | undefined,
+  nameAr: '',
+  nameEn: '',
+  categoryIds: [] as CategoryId[],
+  allCategories: false,
+  durationDays: '30',
+  priceKwd: '0',
+  isActive: true,
+});
+
+const createEmptyPromoForm = () => ({
+  code: '',
+  type: 'free' as PromoCodeType,
+  discountValue: '',
+  packageId: '',
+  maxRedemptions: '1',
+  expiresInDays: '',
+});
+
 export default function AdminPanelScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { userRecord, refreshUserRecord } = useAuthStore();
@@ -74,13 +97,19 @@ export default function AdminPanelScreen({ navigation }: Props) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [categoryCards, setCategoryCards] = useState<CategoryCard[]>([]);
   const [sponsorAds, setSponsorAds] = useState<SponsorAd[]>([]);
+  const [packages, setPackages] = useState<Package[]>([]);
+  const [promoCodes, setPromoCodes] = useState<PromoCode[]>([]);
+  const [whatsappNumber, setWhatsappNumber] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('generalKnowledge');
   const [questionForm, setQuestionForm] = useState(createEmptyQuestionForm);
   const [categoryForm, setCategoryForm] = useState(createEmptyCategoryForm);
   const [adForm, setAdForm] = useState(createEmptyAdForm);
+  const [packageForm, setPackageForm] = useState(createEmptyPackageForm);
+  const [promoForm, setPromoForm] = useState(createEmptyPromoForm);
   const [editingQuestionId, setEditingQuestionId] = useState<string | null>(null);
   const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
   const [editingAdId, setEditingAdId] = useState<string | null>(null);
+  const [editingPackageId, setEditingPackageId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [busyKey, setBusyKey] = useState<string | null>(null);
 
@@ -91,11 +120,17 @@ export default function AdminPanelScreen({ navigation }: Props) {
     setRefreshing(true);
     try {
       await refreshUserRecord();
-      const [nextUsers, nextRooms, customQuestions, nextSponsorAds, nextCategoryCards] = await Promise.all([listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds(), listCategoryCards({ includeInactive: true })]);
+      const [nextUsers, nextRooms, customQuestions, nextSponsorAds, nextCategoryCards, nextPackages, nextPromoCodes, contactConfig] = await Promise.all([
+        listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds(), listCategoryCards({ includeInactive: true }),
+        listPackages({ includeInactive: true }), listPromoCodes(), getContactConfig(),
+      ]);
       setUsers(nextUsers);
       setRooms(nextRooms);
       setSponsorAds(nextSponsorAds);
       setCategoryCards(nextCategoryCards);
+      setPackages(nextPackages);
+      setPromoCodes(nextPromoCodes);
+      setWhatsappNumber(contactConfig.whatsappNumber);
       const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
       const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
       const mergedBuiltinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
@@ -410,6 +445,133 @@ export default function AdminPanelScreen({ navigation }: Props) {
       await loadData();
     } catch (error) {
       Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.adSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const toggleAllCategoriesForPackage = () => {
+    setPackageForm(current => ({ ...current, allCategories: !current.allCategories, categoryIds: [] }));
+  };
+
+  const togglePackageCategory = (categoryId: CategoryId) => {
+    setPackageForm(current => ({
+      ...current,
+      categoryIds: current.categoryIds.includes(categoryId)
+        ? current.categoryIds.filter(item => item !== categoryId)
+        : [...current.categoryIds, categoryId],
+    }));
+  };
+
+  const submitPackage = async () => {
+    setBusyKey('save-package');
+    try {
+      await savePackage({
+        id: editingPackageId ?? undefined,
+        nameAr: packageForm.nameAr,
+        nameEn: packageForm.nameEn,
+        categoryIds: packageForm.allCategories ? ['*'] : packageForm.categoryIds,
+        durationDays: Number(packageForm.durationDays || 0),
+        priceKwd: Number(packageForm.priceKwd || 0),
+        isActive: packageForm.isActive,
+      });
+      setPackageForm(createEmptyPackageForm());
+      setEditingPackageId(null);
+      await loadData();
+      Alert.alert('', t('admin.packageSavedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.packageSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const editPackage = (pkg: Package) => {
+    setEditingPackageId(pkg.id);
+    setPackageForm({
+      id: pkg.id,
+      nameAr: pkg.nameAr,
+      nameEn: pkg.nameEn,
+      categoryIds: pkg.categoryIds.includes('*') ? [] : pkg.categoryIds,
+      allCategories: pkg.categoryIds.includes('*'),
+      durationDays: String(pkg.durationDays),
+      priceKwd: String(pkg.priceKwd),
+      isActive: pkg.isActive,
+    });
+  };
+
+  const cancelEditPackage = () => {
+    setEditingPackageId(null);
+    setPackageForm(createEmptyPackageForm());
+  };
+
+  const togglePackageActive = async (pkg: Package) => {
+    setBusyKey(`package-${pkg.id}`);
+    try {
+      await setPackageActive(pkg.id, !pkg.isActive);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.packageSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const removePackage = async (pkg: Package) => {
+    setBusyKey(`package-delete-${pkg.id}`);
+    try {
+      await deletePackage(pkg.id);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.packageSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const submitPromoCode = async () => {
+    setBusyKey('save-promo');
+    try {
+      const expiresAtMs = promoForm.expiresInDays.trim()
+        ? Date.now() + Number(promoForm.expiresInDays) * 86400000
+        : null;
+      await createPromoCode({
+        code: promoForm.code.trim() || generateRandomCode(),
+        type: promoForm.type,
+        discountValue: promoForm.discountValue ? Number(promoForm.discountValue) : undefined,
+        packageId: promoForm.packageId || undefined,
+        maxRedemptions: Number(promoForm.maxRedemptions || 1),
+        expiresAtMs,
+      });
+      setPromoForm(createEmptyPromoForm());
+      await loadData();
+      Alert.alert('', t('admin.promoCodeCreatedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.promoCodeSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const removePromoCode = async (code: PromoCode) => {
+    setBusyKey(`promo-${code.code}`);
+    try {
+      await deactivatePromoCode(code.code);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.promoCodeSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const saveWhatsappNumber = async () => {
+    setBusyKey('save-contact');
+    try {
+      await saveContactConfig(whatsappNumber);
+      Alert.alert('', t('admin.contactSavedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.contactSaveFailed'));
     } finally {
       setBusyKey(null);
     }
@@ -778,14 +940,185 @@ export default function AdminPanelScreen({ navigation }: Props) {
         </View>
 
         <View style={styles.section}>
+          <TouchableOpacity style={styles.createQuestionBtn} onPress={() => navigation.navigate('AdminEntitlements')}>
+            <Text style={styles.createQuestionBtnText}>{t('admin.manageSubscriptionsBtn')}</Text>
+          </TouchableOpacity>
+          <Text style={styles.exportHint}>{t('admin.manageSubscriptionsHint')}</Text>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.contactSection')}</Text>
+          <Text style={styles.exportHint}>{t('admin.contactSectionHint')}</Text>
+          <TextInput
+            style={[styles.textInput, styles.englishInput]}
+            value={whatsappNumber}
+            onChangeText={setWhatsappNumber}
+            placeholder="96550000000"
+            placeholderTextColor={Colors.textMuted}
+            autoCapitalize="none"
+            keyboardType="phone-pad"
+          />
+          <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-contact' && styles.roleBtnDisabled]} disabled={busyKey === 'save-contact'} onPress={() => { void saveWhatsappNumber(); }}>
+            <Text style={styles.createQuestionBtnText}>{t('admin.saveContact')}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.packagesSection')}</Text>
+          <View style={styles.questionFormCard}>
+            <View style={styles.questionHeaderRow}>
+              <Text style={styles.formTitle}>{editingPackageId ? t('admin.editPackage') : t('admin.addPackage')}</Text>
+              {editingPackageId ? (
+                <TouchableOpacity style={styles.cancelEditBtn} onPress={cancelEditPackage}>
+                  <Text style={styles.cancelEditBtnText}>{t('admin.cancelEdit')}</Text>
+                </TouchableOpacity>
+              ) : null}
+            </View>
+            <Text style={styles.inputLabel}>{t('admin.packageNameAr')}</Text>
+            <TextInput style={styles.textInput} value={packageForm.nameAr} onChangeText={nameAr => setPackageForm(current => ({ ...current, nameAr }))} placeholder={t('admin.packageNameAr')} placeholderTextColor={Colors.textMuted} />
+            <Text style={styles.inputLabel}>{t('admin.packageNameEn')}</Text>
+            <TextInput style={[styles.textInput, styles.englishInput]} value={packageForm.nameEn} onChangeText={nameEn => setPackageForm(current => ({ ...current, nameEn }))} placeholder="Package name" placeholderTextColor={Colors.textMuted} />
+
+            <Text style={styles.inputLabel}>{t('admin.packageCategories')}</Text>
+            <TouchableOpacity style={[styles.roleBtn, packageForm.allCategories && styles.roleBtnActive]} onPress={toggleAllCategoriesForPackage}>
+              <Text style={styles.roleBtnText}>{t('admin.packageAllCategories')}</Text>
+            </TouchableOpacity>
+            {!packageForm.allCategories ? (
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
+                {adminCategoryIds.filter(categoryId => !FREE_CATEGORY_IDS.includes(categoryId)).map(categoryId => (
+                  <TouchableOpacity key={categoryId} style={[styles.smallChip, packageForm.categoryIds.includes(categoryId) && styles.linkedChipActive]} onPress={() => togglePackageCategory(categoryId)}>
+                    <Text style={styles.smallChipText}>{CATEGORY_EMOJIS[categoryId]} {getAdminCategoryName(categoryId)}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            ) : null}
+
+            <View style={styles.adMetaRow}>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.packageDurationDays')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={packageForm.durationDays} onChangeText={durationDays => setPackageForm(current => ({ ...current, durationDays }))} placeholder="30" placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+              </View>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.packagePriceKwd')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={packageForm.priceKwd} onChangeText={priceKwd => setPackageForm(current => ({ ...current, priceKwd }))} placeholder="3.5" placeholderTextColor={Colors.textMuted} keyboardType="decimal-pad" />
+              </View>
+            </View>
+
+            <TouchableOpacity style={[styles.roleBtn, packageForm.isActive && styles.roleBtnActive]} onPress={() => setPackageForm(current => ({ ...current, isActive: !current.isActive }))}>
+              <Text style={styles.roleBtnText}>{packageForm.isActive ? t('admin.categoryActive') : t('admin.categoryPaused')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-package' && styles.roleBtnDisabled]} disabled={busyKey === 'save-package'} onPress={() => { void submitPackage(); }}>
+              <Text style={styles.createQuestionBtnText}>{editingPackageId ? t('admin.saveEdit') : t('admin.savePackage')}</Text>
+            </TouchableOpacity>
+          </View>
+
+          {packages.map(pkg => (
+            <View key={pkg.id} style={styles.adCard}>
+              <View style={styles.userTop}>
+                <View style={styles.userInfo}>
+                  <Text style={styles.userName}>{pkg.nameAr}</Text>
+                  <Text style={styles.userMeta}>{pkg.priceKwd} د.ك · {pkg.durationDays} {t('admin.days')}</Text>
+                  <Text style={styles.userMeta}>{pkg.categoryIds.includes('*') ? t('admin.packageAllCategories') : pkg.categoryIds.map(getAdminCategoryName).join('، ')}</Text>
+                </View>
+              </View>
+              <View style={styles.actionsRow}>
+                <TouchableOpacity style={styles.roleBtn} onPress={() => editPackage(pkg)}>
+                  <Text style={styles.roleBtnText}>{t('common.edit')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.roleBtn, busyKey === `package-${pkg.id}` && styles.roleBtnDisabled]} disabled={busyKey === `package-${pkg.id}`} onPress={() => { void togglePackageActive(pkg); }}>
+                  <Text style={styles.roleBtnText}>{pkg.isActive ? t('admin.pauseAd') : t('admin.activateAd')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.roleBtn, busyKey === `package-delete-${pkg.id}` && styles.roleBtnDisabled]} disabled={busyKey === `package-delete-${pkg.id}`} onPress={() => { void removePackage(pkg); }}>
+                  <Text style={styles.roleBtnText}>{t('common.delete')}</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          ))}
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.promoCodesSection')}</Text>
+          <View style={styles.questionFormCard}>
+            <Text style={styles.inputLabel}>{t('admin.promoCode')}</Text>
+            <View style={styles.answerPairRow}>
+              <TextInput style={[styles.textInput, styles.englishInput, { flex: 1 }]} value={promoForm.code} onChangeText={code => setPromoForm(current => ({ ...current, code: code.toUpperCase() }))} placeholder={t('admin.promoCodeAutoGenerate')} placeholderTextColor={Colors.textMuted} autoCapitalize="characters" />
+              <TouchableOpacity style={styles.mediaPickBtn} onPress={() => setPromoForm(current => ({ ...current, code: generateRandomCode() }))}>
+                <Text style={styles.mediaPickBtnText}>{t('admin.generateCode')}</Text>
+              </TouchableOpacity>
+            </View>
+
+            <Text style={styles.inputLabel}>{t('admin.promoType')}</Text>
+            <View style={styles.actionsRow}>
+              {(['free', 'discountPercent', 'discountFixedKwd'] as PromoCodeType[]).map(type => (
+                <TouchableOpacity key={type} style={[styles.roleBtn, promoForm.type === type && styles.roleBtnActive]} onPress={() => setPromoForm(current => ({ ...current, type }))}>
+                  <Text style={styles.roleBtnText}>{t(`admin.promoType_${type}`)}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            {promoForm.type === 'free' ? (
+              <>
+                <Text style={styles.inputLabel}>{t('admin.promoLinkedPackage')}</Text>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
+                  {packages.filter(pkg => pkg.isActive).map(pkg => (
+                    <TouchableOpacity key={pkg.id} style={[styles.smallChip, promoForm.packageId === pkg.id && styles.smallChipActive]} onPress={() => setPromoForm(current => ({ ...current, packageId: pkg.id }))}>
+                      <Text style={styles.smallChipText}>{pkg.nameAr}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
+              </>
+            ) : (
+              <>
+                <Text style={styles.inputLabel}>{t('admin.promoDiscountValue')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={promoForm.discountValue} onChangeText={discountValue => setPromoForm(current => ({ ...current, discountValue }))} placeholder={promoForm.type === 'discountPercent' ? '20' : '1.5'} placeholderTextColor={Colors.textMuted} keyboardType="decimal-pad" />
+              </>
+            )}
+
+            <View style={styles.adMetaRow}>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.promoMaxRedemptions')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={promoForm.maxRedemptions} onChangeText={maxRedemptions => setPromoForm(current => ({ ...current, maxRedemptions }))} placeholder="1" placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+              </View>
+              <View style={styles.adMetaInputWrap}>
+                <Text style={styles.inputLabel}>{t('admin.promoExpiresInDays')}</Text>
+                <TextInput style={[styles.textInput, styles.englishInput]} value={promoForm.expiresInDays} onChangeText={expiresInDays => setPromoForm(current => ({ ...current, expiresInDays }))} placeholder={t('admin.promoNeverExpires')} placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+              </View>
+            </View>
+
+            <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-promo' && styles.roleBtnDisabled]} disabled={busyKey === 'save-promo'} onPress={() => { void submitPromoCode(); }}>
+              <Text style={styles.createQuestionBtnText}>{t('admin.createPromoCode')}</Text>
+            </TouchableOpacity>
+          </View>
+
+          {promoCodes.map(code => (
+            <View key={code.code} style={styles.adCard}>
+              <View style={styles.userTop}>
+                <View style={styles.userInfo}>
+                  <Text style={styles.userName}>{code.code}</Text>
+                  <Text style={styles.userMeta}>{t(`admin.promoType_${code.type}`)} · {code.redemptionCount}/{code.maxRedemptions} {t('admin.used')}</Text>
+                  <Text style={styles.userMeta}>{code.isActive ? t('admin.categoryActive') : t('admin.categoryPaused')}</Text>
+                </View>
+              </View>
+              <TouchableOpacity style={[styles.roleBtn, busyKey === `promo-${code.code}` && styles.roleBtnDisabled]} disabled={busyKey === `promo-${code.code}` || !code.isActive} onPress={() => { void removePromoCode(code); }}>
+                <Text style={styles.roleBtnText}>{t('admin.deactivatePromoCode')}</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+          {!promoCodes.length ? <Text style={styles.emptyText}>{t('admin.noPromoCodes')}</Text> : null}
+        </View>
+
+        <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.usersSection')}</Text>
           {users.map(item => (
             <View key={item.uid} style={styles.userCard}>
               <View style={styles.userTop}>
                 <View style={styles.userInfo}>
-                  <Text style={styles.userName}>{item.displayName || 'User'}</Text>
+                  <Text style={styles.userName}>{item.displayName || 'User'}{item.customerNumber ? ` · #${item.customerNumber}` : ''}</Text>
                   <Text style={styles.userMeta}>{item.email || t('admin.guestUser')}</Text>
                   <Text style={styles.userMeta}>{item.role}</Text>
+                  {item.entitlementExpiresAtMs && item.entitlementExpiresAtMs > Date.now() ? (
+                    <Text style={styles.userMeta}>{t('admin.subscriptionUntil', { date: new Date(item.entitlementExpiresAtMs).toLocaleDateString() })}</Text>
+                  ) : null}
                 </View>
                 <View style={[styles.roleBadge, item.isSuperAdmin ? styles.roleSuper : item.isAdmin ? styles.roleAdmin : styles.roleUser]}>
                   <Text style={styles.roleBadgeText}>{item.role}</Text>

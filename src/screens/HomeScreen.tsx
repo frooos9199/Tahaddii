@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Animated, Dimensions, Image, ScrollView,
+  Animated, Dimensions, Image, Linking, ScrollView,
   InteractionManager, StatusBar, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { CategoryCard, RootStackParamList, CategoryId } from '../types';
 import { Colors } from '../theme/colors';
@@ -12,9 +13,12 @@ import { useAppStore } from '../store/appStore';
 import { useGameStore } from '../store/gameStore';
 import { useOnlineStore } from '../store/onlineStore';
 import { useProfileStore } from '../store/profileStore';
+import { useAuthStore } from '../store/authStore';
 import { CATEGORY_EMOJIS } from '../constants';
 import { getCachedCategoryCards, getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
 import { getQuestionImageUrls, preloadImageUrl } from '../services/media/questionMediaService';
+import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
+import { getContactConfig, buildWhatsAppUrl } from '../services/config/appConfigService';
 import {
   getCategoryQuestionCount,
   getCategoryQuestionCountFromBank,
@@ -124,10 +128,17 @@ export default function HomeScreen({ navigation }: Props) {
   const updateSettings = useGameStore(s => s.updateSettings);
   const { publicRooms, subscribeDiscoverableRooms, clearDiscoverableRooms } = useOnlineStore();
   const profile = useProfileStore(s => s.profile);
+  const { userRecord, refreshUserRecord } = useAuthStore();
   const [hasSaved, setHasSaved] = useState(false);
   const [categoryCards, setCategoryCards] = useState<CategoryCard[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
   const [categoryCounts, setCategoryCounts] = useState<Record<CategoryId, number>>({});
+  const [whatsappNumber, setWhatsappNumber] = useState('');
+
+  useFocusEffect(useCallback(() => {
+    void refreshUserRecord();
+    getContactConfig().then(config => setWhatsappNumber(config.whatsappNumber)).catch(() => {});
+  }, [refreshUserRecord]));
 
   // pulse animation for online dot
   const pulse = useRef(new Animated.Value(1)).current;
@@ -178,17 +189,35 @@ export default function HomeScreen({ navigation }: Props) {
   const categoryCountsLoaded = Object.keys(categoryCounts).length > 0;
   const visibleCards = useMemo(() => categoryCards.filter(card => !categoryCountsLoaded || (categoryCounts[card.id] ?? getCategoryQuestionCount(card.id)) > 0), [categoryCards, categoryCounts, categoryCountsLoaded]);
 
+  const lockedIds = useMemo(
+    () => getLockedCategoryIds(userRecord, visibleCards.map(card => card.id)),
+    [userRecord, visibleCards],
+  );
+
   const toggleCategory = (categoryId: CategoryId) => {
     setSelectedCategories(current => current.includes(categoryId)
       ? current.filter(item => item !== categoryId)
       : [...current, categoryId]);
   };
 
-  const selectAllCategories = () => setSelectedCategories(visibleCards.map(card => card.id));
+  const openLockedCategoryPrompt = (categoryId: CategoryId, card: CategoryCard) => {
+    if (!whatsappNumber) return;
+    const message = t('categories.whatsappUnlockMessage', {
+      category: getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar'),
+      customerNumber: userRecord?.customerNumber ?? '-',
+    });
+    void Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {});
+  };
+
+  const selectAllCategories = () => setSelectedCategories(visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id));
   const clearCategories = () => setSelectedCategories([]);
 
+  const unlockedSelectedCategories = selectedCategories.filter(id => !lockedIds.includes(id));
+
   const startChallenge = () => {
-    const categories = selectedCategories.length ? selectedCategories : visibleCards.map(card => card.id);
+    const categories = unlockedSelectedCategories.length
+      ? unlockedSelectedCategories
+      : visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id);
     updateSettings({ categories });
     navigation.navigate('GameModeSelect');
   };
@@ -281,15 +310,23 @@ export default function HomeScreen({ navigation }: Props) {
 
         <View style={styles.categoryGrid}>
           {visibleCards.map(card => {
-            const selected = selectedCategories.includes(card.id);
+            const isLocked = lockedIds.includes(card.id);
+            const selected = !isLocked && selectedCategories.includes(card.id);
             return (
               <View
                 key={card.id}
                 style={styles.categoryItem}>
                 <TouchableOpacity
-                  style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected]}
-                  onPress={() => toggleCategory(card.id)}>
+                  style={[styles.categoryCard, { borderColor: selected ? card.accentColor : Colors.border }, selected && styles.categoryCardSelected, isLocked && styles.categoryCardLocked]}
+                  onPress={() => isLocked ? openLockedCategoryPrompt(card.id, card) : toggleCategory(card.id)}>
                   <CategoryCardImage card={card} />
+                  {isLocked ? (
+                    <View style={styles.categoryLockOverlay}>
+                      <View style={styles.categoryLockBanner}>
+                        <Text style={styles.categoryLockBannerText}>🔒 {t('categories.lockedBadge')}</Text>
+                      </View>
+                    </View>
+                  ) : null}
                   {selected ? <View style={[styles.categoryCheck, { backgroundColor: card.accentColor }]}><Text style={styles.categoryCheckText}>✓</Text></View> : null}
                 </TouchableOpacity>
                 <Text style={styles.categoryTitle} numberOfLines={2}>{getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar')}</Text>
@@ -299,7 +336,7 @@ export default function HomeScreen({ navigation }: Props) {
         </View>
 
         <TouchableOpacity style={[styles.startChallengeBtn, !visibleCards.length && styles.startChallengeDisabled]} disabled={!visibleCards.length} onPress={startChallenge}>
-          <Text style={styles.startChallengeText}>{selectedCategories.length ? `ابدأ التحدي (${selectedCategories.length})` : 'ابدأ بكل التصنيفات'}</Text>
+          <Text style={styles.startChallengeText}>{unlockedSelectedCategories.length ? `ابدأ التحدي (${unlockedSelectedCategories.length})` : 'ابدأ بكل التصنيفات'}</Text>
         </TouchableOpacity>
 
         {/* ── BOTTOM MENU ── */}
@@ -456,6 +493,20 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   categoryCardSelected: { transform: [{ scale: 0.98 }] },
+  categoryCardLocked: { borderColor: Colors.error, opacity: 0.75 },
+  categoryLockOverlay: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  categoryLockBanner: {
+    backgroundColor: Colors.error,
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  categoryLockBannerText: { color: Colors.text, fontSize: 11, fontWeight: '900' },
   categoryImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%', opacity: 0 },
   categoryImageLoaded: { opacity: 1 },
   categoryImageFallback: { ...StyleSheet.absoluteFill, alignItems: 'center', justifyContent: 'center' },

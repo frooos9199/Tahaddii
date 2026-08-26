@@ -30,6 +30,9 @@ export const CATEGORY_EMOJIS: Record<string, string> = {
 };
 
 export const DIFFICULTY_POINTS = { easy: 10, medium: 20, hard: 30 };
+
+// Categories that stay free for everyone, never gated by an entitlement check.
+export const FREE_CATEGORY_IDS = ['generalKnowledge'];
 export const FAST_ANSWER_BONUS = 5;
 export const LIFELINE_PENALTY = 0.5;
 

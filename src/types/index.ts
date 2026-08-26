@@ -289,6 +289,8 @@ export type RootStackParamList = {
   OnlineLobby: undefined;
   OnlineGame: undefined;
   AdminPanel: undefined;
+  AdminEntitlements: undefined;
+  PromoCodeRedeem: undefined;
   Profile: undefined;
   Privacy: undefined;
   Terms: undefined;
@@ -322,6 +324,58 @@ export interface AppUserRecord {
   isSuperAdmin: boolean;
   isGuest: boolean;
   authProvider: 'anonymous' | 'password';
+  customerNumber?: number;
+  unlockedCategoryIds?: CategoryId[];
+  entitlementExpiresAtMs?: number | null;
+  entitlementSource?: string | null;
+}
+
+// ─── Monetization / Entitlements ───────────────────────────────────────────────
+
+export interface Package {
+  id: string;
+  nameAr: string;
+  nameEn: string;
+  categoryIds: CategoryId[]; // ['*'] means "all paid categories"
+  durationDays: number;
+  priceKwd: number;
+  priceLabel: string;
+  isActive: boolean;
+  sortOrder: number;
+  createdAtMs?: number;
+  updatedAtMs?: number;
+}
+
+export type PromoCodeType = 'free' | 'discountPercent' | 'discountFixedKwd';
+
+export interface PromoCode {
+  code: string;
+  type: PromoCodeType;
+  discountValue?: number | null;
+  packageId?: string | null; // required when type === 'free'
+  maxRedemptions: number;
+  redemptionCount: number;
+  expiresAtMs?: number | null;
+  isActive: boolean;
+  createdByAdminUid?: string;
+  createdAtMs?: number;
+}
+
+export interface EntitlementGrantOrigin {
+  type: 'package' | 'promoFree' | 'adminManual';
+  packageId?: string | null;
+  promoCode?: string | null;
+  grantedByAdminUid?: string | null;
+  note?: string | null;
+}
+
+export interface EntitlementGrant {
+  id: string;
+  categoryIds: CategoryId[];
+  grantedAtMs: number;
+  expiresAtMs: number;
+  origin: EntitlementGrantOrigin;
+  status: 'active' | 'expired' | 'revoked';
 }
 
 // ─── Daily Challenge ──────────────────────────────────────────────────────────

@@ -23,6 +23,8 @@ import OnlineLobbyScreen from '../screens/OnlineLobbyScreen';
 import OnlineGameScreen from '../screens/OnlineGameScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AdminPanelScreen from '../screens/AdminPanelScreen';
+import AdminEntitlementsScreen from '../screens/AdminEntitlementsScreen';
+import PromoCodeRedeemScreen from '../screens/PromoCodeRedeemScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -60,6 +62,8 @@ export default function RootNavigator() {
         <Stack.Screen name="OnlineLobby" component={OnlineLobbyScreen} />
         <Stack.Screen name="OnlineGame" component={OnlineGameScreen} />
         <Stack.Screen name="AdminPanel" component={AdminPanelScreen} />
+        <Stack.Screen name="AdminEntitlements" component={AdminEntitlementsScreen} />
+        <Stack.Screen name="PromoCodeRedeem" component={PromoCodeRedeemScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ScrollView,
+  ScrollView, Linking,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList, CategoryId } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
+import { useAuthStore } from '../store/authStore';
 import { CATEGORY_EMOJIS } from '../constants';
 import {
   CATEGORY_IDS,
@@ -18,12 +20,22 @@ import {
   getCategoryQuestionCountForAgeFromBank,
   loadQuestionBank,
 } from '../services/questions/questionCatalog';
+import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
+import { getContactConfig, buildWhatsAppUrl } from '../services/config/appConfigService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'CategorySelect'> };
 
 export default function CategorySelectScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { settings, updateSettings } = useGameStore();
+  const { userRecord, refreshUserRecord } = useAuthStore();
+  const [whatsappNumber, setWhatsappNumber] = useState('');
+
+  useFocusEffect(useCallback(() => {
+    void refreshUserRecord();
+    getContactConfig().then(config => setWhatsappNumber(config.whatsappNumber)).catch(() => {});
+  }, [refreshUserRecord]));
+
   const [categoryData, setCategoryData] = useState(() => ({
     availableCategories: getCategoriesWithQuestionsForAge(settings.ageGroup),
     counts: Object.fromEntries(
@@ -61,19 +73,34 @@ export default function CategorySelectScreen({ navigation }: Props) {
     };
   }, [settings.ageGroup]);
 
+  const lockedIds = useMemo(
+    () => getLockedCategoryIds(userRecord, availableCategories),
+    [userRecord, availableCategories],
+  );
+
   const toggle = (id: CategoryId) => {
     setSelected(prev =>
       prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id],
     );
   };
 
-  const selectAll = () => setSelected(availableCategories);
+  const openLockedCategoryPrompt = (id: CategoryId) => {
+    if (!whatsappNumber) return;
+    const message = t('categories.whatsappUnlockMessage', {
+      category: t(`categories.${id}`),
+      customerNumber: userRecord?.customerNumber ?? '-',
+    });
+    void Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {});
+  };
+
+  const selectAll = () => setSelected(availableCategories.filter(id => !lockedIds.includes(id)));
   const clearAll = () => setSelected([]);
 
-  const canNext = selected.length > 0;
+  const unlockedSelected = selected.filter(id => !lockedIds.includes(id));
+  const canNext = unlockedSelected.length > 0;
 
   const handleNext = () => {
-    updateSettings({ categories: selected });
+    updateSettings({ categories: unlockedSelected });
     navigation.navigate('DifficultySelect');
   };
 
@@ -90,7 +117,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
         <TouchableOpacity style={styles.actionBtn} onPress={selectAll}>
           <Text style={styles.actionText}>{t('categories.selectAll')}</Text>
         </TouchableOpacity>
-        <Text style={styles.selectedCount}>{selected.length} / {availableCategories.length}</Text>
+        <Text style={styles.selectedCount}>{unlockedSelected.length} / {availableCategories.length}</Text>
         <TouchableOpacity style={styles.actionBtn} onPress={clearAll}>
           <Text style={[styles.actionText, { color: Colors.error }]}>✕ {t('common.clear')}</Text>
         </TouchableOpacity>
@@ -98,13 +125,19 @@ export default function CategorySelectScreen({ navigation }: Props) {
 
       <ScrollView contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
         {availableCategories.map(id => {
-          const isSelected = selected.includes(id);
+          const isLocked = lockedIds.includes(id);
+          const isSelected = !isLocked && selected.includes(id);
           const count = categoryData.counts[id] ?? getCategoryQuestionCountForAge(id, settings.ageGroup);
           return (
             <TouchableOpacity
               key={id}
-              style={[styles.chip, isSelected && styles.chipSelected]}
-              onPress={() => toggle(id)}>
+              style={[styles.chip, isSelected && styles.chipSelected, isLocked && styles.chipLocked]}
+              onPress={() => isLocked ? openLockedCategoryPrompt(id) : toggle(id)}>
+              {isLocked ? (
+                <View style={styles.lockBanner}>
+                  <Text style={styles.lockBannerText}>🔒 {t('categories.lockedBadge')}</Text>
+                </View>
+              ) : null}
               <Text style={styles.chipIcon}>{CATEGORY_EMOJIS[id]}</Text>
               <View style={styles.chipContent}>
                 <Text style={[styles.chipText, isSelected && styles.chipTextSelected]}>
@@ -147,13 +180,22 @@ const styles = StyleSheet.create({
     padding: 12, gap: 10, paddingBottom: 100,
   },
   chip: {
+    position: 'relative',
     flexDirection: 'row', alignItems: 'center', gap: 6,
     backgroundColor: Colors.backgroundCard,
     borderRadius: 24, paddingVertical: 10, paddingHorizontal: 14,
     borderWidth: 1.5, borderColor: Colors.border,
+    overflow: 'visible',
   },
   chipContent: { gap: 2 },
   chipSelected: { borderColor: Colors.primary, backgroundColor: Colors.primary + '22' },
+  chipLocked: { borderColor: Colors.error, opacity: 0.85 },
+  lockBanner: {
+    position: 'absolute', top: -10, alignSelf: 'center',
+    backgroundColor: Colors.error, borderRadius: 999,
+    paddingHorizontal: 10, paddingVertical: 3,
+  },
+  lockBannerText: { color: Colors.text, fontSize: 10, fontWeight: '900' },
   chipIcon: { fontSize: 18 },
   chipText: { fontSize: 13, color: Colors.textMuted, fontWeight: '500' },
   chipTextSelected: { color: Colors.primaryLight, fontWeight: '700' },

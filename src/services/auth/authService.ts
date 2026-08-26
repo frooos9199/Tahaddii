@@ -9,6 +9,7 @@ import {
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { AppUserRecord } from '../../types';
 import { getFirebaseAuth, getFirebaseDb, isFirebaseConfigured } from '../firebase/firebaseClient';
+import { callFunction } from '../functions/functionsClient';
 
 const USERS_COLLECTION = 'users';
 
@@ -106,11 +107,24 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     updatedAt: serverTimestamp(),
   };
 
-  if (!existingSnapshot.exists()) {
+  const isFirstEverDoc = !existingSnapshot.exists();
+  if (isFirstEverDoc) {
     payload.createdAt = serverTimestamp();
   }
 
   await setDoc(userRef, payload, { merge: true });
+
+  let customerNumber = existingData.customerNumber;
+  if (isFirstEverDoc) {
+    // Assign a sequential customer number (starting at 3000) so the admin can
+    // identify a paying customer by number when they message about a payment.
+    try {
+      const result = await callFunction('assignCustomerNumberDirectly', {}) as { customerNumber?: number } | undefined;
+      customerNumber = result?.customerNumber ?? customerNumber;
+    } catch (error) {
+      console.warn('Failed to assign customer number', error);
+    }
+  }
 
   return {
     uid: user.uid,
@@ -125,6 +139,10 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     isSuperAdmin: tokenRole.isSuperAdmin,
     isGuest: false,
     authProvider: 'password',
+    customerNumber,
+    unlockedCategoryIds: existingData.unlockedCategoryIds ?? [],
+    entitlementExpiresAtMs: existingData.entitlementExpiresAtMs ?? null,
+    entitlementSource: existingData.entitlementSource ?? null,
   };
 };
 
