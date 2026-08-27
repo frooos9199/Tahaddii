@@ -18,7 +18,7 @@ import { CATEGORY_EMOJIS } from '../constants';
 import { getCachedCategoryCards, getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
 import { getQuestionImageUrls, preloadImageUrl } from '../services/media/questionMediaService';
 import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
-import { getContactConfig, buildWhatsAppUrl } from '../services/config/appConfigService';
+import { getContactConfig, buildWhatsAppUrl, getEntitlementsConfig, isGlobalUnlockActive } from '../services/config/appConfigService';
 import {
   getCategoryQuestionCount,
   getCategoryQuestionCountFromBank,
@@ -134,10 +134,12 @@ export default function HomeScreen({ navigation }: Props) {
   const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
   const [categoryCounts, setCategoryCounts] = useState<Record<CategoryId, number>>({});
   const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [globalUnlockActive, setGlobalUnlockActive] = useState(false);
 
   useFocusEffect(useCallback(() => {
     void refreshUserRecord();
     getContactConfig().then(config => setWhatsappNumber(config.whatsappNumber)).catch(() => {});
+    getEntitlementsConfig().then(config => setGlobalUnlockActive(isGlobalUnlockActive(config))).catch(() => {});
   }, [refreshUserRecord]));
 
   // pulse animation for online dot
@@ -190,8 +192,8 @@ export default function HomeScreen({ navigation }: Props) {
   const visibleCards = useMemo(() => categoryCards.filter(card => !categoryCountsLoaded || (categoryCounts[card.id] ?? getCategoryQuestionCount(card.id)) > 0), [categoryCards, categoryCounts, categoryCountsLoaded]);
 
   const lockedIds = useMemo(
-    () => getLockedCategoryIds(userRecord, visibleCards.map(card => card.id)),
-    [userRecord, visibleCards],
+    () => getLockedCategoryIds(userRecord, visibleCards.map(card => card.id), Date.now(), globalUnlockActive),
+    [userRecord, visibleCards, globalUnlockActive],
   );
 
   const toggleCategory = (categoryId: CategoryId) => {

@@ -479,6 +479,39 @@
 
             <div class="section-head" style="margin-top: 1.4rem;">
               <div>
+                <h2 class="section-title">تفعيل شامل لكل الفئات</h2>
+                <p class="hint">يفتح كل الفئات لجميع المستخدمين (حتى الضيوف) خلال المدة المحددة، بدون ما يأثر على اشتراكات الأفراد الحالية.</p>
+              </div>
+            </div>
+            <form id="globalUnlockForm" class="form">
+              <label style="display:flex; flex-direction:row; align-items:center; gap:0.5rem;"><input id="globalUnlockEnabled" type="checkbox" style="width:auto;" /> مفعّل</label>
+              <div class="row">
+                <label>تاريخ البداية<input id="globalUnlockStart" type="date" dir="ltr" /></label>
+                <label>تاريخ النهاية<input id="globalUnlockEnd" type="date" dir="ltr" /></label>
+              </div>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ</button>
+              </div>
+              <div id="globalUnlockStatus" class="status"></div>
+            </form>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
+                <h2 class="section-title">تجربة تلقائية للمستخدمين الجدد</h2>
+                <p class="hint">أي مستخدم جديد يسجل حساب يحصل تلقائيًا على كل الفئات مفتوحة لمدة معينة.</p>
+              </div>
+            </div>
+            <form id="newUserTrialForm" class="form">
+              <label style="display:flex; flex-direction:row; align-items:center; gap:0.5rem;"><input id="newUserTrialEnabled" type="checkbox" style="width:auto;" /> مفعّل</label>
+              <label>عدد أيام التجربة<input id="newUserTrialDays" type="number" dir="ltr" value="7" /></label>
+              <div class="actions">
+                <button class="primary" type="submit">حفظ</button>
+              </div>
+              <div id="newUserTrialStatus" class="status"></div>
+            </form>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
                 <h2 class="section-title">الباقات</h2>
                 <p class="hint">باقة تحدد الفئات المشمولة، المدة بالأيام، والسعر.</p>
               </div>
@@ -1611,7 +1644,7 @@
 
       const questionFailures = [];
       const adminWarnings = [];
-      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult, packagesResult, promoCodesResult, contactResult] = await Promise.allSettled([
+      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult, packagesResult, promoCodesResult, contactResult, entitlementsConfigResult] = await Promise.allSettled([
         fetch('/admin/question-bank.json', { cache: 'no-store' }).then(async response => {
           if (!response.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
           return response.json();
@@ -1624,6 +1657,7 @@
         getDocs(query(collection(firestore, 'packages'), orderBy('sortOrder', 'asc'))),
         getDocs(collection(firestore, 'promoCodes')),
         getDoc(doc(firestore, 'appConfig', 'contact')),
+        getDoc(doc(firestore, 'appConfig', 'entitlements')),
       ]);
 
       if (questionBankResult.status === 'fulfilled') {
@@ -1688,6 +1722,14 @@
         contactWhatsappNumber = '';
       }
       $('contactWhatsapp').value = contactWhatsappNumber;
+
+      const entitlementsConfigData = (entitlementsConfigResult.status === 'fulfilled' && entitlementsConfigResult.value.exists())
+        ? entitlementsConfigResult.value.data() : {};
+      $('globalUnlockEnabled').checked = Boolean(entitlementsConfigData.globalUnlockEnabled);
+      $('globalUnlockStart').value = entitlementsConfigData.globalUnlockStartAtMs ? new Date(entitlementsConfigData.globalUnlockStartAtMs).toISOString().slice(0, 10) : '';
+      $('globalUnlockEnd').value = entitlementsConfigData.globalUnlockEndAtMs ? new Date(entitlementsConfigData.globalUnlockEndAtMs).toISOString().slice(0, 10) : '';
+      $('newUserTrialEnabled').checked = Boolean(entitlementsConfigData.newUserTrialEnabled);
+      $('newUserTrialDays').value = Number(entitlementsConfigData.newUserTrialDays || 7);
 
       mergeQuestions();
       mergeCategoryCards();
@@ -2274,6 +2316,43 @@
         setStatus($('contactStatus'), 'تم حفظ رقم التواصل', 'success');
       } catch (error) {
         setStatus($('contactStatus'), error.message, 'error');
+      }
+    });
+
+    $('globalUnlockForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('globalUnlockStatus'), 'جاري الحفظ...');
+      try {
+        const enabled = $('globalUnlockEnabled').checked;
+        const startAtMs = $('globalUnlockStart').value ? new Date($('globalUnlockStart').value).getTime() : null;
+        const endAtMs = $('globalUnlockEnd').value ? new Date($('globalUnlockEnd').value).getTime() : null;
+        if (enabled && (!startAtMs || !endAtMs)) {
+          throw new Error('حدد تاريخ بداية ونهاية صحيحين');
+        }
+        await setDoc(doc(firestore, 'appConfig', 'entitlements'), {
+          globalUnlockEnabled: enabled,
+          globalUnlockStartAtMs: startAtMs,
+          globalUnlockEndAtMs: endAtMs,
+          updatedAtMs: Date.now(),
+        }, { merge: true });
+        setStatus($('globalUnlockStatus'), 'تم الحفظ', 'success');
+      } catch (error) {
+        setStatus($('globalUnlockStatus'), error.message, 'error');
+      }
+    });
+
+    $('newUserTrialForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      setStatus($('newUserTrialStatus'), 'جاري الحفظ...');
+      try {
+        await setDoc(doc(firestore, 'appConfig', 'entitlements'), {
+          newUserTrialEnabled: $('newUserTrialEnabled').checked,
+          newUserTrialDays: Number($('newUserTrialDays').value || 7),
+          updatedAtMs: Date.now(),
+        }, { merge: true });
+        setStatus($('newUserTrialStatus'), 'تم الحفظ', 'success');
+      } catch (error) {
+        setStatus($('newUserTrialStatus'), error.message, 'error');
       }
     });
 

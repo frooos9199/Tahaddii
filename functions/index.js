@@ -236,6 +236,7 @@ exports.assignCustomerNumberDirectly = functions.region(REGION).https.onCall(asy
 
   const userRef = db.collection('users').doc(uid);
   const counterRef = db.collection('counters').doc('customers');
+  const entitlementsConfigRef = db.collection('appConfig').doc('entitlements');
 
   return db.runTransaction(async tx => {
     const userSnap = await tx.get(userRef);
@@ -244,11 +245,36 @@ exports.assignCustomerNumberDirectly = functions.region(REGION).https.onCall(asy
       return { customerNumber: existing, alreadyAssigned: true };
     }
 
-    const counterSnap = await tx.get(counterRef);
+    const [counterSnap, entitlementsConfigSnap] = await Promise.all([tx.get(counterRef), tx.get(entitlementsConfigRef)]);
     const next = counterSnap.exists ? (counterSnap.data().nextValue || 3000) : 3000;
     tx.set(counterRef, { nextValue: next + 1 }, { merge: true });
-    tx.set(userRef, { customerNumber: next }, { merge: true });
-    return { customerNumber: next, alreadyAssigned: false };
+
+    const userPayload = { customerNumber: next };
+    const entitlementsConfig = entitlementsConfigSnap.exists ? entitlementsConfigSnap.data() : null;
+    let trialGranted = false;
+    if (entitlementsConfig?.newUserTrialEnabled) {
+      const trialDays = Number(entitlementsConfig.newUserTrialDays) > 0 ? Number(entitlementsConfig.newUserTrialDays) : 7;
+      const grantedAtMs = Date.now();
+      const expiresAtMs = grantedAtMs + trialDays * 86400000;
+      userPayload.unlockedCategoryIds = ['*'];
+      userPayload.entitlementExpiresAtMs = expiresAtMs;
+      userPayload.entitlementSource = 'trial';
+      trialGranted = true;
+
+      const entitlementRef = userRef.collection('entitlements').doc();
+      tx.set(entitlementRef, {
+        id: entitlementRef.id,
+        categoryIds: ['*'],
+        grantedAtMs,
+        expiresAtMs,
+        origin: { type: 'adminManual', packageId: null, promoCode: null, grantedByAdminUid: null, note: `Automatic ${trialDays}-day new-user trial` },
+        status: 'active',
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+
+    tx.set(userRef, userPayload, { merge: true });
+    return { customerNumber: next, alreadyAssigned: false, trialGranted };
   });
 });
 

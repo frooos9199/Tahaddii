@@ -14,7 +14,7 @@ import { QUESTIONS } from '../services/questions/questionsData';
 import { questionBelongsToCategory } from '../services/questions/questionCatalog';
 import { deletePackage, listPackages, savePackage, setPackageActive } from '../services/packages/packageService';
 import { createPromoCode, deactivatePromoCode, generateRandomCode, listPromoCodes } from '../services/promo/promoAdminService';
-import { getContactConfig, saveContactConfig } from '../services/config/appConfigService';
+import { getContactConfig, saveContactConfig, getEntitlementsConfig, saveEntitlementsConfig } from '../services/config/appConfigService';
 import { useAuthStore } from '../store/authStore';
 import { AppUserRecord, CategoryCard, CategoryId, Difficulty, OnlineRoom, Package, PromoCode, PromoCodeType, Question, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
@@ -99,6 +99,16 @@ const createEmptyPromoForm = () => ({
   expiresInDays: '',
 });
 
+const dateToInputValue = (ms: number | null) => (ms ? new Date(ms).toISOString().slice(0, 10) : '');
+
+const createEmptyEntitlementsForm = () => ({
+  globalUnlockEnabled: false,
+  globalUnlockStartDate: '',
+  globalUnlockEndDate: '',
+  newUserTrialEnabled: false,
+  newUserTrialDays: '7',
+});
+
 export default function AdminPanelScreen({ navigation }: Props) {
   const { t } = useTranslation();
   const { userRecord, refreshUserRecord } = useAuthStore();
@@ -110,6 +120,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
   const [packages, setPackages] = useState<Package[]>([]);
   const [promoCodes, setPromoCodes] = useState<PromoCode[]>([]);
   const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [entitlementsForm, setEntitlementsForm] = useState(createEmptyEntitlementsForm);
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>('generalKnowledge');
   const [questionForm, setQuestionForm] = useState(createEmptyQuestionForm);
   const [categoryForm, setCategoryForm] = useState(createEmptyCategoryForm);
@@ -131,9 +142,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
     setRefreshing(true);
     try {
       await refreshUserRecord();
-      const [nextUsers, nextRooms, customQuestions, nextSponsorAds, nextCategoryCards, nextPackages, nextPromoCodes, contactConfig] = await Promise.all([
+      const [nextUsers, nextRooms, customQuestions, nextSponsorAds, nextCategoryCards, nextPackages, nextPromoCodes, contactConfig, entitlementsConfig] = await Promise.all([
         listAppUsers(), listActiveRooms(), listCustomQuestions(), listSponsorAds(), listCategoryCards({ includeInactive: true }),
-        listPackages({ includeInactive: true }), listPromoCodes(), getContactConfig(),
+        listPackages({ includeInactive: true }), listPromoCodes(), getContactConfig(), getEntitlementsConfig(),
       ]);
       setUsers(nextUsers);
       setRooms(nextRooms);
@@ -142,6 +153,13 @@ export default function AdminPanelScreen({ navigation }: Props) {
       setPackages(nextPackages);
       setPromoCodes(nextPromoCodes);
       setWhatsappNumber(contactConfig.whatsappNumber);
+      setEntitlementsForm({
+        globalUnlockEnabled: entitlementsConfig.globalUnlockEnabled,
+        globalUnlockStartDate: dateToInputValue(entitlementsConfig.globalUnlockStartAtMs),
+        globalUnlockEndDate: dateToInputValue(entitlementsConfig.globalUnlockEndAtMs),
+        newUserTrialEnabled: entitlementsConfig.newUserTrialEnabled,
+        newUserTrialDays: String(entitlementsConfig.newUserTrialDays),
+      });
       const customQuestionsById = new Map(customQuestions.map(question => [question.id, question]));
       const builtinQuestionIds = new Set(QUESTIONS.map(question => question.id));
       const mergedBuiltinQuestions = QUESTIONS.map(question => customQuestionsById.get(question.id) ?? question);
@@ -588,6 +606,29 @@ export default function AdminPanelScreen({ navigation }: Props) {
     }
   };
 
+  const saveEntitlementsSettings = async () => {
+    setBusyKey('save-entitlements');
+    try {
+      const startAtMs = entitlementsForm.globalUnlockStartDate ? new Date(entitlementsForm.globalUnlockStartDate).getTime() : null;
+      const endAtMs = entitlementsForm.globalUnlockEndDate ? new Date(entitlementsForm.globalUnlockEndDate).getTime() : null;
+      if (entitlementsForm.globalUnlockEnabled && (!startAtMs || !endAtMs || Number.isNaN(startAtMs) || Number.isNaN(endAtMs))) {
+        throw new Error(t('admin.entitlementsInvalidDates'));
+      }
+      await saveEntitlementsConfig({
+        globalUnlockEnabled: entitlementsForm.globalUnlockEnabled,
+        globalUnlockStartAtMs: startAtMs,
+        globalUnlockEndAtMs: endAtMs,
+        newUserTrialEnabled: entitlementsForm.newUserTrialEnabled,
+        newUserTrialDays: Number(entitlementsForm.newUserTrialDays || 7),
+      });
+      Alert.alert('', t('admin.entitlementsSavedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.entitlementsSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
   const exportQuestionsToCsv = async () => {
     if (!questions.length) {
       Alert.alert('', t('admin.noQuestionsToExport'));
@@ -990,6 +1031,36 @@ export default function AdminPanelScreen({ navigation }: Props) {
           />
           <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-contact' && styles.roleBtnDisabled]} disabled={busyKey === 'save-contact'} onPress={() => { void saveWhatsappNumber(); }}>
             <Text style={styles.createQuestionBtnText}>{t('admin.saveContact')}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('admin.globalUnlockSection')}</Text>
+          <Text style={styles.exportHint}>{t('admin.globalUnlockHint')}</Text>
+          <TouchableOpacity style={[styles.roleBtn, entitlementsForm.globalUnlockEnabled && styles.roleBtnActive]} onPress={() => setEntitlementsForm(current => ({ ...current, globalUnlockEnabled: !current.globalUnlockEnabled }))}>
+            <Text style={styles.roleBtnText}>{entitlementsForm.globalUnlockEnabled ? t('admin.globalUnlockOn') : t('admin.globalUnlockOff')}</Text>
+          </TouchableOpacity>
+          <View style={styles.adMetaRow}>
+            <View style={styles.adMetaInputWrap}>
+              <Text style={styles.inputLabel}>{t('admin.globalUnlockStart')}</Text>
+              <TextInput style={[styles.textInput, styles.englishInput]} value={entitlementsForm.globalUnlockStartDate} onChangeText={globalUnlockStartDate => setEntitlementsForm(current => ({ ...current, globalUnlockStartDate }))} placeholder="2026-01-01" placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            </View>
+            <View style={styles.adMetaInputWrap}>
+              <Text style={styles.inputLabel}>{t('admin.globalUnlockEnd')}</Text>
+              <TextInput style={[styles.textInput, styles.englishInput]} value={entitlementsForm.globalUnlockEndDate} onChangeText={globalUnlockEndDate => setEntitlementsForm(current => ({ ...current, globalUnlockEndDate }))} placeholder="2026-01-07" placeholderTextColor={Colors.textMuted} autoCapitalize="none" />
+            </View>
+          </View>
+
+          <Text style={styles.sectionTitle}>{t('admin.newUserTrialSection')}</Text>
+          <Text style={styles.exportHint}>{t('admin.newUserTrialHint')}</Text>
+          <TouchableOpacity style={[styles.roleBtn, entitlementsForm.newUserTrialEnabled && styles.roleBtnActive]} onPress={() => setEntitlementsForm(current => ({ ...current, newUserTrialEnabled: !current.newUserTrialEnabled }))}>
+            <Text style={styles.roleBtnText}>{entitlementsForm.newUserTrialEnabled ? t('admin.globalUnlockOn') : t('admin.globalUnlockOff')}</Text>
+          </TouchableOpacity>
+          <Text style={styles.inputLabel}>{t('admin.newUserTrialDays')}</Text>
+          <TextInput style={[styles.textInput, styles.englishInput]} value={entitlementsForm.newUserTrialDays} onChangeText={newUserTrialDays => setEntitlementsForm(current => ({ ...current, newUserTrialDays }))} placeholder="7" placeholderTextColor={Colors.textMuted} keyboardType="number-pad" />
+
+          <TouchableOpacity style={[styles.createQuestionBtn, busyKey === 'save-entitlements' && styles.roleBtnDisabled]} disabled={busyKey === 'save-entitlements'} onPress={() => { void saveEntitlementsSettings(); }}>
+            <Text style={styles.createQuestionBtnText}>{t('admin.saveEntitlementsSettings')}</Text>
           </TouchableOpacity>
         </View>
 

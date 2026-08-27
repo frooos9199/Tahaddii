@@ -21,7 +21,7 @@ import {
   loadQuestionBank,
 } from '../services/questions/questionCatalog';
 import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
-import { getContactConfig, buildWhatsAppUrl } from '../services/config/appConfigService';
+import { getContactConfig, buildWhatsAppUrl, getEntitlementsConfig, isGlobalUnlockActive } from '../services/config/appConfigService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'CategorySelect'> };
 
@@ -30,10 +30,12 @@ export default function CategorySelectScreen({ navigation }: Props) {
   const { settings, updateSettings } = useGameStore();
   const { userRecord, refreshUserRecord } = useAuthStore();
   const [whatsappNumber, setWhatsappNumber] = useState('');
+  const [globalUnlockActive, setGlobalUnlockActive] = useState(false);
 
   useFocusEffect(useCallback(() => {
     void refreshUserRecord();
     getContactConfig().then(config => setWhatsappNumber(config.whatsappNumber)).catch(() => {});
+    getEntitlementsConfig().then(config => setGlobalUnlockActive(isGlobalUnlockActive(config))).catch(() => {});
   }, [refreshUserRecord]));
 
   const [categoryData, setCategoryData] = useState(() => ({
@@ -74,8 +76,8 @@ export default function CategorySelectScreen({ navigation }: Props) {
   }, [settings.ageGroup]);
 
   const lockedIds = useMemo(
-    () => getLockedCategoryIds(userRecord, availableCategories),
-    [userRecord, availableCategories],
+    () => getLockedCategoryIds(userRecord, availableCategories, Date.now(), globalUnlockActive),
+    [userRecord, availableCategories, globalUnlockActive],
   );
 
   const toggle = (id: CategoryId) => {

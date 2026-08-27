@@ -115,12 +115,26 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
   await setDoc(userRef, payload, { merge: true });
 
   let customerNumber = existingData.customerNumber;
+  let unlockedCategoryIds = existingData.unlockedCategoryIds ?? [];
+  let entitlementExpiresAtMs = existingData.entitlementExpiresAtMs ?? null;
+  let entitlementSource = existingData.entitlementSource ?? null;
   if (isFirstEverDoc) {
     // Assign a sequential customer number (starting at 3000) so the admin can
     // identify a paying customer by number when they message about a payment.
+    // This same call may also grant a configured new-user trial entitlement.
     try {
-      const result = await callFunction('assignCustomerNumberDirectly', {}) as { customerNumber?: number } | undefined;
+      const result = await callFunction('assignCustomerNumberDirectly', {}) as {
+        customerNumber?: number;
+        trialGranted?: boolean;
+      } | undefined;
       customerNumber = result?.customerNumber ?? customerNumber;
+      if (result?.trialGranted) {
+        const freshSnapshot = await getDoc(userRef);
+        const freshData = freshSnapshot.data() as Partial<AppUserRecord> | undefined;
+        unlockedCategoryIds = freshData?.unlockedCategoryIds ?? unlockedCategoryIds;
+        entitlementExpiresAtMs = freshData?.entitlementExpiresAtMs ?? entitlementExpiresAtMs;
+        entitlementSource = freshData?.entitlementSource ?? entitlementSource;
+      }
     } catch (error) {
       console.warn('Failed to assign customer number', error);
     }
@@ -140,9 +154,9 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     isGuest: false,
     authProvider: 'password',
     customerNumber,
-    unlockedCategoryIds: existingData.unlockedCategoryIds ?? [],
-    entitlementExpiresAtMs: existingData.entitlementExpiresAtMs ?? null,
-    entitlementSource: existingData.entitlementSource ?? null,
+    unlockedCategoryIds,
+    entitlementExpiresAtMs,
+    entitlementSource,
   };
 };
 
