@@ -1,4 +1,4 @@
-import { CategoryId, AvatarType } from '../types';
+import { AvatarType } from '../types';
 
 export const PLAYER_COLORS = [
   '#7C3AED', '#2563EB', '#10B981', '#F59E0B',

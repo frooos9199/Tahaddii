@@ -1,0 +1,122 @@
+[
+  {
+    "id": "general-e1",
+    "answersAr": ["المحيط الأطلسي", "المحيط الهادي", "المحيط الهندي", "المحيط المتجمد الجنوبي"],
+    "answersEn": ["Atlantic Ocean", "Pacific", "Indian Ocean", "Southern Ocean"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "general-m1",
+    "answersAr": ["6", "8", "7", "5"],
+    "answersEn": ["6", "8", "7", "5"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "general-h1",
+    "answersAr": ["Ag", "Pd", "Pt", "Hg"],
+    "answersEn": ["Ag", "Pd", "Pt", "Hg"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-e2",
+    "answersAr": ["5", "6", "7", "8"],
+    "answersEn": ["5", "6", "7", "8"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "general-m2",
+    "answersAr": ["النحاس", "الألومنيوم", "الفضة", "الذهب"],
+    "answersEn": ["Copper", "Aluminum", "Silver", "Gold"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-h2",
+    "answersAr": ["الإسبانية", "الإنجليزية", "الهندية", "الصينية"],
+    "answersEn": ["Spanish", "English", "Hindi", "Chinese"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g01",
+    "answersAr": ["7", "5", "6", "8"],
+    "answersEn": ["7", "5", "6", "8"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g02",
+    "answersAr": ["10", "12", "13", "14"],
+    "answersEn": ["10", "12", "13", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g03",
+    "answersAr": ["الزهرة", "عطارد", "الأرض", "المريخ"],
+    "answersEn": ["Venus", "Mercury", "Earth", "Mars"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g04",
+    "answersAr": ["بنفسجي", "أبيض", "سماوي", "أزرق"],
+    "answersEn": ["Violet", "White", "Cyan", "Blue"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g05",
+    "answersAr": ["الأسد", "النمر", "الفهد", "اليغور"],
+    "answersEn": ["Lion", "Tiger", "Leopard", "Jaguar"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g06",
+    "answersAr": ["الألومنيوم", "النحاس", "الفضة", "الذهب"],
+    "answersEn": ["Aluminum", "Copper", "Silver", "Gold"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g07",
+    "answersAr": ["زحل", "نبتون", "المشتري", "أورانوس"],
+    "answersEn": ["Saturn", "Neptune", "Jupiter", "Uranus"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g08",
+    "answersAr": ["السودان", "المكسيك", "غواتيمالا", "مصر"],
+    "answersEn": ["Sudan", "Mexico", "Guatemala", "Egypt"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g09",
+    "answersAr": ["الجمل", "المها العربي", "الحصان", "اللاما"],
+    "answersEn": ["Camel", "Arabian oryx", "Horse", "Llama"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g10",
+    "answersAr": ["الرصاص", "الغرافيت", "الفحم", "الغرافين"],
+    "answersEn": ["Lead", "Graphite", "Charcoal", "Graphene"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g11",
+    "answersAr": ["النيتروجين", "ثاني أكسيد الكربون", "الأكسجين", "الهيدروجين"],
+    "answersEn": ["Nitrogen", "Carbon dioxide", "Oxygen", "Hydrogen"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g12",
+    "answersAr": ["ساعة الإيقاف", "البارومتر", "البوصلة", "الساعة"],
+    "answersEn": ["Stopwatch", "Barometer", "Compass", "Clock"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g13",
+    "answersAr": ["Au", "Ag", "Pt", "Hg"],
+    "answersEn": ["Au", "Ag", "Pt", "Hg"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g14",
+    "answersAr": ["الهندية", "الصينية", "الإسبانية", "الإنجليزية"],
+    "answersEn": ["Hindi", "Chinese", "Spanish", "English"],
+    "correctAnswerIndex": 1
+  }
+]

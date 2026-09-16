@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from '../types';
@@ -24,6 +24,7 @@ const getWrongAnswerTitle = (eventId: string) => {
 
 export default function OnlineGameScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const {
     room,
     players,
@@ -38,6 +39,7 @@ export default function OnlineGameScreen({ navigation }: Props) {
   } = useOnlineStore();
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const [pendingAnswerIndex, setPendingAnswerIndex] = useState<number | null>(null);
+  const [isSubmittingAnswer, setIsSubmittingAnswer] = useState(false);
 
   useEffect(() => {
     setPendingAnswerIndex(null);
@@ -50,10 +52,9 @@ export default function OnlineGameScreen({ navigation }: Props) {
     }
 
     if (room.status === 'results' || room.status === 'ended') {
-      Alert.alert(t('online.roundFinished'));
       navigation.replace('OnlineLobby');
     }
-  }, [navigation, room, t]);
+  }, [navigation, room]);
 
   useEffect(() => {
     if (error) {
@@ -107,6 +108,17 @@ export default function OnlineGameScreen({ navigation }: Props) {
   }, [room, timeLeft]);
 
   const timerColor = timeLeft <= 3 ? Colors.error : timeLeft <= 7 ? Colors.warning : Colors.success;
+
+  const handleSubmitAnswer = async (selectedAnswerIndex: number) => {
+    if (isSubmittingAnswer) return;
+
+    setIsSubmittingAnswer(true);
+    const accepted = await submitCurrentAnswer(selectedAnswerIndex);
+    if (accepted) {
+      setPendingAnswerIndex(selectedAnswerIndex);
+    }
+    setIsSubmittingAnswer(false);
+  };
 
   if (!room?.currentQuestion) {
     return null;
@@ -165,10 +177,9 @@ export default function OnlineGameScreen({ navigation }: Props) {
                   isPending && styles.answerPending,
                   hasSubmittedAnswer && styles.answerDisabled,
                 ]}
-                disabled={hasSubmittedAnswer || room.revealedAnswer || loading}
+                disabled={hasSubmittedAnswer || room.revealedAnswer || loading || isSubmittingAnswer}
                 onPress={() => {
-                  setPendingAnswerIndex(index);
-                  void submitCurrentAnswer(index);
+                  void handleSubmitAnswer(index);
                 }}>
                 <Text style={styles.answerText}>{answer}</Text>
               </TouchableOpacity>
@@ -185,7 +196,9 @@ export default function OnlineGameScreen({ navigation }: Props) {
         ) : null}
 
         <View style={styles.statusCard}>
-          {winner ? (
+          {isSubmittingAnswer ? (
+            <Text style={styles.statusText}>{t('common.loading')}</Text>
+          ) : winner ? (
             <Text style={styles.statusText}>{t('online.winnerPrefix')}: {winner.name}</Text>
           ) : room.revealedAnswer ? (
             <Text style={styles.statusText}>{t('online.timeUp')}</Text>
@@ -202,7 +215,7 @@ export default function OnlineGameScreen({ navigation }: Props) {
       </ScrollView>
 
       {isHost && room.revealedAnswer && (
-        <View style={styles.footer}>
+        <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 16) }]}>
           <TouchableOpacity style={styles.nextBtn} onPress={() => {
             void advanceCurrentQuestion();
           }}>

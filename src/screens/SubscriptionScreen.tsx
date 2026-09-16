@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { Alert, Linking, Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
@@ -13,12 +14,13 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Subscr
 
 export default function SubscriptionScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { user, userRecord, refreshUserRecord } = useAuthStore();
   const [packages, setPackages] = useState<Package[]>([]);
   const [whatsappNumber, setWhatsappNumber] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const isGuest = Boolean(user?.isAnonymous || userRecord?.isGuest);
+  const requiresAccount = !user || user.isAnonymous || Boolean(userRecord?.isGuest);
   const hasActiveAccess = Boolean(userRecord?.entitlementExpiresAtMs && userRecord.entitlementExpiresAtMs > Date.now());
 
   useFocusEffect(useCallback(() => {
@@ -38,6 +40,11 @@ export default function SubscriptionScreen({ navigation }: Props) {
   const canPurchaseInApp = Platform.OS !== 'ios';
 
   const buyPackage = (pkg: Package) => {
+    if (requiresAccount) {
+      navigation.navigate('Auth');
+      return;
+    }
+
     if (!whatsappNumber) {
       Alert.alert('', t('categories.contactNotConfigured'));
       return;
@@ -54,7 +61,7 @@ export default function SubscriptionScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
-      <ScrollView contentContainerStyle={styles.scroll}>
+      <ScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
             <Text style={styles.backText}>‹</Text>
@@ -62,9 +69,9 @@ export default function SubscriptionScreen({ navigation }: Props) {
           <Text style={styles.title}>{t('subscription.title')}</Text>
         </View>
 
-        {isGuest ? (
+        {requiresAccount ? (
           <View style={styles.card}>
-            <Text style={styles.cardText}>{t('promoRedeem.guestNotice')}</Text>
+            <Text style={styles.cardText}>{t('promoRedeem.accountNotice')}</Text>
             <TouchableOpacity style={styles.primaryBtn} onPress={() => navigation.navigate('Auth')}>
               <Text style={styles.primaryBtnText}>{t('promoRedeem.registerNow')}</Text>
             </TouchableOpacity>

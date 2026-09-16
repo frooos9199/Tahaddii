@@ -1,0 +1,152 @@
+[
+  {
+    "id": "wyr-new-26",
+    "answersAr": ["فتح نافذة لتهوية الغرفة", "تشغيل المكيّف أو المروحة", "إغلاق الستائر أمام الشمس", "تشغيل الفرن"],
+    "answersEn": ["Opening a window to ventilate the room", "Turning on the air conditioner or fan", "Closing the curtains against the sun", "Turning on the oven"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-27",
+    "answersAr": ["ارتداء سترة النجاة", "وضع السترة بجانبك", "الجلوس في وسط القارب", "ترك السترة على المقعد"],
+    "answersEn": ["Wearing the life jacket", "Keeping the jacket beside you", "Sitting in the middle of the boat", "Leaving the jacket on the seat"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-28",
+    "answersAr": ["قراءة الدرس كاملًا مرة واحدة", "تقسيمه إلى أجزاء", "حفظه دون أخذ فواصل", "تأجيله كله إلى آخر دقيقة"],
+    "answersEn": ["Reading the whole lesson once", "Breaking it into parts", "Memorizing it without taking breaks", "Postponing it all until the last minute"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-29",
+    "answersAr": ["عدسة نظيفة", "عدسة عليها غبار خفيف", "عدسة مغطاة بالبصمات", "عدسة عليها قطرات ماء"],
+    "answersEn": ["A clean lens", "A slightly dusty lens", "A lens covered in fingerprints", "A lens covered in water droplets"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-30",
+    "answersAr": ["تقسيمه إلى لقيمات صغيرة", "أكله بعد أن يبرد قليلًا", "النفخ عليه مرة واحدة", "ابتلاعه فور خروجه من الفرن"],
+    "answersEn": ["Cutting it into small bites", "Eating it after it cools a little", "Blowing on it once", "Swallowing it the moment it comes from the oven"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-31",
+    "answersAr": ["مستوى صوت معتدل", "مستوى صوت منخفض جدًا", "مستوى صوت مرتفع لفترة قصيرة", "أعلى مستوى صوت ممكن"],
+    "answersEn": ["A moderate volume level", "A very low volume level", "A high volume level for a short time", "The highest possible volume level"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-32",
+    "answersAr": ["السير ببطء قرب الجدار", "تشغيل ضوء صغير", "الاعتماد على إضاءة شاشة الهاتف", "المشي في الظلام الكامل"],
+    "answersEn": ["Walking slowly near the wall", "Turning on a small light", "Relying on the phone screen's glow", "Walking in complete darkness"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-33",
+    "answersAr": ["غسلهما قبل الأكل", "مسحهما بمنديل جاف", "شطفهما بالماء فقط", "تجاهل غسلهما"],
+    "answersEn": ["Washing them before eating", "Wiping them with a dry tissue", "Rinsing them with water only", "Skipping washing them"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-34",
+    "answersAr": ["مراجعة موعد الانطلاق", "ضبط منبّه", "طلب تذكير من شخص آخر", "الاعتماد على الحظ"],
+    "answersEn": ["Checking the departure time", "Setting an alarm", "Asking someone else for a reminder", "Relying on luck"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-35",
+    "answersAr": ["كتابة اسمك عليها", "ربط شريط مميز بها", "تصويرها قبل السفر", "تركها بلا أي تعريف"],
+    "answersEn": ["Putting your name on it", "Tying a distinctive ribbon to it", "Photographing it before traveling", "Leaving it without any identification"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-36",
+    "answersAr": ["تغطيته بغطاء محكم", "تركه قليلًا", "إضافة مزيد من الماء الساخن", "وضعه في كيس صوف"],
+    "answersEn": ["Covering it with a tight lid", "Letting it sit for a while", "Adding more hot water", "Wrapping it in a wool bag"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-37",
+    "answersAr": ["قبعة أو مظلة صغيرة", "نظارة شمسية مناسبة", "الوقوف في مكان مظلل", "النظر للأعلى مباشرة"],
+    "answersEn": ["A hat or small umbrella", "Suitable sunglasses", "Standing in a shaded place", "Looking straight upward"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-38",
+    "answersAr": ["إغلاق البرامج غير المستجيبة", "إعادة تشغيل منظمة", "انتظار استجابته بضع دقائق", "صب الماء عليه"],
+    "answersEn": ["Closing unresponsive programs", "An orderly restart", "Waiting a few minutes for it to respond", "Pouring water on it"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-39",
+    "answersAr": ["رف جاف", "صندوق مغلق في غرفة رطبة", "طاولة قرب نافذة مفتوحة", "أرضية مبللة"],
+    "answersEn": ["A dry shelf", "A closed box in a humid room", "A table near an open window", "A wet floor"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-40",
+    "answersAr": ["صديق يجيد السباحة", "مدرب مختص", "مشاهدة دروس مصورة فقط", "القفز وحدك في ماء عميق"],
+    "answersEn": ["A friend who can swim", "A qualified instructor", "Only watching video lessons", "Jumping alone into deep water"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-41",
+    "answersAr": ["مكتب مرتب", "مكتب تملؤه أدوات كثيرة", "مكتب مقابل نافذة مزدحمة", "فوضى تغطي كل السطح"],
+    "answersEn": ["A tidy desk", "A desk crowded with supplies", "A desk facing a busy window", "Clutter covering the whole surface"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-42",
+    "answersAr": ["سكب الماء عليه", "مطفأة مناسبة", "محاولة نفخ اللهب", "مروحة قوية تنشر الشرر"],
+    "answersEn": ["Pouring water on it", "A proper extinguisher", "Trying to blow out the flames", "A strong fan that spreads sparks"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-43",
+    "answersAr": ["التحدث ببطء نسبي", "استخدام كلمات معقدة", "رفع الصوت كثيرًا", "الهمهمة بسرعة شديدة"],
+    "answersEn": ["Speaking somewhat slowly", "Using complicated words", "Raising your voice too much", "Mumbling very fast"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-44",
+    "answersAr": ["تركها فوق سطح التربة", "زرع بذور في التربة", "نثرها فوق الحصى", "رميها على الإسفلت"],
+    "answersEn": ["Leaving them on the soil surface", "Planting seeds in soil", "Scattering them over gravel", "Throwing them on asphalt"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-45",
+    "answersAr": ["حذاء رياضي مناسب", "حذاء خفيف بنعل رقيق", "حذاء رسمي ضيق", "حذاء غير مريح جدًا للمشي"],
+    "answersEn": ["Suitable sports shoes", "Light shoes with thin soles", "Tight formal shoes", "Very uncomfortable shoes for walking"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-46",
+    "answersAr": ["تقدير الوقت من ضوء الشمس", "ساعة مضبوطة", "ساعة تتأخر بضع دقائق", "ساعة متوقفة"],
+    "answersEn": ["Estimating the time from sunlight", "A correctly set clock", "A clock running a few minutes slow", "A stopped clock"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-47",
+    "answersAr": ["ميكروفون يعمل", "ميكروفون بسلك مرتخٍ", "ميكروفون ببطارية ضعيفة", "ميكروفون بلا بطارية"],
+    "answersEn": ["A working microphone", "A microphone with a loose cable", "A microphone with a weak battery", "A microphone with no battery"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-48",
+    "answersAr": ["ركوب سيارة أجرة منفردًا", "المشي إذا كان المكان قريبًا", "ترك السيارة تعمل أثناء الانتظار", "تشغيل السيارة بلا حاجة"],
+    "answersEn": ["Taking a taxi alone", "Walking if the place is nearby", "Leaving the car running while waiting", "Using the car unnecessarily"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-49",
+    "answersAr": ["استخدام الأدوات المناسبة", "استخدام أداة واحدة لكل القطع", "تفكيكها بلا دليل", "الضرب العشوائي بالمطرقة"],
+    "answersEn": ["Using the proper tools", "Using one tool for every part", "Taking it apart without a guide", "Swinging a hammer randomly"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-50",
+    "answersAr": ["البقاء في المكان نفسه", "الاقتراب من الموجّه", "الوقوف خلف قطعة أثاث كبيرة", "الذهاب إلى أبعد زاوية خلف جدارين"],
+    "answersEn": ["Staying in the same place", "Moving closer to the router", "Standing behind a large piece of furniture", "Going to the farthest corner behind two walls"],
+    "correctAnswerIndex": 1
+  }
+]

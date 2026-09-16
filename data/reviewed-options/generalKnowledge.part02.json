@@ -1,0 +1,122 @@
+[
+  {
+    "id": "gk-g15",
+    "answersAr": ["علم الأحياء", "علم الجيولوجيا", "علم الفلك", "علم الأرصاد الجوية"],
+    "answersEn": ["Biology", "Geology", "Astronomy", "Meteorology"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g16",
+    "answersAr": ["السيليكون", "كربونات الكالسيوم", "أكسيد الألومنيوم", "الكربون"],
+    "answersEn": ["Silicon", "Calcium carbonate", "Aluminum oxide", "Carbon"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g17",
+    "answersAr": ["البحر الميت", "بحر قزوين", "البحر الأحمر", "البحر الأسود"],
+    "answersEn": ["Dead Sea", "Caspian Sea", "Red Sea", "Black Sea"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g18",
+    "answersAr": ["الكتفان", "العنق", "الصدر", "أعلى الظهر"],
+    "answersEn": ["Shoulders", "Neck", "Chest", "Upper back"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g19",
+    "answersAr": ["برتقالي", "بنفسجي", "أخضر", "سماوي"],
+    "answersEn": ["Orange", "Purple", "Green", "Cyan"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g20",
+    "answersAr": ["23", "25", "26", "24"],
+    "answersEn": ["23", "25", "26", "24"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g21",
+    "answersAr": ["الهيليوم", "النيون", "النيتروجين", "الأرجون"],
+    "answersEn": ["Helium", "Neon", "Nitrogen", "Argon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g22",
+    "answersAr": ["اليوان", "الين", "الوون", "البات"],
+    "answersEn": ["Yuan", "Yen", "Won", "Baht"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g23",
+    "answersAr": ["الغلاف المائي", "القشرة الأرضية", "الغلاف الجوي", "الوشاح الأرضي"],
+    "answersEn": ["Hydrosphere", "Earth's crust", "Atmosphere", "Earth's mantle"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g24",
+    "answersAr": ["مصباح السقف", "مصباح الشارع", "المصباح المكتبي", "المصباح اليدوي"],
+    "answersEn": ["Ceiling light", "Streetlight", "Desk lamp", "Flashlight"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g25",
+    "answersAr": ["الانصهار", "التجمد", "التسامي", "التكاثف"],
+    "answersEn": ["Melting", "Freezing", "Sublimation", "Condensation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g26",
+    "answersAr": ["الدلفين", "الفيل", "الشمبانزي", "الغراب"],
+    "answersEn": ["Dolphin", "Elephant", "Chimpanzee", "Crow"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "gk-g27",
+    "answersAr": ["عظمة المطرقة", "عظمة السندان", "عظمة الركاب", "العظم اللامي"],
+    "answersEn": ["Malleus", "Incus", "Stapes", "Hyoid bone"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "gk-g28",
+    "answersAr": ["الدجاجة", "الحصان", "الخنزير", "البقرة"],
+    "answersEn": ["Chicken", "Horse", "Pig", "Cow"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "gk-g29",
+    "answersAr": ["أحمر", "أصفر", "برتقالي", "أزرق"],
+    "answersEn": ["Red", "Yellow", "Orange", "Blue"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "gk-g30",
+    "answersAr": ["البصر", "السمع", "اللمس", "الشم"],
+    "answersEn": ["Sight", "Hearing", "Touch", "Smell"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-1",
+    "answersAr": ["موناكو", "ناورو", "الفاتيكان", "توفالو"],
+    "answersEn": ["Monaco", "Nauru", "Vatican City", "Tuvalu"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-2",
+    "answersAr": ["204", "206", "208", "212"],
+    "answersEn": ["204", "206", "208", "212"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-3",
+    "answersAr": ["نهر الكونغو", "النيل", "المسيسيبي", "اليانغتسي"],
+    "answersEn": ["Congo River", "Nile", "Mississippi", "Yangtze"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-4",
+    "answersAr": ["1987", "1990", "1989", "1991"],
+    "answersEn": ["1987", "1990", "1989", "1991"],
+    "correctAnswerIndex": 2
+  }
+]

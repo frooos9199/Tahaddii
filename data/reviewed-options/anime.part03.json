@@ -1,0 +1,206 @@
+[
+  {
+    "id": "anime-new-16",
+    "answersAr": ["الكرة الطائرة", "كرة السلة", "كرة القدم", "التنس"],
+    "answersEn": ["Volleyball", "Basketball", "Football", "Tennis"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-17",
+    "answersAr": ["كونان إيدوغاوا", "آي هايبارا", "كايتو كيد", "هيجي هاتوري"],
+    "answersEn": ["Conan Edogawa", "Ai Haibara", "Kaito Kid", "Heiji Hattori"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-18",
+    "answersAr": ["سانجي", "رورونوا زورو", "أوسوب", "فرانكي"],
+    "answersEn": ["Sanji", "Roronoa Zoro", "Usopp", "Franky"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-19",
+    "answersAr": ["كوراما", "شوكاكو", "غيوكي", "ماتاتابي"],
+    "answersEn": ["Kurama", "Shukaku", "Gyuki", "Matatabi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-20",
+    "answersAr": ["دكتور جيرو", "دكتور بريف", "دكتور ويلو", "بولما"],
+    "answersEn": ["Dr. Gero", "Dr. Brief", "Dr. Wheelo", "Bulma"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-21",
+    "answersAr": ["ماريا", "روز", "سينا", "يمير"],
+    "answersEn": ["Maria", "Rose", "Sina", "Ymir"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-22",
+    "answersAr": ["تنفّس الماء", "تنفّس اللهب", "تنفّس الرعد", "تنفّس الرياح"],
+    "answersEn": ["Water Breathing", "Flame Breathing", "Thunder Breathing", "Wind Breathing"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-23",
+    "answersAr": ["ون فور أول", "الانفجار", "نصف بارد ونصف ساخن", "المحو"],
+    "answersEn": ["One For All", "Explosion", "Half-Cold Half-Hot", "Erasure"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-24",
+    "answersAr": ["وينري روكبل", "ريزا هوكاي", "إيزومي كورتيس", "روز توماس"],
+    "answersEn": ["Winry Rockbell", "Riza Hawkeye", "Izumi Curtis", "Rose Thomas"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-25",
+    "answersAr": ["توشيرو هيتسوغايا", "بياكويا كوتشيكي", "كينباتشي زاراكي", "ساجين كومامورا"],
+    "answersEn": ["Toshiro Hitsugaya", "Byakuya Kuchiki", "Kenpachi Zaraki", "Sajin Komamura"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-26",
+    "answersAr": ["الطاقة الملعونة", "التشاكرا", "النين", "الكي"],
+    "answersEn": ["Cursed Energy", "Chakra", "Nen", "Ki"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-27",
+    "answersAr": ["صيّاد", "طبيب", "عالم آثار", "مدرّس"],
+    "answersEn": ["Hunter", "Doctor", "Archaeologist", "Teacher"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-28",
+    "answersAr": ["ري هينو", "أوساغي تسوكينو", "آمي ميزونو", "ماكوتو كينو"],
+    "answersEn": ["Rei Hino", "Usagi Tsukino", "Ami Mizuno", "Makoto Kino"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-29",
+    "answersAr": ["كهربائي", "ناري", "مائي", "عشبي"],
+    "answersEn": ["Electric", "Fire", "Water", "Grass"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-30",
+    "answersAr": ["آتِم", "يامي باكورا", "شادي", "ماهاد"],
+    "answersEn": ["Atem", "Yami Bakura", "Shadi", "Mahad"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-31",
+    "answersAr": ["نصف شيطان", "شيطان كامل", "إنسان", "روح"],
+    "answersEn": ["Half-demon", "Full demon", "Human", "Spirit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-32",
+    "answersAr": ["جوستار", "براندو", "هيغاشيكاتا", "زيبيلي"],
+    "answersEn": ["Joestar", "Brando", "Higashikata", "Zeppeli"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-33",
+    "answersAr": ["قراءة الأفكار", "التحريك الذهني", "رؤية المستقبل", "الاختفاء"],
+    "answersEn": ["Mind reading", "Telekinesis", "Precognition", "Invisibility"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-34",
+    "answersAr": ["جينوس", "بانغ", "كينغ", "ميتال نايت"],
+    "answersEn": ["Genos", "Bang", "King", "Metal Knight"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-35",
+    "answersAr": ["تقنية إله الرعد الطائر", "تشيدوري", "أماتيراسو", "البوابات الثمانية"],
+    "answersEn": ["Flying Thunder God Technique", "Chidori", "Amaterasu", "Eight Gates"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-36",
+    "answersAr": ["نورث بلو", "إيست بلو", "ويست بلو", "ساوث بلو"],
+    "answersEn": ["North Blue", "East Blue", "West Blue", "South Blue"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-37",
+    "answersAr": ["أكرمان", "ياغر", "أرليت", "رايس"],
+    "answersEn": ["Ackerman", "Yeager", "Arlert", "Reiss"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-38",
+    "answersAr": ["كيمياء اللهب", "كيمياء الجليد", "الكيمياء الحيوية", "الخيمياء الطبية"],
+    "answersEn": ["Flame Alchemy", "Ice Alchemy", "Bio-Alchemy", "Medical Alkahestry"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-39",
+    "answersAr": ["كوتشيكي", "شيهوين", "شيبا", "تسوناياشيرو"],
+    "answersEn": ["Kuchiki", "Shihōin", "Shiba", "Tsunayashiro"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-40",
+    "answersAr": ["رقصة الاندماج", "اندماج البوتارا", "الاندماج الناميكي", "الامتصاص"],
+    "answersEn": ["Fusion Dance", "Potara Fusion", "Namekian Fusion", "Absorption"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-41",
+    "answersAr": ["نيتشيرين", "الميثريل", "الأوريكالكوم", "الأدامانتيت"],
+    "answersEn": ["Nichirin", "Mithril", "Orichalcum", "Adamantite"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-42",
+    "answersAr": ["أول مايت", "إنديفر", "إيريزر هيد", "هوكس"],
+    "answersEn": ["All Might", "Endeavor", "Eraser Head", "Hawks"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-43",
+    "answersAr": ["ريم", "ريوك", "سيدوه", "أرمونيا جاستن"],
+    "answersEn": ["Rem", "Ryuk", "Sidoh", "Armonia Justin"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-44",
+    "answersAr": ["قتلة مأجورون", "صيّادون", "تجّار", "أطباء"],
+    "answersEn": ["Assassins", "Hunters", "Merchants", "Doctors"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-45",
+    "answersAr": ["الوحدة 01", "الوحدة 00", "الوحدة 02", "الوحدة 03"],
+    "answersEn": ["Unit-01", "Unit-00", "Unit-02", "Unit-03"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-46",
+    "answersAr": ["السحر", "القوة الجسدية", "العزيمة", "الصوت"],
+    "answersEn": ["Magic", "Physical strength", "Determination", "A voice"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-47",
+    "answersAr": ["هُوؤوين كيوما", "كريستينا", "دارو", "شاينينغ فينغر"],
+    "answersEn": ["Hououin Kyouma", "Christina", "Daru", "Shining Finger"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-48",
+    "answersAr": ["أحمر", "أزرق", "أسود", "أبيض"],
+    "answersEn": ["Red", "Blue", "Black", "White"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-49",
+    "answersAr": ["زيرو", "أورانج", "فارس الصفر", "الموت الأبيض"],
+    "answersEn": ["Zero", "Orange", "Knight of Zero", "White Death"],
+    "correctAnswerIndex": 0
+  }
+]

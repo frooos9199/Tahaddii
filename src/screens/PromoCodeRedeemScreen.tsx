@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert, Linking, Platform, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, Platform, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { redeemPromoCode } from '../services/promo/promoRedeemService';
@@ -12,12 +13,13 @@ type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'PromoC
 
 export default function PromoCodeRedeemScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { user, userRecord, refreshUserRecord } = useAuthStore();
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [resultMessage, setResultMessage] = useState<string | null>(null);
 
-  const isGuest = Boolean(user?.isAnonymous || userRecord?.isGuest);
+  const requiresAccount = !user || user.isAnonymous || Boolean(userRecord?.isGuest);
 
   const redeem = async () => {
     if (!code.trim()) return;
@@ -56,15 +58,15 @@ export default function PromoCodeRedeemScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
-      <View style={styles.content}>
+      <ScrollView contentContainerStyle={[styles.content, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Text style={styles.backText}>‹</Text>
         </TouchableOpacity>
         <Text style={styles.title}>{t('promoRedeem.title')}</Text>
 
-        {isGuest ? (
-          <View style={styles.guestCard}>
-            <Text style={styles.guestText}>{t('promoRedeem.guestNotice')}</Text>
+        {requiresAccount ? (
+          <View style={styles.accountCard}>
+            <Text style={styles.accountText}>{t('promoRedeem.accountNotice')}</Text>
             <TouchableOpacity style={styles.primaryBtn} onPress={() => navigation.navigate('Auth')}>
               <Text style={styles.primaryBtnText}>{t('promoRedeem.registerNow')}</Text>
             </TouchableOpacity>
@@ -86,14 +88,14 @@ export default function PromoCodeRedeemScreen({ navigation }: Props) {
             {resultMessage ? <Text style={styles.resultText}>{resultMessage}</Text> : null}
           </>
         )}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: Colors.background },
-  content: { flex: 1, padding: 24, gap: 16 },
+  content: { flexGrow: 1, padding: 24, gap: 16 },
   backBtn: { padding: 4, alignSelf: 'flex-start' },
   backText: { fontSize: 32, color: Colors.primaryLight, lineHeight: 36 },
   title: { color: Colors.text, fontSize: 26, fontWeight: '900' },
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 14,
   },
-  guestCard: {
+  accountCard: {
     backgroundColor: Colors.backgroundCard,
     borderRadius: 16,
     borderWidth: 1,
@@ -137,5 +139,5 @@ const styles = StyleSheet.create({
     padding: 18,
     gap: 12,
   },
-  guestText: { color: Colors.textMuted, fontSize: 14, lineHeight: 20, textAlign: 'center' },
+  accountText: { color: Colors.textMuted, fontSize: 14, lineHeight: 20, textAlign: 'center' },
 });

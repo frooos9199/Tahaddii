@@ -1,0 +1,242 @@
+[
+  {
+    "id": "flags-hard-21",
+    "answersAr": ["مقدونيا الشمالية", "قيرغيزستان", "الجبل الأسود", "ألبانيا"],
+    "answersEn": ["North Macedonia", "Kyrgyzstan", "Montenegro", "Albania"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-22",
+    "answersAr": ["أوزبكستان", "كازاخستان", "قيرغيزستان", "تركمانستان"],
+    "answersEn": ["Uzbekistan", "Kazakhstan", "Kyrgyzstan", "Turkmenistan"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-23",
+    "answersAr": ["بلغاريا", "بيلاروس", "المجر", "ليتوانيا"],
+    "answersEn": ["Bulgaria", "Belarus", "Hungary", "Lithuania"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-24",
+    "answersAr": ["طاجيكستان", "أوزبكستان", "تركمانستان", "كازاخستان"],
+    "answersEn": ["Tajikistan", "Uzbekistan", "Turkmenistan", "Kazakhstan"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-25",
+    "answersAr": ["تركمانستان", "أوزبكستان", "طاجيكستان", "قيرغيزستان"],
+    "answersEn": ["Turkmenistan", "Uzbekistan", "Tajikistan", "Kyrgyzstan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-26",
+    "answersAr": ["البحرين", "قطر", "عُمان", "الإمارات"],
+    "answersEn": ["Bahrain", "Qatar", "Oman", "United Arab Emirates"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-27",
+    "answersAr": ["قطر", "البحرين", "الإمارات", "الكويت"],
+    "answersEn": ["Qatar", "Bahrain", "United Arab Emirates", "Kuwait"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-28",
+    "answersAr": ["باهاماس", "باربادوس", "سانت لوسيا", "جامايكا"],
+    "answersEn": ["Bahamas", "Barbados", "Saint Lucia", "Jamaica"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-29",
+    "answersAr": ["توفالو", "ناورو", "بالاو", "ولايات ميكرونيزيا المتحدة"],
+    "answersEn": ["Tuvalu", "Nauru", "Palau", "Federated States of Micronesia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-30",
+    "answersAr": ["بالاو", "اليابان", "بنغلادش", "ناورو"],
+    "answersEn": ["Palau", "Japan", "Bangladesh", "Nauru"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-31",
+    "answersAr": ["جزر مارشال", "كيريباتي", "ولايات ميكرونيزيا المتحدة", "ناورو"],
+    "answersEn": ["Marshall Islands", "Kiribati", "Federated States of Micronesia", "Nauru"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-32",
+    "answersAr": ["جزر مارشال", "بالاو", "ولايات ميكرونيزيا المتحدة", "توفالو"],
+    "answersEn": ["Marshall Islands", "Palau", "Federated States of Micronesia", "Tuvalu"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-hard-33",
+    "answersAr": ["جزر سليمان", "فانواتو", "فيجي", "بابوا غينيا الجديدة"],
+    "answersEn": ["Solomon Islands", "Vanuatu", "Fiji", "Papua New Guinea"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-34",
+    "answersAr": ["جيبوتي", "الصومال", "إريتريا", "إثيوبيا"],
+    "answersEn": ["Djibouti", "Somalia", "Eritrea", "Ethiopia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-35",
+    "answersAr": ["إثيوبيا", "إريتريا", "جيبوتي", "الصومال"],
+    "answersEn": ["Ethiopia", "Eritrea", "Djibouti", "Somalia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-36",
+    "answersAr": ["غانا", "ساو تومي وبرينسيب", "الرأس الأخضر", "غينيا بيساو"],
+    "answersEn": ["Ghana", "São Tomé and Príncipe", "Cape Verde", "Guinea-Bissau"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-37",
+    "answersAr": ["جمهورية أفريقيا الوسطى", "تشاد", "الكاميرون", "الكونغو"],
+    "answersEn": ["Central African Republic", "Chad", "Cameroon", "Republic of the Congo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-38",
+    "answersAr": ["غيانا", "سورينام", "البرازيل", "بوليفيا"],
+    "answersEn": ["Guyana", "Suriname", "Brazil", "Bolivia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-39",
+    "answersAr": ["سورينام", "غيانا", "البرازيل", "بوليفيا"],
+    "answersEn": ["Suriname", "Guyana", "Brazil", "Bolivia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-40",
+    "answersAr": ["بوروندي", "رواندا", "أوغندا", "تنزانيا"],
+    "answersEn": ["Burundi", "Rwanda", "Uganda", "Tanzania"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-41",
+    "answersAr": ["رواندا", "بوروندي", "أوغندا", "تنزانيا"],
+    "answersEn": ["Rwanda", "Burundi", "Uganda", "Tanzania"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-42",
+    "answersAr": ["تنزانيا", "كينيا", "زامبيا", "موزمبيق"],
+    "answersEn": ["Tanzania", "Kenya", "Zambia", "Mozambique"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-43",
+    "answersAr": ["ناميبيا", "بوتسوانا", "زيمبابوي", "جنوب أفريقيا"],
+    "answersEn": ["Namibia", "Botswana", "Zimbabwe", "South Africa"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-hard-44",
+    "answersAr": ["بروناي", "ماليزيا", "إندونيسيا", "الفلبين"],
+    "answersEn": ["Brunei", "Malaysia", "Indonesia", "Philippines"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-45",
+    "answersAr": ["صربيا", "كرواتيا", "الجبل الأسود", "سلوفينيا"],
+    "answersEn": ["Serbia", "Croatia", "Montenegro", "Slovenia"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-hard-46",
+    "answersAr": ["رومانيا", "أندورا", "مولدوفا", "تشاد"],
+    "answersEn": ["Romania", "Andorra", "Moldova", "Chad"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-hard-47",
+    "answersAr": ["صربيا", "الجبل الأسود", "ألبانيا", "مقدونيا الشمالية"],
+    "answersEn": ["Serbia", "Montenegro", "Albania", "North Macedonia"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-hard-48",
+    "answersAr": ["العراق", "اليمن", "مصر", "سوريا"],
+    "answersEn": ["Iraq", "Yemen", "Egypt", "Syria"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-hard-49",
+    "answersAr": ["العراق", "سوريا", "اليمن", "مصر"],
+    "answersEn": ["Iraq", "Syria", "Yemen", "Egypt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-hard-50",
+    "answersAr": ["الإمارات", "الكويت", "الأردن", "فلسطين"],
+    "answersEn": ["United Arab Emirates", "Kuwait", "Jordan", "Palestine"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-new-1",
+    "answersAr": ["إسبانيا", "البرتغال", "ألمانيا", "بلجيكا"],
+    "answersEn": ["Spain", "Portugal", "Germany", "Belgium"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-new-2",
+    "answersAr": ["إسبانيا", "البرتغال", "إيطاليا", "أيرلندا"],
+    "answersEn": ["Spain", "Portugal", "Italy", "Ireland"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-new-3",
+    "answersAr": ["إيطاليا", "ساحل العاج", "أيرلندا", "المكسيك"],
+    "answersEn": ["Italy", "Ivory Coast", "Ireland", "Mexico"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-new-4",
+    "answersAr": ["لوكسمبورغ", "روسيا", "كرواتيا", "هولندا"],
+    "answersEn": ["Luxembourg", "Russia", "Croatia", "Netherlands"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "flags-new-5",
+    "answersAr": ["النمسا", "لاتفيا", "بولندا", "موناكو"],
+    "answersEn": ["Austria", "Latvia", "Poland", "Monaco"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-new-6",
+    "answersAr": ["إندونيسيا", "بولندا", "موناكو", "سنغافورة"],
+    "answersEn": ["Indonesia", "Poland", "Monaco", "Singapore"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "flags-new-7",
+    "answersAr": ["البوسنة والهرسك", "السويد", "أوكرانيا", "كازاخستان"],
+    "answersEn": ["Bosnia and Herzegovina", "Sweden", "Ukraine", "Kazakhstan"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "flags-new-8",
+    "answersAr": ["تشاد", "مولدوفا", "أندورا", "رومانيا"],
+    "answersEn": ["Chad", "Moldova", "Andorra", "Romania"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "flags-new-9",
+    "answersAr": ["المجر", "بلغاريا", "إيران", "طاجيكستان"],
+    "answersEn": ["Hungary", "Bulgaria", "Iran", "Tajikistan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "flags-new-10",
+    "answersAr": ["المجر", "بلغاريا", "إيران", "إيطاليا"],
+    "answersEn": ["Hungary", "Bulgaria", "Iran", "Italy"],
+    "correctAnswerIndex": 1
+  }
+]

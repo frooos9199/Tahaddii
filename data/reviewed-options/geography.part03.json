@@ -1,0 +1,278 @@
+[
+  {
+    "id": "geography-new-5",
+    "answersAr": ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط الجنوبي"],
+    "answersEn": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Southern Ocean"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-6",
+    "answersAr": ["الرباط", "الجزائر", "تونس", "نواكشوط"],
+    "answersEn": ["Rabat", "Algiers", "Tunis", "Nouakchott"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-7",
+    "answersAr": ["البحر الأحمر", "بحر العرب", "البحر المتوسط", "البحر الأسود"],
+    "answersEn": ["Red Sea", "Arabian Sea", "Mediterranean Sea", "Black Sea"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-8",
+    "answersAr": ["النرويج", "فنلندا", "سويسرا", "هولندا"],
+    "answersEn": ["Norway", "Finland", "Switzerland", "Netherlands"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-9",
+    "answersAr": ["نيروبي", "كمبالا", "كيغالي", "أديس أبابا"],
+    "answersEn": ["Nairobi", "Kampala", "Kigali", "Addis Ababa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-10",
+    "answersAr": ["لشبونة", "مدريد", "أندورا لا فيلا", "الرباط"],
+    "answersEn": ["Lisbon", "Madrid", "Andorra la Vella", "Rabat"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-11",
+    "answersAr": ["تركيا", "اليونان", "بلغاريا", "جورجيا"],
+    "answersEn": ["Turkey", "Greece", "Bulgaria", "Georgia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-12",
+    "answersAr": ["بانكوك", "هانوي", "بنوم بنه", "كوالالمبور"],
+    "answersEn": ["Bangkok", "Hanoi", "Phnom Penh", "Kuala Lumpur"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-13",
+    "answersAr": ["أفريقيا", "آسيا", "أمريكا الجنوبية", "أستراليا"],
+    "answersEn": ["Africa", "Asia", "South America", "Australia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-14",
+    "answersAr": ["نيوزيلندا", "أستراليا", "فيجي", "ساموا"],
+    "answersEn": ["New Zealand", "Australia", "Fiji", "Samoa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-15",
+    "answersAr": ["فلوريدا", "كاليفورنيا", "أريزونا", "هاواي"],
+    "answersEn": ["Florida", "California", "Arizona", "Hawaii"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-16",
+    "answersAr": ["مضيق جبل طارق", "مضيق البوسفور", "مضيق الدردنيل", "مضيق صقلية"],
+    "answersEn": ["Strait of Gibraltar", "Bosporus Strait", "Dardanelles Strait", "Strait of Sicily"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-17",
+    "answersAr": ["كوبا", "هيسبانيولا", "جامايكا", "بورتوريكو"],
+    "answersEn": ["Cuba", "Hispaniola", "Jamaica", "Puerto Rico"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-18",
+    "answersAr": ["برن", "زيورخ", "جنيف", "لوزان"],
+    "answersEn": ["Bern", "Zurich", "Geneva", "Lausanne"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-19",
+    "answersAr": ["تشيلي", "أوروغواي", "باراغواي", "بوليفيا"],
+    "answersEn": ["Chile", "Uruguay", "Paraguay", "Bolivia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-20",
+    "answersAr": ["البندقية", "جنوة", "نابولي", "فلورنسا"],
+    "answersEn": ["Venice", "Genoa", "Naples", "Florence"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-21",
+    "answersAr": ["فيزوف", "إتنا", "سترومبولي", "فولكانو"],
+    "answersEn": ["Vesuvius", "Etna", "Stromboli", "Vulcano"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-22",
+    "answersAr": ["أستانا", "طشقند", "بشكيك", "دوشنبه"],
+    "answersEn": ["Astana", "Tashkent", "Bishkek", "Dushanbe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-23",
+    "answersAr": ["الدانوب", "الراين", "فيستولا", "إلبه"],
+    "answersEn": ["Danube", "Rhine", "Vistula", "Elbe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-24",
+    "answersAr": ["كالاهاري", "ناميب", "كارو", "كاوكوفيلد"],
+    "answersEn": ["Kalahari", "Namib", "Karoo", "Kaokoveld"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-25",
+    "answersAr": ["تيتيكاكا", "بوبو", "خونين", "جنرال كاريرا"],
+    "answersEn": ["Titicaca", "Poopo", "Junin", "General Carrera"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-26",
+    "answersAr": ["الفاتيكان", "موناكو", "ناورو", "سان مارينو"],
+    "answersEn": ["Vatican City", "Monaco", "Nauru", "San Marino"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-27",
+    "answersAr": ["مدار السرطان", "خط الاستواء", "مدار الجدي", "الدائرة القطبية الشمالية"],
+    "answersEn": ["Tropic of Cancer", "Equator", "Tropic of Capricorn", "Arctic Circle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-28",
+    "answersAr": ["ريكيافيك", "أوسلو", "هلسنكي", "كوبنهاغن"],
+    "answersEn": ["Reykjavik", "Oslo", "Helsinki", "Copenhagen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-29",
+    "answersAr": ["نيجيريا", "إثيوبيا", "مصر", "جمهورية الكونغو الديمقراطية"],
+    "answersEn": ["Nigeria", "Ethiopia", "Egypt", "Democratic Republic of the Congo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-30",
+    "answersAr": ["جبال الأورال", "جبال القوقاز", "جبال ألتاي", "جبال الكاربات"],
+    "answersEn": ["Ural Mountains", "Caucasus Mountains", "Altai Mountains", "Carpathian Mountains"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-31",
+    "answersAr": ["جنوب أفريقيا", "إسواتيني", "تنزانيا", "نيجيريا"],
+    "answersEn": ["South Africa", "Eswatini", "Tanzania", "Nigeria"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-32",
+    "answersAr": ["خليج المكسيك", "خليج كاليفورنيا", "خليج ألاسكا", "خليج سانت لورنس"],
+    "answersEn": ["Gulf of Mexico", "Gulf of California", "Gulf of Alaska", "Gulf of St. Lawrence"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-33",
+    "answersAr": ["إسلام آباد", "كابل", "دكا", "نيودلهي"],
+    "answersEn": ["Islamabad", "Kabul", "Dhaka", "New Delhi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-34",
+    "answersAr": ["شلالات فيكتوريا", "شلالات كالامبو", "شلالات روسومو", "شلالات توغيلا"],
+    "answersEn": ["Victoria Falls", "Kalambo Falls", "Rusumo Falls", "Tugela Falls"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-35",
+    "answersAr": ["ليسوتو", "إسواتيني", "بوتسوانا", "زيمبابوي"],
+    "answersEn": ["Lesotho", "Eswatini", "Botswana", "Zimbabwe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-36",
+    "answersAr": ["خندق ماريانا", "خندق تونغا", "خندق كرماديك", "خندق الفلبين"],
+    "answersEn": ["Mariana Trench", "Tonga Trench", "Kermadec Trench", "Philippine Trench"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-37",
+    "answersAr": ["شبه الجزيرة الإسكندنافية", "شبه جزيرة يوتلاند", "شبه الجزيرة الأيبيرية", "شبه جزيرة كولا"],
+    "answersEn": ["Scandinavian Peninsula", "Jutland Peninsula", "Iberian Peninsula", "Kola Peninsula"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-38",
+    "answersAr": ["سوكره", "لا باز", "سانتا كروز", "كوتشابامبا"],
+    "answersEn": ["Sucre", "La Paz", "Santa Cruz", "Cochabamba"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-39",
+    "answersAr": ["مضيق بيرينغ", "مضيق ديفيس", "مضيق الدنمارك", "مضيق فرام"],
+    "answersEn": ["Bering Strait", "Davis Strait", "Denmark Strait", "Fram Strait"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-40",
+    "answersAr": ["الميزيتا المركزية", "الهضبة الفرنسية الوسطى", "الهضبة السويسرية", "هضبة الأناضول"],
+    "answersEn": ["Meseta Central", "Massif Central", "Swiss Plateau", "Anatolian Plateau"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-41",
+    "answersAr": ["التيبر", "الأرنو", "البو", "أديجي"],
+    "answersEn": ["Tiber", "Arno", "Po", "Adige"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-42",
+    "answersAr": ["كندا", "فنلندا", "روسيا", "السويد"],
+    "answersEn": ["Canada", "Finland", "Russia", "Sweden"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-43",
+    "answersAr": ["ليوبليانا", "زغرب", "براتيسلافا", "سراييفو"],
+    "answersEn": ["Ljubljana", "Zagreb", "Bratislava", "Sarajevo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-44",
+    "answersAr": ["كليمنجارو", "جبل كينيا", "جبل ستانلي", "رأس داشن"],
+    "answersEn": ["Kilimanjaro", "Mount Kenya", "Mount Stanley", "Ras Dashen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-45",
+    "answersAr": ["الفلبين", "إندونيسيا", "اليابان", "المالديف"],
+    "answersEn": ["Philippines", "Indonesia", "Japan", "Maldives"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-46",
+    "answersAr": ["غوبي", "تكلامكان", "قره قوم", "قيزيل قوم"],
+    "answersEn": ["Gobi", "Taklamakan", "Karakum", "Kyzylkum"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-47",
+    "answersAr": ["النمسا", "ألمانيا", "سويسرا", "التشيك"],
+    "answersEn": ["Austria", "Germany", "Switzerland", "Czechia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-48",
+    "answersAr": ["البحر الأسود", "بحر إيجه", "بحر مرمرة", "بحر آزوف"],
+    "answersEn": ["Black Sea", "Aegean Sea", "Sea of Marmara", "Sea of Azov"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-49",
+    "answersAr": ["أديس أبابا", "نيروبي", "أسمرة", "جيبوتي"],
+    "answersEn": ["Addis Ababa", "Nairobi", "Asmara", "Djibouti"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-50",
+    "answersAr": ["فلتافا", "إلبه", "مورافا", "سازافا"],
+    "answersEn": ["Vltava", "Elbe", "Morava", "Sazava"],
+    "correctAnswerIndex": 0
+  }
+]

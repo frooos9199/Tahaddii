@@ -1,0 +1,254 @@
+[
+  {
+    "id": "arabiclang-new-8",
+    "answersAr": ["نحن", "ـنا", "ـكم", "ـه"],
+    "answersEn": ["we", "-na (attached pronoun)", "-kum (attached pronoun)", "-hu (attached pronoun)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-9",
+    "answersAr": ["لن", "لم", "هل", "قد"],
+    "answersEn": ["lan", "lam", "hal", "qad"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-10",
+    "answersAr": ["سامع", "مسموع", "سماع", "سَمْع"],
+    "answersEn": ["listener/hearing", "heard (passive participle)", "hearing (verbal noun)", "sense of hearing (noun)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-11",
+    "answersAr": ["معلمان", "معلمين", "معلمون", "معلمات"],
+    "answersEn": ["two teachers (nominative)", "two teachers (accusative/genitive)", "male teachers (sound plural)", "female teachers (sound plural)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-12",
+    "answersAr": ["السماءُ صافيةٌ", "أشرقتِ الشمسُ", "يصفو الجوُّ", "عاد المسافرُ"],
+    "answersEn": ["The sky is clear.", "The sun rose.", "The weather clears.", "The traveler returned."],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-13",
+    "answersAr": ["معلمات", "معلمون", "معالم", "معلمان"],
+    "answersEn": ["female teachers", "male teachers", "landmarks", "two teachers"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-14",
+    "answersAr": ["الفاصلة", "الفاصلة المنقوطة", "النقطتان الرأسيتان", "النقطة"],
+    "answersEn": ["comma", "semicolon", "colon", "period"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-15",
+    "answersAr": ["الاستفهام", "الأمر", "النهي", "النداء"],
+    "answersEn": ["interrogation/questioning", "command", "prohibition", "vocative/calling"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-16",
+    "answersAr": ["اكتبْ", "يكتبُ", "كتبَ", "كاتبٌ"],
+    "answersEn": ["write!", "he writes", "he wrote", "writer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-17",
+    "answersAr": ["رجال", "مهندسون", "معلمات", "رجلان"],
+    "answersEn": ["men", "engineers (sound masculine plural)", "female teachers (sound feminine plural)", "two men"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-18",
+    "answersAr": ["اسم إنَّ منصوب", "خبر إنَّ مرفوع", "مبتدأ مرفوع", "فاعل مرفوع"],
+    "answersEn": ["the noun of inna, accusative", "the predicate of inna, nominative", "nominative subject", "nominative agent"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-19",
+    "answersAr": ["السكون", "حذف النون", "حذف حرف العلة", "الفتحة"],
+    "answersEn": ["sukun", "deletion of the nun", "deletion of the weak letter", "fatha"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-20",
+    "answersAr": ["صديقي", "يا", "انتبه", "الضمير المستتر أنت"],
+    "answersEn": ["my friend", "the vocative particle ya", "pay attention", "the implied pronoun you"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-21",
+    "answersAr": ["تعجب", "استفهام", "نداء", "نهي"],
+    "answersEn": ["exclamation/admirative", "interrogation", "vocative", "prohibition"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-22",
+    "answersAr": ["سعاد", "أحمد", "عثمان", "مساجد"],
+    "answersEn": ["Suad", "Ahmad", "Uthman", "mosques"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-23",
+    "answersAr": ["جزر", "جزيرتان", "جزيرات", "جزيرة"],
+    "answersEn": ["islands", "two islands", "islands (sound feminine plural)", "island"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-24",
+    "answersAr": ["نهي", "نفي", "أمر", "استفهام"],
+    "answersEn": ["prohibition", "negation", "command", "interrogation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-25",
+    "answersAr": ["معتدل", "الجو", "أل", "الضمير المستتر هو"],
+    "answersEn": ["mild", "the weather", "the definite article al-", "the implied pronoun he/it"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-26",
+    "answersAr": ["تعلُّم", "تعليم", "متعلِّم", "معلوم"],
+    "answersEn": ["learning", "teaching", "learner (active participle)", "known (passive participle)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-27",
+    "answersAr": ["حمو", "أخ", "يد", "ابن"],
+    "answersEn": ["father-in-law", "brother", "hand", "son"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-28",
+    "answersAr": ["نُهَير", "نَهْر", "أنهار", "نَهَرات"],
+    "answersEn": ["small river", "river", "rivers (broken plural)", "rivers (sound feminine plural)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-29",
+    "answersAr": ["استثناء", "نداء", "تعجب", "شرط"],
+    "answersEn": ["exception", "vocative", "exclamation/admirative", "conditional"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-30",
+    "answersAr": ["مكنسة", "كنّاس", "كَنْس", "مكنوس"],
+    "answersEn": ["broom/sweeper", "sweeper (profession)", "sweeping (verbal noun)", "swept (passive participle)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-31",
+    "answersAr": ["عربيّ", "كاتب", "مكتوب", "كتاب"],
+    "answersEn": ["Arab/Arabic (nisba adjective)", "writer (active participle)", "written (passive participle)", "book"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-32",
+    "answersAr": ["ابن المقفع", "الجاحظ", "ابن قتيبة", "بديع الزمان الهمذاني"],
+    "answersEn": ["Ibn al-Muqaffa", "Al-Jahiz", "Ibn Qutaybah", "Badi al-Zaman al-Hamadhani"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-33",
+    "answersAr": ["أبو العلاء المعري", "أبو تمام", "البحتري", "أبو نواس"],
+    "answersEn": ["Abu al-Ala al-Ma'arri", "Abu Tammam", "Al-Buhturi", "Abu Nuwas"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-34",
+    "answersAr": ["المتنبي", "أبو تمام", "البحتري", "أبو فراس الحمداني"],
+    "answersEn": ["Al-Mutanabbi", "Abu Tammam", "Al-Buhturi", "Abu Firas al-Hamdani"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-35",
+    "answersAr": ["استعارة مكنية", "استعارة تصريحية", "تشبيه بليغ", "كناية"],
+    "answersEn": ["implicit metaphor", "explicit metaphor", "eloquent simile", "metonymy"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-36",
+    "answersAr": ["باء زائدة", "باء الجر الأصلية", "باء القسم", "باء السببية"],
+    "answersEn": ["extra/emphatic ba'", "original prepositional ba'", "ba' of oath", "causal ba'"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-37",
+    "answersAr": ["مصابيح", "معلمون", "معلمات", "رجلان"],
+    "answersEn": ["lamps", "male teachers (sound masculine plural)", "female teachers (sound feminine plural)", "two men"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-38",
+    "answersAr": ["فعل أمر", "فعل ماضٍ", "فعل مضارع", "اسم فعل"],
+    "answersEn": ["imperative verb", "past-tense verb", "present-tense verb", "verbal noun functioning as a verb"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-39",
+    "answersAr": ["جملة اسمية", "مفرد", "جملة فعلية", "شبه جملة"],
+    "answersEn": ["nominal sentence", "single-word predicate", "verbal sentence predicate", "quasi-sentence"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-40",
+    "answersAr": ["إنما", "إلا", "ما...إلا", "لكنَّ"],
+    "answersEn": ["innama", "illa", "ma...illa", "lakinna"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-41",
+    "answersAr": ["حرف نصب وتعليل", "حرف جزم ونفي", "حرف عطف", "حرف جر"],
+    "answersEn": ["particle of subjunctive and causation", "particle of jussive and negation", "conjunction", "preposition"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-42",
+    "answersAr": ["الرومانسية", "الكلاسيكية", "الواقعية", "الرمزية"],
+    "answersEn": ["Romanticism", "Classicism", "Realism", "Symbolism"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-43",
+    "answersAr": ["عبد الرحمن بن خلدون", "الجاحظ", "ابن قتيبة", "المسعودي"],
+    "answersEn": ["Abd al-Rahman Ibn Khaldun", "Al-Jahiz", "Ibn Qutaybah", "Al-Masudi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-44",
+    "answersAr": ["الإنكار", "التقرير", "التمني", "التعجب"],
+    "answersEn": ["denial/rebuke", "affirmation", "wish", "exclamation/admirative"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-45",
+    "answersAr": ["الداعي", "الفتى", "صحراء", "كتاب"],
+    "answersEn": ["the caller", "the youth (maqsur noun)", "desert (extended noun)", "book (sound-ending noun)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-46",
+    "answersAr": ["تمني", "ترجٍّ", "نداء", "تعجب"],
+    "answersEn": ["wish", "hope/expectation", "vocative", "exclamation/admirative"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-47",
+    "answersAr": ["لأن ما قبلها مكسور", "لأن ما قبلها مفتوح", "لأن ما قبلها مضموم", "لأن ما قبلها ساكن"],
+    "answersEn": ["because the preceding letter has kasra", "because the preceding letter has fatha", "because the preceding letter has damma", "because the preceding letter has sukun"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-48",
+    "answersAr": ["أبو فراس الحمداني", "المتنبي", "أبو تمام", "البحتري"],
+    "answersEn": ["Abu Firas al-Hamdani", "Al-Mutanabbi", "Abu Tammam", "Al-Buhturi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-49",
+    "answersAr": ["طباق", "جناس", "مقابلة", "سجع"],
+    "answersEn": ["antithesis", "paronomasia", "contrast across multiple pairs", "rhymed prose"],
+    "correctAnswerIndex": 0
+  }
+]

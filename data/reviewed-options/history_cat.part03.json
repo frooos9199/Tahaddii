@@ -1,0 +1,242 @@
+[
+  {
+    "id": "history-new-11",
+    "answersAr": ["الإمبراطورية الرومانية", "الإمبراطورية الفرثية", "المملكة البطلمية", "الإمبراطورية السلوقية"],
+    "answersEn": ["Roman Empire", "Parthian Empire", "Ptolemaic Kingdom", "Seleucid Empire"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-12",
+    "answersAr": ["الموت الأسود", "طاعون جستنيان", "طاعون لندن العظيم", "جائحة الطاعون الثالثة"],
+    "answersEn": ["Black Death", "Plague of Justinian", "Great Plague of London", "Third plague pandemic"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-13",
+    "answersAr": ["جان دارك", "إليانور آكيتاين", "كاترين دي ميديشي", "ماري أنطوانيت"],
+    "answersEn": ["Joan of Arc", "Eleanor of Aquitaine", "Catherine de' Medici", "Marie Antoinette"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-14",
+    "answersAr": ["الإغريق", "المينويون", "الإتروسكان", "الفينيقيون"],
+    "answersEn": ["Greeks", "Minoans", "Etruscans", "Phoenicians"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-15",
+    "answersAr": ["نيل أرمسترونغ", "باز ألدرن", "يوري غاغارين", "آلان شيبرد"],
+    "answersEn": ["Neil Armstrong", "Buzz Aldrin", "Yuri Gagarin", "Alan Shepard"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-16",
+    "answersAr": ["نيلسون مانديلا", "أوليفر تامبو", "ستيف بيكو", "ديزموند توتو"],
+    "answersEn": ["Nelson Mandela", "Oliver Tambo", "Steve Biko", "Desmond Tutu"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-17",
+    "answersAr": ["طريق الحرير", "طريق التوابل", "طريق البخور", "طريق الكهرمان"],
+    "answersEn": ["Silk Road", "Spice Route", "Incense Route", "Amber Road"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-18",
+    "answersAr": ["أسرة مينغ", "أسرة يوان", "أسرة تشينغ", "أسرة سونغ"],
+    "answersEn": ["Ming dynasty", "Yuan dynasty", "Qing dynasty", "Song dynasty"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-19",
+    "answersAr": ["قسطنطين الكبير", "ثيودوسيوس الأول", "جستنيان الأول", "دقلديانوس"],
+    "answersEn": ["Constantine the Great", "Theodosius I", "Justinian I", "Diocletian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-20",
+    "answersAr": ["توسان لوفرتور", "سيمون بوليفار", "خوسيه دي سان مارتين", "ميغيل هيدالغو"],
+    "answersEn": ["Toussaint Louverture", "Simón Bolívar", "José de San Martín", "Miguel Hidalgo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-21",
+    "answersAr": ["شريعة حمورابي", "شريعة أور نمو", "قوانين إشنونة", "القوانين الحثية"],
+    "answersEn": ["Code of Hammurabi", "Code of Ur-Nammu", "Laws of Eshnunna", "Hittite laws"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-22",
+    "answersAr": ["معاهدة فرساي", "معاهدة أوترخت", "معاهدة باريس عام 1763", "معاهدة فرانكفورت"],
+    "answersEn": ["Treaty of Versailles", "Treaty of Utrecht", "Treaty of Paris (1763)", "Treaty of Frankfurt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-23",
+    "answersAr": ["المايا", "التولتك", "الأزتك", "الزابوتك"],
+    "answersEn": ["Maya", "Toltec", "Aztec", "Zapotec"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-24",
+    "answersAr": ["جنكيز خان", "جاموقا", "قوبلاي خان", "تيمورلنك"],
+    "answersEn": ["Genghis Khan", "Jamukha", "Kublai Khan", "Timur"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-25",
+    "answersAr": ["الإصلاح البروتستانتي", "الحركة الهوسية", "الصحوة الكبرى", "حركة أكسفورد"],
+    "answersEn": ["Protestant Reformation", "Hussite movement", "Great Awakening", "Oxford Movement"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-26",
+    "answersAr": ["توت عنخ آمون", "سيتي الأول", "تحتمس الثالث", "أمنحتب الثاني"],
+    "answersEn": ["Tutankhamun", "Seti I", "Thutmose III", "Amenhotep II"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-27",
+    "answersAr": ["مايكل أنجلو", "رافائيل", "ساندرو بوتيتشيلي", "بيترو بيروجينو"],
+    "answersEn": ["Michelangelo", "Raphael", "Sandro Botticelli", "Pietro Perugino"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-28",
+    "answersAr": ["دستور الولايات المتحدة", "إعلان الاستقلال", "وثائق الكونفدرالية", "وثيقة الحقوق"],
+    "answersEn": ["United States Constitution", "Declaration of Independence", "Articles of Confederation", "Bill of Rights"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-29",
+    "answersAr": ["نيكيتا خروتشوف", "ليونيد بريجنيف", "غيورغي مالينكوف", "يوري أندروبوف"],
+    "answersEn": ["Nikita Khrushchev", "Leonid Brezhnev", "Georgy Malenkov", "Yuri Andropov"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-30",
+    "answersAr": ["بومبي", "أوستيا", "كابوا", "نيابوليس"],
+    "answersEn": ["Pompeii", "Ostia", "Capua", "Neapolis"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-31",
+    "answersAr": ["كارل ماركس", "فرديناند لاسال", "موسى هس", "أوغست بيبل"],
+    "answersEn": ["Karl Marx", "Ferdinand Lassalle", "Moses Hess", "August Bebel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-32",
+    "answersAr": ["إمبراطورية مالي", "إمبراطورية سونغاي", "إمبراطورية غانا", "إمبراطورية كانم برنو"],
+    "answersEn": ["Mali Empire", "Songhai Empire", "Ghana Empire", "Kanem-Bornu Empire"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-33",
+    "answersAr": ["أميليا إيرهارت", "بيريل ماركهام", "إيمي جونسون", "هارييت كويمبي"],
+    "answersEn": ["Amelia Earhart", "Beryl Markham", "Amy Johnson", "Harriet Quimby"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-34",
+    "answersAr": ["صلاح الدين الأيوبي", "نور الدين زنكي", "الظاهر بيبرس", "الملك الكامل"],
+    "answersEn": ["Saladin", "Nur ad-Din Zengi", "Baibars", "Al-Kamil"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-35",
+    "answersAr": ["تشنغ خه", "تشي جي غوانغ", "يو دايو", "شي لانغ"],
+    "answersEn": ["Zheng He", "Qi Jiguang", "Yu Dayou", "Shi Lang"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-36",
+    "answersAr": ["معركة تورز", "معركة نهر الغارون", "معركة تولوز", "معركة كوفادونغا"],
+    "answersEn": ["Battle of Tours", "Battle of the River Garonne", "Battle of Toulouse", "Battle of Covadonga"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-37",
+    "answersAr": ["نيقولا الثاني", "ألكسندر الثالث", "ألكسندر الثاني", "نيقولا الأول"],
+    "answersEn": ["Nicholas II", "Alexander III", "Alexander II", "Nicholas I"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-38",
+    "answersAr": ["صلح وستفاليا", "صلح أوغسبورغ", "صلح براغ", "معاهدة البرانس"],
+    "answersEn": ["Peace of Westphalia", "Peace of Augsburg", "Peace of Prague", "Treaty of the Pyrenees"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-39",
+    "answersAr": ["تمبكتو", "نياني", "مدينة بنين", "أويو إيلي"],
+    "answersEn": ["Timbuktu", "Niani", "Benin City", "Oyo-Ile"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-40",
+    "answersAr": ["هو تشي منه", "فان بوي تشاو", "فو نغوين جياب", "نغو دينه ديم"],
+    "answersEn": ["Ho Chi Minh", "Phan Bội Châu", "Võ Nguyên Giáp", "Ngô Đình Diệm"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-41",
+    "answersAr": ["الإنكشارية", "العزب", "السكبان", "البستانجية"],
+    "answersEn": ["Janissaries", "Azabs", "Sekbans", "Bostanjis"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-42",
+    "answersAr": ["الإنكا", "المايا", "الأزتك", "المويسكا"],
+    "answersEn": ["Inca", "Maya", "Aztec", "Muisca"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-43",
+    "answersAr": ["قسطنطين الأول", "ثيودوسيوس الأول", "غاليريوس", "دقلديانوس"],
+    "answersEn": ["Constantine I", "Theodosius I", "Galerius", "Diocletian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-44",
+    "answersAr": ["الميتا", "الإنكوميندا", "الريبارتيميينتو", "نظام الهاسيندا"],
+    "answersEn": ["Mita", "Encomienda", "Repartimiento", "Hacienda system"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-45",
+    "answersAr": ["إليزابيث الأولى", "ماري الأولى", "ماري ملكة اسكتلندا", "كاترين دي ميديشي"],
+    "answersEn": ["Elizabeth I", "Mary I", "Mary, Queen of Scots", "Catherine de' Medici"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-46",
+    "answersAr": ["مؤتمر برلين", "مؤتمر بروكسل", "مؤتمر الجزيرة الخضراء", "مؤتمر باريس"],
+    "answersEn": ["Berlin Conference", "Brussels Conference", "Algeciras Conference", "Paris Conference"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-47",
+    "answersAr": ["حنبعل برقا", "حملقار برقا", "ماجو برقا", "صدربعل العادل"],
+    "answersEn": ["Hannibal Barca", "Hamilcar Barca", "Mago Barca", "Hasdrubal the Fair"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-48",
+    "answersAr": ["التمرد الهندي عام 1857", "تمرد فيلور", "تمرد السانتال", "ثورة بايكا"],
+    "answersEn": ["Indian Rebellion of 1857", "Vellore Mutiny", "Santal Rebellion", "Paika Rebellion"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-49",
+    "answersAr": ["عصر ميجي", "عصر تايشو", "فترة إيدو", "عصر شووا"],
+    "answersEn": ["Meiji Era", "Taishō Era", "Edo period", "Shōwa Era"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-50",
+    "answersAr": ["الخمسة والتسعون أطروحة", "اعتراف أوغسبورغ", "مرسوم فورمس", "مناظرة هايدلبرغ"],
+    "answersEn": ["Ninety-Five Theses", "Augsburg Confession", "Edict of Worms", "Heidelberg Disputation"],
+    "correctAnswerIndex": 0
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "geography-hard-10",
+    "answersAr": ["بحيرة بايكال", "بحيرة تنجانيقا", "بحر قزوين", "بحيرة فوستوك"],
+    "answersEn": ["Lake Baikal", "Lake Tanganyika", "Caspian Sea", "Lake Vostok"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-11",
+    "answersAr": ["جمهورية الكونغو الديمقراطية", "إندونيسيا", "البرازيل", "بيرو"],
+    "answersEn": ["Democratic Republic of the Congo", "Indonesia", "Brazil", "Peru"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-12",
+    "answersAr": ["شبه الجزيرة العربية", "شبه الجزيرة الهندية", "شبه جزيرة الهند الصينية", "شبه جزيرة لابرادور"],
+    "answersEn": ["Arabian Peninsula", "Indian Peninsula", "Indochinese Peninsula", "Labrador Peninsula"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-13",
+    "answersAr": ["دلتا النيل", "دلتا الغانج-براهمابوترا", "دلتا ميكونغ", "دلتا النيجر"],
+    "answersEn": ["Nile Delta", "Ganges-Brahmaputra Delta", "Mekong Delta", "Niger Delta"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-14",
+    "answersAr": ["وسط كازاخستان", "شينجيانغ في الصين", "صحراء غوبي في منغوليا", "سيبيريا في روسيا"],
+    "answersEn": ["Central Kazakhstan", "Xinjiang, China", "Gobi Desert, Mongolia", "Siberia, Russia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-15",
+    "answersAr": ["سردينيا", "صقلية", "قبرص", "كورسيكا"],
+    "answersEn": ["Sardinia", "Sicily", "Cyprus", "Corsica"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-16",
+    "answersAr": ["النرويج", "فنلندا", "السويد", "كندا"],
+    "answersEn": ["Norway", "Finland", "Sweden", "Canada"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-17",
+    "answersAr": ["صحراء غوبي", "صحراء تكلامكان", "صحراء قيزيل قوم", "كل ما سبق"],
+    "answersEn": ["Gobi Desert", "Taklamakan Desert", "Kyzylkum Desert", "All of the above"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "geography-hard-18",
+    "answersAr": ["البحر الميت", "منخفض القطارة", "منخفض توربان", "منخفض دناكل"],
+    "answersEn": ["Dead Sea shore", "Qattara Depression", "Turpan Depression", "Danakil Depression"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-19",
+    "answersAr": ["فنلندا", "السويد", "النرويج", "آيسلندا"],
+    "answersEn": ["Finland", "Sweden", "Norway", "Iceland"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-20",
+    "answersAr": ["المحيط الهادئ", "المحيط الأطلسي", "المحيط المتجمد الجنوبي", "المحيط الهندي"],
+    "answersEn": ["Pacific Ocean", "Atlantic Ocean", "Southern Ocean", "Indian Ocean"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-21",
+    "answersAr": ["هضبة ألتيبلانو", "هضبة التبت", "الهضبة الإثيوبية", "الهضبة الأرمنية"],
+    "answersEn": ["Altiplano Plateau", "Tibetan Plateau", "Ethiopian Plateau", "Armenian Plateau"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-22",
+    "answersAr": ["خليج عمان", "الخليج العربي", "خليج عدن", "خليج العقبة"],
+    "answersEn": ["Gulf of Oman", "Arabian/Persian Gulf", "Gulf of Aden", "Gulf of Aqaba"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-23",
+    "answersAr": ["الجزائر", "جمهورية الكونغو الديمقراطية", "السودان", "ليبيا"],
+    "answersEn": ["Algeria", "Democratic Republic of the Congo", "Sudan", "Libya"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-24",
+    "answersAr": ["نهر الدانوب", "نهر الفولغا", "نهر الأورال", "نهر دنيبر"],
+    "answersEn": ["Danube River", "Volga River", "Ural River", "Dnieper River"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-25",
+    "answersAr": ["كازاخستان", "منغوليا", "روسيا", "الصين"],
+    "answersEn": ["Kazakhstan", "Mongolia", "Russia", "China"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-26",
+    "answersAr": ["جبل إتنا", "كيلاويا", "مونا لوا", "نيراغونغو"],
+    "answersEn": ["Mount Etna", "Kilauea", "Mauna Loa", "Nyiragongo"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-27",
+    "answersAr": ["الدنمارك", "الولايات المتحدة", "روسيا", "فرنسا"],
+    "answersEn": ["Denmark", "United States", "Russia", "France"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-28",
+    "answersAr": ["المنطقة شبه القطبية", "القطب الشمالي (الآركتيك)", "أرخبيل القطب الشمالي الكندي", "غرينلاند"],
+    "answersEn": ["The Subarctic", "The Arctic", "Canadian Arctic Archipelago", "Greenland"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-29",
+    "answersAr": ["الصين", "روسيا", "الهند", "كازاخستان"],
+    "answersEn": ["China", "Russia", "India", "Kazakhstan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-30",
+    "answersAr": ["نهر السين", "نهر التايمز", "نهر ترينت", "نهر ميرسي"],
+    "answersEn": ["Seine River", "Thames River", "Trent River", "Mersey River"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-31",
+    "answersAr": ["السودان", "إثيوبيا", "المكسيك", "بيرو"],
+    "answersEn": ["Sudan", "Ethiopia", "Mexico", "Peru"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-32",
+    "answersAr": ["مونت بلانك", "إلبروس", "ديخ تاو", "شخارا"],
+    "answersEn": ["Mont Blanc", "Elbrus", "Dykh-Tau", "Shkhara"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-33",
+    "answersAr": ["كندا", "البرازيل", "روسيا", "الولايات المتحدة"],
+    "answersEn": ["Canada", "Brazil", "Russia", "United States"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-34",
+    "answersAr": ["الشعاب الاصطناعية", "شعاب الترميم", "الشعاب الهامشية", "الشعاب الرقعية"],
+    "answersEn": ["Artificial reefs", "Restoration reefs", "Fringing reefs", "Patch reefs"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-35",
+    "answersAr": ["الأرجنتين", "البرازيل", "بيرو", "كولومبيا"],
+    "answersEn": ["Argentina", "Brazil", "Peru", "Colombia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-36",
+    "answersAr": ["صحراء ناميب", "صحراء كالاهاري", "صحراء كارو", "صحراء نيري"],
+    "answersEn": ["Namib Desert", "Kalahari Desert", "Karoo Desert", "Nyiri Desert"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-37",
+    "answersAr": ["كندا والولايات المتحدة", "كازاخستان وروسيا", "الأرجنتين وتشيلي", "الصين ومنغوليا"],
+    "answersEn": ["Canada and United States", "Kazakhstan and Russia", "Argentina and Chile", "China and Mongolia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-38",
+    "answersAr": ["بورنيو", "سومطرة", "هونشو", "سولاوسي"],
+    "answersEn": ["Borneo", "Sumatra", "Honshu", "Sulawesi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-39",
+    "answersAr": ["مصر", "الصين", "إثيوبيا", "الأردن"],
+    "answersEn": ["Egypt", "China", "Ethiopia", "Jordan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-40",
+    "answersAr": ["أرخبيل الملايو", "أرخبيل القطب الشمالي الكندي", "الأرخبيل الياباني", "أرخبيل الفلبين"],
+    "answersEn": ["Malay Archipelago", "Canadian Arctic Archipelago", "Japanese Archipelago", "Philippine Archipelago"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-41",
+    "answersAr": ["أوروبا", "آسيا", "أفريقيا", "أستراليا"],
+    "answersEn": ["Europe", "Asia", "Africa", "Australia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-42",
+    "answersAr": ["رأس الرجاء الصالح", "رأس أغولهاس", "رأس غاردافوي", "رأس بالماس"],
+    "answersEn": ["Cape of Good Hope", "Cape Agulhas", "Cape Guardafui", "Cape Palmas"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-43",
+    "answersAr": ["إندونيسيا وماليزيا", "ماليزيا وسنغافورة", "إندونيسيا وسنغافورة", "ماليزيا وتايلاند"],
+    "answersEn": ["Indonesia and Malaysia", "Malaysia and Singapore", "Indonesia and Singapore", "Malaysia and Thailand"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-44",
+    "answersAr": ["شلالات فيكتوريا", "شلالات توغيلا", "شلالات كالامبو", "شلالات النيل الأزرق"],
+    "answersEn": ["Victoria Falls", "Tugela Falls", "Kalambo Falls", "Blue Nile Falls"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-45",
+    "answersAr": ["تشيلي", "الأرجنتين", "بيرو", "الإكوادور"],
+    "answersEn": ["Chile", "Argentina", "Peru", "Ecuador"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-hard-46",
+    "answersAr": ["نهر بيكوس", "ريو غراندي", "نهر جيلا", "نهر ياكي"],
+    "answersEn": ["Pecos River", "Rio Grande", "Gila River", "Yaqui River"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-47",
+    "answersAr": ["أوروبا", "أستراليا (أوقيانوسيا)", "القارة القطبية الجنوبية", "أمريكا الجنوبية"],
+    "answersEn": ["Europe", "Australia (Oceania)", "Antarctica", "South America"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-48",
+    "answersAr": ["خط غرينتش", "خط الاستواء", "خط التاريخ الدولي", "مدار السرطان"],
+    "answersEn": ["Prime Meridian", "Equator", "International Date Line", "Tropic of Cancer"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "geography-hard-49",
+    "answersAr": ["أستراليا", "كندا", "روسيا", "الولايات المتحدة"],
+    "answersEn": ["Australia", "Canada", "Russia", "United States"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-hard-50",
+    "answersAr": ["نهر الكونغو", "نهر النيل", "نهر النيجر", "نهر زامبيزي"],
+    "answersEn": ["Congo River", "Nile River", "Niger River", "Zambezi River"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "geography-new-1",
+    "answersAr": ["كانبرا", "سيدني", "ملبورن", "بريزبن"],
+    "answersEn": ["Canberra", "Sydney", "Melbourne", "Brisbane"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-2",
+    "answersAr": ["أفريقيا", "آسيا", "أمريكا الجنوبية", "أوقيانوسيا"],
+    "answersEn": ["Africa", "Asia", "South America", "Oceania"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-3",
+    "answersAr": ["السين", "المارن", "اللوار", "الرون"],
+    "answersEn": ["Seine", "Marne", "Loire", "Rhône"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "geography-new-4",
+    "answersAr": ["كندا", "لبنان", "قبرص", "غرينادا"],
+    "answersEn": ["Canada", "Lebanon", "Cyprus", "Grenada"],
+    "correctAnswerIndex": 0
+  }
+]

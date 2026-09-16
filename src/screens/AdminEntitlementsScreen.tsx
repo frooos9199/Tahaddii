@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Alert, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { listAppUsers } from '../services/admin/adminService';
 import { listPackages } from '../services/packages/packageService';
 import { grantEntitlementDirectly } from '../services/entitlements/adminEntitlementService';
+import { formatUserIdentifierLabel } from '../services/entitlements/entitlementService';
 import { useAuthStore } from '../store/authStore';
 import { AppUserRecord, CategoryId, Package, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
@@ -23,6 +25,7 @@ const getCategoryName = (t: (key: string, options?: Record<string, unknown>) => 
 
 export default function AdminEntitlementsScreen({ navigation, route }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { userRecord } = useAuthStore();
   const presetUid = route.params?.presetUid;
   const [users, setUsers] = useState<AppUserRecord[]>([]);
@@ -50,7 +53,7 @@ export default function AdminEntitlementsScreen({ navigation, route }: Props) {
         const presetUser = nextUsers.find(user => user.uid === presetUid);
         if (presetUser) {
           setSelectedUids([presetUid]);
-          setSearch(String(presetUser.customerNumber ?? presetUser.displayName ?? ''));
+          setSearch(String(presetUser.customerNumber ?? presetUser.guestNumber ?? presetUser.displayName ?? ''));
         }
       }
     } catch (error) {
@@ -74,6 +77,7 @@ export default function AdminEntitlementsScreen({ navigation, route }: Props) {
     if (!query) return users;
     return users.filter(user =>
       String(user.customerNumber ?? '').includes(query)
+      || String(user.guestNumber ?? '').includes(query)
       || user.displayName?.toLowerCase().includes(query)
       || user.email?.toLowerCase().includes(query));
   }, [users, search]);
@@ -158,7 +162,7 @@ export default function AdminEntitlementsScreen({ navigation, route }: Props) {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
-      <ScrollView contentContainerStyle={styles.scroll}>
+      <ScrollView contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(insets.bottom, 16) + 20 }]}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
             <Text style={styles.backText}>‹</Text>
@@ -195,7 +199,7 @@ export default function AdminEntitlementsScreen({ navigation, route }: Props) {
             return (
               <TouchableOpacity key={user.uid} style={[styles.userRow, isSelected && styles.userRowSelected]} onPress={() => toggleUser(user.uid)}>
                 <View style={styles.userInfo}>
-                  <Text style={styles.userName}>{user.displayName || 'User'}{user.customerNumber ? ` · #${user.customerNumber}` : ''}</Text>
+                  <Text style={styles.userName}>{user.displayName || 'User'}{formatUserIdentifierLabel(user) ? ` · ${formatUserIdentifierLabel(user)}` : ''}</Text>
                   <Text style={styles.userMeta}>{user.email || t('admin.guestUser')}</Text>
                   {hasActiveAccess ? (
                     <Text style={styles.userMetaActive}>{t('admin.subscriptionUntil', { date: new Date(user.entitlementExpiresAtMs as number).toLocaleDateString() })}</Text>

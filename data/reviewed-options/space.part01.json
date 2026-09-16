@@ -1,0 +1,242 @@
+[
+  {
+    "id": "space-e1",
+    "answersAr": ["المشتري", "المريخ", "الزهرة", "عطارد"],
+    "answersEn": ["Jupiter", "Mars", "Venus", "Mercury"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-m1",
+    "answersAr": ["الشعرى اليمانية", "الشمس", "بروكسيما سنتوري", "النسر الواقع"],
+    "answersEn": ["Sirius", "The Sun", "Proxima Centauri", "Vega"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-h1",
+    "answersAr": ["نيل آرمسترونغ", "يوري غاغارين", "جون غلين", "آلان شيبرد"],
+    "answersEn": ["Neil Armstrong", "Yuri Gagarin", "John Glenn", "Alan Shepard"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-g01",
+    "answersAr": ["ثمانية", "سبعة", "تسعة", "عشرة"],
+    "answersEn": ["Eight", "Seven", "Nine", "Ten"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-g02",
+    "answersAr": ["تيتان", "القمر", "أوروبا", "غانيميد"],
+    "answersEn": ["Titan", "Moon", "Europa", "Ganymede"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-g03",
+    "answersAr": ["الزهرة", "المشتري", "المريخ", "أورانوس"],
+    "answersEn": ["Venus", "Jupiter", "Mars", "Uranus"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-g04",
+    "answersAr": ["الشعرى اليمانية", "بروكسيما سنتوري", "النسر الواقع", "الشمس"],
+    "answersEn": ["Sirius", "Proxima Centauri", "Vega", "Sun"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "space-g05",
+    "answersAr": ["زحل", "نبتون", "الأرض", "عطارد"],
+    "answersEn": ["Saturn", "Neptune", "Earth", "Mercury"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-g06",
+    "answersAr": ["واحد", "اثنان", "ثلاثة", "أربعة"],
+    "answersEn": ["One", "Two", "Three", "Four"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-g07",
+    "answersAr": ["الزهرة", "نبتون", "عطارد", "الأرض"],
+    "answersEn": ["Venus", "Neptune", "Mercury", "Earth"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-g08",
+    "answersAr": ["أورانوس", "المريخ", "الزهرة", "المشتري"],
+    "answersEn": ["Uranus", "Mars", "Venus", "Jupiter"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "space-g09",
+    "answersAr": ["نيل آرمسترونغ", "باز ألدرن", "بيت كونراد", "آلان بين"],
+    "answersEn": ["Neil Armstrong", "Buzz Aldrin", "Pete Conrad", "Alan Bean"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-g10",
+    "answersAr": ["الفرسخ الفلكي", "السنة الضوئية", "الوحدة الفلكية", "الكيلومتر"],
+    "answersEn": ["Parsec", "Light-year", "Astronomical unit", "Kilometer"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-g11",
+    "answersAr": ["المريخ", "المشتري", "الزهرة", "أورانوس"],
+    "answersEn": ["Mars", "Jupiter", "Venus", "Uranus"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-g12",
+    "answersAr": ["مجرة المرأة المسلسلة", "مجرة السومبريرو", "مجرة الدوامة", "درب التبانة"],
+    "answersEn": ["Andromeda Galaxy", "Sombrero Galaxy", "Whirlpool Galaxy", "Milky Way"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "space-g13",
+    "answersAr": ["الجاذبية", "القوة الكهرومغناطيسية", "القوة النووية الشديدة", "القوة النووية الضعيفة"],
+    "answersEn": ["Gravity", "Electromagnetic force", "Strong nuclear force", "Weak nuclear force"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-g14",
+    "answersAr": ["أربعة", "خمسة", "ستة", "سبعة"],
+    "answersEn": ["Four", "Five", "Six", "Seven"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-g15",
+    "answersAr": ["تيتان", "أوروبا", "القمر", "غانيميد"],
+    "answersEn": ["Titan", "Europa", "Moon", "Ganymede"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-g16",
+    "answersAr": ["المطياف", "التلسكوب الراديوي", "المنظار المزدوج", "التلسكوب"],
+    "answersEn": ["Spectroscope", "Radio telescope", "Binoculars", "Telescope"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "space-g17",
+    "answersAr": ["كسوف الشمس", "خسوف القمر", "عبور كوكب الزهرة", "احتجاب نجم بالقمر"],
+    "answersEn": ["Solar eclipse", "Lunar eclipse", "Transit of Venus", "Lunar occultation of a star"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-1",
+    "answersAr": ["الشعرى اليمانية", "بروكسيما سنتوري", "النسر الواقع", "سهيل"],
+    "answersEn": ["Sirius", "Proxima Centauri", "Vega", "Canopus"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-2",
+    "answersAr": ["7", "8", "9", "10"],
+    "answersEn": ["7", "8", "9", "10"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-3",
+    "answersAr": ["باز ألدرن", "نيل آرمسترونغ", "بيت كونراد", "آلان بين"],
+    "answersEn": ["Buzz Aldrin", "Neil Armstrong", "Pete Conrad", "Alan Bean"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-4",
+    "answersAr": ["زحل", "المشتري", "نبتون", "أورانوس"],
+    "answersEn": ["Saturn", "Jupiter", "Neptune", "Uranus"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-5",
+    "answersAr": ["مجرة المرأة المسلسلة", "درب التبانة", "مجرة الدوامة", "مجرة السومبريرو"],
+    "answersEn": ["Andromeda Galaxy", "Milky Way", "Whirlpool Galaxy", "Sombrero Galaxy"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-6",
+    "answersAr": ["الزهرة", "المريخ", "عطارد", "زحل"],
+    "answersEn": ["Venus", "Mars", "Mercury", "Saturn"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-7",
+    "answersAr": ["88 يومًا", "225 يومًا", "365 يومًا تقريبًا", "687 يومًا"],
+    "answersEn": ["88 days", "225 days", "About 365 days", "687 days"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-hard-8",
+    "answersAr": ["سبوتنيك 1", "إكسبلورر 1", "فانغارد 1", "تلستار 1"],
+    "answersEn": ["Sputnik 1", "Explorer 1", "Vanguard 1", "Telstar 1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-9",
+    "answersAr": ["الزهرة", "عطارد", "الأرض", "المريخ"],
+    "answersEn": ["Venus", "Mercury", "Earth", "Mars"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-10",
+    "answersAr": ["كسوف الشمس", "خسوف القمر", "عبور عطارد", "احتجاب نجم بالقمر"],
+    "answersEn": ["Solar eclipse", "Lunar eclipse", "Transit of Mercury", "Lunar occultation of a star"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-11",
+    "answersAr": ["فايكنغ 1", "كيوريوسيتي", "بيرسيفيرانس", "سبيريت"],
+    "answersEn": ["Viking 1", "Curiosity", "Perseverance", "Spirit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-12",
+    "answersAr": ["المشتري", "زحل", "أورانوس", "نبتون"],
+    "answersEn": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-13",
+    "answersAr": ["إيسا", "ناسا", "روسكوزموس", "جاكسا"],
+    "answersEn": ["ESA", "NASA", "Roscosmos", "JAXA"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-14",
+    "answersAr": ["الهيليوم", "الهيدروجين", "الأكسجين", "الكربون"],
+    "answersEn": ["Helium", "Hydrogen", "Oxygen", "Carbon"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-15",
+    "answersAr": ["فوستوك 1", "فوستوك 2", "فوسخود 1", "سويوز 1"],
+    "answersEn": ["Vostok 1", "Vostok 2", "Voskhod 1", "Soyuz 1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-16",
+    "answersAr": ["تلسكوب جيمس ويب", "تلسكوب هابل", "تلسكوب كيبلر", "تلسكوب سبيتزر"],
+    "answersEn": ["James Webb Telescope", "Hubble Telescope", "Kepler Telescope", "Spitzer Telescope"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-17",
+    "answersAr": ["المشتري", "زحل", "أورانوس", "المريخ"],
+    "answersEn": ["Jupiter", "Saturn", "Uranus", "Mars"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-18",
+    "answersAr": ["فالنتينا تيريشكوفا", "سالي رايد", "مي جيميسون", "سونيتا وليامز"],
+    "answersEn": ["Valentina Tereshkova", "Sally Ride", "Mae Jemison", "Sunita Williams"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-19",
+    "answersAr": ["150 ألف كم", "150 مليون كم", "1.5 مليار كم", "15 مليون كم"],
+    "answersEn": ["150 thousand km", "150 million km", "1.5 billion km", "15 million km"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-20",
+    "answersAr": ["محطة الفضاء الدولية", "ساليوت 1", "سكايلاب", "مير"],
+    "answersEn": ["International Space Station", "Salyut 1", "Skylab", "Mir"],
+    "correctAnswerIndex": 1
+  }
+]

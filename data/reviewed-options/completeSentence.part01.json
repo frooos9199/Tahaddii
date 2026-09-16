@@ -1,0 +1,260 @@
+[
+  {
+    "id": "complete-e1",
+    "answersAr": ["حمل دواء", "قنطار علاج", "عام راحة", "كثير نصح"],
+    "answersEn": ["a load of medicine", "a pound of cure", "a year of comfort", "a wealth of advice"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-m1",
+    "answersAr": ["القوي", "النشيط", "السليم", "المعافى"],
+    "answersEn": ["strong", "active", "healthy", "fit"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-h1",
+    "answersAr": ["حصد", "أثمر", "انتظر", "ارتوى"],
+    "answersEn": ["reaps", "bears fruit", "waits", "is watered"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g01",
+    "answersAr": ["قنطار علاج", "صندوق دواء", "شهر نقاهة", "كثرة ندم"],
+    "answersEn": ["a pound of cure", "a box of medicine", "a month of recovery", "much regret"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g02",
+    "answersAr": ["المتين", "السليم", "النشيط", "المعافى"],
+    "answersEn": ["robust", "healthy", "active", "fit"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g03",
+    "answersAr": ["انتظر", "ارتوى", "حصد", "أثمر"],
+    "answersEn": ["waits", "is watered", "reaps", "bears fruit"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g04",
+    "answersAr": ["الرخاء", "السفر", "الفرح", "الضيق"],
+    "answersEn": ["prosperity", "travel", "joy", "hardship"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g05",
+    "answersAr": ["الحجر", "الخشب", "الرمل", "الورق"],
+    "answersEn": ["stone", "wood", "sand", "paper"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g06",
+    "answersAr": ["سريعًا", "وحدها", "دائمًا", "بقوة"],
+    "answersEn": ["quickly", "alone", "always", "forcefully"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g07",
+    "answersAr": ["حسدًا", "خوفًا", "همًا", "ندمًا"],
+    "answersEn": ["envy", "fear", "worry", "regret"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g08",
+    "answersAr": ["أولها", "أيسرها", "آخرها", "أوسطها"],
+    "answersEn": ["their beginning", "the easiest of them", "their end", "moderation"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g09",
+    "answersAr": ["ذهب", "لؤلؤ", "ألماس", "حديد"],
+    "answersEn": ["gold", "pearl", "diamond", "iron"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g10",
+    "answersAr": ["المهارة", "الاختراع", "الشجاعة", "المعرفة"],
+    "answersEn": ["skill", "invention", "courage", "knowledge"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g11",
+    "answersAr": ["المنازل", "المكارم", "العزائم", "البشائر"],
+    "answersEn": ["high ranks", "noble deeds", "resolutions", "glad tidings"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g12",
+    "answersAr": ["حيرة", "عبرة", "مشقة", "خيرة"],
+    "answersEn": ["confusion", "a lesson", "hardship", "goodness"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g13",
+    "answersAr": ["صانك", "قادك", "أرضاك", "أغناك"],
+    "answersEn": ["it guards you", "it guides you", "it pleases you", "it enriches you"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g14",
+    "answersAr": ["الساعات", "الليالي", "الأيام", "الصباحات"],
+    "answersEn": ["through the hours", "through the nights", "through the days", "through the mornings"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g15",
+    "answersAr": ["أختك", "خالتك", "أمك", "جدتك"],
+    "answersEn": ["sister", "aunt", "mother", "grandmother"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g16",
+    "answersAr": ["طريق", "هدف", "رفيق", "نصيب"],
+    "answersEn": ["path", "goal", "companion", "share"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g17",
+    "answersAr": ["العلاج", "الدواء", "الراحة", "الندم"],
+    "answersEn": ["cure", "medicine", "rest", "regret"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g18",
+    "answersAr": ["نفسه", "الله", "أهله", "مجتمعه"],
+    "answersEn": ["himself", "God", "his family", "his community"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g19",
+    "answersAr": ["غلافه", "مقدمته", "عنوانه", "فهرسه"],
+    "answersEn": ["cover", "introduction", "title", "index"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g20",
+    "answersAr": ["سبقك", "أبطأك", "أضاعك", "قطعك"],
+    "answersEn": ["it overtakes you", "it slows you", "it loses you", "it cuts you"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g21",
+    "answersAr": ["الغد", "المساء", "الأسبوع", "الفراغ"],
+    "answersEn": ["tomorrow", "the evening", "next week", "your free time"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "comp-g22",
+    "answersAr": ["عاصفة", "خافقة", "موجة", "هبّة"],
+    "answersEn": ["storm", "flutter", "wave", "gust"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "comp-g23",
+    "answersAr": ["القول", "القصد", "العمل", "الأمل"],
+    "answersEn": ["word", "intention", "deed", "hope"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "comp-g24",
+    "answersAr": ["أساس", "قوة", "سبيل", "نور"],
+    "answersEn": ["a foundation", "power", "a path", "Knowledge/light"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "comp-g25",
+    "answersAr": ["ظفر", "تعلّم", "تقدّم", "ارتاح"],
+    "answersEn": ["wins", "learns", "advances", "finds rest"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-1",
+    "answersAr": ["سقى", "انتظر", "أثمر", "حصد"],
+    "answersEn": ["waters", "waits", "bears fruit", "reaps"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-2",
+    "answersAr": ["الرخاء", "النجاح", "السفر", "الضيق"],
+    "answersEn": ["prosperity", "success", "travel", "hardship"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-3",
+    "answersAr": ["سبقك", "قطعك", "أرهقك", "أضاعك"],
+    "answersEn": ["overtakes you", "cuts you", "wears you out", "wastes you"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-4",
+    "answersAr": ["الزمان", "الوجود", "القدر", "المصير"],
+    "answersEn": ["time", "existence", "fate", "destiny"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-5",
+    "answersAr": ["المكارم", "العزائم", "الشدائد", "البشائر"],
+    "answersEn": ["noble deeds", "great resolves", "great trials", "glad tidings"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-6",
+    "answersAr": ["السفن", "القلوب", "النفوس", "الطيور"],
+    "answersEn": ["ships do not desire", "hearts do not desire", "souls do not desire", "birds do not desire"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-7",
+    "answersAr": ["علمًا", "صبرًا", "فهمًا", "حكمة"],
+    "answersEn": ["knowledge", "patience", "understanding", "wisdom"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-8",
+    "answersAr": ["فرجًا", "يسرًا", "أجرًا", "صبرًا"],
+    "answersEn": ["relief", "ease", "reward", "patience"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-9",
+    "answersAr": ["تتنازعوا", "تتخاذلوا", "تختلفوا", "تفرقوا"],
+    "answersEn": ["quarrel", "lose heart", "disagree", "be divided"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-10",
+    "answersAr": ["قريبة", "بريئة", "أخرى", "ضعيفة"],
+    "answersEn": ["a relative", "an innocent one", "another", "a weak one"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-11",
+    "answersAr": ["بأنفسهم", "في واقعهم", "حولهم", "بأيديهم"],
+    "answersEn": ["within themselves", "in their reality", "around them", "in their hands"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-12",
+    "answersAr": ["أعلمكم", "أتقاكم", "أقواكم", "أغناكم"],
+    "answersEn": ["learned", "God-fearing", "strong", "wealthy"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-13",
+    "answersAr": ["عليم", "حكيم", "خبير", "بصير"],
+    "answersEn": ["knowing", "wise", "well-informed", "seeing"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-14",
+    "answersAr": ["الفراق", "الموت", "الألم", "الندم"],
+    "answersEn": ["separation", "death", "pain", "regret"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-15",
+    "answersAr": ["الصابرين", "المخلصين", "المجتهدين", "الشاكرين"],
+    "answersEn": ["patient", "sincere", "diligent", "grateful"],
+    "correctAnswerIndex": 0
+  }
+]

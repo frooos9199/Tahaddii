@@ -1,0 +1,182 @@
+[
+  {
+    "id": "islamicculture-new-21",
+    "answersAr": ["السعي", "طواف الإفاضة", "رمي الجمرات", "الوقوف بعرفة"],
+    "answersEn": ["Sa‘i", "Tawaf al-Ifadah", "Stoning of the Jamarat", "Standing at Arafat"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-22",
+    "answersAr": ["الغسل", "الوضوء", "التيمم", "الاستنجاء"],
+    "answersEn": ["Ghusl", "Wudu", "Tayammum", "Istinja"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-23",
+    "answersAr": ["رجب", "شوال", "شعبان", "ربيع الآخر"],
+    "answersEn": ["Rajab", "Shawwal", "Sha‘ban", "Rabi al-Thani"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-24",
+    "answersAr": ["بئر رومة", "بئر أريس", "بئر بضاعة", "زمزم"],
+    "answersEn": ["Well of Rumah", "Well of Aris", "Well of Buda‘ah", "Zamzam"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-25",
+    "answersAr": ["جبريل", "ميكائيل", "إسرافيل", "مالك"],
+    "answersEn": ["Jibril", "Mika'il", "Israfil", "Malik"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-26",
+    "answersAr": ["الخط الكوفي", "خط النسخ", "خط الثلث", "خط الرقعة"],
+    "answersEn": ["Kufic script", "Naskh script", "Thuluth script", "Ruq‘ah script"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-27",
+    "answersAr": ["طواف الإفاضة", "السعي", "الوقوف بعرفة", "رمي الجمرات"],
+    "answersEn": ["Tawaf al-Ifadah", "Sa‘i", "Wuquf at Arafat", "Stoning of the Jamarat"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-28",
+    "answersAr": ["آدم عليه السلام", "نوح عليه السلام", "موسى عليه السلام", "إبراهيم عليه السلام"],
+    "answersEn": ["Prophet Adam", "Prophet Nuh", "Prophet Musa", "Prophet Ibrahim"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-29",
+    "answersAr": ["ذو الحجة", "ذو القعدة", "محرم", "صفر"],
+    "answersEn": ["Dhu al-Hijjah", "Dhu al-Qi‘dah", "Muharram", "Safar"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-30",
+    "answersAr": ["فاس", "القاهرة", "تونس", "بغداد"],
+    "answersEn": ["Fez", "Cairo", "Tunis", "Baghdad"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-31",
+    "answersAr": ["الحمد لله", "الله أكبر", "باسم الله", "أستغفر الله"],
+    "answersEn": ["Praise be to Allah", "Allah is greatest", "In the name of Allah", "I seek forgiveness from Allah"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-32",
+    "answersAr": ["الفجر", "الظهر", "العشاء", "المغرب"],
+    "answersEn": ["Fajr", "Dhuhr", "Isha", "Maghrib"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-33",
+    "answersAr": ["المحراب", "المنبر", "المئذنة", "المقصورة"],
+    "answersEn": ["Mihrab", "Minbar", "Minaret", "Maqsura"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-34",
+    "answersAr": ["الأذان", "الخطبة", "الإقامة", "القنوت"],
+    "answersEn": ["Adhan", "Khutbah", "Iqamah", "Qunut"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-35",
+    "answersAr": ["سورة آل عمران", "سورة النساء", "سورة البقرة", "سورة الأنعام"],
+    "answersEn": ["Surah Ali ‘Imran", "Surah An-Nisa", "Surah Al-Baqarah", "Surah Al-An‘am"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-36",
+    "answersAr": ["سورة الإخلاص", "سورة الفلق", "سورة المسد", "سورة الناس"],
+    "answersEn": ["Surah Al-Ikhlas", "Surah Al-Falaq", "Surah Al-Masad", "Surah An-Nas"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-37",
+    "answersAr": ["عثمان بن عفان", "أبو بكر الصديق", "عمر بن الخطاب", "علي بن أبي طالب"],
+    "answersEn": ["Uthman ibn Affan", "Abu Bakr Al-Siddiq", "Umar ibn Al-Khattab", "Ali ibn Abi Talib"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-38",
+    "answersAr": ["قم", "اقرأ", "أنذر", "سبح"],
+    "answersEn": ["Arise", "Read / Iqra’", "Warn", "Glorify"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-39",
+    "answersAr": ["سورة الحجر", "سورة الدخان", "سورة الحديد", "سورة النور"],
+    "answersEn": ["Surah Al-Hijr", "Surah Ad-Dukhan", "Surah Al-Hadid", "Surah An-Nur"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-40",
+    "answersAr": ["محرم", "ذو القعدة", "ذو الحجة", "رجب"],
+    "answersEn": ["Muharram", "Dhu al-Qi‘dah", "Dhu al-Hijjah", "Rajab"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-41",
+    "answersAr": ["السيرة النبوية", "الشمائل النبوية", "دلائل النبوة", "المغازي"],
+    "answersEn": ["Prophetic Seerah", "Prophetic Characteristics", "Proofs of Prophethood", "Maghazi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-42",
+    "answersAr": ["حلب", "دمشق", "القدس", "حمص"],
+    "answersEn": ["Aleppo", "Damascus", "Jerusalem", "Homs"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-43",
+    "answersAr": ["المتن", "الرواية", "الإسناد", "التخريج"],
+    "answersEn": ["Matn", "Riwayah", "Isnad", "Takhrij"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-44",
+    "answersAr": ["القياس", "الاستحسان", "الاستصحاب", "الإجماع"],
+    "answersEn": ["Qiyas", "Istihsan", "Istishab", "Ijma‘"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-45",
+    "answersAr": ["سورة الكهف", "سورة مريم", "سورة يوسف", "سورة القصص"],
+    "answersEn": ["Surah Al-Kahf", "Surah Maryam", "Surah Yusuf", "Surah Al-Qasas"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-46",
+    "answersAr": ["مدينة الزهراء", "قصر الحمراء", "قصر الجعفرية", "قصور إشبيلية الملكية"],
+    "answersEn": ["Madinat al-Zahra", "Alhambra", "Aljaferia Palace", "Royal Alcazar of Seville"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-47",
+    "answersAr": ["الأخضر والذهبي", "الأبيض والذهبي", "الأسود والذهبي", "الأسود والفضي"],
+    "answersEn": ["Green and gold", "White and gold", "Black and gold", "Black and silver"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-48",
+    "answersAr": ["الزكاة", "الهبة", "الوصية", "وقف"],
+    "answersEn": ["Zakat", "Hibah", "Wasiyyah", "Waqf"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-49",
+    "answersAr": ["الخط الكوفي", "خط النسخ", "خط الثلث", "الخط المحقق"],
+    "answersEn": ["Kufic script", "Naskh script", "Thuluth script", "Muhaqqaq script"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-50",
+    "answersAr": ["رياض الصالحين", "الأربعون النووية", "الأذكار", "منهاج الطالبين"],
+    "answersEn": ["Riyad al-Salihin", "Al-Arba‘in al-Nawawiyyah", "Al-Adhkar", "Minhaj al-Talibin"],
+    "correctAnswerIndex": 1
+  }
+]

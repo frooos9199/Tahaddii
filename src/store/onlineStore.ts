@@ -38,7 +38,7 @@ interface OnlineStore {
   subscribeDiscoverableRooms: (profile?: UserProfile, fallbackName?: string) => Promise<void>;
   clearDiscoverableRooms: () => void;
   startCurrentRoom: () => Promise<void>;
-  submitCurrentAnswer: (selectedAnswerIndex: number) => Promise<void>;
+  submitCurrentAnswer: (selectedAnswerIndex: number) => Promise<boolean>;
   revealCurrentAnswer: () => Promise<void>;
   advanceCurrentQuestion: () => Promise<void>;
   leaveCurrentRoom: () => Promise<void>;
@@ -177,14 +177,16 @@ export const useOnlineStore = create<OnlineStore>((set, get) => ({
   submitCurrentAnswer: async selectedAnswerIndex => {
     const { room, currentPlayerId } = get();
     if (!room || !currentPlayerId) {
-      return;
+      return false;
     }
 
     set({ error: null });
     try {
-      await submitRoomAnswer(room.id, currentPlayerId, selectedAnswerIndex);
+      const result = await submitRoomAnswer(room.id, currentPlayerId, selectedAnswerIndex);
+      return result.accepted;
     } catch (error) {
       set({ error: error instanceof Error ? error.message : 'Failed to submit answer' });
+      return false;
     }
   },
 

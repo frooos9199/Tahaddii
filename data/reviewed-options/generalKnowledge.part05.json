@@ -1,0 +1,122 @@
+[
+  {
+    "id": "generalKnowledge-hard-45",
+    "answersAr": ["كندا", "الصين", "روسيا", "الولايات المتحدة"],
+    "answersEn": ["Canada", "China", "Russia", "United States"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-46",
+    "answersAr": ["معاهدة فرساي", "معاهدة سان جيرمان", "معاهدة تريانون", "معاهدة سيفر"],
+    "answersEn": ["Treaty of Versailles", "Treaty of Saint-Germain", "Treaty of Trianon", "Treaty of Sèvres"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-47",
+    "answersAr": ["الهيليوم", "الهيدروجين", "الأكسجين", "الكربون"],
+    "answersEn": ["Helium", "Hydrogen", "Oxygen", "Carbon"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-48",
+    "answersAr": ["مصر", "الأردن", "السعودية", "سوريا"],
+    "answersEn": ["Egypt", "Jordan", "Saudi Arabia", "Syria"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-49",
+    "answersAr": ["متحف اللوفر", "متحف الإرميتاج", "متحف المتروبوليتان", "متحف برادو"],
+    "answersEn": ["The Louvre", "The Hermitage", "The Met", "The Prado"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-50",
+    "answersAr": ["ماري كوري", "بيرتا فون زوتنر", "سلمى لاغرلوف", "إيرين جوليو كوري"],
+    "answersEn": ["Marie Curie", "Bertha von Suttner", "Selma Lagerlöf", "Irène Joliot-Curie"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-1",
+    "answersAr": ["الكنغر", "طائر الكيوي", "النسر الأصلع", "الباندا العملاقة"],
+    "answersEn": ["Kangaroo", "Kiwi", "Bald eagle", "Giant panda"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-2",
+    "answersAr": ["الصحراء الكبرى", "الصحراء العربية", "صحراء كالاهاري", "صحراء ثار"],
+    "answersEn": ["Sahara Desert", "Arabian Desert", "Kalahari Desert", "Thar Desert"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-3",
+    "answersAr": ["ثاني أكسيد الكربون", "الأكسجين", "النيتروجين", "بخار الماء"],
+    "answersEn": ["Carbon dioxide", "Oxygen", "Nitrogen", "Water vapor"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-4",
+    "answersAr": ["البارومتر", "مقياس الرطوبة", "مقياس شدة الرياح", "مقياس الحرارة"],
+    "answersEn": ["Barometer", "Hygrometer", "Anemometer", "Thermometer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-5",
+    "answersAr": ["الفهد الصياد", "الظبي الأمريكي", "ظبي القفز", "الأسد"],
+    "answersEn": ["Cheetah", "Pronghorn", "Springbok", "Lion"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-6",
+    "answersAr": ["أوتاوا", "تورونتو", "مونتريال", "فانكوفر"],
+    "answersEn": ["Ottawa", "Toronto", "Montreal", "Vancouver"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-7",
+    "answersAr": ["الأصفر", "الأحمر", "الأبيض", "الأسود"],
+    "answersEn": ["Yellow", "Red", "White", "Black"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-8",
+    "answersAr": ["المحيط الهندي", "المحيط الأطلسي", "المحيط الهادي", "المحيط الجنوبي"],
+    "answersEn": ["Indian Ocean", "Atlantic Ocean", "Pacific Ocean", "Southern Ocean"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-9",
+    "answersAr": ["القشرة الأرضية", "الوشاح", "اللب الخارجي", "اللب الداخلي"],
+    "answersEn": ["Crust", "Mantle", "Outer core", "Inner core"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-10",
+    "answersAr": ["البيانو", "الماريمبا", "الإكسيليفون", "الغلوكنشبيل"],
+    "answersEn": ["Piano", "Marimba", "Xylophone", "Glockenspiel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-11",
+    "answersAr": ["الزئبق", "الغاليوم", "السيزيوم", "الروبيديوم"],
+    "answersEn": ["Mercury", "Gallium", "Cesium", "Rubidium"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-12",
+    "answersAr": ["البطريق", "النعامة", "الإيمو", "الكيوي"],
+    "answersEn": ["Penguin", "Ostrich", "Emu", "Kiwi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-13",
+    "answersAr": ["الأوم", "الفولت", "الأمبير", "الواط"],
+    "answersEn": ["Ohm", "Volt", "Ampere", "Watt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-14",
+    "answersAr": ["ويليام شكسبير", "كريستوفر مارلو", "بن جونسون", "توماس كيد"],
+    "answersEn": ["William Shakespeare", "Christopher Marlowe", "Ben Jonson", "Thomas Kyd"],
+    "correctAnswerIndex": 0
+  }
+]

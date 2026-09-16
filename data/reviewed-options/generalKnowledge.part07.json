@@ -1,0 +1,98 @@
+[
+  {
+    "id": "general-new-35",
+    "answersAr": ["زحل", "أورانوس", "المشتري", "نبتون"],
+    "answersEn": ["Saturn", "Uranus", "Jupiter", "Neptune"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-36",
+    "answersAr": ["علم الحفريات", "علم الآثار", "علم الجيولوجيا التاريخية", "علم الأحياء التطوري"],
+    "answersEn": ["Paleontology", "Archaeology", "Historical geology", "Evolutionary biology"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-37",
+    "answersAr": ["الكبد", "الرئتان", "الدماغ", "الأمعاء الدقيقة"],
+    "answersEn": ["Liver", "Lungs", "Brain", "Small intestine"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-38",
+    "answersAr": ["خط الاستواء", "مدار السرطان", "خط غرينتش", "الدائرة القطبية الشمالية"],
+    "answersEn": ["Equator", "Tropic of Cancer", "Prime Meridian", "Arctic Circle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-39",
+    "answersAr": ["سحلية", "تمساح", "أفعى", "سلحفاة"],
+    "answersEn": ["Lizard", "Crocodile", "Snake", "Turtle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-40",
+    "answersAr": ["أنطونيو فيفالدي", "يوهان سباستيان باخ", "جورج فريدريك هاندل", "أركانجلو كوريلي"],
+    "answersEn": ["Antonio Vivaldi", "Johann Sebastian Bach", "George Frideric Handel", "Arcangelo Corelli"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-41",
+    "answersAr": ["فرنسا", "بريطانيا", "إيطاليا", "إسبانيا"],
+    "answersEn": ["France", "Britain", "Italy", "Spain"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-42",
+    "answersAr": ["الألماس", "الكوراندوم", "المويسانيت", "التوباز"],
+    "answersEn": ["Diamond", "Corundum", "Moissanite", "Topaz"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-43",
+    "answersAr": ["الأوراق", "السيقان الخضراء", "الأزهار", "الجذور"],
+    "answersEn": ["Leaves", "Green stems", "Flowers", "Roots"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-44",
+    "answersAr": ["O سالب", "O موجب", "AB سالب", "A سالب"],
+    "answersEn": ["O negative", "O positive", "AB negative", "A negative"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-45",
+    "answersAr": ["مرادفات", "متضادات", "مشتركات لفظية", "كلمات متجانسة صوتيًا"],
+    "answersEn": ["Synonyms", "Antonyms", "Homonyms", "Homophones"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-46",
+    "answersAr": ["جبال الهيمالايا", "جبال قراقرم", "جبال هندو كوش", "جبال كونلون"],
+    "answersEn": ["Himalayas", "Karakoram", "Hindu Kush", "Kunlun Mountains"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-47",
+    "answersAr": ["ألكسندر فليمنغ", "هوارد فلوري", "إرنست تشين", "لويس باستور"],
+    "answersEn": ["Alexander Fleming", "Howard Florey", "Ernst Chain", "Louis Pasteur"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-48",
+    "answersAr": ["النيتروجين", "الأكسجين", "الأرجون", "ثاني أكسيد الكربون"],
+    "answersEn": ["Nitrogen", "Oxygen", "Argon", "Carbon dioxide"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-49",
+    "answersAr": ["100", "20", "1000", "110"],
+    "answersEn": ["100", "20", "1000", "110"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-50",
+    "answersAr": ["خسوف القمر", "كسوف الشمس", "الاحتجاب القمري", "اقتران القمر"],
+    "answersEn": ["Lunar eclipse", "Solar eclipse", "Lunar occultation", "Lunar conjunction"],
+    "correctAnswerIndex": 0
+  }
+]

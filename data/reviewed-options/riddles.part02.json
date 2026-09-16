@@ -1,0 +1,312 @@
+[
+  {
+    "id": "riddles-hard-21",
+    "answersAr": ["الساعة", "البوصلة", "شجرة الصنوبر", "مقياس الضغط"],
+    "answersEn": ["Clock", "Compass", "Pine tree", "Pressure gauge"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-22",
+    "answersAr": ["يدك اليمنى", "معصمك الأيمن", "مرفقك الأيمن", "كتفك الأيمن"],
+    "answersEn": [
+      "Your right hand",
+      "Your right wrist",
+      "Your right elbow",
+      "Your right shoulder"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-23",
+    "answersAr": ["الشمعة", "قلم الرصاص", "قطعة الصابون", "عود الطباشير"],
+    "answersEn": ["Candle", "Pencil", "Bar of soap", "Stick of chalk"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-24",
+    "answersAr": ["الخريطة", "الأطلس", "الكرة الأرضية", "شاشة الملاحة"],
+    "answersEn": ["A map", "An atlas", "A globe", "A navigation screen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-25",
+    "answersAr": ["الصمت", "الوعد", "السر", "الهدنة"],
+    "answersEn": ["Silence", "A promise", "A secret", "A truce"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-26",
+    "answersAr": ["الإنسان", "الدب", "القرد", "الكلب"],
+    "answersEn": ["A human being", "A bear", "A monkey", "A dog"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-27",
+    "answersAr": ["الكرسي", "الأريكة", "الرافعة", "شمعدان جداري"],
+    "answersEn": ["A chair", "A sofa", "A crane", "A wall sconce"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-28",
+    "answersAr": ["الطابع البريدي", "ملصق الشحن", "عنوان المرسل", "ختم الجواز"],
+    "answersEn": [
+      "A postage stamp",
+      "A shipping label",
+      "A return address",
+      "A passport stamp"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-29",
+    "answersAr": ["الصدى", "الببغاء", "المترجم", "الراديو"],
+    "answersEn": ["An echo", "A parrot", "A translator", "A radio"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-30",
+    "answersAr": ["النهر", "جدول الماء", "الصنبور", "قناة الري"],
+    "answersEn": ["A river", "A stream", "A faucet", "An irrigation canal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-31",
+    "answersAr": ["الوقت", "السرعة", "التردد", "الضغط الجوي"],
+    "answersEn": ["Time", "Speed", "Frequency", "Air pressure"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-32",
+    "answersAr": [
+      "السلم المتحرك (الدرج الكهربائي)",
+      "المصعد",
+      "الأرجوحة المتوازنة",
+      "العجلة الدوارة"
+    ],
+    "answersEn": ["Escalator", "Elevator", "Seesaw", "Ferris wheel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-33",
+    "answersAr": [
+      "الهاتف الذكي",
+      "الحاسوب اللوحي",
+      "بطاقة الذاكرة",
+      "القرص المحمول"
+    ],
+    "answersEn": [
+      "A smartphone",
+      "A tablet",
+      "A memory card",
+      "A portable drive"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-34",
+    "answersAr": ["الحفرة (بالحفر)", "النفق", "الخندق", "المحجر"],
+    "answersEn": ["A hole (by digging)", "A tunnel", "A trench", "A quarry"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-35",
+    "answersAr": ["Eve", "Eye", "Envelope", "E-note"],
+    "answersEn": ["Eve", "Eye", "Envelope", "E-note"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "riddles-hard-36",
+    "answersAr": ["الإسفنجة", "منشفة الاستحمام", "قطعة القماش", "الطحلب"],
+    "answersEn": ["A sponge", "A bath towel", "A washcloth", "Moss"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-37",
+    "answersAr": ["الثلج", "حبة البَرَد", "ورقة جافة", "قطعة جليد"],
+    "answersEn": ["Snow", "A hailstone", "A dry leaf", "A piece of ice"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-38",
+    "answersAr": ["لوحة المفاتيح", "البيانو", "الآلة الكاتبة", "الآلة الحاسبة"],
+    "answersEn": ["A keyboard", "A piano", "A typewriter", "A calculator"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-39",
+    "answersAr": ["قلم الرصاص", "عود الفحم", "قلم التلوين الخشبي", "قلم الحبر"],
+    "answersEn": ["Pencil", "Charcoal stick", "Colored pencil", "Ink pen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-40",
+    "answersAr": ["الثلج", "الشمع", "الزبدة", "الشوكولاتة"],
+    "answersEn": ["Ice", "Wax", "Butter", "Chocolate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-41",
+    "answersAr": ["إشارة المرور", "لوحة الطريق", "ضوء التحذير", "راية الإشارة"],
+    "answersEn": ["Traffic light", "Road sign", "Warning light", "Signal flag"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-42",
+    "answersAr": ["السحابة", "أنبوب الماء", "خرطوم الحديقة", "صهريج المياه"],
+    "answersEn": ["A cloud", "A water pipe", "A garden hose", "A water tanker"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-43",
+    "answersAr": [
+      "أجر الاستشارة",
+      "سعة البطارية",
+      "العمل المنجز",
+      "مدة وقوف السيارة"
+    ],
+    "answersEn": [
+      "Consulting fees",
+      "Battery capacity",
+      "Work done (labor-hours)",
+      "Parking duration"
+    ],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "riddles-hard-44",
+    "answersAr": ["المعرفة", "الذاكرة", "الخبرة", "الخيال"],
+    "answersEn": ["Knowledge", "Memory", "Experience", "Imagination"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-45",
+    "answersAr": ["الحاسوب", "المدينة", "السيارة", "الساعة"],
+    "answersEn": ["A computer", "A city", "A car", "A clock"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-46",
+    "answersAr": ["ظلك", "انعكاسك", "صورتك الظلية", "أثر قدميك"],
+    "answersEn": [
+      "Your shadow",
+      "Your reflection",
+      "Your silhouette",
+      "Your footprints"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-47",
+    "answersAr": ["الخط المستقيم", "الشعاع", "القطعة المستقيمة", "خط الأعداد"],
+    "answersEn": [
+      "A straight line",
+      "A ray",
+      "A line segment",
+      "A number line"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-48",
+    "answersAr": ["الشجرة", "الشجيرة", "النبات المتسلق", "النبات المعمر"],
+    "answersEn": ["A tree", "A shrub", "A climbing plant", "A perennial plant"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-49",
+    "answersAr": ["المنشار", "مبرد الخشب", "الفأس المسنن", "إزميل الخشب"],
+    "answersEn": ["A saw", "A wood rasp", "A serrated axe", "A wood chisel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-hard-50",
+    "answersAr": ["كلمة أو نصيحة", "رأيك", "ابتسامة", "تحية"],
+    "answersEn": ["A word or advice", "Your opinion", "A smile", "A greeting"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-1",
+    "answersAr": ["زجاجة", "إبريق", "قارورة", "مزهرية"],
+    "answersEn": ["Bottle", "Jug", "Flask", "Vase"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-2",
+    "answersAr": [
+      "صندوق البريد",
+      "فتحة البريد",
+      "حقيبة ساعي البريد",
+      "سلة الرسائل"
+    ],
+    "answersEn": [
+      "Mailbox",
+      "Mail slot",
+      "Mail carrier's bag",
+      "Letter basket"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-3",
+    "answersAr": ["شمعة", "عود ثقاب", "مصباح زيتي", "بطارية مصباح يدوي"],
+    "answersEn": ["Candle", "Matchstick", "Oil lamp", "Flashlight battery"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-4",
+    "answersAr": ["تقويم", "مفكرة يومية", "مخطط سنوي", "دليل المناسبات"],
+    "answersEn": [
+      "Calendar",
+      "Daily planner",
+      "Yearly planner",
+      "Events guide"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-5",
+    "answersAr": ["مروحة", "الخلاط", "الغسالة", "القرص الدوار"],
+    "answersEn": ["Fan", "Blender", "Washing machine", "Turntable"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-6",
+    "answersAr": ["كاميرا", "ماسح ضوئي", "منظار", "آلة تصوير مستندات"],
+    "answersEn": ["Camera", "Scanner", "Binoculars", "Photocopier"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-7",
+    "answersAr": ["نظارة", "عدسات لاصقة", "قناع واقٍ", "منظار مكبر"],
+    "answersEn": [
+      "Glasses",
+      "Contact lenses",
+      "Protective mask",
+      "Magnifying viewer"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-8",
+    "answersAr": ["جهاز تحكم", "هاتف ذكي", "دليل القنوات", "جهاز استقبال"],
+    "answersEn": [
+      "Remote control",
+      "Smartphone",
+      "Channel guide",
+      "TV receiver"
+    ],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-9",
+    "answersAr": ["دراجة", "دراجة نارية", "سكوتر كهربائي", "عربة يد"],
+    "answersEn": ["Bicycle", "Motorcycle", "Electric scooter", "Wheelbarrow"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "riddles-new-10",
+    "answersAr": ["ملعقة", "شوكة", "مغرفة", "عيدان الطعام"],
+    "answersEn": ["Spoon", "Fork", "Ladle", "Chopsticks"],
+    "correctAnswerIndex": 0
+  }
+]

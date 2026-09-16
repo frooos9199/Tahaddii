@@ -1,0 +1,260 @@
+[
+  {
+    "id": "arabiclang-new-50",
+    "answersAr": ["حرف مصدري ونصب", "أنْ المفسِّرة", "أنْ الزائدة", "أنْ المخففة من أنَّ الثقيلة"],
+    "answersEn": ["subjunctive and source-forming particle", "explanatory an", "extra an", "an lightened from the emphatic particle anna"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabicLang-hard-16",
+    "answersAr": ["المبرِّد", "سيبويه", "الخليل بن أحمد الفراهيدي", "ابن جني"],
+    "answersEn": ["al-Mubarrad", "Sībawayh", "al-Khalīl ibn Aḥmad al-Farāhīdī", "Ibn Jinnī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-17",
+    "answersAr": ["عبد القاهر الجرجاني", "ابن هشام", "الجاحظ", "ابن جني"],
+    "answersEn": ["ʿAbd al-Qāhir al-Jurjānī", "Ibn Hishām", "al-Jāḥiẓ", "Ibn Jinnī"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-18",
+    "answersAr": ["عبد القاهر الجرجاني", "ابن رشيق", "أبو حيان التوحيدي", "ابن قتيبة"],
+    "answersEn": ["ʿAbd al-Qāhir al-Jurjānī", "Ibn Rashīq", "Abū Ḥayyān al-Tawḥīdī", "Ibn Qutaybah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabicLang-hard-19",
+    "answersAr": ["حافظ إبراهيم", "إيليا أبو ماضي", "أحمد شوقي", "محمود سامي البارودي"],
+    "answersEn": ["Ḥāfiẓ Ibrāhīm", "Īlyā Abū Māḍī", "Aḥmad Shawqī", "Maḥmūd Sāmī al-Bārūdī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-20",
+    "answersAr": ["أحمد شوقي", "أبو القاسم الشابي", "حافظ إبراهيم", "نزار قباني"],
+    "answersEn": ["Aḥmad Shawqī", "Abū al-Qāsim al-Shābbī", "Ḥāfiẓ Ibrāhīm", "Nizār Qabbānī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-21",
+    "answersAr": ["المتنبي", "الجاحظ", "أبو العلاء المعري", "ابن المقفع"],
+    "answersEn": ["al-Mutanabbī", "al-Jāḥiẓ", "Abū al-ʿAlāʾ al-Maʿarrī", "Ibn al-Muqaffaʿ"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-22",
+    "answersAr": ["ابن دريد", "الحريري", "بديع الزمان الهمذاني", "السرقسطي"],
+    "answersEn": ["Ibn Durayd", "al-Ḥarīrī", "Badīʿ al-Zamān al-Hamadhānī", "al-Saraqusṭī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-23",
+    "answersAr": ["إبراهيم طوقان", "المتنبي", "أحمد شوقي", "حافظ إبراهيم"],
+    "answersEn": ["Ibrāhīm Ṭūqān", "al-Mutanabbī", "Aḥmad Shawqī", "Ḥāfiẓ Ibrāhīm"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-24",
+    "answersAr": ["الكامل", "البسيط", "الطويل", "الوافر"],
+    "answersEn": ["al-Kāmil", "al-Basīṭ", "al-Ṭawīl", "al-Wāfir"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-25",
+    "answersAr": ["الرمل", "المتقارب", "الرجز", "الخفيف"],
+    "answersEn": ["al-Ramal", "al-Mutaqārib", "al-Rajaz", "al-Khafīf"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-26",
+    "answersAr": ["استفهام", "تعجب", "نداء", "تمنٍّ"],
+    "answersEn": ["interrogation", "exclamation", "vocative", "wishful longing"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-27",
+    "answersAr": ["جناس", "طباق", "حسن تعليل", "سجع"],
+    "answersEn": ["paronomasia", "antithesis", "poetic justification", "rhymed prose"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-28",
+    "answersAr": ["سجع", "جناس ناقص", "مقابلة", "طباق إيجاب"],
+    "answersEn": ["rhymed prose", "imperfect paronomasia", "counterbalancing", "direct antithesis"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-29",
+    "answersAr": ["كناية", "استعارة مكنية", "مجاز مرسل", "تشبيه مرسل"],
+    "answersEn": ["metonymic allusion", "implicit metaphor", "metonymy", "explicit simile"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-30",
+    "answersAr": ["استعارة تصريحية", "مجاز عقلي", "كناية عن صفة", "تشبيه بليغ"],
+    "answersEn": ["explicit metaphor", "logical metaphor", "metonymy of attribute", "eloquent simile"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-31",
+    "answersAr": ["جملة اسمية", "جملة فعلية", "شبه جملة", "مفرد"],
+    "answersEn": ["nominal sentence predicate", "verbal sentence predicate", "quasi-sentence predicate", "single-word predicate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-32",
+    "answersAr": ["جملة اسمية", "جملة فعلية", "مفرد", "شبه جملة"],
+    "answersEn": ["nominal sentence predicate", "verbal sentence predicate", "single-word predicate", "quasi-sentence predicate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabicLang-hard-33",
+    "answersAr": ["جملة اسمية", "مفرد", "شبه جملة", "جملة فعلية"],
+    "answersEn": ["nominal sentence predicate", "single-word predicate", "quasi-sentence predicate", "verbal sentence predicate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-34",
+    "answersAr": ["محوّل عن مبتدأ", "محوّل عن فاعل", "غير محوّل", "محوّل عن مفعول به"],
+    "answersEn": ["transformed from a subject of a nominal sentence", "transformed from a subject", "not transformed", "transformed from an object"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-35",
+    "answersAr": ["تمييز", "مفعول لأجله", "حال", "بدل"],
+    "answersEn": ["specification", "object of purpose", "circumstantial accusative", "apposition"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-36",
+    "answersAr": ["اسم فاعل", "اسم مفعول", "صفة مشبهة", "اسم زمان"],
+    "answersEn": ["active participle", "passive participle", "quasi-adjective", "noun of time"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabicLang-hard-37",
+    "answersAr": ["اسم آلة", "اسم مفعول", "صفة مشبهة", "صيغة مبالغة"],
+    "answersEn": ["instrument noun", "passive participle", "quasi-adjective", "intensive form"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-38",
+    "answersAr": ["افتعال", "مفاعلة", "استفعال", "تفعيل"],
+    "answersEn": ["iftiʿāl", "mufāʿalah", "istifʿāl", "tafʿīl"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-39",
+    "answersAr": ["مفعول", "فعالة", "مفعلة", "مِفعال"],
+    "answersEn": ["mafʿūl", "faʿālah", "mafʿalah", "mifʿāl"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-40",
+    "answersAr": ["إعلال بالحذف", "إعلال بالتسكين", "إعلال بالقلب", "إعلال بالنقل"],
+    "answersEn": ["weak-letter deletion", "weak-letter quiescence", "substitution by vowel change", "vowel transference"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-41",
+    "answersAr": ["اثنان", "ابن", "أكرم", "امرأة"],
+    "answersEn": ["ithnān", "ibn", "akrama", "imraʾah"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-42",
+    "answersAr": ["للاستغراق", "للعهد الذهني", "موصولة", "للجنس"],
+    "answersEn": ["totalizing", "mental-known reference", "relative", "generic"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-43",
+    "answersAr": ["فطن", "صبور", "جريء", "متواضع"],
+    "answersEn": ["shrewd", "patient", "bold", "humble"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabicLang-hard-44",
+    "answersAr": ["حزين", "متردد", "متعب", "آمن"],
+    "answersEn": ["sad", "hesitant", "tired", "secure"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-45",
+    "answersAr": ["أضاء", "امتد", "سكن", "اشتد"],
+    "answersEn": ["shone", "stretched", "became still", "intensified"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-46",
+    "answersAr": ["طلوع", "ثبات", "لمعان", "غروب"],
+    "answersEn": ["rising", "steadiness", "gleaming", "setting/disappearance"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-47",
+    "answersAr": ["آفاق", "أُفُقون", "أفاويق", "أفُق"],
+    "answersEn": ["āfāq", "ufuqūn", "afāwīq", "afuq"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabicLang-hard-48",
+    "answersAr": ["عَلَم", "عالِم", "معلومة", "مَعلَم"],
+    "answersEn": ["flag", "scholar", "piece of information", "landmark"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "arabicLang-hard-49",
+    "answersAr": ["صنعوي", "صنعي", "صنعاني", "صنعائي"],
+    "answersEn": ["Ṣanʿawī", "Ṣanʿī", "Ṣanʿānī", "Ṣanʿāʾī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "arabicLang-hard-50",
+    "answersAr": ["ابن قتيبة", "ابن عبد ربه", "الثعالبي", "التوحيدي"],
+    "answersEn": ["Ibn Qutaybah", "Ibn ʿAbd Rabbih", "al-Thaʿālibī", "al-Tawḥīdī"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "arabiclang-new-1",
+    "answersAr": ["الذي", "التي", "اللذان", "الذين"],
+    "answersEn": ["who/that (masculine singular)", "who/that (feminine singular)", "who/that (masculine dual)", "who/that (masculine plural)"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-2",
+    "answersAr": ["فعل ماضٍ", "فعل مضارع", "فعل أمر", "اسم فعل"],
+    "answersEn": ["past tense verb", "present tense verb", "imperative verb", "verbal noun"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-3",
+    "answersAr": ["نوافذ", "نافذات", "نفائذ", "أنفذة"],
+    "answersEn": ["windows", "nāfidhāt", "nafāʾidh", "anfidhah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-4",
+    "answersAr": ["دفتر", "كراسة", "كتاب", "سجل"],
+    "answersEn": ["notebook", "exercise book", "book", "register"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-5",
+    "answersAr": ["ساكن", "صاخب", "مضطرب", "متعجل"],
+    "answersEn": ["still/calm", "noisy", "agitated", "hasty"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-6",
+    "answersAr": ["ينخفض", "يستقر", "يتسع", "يبتعد"],
+    "answersEn": ["falls/declines", "settles", "widens", "moves away"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "arabiclang-new-7",
+    "answersAr": ["أين", "متى", "كيف", "لماذا"],
+    "answersEn": ["where", "when", "how", "why"],
+    "correctAnswerIndex": 0
+  }
+]

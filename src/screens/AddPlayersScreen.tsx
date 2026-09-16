@@ -303,7 +303,7 @@ export default function AddPlayersScreen({ navigation }: Props) {
             !canNext && styles.nextBtnDisabled,
           ]}
           onPress={() =>
-            canNext && navigation.navigate('AgeGroupSelect')
+            canNext && navigation.navigate('GameSetup')
           }
           disabled={!canNext}
         >

@@ -117,6 +117,9 @@ export interface GameSettings {
   questionLanguage: QuestionLanguage;
   randomOrder: boolean;
   allowRepeat: boolean;
+  showTextAnswerOptions: boolean;
+  showImageAnswerOptions: boolean;
+  showVideoAnswerOptions: boolean;
   soundEnabled: boolean;
   readQuestion: boolean;
   lifelines: LifelineSettings;
@@ -326,6 +329,7 @@ export interface AppUserRecord {
   isGuest: boolean;
   authProvider: 'anonymous' | 'password';
   customerNumber?: number;
+  guestNumber?: number;
   unlockedCategoryIds?: CategoryId[];
   entitlementExpiresAtMs?: number | null;
   entitlementSource?: string | null;

@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, query, serverTimestamp, setDoc, where } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AgeGroup, CategoryId, Difficulty, Question } from '../../types';
 import { DIFFICULTY_POINTS } from '../../constants';
@@ -271,4 +271,46 @@ export const addCustomQuestion = async (input: CustomQuestionInput) => {
 
   invalidateCustomQuestionsCache();
   return docRef.id;
+};
+
+// Hard-deletes a custom question. If this ID also exists in the built-in question bank,
+// the built-in version simply reappears (this only removes the admin's override/addition).
+export const deleteCustomQuestion = async (questionId: string) => {
+  const db = getFirebaseDb();
+  await deleteDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, questionId));
+  invalidateCustomQuestionsCache();
+};
+
+export const deleteQuestionsByCategory = async (categoryId: CategoryId) => {
+  if (!categoryId) {
+    return;
+  }
+
+  const db = getFirebaseDb();
+  const [byCategorySnapshot, byLinkedCategorySnapshot] = await Promise.all([
+    getDocs(query(collection(db, CUSTOM_QUESTIONS_COLLECTION), where('categoryId', '==', categoryId))),
+    getDocs(query(collection(db, CUSTOM_QUESTIONS_COLLECTION), where('linkedCategoryIds', 'array-contains', categoryId))),
+  ]);
+
+  const questionIds = new Set([
+    ...byCategorySnapshot.docs.map(document => document.id),
+    ...byLinkedCategorySnapshot.docs.map(document => document.id),
+  ]);
+
+  await Promise.all([...questionIds].map(questionId => deleteDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, questionId))));
+  invalidateCustomQuestionsCache();
+};
+
+export const setCustomQuestionActive = async (questionId: string, isActive: boolean) => {
+  const db = getFirebaseDb();
+  await setDoc(doc(db, CUSTOM_QUESTIONS_COLLECTION, questionId), { isActive, updatedAtMs: Date.now() }, { merge: true });
+  invalidateCustomQuestionsCache();
+};
+
+// Forces an immediate full re-download of custom questions, bypassing the normal
+// up-to-24h safety-net interval — used by the admin panel's "sync now" action so a
+// just-made deletion or edit is guaranteed to be reflected right away, in this session.
+export const forceFullCustomQuestionsResync = async (): Promise<Question[]> => {
+  invalidateCustomQuestionsCache();
+  return listCustomQuestions();
 };

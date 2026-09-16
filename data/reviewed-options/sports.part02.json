@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sports-new-50",
+    "answersAr": ["6", "3", "2", "1"],
+    "answersEn": ["6", "3", "2", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-hard-21",
+    "answersAr": ["9", "10", "11", "12"],
+    "answersEn": ["9", "10", "11", "12"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-22",
+    "answersAr": ["40 كم", "41 كم", "42 كم", "44 كم"],
+    "answersEn": ["40 km", "41 km", "42 km", "44 km"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-23",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-24",
+    "answersAr": ["غو", "الشطرنج", "الشوغي", "الداما"],
+    "answersEn": ["Go", "Chess", "Shogi", "Draughts"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-25",
+    "answersAr": ["10", "20", "25", "50"],
+    "answersEn": ["10", "20", "25", "50"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-26",
+    "answersAr": ["3", "4", "5", "6"],
+    "answersEn": ["3", "4", "5", "6"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-27",
+    "answersAr": ["100 متر", "110 أمتار", "200 متر", "400 متر"],
+    "answersEn": ["100 meters", "110 meters", "200 meters", "400 meters"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-hard-28",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-29",
+    "answersAr": ["24", "32", "36", "48"],
+    "answersEn": ["24", "32", "36", "48"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-30",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-31",
+    "answersAr": ["8", "10", "12", "14"],
+    "answersEn": ["8", "10", "12", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-32",
+    "answersAr": ["30", "40", "45", "50"],
+    "answersEn": ["30", "40", "45", "50"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-33",
+    "answersAr": ["6", "7", "8", "9"],
+    "answersEn": ["6", "7", "8", "9"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-34",
+    "answersAr": ["6", "7", "8", "9"],
+    "answersEn": ["6", "7", "8", "9"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-35",
+    "answersAr": ["13", "15", "16", "18"],
+    "answersEn": ["13", "15", "16", "18"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-36",
+    "answersAr": ["20", "25", "30", "35"],
+    "answersEn": ["20", "25", "30", "35"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-37",
+    "answersAr": ["4", "5", "6", "7"],
+    "answersEn": ["4", "5", "6", "7"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-38",
+    "answersAr": ["6", "7", "8", "9"],
+    "answersEn": ["6", "7", "8", "9"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-39",
+    "answersAr": ["1", "2", "3", "4"],
+    "answersEn": ["1", "2", "3", "4"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-hard-40",
+    "answersAr": ["1", "2", "3", "4"],
+    "answersEn": ["1", "2", "3", "4"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-41",
+    "answersAr": ["10", "15", "20", "30"],
+    "answersEn": ["10", "15", "20", "30"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-42",
+    "answersAr": ["9", "10", "11", "12"],
+    "answersEn": ["9", "10", "11", "12"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-43",
+    "answersAr": ["أفضل من 3", "أفضل من 5", "أفضل من 7", "أفضل من 9"],
+    "answersEn": ["Best of 3", "Best of 5", "Best of 7", "Best of 9"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-44",
+    "answersAr": ["11", "15", "21", "25"],
+    "answersEn": ["11", "15", "21", "25"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-hard-45",
+    "answersAr": ["10", "12", "14", "15"],
+    "answersEn": ["10", "12", "14", "15"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-46",
+    "answersAr": ["25 مترًا", "50 مترًا", "75 مترًا", "100 متر"],
+    "answersEn": ["25 meters", "50 meters", "75 meters", "100 meters"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-47",
+    "answersAr": ["54", "64", "72", "80"],
+    "answersEn": ["54", "64", "72", "80"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sports-hard-48",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-49",
+    "answersAr": ["1", "2", "3", "4"],
+    "answersEn": ["1", "2", "3", "4"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-hard-50",
+    "answersAr": ["أفضل من 3", "أفضل من 5", "أفضل من 7", "أفضل من 9"],
+    "answersEn": ["Best of 3", "Best of 5", "Best of 7", "Best of 9"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sports-new-1",
+    "answersAr": ["فرنسا", "إسبانيا", "بلجيكا", "سويسرا"],
+    "answersEn": ["France", "Spain", "Belgium", "Switzerland"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-2",
+    "answersAr": ["هوكي الجليد", "هوكي الميدان", "اللاكروس", "كرة السلة"],
+    "answersEn": ["Ice hockey", "Field hockey", "Lacrosse", "Basketball"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-3",
+    "answersAr": ["15", "13", "14", "16"],
+    "answersEn": ["15", "13", "14", "16"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-4",
+    "answersAr": ["الفراشة", "الحرة", "الصدر", "الظهر"],
+    "answersEn": ["Butterfly", "Freestyle", "Breaststroke", "Backstroke"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-5",
+    "answersAr": ["أصفر", "أخضر", "أبيض", "منقط بالأحمر"],
+    "answersEn": ["Yellow", "Green", "White", "Red polka dot"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-6",
+    "answersAr": ["المبارزة", "الرماية بالقوس", "الكندو", "الخماسي الحديث"],
+    "answersEn": ["Fencing", "Archery", "Kendo", "Modern pentathlon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-7",
+    "answersAr": ["عين الهدف", "الحلقة الذهبية", "العشرة الداخلية", "حلقة المركز"],
+    "answersEn": ["Bullseye", "Gold ring", "Inner ten", "Center ring"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-8",
+    "answersAr": ["بيردي", "إيغل", "بوغي", "ألباتروس"],
+    "answersEn": ["Birdie", "Eagle", "Bogey", "Albatross"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sports-new-9",
+    "answersAr": ["اليابان", "الصين", "كوريا الجنوبية", "منغوليا"],
+    "answersEn": ["Japan", "China", "South Korea", "Mongolia"],
+    "correctAnswerIndex": 0
+  }
+]

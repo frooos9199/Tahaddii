@@ -56,6 +56,11 @@ export const listAppUsers = async (): Promise<AppUserRecord[]> => {
       isSuperAdmin: Boolean(data.isSuperAdmin),
       isGuest: Boolean(data.isGuest),
       authProvider: data.authProvider === 'password' ? 'password' : 'anonymous',
+      customerNumber: data.customerNumber ?? undefined,
+      guestNumber: data.guestNumber ?? undefined,
+      unlockedCategoryIds: Array.isArray(data.unlockedCategoryIds) ? data.unlockedCategoryIds : undefined,
+      entitlementExpiresAtMs: data.entitlementExpiresAtMs ?? null,
+      entitlementSource: data.entitlementSource ?? null,
     } satisfies AppUserRecord;
   });
 };

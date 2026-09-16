@@ -1,0 +1,272 @@
+[
+  {
+    "id": "who-new-5",
+    "answersAr": ["نهر الأمازون", "نهر بارانا", "نهر أورينوكو", "نهر ساو فرانسيسكو"],
+    "answersEn": ["the Amazon River", "the Paraná River", "the Orinoco River", "the São Francisco River"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-11",
+    "answersAr": ["المقدسي", "ابن بطوطة", "ياقوت الحموي", "ابن جبير"],
+    "answersEn": ["al-Maqdisī", "Ibn Battuta", "Yāqūt al-Ḥamawī", "Ibn Jubayr"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-12",
+    "answersAr": ["الزهراوي", "ابن النفيس", "ابن البيطار", "الرازي"],
+    "answersEn": ["al-Zahrawi", "Ibn al-Nafīs", "Ibn al-Bayṭār", "al-Rāzī"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-13",
+    "answersAr": ["يوهانس كبلر", "نيكولاس كوبرنيكوس", "تيخو براهي", "غاليليو غاليلي"],
+    "answersEn": ["Johannes Kepler", "Nicolaus Copernicus", "Tycho Brahe", "Galileo Galilei"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-14",
+    "answersAr": ["محمد علي جناح", "المهاتما غاندي", "سوبهاس تشاندرا بوس", "جواهر لال نهرو"],
+    "answersEn": ["Muhammad Ali Jinnah", "Mahatma Gandhi", "Subhas Chandra Bose", "Jawaharlal Nehru"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-15",
+    "answersAr": ["حتشبسوت", "تيي", "نفرتيتي", "كليوباترا"],
+    "answersEn": ["Hatshepsut", "Tiye", "Nefertiti", "Cleopatra"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-16",
+    "answersAr": ["ابن الهيثم", "البيروني", "الخوارزمي", "ثابت بن قرة"],
+    "answersEn": ["Ibn al-Haytham", "al-Biruni", "al-Khwarizmi", "Thābit ibn Qurra"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-17",
+    "answersAr": ["رافائيل", "ميكيلانجيلو", "بوتيتشيلي", "ليوناردو دا فينشي"],
+    "answersEn": ["Raphael", "Michelangelo", "Botticelli", "Leonardo da Vinci"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-18",
+    "answersAr": ["ويليام بليك", "جون ميلتون", "ألكسندر بوب", "جون دن"],
+    "answersEn": ["William Blake", "John Milton", "Alexander Pope", "John Donne"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-19",
+    "answersAr": ["بيدرو كالديرون", "فيديريكو غارسيا لوركا", "ميغيل دي ثيربانتس", "كاميلو خوسيه ثيلا"],
+    "answersEn": ["Pedro Calderón", "Federico García Lorca", "Miguel de Cervantes", "Camilo José Cela"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-20",
+    "answersAr": ["نيلسون مانديلا", "ستيف بيكو", "ثابو مبيكي", "ديزموند توتو"],
+    "answersEn": ["Nelson Mandela", "Steve Biko", "Thabo Mbeki", "Desmond Tutu"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-21",
+    "answersAr": ["ابن سينا", "الرازي", "ابن زهر", "ابن رشد"],
+    "answersEn": ["Ibn Sina / Avicenna", "al-Razi", "Ibn Zuhr", "Ibn Rushd"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-22",
+    "answersAr": ["ألفرد أدلر", "كارل يونغ", "سيغموند فرويد", "إيفان بافلوف"],
+    "answersEn": ["Alfred Adler", "Carl Jung", "Sigmund Freud", "Ivan Pavlov"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-23",
+    "answersAr": ["ج. ك. رولينغ", "سوزان كولينز", "ديانا وين جونز", "فيليب بولمان"],
+    "answersEn": ["J. K. Rowling", "Suzanne Collins", "Diana Wynne Jones", "Philip Pullman"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-24",
+    "answersAr": ["نابليون بونابرت", "لويس الرابع عشر", "لافاييت", "شارل ديغول"],
+    "answersEn": ["Napoleon Bonaparte", "Louis XIV", "Lafayette", "Charles de Gaulle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-25",
+    "answersAr": ["جون غلين", "أليكسي ليونوف", "يوري غاغارين", "غيرمان تيتوف"],
+    "answersEn": ["John Glenn", "Alexei Leonov", "Yuri Gagarin", "Gherman Titov"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-26",
+    "answersAr": ["مايكل فاراداي", "نيكولا تسلا", "توماس إديسون", "جورج وستنغهاوس"],
+    "answersEn": ["Michael Faraday", "Nikola Tesla", "Thomas Edison", "George Westinghouse"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-27",
+    "answersAr": ["أوسكار وايلد", "صموئيل بيكيت", "برنارد شو", "شون أوكيسي"],
+    "answersEn": ["Oscar Wilde", "Samuel Beckett", "George Bernard Shaw", "Seán O’Casey"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-28",
+    "answersAr": ["الكندي", "الجلدكي", "جابر بن حيان", "ابن البيطار"],
+    "answersEn": ["al-Kindi", "al-Jildaki", "Jabir ibn Hayyan", "Ibn al-Bayṭār"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-29",
+    "answersAr": ["أولريخ زوينغلي", "مارتن لوثر", "إيراسموس", "جون كالفن"],
+    "answersEn": ["Ulrich Zwingli", "Martin Luther", "Erasmus", "John Calvin"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-30",
+    "answersAr": ["تمبل غراندن", "جين غودال", "ديان فوسي", "بيروتيه غالديكاس"],
+    "answersEn": ["Temple Grandin", "Jane Goodall", "Dian Fossey", "Birutė Galdikas"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-31",
+    "answersAr": ["البحر الميت", "بحيرة فيكتوريا", "بحر قزوين", "البحر الأسود"],
+    "answersEn": ["Dead Sea", "Lake Victoria", "Caspian Sea", "Black Sea"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-32",
+    "answersAr": ["خندق كيرمادك", "خندق ماريانا", "خندق تونغا", "خندق بورتوريكو"],
+    "answersEn": ["Kermadec Trench", "Mariana Trench", "Tonga Trench", "Puerto Rico Trench"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-33",
+    "answersAr": ["مخطوطات نجع حمادي", "برديات أوكسيرنخوس", "مخطوطات البحر الميت", "لفائف هركولانيوم"],
+    "answersEn": ["Nag Hammadi library", "Oxyrhynchus papyri", "Dead Sea Scrolls", "Herculaneum scrolls"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-34",
+    "answersAr": ["إشبيلية", "غرناطة", "قرطبة", "طليطلة"],
+    "answersEn": ["Seville", "Granada", "Córdoba", "Toledo"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-35",
+    "answersAr": ["الأورغن", "البيانو", "الهاربسكورد", "الأكورديون"],
+    "answersEn": ["organ", "piano", "harpsichord", "accordion"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-36",
+    "answersAr": ["الدائرة القطبية", "مدار السرطان", "خط غرينتش", "خط الاستواء"],
+    "answersEn": ["Arctic Circle", "Tropic of Cancer", "Prime Meridian", "Equator"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-37",
+    "answersAr": ["ملقا", "هرمز", "باب المندب", "البوسفور"],
+    "answersEn": ["Malacca", "Hormuz", "Bab el-Mandeb", "Bosporus"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-38",
+    "answersAr": ["البيرومتر", "التلسكوب الراديوي", "المجهر الإلكتروني", "المطياف"],
+    "answersEn": ["pyrometer", "radio telescope", "electron microscope", "spectrometer"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-39",
+    "answersAr": ["الرصاص", "الغاليوم", "الزئبق", "القصدير"],
+    "answersEn": ["lead", "gallium", "mercury", "tin"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-40",
+    "answersAr": ["ريا", "تيتان", "إنسيلادوس", "إيابيتوس"],
+    "answersEn": ["Rhea", "Titan", "Enceladus", "Iapetus"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-41",
+    "answersAr": ["سكارا براي", "إيڤبري", "هادريانز وول", "ستونهنج"],
+    "answersEn": ["Skara Brae", "Avebury", "Hadrian’s Wall", "Stonehenge"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-42",
+    "answersAr": ["الدب الأصغر", "ذات الكرسي", "الدب الأكبر", "التنين"],
+    "answersEn": ["Ursa Minor", "Cassiopeia", "Ursa Major", "Draco"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-43",
+    "answersAr": ["إلبا", "سانت هيلانة", "صقلية", "كورسيكا"],
+    "answersEn": ["Elba", "Saint Helena", "Sicily", "Corsica"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-44",
+    "answersAr": ["صلح وستفاليا", "مؤتمر فيينا", "صلح أوترخت", "صلح نيميغن"],
+    "answersEn": ["Peace of Westphalia", "Congress of Vienna", "Treaty of Utrecht", "Treaties of Nijmegen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-45",
+    "answersAr": ["مقياس ريختر", "مقياس سكوروف", "مقياس بوفورت", "مقياس موهس"],
+    "answersEn": ["Richter scale", "Scoville scale", "Beaufort scale", "Mohs scale"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-46",
+    "answersAr": ["الشظية", "الظنبوب", "العضد", "عظم الفخذ"],
+    "answersEn": ["fibula", "tibia", "humerus", "femur"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-47",
+    "answersAr": ["الستراتوسفير", "التروبوسفير", "الإكسوسفير", "الميزوسفير"],
+    "answersEn": ["stratosphere", "troposphere", "exosphere", "mesosphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-48",
+    "answersAr": ["لندن", "أمستردام", "دبلن", "براغ"],
+    "answersEn": ["London", "Amsterdam", "Dublin", "Prague"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-49",
+    "answersAr": ["الماغنا كارتا", "قانون التسوية", "العريضة الحقوقية", "إعلان الحقوق"],
+    "answersEn": ["Magna Carta", "Act of Settlement", "Petition of Right", "Bill of Rights"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-50",
+    "answersAr": ["قناة بنما", "قناة كيل", "قناة السويس", "قناة كورنث"],
+    "answersEn": ["Panama Canal", "Kiel Canal", "Suez Canal", "Corinth Canal"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-new-1",
+    "answersAr": ["ألبرت أينشتاين", "نيلز بور", "ماكس بلانك", "إرنست رذرفورد"],
+    "answersEn": ["Albert Einstein", "Niels Bohr", "Max Planck", "Ernest Rutherford"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-new-2",
+    "answersAr": ["قوس النصر", "برج إيفل", "هرم اللوفر", "برج مونبارناس"],
+    "answersEn": ["the Arc de Triomphe", "the Eiffel Tower", "the Louvre Pyramid", "the Montparnasse Tower"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-new-3",
+    "answersAr": ["الأورغن", "الهاربسكورد", "البيانو", "الأكورديون"],
+    "answersEn": ["the organ", "the harpsichord", "the piano", "the accordion"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-new-4",
+    "answersAr": ["العقاب الذهبي", "العقاب أبيض الذيل", "عقاب ستيلر البحري", "النسر الأصلع"],
+    "answersEn": ["the golden eagle", "the white-tailed eagle", "Steller's sea eagle", "the bald eagle"],
+    "correctAnswerIndex": 3
+  }
+]

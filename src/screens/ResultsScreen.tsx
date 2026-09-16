@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, StatusBar, StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -76,11 +76,10 @@ export default function ResultsScreen({ navigation }: Props) {
 
   const sorted = [...game.players].sort((a, b) => b.score - a.score);
   const winner = sorted[0];
-  const winnerAccuracy = useMemo(() => {
-    if (!winner) return 0;
-    const totalAnswers = winner.correctAnswers + winner.wrongAnswers;
-    return totalAnswers > 0 ? Math.round((winner.correctAnswers / totalAnswers) * 100) : 0;
-  }, [winner]);
+  const winnerAnswerCount = winner ? winner.correctAnswers + winner.wrongAnswers : 0;
+  const winnerAccuracy = winner && winnerAnswerCount > 0
+    ? Math.round((winner.correctAnswers / winnerAnswerCount) * 100)
+    : 0;
 
   const renderPlayer = ({ item, index }: { item: Player; index: number }) => (
     <View style={[styles.playerRow, index === 0 && styles.playerRowFirst]}>

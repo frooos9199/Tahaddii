@@ -51,6 +51,9 @@ export const questionBelongsToAnyCategory = (question: Pick<Question, 'categoryI
 export const getCategoryQuestionCountFromBank = (questions: Question[], categoryId: CategoryId) =>
   questions.filter(question => question.isActive && questionBelongsToCategory(question, categoryId)).length;
 
+export const getCategoriesWithQuestionsFromBank = (questions: Question[]): CategoryId[] =>
+  getCategoryIdsFromBank(questions).filter(categoryId => getCategoryQuestionCountFromBank(questions, categoryId) > 0);
+
 export const getCategoryQuestionCountForAgeFromBank = (questions: Question[], categoryId: CategoryId, ageGroup: AgeGroup) =>
   questions.filter(question => question.isActive && questionBelongsToCategory(question, categoryId) && canQuestionAppearForAge(question, ageGroup)).length;
 
@@ -80,7 +83,7 @@ export const getAvailableQuestionCountFromBank = (
 ) => {
   const activeCategories = settings.categories.length
     ? settings.categories
-    : getCategoriesWithQuestionsForAgeFromBank(questions, settings.ageGroup);
+    : getCategoriesWithQuestionsFromBank(questions);
 
   const matchesLanguage = (question: Question) => {
     if (settings.questionLanguage === 'ar') {
@@ -99,12 +102,14 @@ export const getAvailableQuestionCountFromBank = (
     if (!questionBelongsToAnyCategory(question, activeCategories)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
-    if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;
     return true;
   }).length;
 };
 
 export const getCategoryQuestionCount = (categoryId: CategoryId) => CATEGORY_QUESTION_COUNT[categoryId] ?? 0;
+
+export const getCategoriesWithQuestions = (): CategoryId[] =>
+  CATEGORY_IDS.filter(categoryId => getCategoryQuestionCount(categoryId) > 0);
 
 export const getCategoryQuestionCountForAge = (categoryId: CategoryId, ageGroup: AgeGroup) =>
   QUESTIONS.filter(question => questionBelongsToCategory(question, categoryId) && canQuestionAppearForAge(question, ageGroup)).length;
@@ -135,7 +140,7 @@ export const getCategoriesWithQuestionsForAge = (ageGroup: AgeGroup): CategoryId
 export const getAvailableQuestionCount = (settings: Pick<GameSettings, 'categories' | 'ageGroup' | 'difficulty' | 'questionLanguage'>) => {
   const activeCategories = settings.categories.length
     ? settings.categories
-    : getCategoriesWithQuestionsForAge(settings.ageGroup);
+    : getCategoriesWithQuestions();
 
   const matchesLanguage = (question: (typeof QUESTIONS)[number]) => {
     if (settings.questionLanguage === 'ar') {
@@ -154,7 +159,6 @@ export const getAvailableQuestionCount = (settings: Pick<GameSettings, 'categori
     if (!questionBelongsToAnyCategory(question, activeCategories)) return false;
     if (!canQuestionAppearForAge(question, settings.ageGroup)) return false;
     if (!matchesLanguage(question)) return false;
-    if (!canQuestionAppearForDifficulty(question, settings.difficulty)) return false;
     return true;
   }).length;
 };

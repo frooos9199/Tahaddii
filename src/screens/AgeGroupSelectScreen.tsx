@@ -78,7 +78,7 @@ export default function AgeGroupSelectScreen({ navigation }: Props) {
 
   const select = (id: AgeGroup) => {
     updateSettings({ ageGroup: id });
-    navigation.navigate('DifficultySelect');
+    navigation.navigate('GameSetup');
   };
 
 

@@ -1,0 +1,314 @@
+[
+  {
+    "id": "math-e1",
+    "answersAr": ["72", "81", "90", "99"],
+    "answersEn": ["72", "81", "90", "99"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-m1",
+    "answersAr": ["3/2", "3/8", "3/6", "6/8"],
+    "answersEn": ["3/2", "3/8", "3/6", "6/8"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-h1",
+    "answersAr": ["51", "55", "53", "57"],
+    "answersEn": ["51", "55", "53", "57"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "math-e2",
+    "answersAr": ["20", "19", "21", "22"],
+    "answersEn": ["20", "19", "21", "22"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "math-m2",
+    "answersAr": ["4", "8", "6", "12"],
+    "answersEn": ["4", "8", "6", "12"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "math-h2",
+    "answersAr": ["24", "132", "144", "156"],
+    "answersEn": ["24", "132", "144", "156"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "math-add-1",
+    "answersAr": ["9", "8", "10", "1"],
+    "answersEn": ["9", "8", "10", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-2",
+    "answersAr": ["13", "12", "14", "1"],
+    "answersEn": ["13", "12", "14", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-3",
+    "answersAr": ["17", "16", "18", "1"],
+    "answersEn": ["17", "16", "18", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-4",
+    "answersAr": ["15", "14", "16", "9"],
+    "answersEn": ["15", "14", "16", "9"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-5",
+    "answersAr": ["19", "18", "20", "9"],
+    "answersEn": ["19", "18", "20", "9"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-6",
+    "answersAr": ["18", "17", "19", "4"],
+    "answersEn": ["18", "17", "19", "4"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-7",
+    "answersAr": ["17", "16", "18", "1"],
+    "answersEn": ["17", "16", "18", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-8",
+    "answersAr": ["19", "18", "20", "7"],
+    "answersEn": ["19", "18", "20", "7"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-9",
+    "answersAr": ["20", "19", "21", "12"],
+    "answersEn": ["20", "19", "21", "12"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-10",
+    "answersAr": ["23", "22", "24", "13"],
+    "answersEn": ["23", "22", "24", "13"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-11",
+    "answersAr": ["28", "27", "29", "14"],
+    "answersEn": ["28", "27", "29", "14"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-12",
+    "answersAr": ["32", "31", "33", "16"],
+    "answersEn": ["32", "31", "33", "16"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-13",
+    "answersAr": ["33", "32", "34", "21"],
+    "answersEn": ["33", "32", "34", "21"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-14",
+    "answersAr": ["27", "26", "28", "3"],
+    "answersEn": ["27", "26", "28", "3"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-15",
+    "answersAr": ["30", "29", "31", "8"],
+    "answersEn": ["30", "29", "31", "8"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-16",
+    "answersAr": ["35", "34", "36", "9"],
+    "answersEn": ["35", "34", "36", "9"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-17",
+    "answersAr": ["34", "33", "35", "16"],
+    "answersEn": ["34", "33", "35", "16"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-18",
+    "answersAr": ["38", "37", "39", "24"],
+    "answersEn": ["38", "37", "39", "24"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-19",
+    "answersAr": ["33", "32", "34", "1"],
+    "answersEn": ["33", "32", "34", "1"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-add-20",
+    "answersAr": ["42", "32", "41", "43"],
+    "answersEn": ["42", "32", "41", "43"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-mul-1",
+    "answersAr": ["7", "12", "9", "16"],
+    "answersEn": ["7", "12", "9", "16"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-2",
+    "answersAr": ["36", "42", "48", "13"],
+    "answersEn": ["36", "42", "48", "13"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-3",
+    "answersAr": ["35", "40", "45", "13"],
+    "answersEn": ["35", "40", "45", "13"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-4",
+    "answersAr": ["48", "54", "60", "15"],
+    "answersEn": ["48", "54", "60", "15"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-5",
+    "answersAr": ["42", "49", "56", "14"],
+    "answersEn": ["42", "49", "56", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-6",
+    "answersAr": ["36", "48", "60", "16"],
+    "answersEn": ["36", "48", "60", "16"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-7",
+    "answersAr": ["22", "33", "44", "14"],
+    "answersEn": ["22", "33", "44", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-8",
+    "answersAr": ["56", "64", "72", "16"],
+    "answersEn": ["56", "64", "72", "16"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-9",
+    "answersAr": ["72", "81", "90", "18"],
+    "answersEn": ["72", "81", "90", "18"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-10",
+    "answersAr": ["72", "84", "96", "19"],
+    "answersEn": ["72", "84", "96", "19"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-11",
+    "answersAr": ["50", "55", "60", "16"],
+    "answersEn": ["50", "55", "60", "16"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-12",
+    "answersAr": ["66", "72", "78", "18"],
+    "answersEn": ["66", "72", "78", "18"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-13",
+    "answersAr": ["49", "56", "63", "15"],
+    "answersEn": ["49", "56", "63", "15"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-14",
+    "answersAr": ["48", "52", "56", "17"],
+    "answersEn": ["48", "52", "56", "17"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-15",
+    "answersAr": ["40", "45", "50", "14"],
+    "answersEn": ["40", "45", "50", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-16",
+    "answersAr": ["39", "42", "45", "17"],
+    "answersEn": ["39", "42", "45", "17"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-17",
+    "answersAr": ["56", "60", "64", "19"],
+    "answersEn": ["56", "60", "64", "19"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-18",
+    "answersAr": ["60", "66", "72", "17"],
+    "answersEn": ["60", "66", "72", "17"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-19",
+    "answersAr": ["60", "65", "70", "18"],
+    "answersEn": ["60", "65", "70", "18"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-mul-20",
+    "answersAr": ["45", "48", "51", "19"],
+    "answersEn": ["45", "48", "51", "19"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "math-square-1",
+    "answersAr": ["121", "22", "110", "132"],
+    "answersEn": ["121", "22", "110", "132"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-square-2",
+    "answersAr": ["144", "24", "132", "156"],
+    "answersEn": ["144", "24", "132", "156"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-square-3",
+    "answersAr": ["169", "26", "156", "182"],
+    "answersEn": ["169", "26", "156", "182"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-square-4",
+    "answersAr": ["196", "28", "182", "210"],
+    "answersEn": ["196", "28", "182", "210"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-square-5",
+    "answersAr": ["225", "30", "210", "240"],
+    "answersEn": ["225", "30", "210", "240"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "math-square-6",
+    "answersAr": ["256", "32", "240", "272"],
+    "answersEn": ["256", "32", "240", "272"],
+    "correctAnswerIndex": 0
+  }
+]

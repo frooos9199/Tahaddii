@@ -49,6 +49,7 @@ service cloud.firestore {
         && request.resource.data.isAdmin == false
         && request.resource.data.isSuperAdmin == false
         && !('customerNumber' in request.resource.data)
+        && !('guestNumber' in request.resource.data)
         && !('unlockedCategoryIds' in request.resource.data)
         && !('entitlementExpiresAtMs' in request.resource.data)
         && !('entitlementSource' in request.resource.data);
@@ -63,6 +64,7 @@ service cloud.firestore {
         && request.resource.data.isGuest == resource.data.isGuest
         && request.resource.data.authProvider == resource.data.authProvider
         && request.resource.data.get('customerNumber', null) == resource.data.get('customerNumber', null)
+        && request.resource.data.get('guestNumber', null) == resource.data.get('guestNumber', null)
         && request.resource.data.get('unlockedCategoryIds', null) == resource.data.get('unlockedCategoryIds', null)
         && request.resource.data.get('entitlementExpiresAtMs', null) == resource.data.get('entitlementExpiresAtMs', null)
         && request.resource.data.get('entitlementSource', null) == resource.data.get('entitlementSource', null);
@@ -117,6 +119,11 @@ service cloud.firestore {
     match /packages/{packageId} {
       allow read: if true;
       allow create, update, delete: if isPrivilegedUser();
+    }
+
+    match /groupSubscriptions/{subscriptionId} {
+      allow read: if isPrivilegedUser();
+      allow write: if false; // Cloud Functions only
     }
 
     match /promoCodes/{code} {

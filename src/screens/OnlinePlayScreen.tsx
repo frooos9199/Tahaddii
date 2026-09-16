@@ -18,17 +18,6 @@ type Props = {
   route: RouteProp<RootStackParamList, 'OnlinePlay'>;
 };
 
-const FAKE_ONLINE_PLAYERS = [
-  { id: 'fake-ahmed', name: 'Ahmed', avatarEmoji: '👦', color: '#4ECDC4' },
-  { id: 'fake-sara', name: 'Sara', avatarEmoji: '👧', color: '#FF6B9D' },
-  { id: 'fake-ali', name: 'Ali', avatarEmoji: '🦁', color: '#FFB703' },
-  { id: 'fake-nora', name: 'Nora', avatarEmoji: '⭐', color: '#7C5CFF' },
-  { id: 'fake-omar', name: 'Omar', avatarEmoji: '🤖', color: '#00A8E8' },
-  { id: 'fake-lina', name: 'Lina', avatarEmoji: '🐯', color: '#F77F00' },
-  { id: 'fake-faisal', name: 'Faisal', avatarEmoji: '🚗', color: '#2A9D8F' },
-  { id: 'fake-hessa', name: 'Hessa', avatarEmoji: '👩', color: '#E76F51' },
-];
-
 type StripPlayer = {
   id: string;
   name: string;
@@ -129,8 +118,7 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
       isReal: true,
     }));
 
-    const fakePlayers = FAKE_ONLINE_PLAYERS.filter(fakePlayer => !realPlayers.some(player => player.name.trim().toLowerCase() === fakePlayer.name.toLowerCase()));
-    return [...realPlayers, ...fakePlayers];
+    return realPlayers;
   }, [onlinePlayers, profile.avatarUri, user?.uid]);
 
   useEffect(() => {
@@ -142,6 +130,7 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
     if (!linkedRoomCode) return;
 
     setRoomCode(normalizeRoomCodeInput(linkedRoomCode));
+    setShowCreate(false);
     setShowJoinCode(true);
   }, [route.params?.roomCode]);
 
@@ -150,6 +139,11 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
   const stripAnim = useRef<Animated.CompositeAnimation | null>(null);
 
   useEffect(() => {
+    if (stripPlayers.length === 0) {
+      scrollX.setValue(0);
+      return;
+    }
+
     const stripWidth = Math.max(1, stripPlayers.length) * 72;
     scrollX.setValue(0);
     stripAnim.current = Animated.loop(
@@ -168,9 +162,14 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
   }, [navigation, room]);
 
   useEffect(() => {
+    if (!user || user.isAnonymous) {
+      clearDiscoverableRooms();
+      return;
+    }
+
     void subscribeDiscoverableRooms(profile, savedPlayerName);
     return () => clearDiscoverableRooms();
-  }, [clearDiscoverableRooms, profile, savedPlayerName, subscribeDiscoverableRooms]);
+  }, [clearDiscoverableRooms, profile, savedPlayerName, subscribeDiscoverableRooms, user]);
 
   useEffect(() => {
     if (error) { Alert.alert(t('common.error'), error); clearError(); }
@@ -178,13 +177,13 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
 
   useEffect(() => {
     const linkedRoomCode = normalizeRoomCodeInput(route.params?.roomCode ?? '');
-    if (!linkedRoomCode || !playerName.trim() || loading || !firebaseReady || lastAutoJoinCode.current === linkedRoomCode) {
+    if (!user || user.isAnonymous || !linkedRoomCode || !playerName.trim() || loading || !firebaseReady || lastAutoJoinCode.current === linkedRoomCode) {
       return;
     }
 
     lastAutoJoinCode.current = linkedRoomCode;
     void joinOnlineRoom(linkedRoomCode, playerName);
-  }, [firebaseReady, joinOnlineRoom, loading, playerName, route.params?.roomCode]);
+  }, [firebaseReady, joinOnlineRoom, loading, playerName, route.params?.roomCode, user]);
 
   const handleCreate = (visibility: 'public' | 'private' | 'nearby') => {
     if (!playerName.trim()) { Alert.alert('', t('online.enterNameFirst')); return; }
@@ -198,6 +197,27 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
   };
 
   const totalOnline = stripPlayers.length;
+
+  if (!user || user.isAnonymous) {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+            <Text style={styles.backText}>‹</Text>
+          </TouchableOpacity>
+          <Text style={styles.title}>🌐 {t('home.onlineBannerTitle')}</Text>
+        </View>
+        <View style={styles.accountGate}>
+          <Text style={styles.accountGateTitle}>{t('online.accountRequiredTitle')}</Text>
+          <Text style={styles.accountGateText}>{t('online.accountRequiredText')}</Text>
+          <TouchableOpacity style={styles.joinCodeBtn} onPress={() => navigation.navigate('Auth')}>
+            <Text style={styles.joinCodeBtnText}>{t('online.registerToPlay')}</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -218,23 +238,25 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
       </View>
 
       {/* ── PLAYERS STRIP ── */}
-      <View style={styles.stripWrap}>
-        <Animated.View style={[styles.strip, { transform: [{ translateX: scrollX }] }]}>
-          {[...stripPlayers, ...stripPlayers].map((player, index) => (
-            <View key={`${player.id}-${index}`} style={styles.stripPlayer}>
-              <View style={[styles.stripAvatar, { borderColor: player.isReal ? Colors.success : player.color + '88' }]}> 
-                {player.avatarUri ? (
-                  <Image source={{ uri: player.avatarUri }} style={styles.stripAvatarImg} />
-                ) : (
-                  <Text style={styles.stripEmoji}>{player.avatarEmoji}</Text>
-                )}
-                {player.isReal ? <View style={styles.stripOnlineDot} /> : null}
+      {stripPlayers.length > 0 ? (
+        <View style={styles.stripWrap}>
+          <Animated.View style={[styles.strip, { transform: [{ translateX: scrollX }] }]}>
+            {[...stripPlayers, ...stripPlayers].map((player, index) => (
+              <View key={`${player.id}-${index}`} style={styles.stripPlayer}>
+                <View style={[styles.stripAvatar, { borderColor: Colors.success }]}>
+                  {player.avatarUri ? (
+                    <Image source={{ uri: player.avatarUri }} style={styles.stripAvatarImg} />
+                  ) : (
+                    <Text style={styles.stripEmoji}>{player.avatarEmoji}</Text>
+                  )}
+                  <View style={styles.stripOnlineDot} />
+                </View>
+                <Text style={[styles.stripName, styles.stripRealName]} numberOfLines={1}>{player.name}</Text>
               </View>
-              <Text style={[styles.stripName, player.isReal && styles.stripRealName]} numberOfLines={1}>{player.name}</Text>
-            </View>
-          ))}
-        </Animated.View>
-      </View>
+            ))}
+          </Animated.View>
+        </View>
+      ) : null}
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
 
@@ -262,14 +284,20 @@ export default function OnlinePlayScreen({ navigation, route }: Props) {
           <TouchableOpacity
             style={[styles.actionBtn, styles.createBtn, (!firebaseReady || loading) && styles.disabled]}
             disabled={!firebaseReady || loading}
-            onPress={() => setShowCreate(v => !v)}>
+            onPress={() => {
+              setShowJoinCode(false);
+              setShowCreate(value => !value);
+            }}>
             <Text style={styles.actionIcon}>➕</Text>
             <Text style={styles.actionText}>{t('online.createRoom')}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.actionBtn, styles.joinBtn, (!firebaseReady || loading) && styles.disabled]}
             disabled={!firebaseReady || loading}
-            onPress={() => setShowJoinCode(v => !v)}>
+            onPress={() => {
+              setShowCreate(false);
+              setShowJoinCode(value => !value);
+            }}>
             <Text style={styles.actionIcon}>🔑</Text>
             <Text style={styles.actionText}>{t('online.joinWithCodeShort')}</Text>
           </TouchableOpacity>
@@ -455,6 +483,17 @@ const styles = StyleSheet.create({
   },
   stripName: { fontSize: 10, color: Colors.textMuted, marginTop: 3 },
   stripRealName: { color: Colors.text, fontWeight: '800' },
+  accountGate: {
+    margin: 20,
+    padding: 20,
+    gap: 12,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: Colors.border,
+    backgroundColor: Colors.backgroundCard,
+  },
+  accountGateTitle: { color: Colors.text, fontSize: 20, fontWeight: '900', textAlign: 'center' },
+  accountGateText: { color: Colors.textMuted, fontSize: 14, lineHeight: 22, textAlign: 'center' },
 
   nameCard: {
     backgroundColor: Colors.backgroundCard,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from '../types';
@@ -23,24 +24,27 @@ export default function LanguageSelectScreen({ navigation }: Props) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{t('languageSelect.title')}</Text>
-      <Text style={styles.titleEn}>{t('languageSelect.subtitle')}</Text>
+    <SafeAreaView style={styles.safe}>
+      <View style={styles.container}>
+        <Text style={styles.title}>{t('languageSelect.title')}</Text>
+        <Text style={styles.titleEn}>{t('languageSelect.subtitle')}</Text>
 
-      <TouchableOpacity style={styles.btn} onPress={() => select('ar')}>
-        <Text style={styles.btnFlag}>🇸🇦</Text>
-        <Text style={styles.btnText}>{t('languageSelect.arabic')}</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={() => select('ar')}>
+          <Text style={styles.btnFlag}>🇸🇦</Text>
+          <Text style={styles.btnText}>{t('languageSelect.arabic')}</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.btn, styles.btnEn]} onPress={() => select('en')}>
-        <Text style={styles.btnFlag}>🇺🇸</Text>
-        <Text style={styles.btnText}>{t('languageSelect.english')}</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity style={[styles.btn, styles.btnEn]} onPress={() => select('en')}>
+          <Text style={styles.btnFlag}>🇺🇸</Text>
+          <Text style={styles.btnText}>{t('languageSelect.english')}</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: Colors.background },
   container: {
     flex: 1,
     backgroundColor: Colors.background,

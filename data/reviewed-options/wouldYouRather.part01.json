@@ -1,0 +1,152 @@
+[
+  {
+    "id": "wyr-new-1",
+    "answersAr": ["شرب الماء", "شرب مشروب غازي طوال اليوم", "شرب مشروبات الطاقة بدل الماء", "تجنب شرب السوائل طوال اليوم"],
+    "answersEn": ["Drinking water", "Drinking soda all day", "Drinking energy drinks instead of water", "Avoiding fluids all day"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-2",
+    "answersAr": ["ساعتان", "8 ساعات", "4 ساعات", "6 ساعات"],
+    "answersEn": ["2 hours", "8 hours", "4 hours", "6 hours"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-3",
+    "answersAr": ["ربط حزام الأمان", "وضع الحزام خلف الظهر", "الإمساك بالحزام دون ربطه", "تجاهل حزام الأمان"],
+    "answersEn": ["Wearing a seat belt", "Putting the belt behind your back", "Holding the belt without fastening it", "Ignoring the seat belt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-4",
+    "answersAr": ["تنظيفها مرة في الأسبوع", "تنظيفها يوميًا", "تنظيفها عند الشعور بالألم فقط", "عدم تنظيفها"],
+    "answersEn": ["Brushing them once a week", "Brushing them daily", "Brushing them only when they hurt", "Not brushing them"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-5",
+    "answersAr": ["استخدام ممر المشاة", "العبور بين السيارات المتوقفة", "الجري بين السيارات المتحركة", "عبور الشارع أثناء النظر إلى الهاتف"],
+    "answersEn": ["Using the crosswalk", "Crossing between parked cars", "Running between moving cars", "Crossing while looking at a phone"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-6",
+    "answersAr": ["وضعه في خزانة مظلمة", "ضوء الشمس", "إبعاده عن الضوء طوال اليوم", "تغطيته بصندوق معتم"],
+    "answersEn": ["Putting it in a dark closet", "Sunlight", "Keeping it away from light all day", "Covering it with an opaque box"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-7",
+    "answersAr": ["الثلاجة", "تركه على طاولة المطبخ", "تركه في الشمس", "وضعه في سيارة دافئة"],
+    "answersEn": ["The refrigerator", "Leaving it on the kitchen counter", "Leaving it in the sun", "Putting it in a warm car"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-8",
+    "answersAr": ["إضاءة خافتة جدًا", "إضاءة جيدة", "ضوء شاشة ساطع في غرفة مظلمة", "ظلام شبه كامل"],
+    "answersEn": ["Very dim lighting", "Good lighting", "A bright screen in a dark room", "Near-total darkness"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-9",
+    "answersAr": ["المصعد", "السلالم", "التوقف في كل طابق", "الانتظار في الطابق الأرضي"],
+    "answersEn": ["The elevator", "The stairs", "Stopping on every floor", "Waiting on the ground floor"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-10",
+    "answersAr": ["الخروج بلا أي غطاء", "حمل مظلة", "حمل مظلة مغلقة دون استخدامها", "الاحتماء بورقة صغيرة"],
+    "answersEn": ["Going out with no cover", "Carrying an umbrella", "Carrying a closed umbrella without using it", "Sheltering under a small sheet of paper"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-11",
+    "answersAr": ["خوذة على الرأس", "قبعة قماشية", "غطاء رأس صوفي", "ركوب الدراجة بلا غطاء للرأس"],
+    "answersEn": ["A helmet", "A cloth cap", "A wool hat", "Cycling with no head covering"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-12",
+    "answersAr": ["الهمس طوال اليوم", "التحدث بهدوء", "الصراخ لساعات", "رفع الصوت باستمرار"],
+    "answersEn": ["Whispering all day", "Speaking calmly", "Shouting for hours", "Constantly raising your voice"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-13",
+    "answersAr": ["شحنه", "زيادة سطوع الشاشة", "إعادة تشغيله مرارًا", "ضربه على الطاولة"],
+    "answersEn": ["Charging it", "Increasing the screen brightness", "Restarting it repeatedly", "Hitting it on the table"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-14",
+    "answersAr": ["تكديس الكتب بلا ترتيب", "ترتيب الكتب", "رمي الكتب عشوائيًا", "وضع الكتب مفتوحة داخلها"],
+    "answersEn": ["Stacking the books without order", "Arranging the books", "Throwing the books in randomly", "Putting open books inside it"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-15",
+    "answersAr": ["قفاز مطبخ", "يد عارية", "قفاز بلاستيكي رقيق", "قطعة قماش مبللة"],
+    "answersEn": ["An oven mitt", "A bare hand", "A thin plastic glove", "A wet cloth"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-16",
+    "answersAr": ["الثلاجة", "الفريزر", "طاولة المطبخ", "سيارة متوقفة تحت الشمس"],
+    "answersEn": ["The refrigerator", "The freezer", "The kitchen counter", "A car parked under the sun"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-17",
+    "answersAr": ["المشي اليومي", "الجلوس بلا حركة طوال اليوم", "استخدام المصعد لكل مسافة", "قضاء وقت الفراغ كله على الأريكة"],
+    "answersEn": ["Daily walking", "Sitting still all day", "Taking the elevator for every distance", "Spending all free time on the couch"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-18",
+    "answersAr": ["ترك الصنبور مفتوحًا بأقصى تدفق", "إغلاق الصنبور", "ترك الصنبور مفتوحًا أثناء التنظيف", "فتح صنبورين في الوقت نفسه"],
+    "answersEn": ["Leaving the tap fully open", "Turning off the tap", "Leaving the tap running while brushing", "Opening two taps at the same time"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-19",
+    "answersAr": ["الجلوس باستقامة", "الانحناء فوق المكتب", "الانحناء المبالغ فيه", "الالتواء على الكرسي طويلًا"],
+    "answersEn": ["Sitting upright", "Hunching over the desk", "Excessive slouching", "Twisting in the chair for a long time"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-20",
+    "answersAr": ["تقليب الصفحات عشوائيًا", "الفهرس", "قراءة الكتاب من بدايته", "تفحص كل صفحة على حدة"],
+    "answersEn": ["Flipping through pages randomly", "The index", "Reading the book from the beginning", "Checking every page one by one"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-21",
+    "answersAr": ["الظل", "الوقوف الطويل تحت الشمس", "الجلوس على سطح ساخن", "ممارسة مجهود شديد في الشمس"],
+    "answersEn": ["Shade", "Standing for a long time under the sun", "Sitting on a hot surface", "Exercising strenuously in the sun"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-22",
+    "answersAr": ["الإفراط اليومي في الوجبات السريعة", "وجبة متوازنة", "تناول المقليات في كل وجبة", "تجاهل الخضروات والفواكه تمامًا"],
+    "answersEn": ["Daily overindulgence in fast food", "A balanced meal", "Eating fried food at every meal", "Completely avoiding fruits and vegetables"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-23",
+    "answersAr": ["مصباح يدوي", "نظارة شمسية", "عود ثقاب مكشوف", "البقاء في الظلام دون إضاءة"],
+    "answersEn": ["A flashlight", "Sunglasses", "An exposed match", "Staying in the dark without a light"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "wyr-new-24",
+    "answersAr": ["كلمة المرور 1234", "كلمة مرور قوية", "استخدام اسمك كلمة مرور", "استخدام كلمة password"],
+    "answersEn": ["The password 1234", "A strong password", "Using your name as a password", "Using the word password"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "wyr-new-25",
+    "answersAr": ["سقيه بالماء", "صب العصير عليه", "تركه يذبل دون تدخل", "وضعه قرب مصدر حرارة"],
+    "answersEn": ["Watering it", "Pouring juice on it", "Leaving it to wilt without help", "Putting it near a heat source"],
+    "correctAnswerIndex": 0
+  }
+]

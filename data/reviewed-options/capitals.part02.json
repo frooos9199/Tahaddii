@@ -1,0 +1,266 @@
+[
+  {
+    "id": "capitals-new-50",
+    "answersAr": ["أسمرة", "جيبوتي", "مقديشو", "أديس أبابا"],
+    "answersEn": ["Asmara", "Djibouti", "Mogadishu", "Addis Ababa"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-13",
+    "answersAr": ["ستوكهولم", "هلسنكي", "أوسلو", "تالين"],
+    "answersEn": ["Stockholm", "Helsinki", "Oslo", "Tallinn"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-14",
+    "answersAr": ["بنوم بنه", "هانوي", "فيينتيان", "بانكوك"],
+    "answersEn": ["Phnom Penh", "Hanoi", "Vientiane", "Bangkok"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-15",
+    "answersAr": ["هانوي", "بانكوك", "بنوم بنه", "فيينتيان"],
+    "answersEn": ["Hanoi", "Bangkok", "Phnom Penh", "Vientiane"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-16",
+    "answersAr": ["غواتيمالا سيتي", "مكسيكو سيتي", "هافانا", "سان خوسيه"],
+    "answersEn": ["Guatemala City", "Mexico City", "Havana", "San José"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-17",
+    "answersAr": ["براغ", "وارسو", "براتيسلافا", "بودابست"],
+    "answersEn": ["Prague", "Warsaw", "Bratislava", "Budapest"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-18",
+    "answersAr": ["كيشيناو", "كييف", "بوخارست", "وارسو"],
+    "answersEn": ["Chișinău", "Kyiv", "Bucharest", "Warsaw"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-19",
+    "answersAr": ["صوفيا", "بوخارست", "بلغراد", "بودابست"],
+    "answersEn": ["Sofia", "Bucharest", "Belgrade", "Budapest"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-20",
+    "answersAr": ["صوفيا", "أثينا", "تيرانا", "سكوبيه"],
+    "answersEn": ["Sofia", "Athens", "Tirana", "Skopje"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-21",
+    "answersAr": ["مدريد", "لشبونة", "أندورا لا فيلا", "باريس"],
+    "answersEn": ["Madrid", "Lisbon", "Andorra la Vella", "Paris"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-22",
+    "answersAr": ["بروكسل", "أمستردام", "لوكسمبورغ", "برلين"],
+    "answersEn": ["Brussels", "Amsterdam", "Luxembourg", "Berlin"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-23",
+    "answersAr": ["أوسلو", "ستوكهولم", "هلسنكي", "كوبنهاغن"],
+    "answersEn": ["Oslo", "Stockholm", "Helsinki", "Copenhagen"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-24",
+    "answersAr": ["ستوكهولم", "أوسلو", "هلسنكي", "كوبنهاغن"],
+    "answersEn": ["Stockholm", "Oslo", "Helsinki", "Copenhagen"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-25",
+    "answersAr": ["أوسلو", "كوبنهاغن", "ستوكهولم", "برلين"],
+    "answersEn": ["Oslo", "Copenhagen", "Stockholm", "Berlin"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-26",
+    "answersAr": ["لندن", "دبلن", "ريكيافيك", "باريس"],
+    "answersEn": ["London", "Dublin", "Reykjavík", "Paris"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-27",
+    "answersAr": ["فيينا", "بودابست", "براتيسلافا", "زغرب"],
+    "answersEn": ["Vienna", "Budapest", "Bratislava", "Zagreb"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-28",
+    "answersAr": ["فيينا", "براغ", "براتيسلافا", "وارسو"],
+    "answersEn": ["Vienna", "Prague", "Bratislava", "Warsaw"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-29",
+    "answersAr": ["أمستردام", "بروكسل", "لوكسمبورغ", "باريس"],
+    "answersEn": ["Amsterdam", "Brussels", "Luxembourg", "Paris"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-30",
+    "answersAr": ["طوكيو", "سيول", "بكين", "بيونغ يانغ"],
+    "answersEn": ["Tokyo", "Seoul", "Beijing", "Pyongyang"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-31",
+    "answersAr": ["جاكرتا", "مانيلا", "كوالالمبور", "بندر سري بكاوان"],
+    "answersEn": ["Jakarta", "Manila", "Kuala Lumpur", "Bandar Seri Begawan"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-32",
+    "answersAr": ["سنغافورة", "كوالالمبور", "جاكرتا", "بانكوك"],
+    "answersEn": ["Singapore", "Kuala Lumpur", "Jakarta", "Bangkok"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-33",
+    "answersAr": ["سنغافورة نفسها", "كوالالمبور", "جاكرتا", "بندر سري بكاوان"],
+    "answersEn": ["Singapore (city-state)", "Kuala Lumpur", "Jakarta", "Bandar Seri Begawan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "capitals-hard-34",
+    "answersAr": ["نيودلهي", "إسلام آباد", "كابل", "دكا"],
+    "answersEn": ["New Delhi", "Islamabad", "Kabul", "Dhaka"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-35",
+    "answersAr": ["نيودلهي", "دكا", "كاتماندو", "تيمفو"],
+    "answersEn": ["New Delhi", "Dhaka", "Kathmandu", "Thimphu"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-36",
+    "answersAr": ["بغداد", "طهران", "أنقرة", "كابل"],
+    "answersEn": ["Baghdad", "Tehran", "Ankara", "Kabul"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-37",
+    "answersAr": ["إسلام آباد", "كابل", "دوشنبه", "طهران"],
+    "answersEn": ["Islamabad", "Kabul", "Dushanbe", "Tehran"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-38",
+    "answersAr": ["أديس أبابا", "نيروبي", "أسمرة", "الخرطوم"],
+    "answersEn": ["Addis Ababa", "Nairobi", "Asmara", "Khartoum"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "capitals-hard-39",
+    "answersAr": ["كمبالا", "نيروبي", "دودوما", "أديس أبابا"],
+    "answersEn": ["Kampala", "Nairobi", "Dodoma", "Addis Ababa"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-40",
+    "answersAr": ["تونس العاصمة", "الجزائر العاصمة", "الرباط", "طرابلس"],
+    "answersEn": ["Tunis", "Algiers", "Rabat", "Tripoli"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-41",
+    "answersAr": ["الجزائر العاصمة", "تونس العاصمة", "طرابلس", "الرباط"],
+    "answersEn": ["Algiers", "Tunis", "Tripoli", "Rabat"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-42",
+    "answersAr": ["الجزائر العاصمة", "الرباط", "تونس العاصمة", "نواكشوط"],
+    "answersEn": ["Algiers", "Rabat", "Tunis", "Nouakchott"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-43",
+    "answersAr": ["تونس العاصمة", "طرابلس", "الجزائر العاصمة", "القاهرة"],
+    "answersEn": ["Tunis", "Tripoli", "Algiers", "Cairo"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-44",
+    "answersAr": ["القاهرة", "الخرطوم", "أديس أبابا", "جوبا"],
+    "answersEn": ["Cairo", "Khartoum", "Addis Ababa", "Juba"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-45",
+    "answersAr": ["دمشق", "بغداد", "عمّان", "طهران"],
+    "answersEn": ["Damascus", "Baghdad", "Amman", "Tehran"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-46",
+    "answersAr": ["بيروت", "دمشق", "عمّان", "بغداد"],
+    "answersEn": ["Beirut", "Damascus", "Amman", "Baghdad"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-47",
+    "answersAr": ["دمشق", "بيروت", "عمّان", "نيقوسيا"],
+    "answersEn": ["Damascus", "Beirut", "Amman", "Nicosia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-48",
+    "answersAr": ["دمشق", "عمّان", "بيروت", "بغداد"],
+    "answersEn": ["Damascus", "Amman", "Beirut", "Baghdad"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-49",
+    "answersAr": ["الرياض", "صنعاء", "مسقط", "أبوظبي"],
+    "answersEn": ["Riyadh", "Sana'a", "Muscat", "Abu Dhabi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-hard-50",
+    "answersAr": ["أبوظبي", "مسقط", "الرياض", "الدوحة"],
+    "answersEn": ["Abu Dhabi", "Muscat", "Riyadh", "Doha"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-new-1",
+    "answersAr": ["ويلينغتون", "كانبرا", "سوفا", "بورت مورسبي"],
+    "answersEn": ["Wellington", "Canberra", "Suva", "Port Moresby"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "capitals-new-2",
+    "answersAr": ["ليما", "سانتياغو", "بوينس آيرس", "مونتيفيديو"],
+    "answersEn": ["Lima", "Santiago", "Buenos Aires", "Montevideo"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "capitals-new-3",
+    "answersAr": ["كيتو", "لاباز", "ليما", "سانتياغو"],
+    "answersEn": ["Quito", "La Paz", "Lima", "Santiago"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "capitals-new-4",
+    "answersAr": ["كاراكاس", "كيتو", "ليما", "بوغوتا"],
+    "answersEn": ["Caracas", "Quito", "Lima", "Bogotá"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "capitals-new-5",
+    "answersAr": ["هافانا", "كينغستون", "ناسو", "سانتو دومينغو"],
+    "answersEn": ["Havana", "Kingston", "Nassau", "Santo Domingo"],
+    "correctAnswerIndex": 0
+  }
+]

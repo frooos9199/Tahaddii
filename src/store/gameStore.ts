@@ -18,6 +18,9 @@ const defaultSettings: GameSettings = {
   questionLanguage: 'ar',
   randomOrder: false,
   allowRepeat: false,
+  showTextAnswerOptions: false,
+  showImageAnswerOptions: false,
+  showVideoAnswerOptions: false,
   soundEnabled: true,
   readQuestion: false,
   lifelines: { enabled: true, fiftyFifty: 1, extraTime: 1, changeQuestion: 1, hint: 1 },
@@ -274,7 +277,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       const saved = await AsyncStorage.getItem(SAVED_GAME_KEY);
       if (saved) {
         const game: GameState = JSON.parse(saved);
-        set({ game });
+        set({ game: { ...game, settings: { ...defaultSettings, ...game.settings } } });
         return true;
       }
     } catch {}

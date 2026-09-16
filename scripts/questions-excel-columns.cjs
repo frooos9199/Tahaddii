@@ -53,7 +53,7 @@ const COLUMNS = [
   { header: 'answer2En', get: (q) => q.answersEn?.[1] ?? '', set: (row, v) => ((row.answersEn ??= [])[1] = String(v ?? '')) },
   { header: 'answer3En', get: (q) => q.answersEn?.[2] ?? '', set: (row, v) => ((row.answersEn ??= [])[2] = String(v ?? '')) },
   { header: 'answer4En', get: (q) => q.answersEn?.[3] ?? '', set: (row, v) => ((row.answersEn ??= [])[3] = String(v ?? '')) },
-  { header: 'correctAnswerIndex', get: (q) => q.correctAnswerIndex ?? 0, set: (row, v) => (row.correctAnswerIndex = Number(v)) },
+  { header: 'correctAnswerNumber', get: (q) => Number(q.correctAnswerIndex ?? 0) + 1, set: (row, v) => (row.correctAnswerIndex = Number(v) - 1) },
   { header: 'hintAr', get: (q) => q.hintAr || '', set: (row, v) => (row.hintAr = String(v ?? '') || undefined) },
   { header: 'hintEn', get: (q) => q.hintEn || '', set: (row, v) => (row.hintEn = String(v ?? '') || undefined) },
   { header: 'explanationAr', get: (q) => q.explanationAr || '', set: (row, v) => (row.explanationAr = String(v ?? '') || undefined) },

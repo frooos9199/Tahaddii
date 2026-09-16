@@ -127,7 +127,7 @@ const serializePresencePlayer = (playerId: string, payload: any): OnlinePresence
 
 export const updateOnlinePresence = async (profile: UserProfile, fallbackName?: string) => {
   const displayName = (profile.name || fallbackName || 'لاعب').trim();
-  const user = await ensureAuthenticatedUser({ allowGuest: true, displayName });
+  const user = await ensureAuthenticatedUser({ displayName });
   const now = Date.now();
   const db = getFirebaseDb();
 
@@ -165,7 +165,7 @@ export const subscribeToOnlinePresence = (
 };
 
 export const ensureOnlineAuth = async (displayName?: string) => {
-  const user = await ensureAuthenticatedUser({ allowGuest: true, displayName });
+  const user = await ensureAuthenticatedUser({ displayName });
   return user.uid;
 };
 
@@ -527,6 +527,9 @@ export const startRoom = async (roomId: string) => {
     questionLanguage: room.settings.questionLanguage,
     randomOrder: false,
     allowRepeat: false,
+    showTextAnswerOptions: false,
+    showImageAnswerOptions: false,
+    showVideoAnswerOptions: false,
     soundEnabled: true,
     readQuestion: false,
     lifelines: { enabled: false, fiftyFifty: 0, extraTime: 0, changeQuestion: 0, hint: 0 },

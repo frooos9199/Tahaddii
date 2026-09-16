@@ -1,0 +1,194 @@
+[
+  {
+    "id": "islamicculture-new-20",
+    "answersAr": ["سورة العصر", "سورة النصر", "سورة الإخلاص", "سورة الكوثر"],
+    "answersEn": ["Surah Al-Asr", "Surah An-Nasr", "Surah Al-Ikhlas", "Surah Al-Kawthar"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicCulture-hard-39",
+    "answersAr": ["معاذ بن جبل", "أبو عبيدة بن الجراح", "حذيفة بن اليمان", "زيد بن ثابت"],
+    "answersEn": ["Mu'adh ibn Jabal", "Abu Ubaydah ibn al-Jarrah", "Hudhayfah ibn al-Yaman", "Zayd ibn Thabit"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-40",
+    "answersAr": ["غزوة أحد", "غزوة بدر", "غزوة مؤتة", "معركة اليمامة"],
+    "answersEn": ["Battle of Uhud", "Battle of Badr", "Battle of Mu'tah", "Battle of al-Yamama"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-41",
+    "answersAr": ["معاوية بن أبي سفيان", "عبد الملك بن مروان", "الوليد بن عبد الملك", "هشام بن عبد الملك"],
+    "answersEn": ["Mu'awiyah ibn Abi Sufyan", "Abd al-Malik ibn Marwan", "Al-Walid ibn Abd al-Malik", "Hisham ibn Abd al-Malik"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-42",
+    "answersAr": ["مراد الثاني", "محمد الفاتح", "بايزيد الأول", "محمد الأول"],
+    "answersEn": ["Murad II", "Mehmed the Conqueror", "Bayezid I", "Mehmed I"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-43",
+    "answersAr": ["ابن خلدون", "المسعودي", "الطبري", "المقريزي"],
+    "answersEn": ["Ibn Khaldun", "Al-Mas'udi", "Al-Tabari", "Al-Maqrizi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-44",
+    "answersAr": ["الجامع الأموي", "قبة الصخرة", "جامع القيروان", "المسجد الأقصى"],
+    "answersEn": ["Umayyad Mosque", "Dome of the Rock", "Great Mosque of Kairouan", "Al-Aqsa Mosque"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-45",
+    "answersAr": ["أم سلمة", "حفصة بنت عمر", "عائشة بنت أبي بكر", "ميمونة بنت الحارث"],
+    "answersEn": ["Umm Salamah", "Hafsah bint Umar", "Aisha bint Abi Bakr", "Maymunah bint al-Harith"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-46",
+    "answersAr": ["القصواء", "الحنّاء", "السمراء", "العُرَيِّس"],
+    "answersEn": ["Al-Qaswa", "Al-Hanna", "Al-Samra", "Al-Urays"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-47",
+    "answersAr": ["7 هـ", "8 هـ", "9 هـ", "10 هـ"],
+    "answersEn": ["7 AH", "8 AH", "9 AH", "10 AH"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-48",
+    "answersAr": ["مكة المكرمة", "المدينة المنورة", "الكوفة", "بغداد"],
+    "answersEn": ["Makkah", "Madinah", "Kufa", "Baghdad"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-49",
+    "answersAr": ["أسد الدين شيركوه", "صلاح الدين الأيوبي", "نجم الدين أيوب", "العادل سيف الدين"],
+    "answersEn": ["Asad al-Din Shirkuh", "Saladin", "Najm al-Din Ayyub", "Al-Adil Sayf al-Din"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-50",
+    "answersAr": ["سامراء", "الكوفة", "بغداد", "الرقة"],
+    "answersEn": ["Samarra", "Kufa", "Baghdad", "Raqqa"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-1",
+    "answersAr": ["السلام عليكم", "السلام على من اتبع الهدى", "حياك الله", "مرحباً وأهلاً"],
+    "answersEn": ["As-salamu alaykum", "Peace be upon those who follow guidance", "May Allah greet you", "Welcome and greetings"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-2",
+    "answersAr": ["شعبان", "شوّال", "ذو القعدة", "رجب"],
+    "answersEn": ["Sha'ban", "Shawwal", "Dhu al-Qi'dah", "Rajab"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-3",
+    "answersAr": ["التهجد", "الوتر", "التراويح", "قيام الليل"],
+    "answersEn": ["Tahajjud", "Witr", "Tarawih", "Qiyam al-Layl"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-4",
+    "answersAr": ["المدينة المنورة", "القدس", "الطائف", "مكة المكرمة"],
+    "answersEn": ["Madinah", "Jerusalem", "Taif", "Makkah"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-5",
+    "answersAr": ["الكِسوة", "الملتزم", "الحطيم", "الشاذروان"],
+    "answersEn": ["Kiswah", "Multazam", "Hatim", "Shadharwan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-6",
+    "answersAr": ["11", "12", "13", "14"],
+    "answersEn": ["11", "12", "13", "14"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-7",
+    "answersAr": ["الخميس", "السبت", "الجمعة", "الاثنين"],
+    "answersEn": ["Thursday", "Saturday", "Friday", "Monday"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-8",
+    "answersAr": ["الإفطار", "الغداء", "العشاء", "السحور"],
+    "answersEn": ["Iftar", "Lunch", "Dinner", "Suhoor"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-9",
+    "answersAr": ["الإفطار", "السحور", "الغداء", "العشاء"],
+    "answersEn": ["Iftar", "Suhoor", "Lunch", "Dinner"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-10",
+    "answersAr": ["التين", "التمر", "الزيتون", "الرمان"],
+    "answersEn": ["Figs", "Dates", "Olives", "Pomegranates"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-11",
+    "answersAr": ["الزخرفة الهندسية", "فن التذهيب", "الخط العربي", "فن الأرابيسك"],
+    "answersEn": ["Geometric ornamentation", "Illumination", "Arabic calligraphy", "Arabesque art"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-12",
+    "answersAr": ["عيد الفطر", "رأس السنة الهجرية", "المولد النبوي", "عيد الأضحى"],
+    "answersEn": ["Eid al-Fitr", "Islamic New Year", "Mawlid al-Nabi", "Eid al-Adha"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-13",
+    "answersAr": ["الهجرة", "الإسراء", "المعراج", "الفتح"],
+    "answersEn": ["Hijrah", "Isra", "Mi'raj", "Conquest"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-14",
+    "answersAr": ["السيرة النبوية", "الحديث", "التفسير", "الفقه"],
+    "answersEn": ["Prophetic Seerah", "Hadith", "Tafsir", "Fiqh"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-15",
+    "answersAr": ["زكاة المال", "الفدية", "زكاة الفطر", "الكفارة"],
+    "answersEn": ["Zakat al-Mal", "Fidyah", "Zakat al-Fitr", "Kaffarah"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicculture-new-16",
+    "answersAr": ["محرم", "رجب", "رمضان", "ذو الحجة"],
+    "answersEn": ["Muharram", "Rajab", "Ramadan", "Dhu al-Hijjah"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "islamicculture-new-17",
+    "answersAr": ["الطواف", "السعي", "الوقوف بعرفة", "رمي الجمرات"],
+    "answersEn": ["Tawaf", "Sa'i", "Wuquf at Arafat", "Stoning of the Jamarat"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicculture-new-18",
+    "answersAr": ["110", "114", "120", "124"],
+    "answersEn": ["110", "114", "120", "124"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicculture-new-19",
+    "answersAr": ["سورة آل عمران", "سورة النساء", "سورة البقرة", "سورة الأعراف"],
+    "answersEn": ["Surah Ali 'Imran", "Surah An-Nisa", "Surah Al-Baqarah", "Surah Al-A'raf"],
+    "correctAnswerIndex": 2
+  }
+]

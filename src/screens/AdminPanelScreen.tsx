@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert, Image, RefreshControl, SafeAreaView, ScrollView, Share, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, RefreshControl, ScrollView, Share, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -7,14 +8,15 @@ import { useTranslation } from 'react-i18next';
 import { adminDeleteRoom, listActiveRooms, listAppUsers } from '../services/admin/adminService';
 import { deleteUserDirectly, setUserRoleDirectly } from '../services/admin/adminActionService';
 import { SponsorAd, listSponsorAds, saveSponsorAd, setSponsorAdActive } from '../services/admin/sponsorAdService';
-import { addCustomQuestion, listCustomQuestions } from '../services/questions/customQuestionService';
-import { listCategoryCards, saveCategoryCard, setCategoryCardActive } from '../services/categories/categoryCardService';
+import { addCustomQuestion, deleteCustomQuestion, deleteQuestionsByCategory, forceFullCustomQuestionsResync, listCustomQuestions, setCustomQuestionActive } from '../services/questions/customQuestionService';
+import { deleteCategoryCard, listCategoryCards, saveCategoryCard, setCategoryCardActive } from '../services/categories/categoryCardService';
 import { uploadAdminImage, uploadQuestionMedia, QuestionMediaRole } from '../services/storage/questionMediaUploadService';
 import { QUESTIONS } from '../services/questions/questionsData';
 import { questionBelongsToCategory } from '../services/questions/questionCatalog';
 import { deletePackage, listPackages, savePackage, setPackageActive } from '../services/packages/packageService';
 import { createPromoCode, deactivatePromoCode, generateRandomCode, listPromoCodes } from '../services/promo/promoAdminService';
 import { getContactConfig, saveContactConfig, getEntitlementsConfig, saveEntitlementsConfig } from '../services/config/appConfigService';
+import { formatUserIdentifierLabel } from '../services/entitlements/entitlementService';
 import { useAuthStore } from '../store/authStore';
 import { AppUserRecord, CategoryCard, CategoryId, Difficulty, OnlineRoom, Package, PromoCode, PromoCodeType, Question, RootStackParamList } from '../types';
 import { Colors } from '../theme/colors';
@@ -111,6 +113,7 @@ const createEmptyEntitlementsForm = () => ({
 
 export default function AdminPanelScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { userRecord, refreshUserRecord } = useAuthStore();
   const [users, setUsers] = useState<AppUserRecord[]>([]);
   const [rooms, setRooms] = useState<OnlineRoom[]>([]);
@@ -134,6 +137,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
   const [refreshing, setRefreshing] = useState(false);
   const [busyKey, setBusyKey] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<AdminTab>('questions');
+  const [usersSearchQuery, setUsersSearchQuery] = useState('');
 
   const canManageAdmins = Boolean(userRecord?.isSuperAdmin);
   const canOpen = Boolean(userRecord?.isAdmin || userRecord?.isSuperAdmin);
@@ -401,9 +405,33 @@ export default function AdminPanelScreen({ navigation }: Props) {
     try {
       await setCategoryCardActive(category.id, !category.isActive);
       await loadData();
-    } catch (error) {
+    } catch {
       Alert.alert(t('common.error'), t('admin.categorySaveFailed'));
     }
+  };
+
+  const deleteCategory = async (category: CategoryCard) => {
+    Alert.alert(
+      '',
+      `هل تريد حذف بطاقة ${category.nameAr} مع جميع الأسئلة المرتبطة بها؟`,
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('common.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await deleteQuestionsByCategory(category.id);
+              await deleteCategoryCard(category.id);
+              await loadData();
+              Alert.alert('', 'تم حذف البطاقة والأسئلة المرتبطة بها');
+            } catch (error) {
+              Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.categorySaveFailed'));
+            }
+          },
+        },
+      ],
+    );
   };
 
   const editQuestion = (question: Question) => {
@@ -428,6 +456,60 @@ export default function AdminPanelScreen({ navigation }: Props) {
   const cancelEditQuestion = () => {
     setEditingQuestionId(null);
     setQuestionForm(createEmptyQuestionForm());
+  };
+
+  const removeQuestion = (question: Question) => {
+    const isOverrideOfBuiltin = QUESTIONS.some(builtin => builtin.id === question.id);
+    Alert.alert(
+      '',
+      isOverrideOfBuiltin
+        ? t('admin.deleteQuestionOverrideConfirm')
+        : t('admin.deleteQuestionConfirm'),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('common.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            setBusyKey(`delete-question-${question.id}`);
+            try {
+              await deleteCustomQuestion(question.id);
+              await loadData();
+              Alert.alert('', isOverrideOfBuiltin ? t('admin.questionOverrideDeletedSuccess') : t('admin.questionDeletedSuccess'));
+            } catch (error) {
+              Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.questionDeleteFailed'));
+            } finally {
+              setBusyKey(null);
+            }
+          },
+        },
+      ],
+    );
+  };
+
+  const toggleQuestionActive = async (question: Question) => {
+    setBusyKey(`toggle-question-${question.id}`);
+    try {
+      await setCustomQuestionActive(question.id, question.isActive === false);
+      await loadData();
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.questionSaveFailed'));
+    } finally {
+      setBusyKey(null);
+    }
+  };
+
+  const syncQuestionsNow = async () => {
+    setBusyKey('sync-questions');
+    try {
+      await forceFullCustomQuestionsResync();
+      await loadData();
+      Alert.alert('', t('admin.questionsSyncedSuccess'));
+    } catch (error) {
+      Alert.alert(t('common.error'), error instanceof Error ? error.message : t('admin.questionsSyncFailed'));
+    } finally {
+      setBusyKey(null);
+    }
   };
 
   const saveAd = async () => {
@@ -694,7 +776,7 @@ export default function AdminPanelScreen({ navigation }: Props) {
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
       <ScrollView
-        contentContainerStyle={styles.scroll}
+        contentContainerStyle={[styles.scroll, { paddingBottom: Math.max(insets.bottom, 20) + 16 }]}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => { void loadData(); }} tintColor={Colors.primaryLight} />}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
@@ -740,10 +822,19 @@ export default function AdminPanelScreen({ navigation }: Props) {
         <View style={styles.section}>
           <View style={styles.sectionHeaderRow}>
             <Text style={styles.sectionTitle}>{t('admin.categoriesAndQuestions')}</Text>
-            <TouchableOpacity style={styles.exportBtn} onPress={() => { void exportQuestionsToCsv(); }}>
-              <Text style={styles.exportBtnText}>{t('admin.exportQuestions')}</Text>
-            </TouchableOpacity>
+            <View style={styles.actionsRow}>
+              <TouchableOpacity
+                style={[styles.exportBtn, busyKey === 'sync-questions' && styles.roleBtnDisabled]}
+                disabled={busyKey === 'sync-questions'}
+                onPress={() => { void syncQuestionsNow(); }}>
+                <Text style={styles.exportBtnText}>{busyKey === 'sync-questions' ? t('common.loading') : t('admin.syncQuestionsNow')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.exportBtn} onPress={() => { void exportQuestionsToCsv(); }}>
+                <Text style={styles.exportBtnText}>{t('admin.exportQuestions')}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+          <Text style={styles.exportHint}>{t('admin.syncQuestionsNowHint')}</Text>
           <Text style={styles.exportHint}>{t('admin.exportQuestionsHint')}</Text>
           <Text style={styles.noteBox}>{t('admin.excelUploadNote')}</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.categoryStrip}>
@@ -849,9 +940,26 @@ export default function AdminPanelScreen({ navigation }: Props) {
                 <Text style={styles.questionDifficulty}>{question.difficulty}</Text>
                 <View style={styles.questionActionsInline}>
                   <Text style={styles.questionSource}>{question.source === 'admin' ? t('admin.adminSource') : t('admin.appSource')}</Text>
+                  {question.isActive === false ? <Text style={styles.questionPausedBadge}>{t('admin.categoryPaused')}</Text> : null}
                   <TouchableOpacity style={styles.editQuestionBtn} onPress={() => editQuestion(question)}>
                     <Text style={styles.editQuestionBtnText}>{t('common.edit')}</Text>
                   </TouchableOpacity>
+                  {question.source === 'admin' ? (
+                    <>
+                      <TouchableOpacity
+                        style={[styles.editQuestionBtn, busyKey === `toggle-question-${question.id}` && styles.roleBtnDisabled]}
+                        disabled={busyKey === `toggle-question-${question.id}`}
+                        onPress={() => { void toggleQuestionActive(question); }}>
+                        <Text style={styles.editQuestionBtnText}>{question.isActive === false ? t('admin.categoryActive') : t('admin.categoryPaused')}</Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        style={[styles.deleteQuestionBtn, busyKey === `delete-question-${question.id}` && styles.roleBtnDisabled]}
+                        disabled={busyKey === `delete-question-${question.id}`}
+                        onPress={() => removeQuestion(question)}>
+                        <Text style={styles.deleteQuestionBtnText}>{t('common.delete')}</Text>
+                      </TouchableOpacity>
+                    </>
+                  ) : null}
                 </View>
               </View>
               <Text style={styles.questionText}>{question.questionAr}</Text>
@@ -936,6 +1044,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.roleBtn} onPress={() => { void toggleCategory(category); }}>
                   <Text style={styles.roleBtnText}>{category.isActive ? t('admin.pauseCategory') : t('admin.activateCategory')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.roleBtn, styles.deleteQuestionBtn]} onPress={() => { void deleteCategory(category); }}>
+                  <Text style={styles.deleteQuestionBtnText}>{t('common.delete')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -1213,11 +1324,25 @@ export default function AdminPanelScreen({ navigation }: Props) {
         {activeTab === 'users' && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>{t('admin.usersSection')}</Text>
-          {users.map(item => (
+          <TextInput
+            style={styles.textInput}
+            value={usersSearchQuery}
+            onChangeText={setUsersSearchQuery}
+            placeholder={t('adminEntitlements.searchPlaceholder')}
+            placeholderTextColor={Colors.textMuted}
+          />
+          {users.filter(item => {
+            const query = usersSearchQuery.trim().toLowerCase();
+            if (!query) return true;
+            return String(item.customerNumber ?? '').includes(query)
+              || String(item.guestNumber ?? '').includes(query)
+              || item.displayName?.toLowerCase().includes(query)
+              || item.email?.toLowerCase().includes(query);
+          }).map(item => (
             <View key={item.uid} style={styles.userCard}>
               <View style={styles.userTop}>
                 <View style={styles.userInfo}>
-                  <Text style={styles.userName}>{item.displayName || 'User'}{item.customerNumber ? ` · #${item.customerNumber}` : ''}</Text>
+                  <Text style={styles.userName}>{item.displayName || 'User'}{formatUserIdentifierLabel(item) ? ` · ${formatUserIdentifierLabel(item)}` : ''}</Text>
                   <Text style={styles.userMeta}>{item.email || t('admin.guestUser')}</Text>
                   <Text style={styles.userMeta}>{item.role}</Text>
                   {item.entitlementExpiresAtMs && item.entitlementExpiresAtMs > Date.now() ? (
@@ -1241,11 +1366,9 @@ export default function AdminPanelScreen({ navigation }: Props) {
                 </TouchableOpacity>
               </View>
 
-              {!item.isGuest ? (
-                <TouchableOpacity style={styles.activateCategoryBtn} onPress={() => navigation.navigate('AdminEntitlements', { presetUid: item.uid })}>
-                  <Text style={styles.activateCategoryBtnText}>{t('admin.activateCategoryForUser')}</Text>
-                </TouchableOpacity>
-              ) : null}
+              <TouchableOpacity style={styles.activateCategoryBtn} onPress={() => navigation.navigate('AdminEntitlements', { presetUid: item.uid })}>
+                <Text style={styles.activateCategoryBtnText}>{t('admin.activateCategoryForUser')}</Text>
+              </TouchableOpacity>
 
               {canManageAdmins ? (
                 <TouchableOpacity style={[styles.deleteLineBtn, (item.uid === userRecord?.uid || busyKey === `delete-user-${item.uid}`) && styles.roleBtnDisabled]} disabled={item.uid === userRecord?.uid || busyKey === `delete-user-${item.uid}`} onPress={() => { void removeUserDocument(item); }}>
@@ -1478,6 +1601,16 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   editQuestionBtnText: { color: Colors.text, fontSize: 12, fontWeight: '900' },
+  questionPausedBadge: { color: Colors.error, fontSize: 11, fontWeight: '900' },
+  deleteQuestionBtn: {
+    backgroundColor: Colors.background,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: Colors.error,
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+  },
+  deleteQuestionBtnText: { color: Colors.error, fontSize: 12, fontWeight: '900' },
   questionText: { color: Colors.text, fontSize: 15, fontWeight: '800', lineHeight: 22, textAlign: 'right' },
   questionEnglishText: { color: Colors.textMuted, fontSize: 14, lineHeight: 20, textAlign: 'left' },
   questionLinkedText: { color: Colors.accent, fontSize: 11, fontWeight: '800', textAlign: 'right' },

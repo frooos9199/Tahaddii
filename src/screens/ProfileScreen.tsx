@@ -191,7 +191,7 @@ export default function ProfileScreen({ navigation }: Props) {
         <View style={styles.card}>
           <Text style={styles.cardLabel}>{t('profileScreen.account')}</Text>
           <Text style={styles.accountTitle}>{userRecord?.displayName || t('profileScreen.notRegistered')}</Text>
-          <Text style={styles.accountMeta}>{userRecord?.email || (userRecord?.isGuest ? t('profileScreen.guest') : t('profileScreen.signInToManage'))}</Text>
+          <Text style={styles.accountMeta}>{userRecord?.email || t('profileScreen.signInToManage')}</Text>
           <View style={styles.accountActions}>
             <TouchableOpacity style={styles.accountBtn} onPress={() => navigation.navigate('Auth')}>
               <Text style={styles.accountBtnText}>{userRecord ? t('profileScreen.manageLogin') : t('profileScreen.loginOrCreate')}</Text>

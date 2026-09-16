@@ -1,0 +1,242 @@
+[
+  {
+    "id": "inventions-hard-21",
+    "answersAr": ["جورج إيستمان", "إدوين لاند", "ويليام هنري فوكس تالبوت", "لويس داغير"],
+    "answersEn": ["George Eastman", "Edwin Land", "William Henry Fox Talbot", "Louis Daguerre"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-22",
+    "answersAr": ["ويليس كارير", "جون غوري", "ستيوارت كريمر", "فريدريك جونز"],
+    "answersEn": ["Willis Carrier", "John Gorrie", "Stuart Cramer", "Frederick Jones"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-23",
+    "answersAr": ["نيكولا تسلا", "جورج وستنغهاوس", "توماس إديسون", "سيباستيان فيرانتي"],
+    "answersEn": ["Nikola Tesla", "George Westinghouse", "Thomas Edison", "Sebastian Ferranti"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-24",
+    "answersAr": ["جون فيليب هولاند", "روبرت فولتون", "دايفيد بوشنيل", "سايمون ليك"],
+    "answersEn": ["John Philip Holland", "Robert Fulton", "David Bushnell", "Simon Lake"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-25",
+    "answersAr": ["كارل بنز", "غوتليب دايملر", "فيلهلم مايباخ", "زيغفريد ماركوس"],
+    "answersEn": ["Karl Benz", "Gottlieb Daimler", "Wilhelm Maybach", "Siegfried Marcus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-26",
+    "answersAr": ["رودولف ديزل", "نيكولاوس أوتو", "كارل بنز", "غوتليب دايملر"],
+    "answersEn": ["Rudolf Diesel", "Nikolaus Otto", "Karl Benz", "Gottlieb Daimler"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-27",
+    "answersAr": ["لازلو بيرو", "جون لود", "سلافوليوب بينكالا", "لويس ووترمان"],
+    "answersEn": ["László Bíró", "John Loud", "Slavoljub Penkala", "Lewis Waterman"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-28",
+    "answersAr": ["بيرسي سبنسر", "جون راندال", "هاري بوت", "ألبرت هال"],
+    "answersEn": ["Percy Spencer", "John Randall", "Harry Boot", "Albert Hull"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-29",
+    "answersAr": ["فريد و. وولف / جنرال إلكتريك", "ناثانيال ويلز", "ألفريد ميلوز", "بالتزار فون بلاتن وكارل مونترز"],
+    "answersEn": ["Fred W. Wolf / General Electric", "Nathaniel Wales", "Alfred Mellowes", "Baltzar von Platen and Carl Munters"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-30",
+    "answersAr": ["ألفا فيشر", "جيمس كينغ", "هاملتون سميث", "ويليام بلاكستون"],
+    "answersEn": ["Alva Fisher", "James King", "Hamilton Smith", "William Blackstone"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-31",
+    "answersAr": ["إريكسون", "نوكيا", "آي بي إم", "إنتل"],
+    "answersEn": ["Ericsson", "Nokia", "IBM", "Intel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-32",
+    "answersAr": ["لاري بيج وسيرجي برين", "جيري يانغ وديفيد فيلو", "بيل غيتس وبول ألين", "ستيف جوبز وستيف وزنياك"],
+    "answersEn": ["Larry Page and Sergey Brin", "Jerry Yang and David Filo", "Bill Gates and Paul Allen", "Steve Jobs and Steve Wozniak"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-33",
+    "answersAr": ["مارك زوكربيرغ", "جاك دورسي", "إيفان شبيغل", "كيفن سيستروم"],
+    "answersEn": ["Mark Zuckerberg", "Jack Dorsey", "Evan Spiegel", "Kevin Systrom"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-34",
+    "answersAr": ["جيف بيزوس", "بيير أميديار", "جاك ما", "مارك لوري"],
+    "answersEn": ["Jeff Bezos", "Pierre Omidyar", "Jack Ma", "Marc Lore"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-35",
+    "answersAr": ["آلان تورينغ", "ألونزو تشيرش", "جون فون نيومان", "كلود شانون"],
+    "answersEn": ["Alan Turing", "Alonzo Church", "John von Neumann", "Claude Shannon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-36",
+    "answersAr": ["تشارلز باباج", "بليز باسكال", "غوتفريد لايبنتس", "جوزيف ماري جاكار"],
+    "answersEn": ["Charles Babbage", "Blaise Pascal", "Gottfried Leibniz", "Joseph Marie Jacquard"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-37",
+    "answersAr": ["أدا لوفليس", "غريس هوبر", "هيدي لامار", "مارغريت هاميلتون"],
+    "answersEn": ["Ada Lovelace", "Grace Hopper", "Hedy Lamarr", "Margaret Hamilton"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-38",
+    "answersAr": ["لينوس تورفالدس", "أندرو تانينباوم", "ريتشارد ستولمان", "كين تومسون"],
+    "answersEn": ["Linus Torvalds", "Andrew Tanenbaum", "Richard Stallman", "Ken Thompson"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-39",
+    "answersAr": ["دينيس ريتشي", "بيارن ستروستروب", "كين تومسون", "برايان كيرنيغان"],
+    "answersEn": ["Dennis Ritchie", "Bjarne Stroustrup", "Ken Thompson", "Brian Kernighan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-40",
+    "answersAr": ["جون باردين وويليام شوكلي ووالتر براتين", "لي دي فورست", "جون أمبروز فلمنغ", "جاك كيلبي وروبرت نويس"],
+    "answersEn": ["John Bardeen, William Shockley, and Walter Brattain", "Lee de Forest", "John Ambrose Fleming", "Jack Kilby and Robert Noyce"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-41",
+    "answersAr": ["جاك كيلبي وروبرت نويس", "جيفري دامر", "فيرنر ياكوبي", "كورت ليهوفيك"],
+    "answersEn": ["Jack Kilby and Robert Noyce", "Geoffrey Dummer", "Werner Jacobi", "Kurt Lehovec"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-42",
+    "answersAr": ["تيودور مايمان", "علي جافان", "كومار باتيل", "نيكولاي باسوف"],
+    "answersEn": ["Theodore Maiman", "Ali Javan", "Kumar Patel", "Nikolay Basov"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-43",
+    "answersAr": ["هاري كوفر", "سبنسر سيلفر", "ريتشارد درو", "جورج دي ميسترال"],
+    "answersEn": ["Harry Coover", "Spencer Silver", "Richard Drew", "George de Mestral"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-44",
+    "answersAr": ["ليو بايكلاند", "ألكسندر باركس", "جون ويسلي هايات", "كريستيان شونباين"],
+    "answersEn": ["Leo Baekeland", "Alexander Parkes", "John Wesley Hyatt", "Christian Schönbein"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-45",
+    "answersAr": ["مارتن كوبر", "فرانك كانوفا", "إريك تايغرستيدت", "ناثان ستابلفيلد"],
+    "answersEn": ["Martin Cooper", "Frank Canova", "Eric Tigerstedt", "Nathan Stubblefield"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-46",
+    "answersAr": ["ستيف جوبز", "ستيف وزنياك", "سكوت فورستال", "جوني آيف"],
+    "answersEn": ["Steve Jobs", "Steve Wozniak", "Scott Forstall", "Jony Ive"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-47",
+    "answersAr": ["فريق مختبرات بيل (تشابين وفولر وبيرسون)", "راسل أول", "تشارلز فريتس", "إدموند بيكريل"],
+    "answersEn": ["The Bell Labs team (Chapin, Fuller, Pearson)", "Russell Ohl", "Charles Fritts", "Edmond Becquerel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-48",
+    "answersAr": ["كريستوفر لاثام شولز", "بيليغرينو توري", "هنري ميل", "ويليام بيرت"],
+    "answersEn": ["Christopher Latham Sholes", "Pellegrino Turri", "Henry Mill", "William Burt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-49",
+    "answersAr": ["وزارة الدفاع الأمريكية", "ناسا", "وكالة الفضاء الأوروبية", "وزارة الدفاع السوفيتية"],
+    "answersEn": ["U.S. Department of Defense", "NASA", "European Space Agency", "Soviet Ministry of Defense"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-hard-50",
+    "answersAr": ["الصين القديمة", "الهند القديمة", "الإمبراطورية البيزنطية", "الخلافة العباسية"],
+    "answersEn": ["Ancient China", "Ancient India", "Byzantine Empire", "Abbasid Caliphate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-1",
+    "answersAr": ["لويس برايل", "شارل باربييه", "ويليام مون", "فالنتان أوي"],
+    "answersEn": ["Louis Braille", "Charles Barbier", "William Moon", "Valentin Haüy"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-2",
+    "answersAr": ["ماري أندرسون", "روبرت كيرنز", "غلادستون آدامز", "جون أويشي"],
+    "answersEn": ["Mary Anderson", "Robert Kearns", "Gladstone Adams", "John Oishei"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-3",
+    "answersAr": ["جوزفين كوكرين", "جويل هوتون", "إل. إيه. ألكسندر", "ويليام هوارد ليفنز"],
+    "answersEn": ["Josephine Cochrane", "Joel Houghton", "L. A. Alexander", "William Howard Livens"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-4",
+    "answersAr": ["جيمس ريتي", "جون هنري باترسون", "تشارلز كيترينغ", "ديفيد براون"],
+    "answersEn": ["James Ritty", "John Henry Patterson", "Charles Kettering", "David Brown"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-5",
+    "answersAr": ["الأخوان مونغولفييه", "جاك شارل", "بيلاتر دي روزييه", "هنري جيفارد"],
+    "answersEn": ["the Montgolfier brothers", "Jacques Charles", "Pilâtre de Rozier", "Henri Giffard"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-6",
+    "answersAr": ["سايرس ماكورميك", "جون دير", "إيلي ويتني", "جيثرو تال"],
+    "answersEn": ["Cyrus McCormick", "John Deere", "Eli Whitney", "Jethro Tull"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-7",
+    "answersAr": ["رينيه لاينك", "ويليم أينتهوفن", "شيبيوني ريفا روتشي", "توماس ألبوت"],
+    "answersEn": ["René Laennec", "Willem Einthoven", "Scipione Riva-Rocci", "Thomas Allbutt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-8",
+    "answersAr": ["جيسي رينو", "إليشا أوتيس", "ألكسندر مايلز", "فيرنر فون سيمنز"],
+    "answersEn": ["Jesse Reno", "Elisha Otis", "Alexander Miles", "Werner von Siemens"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-9",
+    "answersAr": ["غيديون سندباك", "ويتكومب جادسون", "إلياس هاو", "ماكس وولف"],
+    "answersEn": ["Gideon Sundback", "Whitcomb Judson", "Elias Howe", "Max Wolff"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "inventions-new-10",
+    "answersAr": ["جيمس ديوار", "رينهولد برغر", "أدولف فرديناند فاينهولد", "يوجين سوليفان"],
+    "answersEn": ["James Dewar", "Reinhold Burger", "Adolf Ferdinand Weinhold", "Eugene Sullivan"],
+    "correctAnswerIndex": 0
+  }
+]

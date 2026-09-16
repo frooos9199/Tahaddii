@@ -1,0 +1,188 @@
+[
+  {
+    "id": "science-new-20",
+    "answersAr": ["O سالب", "O موجب", "A سالب", "B سالب"],
+    "answersEn": ["O negative", "O positive", "A negative", "B negative"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-21",
+    "answersAr": ["الساق", "الجذر", "الورقة", "الزهرة"],
+    "answersEn": ["Stem", "Root", "Leaf", "Flower"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-22",
+    "answersAr": ["التروبوسفير", "الستراتوسفير", "الميزوسفير", "الثرموسفير"],
+    "answersEn": ["Troposphere", "Stratosphere", "Mesosphere", "Thermosphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-23",
+    "answersAr": ["الهيموغلوبين", "الهيموسيانين", "الكلوروكرورين", "الهيمريثرين"],
+    "answersEn": ["Hemoglobin", "Hemocyanin", "Chlorocruorin", "Hemerythrin"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-24",
+    "answersAr": ["مقياس ريختر", "مقياس ميركالي المعدل", "مقياس العزم الزلزالي", "المقياس الزلزالي الأوروبي"],
+    "answersEn": ["Richter scale", "Modified Mercalli scale", "Moment magnitude scale", "European Macroseismic Scale"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-25",
+    "answersAr": ["التكاثف", "التبخر", "التسامي", "الترسيب"],
+    "answersEn": ["Condensation", "Evaporation", "Sublimation", "Deposition"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-26",
+    "answersAr": ["المشتري", "زحل", "نبتون", "أورانوس"],
+    "answersEn": ["Jupiter", "Saturn", "Neptune", "Uranus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-27",
+    "answersAr": ["الأرصاد الجوية", "علم المناخ", "فيزياء الغلاف الجوي", "علم المياه"],
+    "answersEn": ["Meteorology", "Climatology", "Atmospheric physics", "Hydrology"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-28",
+    "answersAr": ["الكيلوغرام", "الغرام", "الطن", "وحدة الكتلة الذرية"],
+    "answersEn": ["Kilogram", "Gram", "Tonne", "Atomic mass unit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-29",
+    "answersAr": ["الجمجمة", "القفص الصدري", "العمود الفقري", "الحوض"],
+    "answersEn": ["Skull", "Rib cage", "Vertebral column", "Pelvis"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-30",
+    "answersAr": ["الرحيق", "حبوب اللقاح", "الزيوت الزهرية", "راتنج النبات"],
+    "answersEn": ["Nectar", "Pollen", "Floral oils", "Plant resin"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-31",
+    "answersAr": ["درب التبانة", "مجرة المرأة المسلسلة", "مجرة المثلث", "سحابة ماجلان الكبرى"],
+    "answersEn": ["Milky Way", "Andromeda Galaxy", "Triangulum Galaxy", "Large Magellanic Cloud"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-32",
+    "answersAr": ["التلسكوب", "المطياف", "السدس", "الميكرومتر الفلكي"],
+    "answersEn": ["Telescope", "Spectroscope", "Sextant", "Astronomical micrometer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-33",
+    "answersAr": ["الزئبق", "الغاليوم", "السيزيوم", "الروبيديوم"],
+    "answersEn": ["Mercury", "Gallium", "Cesium", "Rubidium"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-34",
+    "answersAr": ["7", "6", "7.4", "8"],
+    "answersEn": ["7", "6", "7.4", "8"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-35",
+    "answersAr": ["ابن النفيس", "أبو بكر الرازي", "ابن سينا", "أبو القاسم الزهراوي"],
+    "answersEn": ["Ibn al-Nafis", "Al-Razi", "Ibn Sina", "Al-Zahrawi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-36",
+    "answersAr": ["النيون", "الأرجون", "الكريبتون", "الزينون"],
+    "answersEn": ["Neon", "Argon", "Krypton", "Xenon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-37",
+    "answersAr": ["الميتوكوندريا", "البلاستيدة الخضراء", "جهاز غولجي", "الجسيم الحال"],
+    "answersEn": ["Mitochondria", "Chloroplast", "Golgi apparatus", "Lysosome"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-38",
+    "answersAr": ["مقياس موس", "مقياس فيكرز", "مقياس برينل", "مقياس روكويل"],
+    "answersEn": ["Mohs scale", "Vickers scale", "Brinell scale", "Rockwell scale"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-39",
+    "answersAr": ["التسامي", "الانصهار", "الترسيب", "التبخر"],
+    "answersEn": ["Sublimation", "Melting", "Deposition", "Evaporation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-40",
+    "answersAr": ["الشعيرات الدموية", "الشرينات", "الوريدات", "الشرايين"],
+    "answersEn": ["Capillaries", "Arterioles", "Venules", "Arteries"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-41",
+    "answersAr": ["نيكولاس كوبرنيكوس", "كلاوديوس بطليموس", "تيخو براهي", "يوهانس كبلر"],
+    "answersEn": ["Nicolaus Copernicus", "Claudius Ptolemy", "Tycho Brahe", "Johannes Kepler"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-42",
+    "answersAr": ["الإنسولين", "الميلاتونين", "الثيروكسين", "الإستروجين"],
+    "answersEn": ["Insulin", "Melatonin", "Thyroxine", "Estrogen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-43",
+    "answersAr": ["صخر ناري", "صخر رسوبي فتاتي", "صخر رسوبي كيميائي", "صخر متحول"],
+    "answersEn": ["Igneous rock", "Clastic sedimentary rock", "Chemical sedimentary rock", "Metamorphic rock"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-44",
+    "answersAr": ["واط", "حصان ميكانيكي", "وحدة حرارية بريطانية في الساعة", "سعرة حرارية في الثانية"],
+    "answersEn": ["Watt", "Horsepower", "British thermal unit per hour", "Calorie per second"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-45",
+    "answersAr": ["المريخ", "الزهرة", "عطارد", "الأرض"],
+    "answersEn": ["Mars", "Venus", "Mercury", "Earth"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-46",
+    "answersAr": ["البنفسجي", "النيلي", "الأزرق", "الأحمر"],
+    "answersEn": ["Violet", "Indigo", "Blue", "Red"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-47",
+    "answersAr": ["ميكروفون", "مكبر صوت", "مضخم صوت", "مازج صوتي"],
+    "answersEn": ["Microphone", "Loudspeaker", "Audio amplifier", "Audio mixer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-48",
+    "answersAr": ["ماري كوري", "إيرين جوليو-كوري", "ليز مايتنر", "تشين شيونغ وو"],
+    "answersEn": ["Marie Curie", "Irène Joliot-Curie", "Lise Meitner", "Chien-Shiung Wu"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-49",
+    "answersAr": ["حمض الستريك", "حمض الماليك", "حمض الطرطريك", "حمض اللاكتيك"],
+    "answersEn": ["Citric acid", "Malic acid", "Tartaric acid", "Lactic acid"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-50",
+    "answersAr": ["القنوات نصف الدائرية", "القوقعة", "عضو كورتي", "الغشاء القاعدي"],
+    "answersEn": ["Semicircular canals", "Cochlea", "Organ of Corti", "Basilar membrane"],
+    "correctAnswerIndex": 0
+  }
+]

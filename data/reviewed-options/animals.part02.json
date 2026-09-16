@@ -1,0 +1,242 @@
+[
+  {
+    "id": "animals-new-50",
+    "answersAr": ["نحلة العسل", "فراشة الملك", "اليراعة", "فرس النبي"],
+    "answersEn": ["Honeybee", "Monarch butterfly", "Firefly", "Praying mantis"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-21",
+    "answersAr": ["1", "2", "3", "4"],
+    "answersEn": ["1", "2", "3", "4"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-22",
+    "answersAr": ["الزرافة", "النملة آكلة النمل", "البنغول", "الأوكابي"],
+    "answersEn": ["Giraffe", "Anteater", "Pangolin", "Okapi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-23",
+    "answersAr": ["مهر", "عجل", "جدي", "حمل"],
+    "answersEn": ["Foal", "Calf", "Kid", "Lamb"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-24",
+    "answersAr": ["الجمل", "المها العربي", "غزال الرمال", "ثعلب الفنك"],
+    "answersEn": ["Camel", "Arabian Oryx", "Sand Gazelle", "Fennec Fox"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-25",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "animals-hard-26",
+    "answersAr": ["الكوالا", "الباندا", "الكسلان", "الزرافة"],
+    "answersEn": ["Koala", "Panda", "Sloth", "Giraffe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-27",
+    "answersAr": ["الدولفين", "أسد البحر", "سمكة المانتا", "سمك القرش"],
+    "answersEn": ["Dolphin", "Sea Lion", "Manta Ray", "Shark"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-28",
+    "answersAr": ["وحيد القرن", "الفيل الأفريقي", "الفيل الآسيوي", "فرس النهر"],
+    "answersEn": ["Rhinoceros", "African Elephant", "Asian Elephant", "Hippopotamus"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-29",
+    "answersAr": ["النسر الأصلع", "العقاب الذهبي", "الصقر الشاهين", "كندور كاليفورنيا"],
+    "answersEn": ["Bald Eagle", "Golden Eagle", "Peregrine Falcon", "California Condor"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-30",
+    "answersAr": ["نجم البحر", "القط", "الكلب", "الأرنب"],
+    "answersEn": ["Starfish", "Cat", "Dog", "Rabbit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-31",
+    "answersAr": ["20 سنة", "50 سنة", "100 سنة فأكثر", "70 سنة"],
+    "answersEn": ["20 years", "50 years", "100+ years", "70 years"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "animals-hard-32",
+    "answersAr": ["القنفذ", "المدرع", "البنغول", "السلحفاة"],
+    "answersEn": ["Hedgehog/Porcupine", "Armadillo", "Pangolin", "Tortoise"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-33",
+    "answersAr": ["الخفاش", "البومة", "القط", "السنجاب الطائر"],
+    "answersEn": ["Bat", "Owl", "Cat", "Flying Squirrel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-34",
+    "answersAr": ["جرو", "هرة", "مهر", "عجل"],
+    "answersEn": ["Puppy", "Kitten", "Foal", "Calf"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-35",
+    "answersAr": ["النحلة", "النملة", "الفراشة", "الذبابة"],
+    "answersEn": ["Bee", "Ant", "Butterfly", "Fly"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-36",
+    "answersAr": ["4", "6", "8", "10"],
+    "answersEn": ["4", "6", "8", "10"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-37",
+    "answersAr": ["الباندا العملاقة", "الحمار الوحشي", "البطريق", "الحوت القاتل"],
+    "answersEn": ["Giant Panda", "Zebra", "Penguin", "Orca"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-38",
+    "answersAr": ["خلد الماء (منقار البط)", "الومبت", "الكوالا", "القندس"],
+    "answersEn": ["Platypus", "Wombat", "Koala", "Beaver"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-39",
+    "answersAr": ["الدب الأسود", "الدب القطبي", "الدب أبو نظارة", "دب الشمس"],
+    "answersEn": ["Black Bear", "Polar Bear", "Spectacled Bear", "Sun Bear"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-40",
+    "answersAr": ["آكل النمل", "الكسلان", "الزرافة", "التابير"],
+    "answersEn": ["Anteater", "Sloth", "Giraffe", "Tapir"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-41",
+    "answersAr": ["عجل", "مهر", "جدي", "حمل"],
+    "answersEn": ["Calf", "Foal", "Kid", "Lamb"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-42",
+    "answersAr": ["الدب القطبي", "الفقمة", "الفظ", "الثعلب القطبي"],
+    "answersEn": ["Polar bear", "Seal", "Walrus", "Arctic Fox"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-43",
+    "answersAr": ["الببغاء", "النسر", "البومة", "النعامة"],
+    "answersEn": ["Parrot", "Eagle", "Owl", "Ostrich"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-44",
+    "answersAr": ["2", "4", "6", "8"],
+    "answersEn": ["2", "4", "6", "8"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-45",
+    "answersAr": ["طائر الإيمو", "النعامة", "طائر الشبنم", "طائر الريا"],
+    "answersEn": ["Emu", "Ostrich", "Cassowary", "Rhea"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-46",
+    "answersAr": ["الحوت الأحدب", "الحوت الأزرق", "الحوت الزعنفي", "حوت العنبر"],
+    "answersEn": ["Humpback whale", "Blue whale", "Fin whale", "Sperm whale"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "animals-hard-47",
+    "answersAr": ["الكلب", "القط", "الأرنب", "الحصان"],
+    "answersEn": ["Dog", "Cat", "Rabbit", "Horse"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-48",
+    "answersAr": ["خرنق", "جرو", "عجل", "مهر"],
+    "answersEn": ["Kit/Kitten", "Puppy", "Calf", "Foal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-49",
+    "answersAr": ["الثعبان", "دودة الأرض", "ثعبان البحر", "السيسليا"],
+    "answersEn": ["Snake", "Earthworm", "Eel", "Caecilian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-hard-50",
+    "answersAr": ["الخفاش مصاص الدماء", "الخفاش الفاكهي", "الخفاش الحشري", "خفاش صائد الأسماك"],
+    "answersEn": ["Vampire bat", "Fruit bat", "Insectivorous bat", "Fishing bat"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-1",
+    "answersAr": ["الحمار الوحشي", "الأوكابي", "الببر", "الظربان"],
+    "answersEn": ["Zebra", "Okapi", "Tiger", "Skunk"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-2",
+    "answersAr": ["البومة", "السبد", "اليمامة", "الوقواق"],
+    "answersEn": ["Owl", "Nightjar", "Dove", "Cuckoo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-3",
+    "answersAr": ["البقرة", "الدجاجة", "الديك الرومي", "الحصان"],
+    "answersEn": ["Cow", "Hen", "Turkey", "Horse"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-4",
+    "answersAr": ["النحلة", "الفراشة", "اليعسوب", "الخنفساء"],
+    "answersEn": ["Bee", "Butterfly", "Dragonfly", "Beetle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-5",
+    "answersAr": ["عاشب", "قارت", "لاحم", "آكل الحشرات"],
+    "answersEn": ["Herbivore", "Omnivore", "Carnivore", "Insectivore"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-6",
+    "answersAr": ["الحلزون", "السلحفاة", "السرطان الناسك", "البطلينوس"],
+    "answersEn": ["Snail", "Tortoise", "Hermit Crab", "Clam"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-7",
+    "answersAr": ["نجم البحر", "الأخطبوط", "الحبار", "قنديل البحر"],
+    "answersEn": ["Starfish", "Octopus", "Squid", "Jellyfish"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-8",
+    "answersAr": ["الحمامة", "البجعة", "البلشون الأبيض", "اللقلق الأبيض"],
+    "answersEn": ["Dove", "Swan", "Egret", "White Stork"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "animals-new-9",
+    "answersAr": ["الكلب", "القطة", "الأرنب", "الهامستر"],
+    "answersEn": ["Dog", "Cat", "Rabbit", "Hamster"],
+    "correctAnswerIndex": 0
+  }
+]

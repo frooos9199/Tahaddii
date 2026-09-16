@@ -6,7 +6,7 @@ import {
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { RootStackParamList, CategoryId } from '../types';
 import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
@@ -14,19 +14,20 @@ import { useAuthStore } from '../store/authStore';
 import { CATEGORY_EMOJIS } from '../constants';
 import {
   CATEGORY_IDS,
-  getCategoriesWithQuestionsForAgeFromBank,
-  getCategoriesWithQuestionsForAge,
-  getCategoryQuestionCountForAge,
-  getCategoryQuestionCountForAgeFromBank,
+  getCategoriesWithQuestionsFromBank,
+  getCategoriesWithQuestions,
+  getCategoryQuestionCount,
+  getCategoryQuestionCountFromBank,
   loadQuestionBank,
 } from '../services/questions/questionCatalog';
-import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
+import { getLockedCategoryIds, formatUserIdentifierLabel } from '../services/entitlements/entitlementService';
 import { getContactConfig, buildWhatsAppUrl, getEntitlementsConfig, isGlobalUnlockActive } from '../services/config/appConfigService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'CategorySelect'> };
 
 export default function CategorySelectScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { settings, updateSettings } = useGameStore();
   const { userRecord, refreshUserRecord } = useAuthStore();
   const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -39,9 +40,9 @@ export default function CategorySelectScreen({ navigation }: Props) {
   }, [refreshUserRecord]));
 
   const [categoryData, setCategoryData] = useState(() => ({
-    availableCategories: getCategoriesWithQuestionsForAge(settings.ageGroup),
+    availableCategories: getCategoriesWithQuestions(),
     counts: Object.fromEntries(
-      CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCountForAge(categoryId, settings.ageGroup)]),
+      CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCount(categoryId)]),
     ) as Record<CategoryId, number>,
   }));
   const availableCategories = categoryData.availableCategories;
@@ -57,11 +58,11 @@ export default function CategorySelectScreen({ navigation }: Props) {
     loadQuestionBank().then(questions => {
       if (!isMounted) return;
 
-      const nextAvailableCategories = getCategoriesWithQuestionsForAgeFromBank(questions, settings.ageGroup);
+      const nextAvailableCategories = getCategoriesWithQuestionsFromBank(questions);
       setCategoryData({
         availableCategories: nextAvailableCategories,
         counts: Object.fromEntries(
-          CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCountForAgeFromBank(questions, categoryId, settings.ageGroup)]),
+          CATEGORY_IDS.map(categoryId => [categoryId, getCategoryQuestionCountFromBank(questions, categoryId)]),
         ) as Record<CategoryId, number>,
       });
       setSelected(previous => {
@@ -73,7 +74,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
     return () => {
       isMounted = false;
     };
-  }, [settings.ageGroup]);
+  }, []);
 
   const lockedIds = useMemo(
     () => getLockedCategoryIds(userRecord, availableCategories, Date.now(), globalUnlockActive),
@@ -97,7 +98,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
     }
     const message = t('categories.whatsappUnlockMessage', {
       category: t(`categories.${id}`),
-      customerNumber: userRecord?.customerNumber ?? '-',
+      customerNumber: formatUserIdentifierLabel(userRecord) ?? '-',
     });
     Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {
       Alert.alert('', t('categories.whatsappOpenFailed'));
@@ -112,7 +113,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
 
   const handleNext = () => {
     updateSettings({ categories: unlockedSelected });
-    navigation.navigate('DifficultySelect');
+    navigation.navigate('GameSetup');
   };
 
   return (
@@ -138,7 +139,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
         {availableCategories.map(id => {
           const isLocked = lockedIds.includes(id);
           const isSelected = !isLocked && selected.includes(id);
-          const count = categoryData.counts[id] ?? getCategoryQuestionCountForAge(id, settings.ageGroup);
+          const count = categoryData.counts[id] ?? getCategoryQuestionCount(id);
           return (
             <TouchableOpacity
               key={id}
@@ -161,7 +162,7 @@ export default function CategorySelectScreen({ navigation }: Props) {
         })}
       </ScrollView>
 
-      <View style={styles.footer}>
+      <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom, 16) }]}>
         <TouchableOpacity
           style={[styles.nextBtn, !canNext && styles.nextBtnDisabled]}
           onPress={handleNext}

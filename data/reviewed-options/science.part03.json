@@ -1,0 +1,212 @@
+[
+  {
+    "id": "science-hard-35",
+    "answersAr": ["الباسكال", "النيوتن", "الجول", "التسلا"],
+    "answersEn": ["Pascal", "Newton", "Joule", "Tesla"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-36",
+    "answersAr": ["حمض اللاكتيك", "حمض الهيدروكلوريك", "حمض الكربونيك", "حمض الفوسفوريك"],
+    "answersEn": ["Lactic acid", "Hydrochloric acid", "Carbonic acid", "Phosphoric acid"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-37",
+    "answersAr": ["العُضيّة", "الخلية", "النسيج", "العضو"],
+    "answersEn": ["Organelle", "Cell", "Tissue", "Organ"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-38",
+    "answersAr": ["الجاذبية", "القوة المركزية", "قوة الطفو", "القوة العمودية"],
+    "answersEn": ["Gravity", "Centripetal force", "Buoyant force", "Normal force"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-39",
+    "answersAr": ["جون نيولاندز", "دمتري مندليف", "لوثار ماير", "يوهان دوبراينر"],
+    "answersEn": ["John Newlands", "Dmitri Mendeleev", "Lothar Meyer", "Johann Döbereiner"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-40",
+    "answersAr": ["الفولت", "السيمنز", "الأوم", "الفاراد"],
+    "answersEn": ["Volt", "Siemens", "Ohm", "Farad"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-41",
+    "answersAr": ["التسامي", "التكاثف", "الترسيب (الانتشاء)", "التجمد"],
+    "answersEn": ["Sublimation", "Condensation", "Deposition", "Freezing"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-42",
+    "answersAr": ["الميثان", "ثاني أكسيد الكربون", "أكسيد النيتروز", "الأوزون"],
+    "answersEn": ["Methane", "Carbon dioxide", "Nitrous oxide", "Ozone"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-43",
+    "answersAr": ["إدوارد جينر", "لويس باستور", "جوناس سالك", "روبرت كوخ"],
+    "answersEn": ["Edward Jenner", "Louis Pasteur", "Jonas Salk", "Robert Koch"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-44",
+    "answersAr": ["هرتز", "بيكريل", "بود", "ديسيبل"],
+    "answersEn": ["Hertz", "Becquerel", "Baud", "Decibel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-45",
+    "answersAr": ["الانعكاس", "الانكسار", "التشتت", "الحيود"],
+    "answersEn": ["Reflection", "Refraction", "Dispersion", "Diffraction"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-46",
+    "answersAr": ["القوقعة", "الأذن الداخلية (الجهاز الدهليزي)", "الأذن الوسطى", "العصب السمعي"],
+    "answersEn": ["Cochlea", "Inner ear (vestibular system)", "Middle ear", "Auditory nerve"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-47",
+    "answersAr": ["فيلهلم رونتغن", "ماري كوري", "هنري بيكريل", "جوزيف جون طومسون"],
+    "answersEn": ["Wilhelm Röntgen", "Marie Curie", "Henri Becquerel", "J. J. Thomson"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-48",
+    "answersAr": ["مكثف بوز-أينشتاين", "البلازما", "السائل فوق الحرج", "المكثف الفرميوني"],
+    "answersEn": ["Bose-Einstein condensate", "Plasma", "Supercritical fluid", "Fermionic condensate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-49",
+    "answersAr": ["النخاع المستطيل", "تحت المهاد (الهيبوثالاموس)", "الغدة النخامية", "الغدة الصنوبرية"],
+    "answersEn": ["Medulla oblongata", "Hypothalamus", "Pituitary gland", "Pineal gland"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-50",
+    "answersAr": ["الجرام", "المول", "الدالتون", "اللتر"],
+    "answersEn": ["Gram", "Mole", "Dalton", "Liter"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-new-1",
+    "answersAr": ["الشمس", "بروكسيما قنطورس", "الشعرى اليمانية", "رجل القنطور"],
+    "answersEn": ["Sun", "Proxima Centauri", "Sirius", "Alpha Centauri"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-2",
+    "answersAr": ["الأكسجين", "النيتروجين", "ثاني أكسيد الكربون", "الأرجون"],
+    "answersEn": ["Oxygen", "Nitrogen", "Carbon dioxide", "Argon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-3",
+    "answersAr": ["أورانوس", "الزهرة", "نبتون", "زحل"],
+    "answersEn": ["Uranus", "Venus", "Neptune", "Saturn"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-4",
+    "answersAr": ["الحديد", "النحاس", "الألومنيوم", "الفضة"],
+    "answersEn": ["Iron", "Copper", "Aluminum", "Silver"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-5",
+    "answersAr": ["جليد", "بخار الماء", "ماء سائل", "ماء فائق التبريد"],
+    "answersEn": ["Ice", "Water vapor", "Liquid water", "Supercooled water"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-6",
+    "answersAr": ["العين", "الأذن", "الأنف", "اللسان"],
+    "answersEn": ["Eye", "Ear", "Nose", "Tongue"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-7",
+    "answersAr": ["الأذن", "العين", "الأنف", "اللسان"],
+    "answersEn": ["Ear", "Eye", "Nose", "Tongue"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-8",
+    "answersAr": ["ثاني أكسيد الكربون", "الأكسجين", "النيتروجين", "الأرجون"],
+    "answersEn": ["Carbon dioxide", "Oxygen", "Nitrogen", "Argon"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-9",
+    "answersAr": ["الأرض", "نبتون", "أورانوس", "زحل"],
+    "answersEn": ["Earth", "Neptune", "Uranus", "Saturn"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-10",
+    "answersAr": ["فيتامين د", "فيتامين أ", "فيتامين ج", "فيتامين هـ"],
+    "answersEn": ["Vitamin D", "Vitamin A", "Vitamin C", "Vitamin E"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-11",
+    "answersAr": ["الطيور", "الزواحف", "الثدييات", "البرمائيات"],
+    "answersEn": ["Birds", "Reptiles", "Mammals", "Amphibians"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-12",
+    "answersAr": ["النواة", "السحابة الإلكترونية", "الغلاف الإلكتروني", "المدار الذري"],
+    "answersEn": ["Nucleus", "Electron cloud", "Electron shell", "Atomic orbital"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-13",
+    "answersAr": ["ميزان الحرارة", "مقياس الضغط الجوي", "مقياس الرطوبة", "مقياس سرعة الرياح"],
+    "answersEn": ["Thermometer", "Barometer", "Hygrometer", "Anemometer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-14",
+    "answersAr": ["الجلد", "الكبد", "الأمعاء الدقيقة", "الرئتان"],
+    "answersEn": ["Skin", "Liver", "Small intestine", "Lungs"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-15",
+    "answersAr": ["الغرافيت", "الفحم النباتي", "أسود الكربون", "الغرافين"],
+    "answersEn": ["Graphite", "Charcoal", "Carbon black", "Graphene"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-16",
+    "answersAr": ["ست", "ثمان", "عشر", "أربع عشرة"],
+    "answersEn": ["Six", "Eight", "Ten", "Fourteen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-17",
+    "answersAr": ["حمم بركانية", "صهارة", "رماد بركاني", "سبج"],
+    "answersEn": ["Lava", "Magma", "Volcanic ash", "Obsidian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-18",
+    "answersAr": ["Au", "Ag", "Al", "Gd"],
+    "answersEn": ["Au", "Ag", "Al", "Gd"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-new-19",
+    "answersAr": ["غاليلو غاليلي", "نيكولاس كوبرنيكوس", "يوهانس كبلر", "تيخو براهي"],
+    "answersEn": ["Galileo Galilei", "Nicolaus Copernicus", "Johannes Kepler", "Tycho Brahe"],
+    "correctAnswerIndex": 0
+  }
+]

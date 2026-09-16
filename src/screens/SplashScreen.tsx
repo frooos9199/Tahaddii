@@ -19,7 +19,6 @@ export default function SplashScreen({ navigation }: Props) {
 
   useEffect(() => {
     let isMounted = true;
-    let timer: ReturnType<typeof setTimeout> | undefined;
 
     const init = async () => {
       let hasLang: string | null = null;
@@ -38,18 +37,13 @@ export default function SplashScreen({ navigation }: Props) {
         return;
       }
 
-      timer = setTimeout(() => {
-        navigation.replace(hasLang ? 'Home' : 'LanguageSelect');
-      }, 1800);
+      navigation.replace(hasLang ? 'Home' : 'LanguageSelect');
     };
 
     init();
 
     return () => {
       isMounted = false;
-      if (timer) {
-        clearTimeout(timer);
-      }
     };
   }, [initAuth, loadAppData, loadProfile, navigation]);
 

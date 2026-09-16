@@ -1,0 +1,206 @@
+[
+  {
+    "id": "celebrities-new-17",
+    "answersAr": ["مايكل فيلبس", "رايان لوكتي", "مارك سبيتز", "كايليب دريسل"],
+    "answersEn": ["Michael Phelps", "Ryan Lochte", "Mark Spitz", "Caeleb Dressel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-18",
+    "answersAr": ["جينيفر لورنس", "إيما ستون", "بري لارسون", "ناتالي بورتمان"],
+    "answersEn": ["Jennifer Lawrence", "Emma Stone", "Brie Larson", "Natalie Portman"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-19",
+    "answersAr": ["ليونيل ميسي", "خافيير ماسكيرانو", "دييغو سيميوني", "غابرييل باتيستوتا"],
+    "answersEn": ["Lionel Messi", "Javier Mascherano", "Diego Simeone", "Gabriel Batistuta"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-20",
+    "answersAr": ["روزاليند فرانكلين", "دوروثي هودجكن", "كاثلين لونسديل", "آدا يوناث"],
+    "answersEn": ["Rosalind Franklin", "Dorothy Hodgkin", "Kathleen Lonsdale", "Ada Yonath"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-21",
+    "answersAr": ["ستيفن سبيلبرغ", "جيمس كاميرون", "جورج لوكاس", "ريدلي سكوت"],
+    "answersEn": ["Steven Spielberg", "James Cameron", "George Lucas", "Ridley Scott"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-22",
+    "answersAr": ["كرة المضرب", "كرة القدم", "كرة السلة", "الغولف"],
+    "answersEn": ["tennis", "Football", "Basketball", "Golf"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-23",
+    "answersAr": ["روان أتكينسون", "هيو لوري", "ساشا بارون كوهين", "ريكي جيرفيه"],
+    "answersEn": ["Rowan Atkinson", "Hugh Laurie", "Sacha Baron Cohen", "Ricky Gervais"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-24",
+    "answersAr": ["إد شيران", "برونو مارس", "جاستن بيبر", "سام سميث"],
+    "answersEn": ["Ed Sheeran", "Bruno Mars", "Justin Bieber", "Sam Smith"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-25",
+    "answersAr": ["تشارلز داروين", "غريغور مندل", "لويس باستور", "غاليليو غاليلي"],
+    "answersEn": ["Charles Darwin", "Gregor Mendel", "Louis Pasteur", "Galileo Galilei"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-26",
+    "answersAr": ["غال غادوت", "سكارليت جوهانسون", "بري لارسون", "مارغوت روبي"],
+    "answersEn": ["Gal Gadot", "Scarlett Johansson", "Brie Larson", "Margot Robbie"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-27",
+    "answersAr": ["فريدا كاهلو", "دييغو ريفيرا", "ديفيد ألفارو سيكيروس", "خوسيه كليمنتي أوروزكو"],
+    "answersEn": ["Frida Kahlo", "Diego Rivera", "David Alfaro Siqueiros", "Jose Clemente Orozco"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-28",
+    "answersAr": ["رافاييل نادال", "كارلوس ألكاراز", "ديفيد فيرير", "كارلوس مويا"],
+    "answersEn": ["Rafael Nadal", "Carlos Alcaraz", "David Ferrer", "Carlos Moya"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-29",
+    "answersAr": ["أميليا إيرهارت", "بيسي كولمان", "هارييت كويمبي", "جاكلين كوكران"],
+    "answersEn": ["Amelia Earhart", "Bessie Coleman", "Harriet Quimby", "Jacqueline Cochran"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-30",
+    "answersAr": ["نيكولاس كوبرنيكوس", "بطليموس", "تيخو براهي", "إدموند هالي"],
+    "answersEn": ["Nicolaus Copernicus", "Ptolemy", "Tycho Brahe", "Edmond Halley"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-31",
+    "answersAr": ["بندكت كامبرباتش", "مات سميث", "هيو لوري", "توم هيدلستون"],
+    "answersEn": ["Benedict Cumberbatch", "Matt Smith", "Hugh Laurie", "Tom Hiddleston"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-32",
+    "answersAr": ["ليبرون جيمس", "ستيفن كاري", "كيفن دورانت", "كوبي براينت"],
+    "answersEn": ["LeBron James", "Stephen Curry", "Kevin Durant", "Kobe Bryant"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-33",
+    "answersAr": ["جوليا تشايلد", "مارثا ستيوارت", "إينا غارتن", "ريتشل راي"],
+    "answersEn": ["Julia Child", "Martha Stewart", "Ina Garten", "Rachael Ray"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-34",
+    "answersAr": ["شاكيرا", "كارول جي", "كارلوس فيفيس", "خوانيس"],
+    "answersEn": ["Shakira", "Karol G", "Carlos Vives", "Juanes"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-35",
+    "answersAr": ["إيدي ريدماين", "رامي مالك", "غاري أولدمان", "كولين فيرث"],
+    "answersEn": ["Eddie Redmayne", "Rami Malek", "Gary Oldman", "Colin Firth"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-36",
+    "answersAr": ["أحمد زويل", "فاروق الباز", "مصطفى السيد", "مجدي يعقوب"],
+    "answersEn": ["Ahmed Zewail", "Farouk El-Baz", "Mostafa El-Sayed", "Magdi Yacoub"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-37",
+    "answersAr": ["لودفيغ فان بيتهوفن", "فولفغانغ أماديوس موتسارت", "يوهان سباستيان باخ", "فريدريك شوبان"],
+    "answersEn": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Frederic Chopin"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-38",
+    "answersAr": ["كلير فوي", "أوليفيا كولمان", "إيميلدا ستونتون", "هيلين ميرين"],
+    "answersEn": ["Claire Foy", "Olivia Colman", "Imelda Staunton", "Helen Mirren"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-39",
+    "answersAr": ["إليود كيبتشوغي", "كينينيسا بيكيلي", "هايلي جبريسيلاسي", "مو فرح"],
+    "answersEn": ["Eliud Kipchoge", "Kenenisa Bekele", "Haile Gebrselassie", "Mo Farah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-40",
+    "answersAr": ["فالنتينا تيريشكوفا", "سالي رايد", "سفيتلانا سافيتسكايا", "ماي جيميسون"],
+    "answersEn": ["Valentina Tereshkova", "Sally Ride", "Svetlana Savitskaya", "Mae Jemison"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-41",
+    "answersAr": ["ألكسندر فليمنغ", "لويس باستور", "روبرت كوخ", "جوزيف ليستر"],
+    "answersEn": ["Alexander Fleming", "Louis Pasteur", "Robert Koch", "Joseph Lister"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-42",
+    "answersAr": ["بريانكا تشوبرا", "آيشواريا راي", "ديبيكا بادوكون", "فريدا بينتو"],
+    "answersEn": ["Priyanka Chopra", "Aishwarya Rai", "Deepika Padukone", "Freida Pinto"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-43",
+    "answersAr": ["أنطونيو فيفالدي", "يوهان سباستيان باخ", "جورج فريدريك هاندل", "أركانجلو كوريلي"],
+    "answersEn": ["Antonio Vivaldi", "Johann Sebastian Bach", "George Frideric Handel", "Arcangelo Corelli"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-44",
+    "answersAr": ["ألان تورنغ", "تشارلز باباج", "تيم بيرنرز لي", "جيفري هينتون"],
+    "answersEn": ["Alan Turing", "Charles Babbage", "Tim Berners-Lee", "Geoffrey Hinton"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-45",
+    "answersAr": ["نعومي أوساكا", "كي نيشيكوري", "كيميكو داتي", "آي سوغيياما"],
+    "answersEn": ["Naomi Osaka", "Kei Nishikori", "Kimiko Date", "Ai Sugiyama"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-46",
+    "answersAr": ["إيان ماكيلين", "كريستوفر لي", "شون بين", "فيغو مورتنسن"],
+    "answersEn": ["Ian McKellen", "Christopher Lee", "Sean Bean", "Viggo Mortensen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-47",
+    "answersAr": ["ماري كوري", "دوروثي هودجكن", "باربرا مكلينتوك", "دونا ستريكلاند"],
+    "answersEn": ["Marie Curie", "Dorothy Hodgkin", "Barbara McClintock", "Donna Strickland"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-48",
+    "answersAr": ["فنسنت فان غوخ", "رامبرانت", "يوهانس فيرمير", "بيت موندريان"],
+    "answersEn": ["Vincent van Gogh", "Rembrandt", "Johannes Vermeer", "Piet Mondrian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-49",
+    "answersAr": ["إلفيس بريسلي", "ميك جاغر", "فريدي ميركوري", "تشاك بيري"],
+    "answersEn": ["Elvis Presley", "Mick Jagger", "Freddie Mercury", "Chuck Berry"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "celebrities-new-50",
+    "answersAr": ["ماغنوس كارلسن", "غاري كاسباروف", "فيسواناثان أناند", "فلاديمير كرامنيك"],
+    "answersEn": ["Magnus Carlsen", "Garry Kasparov", "Viswanathan Anand", "Vladimir Kramnik"],
+    "correctAnswerIndex": 0
+  }
+]

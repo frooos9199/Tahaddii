@@ -1,0 +1,242 @@
+[
+  {
+    "id": "football-new-11",
+    "answersAr": ["3", "1", "2", "4"],
+    "answersEn": ["3", "1", "2", "4"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-12",
+    "answersAr": ["ركلة ركنية", "ركلة مرمى", "رمية تماس", "إسقاط الكرة"],
+    "answersEn": ["Corner kick", "Goal kick", "Throw-in", "Dropped ball"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-13",
+    "answersAr": ["حكم الفيديو المساعد", "مراجعة التحكيم بالفيديو", "إعادة اللقطة المرئية", "مساعد الحكم الافتراضي"],
+    "answersEn": ["Video Assistant Referee", "Video Arbitration Review", "Visual Action Replay", "Virtual Assistant Referee"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-14",
+    "answersAr": ["العارضة", "القائم", "شبكة المرمى", "خط المرمى"],
+    "answersEn": ["Crossbar", "Goalpost", "Goal net", "Goal line"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-15",
+    "answersAr": ["إيطاليا", "إسبانيا", "إنجلترا", "ألمانيا"],
+    "answersEn": ["Italy", "Spain", "England", "Germany"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-16",
+    "answersAr": ["الملك المصري", "الفرعون المصري", "الساحر المصري", "أمير النيل"],
+    "answersEn": ["The Egyptian King", "The Egyptian Pharaoh", "The Egyptian Magician", "The Prince of the Nile"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-17",
+    "answersAr": ["الرأس", "الصدر", "الكتف", "القدم"],
+    "answersEn": ["Head", "Chest", "Shoulder", "Foot"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-18",
+    "answersAr": ["15 دقيقة", "10 دقائق", "20 دقيقة", "30 دقيقة"],
+    "answersEn": ["15 minutes", "10 minutes", "20 minutes", "30 minutes"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-19",
+    "answersAr": ["قوس الجزاء", "منطقة الجزاء", "منطقة المرمى", "نقطة الجزاء"],
+    "answersEn": ["Penalty arc", "Penalty area", "Goal area", "Penalty mark"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-20",
+    "answersAr": ["ليونيل ميسي", "كريستيانو رونالدو", "ميشيل بلاتيني", "يوهان كرويف"],
+    "answersEn": ["Lionel Messi", "Cristiano Ronaldo", "Michel Platini", "Johan Cruyff"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-21",
+    "answersAr": ["عدم استقبال أهداف", "الفوز من دون بطاقات", "تسجيل ثلاثة أهداف", "الاستحواذ لأكثر من نصف المباراة"],
+    "answersEn": ["Conceding no goals", "Winning without receiving cards", "Scoring three goals", "Having possession for more than half the match"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-22",
+    "answersAr": ["المدافع قبل الأخير", "آخر مدافع", "حارس المرمى فقط", "أقرب مدافع إلى المهاجم"],
+    "answersEn": ["The second-last defender", "The last defender", "Only the goalkeeper", "The defender nearest to the attacker"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-23",
+    "answersAr": ["السيدة العجوز", "الروسونيري", "النيراتزوري", "الجيالوروسي"],
+    "answersEn": ["The Old Lady", "The Rossoneri", "The Nerazzurri", "The Giallorossi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-24",
+    "answersAr": ["الأوروغواي", "الأرجنتين", "البرازيل", "تشيلي"],
+    "answersEn": ["Uruguay", "Argentina", "Brazil", "Chile"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-25",
+    "answersAr": ["ضربة مقصية", "ركلة طائرة", "ركلة بالكعب", "تسديدة أرضية"],
+    "answersEn": ["Bicycle kick", "Volley", "Backheel kick", "Low shot"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-26",
+    "answersAr": ["إجمالي الأهداف في المباراتين", "نتيجة مباراة الإياب فقط", "عدد الأهداف خارج الأرض فقط", "متوسط نتيجتي المباراتين"],
+    "answersEn": ["Total goals across both matches", "The second-leg score only", "Away goals only", "The average score of both matches"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-27",
+    "answersAr": ["5", "3", "4", "6"],
+    "answersEn": ["5", "3", "4", "6"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-28",
+    "answersAr": ["لاعب الوسط", "قلب الدفاع", "المهاجم", "حارس المرمى"],
+    "answersEn": ["Midfielder", "Centre-back", "Striker", "Goalkeeper"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-29",
+    "answersAr": ["برشلونة", "إسبانيول", "ريال مدريد", "أتلتيكو مدريد"],
+    "answersEn": ["Barcelona", "Espanyol", "Real Madrid", "Atletico Madrid"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-30",
+    "answersAr": ["البرازيل", "ألمانيا", "إيطاليا", "الأرجنتين"],
+    "answersEn": ["Brazil", "Germany", "Italy", "Argentina"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-31",
+    "answersAr": ["ركلة حرة غير مباشرة", "ركلة حرة مباشرة", "ركلة جزاء", "استمرار اللعب"],
+    "answersEn": ["Indirect free kick", "Direct free kick", "Penalty kick", "Play continues"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-32",
+    "answersAr": ["اتحاد الاتحادات الأوروبية لكرة القدم", "الاتحاد الأوروبي لحكام كرة القدم", "الرابطة الأوروبية الموحدة لكرة القدم", "اتحاد أندية كرة القدم الأوروبية"],
+    "answersEn": ["Union of European Football Associations", "Union of European Football Arbitrators", "Unified European Football Association", "Union of European Football Clubs"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-33",
+    "answersAr": ["شارة القيادة", "قفازات الحارس", "واقي الساق", "القميص التدريبي"],
+    "answersEn": ["Captain’s armband", "Goalkeeper gloves", "Shin guard", "Training bib"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-34",
+    "answersAr": ["ريال مدريد", "أتلتيكو مدريد", "برشلونة", "إشبيلية"],
+    "answersEn": ["Real Madrid", "Atletico Madrid", "Barcelona", "Sevilla"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-35",
+    "answersAr": ["باي", "ووك أوفر", "إعادة المباراة", "الوقت الإضافي"],
+    "answersEn": ["Bye", "Walkover", "Replay", "Extra time"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-36",
+    "answersAr": ["4", "3", "5", "6"],
+    "answersEn": ["4", "3", "5", "6"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-37",
+    "answersAr": ["تمريرة حاسمة", "تمريرة بينية", "تمريرة عرضية", "تمريرة خلفية"],
+    "answersEn": ["Assist", "Through ball", "Cross", "Back-pass"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-38",
+    "answersAr": ["7", "6", "8", "9"],
+    "answersEn": ["7", "6", "8", "9"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-39",
+    "answersAr": ["الولايات المتحدة", "النرويج", "ألمانيا", "السويد"],
+    "answersEn": ["United States", "Norway", "Germany", "Sweden"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-40",
+    "answersAr": ["إسبانيا", "إيطاليا", "البرتغال", "فرنسا"],
+    "answersEn": ["Spain", "Italy", "Portugal", "France"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-41",
+    "answersAr": ["مباراة بين منافسين محليين", "مباراة بين منتخبين وطنيين", "نهائي بطولة قارية", "مباراة ودية قبل الموسم"],
+    "answersEn": ["A match between local rivals", "A match between two national teams", "A continental final", "A pre-season friendly"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-42",
+    "answersAr": ["كريستيانو رونالدو", "ليونيل ميسي", "علي دائي", "سونيل تشيتري"],
+    "answersEn": ["Cristiano Ronaldo", "Lionel Messi", "Ali Daei", "Sunil Chhetri"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-43",
+    "answersAr": ["ليفربول", "إيفرتون", "مانشستر يونايتد", "أرسنال"],
+    "answersEn": ["Liverpool", "Everton", "Manchester United", "Arsenal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-44",
+    "answersAr": ["صالة داخلية صلبة", "ملعب عشبي طبيعي", "ملعب ترابي مفتوح", "ملعب رملي"],
+    "answersEn": ["A hard indoor court", "A natural grass pitch", "An outdoor dirt pitch", "A sand court"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-45",
+    "answersAr": ["البرتغال", "فرنسا", "ألمانيا", "إسبانيا"],
+    "answersEn": ["Portugal", "France", "Germany", "Spain"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-46",
+    "answersAr": ["غولدن بوي", "جائزة كوبا", "الكرة الذهبية", "جائزة أفضل لاعب شاب في كأس العالم"],
+    "answersEn": ["Golden Boy", "Kopa Trophy", "Ballon d’Or", "FIFA World Cup Best Young Player Award"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-47",
+    "answersAr": ["ركلات الترجيح", "إعادة المباراة", "الهدف الذهبي", "القرعة"],
+    "answersEn": ["Penalty shootout", "Replay", "Golden goal", "Drawing lots"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-48",
+    "answersAr": ["دوري أبطال أوروبا", "الدوري الأوروبي", "دوري المؤتمر الأوروبي", "كأس السوبر الأوروبي"],
+    "answersEn": ["UEFA Champions League", "UEFA Europa League", "UEFA Conference League", "UEFA Super Cup"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-49",
+    "answersAr": ["منطقة الست ياردات", "منطقة الجزاء", "دائرة المنتصف", "قوس الجزاء"],
+    "answersEn": ["Six-yard box", "Penalty area", "Center circle", "Penalty arc"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-50",
+    "answersAr": ["أوفرلاب", "أندرلاب", "الضغط العكسي", "هات وخذ"],
+    "answersEn": ["Overlap", "Underlap", "Counter-press", "Give-and-go"],
+    "correctAnswerIndex": 0
+  }
+]

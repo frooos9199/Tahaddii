@@ -1,0 +1,248 @@
+[
+  {
+    "id": "kuwait-e1",
+    "answersAr": ["الريال العُماني", "الدينار الكويتي", "الدرهم الإماراتي", "الريال السعودي"],
+    "answersEn": ["Omani rial", "Kuwaiti Dinar", "UAE dirham", "Saudi riyal"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-m1",
+    "answersAr": ["أكتوبر", "فبراير", "سبتمبر", "نوفمبر"],
+    "answersEn": ["October", "February", "September", "November"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-h1",
+    "answersAr": ["الصينية", "العربية", "الهندية", "الفرنسية"],
+    "answersEn": ["Chinese", "Arabic", "Hindi", "French"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-e2",
+    "answersAr": ["أحمر وأصفر وأسود", "أخضر وأبيض وأحمر وأسود", "أزرق وأبيض وأحمر", "أحمر وأبيض وأخضر"],
+    "answersEn": ["Red, yellow, and black", "Green, white, red, and black", "Blue, white, and red", "Red, white, and green"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-m2",
+    "answersAr": ["المحيط الهندي", "الخليج العربي", "البحر المتوسط", "المحيط الأطلسي"],
+    "answersEn": ["Indian Ocean", "Arabian Gulf", "Mediterranean Sea", "Atlantic Ocean"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-h2",
+    "answersAr": ["برج التحرير", "أبراج الكويت", "المسجد الكبير", "برج الحمراء"],
+    "answersEn": ["Liberation Tower", "Kuwait Towers", "Grand Mosque", "Al Hamra Tower"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kw-g01",
+    "answersAr": ["الدينار الكويتي", "الريال العُماني", "الدينار البحريني", "الدرهم الإماراتي"],
+    "answersEn": ["Kuwaiti Dinar", "Omani rial", "Bahraini dinar", "UAE dirham"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kw-g02",
+    "answersAr": ["الهندية", "العربية", "الصينية", "الفرنسية"],
+    "answersEn": ["Hindi", "Arabic", "Chinese", "French"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kw-g03",
+    "answersAr": ["المحيط الهندي", "البحر المتوسط", "الخليج العربي", "المحيط الأطلسي"],
+    "answersEn": ["Indian Ocean", "Mediterranean Sea", "Arabian Gulf", "Atlantic Ocean"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kw-g04",
+    "answersAr": ["المنامة", "الدوحة", "الرياض", "مدينة الكويت"],
+    "answersEn": ["Manama", "Doha", "Riyadh", "Kuwait City"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kw-g05",
+    "answersAr": ["أبراج الكويت", "المسجد الكبير", "برج الحمراء", "برج التحرير"],
+    "answersEn": ["Kuwait Towers", "Grand Mosque", "Al Hamra Tower", "Liberation Tower"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kw-g06",
+    "answersAr": ["نوفمبر", "فبراير", "ديسمبر", "أكتوبر"],
+    "answersEn": ["November", "February", "December", "October"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kw-g07",
+    "answersAr": ["أزرق", "أحمر", "أسود", "أصفر"],
+    "answersEn": ["Blue", "Red", "Black", "Yellow"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kw-g08",
+    "answersAr": ["مجلس الشعب", "مجلس النواب", "مجلس الشورى", "مجلس الأمة"],
+    "answersEn": ["People's Assembly", "House of Representatives", "Shura Council", "National Assembly"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kw-g09",
+    "answersAr": ["برج التحرير", "برج الحمراء", "أبراج الكويت", "المسجد الكبير"],
+    "answersEn": ["Liberation Tower", "Al Hamra Tower", "Kuwait Towers", "Grand Mosque"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kw-g10",
+    "answersAr": ["شارع الخليج العربي", "الكورنيش", "شاطئ المسيلة", "شاطئ العقيلة"],
+    "answersEn": ["Arabian Gulf Street", "Corniche", "Messilah Beach", "Egaila Beach"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kw-g11",
+    "answersAr": ["مسكان", "فيلكا", "بوبيان", "وربة"],
+    "answersEn": ["Miskan", "Failaka", "Bubiyan", "Warbah"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kw-g12",
+    "answersAr": ["أصفر", "أزرق", "أحمر", "أخضر"],
+    "answersEn": ["Yellow", "Blue", "Red", "Green"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kw-g13",
+    "answersAr": ["مطار الكويت الدولي", "مطار البحرين الدولي", "مطار مسقط الدولي", "مطار حمد الدولي"],
+    "answersEn": ["Kuwait International Airport", "Bahrain International Airport", "Muscat International Airport", "Hamad International Airport"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kw-g14",
+    "answersAr": ["الأخضر والأبيض", "الأبيض والأحمر", "الأحمر والأسود", "الأزرق والأبيض"],
+    "answersEn": ["Green and white", "White and red", "Red and black", "Blue and white"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kw-g15",
+    "answersAr": ["العراق", "البحرين", "السعودية", "إيران"],
+    "answersEn": ["Iraq", "Bahrain", "Saudi Arabia", "Iran"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-1",
+    "answersAr": ["1958", "1961", "1963", "1971"],
+    "answersEn": ["1958", "1961", "1963", "1971"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-2",
+    "answersAr": ["1961", "1962", "1964", "1970"],
+    "answersEn": ["1961", "1962", "1964", "1970"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-3",
+    "answersAr": ["فيلكا", "بوبيان", "وربة", "أم المرادم"],
+    "answersEn": ["Failaka", "Bubiyan", "Warbah", "Umm al-Maradim"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-4",
+    "answersAr": ["فيلكا", "كبر", "وربة", "قاروه"],
+    "answersEn": ["Failaka", "Kubbar", "Warbah", "Qaruh"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-5",
+    "answersAr": ["الريال السعودي", "الدينار الكويتي", "الدرهم الإماراتي", "الدينار البحريني"],
+    "answersEn": ["Saudi riyal", "Kuwaiti dinar", "UAE dirham", "Bahraini dinar"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-6",
+    "answersAr": ["KWD", "BHD", "SAR", "AED"],
+    "answersEn": ["KWD", "BHD", "SAR", "AED"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-7",
+    "answersAr": ["5", "6", "7", "8"],
+    "answersEn": ["5", "6", "7", "8"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-8",
+    "answersAr": ["25 فبراير", "26 فبراير", "19 يونيو", "2 أغسطس"],
+    "answersEn": ["25 February", "26 February", "19 June", "2 August"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-9",
+    "answersAr": ["24 فبراير", "25 فبراير", "26 فبراير", "28 فبراير"],
+    "answersEn": ["24 February", "25 February", "26 February", "28 February"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-10",
+    "answersAr": ["القصر الأحمر", "قلعة الكوت", "قلعة تاروت", "قلعة البحرين"],
+    "answersEn": ["Red Fort", "Al-Kout Fort", "Tarout Castle", "Bahrain Fort"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-11",
+    "answersAr": ["حقل الوفرة", "حقل المقوع", "حقل برقان", "حقل الروضتين"],
+    "answersEn": ["Wafra Field", "Maqwa Field", "Burgan Field", "Rawdatain Field"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-12",
+    "answersAr": ["نورمان فوستر", "يورن أوتزون", "سانتياغو كالاترافا", "آي. إم. باي"],
+    "answersEn": ["Norman Foster", "Jørn Utzon", "Santiago Calatrava", "I. M. Pei"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-13",
+    "answersAr": ["جسر الشيخ صباح الأحمد", "جسر الشيخ جابر الأحمد الصباح", "جسر الشهيد", "جسر الدوحة"],
+    "answersEn": ["Sheikh Sabah Al-Ahmad Bridge", "Sheikh Jaber Al-Ahmad Al-Sabah Causeway", "Al-Shaheed Bridge", "Doha Bridge"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-14",
+    "answersAr": ["دلمن", "إيكاروس", "صوراتا", "أرادوس"],
+    "answersEn": ["Dilmun", "Ikaros", "Surata", "Arados"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-15",
+    "answersAr": ["العراق", "إيران", "السعودية", "البحرين"],
+    "answersEn": ["Iraq", "Iran", "Saudi Arabia", "Bahrain"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-16",
+    "answersAr": ["تل المطلاع", "وادي الباطن", "جال الزور", "رأس الأرض"],
+    "answersEn": ["Mutla Ridge", "Wadi al-Batin", "Jal Al-Zor", "Ras Al-Ard"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-17",
+    "answersAr": ["محافظة العاصمة", "محافظة الجهراء", "محافظة الفروانية", "محافظة الأحمدي"],
+    "answersEn": ["Capital Governorate", "Jahra Governorate", "Farwaniya Governorate", "Ahmadi Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-18",
+    "answersAr": ["2 أغسطس 1990", "7 أغسطس 1990", "17 يناير 1991", "26 فبراير 1991"],
+    "answersEn": ["2 August 1990", "7 August 1990", "17 January 1991", "26 February 1991"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-19",
+    "answersAr": ["1990", "1991", "1992", "1993"],
+    "answersEn": ["1990", "1991", "1992", "1993"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-20",
+    "answersAr": ["السدو", "نسج الخوص", "النسيج الدمشقي", "حياكة البشت"],
+    "answersEn": ["Al Sadu", "Palm-frond weaving", "Damascene weaving", "Bisht weaving"],
+    "correctAnswerIndex": 0
+  }
+]

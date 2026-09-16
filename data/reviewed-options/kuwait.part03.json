@@ -1,0 +1,242 @@
+[
+  {
+    "id": "kuwait-new-10",
+    "answersAr": ["مول 360", "الأفنيوز", "مارينا مول", "الكوت مول"],
+    "answersEn": ["360 Mall", "The Avenues", "Marina Mall", "Al Kout Mall"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-11",
+    "answersAr": ["برج كيبكو", "برج التجارية", "برج الحمراء", "برج الراية"],
+    "answersEn": ["KIPCO Tower", "Al Tijaria Tower", "Al Hamra Tower", "Al Raya Tower"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-12",
+    "answersAr": ["حديقة البوليفارد", "حديقة الشعب", "حديقة جمال عبد الناصر", "حديقة الشهيد"],
+    "answersEn": ["Boulevard Park", "Al-Shaab Park", "Jamal Abdul Nasser Park", "Al Shaheed Park"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-13",
+    "answersAr": ["الجزيرة الخضراء", "بوبيان", "كُبَّر", "فيلكا"],
+    "answersEn": ["Green Island", "Bubiyan", "Kubbar", "Failaka"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-14",
+    "answersAr": ["بنك الكويت الوطني", "بنك الكويت المركزي", "بيت التمويل الكويتي", "الهيئة العامة للاستثمار"],
+    "answersEn": ["National Bank of Kuwait", "Central Bank of Kuwait", "Kuwait Finance House", "Kuwait Investment Authority"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-15",
+    "answersAr": ["مؤسسة البترول الكويتية", "شركة البترول الوطنية الكويتية", "شركة نفط الكويت", "شركة ناقلات النفط الكويتية"],
+    "answersEn": ["Kuwait Petroleum Corporation", "Kuwait National Petroleum Company", "Kuwait Oil Company", "Kuwait Oil Tanker Company"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-16",
+    "answersAr": ["محافظة الأحمدي", "محافظة الجهراء", "محافظة العاصمة", "محافظة حولي"],
+    "answersEn": ["Al Ahmadi Governorate", "Al Jahra Governorate", "Capital Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-17",
+    "answersAr": ["محافظة الجهراء", "محافظة العاصمة", "محافظة الفروانية", "محافظة حولي"],
+    "answersEn": ["Al Jahra Governorate", "Capital Governorate", "Farwaniya Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-18",
+    "answersAr": ["محافظة الفروانية", "محافظة مبارك الكبير", "محافظة العاصمة", "محافظة الجهراء"],
+    "answersEn": ["Farwaniya Governorate", "Mubarak Al-Kabeer Governorate", "Capital Governorate", "Al Jahra Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-19",
+    "answersAr": ["محافظة الجهراء", "محافظة حولي", "محافظة الأحمدي", "محافظة الفروانية"],
+    "answersEn": ["Al Jahra Governorate", "Hawalli Governorate", "Al Ahmadi Governorate", "Farwaniya Governorate"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-20",
+    "answersAr": ["محافظة الأحمدي", "محافظة العاصمة", "محافظة الجهراء", "محافظة مبارك الكبير"],
+    "answersEn": ["Al Ahmadi Governorate", "Capital Governorate", "Al Jahra Governorate", "Mubarak Al-Kabeer Governorate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-21",
+    "answersAr": ["محافظة العاصمة", "محافظة الأحمدي", "محافظة الجهراء", "محافظة حولي"],
+    "answersEn": ["Capital Governorate", "Al Ahmadi Governorate", "Al Jahra Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-22",
+    "answersAr": ["محافظة الجهراء", "محافظة الفروانية", "محافظة العاصمة", "محافظة الأحمدي"],
+    "answersEn": ["Al Jahra Governorate", "Farwaniya Governorate", "Capital Governorate", "Al Ahmadi Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-23",
+    "answersAr": ["بنك الكويت المركزي", "الشركة الكويتية للمقاصة", "بورصة الكويت", "هيئة أسواق المال"],
+    "answersEn": ["Central Bank of Kuwait", "Kuwait Clearing Company", "Boursa Kuwait", "Capital Markets Authority"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-24",
+    "answersAr": ["متحف طارق رجب", "متحف الكويت الوطني", "بيت السدو", "دار الآثار الإسلامية"],
+    "answersEn": ["Tareq Rajab Museum", "Kuwait National Museum", "Sadu House", "Dar al-Athar al-Islamiyyah"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-25",
+    "answersAr": ["Arabian Gulf Street", "طريق الفحيحيل", "الدائري الرابع", "طريق الملك فهد"],
+    "answersEn": ["Arabian Gulf Street", "Fahaheel Road", "Fourth Ring Road", "King Fahd Road"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-26",
+    "answersAr": ["مشرف", "الري", "الشويخ الصناعية", "العارضية"],
+    "answersEn": ["Mishref", "Al Rai", "Shuwaikh Industrial", "Ardiya"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-27",
+    "answersAr": ["الري", "الصبية", "مشرف", "السالمية"],
+    "answersEn": ["Al Rai", "Subiyah", "Mishref", "Salmiya"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-28",
+    "answersAr": ["مركز عبد الله السالم الثقافي", "متحف الكويت الوطني", "مركز الشيخ جابر الأحمد الثقافي", "المركز العلمي"],
+    "answersEn": ["Abdullah Al Salem Cultural Centre", "Kuwait National Museum", "Sheikh Jaber Al-Ahmad Cultural Centre", "The Scientific Center"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-29",
+    "answersAr": ["محافظة الأحمدي", "محافظة العاصمة", "محافظة الجهراء", "محافظة حولي"],
+    "answersEn": ["Al Ahmadi Governorate", "Capital Governorate", "Al Jahra Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-30",
+    "answersAr": ["محافظة العاصمة", "محافظة الجهراء", "محافظة الأحمدي", "محافظة حولي"],
+    "answersEn": ["Capital Governorate", "Al Jahra Governorate", "Al Ahmadi Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-31",
+    "answersAr": ["استاد الصداقة والسلام", "استاد صباح السالم", "استاد جابر الأحمد الدولي", "استاد محمد الحمد"],
+    "answersEn": ["Al-Sadaqua Walsalam Stadium", "Sabah Al-Salem Stadium", "Jaber Al-Ahmad International Stadium", "Mohammed Al-Hamad Stadium"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-32",
+    "answersAr": ["محافظة الأحمدي", "محافظة العاصمة", "محافظة الجهراء", "محافظة حولي"],
+    "answersEn": ["Al Ahmadi Governorate", "Capital Governorate", "Al Jahra Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-33",
+    "answersAr": ["محافظة العاصمة", "محافظة مبارك الكبير", "محافظة الأحمدي", "محافظة الجهراء"],
+    "answersEn": ["Capital Governorate", "Mubarak Al-Kabeer Governorate", "Al Ahmadi Governorate", "Al Jahra Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-34",
+    "answersAr": ["محمية صباح الأحمد الطبيعية", "محمية الجهراء الطبيعية", "محمية مبارك الكبير", "محمية اللياح"],
+    "answersEn": ["Sabah Al-Ahmad Nature Reserve", "Jahra Pools Nature Reserve", "Mubarak Al-Kabeer Reserve", "Al-Liyah Reserve"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-35",
+    "answersAr": ["1964", "1969", "1966", "1973"],
+    "answersEn": ["1964", "1969", "1966", "1973"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-36",
+    "answersAr": ["سفين ماركيليوس", "غونار أسبلوند", "سيغورد ليفيرنتس", "سونه ليندستروم"],
+    "answersEn": ["Sven Markelius", "Gunnar Asplund", "Sigurd Lewerentz", "Sune Lindström"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-37",
+    "answersAr": ["محافظة الفروانية", "محافظة الأحمدي", "محافظة حولي", "محافظة العاصمة"],
+    "answersEn": ["Farwaniya Governorate", "Al Ahmadi Governorate", "Hawalli Governorate", "Capital Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-38",
+    "answersAr": ["محافظة الفروانية", "محافظة حولي", "محافظة الأحمدي", "محافظة الجهراء"],
+    "answersEn": ["Farwaniya Governorate", "Hawalli Governorate", "Al Ahmadi Governorate", "Al Jahra Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-39",
+    "answersAr": ["متحف الكويت الوطني", "متحف طارق رجب", "متحف بيت العثمان", "بيت السدو"],
+    "answersEn": ["Kuwait National Museum", "Tareq Rajab Museum", "Bait Al Othman Museum", "Sadu House"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-40",
+    "answersAr": ["مؤسسة الكويت للتقدم العلمي", "الهيئة العامة للتعليم التطبيقي والتدريب", "جامعة الكويت", "معهد الكويت للأبحاث العلمية"],
+    "answersEn": ["Kuwait Foundation for the Advancement of Sciences", "Public Authority for Applied Education and Training", "Kuwait University", "Kuwait Institute for Scientific Research"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-41",
+    "answersAr": ["الهيئة العامة للبيئة", "الهيئة العامة للمعلومات المدنية", "معهد الكويت للأبحاث العلمية", "وكالة الأنباء الكويتية"],
+    "answersEn": ["Environment Public Authority", "Public Authority for Civil Information", "Kuwait Institute for Scientific Research", "Kuwait News Agency"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-42",
+    "answersAr": ["محافظة الأحمدي", "محافظة حولي", "محافظة الفروانية", "محافظة العاصمة"],
+    "answersEn": ["Al Ahmadi Governorate", "Hawalli Governorate", "Farwaniya Governorate", "Capital Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-43",
+    "answersAr": ["محافظة العاصمة", "محافظة حولي", "محافظة الجهراء", "محافظة الفروانية"],
+    "answersEn": ["Capital Governorate", "Hawalli Governorate", "Al Jahra Governorate", "Farwaniya Governorate"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-44",
+    "answersAr": ["محافظة مبارك الكبير", "محافظة الفروانية", "محافظة حولي", "محافظة الأحمدي"],
+    "answersEn": ["Mubarak Al-Kabeer Governorate", "Farwaniya Governorate", "Hawalli Governorate", "Al Ahmadi Governorate"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-45",
+    "answersAr": ["محافظة الأحمدي", "محافظة الفروانية", "محافظة حولي", "محافظة الجهراء"],
+    "answersEn": ["Al Ahmadi Governorate", "Farwaniya Governorate", "Hawalli Governorate", "Al Jahra Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-46",
+    "answersAr": ["الهيئة العامة للبيئة", "الهيئة العامة للمعلومات المدنية", "معهد الكويت للأبحاث العلمية", "وكالة الأنباء الكويتية"],
+    "answersEn": ["Environment Public Authority", "Public Authority for Civil Information", "Kuwait Institute for Scientific Research", "Kuwait News Agency"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-47",
+    "answersAr": ["بيت السدو", "بيت ديكسون", "بيت المرايا", "متحف بيت العثمان"],
+    "answersEn": ["Sadu House", "Dickson House", "House of Mirrors", "Bait Al Othman Museum"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-48",
+    "answersAr": ["2014", "2019", "2023", "2016"],
+    "answersEn": ["2014", "2019", "2023", "2016"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-49",
+    "answersAr": ["محافظة الفروانية", "محافظة حولي", "محافظة الأحمدي", "محافظة الجهراء"],
+    "answersEn": ["Farwaniya Governorate", "Hawalli Governorate", "Al Ahmadi Governorate", "Al Jahra Governorate"],
+    "correctAnswerIndex": 0
+  }
+]

@@ -22,7 +22,7 @@ export const hasCategoryAccess = (
     return true;
   }
 
-  if (!userRecord || userRecord.isGuest) {
+  if (!userRecord) {
     return false;
   }
 
@@ -46,4 +46,20 @@ export const getLockedCategoryIds = (
 ): CategoryId[] => allCategoryIds.filter(id => !hasCategoryAccess(userRecord, id, nowMs, globalUnlockActive));
 
 export const isSubscriptionActive = (userRecord: AppUserRecord | null, nowMs: number = Date.now()): boolean =>
-  Boolean(userRecord && !userRecord.isGuest && userRecord.entitlementExpiresAtMs && userRecord.entitlementExpiresAtMs > nowMs);
+  Boolean(userRecord && userRecord.entitlementExpiresAtMs && userRecord.entitlementExpiresAtMs > nowMs);
+
+// The identifying number a user reads out (or an admin searches by) to activate a
+// subscription: "#3005" for a real account, "Guest 3005" for a guest — two
+// separate number spaces so they're never ambiguous.
+export const formatUserIdentifierLabel = (userRecord: Pick<AppUserRecord, 'customerNumber' | 'guestNumber'> | null | undefined): string | null => {
+  if (!userRecord) {
+    return null;
+  }
+  if (userRecord.customerNumber) {
+    return `#${userRecord.customerNumber}`;
+  }
+  if (userRecord.guestNumber) {
+    return `Guest ${userRecord.guestNumber}`;
+  }
+  return null;
+};

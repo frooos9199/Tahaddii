@@ -1,8 +1,6 @@
 import { Question, GameSettings } from '../../types';
-import { calcProgressivePoints, shuffle } from '../../utils/helpers';
-import { DIFFICULTY_POINTS } from '../../constants';
+import { shuffle } from '../../utils/helpers';
 import { getQuestionCategoryIds, mergeQuestionBank, questionBelongsToAnyCategory } from './questionCatalog';
-import { canQuestionAppearForAge, canQuestionAppearForDifficulty } from './questionPolicies';
 import { listCustomQuestions } from './customQuestionService';
 import { listCategoryCards } from '../categories/categoryCardService';
 import { buildSmartMixedQuestionQueue } from './questionQueue';
@@ -32,7 +30,7 @@ const shuffleQuestionAnswers = (question: Question): Question => {
 };
 
 export async function getQuestions(settings: GameSettings): Promise<Question[]> {
-  const { categories, ageGroup, difficulty, questionCount, questionLanguage, allowRepeat } = settings;
+  const { categories, questionCount, questionLanguage, allowRepeat } = settings;
   const customQuestions = await listCustomQuestions().catch(() => []);
   const allQuestions = mergeQuestionBank(customQuestions);
   const enabledCategoryIds = new Set((await listCategoryCards().catch(() => [])).map(card => card.id));
@@ -63,9 +61,7 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
   let pool = allQuestions.filter(q => {
     if (!q.isActive) return false;
     if (!questionBelongsToAnyCategory(q, activeCategories)) return false;
-    if (!canQuestionAppearForAge(q, ageGroup)) return false;
     if (!matchesLanguage(q)) return false;
-    if (!canQuestionAppearForDifficulty(q, difficulty)) return false;
     return true;
   });
 
@@ -73,13 +69,12 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
     pool = allQuestions.filter(q =>
       q.isActive &&
       questionBelongsToAnyCategory(q, activeCategories) &&
-      canQuestionAppearForAge(q, ageGroup) &&
       matchesLanguage(q),
     );
   }
 
   if (pool.length === 0 && shouldFallbackOutsideCategories) {
-    pool = allQuestions.filter(q => q.isActive && canQuestionAppearForAge(q, ageGroup) && matchesLanguage(q));
+    pool = allQuestions.filter(q => q.isActive && matchesLanguage(q));
   }
 
   const history = !allowRepeat && pool.length > 0 ? await getQuestionHistory() : EMPTY_QUESTION_HISTORY;
@@ -91,13 +86,6 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
   });
 
   const queuedSelection = selected.map(shuffleQuestionAnswers);
-
-  if (difficulty === 'progressive') {
-    return queuedSelection.map((q, i) => {
-      const level = calcProgressivePoints(i, selected.length);
-      return { ...q, points: DIFFICULTY_POINTS[level] };
-    });
-  }
 
   return queuedSelection;
 }

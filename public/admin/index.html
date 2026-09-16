@@ -141,6 +141,12 @@
     .question-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
     .answer-row { display: grid; grid-template-columns: 3rem 1fr 1fr; gap: 0.55rem; align-items: end; }
     .answer-row.hidden-answer { display: none; }
+    .answer-row.true-option .answer-index, .answer-row.true-option input { border-color: rgba(16,185,129,0.7); background: rgba(16,185,129,0.12); color: #a7f3d0; }
+    .answer-row.false-option .answer-index, .answer-row.false-option input { border-color: rgba(239,68,68,0.7); background: rgba(239,68,68,0.12); color: #fecaca; }
+    .true-false-explanation.true-answer label { color: #6ee7b7; }
+    .true-false-explanation.true-answer textarea { border-color: rgba(16,185,129,0.7); background: rgba(16,185,129,0.12); }
+    .true-false-explanation.false-answer label { color: #fca5a5; }
+    .true-false-explanation.false-answer textarea { border-color: rgba(239,68,68,0.7); background: rgba(239,68,68,0.12); }
     .row.manual-answer-row.hidden-answer { display: none; }
     .answer-index { min-height: 2.9rem; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 0.8rem; background: rgba(255,255,255,0.06); color: var(--primary-light); font-weight: 900; }
     .question-text { max-width: 28rem; line-height: 1.55; }
@@ -261,7 +267,6 @@
                 <label>تصنيفات إضافية لنفس السؤال<select id="questionLinkedCategoriesInput" multiple size="5"></select></label>
                 <label>نوع السؤال<select id="questionTypeInput"><option value="multiple_choice">اختيارات</option><option value="true_false">صح أو خطأ</option><option value="image">صورة/تخمين</option><option value="complete">أكمل الجملة</option><option value="who_am_i">من أنا؟</option><option value="direct">سؤال مباشر</option></select></label>
                 <label>طريقة الإجابة<select id="questionAnswerModeInput"><option value="choices">بخيارات</option><option value="manual">بدون خيارات - تحكيم يدوي</option></select></label>
-                <label>الصعوبة<select id="questionDifficultyInput"><option value="easy">easy</option><option value="medium">medium</option><option value="hard">hard</option></select></label>
                 <label>الإجابة الصحيحة<select id="questionCorrectInput"><option value="0">الخيار 1</option><option value="1">الخيار 2</option><option value="2">الخيار 3</option><option value="3">الخيار 4</option></select></label>
                 <label>النقاط<input id="questionPointsInput" dir="ltr" type="number" value="10" /></label>
               </div>
@@ -306,7 +311,7 @@
                     </label>
                   </div>
                   <label>السؤال بالإنجليزي<textarea id="questionEnInput" dir="ltr" placeholder="Optional English question"></textarea></label>
-                  <div class="row">
+                  <div class="row true-false-explanation">
                     <label>شرح الإجابة بالعربي<textarea id="questionExplanationArInput" placeholder="اختياري"></textarea></label>
                     <label>English explanation<textarea id="questionExplanationEnInput" dir="ltr" placeholder="Optional"></textarea></label>
                   </div>
@@ -336,13 +341,13 @@
               <div class="form" style="margin-top: 0.85rem;">
                 <div class="actions">
                   <button id="downloadTemplateBtn" class="secondary" type="button">تحميل قالب Excel</button>
-                  <button id="exportQuestionsBtn" class="primary" type="button">جلب Excel</button>
+                  <button id="exportQuestionsBtn" class="primary" type="button">تنزيل بنك الأسئلة كاملًا</button>
                 </div>
                 <label class="file-label">
-                  رفع ملف CSV من Excel
-                  <input id="questionsFile" type="file" accept=".csv,text/csv" />
+                  رفع ملف Excel أو CSV
+                  <input id="questionsFile" type="file" accept=".xlsx,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/csv" />
                 </label>
-                <p class="upload-note">ملاحظة Excel: ارفع ملف CSV من Excel بترميز UTF-8. لا تغيّر أسماء الأعمدة، واستخدم نفس ID التصنيف الموجود في تبويب بطاقات الرئيسية.</p>
+                <p class="upload-note">التنزيل يشمل كل الأسئلة، وروابط صور السؤال/الجواب والفيديو. يمكن إعادة رفع نفس ملف Excel أو CSV لاحقًا. لا تغيّر أسماء الأعمدة، واستخدم نفس ID التصنيف الموجود في تبويب بطاقات الرئيسية.</p>
                 <div class="actions">
                   <button id="importQuestionsBtn" class="primary" type="button">رفع الأسئلة</button>
                 </div>
@@ -374,7 +379,6 @@
               <div class="toolbar">
                 <label>بحث بالـ ID أو نص السؤال<input id="questionSearch" placeholder="اكتب جزء من السؤال أو ID" /></label>
                 <label>التصنيف<select id="questionCategoryFilter"><option value="">كل التصنيفات</option></select></label>
-                <label>الصعوبة<select id="questionDifficultyFilter"><option value="">كل الصعوبات</option><option value="easy">easy</option><option value="medium">medium</option><option value="hard">hard</option></select></label>
                 <label>المصدر<select id="questionSourceFilter"><option value="">الكل</option><option value="custom">أسئلة الأدمن فقط</option><option value="builtin">أسئلة التطبيق فقط</option></select></label>
               </div>
               <p class="hint">اضغط تعديل لتحميل صف السؤال في ملف CSV جاهز للتعديل، أو حذف لإزالة سؤال الأدمن. الأسئلة الأصلية من التطبيق لا تُحذف، لكن تقدر تعدلها برفع نفس الـ ID في CSV.</p>
@@ -382,7 +386,7 @@
             <p id="questionsShown" class="hint"></p>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>ID</th><th>التصنيف</th><th>الصعوبة</th><th>السؤال</th><th>الإجابة الصحيحة</th><th>إدارة</th></tr></thead>
+                <thead><tr><th>ID</th><th>التصنيف</th><th>النقاط</th><th>السؤال</th><th>الإجابة الصحيحة</th><th>إدارة</th></tr></thead>
                 <tbody id="questionsBody"></tbody>
               </table>
             </div>
@@ -526,6 +530,7 @@
                 <label>المدة (أيام)<input id="packageDurationDays" dir="ltr" type="number" value="30" /></label>
                 <label>السعر (د.ك)<input id="packagePriceKwd" dir="ltr" type="number" step="0.001" value="0" /></label>
               </div>
+              <label>الحد الأقصى للمستخدمين<input id="packageMaxUsers" dir="ltr" type="number" min="1" max="200" value="1" /></label>
               <label style="display:flex; flex-direction:row; align-items:center; gap:0.5rem;"><input id="packageAllCategories" type="checkbox" style="width:auto;" /> كل الفئات المدفوعة</label>
               <div id="packageCategoriesBox" class="row" style="grid-template-columns: repeat(4, minmax(0,1fr)); flex-wrap: wrap;"></div>
               <label>حالة الباقة<select id="packageActive"><option value="TRUE">فعالة</option><option value="FALSE">متوقفة</option></select></label>
@@ -586,6 +591,8 @@
             <div id="entitlementUsersBody" class="table-wrap" style="margin-top:0.6rem;"></div>
 
             <form id="entitlementForm" class="form" style="margin-top:1rem;">
+              <input id="entitlementSubscriptionId" type="hidden" />
+              <div id="entitlementEditNotice" class="status" style="display:none;"></div>
               <label>طريقة التفعيل
                 <select id="entitlementMethod">
                   <option value="package">من باقة</option>
@@ -593,12 +600,13 @@
                 </select>
               </label>
               <label id="entitlementPackageLabel">الباقة<select id="entitlementPackageId"></select></label>
+              <label id="entitlementNameLabel">اسم الاشتراك / الجهة<input id="entitlementName" placeholder="مثلاً: اشتراك مدرسة النور" /></label>
               <div id="entitlementCustomBox" style="display:none;">
                 <label>الفئات المشمولة</label>
                 <div id="entitlementCategoriesBox" class="row" style="grid-template-columns: repeat(4, minmax(0,1fr)); flex-wrap: wrap;"></div>
                 <label>المدة (أيام)<input id="entitlementDurationDays" dir="ltr" type="number" value="30" /></label>
               </div>
-              <label>عند وجود اشتراك سابق
+              <label id="entitlementModeLabel">عند وجود اشتراك سابق
                 <select id="entitlementMode">
                   <option value="extend">تمديد (إضافة على الحالي)</option>
                   <option value="replace">استبدال</option>
@@ -606,10 +614,19 @@
               </label>
               <label>ملاحظة (اختياري)<input id="entitlementNote" placeholder="مثلاً: دفع عبر تحويل بنكي" /></label>
               <div class="actions">
-                <button class="primary" type="submit">تفعيل</button>
+                <button id="entitlementSubmitBtn" class="primary" type="submit">إنشاء الاشتراك</button>
+                <button id="entitlementCancelEditBtn" class="secondary" type="button" style="display:none;">إلغاء التعديل</button>
               </div>
               <div id="entitlementStatus" class="status"></div>
             </form>
+
+            <div class="section-head" style="margin-top: 1.4rem;">
+              <div>
+                <h2 class="section-title">الاشتراكات الجماعية القائمة</h2>
+                <p class="hint">افتح الاشتراك لإضافة مستخدمين جدد إلى نفس الباقة دون تمديد مدة المستخدمين الحاليين.</p>
+              </div>
+            </div>
+            <div id="groupSubscriptionsBody" class="table-wrap"></div>
           </section>
 
           <section id="statsPanel" class="panel">
@@ -623,6 +640,7 @@
   </main>
 
   <script type="module">
+    import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
     import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
@@ -653,6 +671,7 @@
       'answer1Ar', 'answer2Ar', 'answer3Ar', 'answer4Ar', 'answer1En', 'answer2En', 'answer3En', 'answer4En',
       'correctAnswerNumber', 'explanationAr', 'explanationEn', 'imageUrl', 'revealImageUrl', 'thumbnailUrl', 'videoUrl', 'mediaType', 'revealMode', 'blurAmount', 'points', 'isKidsSafe', 'isActive', 'isPremium',
     ];
+    const categoryHeaders = ['id', 'nameAr', 'nameEn', 'imageUrl', 'accentColor', 'sortOrder', 'isActive', 'questionTypes'];
     const categories = [
       'generalKnowledge','sports','football','cars','movies','cartoons','anime','history','geography','science','space','animals','capitals','riddles','math','arabicLang','englishLang','technology','inventions','celebrities','music','islamicCulture','kuwait','flags','guessImage','trueFalse','completeSentence','whoAmI','wouldYouRather','familyChallenges'
     ];
@@ -668,6 +687,7 @@
     };
     const colorPalette = ['#7C3AED', '#2563EB', '#10B981', '#F59E0B', '#EF4444', '#EC4899', '#06B6D4', '#84CC16', '#F97316'];
     const difficulties = ['easy', 'medium', 'hard'];
+    const difficultyFromPoints = points => Number(points) >= 30 ? 'hard' : Number(points) >= 20 ? 'medium' : 'easy';
     let currentUser = null;
     let builtinQuestions = [];
     let customQuestions = [];
@@ -678,9 +698,11 @@
     let users = [];
     let tvSessions = [];
     let packages = [];
+    let groupSubscriptions = [];
     let promoCodes = [];
     let contactWhatsappNumber = '';
     let selectedEntitlementUids = [];
+    let fixedSubscriptionMemberUids = [];
     const FREE_CATEGORY_IDS = ['generalKnowledge'];
     let pendingQuestionRows = [];
     let visibleQuestions = [];
@@ -734,6 +756,20 @@
       }
     };
 
+    const formatUserIdentifierLabel = user => {
+      if (!user) return '';
+      if (user.customerNumber) return `#${user.customerNumber}`;
+      if (user.guestNumber) return `Guest ${user.guestNumber}`;
+      return '';
+    };
+    const userMatchesQuery = (user, query) => {
+      if (!query) return true;
+      return String(user.customerNumber || '').includes(query)
+        || String(user.guestNumber || '').includes(query)
+        || (user.displayName || '').toLowerCase().includes(query)
+        || (user.email || '').toLowerCase().includes(query);
+    };
+
     const CLOUD_FUNCTIONS_PROJECT = 'tahaddi-77a5d';
     const CLOUD_FUNCTIONS_REGION = 'us-central1';
     const callFunction = async (name, data) => {
@@ -764,6 +800,43 @@
       link.click();
       link.remove();
       URL.revokeObjectURL(link.href);
+    };
+
+    const questionSheetName = categoryId => {
+      const baseName = String(categoryId || 'uncategorized').replace(/[:\\/?*[\]]/g, '_').slice(0, 31);
+      return baseName.toLowerCase() === 'history' ? 'history_cat' : baseName;
+    };
+
+    const downloadWorkbook = (filename, questions, categoryItems) => {
+      const workbook = XLSX.utils.book_new();
+      const questionsByCategory = new Map();
+      questions.forEach(question => {
+        const categoryId = question.categoryId || 'uncategorized';
+        questionsByCategory.set(categoryId, [...(questionsByCategory.get(categoryId) || []), question]);
+      });
+      const usedSheetNames = new Set();
+      [...questionsByCategory.keys()].sort().forEach(categoryId => {
+        const baseName = questionSheetName(categoryId);
+        let sheetName = baseName;
+        let suffix = 2;
+        while (usedSheetNames.has(sheetName)) sheetName = `${baseName.slice(0, 28)}~${suffix++}`;
+        usedSheetNames.add(sheetName);
+        const worksheet = XLSX.utils.aoa_to_sheet([headers, ...questionsByCategory.get(categoryId).map(questionToRow)]);
+        worksheet['!cols'] = headers.map(header => ({ wch: ['questionAr', 'questionEn', 'explanationAr', 'explanationEn'].includes(header) ? 42 : 18 }));
+        worksheet['!freeze'] = { xSplit: 0, ySplit: 1 };
+        XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+      });
+      const categoryWorksheet = XLSX.utils.aoa_to_sheet([
+        categoryHeaders,
+        ...categoryItems.map(category => [
+          category.id, category.nameAr || '', category.nameEn || '', category.imageUrl || '', category.accentColor || '',
+          category.sortOrder ?? '', category.isActive === false ? 'FALSE' : 'TRUE', Array.isArray(category.questionTypes) ? category.questionTypes.join('|') : '',
+        ]),
+      ]);
+      categoryWorksheet['!cols'] = categoryHeaders.map(header => ({ wch: ['nameAr', 'nameEn', 'imageUrl'].includes(header) ? 35 : 18 }));
+      categoryWorksheet['!freeze'] = { xSplit: 0, ySplit: 1 };
+      XLSX.utils.book_append_sheet(workbook, categoryWorksheet, 'Categories');
+      XLSX.writeFile(workbook, filename, { compression: true });
     };
 
     const arabicSlugMap = {
@@ -862,7 +935,8 @@
     const normalizeQuestion = item => {
       const categoryId = item.categoryId?.trim();
       const linkedCategoryIds = String(item.linkedCategoryIds || '').split('|').map(value => value.trim()).filter(Boolean);
-      const difficulty = item.difficulty?.trim();
+      const points = Math.max(1, Number(item.points || 10));
+      const difficulty = difficulties.includes(item.difficulty?.trim()) ? item.difficulty.trim() : difficultyFromPoints(points);
       const answersAr = [item.answer1Ar, item.answer2Ar, item.answer3Ar, item.answer4Ar].map(value => String(value ?? '').trim()).filter(Boolean);
       const answersEnRaw = [item.answer1En, item.answer2En, item.answer3En, item.answer4En].map(value => String(value ?? '').trim());
       const answersEn = answersEnRaw.some(Boolean) ? answersEnRaw.slice(0, answersAr.length) : answersAr;
@@ -871,7 +945,6 @@
       if (!categoryId || !allowedCategories.has(categoryId)) throw new Error(`تصنيف غير صحيح: ${categoryId || 'فارغ'}. أضفه أولاً من تبويب بطاقات الرئيسية.`);
       const invalidLinkedCategoryId = linkedCategoryIds.find(linkedCategoryId => !allowedCategories.has(linkedCategoryId));
       if (invalidLinkedCategoryId) throw new Error(`تصنيف إضافي غير صحيح: ${invalidLinkedCategoryId}. أضفه أولاً من تبويب بطاقات الرئيسية.`);
-      if (!difficulty || !difficulties.includes(difficulty)) throw new Error(`صعوبة غير صحيحة: ${difficulty || 'فارغ'}`);
       if (!String(item.questionAr || '').trim()) throw new Error('يوجد سؤال بدون نص عربي');
       if (answersAr.length < 2) throw new Error(`السؤال ${item.id || item.questionAr} يحتاج اختيارين على الأقل`);
       if (correctAnswerIndex < 0 || correctAnswerIndex >= answersAr.length) throw new Error(`رقم الإجابة الصحيحة غير صحيح في ${item.id || item.questionAr}`);
@@ -900,7 +973,7 @@
           mediaType: String(item.mediaType || (item.videoUrl ? 'video' : item.imageUrl || item.revealImageUrl || item.thumbnailUrl ? 'image' : '')).trim(),
           revealMode: String(item.revealMode || 'none').trim(),
           blurAmount: Number(item.blurAmount || 0),
-          points: Number(item.points || pointsByDifficulty[difficulty] || 10),
+          points,
           isKidsSafe: String(item.isKidsSafe || 'TRUE').toUpperCase() !== 'FALSE',
           isActive: String(item.isActive || 'TRUE').toUpperCase() !== 'FALSE',
           isPremium: String(item.isPremium || 'FALSE').toUpperCase() === 'TRUE',
@@ -986,7 +1059,7 @@
           ${revealImageUrl ? `<img class="preview-img" src="${revealImageUrl}" alt="معاينة صورة الجواب" />` : ''}
         </div>
         <div class="preview-line"><strong>المعاينة:</strong> ${$('questionArInput').value.trim() || 'اكتب السؤال لعرضه هنا'}</div>
-        <div class="preview-line">${categoryLabel} · ${$('questionTypeInput').selectedOptions[0]?.textContent || ''} · ${answerMode} · ${$('questionDifficultyInput').value}</div>
+        <div class="preview-line">${categoryLabel} · ${$('questionTypeInput').selectedOptions[0]?.textContent || ''} · ${answerMode} · ${$('questionPointsInput').value || 10} نقطة</div>
         <div class="preview-line">تأثير الصورة: ${revealMode === 'blur' ? `تغبيش (${blurAmount})` : 'بدون تغبيش'}</div>
         <div class="preview-line">التصنيفات الإضافية: ${linkedLabels || 'لا يوجد'}</div>
         <div class="preview-line">الإجابة الصحيحة: ${correctAnswer || 'لم تكتب بعد'}</div>
@@ -1026,12 +1099,14 @@
       const type = $('questionTypeInput').value;
       const answerMode = $('questionAnswerModeInput').value;
       const answerInputs = getAnswerInputs();
+      const explanationRow = document.querySelector('.true-false-explanation');
       const manualRow = document.querySelector('.manual-answer-row');
       if (manualRow) manualRow.classList.toggle('hidden-answer', answerMode !== 'manual');
+      explanationRow?.classList.remove('true-answer', 'false-answer');
       answerInputs.forEach(({ ar, en }) => {
         ar.disabled = false;
         en.disabled = false;
-        ar.closest('.answer-row').classList.remove('hidden-answer');
+        ar.closest('.answer-row').classList.remove('hidden-answer', 'true-option', 'false-option');
       });
       $('questionCorrectInput').disabled = answerMode === 'manual';
 
@@ -1046,6 +1121,9 @@
         answerInputs[1].ar.value = 'خطأ';
         answerInputs[0].en.value = 'True';
         answerInputs[1].en.value = 'False';
+        answerInputs[0].ar.closest('.answer-row').classList.add('true-option');
+        answerInputs[1].ar.closest('.answer-row').classList.add('false-option');
+        explanationRow?.classList.add($('questionCorrectInput').value === '1' ? 'false-answer' : 'true-answer');
         answerInputs.slice(2).forEach(({ ar, en }) => { ar.value = ''; en.value = ''; ar.disabled = true; en.disabled = true; });
         $('questionCorrectInput').replaceChildren(new Option('صح', '0'), new Option('خطأ', '1'));
         return;
@@ -1073,7 +1151,6 @@
       [...$('questionLinkedCategoriesInput').options].forEach(option => { option.selected = false; });
       $('questionTypeInput').value = 'multiple_choice';
       $('questionAnswerModeInput').value = 'choices';
-      $('questionDifficultyInput').value = 'easy';
       $('questionPointsInput').value = '10';
       $('questionCorrectInput').value = '0';
       $('questionArInput').value = '';
@@ -1126,7 +1203,6 @@
       [...$('questionLinkedCategoriesInput').options].forEach(option => { option.selected = linkedCategoryIds.has(option.value); });
       $('questionTypeInput').value = question.type || 'multiple_choice';
       $('questionAnswerModeInput').value = question.answersAr?.length ? 'choices' : 'manual';
-      $('questionDifficultyInput').value = question.difficulty || 'easy';
       $('questionPointsInput').value = question.points || pointsByDifficulty[question.difficulty] || 10;
       updateQuestionTypeFields();
       $('questionCorrectInput').value = String(question.correctAnswerIndex ?? 0);
@@ -1172,7 +1248,8 @@
       const id = ($('questionIdInput').value.trim() || $('questionEditId').value.trim() || `q-${Date.now()}`).replace(/[^a-zA-Z0-9_-]/g, '-');
       const categoryId = $('questionCategoryInput').value;
       const linkedCategoryIds = [...$('questionLinkedCategoriesInput').selectedOptions].map(option => option.value).filter(value => value && value !== categoryId);
-      const difficulty = $('questionDifficultyInput').value;
+      const points = Math.max(1, Number($('questionPointsInput').value || 10));
+      const difficulty = difficultyFromPoints(points);
       const type = $('questionTypeInput').value;
       const answerMode = $('questionAnswerModeInput').value;
       const questionAr = $('questionArInput').value.trim();
@@ -1225,7 +1302,7 @@
           mediaType: hasImageMedia ? 'image' : '',
           revealMode,
           blurAmount,
-          points: Number($('questionPointsInput').value || pointsByDifficulty[difficulty] || 10),
+          points,
           isKidsSafe: true,
           isActive: $('questionActiveInput').value !== 'FALSE',
           isPremium: false,
@@ -1239,12 +1316,10 @@
     const getFilteredQuestions = () => {
       const term = $('questionSearch').value.trim().toLowerCase();
       const categoryId = $('questionCategoryFilter').value;
-      const difficulty = $('questionDifficultyFilter').value;
       const source = $('questionSourceFilter').value;
 
       return allQuestions.filter(question => {
         if (categoryId && !questionBelongsToCategory(question, categoryId)) return false;
-        if (difficulty && question.difficulty !== difficulty) return false;
         if (source && getQuestionSource(question) !== source) return false;
         if (!term) return true;
         return [question.id, question.categoryId, question.questionAr, question.questionEn, question.correctAnswerAr, ...(question.answersAr || [])]
@@ -1299,7 +1374,7 @@
         const tr = document.createElement('tr');
         const source = getQuestionSource(question);
         const categoryText = [getCategoryLabel(question.categoryId || ''), ...(question.linkedCategoryIds || []).map(getCategoryLabel)].join(' + ');
-        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.difficulty || ''}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button>${source === 'custom' ? `<button class="danger" type="button" data-delete-question="${question.id}">حذف</button>` : ''}</div></td>`;
+        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button>${source === 'custom' ? `<button class="danger" type="button" data-delete-question="${question.id}">حذف</button>` : ''}</div></td>`;
         return tr;
       }));
     };
@@ -1499,7 +1574,7 @@
 
     const populatePackageDropdowns = () => {
       const activePackages = packages.filter(pkg => pkg.isActive !== false);
-      const options = activePackages.map(pkg => `<option value="${pkg.id}">${pkg.nameAr} (${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم)</option>`).join('');
+      const options = activePackages.map(pkg => `<option value="${pkg.id}">${pkg.nameAr} (${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم · ${pkg.maxUsers || 1} مستخدم)</option>`).join('');
       $('promoPackageId').innerHTML = options || '<option value="">لا توجد باقات فعالة</option>';
       $('entitlementPackageId').innerHTML = options || '<option value="">لا توجد باقات فعالة</option>';
     };
@@ -1527,7 +1602,7 @@
         name.textContent = pkg.nameAr;
         const price = document.createElement('div');
         price.className = 'ad-headline';
-        price.textContent = `${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم`;
+        price.textContent = `${pkg.priceKwd} د.ك · ${pkg.durationDays} يوم · حتى ${pkg.maxUsers || 1} مستخدم`;
         info.append(name, price);
         top.append(info);
 
@@ -1568,6 +1643,31 @@
       populatePackageDropdowns();
     };
 
+    const renderGroupSubscriptions = () => {
+      if (!groupSubscriptions.length) {
+        $('groupSubscriptionsBody').innerHTML = '<div class="hint">لا توجد اشتراكات جماعية بعد.</div>';
+        return;
+      }
+
+      const rows = groupSubscriptions.map(subscription => {
+        const pkg = packages.find(item => item.id === subscription.packageId);
+        const maxUsers = pkg?.maxUsers || subscription.maxUsers || 1;
+        const memberCount = Array.isArray(subscription.memberUids) ? subscription.memberUids.length : 0;
+        const isExpired = Number(subscription.expiresAtMs || 0) <= Date.now();
+        return `
+          <tr>
+            <td>${subscription.name || subscription.packageNameAr || 'اشتراك جماعي'}</td>
+            <td>${pkg?.nameAr || subscription.packageNameAr || subscription.packageId || '—'}</td>
+            <td>${memberCount} / ${maxUsers}</td>
+            <td>${subscription.expiresAtMs ? new Date(subscription.expiresAtMs).toLocaleDateString('ar-KW') : '—'}</td>
+            <td><span class="badge ${isExpired ? 'paused' : ''}">${isExpired ? 'منتهي' : 'فعال'}</span></td>
+            <td><button type="button" class="secondary" data-edit-group-subscription="${subscription.id}" ${isExpired ? 'disabled' : ''}>تعديل وإضافة مستخدمين</button></td>
+          </tr>
+        `;
+      }).join('');
+      $('groupSubscriptionsBody').innerHTML = `<table><thead><tr><th>الاشتراك</th><th>الباقة</th><th>المستخدمون</th><th>ينتهي</th><th>الحالة</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+    };
+
     const promoTypeLabels = { free: 'مجاني', discountPercent: 'خصم %', discountFixedKwd: 'خصم د.ك' };
 
     const renderPromoCodes = () => {
@@ -1590,25 +1690,21 @@
 
     const renderEntitlementUsers = () => {
       const query = ($('entitlementSearch').value || '').trim().toLowerCase();
-      const filtered = users.filter(user => {
-        if (!query) return true;
-        return String(user.customerNumber || '').includes(query)
-          || (user.displayName || '').toLowerCase().includes(query)
-          || (user.email || '').toLowerCase().includes(query);
-      }).slice(0, 80);
+      const filtered = users.filter(user => userMatchesQuery(user, query)).slice(0, 80);
 
       if (!filtered.length) {
         $('entitlementUsersBody').innerHTML = '<div class="hint">لا يوجد مستخدمين مطابقين.</div>';
       } else {
         const rows = filtered.map(user => {
           const isSelected = selectedEntitlementUids.includes(user.id);
+          const isExistingMember = fixedSubscriptionMemberUids.includes(user.id);
           const hasActive = user.entitlementExpiresAtMs && user.entitlementExpiresAtMs > Date.now();
           return `
             <tr>
-              <td><input type="checkbox" data-entitlement-user="${user.id}" ${isSelected ? 'checked' : ''} style="width:auto;" /></td>
-              <td>${user.displayName || 'User'}${user.customerNumber ? ` · #${user.customerNumber}` : ''}</td>
+              <td><input type="checkbox" data-entitlement-user="${user.id}" ${isSelected ? 'checked' : ''} ${isExistingMember ? 'disabled' : ''} style="width:auto;" /></td>
+              <td>${user.displayName || 'User'}${formatUserIdentifierLabel(user) ? ` · ${formatUserIdentifierLabel(user)}` : ''}</td>
               <td dir="ltr">${user.email || ''}</td>
-              <td>${hasActive ? `فعّال حتى ${new Date(user.entitlementExpiresAtMs).toLocaleDateString('ar-KW')}` : '—'}</td>
+              <td>${isExistingMember ? 'ضمن الاشتراك الحالي' : hasActive ? `فعّال حتى ${new Date(user.entitlementExpiresAtMs).toLocaleDateString('ar-KW')}` : '—'}</td>
               <td><button type="button" class="secondary" data-quick-activate="${user.id}">🔓 تفعيل فئة</button></td>
             </tr>
           `;
@@ -1616,7 +1712,11 @@
         $('entitlementUsersBody').innerHTML = `<table><thead><tr><th></th><th>المستخدم</th><th>الإيميل</th><th>الاشتراك</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
       }
 
-      $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
+      const selectedPackage = packages.find(pkg => pkg.id === $('entitlementPackageId').value);
+      const maxUsers = $('entitlementMethod').value === 'package' ? (selectedPackage?.maxUsers || 1) : null;
+      $('entitlementSelectedCount').textContent = maxUsers
+        ? `${selectedEntitlementUids.length} من ${maxUsers} مستخدم`
+        : `${selectedEntitlementUids.length} محدد`;
     };
 
     const renderStats = () => {
@@ -1644,7 +1744,7 @@
 
       const questionFailures = [];
       const adminWarnings = [];
-      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult, packagesResult, promoCodesResult, contactResult, entitlementsConfigResult] = await Promise.allSettled([
+      const [questionBankResult, usersResult, questionsResult, categoriesResult, adsResult, tvResult, packagesResult, groupSubscriptionsResult, promoCodesResult, contactResult, entitlementsConfigResult] = await Promise.allSettled([
         fetch('/admin/question-bank.json', { cache: 'no-store' }).then(async response => {
           if (!response.ok) throw new Error('تعذر تحميل بنك أسئلة التطبيق');
           return response.json();
@@ -1655,6 +1755,7 @@
         get(ref(db, 'sponsorAds')),
         get(ref(db, 'tvDisplaySessions')),
         getDocs(query(collection(firestore, 'packages'), orderBy('sortOrder', 'asc'))),
+        getDocs(collection(firestore, 'groupSubscriptions')),
         getDocs(collection(firestore, 'promoCodes')),
         getDoc(doc(firestore, 'appConfig', 'contact')),
         getDoc(doc(firestore, 'appConfig', 'entitlements')),
@@ -1709,6 +1810,15 @@
         adminWarnings.push('تعذر تحميل الباقات');
       }
 
+      if (groupSubscriptionsResult.status === 'fulfilled') {
+        groupSubscriptions = groupSubscriptionsResult.value.docs
+          .map(subscriptionDoc => ({ id: subscriptionDoc.id, ...subscriptionDoc.data() }))
+          .sort((a, b) => Number(b.createdAtMs || 0) - Number(a.createdAtMs || 0));
+      } else {
+        groupSubscriptions = [];
+        adminWarnings.push('تعذر تحميل الاشتراكات الجماعية');
+      }
+
       if (promoCodesResult.status === 'fulfilled') {
         promoCodes = promoCodesResult.value.docs.map(codeDoc => ({ code: codeDoc.id, ...codeDoc.data() })).sort((a, b) => (b.createdAtMs || 0) - (a.createdAtMs || 0));
       } else {
@@ -1739,6 +1849,7 @@
       renderCategoryCards();
       renderAds();
       renderPackages();
+      renderGroupSubscriptions();
       renderPromoCodes();
       renderEntitlementUsers();
       renderStats();
@@ -1828,27 +1939,23 @@
     });
 
     $('exportQuestionsBtn').addEventListener('click', () => {
-      const exportRows = visibleQuestions.length ? visibleQuestions : allQuestions;
-      const csv = `\uFEFF${[headers, ...exportRows.map(questionToRow)].map(row => row.map(escapeCsv).join(',')).join('\n')}`;
-      downloadText(`Tahaddii-custom-questions-${new Date().toISOString().slice(0, 10)}.csv`, csv);
-      setStatus($('questionStatus'), `تم تجهيز ${exportRows.length} سؤال للتحميل`, 'success');
+      downloadWorkbook(`Tahaddii-question-bank-${new Date().toISOString().slice(0, 10)}.xlsx`, allQuestions, categoryCards);
+      setStatus($('questionStatus'), `تم تجهيز بنك الأسئلة كاملًا (${allQuestions.length} سؤال و${categoryCards.length} كاتيجوري) مع روابط الوسائط`, 'success');
     });
 
-    ['questionSearch', 'questionCategoryFilter', 'questionDifficultyFilter', 'questionSourceFilter'].forEach(id => {
+    ['questionSearch', 'questionCategoryFilter', 'questionSourceFilter'].forEach(id => {
       $(id).addEventListener('input', renderQuestions);
       $(id).addEventListener('change', renderQuestions);
     });
 
-    $('questionDifficultyInput').addEventListener('change', () => {
-      $('questionPointsInput').value = pointsByDifficulty[$('questionDifficultyInput').value] || 10;
-    });
     $('questionTypeInput').addEventListener('change', updateQuestionTypeFields);
     $('questionAnswerModeInput').addEventListener('change', updateQuestionTypeFields);
+    $('questionCorrectInput').addEventListener('change', updateQuestionTypeFields);
     $('questionIdInput').addEventListener('input', () => { $('questionIdInput').dataset.auto = 'false'; });
     $('questionCategoryInput').addEventListener('change', refreshQuestionAutoId);
     $('questionArInput').addEventListener('input', refreshQuestionAutoId);
     $('questionEnInput').addEventListener('input', refreshQuestionAutoId);
-    ['questionCategoryInput', 'questionTypeInput', 'questionAnswerModeInput', 'questionDifficultyInput', 'questionCorrectInput', 'questionArInput', 'questionEnInput', 'manualCorrectArInput', 'manualCorrectEnInput', 'questionImageUrlInput', 'questionRevealImageUrlInput', 'questionRevealModeInput', 'questionBlurAmountInput', 'answer1ArInput', 'answer2ArInput', 'answer3ArInput', 'answer4ArInput'].forEach(id => {
+    ['questionCategoryInput', 'questionTypeInput', 'questionAnswerModeInput', 'questionCorrectInput', 'questionPointsInput', 'questionArInput', 'questionEnInput', 'manualCorrectArInput', 'manualCorrectEnInput', 'questionImageUrlInput', 'questionRevealImageUrlInput', 'questionRevealModeInput', 'questionBlurAmountInput', 'answer1ArInput', 'answer2ArInput', 'answer3ArInput', 'answer4ArInput'].forEach(id => {
       $(id).addEventListener('input', renderQuestionPreview);
       $(id).addEventListener('change', renderQuestionPreview);
     });
@@ -1934,10 +2041,21 @@
         window.scrollTo({ top: $('questionsPanel').offsetTop, behavior: 'smooth' });
       }
 
-      if (deleteId && confirm('حذف سؤال الأدمن؟ إذا كان هذا تعديل على سؤال من التطبيق، سيعود السؤال الأصلي للظهور.')) {
-        await deleteDoc(doc(firestore, 'customQuestions', deleteId));
-        setStatus($('questionStatus'), 'تم حذف سؤال/تعديل الأدمن', 'success');
-        await loadData();
+      if (deleteId) {
+        const isOverrideOfBuiltin = builtinQuestions.some(item => item.id === deleteId);
+        const confirmMessage = isOverrideOfBuiltin
+          ? 'هذا تعديل على سؤال أساسي من التطبيق. حذفه يرجّع السؤال الأصلي (لن يختفي كليًا إلا بإزالته من ملف Excel وتحديث التطبيق). متابعة؟'
+          : 'حذف هذا السؤال نهائيًا؟ سيختفي من كل الأجهزة خلال دقائق.';
+        if (confirm(confirmMessage)) {
+          setStatus($('questionStatus'), 'جاري الحذف...');
+          try {
+            await deleteDoc(doc(firestore, 'customQuestions', deleteId));
+            setStatus($('questionStatus'), isOverrideOfBuiltin ? 'تم الحذف — رجع السؤال الأصلي للظهور' : 'تم حذف السؤال نهائيًا', 'success');
+            await loadData();
+          } catch (error) {
+            setStatus($('questionStatus'), `فشل الحذف: ${error.message}`, 'error');
+          }
+        }
       }
     });
 
@@ -1945,8 +2063,29 @@
       const file = event.target.files?.[0];
       pendingQuestionRows = [];
       if (!file) return;
-      const text = await file.text();
-      const rows = parseCsv(text);
+      const isExcel = file.name.toLowerCase().endsWith('.xlsx');
+      let rows;
+      if (isExcel) {
+        const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array' });
+        const questionSheetNames = workbook.SheetNames.filter(sheetName => sheetName !== 'Categories');
+        if (!questionSheetNames.length) {
+          setStatus($('questionStatus'), 'ملف Excel غير مدعوم. يجب أن يحتوي على شيت واحد للأسئلة على الأقل.', 'error');
+          return;
+        }
+        const sheetRows = questionSheetNames.map(sheetName => XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: '' }));
+        const firstHeader = sheetRows[0][0];
+        rows = [
+          firstHeader,
+          ...sheetRows.flatMap((currentRows, index) => currentRows.slice(index === 0 ? 1 : 1))
+            .filter(row => row.some(cell => String(cell ?? '').trim())),
+        ];
+      } else {
+        rows = parseCsv(await file.text());
+      }
+      if (!rows.length) {
+        setStatus($('questionStatus'), 'الملف لا يحتوي أسئلة', 'error');
+        return;
+      }
       pendingQuestionRows = rowsToObjects(rows);
       setStatus($('questionStatus'), `تمت قراءة ${pendingQuestionRows.length} صف من الملف. اضغط رفع الأسئلة للحفظ.`, 'success');
     });
@@ -2188,13 +2327,24 @@
       if (toggleId) {
         const category = categoryCards.find(item => item.id === toggleId);
         const nextActive = category?.isActive === false;
-        await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: nextActive, updatedAtMs: Date.now() }, { merge: true });
-        setStatus($('categoryStatus'), nextActive ? 'تم تفعيل التصنيف' : 'تم إيقاف التصنيف وسيختفي من التطبيق بعد التحديث', 'success');
-        await loadData();
+        setStatus($('categoryStatus'), 'جاري الحفظ...');
+        try {
+          await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: nextActive, updatedAtMs: Date.now() }, { merge: true });
+          setStatus($('categoryStatus'), nextActive ? 'تم تفعيل التصنيف' : 'تم إيقاف التصنيف وسيختفي من التطبيق بعد التحديث', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('categoryStatus'), `فشل التحديث: ${error.message}`, 'error');
+        }
       }
       if (deleteId && confirm('حذف بطاقة التصنيف؟ الأسئلة لن تنحذف، فقط البطاقة من الرئيسية.')) {
-        await deleteDoc(doc(firestore, 'categoryCards', deleteId));
-        await loadData();
+        setStatus($('categoryStatus'), 'جاري الحذف...');
+        try {
+          await deleteDoc(doc(firestore, 'categoryCards', deleteId));
+          setStatus($('categoryStatus'), 'تم حذف البطاقة', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('categoryStatus'), `فشل الحذف: ${error.message}`, 'error');
+        }
       }
     });
 
@@ -2297,12 +2447,24 @@
       }
       if (toggleId) {
         const ad = sponsorAds.find(item => item.id === toggleId);
-        await update(ref(db, `sponsorAds/${toggleId}`), { isActive: ad?.isActive === false, updatedAtMs: Date.now() });
-        await loadData();
+        setStatus($('adStatus'), 'جاري الحفظ...');
+        try {
+          await update(ref(db, `sponsorAds/${toggleId}`), { isActive: ad?.isActive === false, updatedAtMs: Date.now() });
+          setStatus($('adStatus'), 'تم التحديث', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('adStatus'), `فشل التحديث: ${error.message}`, 'error');
+        }
       }
       if (deleteId && confirm('حذف الإعلان؟')) {
-        await remove(ref(db, `sponsorAds/${deleteId}`));
-        await loadData();
+        setStatus($('adStatus'), 'جاري الحذف...');
+        try {
+          await remove(ref(db, `sponsorAds/${deleteId}`));
+          setStatus($('adStatus'), 'تم حذف الإعلان', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('adStatus'), `فشل الحذف: ${error.message}`, 'error');
+        }
       }
     });
 
@@ -2362,6 +2524,7 @@
       $('packageNameEn').value = '';
       $('packageDurationDays').value = '30';
       $('packagePriceKwd').value = '0';
+      $('packageMaxUsers').value = '1';
       $('packageAllCategories').checked = false;
       $('packageCategoriesBox').style.display = '';
       setCheckedCategoryIds('packageCategoriesBox', []);
@@ -2384,6 +2547,8 @@
         if (!durationDays || durationDays <= 0) throw new Error('حدد مدة صحيحة بالأيام');
         const categoryIds = $('packageAllCategories').checked ? ['*'] : getCheckedCategoryIds('packageCategoriesBox');
         if (!categoryIds.length) throw new Error('اختر فئة واحدة على الأقل أو كل الفئات');
+        const maxUsers = Math.floor(Number($('packageMaxUsers').value || 0));
+        if (!maxUsers || maxUsers < 1 || maxUsers > 200) throw new Error('حدد عدد مستخدمين من 1 إلى 200');
 
         const existingId = $('packageEditId').value.trim();
         const id = existingId || uniqueId(nameAr, candidateId => packages.some(pkg => pkg.id === candidateId), 'package');
@@ -2394,6 +2559,7 @@
           durationDays,
           priceKwd: Number($('packagePriceKwd').value || 0),
           priceLabel: `${$('packagePriceKwd').value || 0} د.ك`,
+          maxUsers,
           isActive: $('packageActive').value !== 'FALSE',
           sortOrder: existingId ? (packages.find(pkg => pkg.id === existingId)?.sortOrder || 0) : packages.length,
           updatedAtMs: Date.now(),
@@ -2419,6 +2585,7 @@
         $('packageNameEn').value = pkg.nameEn || '';
         $('packageDurationDays').value = pkg.durationDays || 30;
         $('packagePriceKwd').value = pkg.priceKwd || 0;
+        $('packageMaxUsers').value = pkg.maxUsers || 1;
         const isAll = (pkg.categoryIds || []).includes('*');
         $('packageAllCategories').checked = isAll;
         $('packageCategoriesBox').style.display = isAll ? 'none' : '';
@@ -2428,12 +2595,24 @@
       }
       if (toggleId) {
         const pkg = packages.find(item => item.id === toggleId);
-        await setDoc(doc(firestore, 'packages', toggleId), { isActive: pkg?.isActive === false, updatedAtMs: Date.now() }, { merge: true });
-        await loadData();
+        setStatus($('packageStatus'), 'جاري الحفظ...');
+        try {
+          await setDoc(doc(firestore, 'packages', toggleId), { isActive: pkg?.isActive === false, updatedAtMs: Date.now() }, { merge: true });
+          setStatus($('packageStatus'), 'تم التحديث', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('packageStatus'), `فشل التحديث: ${error.message}`, 'error');
+        }
       }
       if (deleteId && confirm('حذف الباقة؟')) {
-        await deleteDoc(doc(firestore, 'packages', deleteId));
-        await loadData();
+        setStatus($('packageStatus'), 'جاري الحذف...');
+        try {
+          await deleteDoc(doc(firestore, 'packages', deleteId));
+          setStatus($('packageStatus'), 'تم حذف الباقة', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('packageStatus'), `فشل الحذف: ${error.message}`, 'error');
+        }
       }
     });
 
@@ -2481,27 +2660,33 @@
 
     $('entitlementSelectAllBtn').addEventListener('click', () => {
       const query = ($('entitlementSearch').value || '').trim().toLowerCase();
-      selectedEntitlementUids = users.filter(user => {
-        if (!query) return true;
-        return String(user.customerNumber || '').includes(query)
-          || (user.displayName || '').toLowerCase().includes(query)
-          || (user.email || '').toLowerCase().includes(query);
-      }).map(user => user.id);
+      const matchingUids = users.filter(user => userMatchesQuery(user, query)).map(user => user.id);
+      const selectedPackage = packages.find(pkg => pkg.id === $('entitlementPackageId').value);
+      const maxUsers = $('entitlementMethod').value === 'package' ? (selectedPackage?.maxUsers || 1) : matchingUids.length;
+      const newUids = matchingUids.filter(uid => !fixedSubscriptionMemberUids.includes(uid));
+      selectedEntitlementUids = [...fixedSubscriptionMemberUids, ...newUids.slice(0, Math.max(0, maxUsers - fixedSubscriptionMemberUids.length))];
       renderEntitlementUsers();
     });
 
     $('entitlementClearBtn').addEventListener('click', () => {
-      selectedEntitlementUids = [];
+      selectedEntitlementUids = [...fixedSubscriptionMemberUids];
       renderEntitlementUsers();
     });
 
     $('entitlementUsersBody').addEventListener('change', event => {
       const uid = event.target.closest('[data-entitlement-user]')?.dataset.entitlementUser;
       if (!uid) return;
+      const selectedPackage = packages.find(pkg => pkg.id === $('entitlementPackageId').value);
+      const maxUsers = $('entitlementMethod').value === 'package' ? (selectedPackage?.maxUsers || 1) : Number.POSITIVE_INFINITY;
+      if (event.target.checked && selectedEntitlementUids.length >= maxUsers) {
+        event.target.checked = false;
+        setStatus($('entitlementStatus'), `وصلت للحد الأقصى لهذه الباقة: ${maxUsers} مستخدم`, 'error');
+        return;
+      }
       selectedEntitlementUids = event.target.checked
         ? [...selectedEntitlementUids, uid]
         : selectedEntitlementUids.filter(id => id !== uid);
-      $('entitlementSelectedCount').textContent = `${selectedEntitlementUids.length} محدد`;
+      renderEntitlementUsers();
     });
 
     $('entitlementUsersBody').addEventListener('click', event => {
@@ -2515,7 +2700,53 @@
     $('entitlementMethod').addEventListener('change', () => {
       const isPackage = $('entitlementMethod').value === 'package';
       $('entitlementPackageLabel').style.display = isPackage ? '' : 'none';
+      $('entitlementNameLabel').style.display = isPackage ? '' : 'none';
       $('entitlementCustomBox').style.display = isPackage ? 'none' : '';
+      $('entitlementModeLabel').style.display = isPackage ? 'none' : '';
+      $('entitlementSubmitBtn').textContent = isPackage ? 'إنشاء الاشتراك' : 'تفعيل';
+      renderEntitlementUsers();
+    });
+
+    $('entitlementPackageId').addEventListener('change', renderEntitlementUsers);
+    $('entitlementMethod').dispatchEvent(new Event('change'));
+
+    const clearGroupSubscriptionEdit = () => {
+      $('entitlementSubscriptionId').value = '';
+      $('entitlementPackageId').disabled = false;
+      $('entitlementMethod').disabled = false;
+      $('entitlementName').value = '';
+      $('entitlementEditNotice').style.display = 'none';
+      $('entitlementCancelEditBtn').style.display = 'none';
+      $('entitlementSubmitBtn').textContent = 'إنشاء الاشتراك';
+      fixedSubscriptionMemberUids = [];
+      selectedEntitlementUids = [];
+      renderEntitlementUsers();
+    };
+
+    $('entitlementCancelEditBtn').addEventListener('click', clearGroupSubscriptionEdit);
+
+    $('groupSubscriptionsBody').addEventListener('click', event => {
+      const subscriptionId = event.target.closest('[data-edit-group-subscription]')?.dataset.editGroupSubscription;
+      if (!subscriptionId) return;
+      const subscription = groupSubscriptions.find(item => item.id === subscriptionId);
+      if (!subscription) return;
+      $('entitlementSubscriptionId').value = subscription.id;
+      $('entitlementMethod').value = 'package';
+      $('entitlementMethod').disabled = true;
+      $('entitlementPackageId').value = subscription.packageId;
+      $('entitlementPackageId').disabled = true;
+      $('entitlementName').value = subscription.name || '';
+      fixedSubscriptionMemberUids = [...(subscription.memberUids || [])];
+      selectedEntitlementUids = [...fixedSubscriptionMemberUids];
+      const pkg = packages.find(item => item.id === subscription.packageId);
+      const maxUsers = pkg?.maxUsers || subscription.maxUsers || 1;
+      $('entitlementEditNotice').textContent = `تعديل ${subscription.name || 'الاشتراك'}: ${selectedEntitlementUids.length} من ${maxUsers} مستخدم`;
+      $('entitlementEditNotice').className = 'status success';
+      $('entitlementEditNotice').style.display = '';
+      $('entitlementCancelEditBtn').style.display = '';
+      $('entitlementSubmitBtn').textContent = 'حفظ وإضافة المستخدمين';
+      renderEntitlementUsers();
+      $('entitlementSearch').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     $('entitlementForm').addEventListener('submit', async event => {
@@ -2540,18 +2771,32 @@
           if (!durationDays || durationDays <= 0) throw new Error('حدد مدة صحيحة بالأيام');
         }
 
-        const expiresAtMs = Date.now() + durationDays * 86400000;
-        const result = await callFunction('grantEntitlement', {
-          uids: selectedEntitlementUids,
-          categoryIds,
-          expiresAtMs,
-          mode: $('entitlementMode').value,
-          note: $('entitlementNote').value.trim() || undefined,
-          packageId,
-        });
-        const failed = (result?.results || []).filter(item => !item.ok);
-        setStatus($('entitlementStatus'), failed.length ? `فشل التفعيل لـ ${failed.length} مستخدم` : `تم التفعيل لـ ${result.results.length} مستخدم`, failed.length ? 'error' : 'success');
-        selectedEntitlementUids = [];
+        if ($('entitlementMethod').value === 'package') {
+          const pkg = packages.find(item => item.id === packageId);
+          const maxUsers = pkg?.maxUsers || 1;
+          if (selectedEntitlementUids.length > maxUsers) throw new Error(`هذه الباقة تسمح بـ ${maxUsers} مستخدم فقط`);
+          const result = await callFunction('upsertGroupSubscription', {
+            subscriptionId: $('entitlementSubscriptionId').value || undefined,
+            packageId,
+            name: $('entitlementName').value.trim() || undefined,
+            uids: selectedEntitlementUids,
+            note: $('entitlementNote').value.trim() || undefined,
+          });
+          setStatus($('entitlementStatus'), `تم الحفظ: ${result.memberCount} من ${result.maxUsers} مستخدم (تمت إضافة ${result.addedCount})`, 'success');
+          clearGroupSubscriptionEdit();
+        } else {
+          const expiresAtMs = Date.now() + durationDays * 86400000;
+          const result = await callFunction('grantEntitlement', {
+            uids: selectedEntitlementUids,
+            categoryIds,
+            expiresAtMs,
+            mode: $('entitlementMode').value,
+            note: $('entitlementNote').value.trim() || undefined,
+          });
+          const failed = (result?.results || []).filter(item => !item.ok);
+          setStatus($('entitlementStatus'), failed.length ? `فشل التفعيل لـ ${failed.length} مستخدم` : `تم التفعيل لـ ${result.results.length} مستخدم`, failed.length ? 'error' : 'success');
+          selectedEntitlementUids = [];
+        }
         $('entitlementNote').value = '';
         await loadData();
       } catch (error) {

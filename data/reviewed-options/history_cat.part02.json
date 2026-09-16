@@ -1,0 +1,242 @@
+[
+  {
+    "id": "history-hard-21",
+    "answersAr": ["أبو العباس السفاح", "إبراهيم الإمام", "أبو سلمة الخلال", "أبو مسلم الخراساني"],
+    "answersEn": ["Abu al-Abbas al-Saffah", "Ibrahim al-Imam", "Abu Salama al-Khallal", "Abu Muslim al-Khorasani"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-22",
+    "answersAr": ["1949", "1950", "1951", "1952"],
+    "answersEn": ["1949", "1950", "1951", "1952"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-23",
+    "answersAr": ["الحضارة الأكادية", "الحضارة السومرية", "الحضارة العيلامية", "الحضارة الحيثية"],
+    "answersEn": ["Akkadian civilization", "Sumerian civilization", "Elamite civilization", "Hittite civilization"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-24",
+    "answersAr": ["مكسنتيوس", "قسطنطين الأول", "ليسينيوس", "يوليان المرتد"],
+    "answersEn": ["Maxentius", "Constantine I", "Licinius", "Julian the Apostate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-25",
+    "answersAr": ["الحرب المكسيكية الأمريكية", "الحرب الأهلية الأمريكية", "حرب 1812", "الحرب الإسبانية الأمريكية"],
+    "answersEn": ["Mexican-American War", "American Civil War", "War of 1812", "Spanish-American War"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-26",
+    "answersAr": ["سعد بن أبي وقاص", "النعمان بن مقرن", "أبو موسى الأشعري", "عتبة بن غزوان"],
+    "answersEn": ["Sa'd ibn Abi Waqqas", "Al-Nu'man ibn Muqarrin", "Abu Musa al-Ash'ari", "Utbah ibn Ghazwan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-27",
+    "answersAr": ["ماغنا كارتا", "أحكام أكسفورد", "عريضة الحقوق", "وثيقة الحقوق"],
+    "answersEn": ["Magna Carta", "Provisions of Oxford", "Petition of Right", "Bill of Rights"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-28",
+    "answersAr": ["صلاح الدين الأيوبي", "الظاهر بيبرس", "نور الدين زنكي", "عماد الدين زنكي"],
+    "answersEn": ["Saladin", "Al-Zahir Baibars", "Nur al-Din Zangi", "Imad al-Din Zangi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-29",
+    "answersAr": ["جامعة الأزهر", "جامعة القرويين", "جامعة الزيتونة", "المدرسة المستنصرية"],
+    "answersEn": ["Al-Azhar University", "University of al-Qarawiyyin", "Ez-Zitouna University", "Al-Mustansiriya Madrasa"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-30",
+    "answersAr": ["هارون الرشيد", "المأمون", "أبو جعفر المنصور", "المعتصم"],
+    "answersEn": ["Harun al-Rashid", "Al-Ma'mun", "Abu Ja'far al-Mansur", "Al-Mu'tasim"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-31",
+    "answersAr": ["1989", "1990", "1991", "1992"],
+    "answersEn": ["1989", "1990", "1991", "1992"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-32",
+    "answersAr": ["حنبعل", "هاميلكار برقا", "حسدروبال برقا", "ماغو برقا"],
+    "answersEn": ["Hannibal", "Hamilcar Barca", "Hasdrubal Barca", "Mago Barca"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-33",
+    "answersAr": ["الأسرة الإدريسية", "الأسرة الفاطمية", "الأسرة الأغلبية", "الأسرة الزيرية"],
+    "answersEn": ["Idrisid dynasty", "Fatimid dynasty", "Aghlabid dynasty", "Zirid dynasty"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-34",
+    "answersAr": ["تشين شي هوانغ", "ليو بانغ", "الإمبراطور وو من هان", "الإمبراطور غاوزو من تانغ"],
+    "answersEn": ["Qin Shi Huang", "Liu Bang", "Emperor Wu of Han", "Emperor Gaozu of Tang"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-35",
+    "answersAr": ["قرار مجلس الأمن 598", "قرار مجلس الأمن 479", "قرار مجلس الأمن 514", "قرار مجلس الأمن 552"],
+    "answersEn": ["UN Security Council Resolution 598", "UN Security Council Resolution 479", "UN Security Council Resolution 514", "UN Security Council Resolution 552"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-36",
+    "answersAr": ["جنكيز خان", "الإسكندر الأكبر", "تيمورلنك", "أتيلا الهوني"],
+    "answersEn": ["Genghis Khan", "Alexander the Great", "Timur", "Attila the Hun"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-37",
+    "answersAr": ["ثورة يوليو", "ثورة 1919", "الحركة التصحيحية", "ثورة 25 يناير"],
+    "answersEn": ["July Revolution", "Egyptian Revolution of 1919", "Corrective Revolution", "January 25 Revolution"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-38",
+    "answersAr": ["طريق الحرير", "طريق اليشم", "طريق السهوب", "طريق الشاي والخيول"],
+    "answersEn": ["Silk Road", "Jade Road", "Steppe Route", "Tea Horse Road"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-39",
+    "answersAr": ["الحروب النابليونية", "حرب السنوات السبع", "حرب الخلافة الإسبانية", "حرب الثلاثين عامًا"],
+    "answersEn": ["Napoleonic Wars", "Seven Years' War", "War of Spanish Succession", "Thirty Years' War"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-40",
+    "answersAr": ["صلاح الدين الأيوبي", "عماد الدين زنكي", "نور الدين محمود", "الملك الكامل"],
+    "answersEn": ["Saladin", "Imad al-Din Zangi", "Nur al-Din Mahmud", "Al-Kamil"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-41",
+    "answersAr": ["الدستور الأمريكي", "مواد الكونفدرالية", "دستور الثالث من مايو", "الدستور الفرنسي لعام 1791"],
+    "answersEn": ["The U.S. Constitution", "Articles of Confederation", "Constitution of 3 May 1791", "French Constitution of 1791"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-42",
+    "answersAr": ["سيف الدين قطز", "الناصر يوسف", "المستعصم بالله", "الأشرف موسى"],
+    "answersEn": ["Sayf al-Din Qutuz", "Al-Nasir Yusuf", "Al-Musta'sim", "Al-Ashraf Musa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-43",
+    "answersAr": ["الإمبراطورية المغولية (في الهند)", "سلطنة دلهي", "إمبراطورية ماراثا", "الإمبراطورية الدرانية"],
+    "answersEn": ["Mughal Empire (in India)", "Delhi Sultanate", "Maratha Empire", "Durrani Empire"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-44",
+    "answersAr": ["1989", "1990", "1991", "1992"],
+    "answersEn": ["1989", "1990", "1991", "1992"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-45",
+    "answersAr": ["بايزيد الثاني", "سليم الأول", "سليمان القانوني", "مراد الثالث"],
+    "answersEn": ["Bayezid II", "Selim I", "Suleiman the Magnificent", "Murad III"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "history-hard-46",
+    "answersAr": ["محمد الفاتح", "بايزيد الأول", "مراد الثاني", "سليم الأول"],
+    "answersEn": ["Mehmed the Conqueror", "Bayezid I", "Murad II", "Selim I"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-47",
+    "answersAr": ["يوليوس قيصر", "بومبيوس الكبير", "ماركوس كراسوس", "مارك أنطوني"],
+    "answersEn": ["Julius Caesar", "Pompey the Great", "Marcus Crassus", "Mark Antony"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-48",
+    "answersAr": ["رحلة ماجلان - إلكانو", "رحلة لوايسا", "رحلة فرانسيس دريك", "رحلة كافنديش"],
+    "answersEn": ["Magellan-Elcano expedition", "Loaísa expedition", "Francis Drake's expedition", "Cavendish expedition"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-49",
+    "answersAr": ["محمد بن سعود", "عبدالعزيز بن سعود", "تركي بن عبدالله", "فيصل بن تركي"],
+    "answersEn": ["Muhammad ibn Saud", "Abdulaziz ibn Saud", "Turki ibn Abdullah", "Faisal ibn Turki"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-hard-50",
+    "answersAr": ["حرب المحيط الهادئ", "مسرح جنوب شرق آسيا", "مسرح الصين وبورما والهند", "الحرب السوفيتية اليابانية"],
+    "answersEn": ["Pacific War", "South-East Asian Theatre", "China-Burma-India Theater", "Soviet-Japanese War"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-1",
+    "answersAr": ["الإنكا", "حضارة واري", "حضارة تيواناكو", "حضارة تشيمو"],
+    "answersEn": ["Inca", "Wari civilization", "Tiwanaku civilization", "Chimú civilization"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-2",
+    "answersAr": ["الهند", "باكستان", "بنغلاديش", "نيبال"],
+    "answersEn": ["India", "Pakistan", "Bangladesh", "Nepal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-3",
+    "answersAr": ["مايفلاور", "سبيدويل", "سوزان كونستانت", "غودسبيد"],
+    "answersEn": ["Mayflower", "Speedwell", "Susan Constant", "Godspeed"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-4",
+    "answersAr": ["جورج واشنطن", "جون آدامز", "توماس جيفرسون", "جيمس ماديسون"],
+    "answersEn": ["George Washington", "John Adams", "Thomas Jefferson", "James Madison"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-5",
+    "answersAr": ["الماجنا كارتا", "أحكام أكسفورد", "عريضة الحقوق", "وثيقة الحقوق"],
+    "answersEn": ["Magna Carta", "Provisions of Oxford", "Petition of Right", "Bill of Rights"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-6",
+    "answersAr": ["فرديناند ماجلان", "فرانسيس دريك", "غارسيا خوفري دي لوايسا", "جون كابوت"],
+    "answersEn": ["Ferdinand Magellan", "Francis Drake", "García Jofre de Loaísa", "John Cabot"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-7",
+    "answersAr": ["المصريون القدماء", "الحضارة السومرية", "حضارة وادي السند", "حضارة شانغ"],
+    "answersEn": ["Ancient Egyptians", "Sumerian civilization", "Indus Valley civilization", "Shang civilization"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-8",
+    "answersAr": ["كليوباترا السابعة", "برنيكي الرابعة", "أرسينوي الرابعة", "كليوباترا سيليني الثانية"],
+    "answersEn": ["Cleopatra VII", "Berenice IV", "Arsinoe IV", "Cleopatra Selene II"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-9",
+    "answersAr": ["الحرب الأهلية الأمريكية", "حرب 1812", "الحرب المكسيكية الأمريكية", "الحرب الإسبانية الأمريكية"],
+    "answersEn": ["American Civil War", "War of 1812", "Mexican-American War", "Spanish-American War"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "history-new-10",
+    "answersAr": ["الباستيل", "سجن الكونسييرجيري", "سجن المعبد", "سجن بيسيتر"],
+    "answersEn": ["Bastille", "Conciergerie Prison", "Temple Prison", "Bicêtre Prison"],
+    "correctAnswerIndex": 0
+  }
+]

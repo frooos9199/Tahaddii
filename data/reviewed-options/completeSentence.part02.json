@@ -1,0 +1,260 @@
+[
+  {
+    "id": "complete-new-8",
+    "answersAr": ["مقياس الضغط الجوي", "المسطرة", "ساعة الإيقاف", "مقياس الحرارة"],
+    "answersEn": ["barometer", "ruler", "stopwatch", "thermometer"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-16",
+    "answersAr": ["برونز", "نحاس", "حديد", "ذهب"],
+    "answersEn": ["bronze", "copper", "iron", "gold"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-17",
+    "answersAr": ["تصفق", "تبني", "تنجز", "تكفي"],
+    "answersEn": ["clap", "build", "accomplish", "suffice"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-18",
+    "answersAr": ["حسن", "دلَّ", "وضح", "أفاد"],
+    "answersEn": ["elegant", "clear/meaningful", "clear", "useful"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-19",
+    "answersAr": ["أختك", "أمك", "خالتك", "جدتك"],
+    "answersEn": ["sister", "mother", "maternal aunt", "grandmother"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-20",
+    "answersAr": ["حكم", "لباس", "مقال", "رجال"],
+    "answersEn": ["ruling", "attire", "speech", "men"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-21",
+    "answersAr": ["حسرةً", "كمدًا", "غيظًا", "همًّا"],
+    "answersEn": ["sorrow", "distress", "rage", "worry"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-22",
+    "answersAr": ["عبر", "دروس", "خسائر", "فوائد"],
+    "answersEn": ["lessons", "teachings", "losses", "benefits"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-23",
+    "answersAr": ["أعزاء", "أوفياء", "أقرباء", "كرام"],
+    "answersEn": ["dear", "loyal", "close", "noble"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-24",
+    "answersAr": ["ملكته", "أرضيته", "قربته", "شكرته"],
+    "answersEn": ["win him over", "please him", "draw him closer", "earn his gratitude"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-25",
+    "answersAr": ["عليه", "لديه", "في عينيه", "من حوله"],
+    "answersEn": ["for him", "in his view", "in his eyes", "for those around him"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-26",
+    "answersAr": ["الليالي", "الساعات", "الأمسيات", "الأسحار"],
+    "answersEn": ["nights", "hours", "evenings", "pre-dawn hours"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-27",
+    "answersAr": ["القمم", "النجوم", "الكمال", "المعالي"],
+    "answersEn": ["summits", "stars", "perfection", "lofty heights"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-28",
+    "answersAr": ["السهول", "الأودية", "السفوح", "الحفر"],
+    "answersEn": ["plains", "valleys", "slopes", "pits"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-29",
+    "answersAr": ["ميعاد", "زوال", "أفول", "سكون"],
+    "answersEn": ["appointed time", "passing", "decline", "stillness"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-30",
+    "answersAr": ["الخطب", "الأشعار", "الكتب", "الرسائل"],
+    "answersEn": ["speeches", "poems", "books", "letters"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-31",
+    "answersAr": ["مبدأ", "جهاد", "عمل", "كفاح"],
+    "answersEn": ["principle", "struggle", "work", "endeavor"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-32",
+    "answersAr": ["ذهبوا", "ضعفوا", "انهاروا", "تفرقوا"],
+    "answersEn": ["vanish", "weaken", "collapse", "scatter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-33",
+    "answersAr": ["عقله", "فؤاده", "لسانه", "بيانه"],
+    "answersEn": ["intellect", "heart/mind", "tongue", "eloquence"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-34",
+    "answersAr": ["لآلئي", "صدفاتي", "أعماقي", "جواهري"],
+    "answersEn": ["pearls", "shells", "depths", "jewels"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-35",
+    "answersAr": ["راميها", "صانعها", "خبيرها", "باريها"],
+    "answersEn": ["archer", "maker", "expert", "craftsman/handler"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-36",
+    "answersAr": ["الجراحة", "البتر", "الكي", "المرارة"],
+    "answersEn": ["surgery", "amputation", "cauterization", "bitter medicine"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-37",
+    "answersAr": ["طحنا", "رحىً", "غبارًا", "حصادًا"],
+    "answersEn": ["flour", "millstone", "dust", "harvest"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-38",
+    "answersAr": ["طبقة", "هند", "سلمى", "ليلى"],
+    "answersEn": ["Tabaqa", "Hind", "Salma", "Layla"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-39",
+    "answersAr": ["العذل", "الندم", "التراجع", "الاعتذار"],
+    "answersEn": ["reproach", "regret", "retreat", "apology"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-40",
+    "answersAr": ["نفخ", "صاح", "تكلم", "أجاب"],
+    "answersEn": ["blew", "shouted", "spoke", "answered"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-41",
+    "answersAr": ["دعد", "براقش", "زرقاء", "ليلى"],
+    "answersEn": ["Daad", "Baraqish", "Zarqa", "Layla"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "completeSentence-hard-42",
+    "answersAr": ["الحصاد", "الفرصة", "اللبن", "الزاد"],
+    "answersEn": ["harvest", "opportunity", "milk", "provisions"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-43",
+    "answersAr": ["يمدح", "يقبل", "يعرف", "يهان"],
+    "answersEn": ["praised", "accepted", "recognized", "disgraced"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "completeSentence-hard-44",
+    "answersAr": ["كبوة", "جولة", "صولة", "راحة"],
+    "answersEn": ["stumble", "round", "charge", "rest"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-45",
+    "answersAr": ["المحال", "طبيعة الزمان", "سنن الحياة", "نواميس الكون"],
+    "answersEn": ["impossible", "the nature of time", "the ways of life", "the laws of the universe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "completeSentence-hard-46",
+    "answersAr": ["أردت", "هويت", "شئت", "اخترت"],
+    "answersEn": ["desire", "fancy", "wish", "choose"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-47",
+    "answersAr": ["تُجازى", "تُعامل", "تدان", "تُحاسب"],
+    "answersEn": ["be recompensed", "be treated", "be judged/repaid", "be held accountable"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-48",
+    "answersAr": ["الخطأ", "الخسارة", "الندامة", "الخطر"],
+    "answersEn": ["error", "loss", "regret", "danger"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-49",
+    "answersAr": ["الندم", "التعويض", "العلاج", "الجراحة"],
+    "answersEn": ["regret", "compensation", "cure", "surgery"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "completeSentence-hard-50",
+    "answersAr": ["المعافى", "السليم", "المتوازن", "القوي"],
+    "answersEn": ["physique", "body", "constitution", "frame"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-1",
+    "answersAr": ["طوكيو", "سيول", "بكين", "بانكوك"],
+    "answersEn": ["Tokyo", "Seoul", "Beijing", "Bangkok"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-2",
+    "answersAr": ["أربعة", "ثلاثة", "خمسة", "ستة"],
+    "answersEn": ["four", "three", "five", "six"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-3",
+    "answersAr": ["الكربون", "النيتروجين", "الأكسجين", "الهيليوم"],
+    "answersEn": ["carbon", "nitrogen", "oxygen", "helium"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-4",
+    "answersAr": ["الإنجليزية", "اليابانية", "الإسبانية", "البرتغالية"],
+    "answersEn": ["English", "Japanese", "Spanish", "Portuguese"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-5",
+    "answersAr": ["آسيا", "أفريقيا", "أوروبا", "أمريكا الشمالية"],
+    "answersEn": ["Asia", "Africa", "Europe", "North America"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-6",
+    "answersAr": ["الحصان", "الجمل", "المها", "النعامة"],
+    "answersEn": ["horse", "camel", "oryx", "ostrich"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-7",
+    "answersAr": ["التمر", "التين", "العنب", "البرقوق"],
+    "answersEn": ["dates", "figs", "grapes", "plums"],
+    "correctAnswerIndex": 2
+  }
+]

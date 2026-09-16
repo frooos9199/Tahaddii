@@ -1,0 +1,242 @@
+[
+  {
+    "id": "space-hard-21",
+    "answersAr": ["المريخ", "الزهرة", "زحل", "نبتون"],
+    "answersEn": ["Mars", "Venus", "Saturn", "Neptune"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-22",
+    "answersAr": ["مذنب هالي", "مذنب هيل بوب", "مذنب إنكي", "مذنب سويفت تتل"],
+    "answersEn": ["Halley's Comet", "Hale-Bopp Comet", "Encke's Comet", "Swift-Tuttle Comet"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-23",
+    "answersAr": ["لونا 9", "لونا 13", "سيرفايور 1", "تشانغ آه 3"],
+    "answersEn": ["Luna 9", "Luna 13", "Surveyor 1", "Chang'e 3"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-24",
+    "answersAr": ["المريخ", "الزهرة", "عطارد", "الأرض"],
+    "answersEn": ["Mars", "Venus", "Mercury", "Earth"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-25",
+    "answersAr": ["برنامج جيميني", "برنامج أبولو", "برنامج ميركوري", "برنامج أرتيميس"],
+    "answersEn": ["Gemini Program", "Apollo Program", "Mercury Program", "Artemis Program"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-26",
+    "answersAr": ["حزام كايبر", "حزام الكويكبات", "سحابة أورط", "القرص المتناثر"],
+    "answersEn": ["Kuiper Belt", "Asteroid Belt", "Oort Cloud", "Scattered Disc"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-27",
+    "answersAr": ["سوجورنر", "كيوريوسيتي", "أوبورتيونيتي", "بيرسيفيرانس"],
+    "answersEn": ["Sojourner", "Curiosity", "Opportunity", "Perseverance"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-28",
+    "answersAr": ["فوبوس", "القمر", "تيتان", "يوروبا"],
+    "answersEn": ["Phobos", "The Moon", "Titan", "Europa"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-29",
+    "answersAr": ["تيتان", "غانيميد", "كاليستو", "آيو"],
+    "answersEn": ["Titan", "Ganymede", "Callisto", "Io"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-30",
+    "answersAr": ["نظرية الانفجار العظيم", "نظرية الحالة الثابتة", "نظرية الكون المتذبذب", "نظرية الكون التضخمي"],
+    "answersEn": ["Big Bang Theory", "Steady State Theory", "Oscillating Universe Theory", "Inflationary Universe Theory"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-31",
+    "answersAr": ["إنسيلادوس", "تيتان", "ريا", "ميماس"],
+    "answersEn": ["Enceladus", "Titan", "Rhea", "Mimas"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-32",
+    "answersAr": ["فوييجر 1", "فوييجر 2", "بايونير 10", "بايونير 11"],
+    "answersEn": ["Voyager 1", "Voyager 2", "Pioneer 10", "Pioneer 11"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-33",
+    "answersAr": ["المريخ", "الزهرة", "عطارد", "المشتري"],
+    "answersEn": ["Mars", "Venus", "Mercury", "Jupiter"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-34",
+    "answersAr": ["القمر الأزرق", "القمر العملاق (سوبر مون)", "القمر الدموي", "قمر الحصاد"],
+    "answersEn": ["Blue Moon", "Supermoon", "Blood Moon", "Harvest Moon"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-35",
+    "answersAr": ["زحل", "أورانوس", "نبتون", "المريخ"],
+    "answersEn": ["Saturn", "Uranus", "Neptune", "Mars"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-36",
+    "answersAr": ["يوري غاغارين", "نيل أرمسترونغ", "ألان شيبرد", "جون غلين"],
+    "answersEn": ["Yuri Gagarin", "Neil Armstrong", "Alan Shepard", "John Glenn"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-37",
+    "answersAr": ["كاسيني", "جونو", "نيو هورايزنز", "غاليليو"],
+    "answersEn": ["Cassini", "Juno", "New Horizons", "Galileo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-38",
+    "answersAr": ["الشعرى", "الشمس", "النسر الواقع", "منكب الجوزاء"],
+    "answersEn": ["Sirius", "The Sun", "Vega", "Betelgeuse"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-39",
+    "answersAr": ["بلوتو", "إيريس", "سيريس", "ماكيماكي"],
+    "answersEn": ["Pluto", "Eris", "Ceres", "Makemake"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-40",
+    "answersAr": ["البقعة الحمراء العظمى", "البقعة المظلمة العظمى", "سداسي زحل", "البقعة الحمراء الصغيرة"],
+    "answersEn": ["Great Red Spot", "Great Dark Spot", "Saturn's Hexagon", "Little Red Spot"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-41",
+    "answersAr": ["أبولو 11", "لونا 16", "أبولو 12", "تشانغ آه 5"],
+    "answersEn": ["Apollo 11", "Luna 16", "Apollo 12", "Chang'e 5"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-42",
+    "answersAr": ["السديم الكوكبي", "المستعر الأعظم (سوبرنوفا)", "القزم الأبيض", "النجم النيوتروني"],
+    "answersEn": ["Planetary nebula", "Supernova", "White dwarf", "Neutron star"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-43",
+    "answersAr": ["الثقب الأسود", "النجم النيوتروني", "القزم الأبيض", "المستعر الأعظم"],
+    "answersEn": ["Black hole", "Neutron star", "White dwarf", "Supernova"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-44",
+    "answersAr": ["الأول", "الثاني", "الثالث", "الرابع"],
+    "answersEn": ["First", "Second", "Third", "Fourth"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "space-hard-45",
+    "answersAr": ["نورا المطروشي", "ريانة برناوي", "سارة صبري", "سارة الأميري"],
+    "answersEn": ["Nora Al Matrooshi", "Rayyanah Barnawi", "Sara Sabry", "Sarah Al Amiri"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-46",
+    "answersAr": ["هزاع المنصوري", "سلطان النيادي", "نورا المطروشي", "محمد الملا"],
+    "answersEn": ["Hazza Al Mansouri", "Sultan Al Neyadi", "Nora Al Matrooshi", "Mohammad Al Mulla"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-47",
+    "answersAr": ["الفوتوسفير", "الهالة (الإكليل)", "الغلاف اللوني", "المنطقة الانتقالية"],
+    "answersEn": ["Photosphere", "Corona", "Chromosphere", "Transition Region"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-48",
+    "answersAr": ["روزيتا (فيلاي)", "ستاردست", "ديب إمباكت", "جيوتو"],
+    "answersEn": ["Rosetta (Philae)", "Stardust", "Deep Impact", "Giotto"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-hard-49",
+    "answersAr": ["عطارد", "الزهرة", "المريخ", "المشتري"],
+    "answersEn": ["Mercury", "Venus", "Mars", "Jupiter"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "space-hard-50",
+    "answersAr": ["أبولو 8", "أبولو 10", "أبولو 11", "أبولو 12"],
+    "answersEn": ["Apollo 8", "Apollo 10", "Apollo 11", "Apollo 12"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-1",
+    "answersAr": ["نبتون", "عطارد", "المشتري", "زحل"],
+    "answersEn": ["Neptune", "Mercury", "Jupiter", "Saturn"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-2",
+    "answersAr": ["مدار", "محور دوران", "خط استواء", "مستوى الكسوف"],
+    "answersEn": ["Orbit", "Rotation axis", "Equator", "Ecliptic plane"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-3",
+    "answersAr": ["نيزك ساقط", "كويكب", "شهاب", "جرم نيزكي"],
+    "answersEn": ["Meteorite", "Asteroid", "Meteor", "Meteoroid"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-4",
+    "answersAr": ["دوران الأرض حول محورها", "دوران الأرض حول الشمس", "دوران القمر حول الأرض", "ميل محور الأرض"],
+    "answersEn": ["Earth's rotation on its axis", "Earth's revolution around the Sun", "Moon's orbit around Earth", "Earth's axial tilt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-5",
+    "answersAr": ["بدلة فضاء", "بدلة طيران", "بدلة نجاة", "بدلة تدريب"],
+    "answersEn": ["Spacesuit", "Flight suit", "Survival suit", "Training suit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-6",
+    "answersAr": ["كوكبة", "مجرة", "عنقود نجمي", "سديم"],
+    "answersEn": ["Constellation", "Galaxy", "Star cluster", "Nebula"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-7",
+    "answersAr": ["الزهرة", "المريخ", "أورانوس", "المشتري"],
+    "answersEn": ["Venus", "Mars", "Uranus", "Jupiter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-8",
+    "answersAr": ["الأرض", "عطارد", "نبتون", "الزهرة"],
+    "answersEn": ["Earth", "Mercury", "Neptune", "Venus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-9",
+    "answersAr": ["مذنب", "كويكب", "قنطور", "جرم حزام كايبر"],
+    "answersEn": ["Comet", "Asteroid", "Centaur", "Kuiper Belt object"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-10",
+    "answersAr": ["الأرض", "نبتون", "عطارد", "الزهرة"],
+    "answersEn": ["Earth", "Neptune", "Mercury", "Venus"],
+    "correctAnswerIndex": 0
+  }
+]

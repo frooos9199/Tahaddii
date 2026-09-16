@@ -1,7 +1,7 @@
 import {
   User,
   createUserWithEmailAndPassword,
-  signInAnonymously,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -60,31 +60,14 @@ const toDisplayName = (user: User, displayName?: string) => {
   return 'Guest';
 };
 
-// Guests (anonymous auth) never get a Firestore document — this keeps the
-// `users` collection limited to real (email/password) accounts and avoids
-// unbounded storage/read/write growth from one-time visitors. Anonymous users
-// still get a Firebase Auth UID (needed for online rooms/presence), just no
-// persisted Firestore record.
-const buildGuestUserRecord = (user: User, displayName?: string): AppUserRecord => ({
-  uid: user.uid,
-  email: null,
-  displayName: toDisplayName(user, displayName),
-  avatarUri: user.photoURL ?? null,
-  role: 'user',
-  roles: ['user'],
-  isAdmin: false,
-  isSuperAdmin: false,
-  isGuest: true,
-  authProvider: 'anonymous',
-});
-
+// Every visitor — guest or real account — gets a persisted `users/{uid}` document
+// and a sequential identifying number, so an admin can always find and activate a
+// subscription for whoever messages them, even if they never registered. Real
+// accounts get `customerNumber` (counters/customers); guests get their own
+// `guestNumber` (counters/guests), so the two number spaces never collide.
 export const ensureUserDocument = async (user: User, displayName?: string): Promise<AppUserRecord> => {
   if (!isFirebaseConfigured()) {
     throw new Error('Firebase not configured');
-  }
-
-  if (user.isAnonymous) {
-    return buildGuestUserRecord(user, displayName);
   }
 
   const db = getFirebaseDb();
@@ -92,7 +75,10 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
   const existingSnapshot = await getDoc(userRef);
   const existingData = existingSnapshot.exists() ? existingSnapshot.data() as Partial<AppUserRecord> : {};
   const resolvedDisplayName = toDisplayName(user, displayName);
-  const tokenRole = await resolveRoleFromToken(user);
+  const isGuest = user.isAnonymous;
+  const tokenRole = isGuest
+    ? { role: 'user' as const, roles: ['user'] as const, isAdmin: false, isSuperAdmin: false }
+    : await resolveRoleFromToken(user);
 
   const payload: AppUserRecord & { createdAt?: unknown; updatedAt: unknown } = {
     uid: user.uid,
@@ -102,8 +88,8 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     roles: [...tokenRole.roles],
     isAdmin: tokenRole.isAdmin,
     isSuperAdmin: tokenRole.isSuperAdmin,
-    isGuest: false,
-    authProvider: 'password',
+    isGuest,
+    authProvider: isGuest ? 'anonymous' : 'password',
     updatedAt: serverTimestamp(),
   };
 
@@ -115,19 +101,26 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
   await setDoc(userRef, payload, { merge: true });
 
   let customerNumber = existingData.customerNumber;
+  let guestNumber = existingData.guestNumber;
   let unlockedCategoryIds = existingData.unlockedCategoryIds ?? [];
   let entitlementExpiresAtMs = existingData.entitlementExpiresAtMs ?? null;
   let entitlementSource = existingData.entitlementSource ?? null;
-  if (isFirstEverDoc) {
-    // Assign a sequential customer number (starting at 3000) so the admin can
-    // identify a paying customer by number when they message about a payment.
-    // This same call may also grant a configured new-user trial entitlement.
+  const hasIdentifyingNumber = isGuest ? Boolean(guestNumber) : Boolean(customerNumber);
+  if (!hasIdentifyingNumber) {
+    // Assign a sequential identifying number (starting at 3000) so the admin can
+    // recognize this visitor by number when they message about a payment. Also
+    // backfills accounts created before this system existed, which never got a
+    // number the first time around. The new-user trial only applies when this is
+    // a genuinely brand-new account (isFirstEverDoc), never for this kind of
+    // legacy backfill.
     try {
-      const result = await callFunction('assignCustomerNumberDirectly', {}) as {
+      const result = await callFunction('assignCustomerNumberDirectly', { isNewAccount: isFirstEverDoc }) as {
         customerNumber?: number;
+        guestNumber?: number;
         trialGranted?: boolean;
       } | undefined;
       customerNumber = result?.customerNumber ?? customerNumber;
+      guestNumber = result?.guestNumber ?? guestNumber;
       if (result?.trialGranted) {
         const freshSnapshot = await getDoc(userRef);
         const freshData = freshSnapshot.data() as Partial<AppUserRecord> | undefined;
@@ -136,7 +129,7 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
         entitlementSource = freshData?.entitlementSource ?? entitlementSource;
       }
     } catch (error) {
-      console.warn('Failed to assign customer number', error);
+      console.warn('Failed to assign identifying number', error);
     }
   }
 
@@ -151,9 +144,10 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
     roles: [...tokenRole.roles],
     isAdmin: tokenRole.isAdmin,
     isSuperAdmin: tokenRole.isSuperAdmin,
-    isGuest: false,
-    authProvider: 'password',
+    isGuest,
+    authProvider: isGuest ? 'anonymous' : 'password',
     customerNumber,
+    guestNumber,
     unlockedCategoryIds,
     entitlementExpiresAtMs,
     entitlementSource,
@@ -161,10 +155,8 @@ export const ensureUserDocument = async (user: User, displayName?: string): Prom
 };
 
 export const ensureAuthenticatedUser = async ({
-  allowGuest = true,
   displayName,
 }: {
-  allowGuest?: boolean;
   displayName?: string;
 } = {}): Promise<User> => {
   if (!isFirebaseConfigured()) {
@@ -177,13 +169,7 @@ export const ensureAuthenticatedUser = async ({
     return auth.currentUser;
   }
 
-  if (!allowGuest) {
-    throw new Error('Authentication required');
-  }
-
-  const credential = await signInAnonymously(auth);
-  await ensureUserDocument(credential.user, displayName);
-  return credential.user;
+  throw new Error('Authentication required');
 };
 
 export const signUpWithEmail = async ({
@@ -217,9 +203,9 @@ export const signInWithEmail = async ({
   return credential.user;
 };
 
-export const signInAsGuest = async (displayName?: string) => {
-  const user = await ensureAuthenticatedUser({ allowGuest: true, displayName });
-  return user;
+export const requestPasswordReset = async (email: string) => {
+  const auth = getFirebaseAuth();
+  await sendPasswordResetEmail(auth, email.trim());
 };
 
 export const updateCurrentUserDisplayName = async (displayName: string) => {
@@ -259,15 +245,13 @@ export const updateCurrentUserProfile = async ({
     photoURL: avatarUri && avatarUri.startsWith('http') ? avatarUri : user.photoURL,
   });
 
-  if (!user.isAnonymous) {
-    await setDoc(doc(getFirebaseDb(), USERS_COLLECTION, user.uid), {
-      displayName: trimmedName,
-      avatarUri: avatarUri ?? null,
-      avatarEmoji: avatarEmoji ?? null,
-      color: color ?? null,
-      updatedAt: serverTimestamp(),
-    }, { merge: true });
-  }
+  await setDoc(doc(getFirebaseDb(), USERS_COLLECTION, user.uid), {
+    displayName: trimmedName,
+    avatarUri: avatarUri ?? null,
+    avatarEmoji: avatarEmoji ?? null,
+    color: color ?? null,
+    updatedAt: serverTimestamp(),
+  }, { merge: true });
 
   return ensureUserDocument(user, trimmedName);
 };

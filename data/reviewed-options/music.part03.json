@@ -1,0 +1,242 @@
+[
+  {
+    "id": "music-new-11",
+    "answersAr": ["الترومبيت", "الهورن الفرنسي", "الترومبون", "التوبا"],
+    "answersEn": ["Trumpet", "French horn", "Trombone", "Tuba"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-12",
+    "answersAr": ["سريع جدًا", "بسرعة معتدلة", "بسرعة المشي", "بطيء جدًا"],
+    "answersEn": ["Very fast", "Moderately fast", "At a walking pace", "Very slow"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-13",
+    "answersAr": ["المترونوم", "موالف إلكتروني", "شوكة رنانة", "مزمار ضبط النغم"],
+    "answersEn": ["Metronome", "Electronic tuner", "Tuning fork", "Pitch pipe"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-14",
+    "answersAr": ["صولو", "دويتو", "تريو", "كوارتيت"],
+    "answersEn": ["Solo", "Duet", "Trio", "Quartet"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-15",
+    "answersAr": ["الديسكو", "الفانك", "الهيب هوب", "الريغي"],
+    "answersEn": ["Disco", "Funk", "Hip-hop", "Reggae"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-16",
+    "answersAr": ["صول الكبير", "فا الكبير", "ري الكبير", "دو الكبير"],
+    "answersEn": ["G major", "F major", "D major", "C major"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-17",
+    "answersAr": ["الزايلفون", "الماريمبا", "الغلوكنشبيل", "الفيبرافون"],
+    "answersEn": ["Xylophone", "Marimba", "Glockenspiel", "Vibraphone"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-18",
+    "answersAr": ["لودفيغ فان بيتهوفن", "فولفغانغ أماديوس موزارت", "جوزيف هايدن", "فرانتس شوبرت"],
+    "answersEn": ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Joseph Haydn", "Franz Schubert"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-19",
+    "answersAr": ["واحدة", "اثنتان", "ثلاث", "أربع"],
+    "answersEn": ["One", "Two", "Three", "Four"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-20",
+    "answersAr": ["ثمانية", "عشرة", "أحد عشر", "اثنا عشر"],
+    "answersEn": ["Eight", "Ten", "Eleven", "Twelve"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-21",
+    "answersAr": ["كريشندو", "ديمينويندو", "فورتي", "بيانو"],
+    "answersEn": ["Crescendo", "Diminuendo", "Forte", "Piano"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-22",
+    "answersAr": ["سوبرانو", "ميزو-سوبرانو", "كونترالتو", "سوبرانو كولوراتورا"],
+    "answersEn": ["Soprano", "Mezzo-soprano", "Contralto", "Coloratura soprano"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-23",
+    "answersAr": ["الشبابة", "المزمار", "النَّي", "الكَوَلا"],
+    "answersEn": ["Shabbaba", "Mijwiz", "Ney", "Kaval"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-24",
+    "answersAr": ["البصر", "الشم", "التذوق", "السمع"],
+    "answersEn": ["Sight", "Smell", "Taste", "Hearing"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-25",
+    "answersAr": ["بيوتر إيليتش تشايكوفسكي", "إيغور سترافينسكي", "سيرغي بروكوفييف", "نيكولاي ريمسكي كورساكوف"],
+    "answersEn": ["Pyotr Ilyich Tchaikovsky", "Igor Stravinsky", "Sergei Prokofiev", "Nikolai Rimsky-Korsakov"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-26",
+    "answersAr": ["40 وترًا", "47 وترًا", "52 وترًا", "60 وترًا"],
+    "answersEn": ["40 strings", "47 strings", "52 strings", "60 strings"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-27",
+    "answersAr": ["ستة", "ثمانية", "أربعة", "اثنا عشر"],
+    "answersEn": ["Six", "Eight", "Four", "Twelve"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-28",
+    "answersAr": ["البلوز", "التانغو", "الفلامنكو", "الريغي"],
+    "answersEn": ["Blues", "Tango", "Flamenco", "Reggae"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-29",
+    "answersAr": ["بيانو", "فورتي", "ميزو فورتي", "فورتيسيمو"],
+    "answersEn": ["Piano", "Forte", "Mezzo-forte", "Fortissimo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-30",
+    "answersAr": ["يوهان سباستيان باخ", "يوهان باخلبِل", "جورج فريدريك هاندل", "أنطونيو فيفالدي"],
+    "answersEn": ["Johann Sebastian Bach", "Johann Pachelbel", "George Frideric Handel", "Antonio Vivaldi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-31",
+    "answersAr": ["الكمان الشعبي", "الأكورديون", "مزمار القِربة", "الهارب السلتي"],
+    "answersEn": ["Fiddle", "Accordion", "Bagpipe", "Celtic harp"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-32",
+    "answersAr": ["إيقاع دوري", "قالب موسيقي", "زخرفة لحنية", "نمط لحني"],
+    "answersEn": ["Rhythmic cycle", "Musical form", "Melodic ornament", "Melodic mode"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-33",
+    "answersAr": ["كادنزا", "افتتاحية", "إنترميتزو", "رسيتاتيف"],
+    "answersEn": ["Cadenza", "Overture", "Intermezzo", "Recitative"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-34",
+    "answersAr": ["يان سيبيليوس", "إدفارد غريغ", "كارل نيلسن", "أنطونين دفورجاك"],
+    "answersEn": ["Jean Sibelius", "Edvard Grieg", "Carl Nielsen", "Antonín Dvořák"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-35",
+    "answersAr": ["جورج فريدريك هاندل", "أنطونيو فيفالدي", "يوهان سباستيان باخ", "غيورغ فيليب تيليمان"],
+    "answersEn": ["George Frideric Handel", "Antonio Vivaldi", "Johann Sebastian Bach", "Georg Philipp Telemann"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-36",
+    "answersAr": ["الكلارينيت", "الفلوت", "الساكسفون", "الباسون"],
+    "answersEn": ["Clarinet", "Flute", "Saxophone", "Bassoon"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-37",
+    "answersAr": ["محمد عبده", "كاظم الساهر", "عبد المجيد عبد الله", "راشد الماجد"],
+    "answersEn": ["Mohammed Abdu", "Kadim Al Sahir", "Abdul Majeed Abdullah", "Rashed Al-Majed"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-38",
+    "answersAr": ["السيمفونية رقم 45", "السيمفونية رقم 94", "السيمفونية رقم 100", "السيمفونية رقم 101"],
+    "answersEn": ["Symphony No. 45", "Symphony No. 94", "Symphony No. 100", "Symphony No. 101"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-39",
+    "answersAr": ["الطبلة الهندية", "السيتار", "التنبورة (تانبورا)", "السارود"],
+    "answersEn": ["Tabla", "Sitar", "Tanpura", "Sarod"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-40",
+    "answersAr": ["بيوتر إيليتش تشايكوفسكي", "نيكولاي ريمسكي كورساكوف", "ألكسندر بورودين", "موديست موسورغسكي"],
+    "answersEn": ["Pyotr Ilyich Tchaikovsky", "Nikolai Rimsky-Korsakov", "Alexander Borodin", "Modest Mussorgsky"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-41",
+    "answersAr": ["هوموفوني", "بوليفوني", "مونوفوني", "هيتروفوني"],
+    "answersEn": ["Homophony", "Polyphony", "Monophony", "Heterophony"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-42",
+    "answersAr": ["سماعي", "تقسيم", "موشح", "بشرف"],
+    "answersEn": ["Samai", "Taqsim", "Muwashshah", "Bashraf"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-43",
+    "answersAr": ["جوزيبي فيردي", "جواكينو روسيني", "جياكومو بوتشيني", "جورج بيزيه"],
+    "answersEn": ["Giuseppe Verdi", "Gioachino Rossini", "Giacomo Puccini", "Georges Bizet"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-44",
+    "answersAr": ["الكمان", "الفيولا", "الكونترباص", "التشيلو"],
+    "answersEn": ["Violin", "Viola", "Double bass", "Cello"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-45",
+    "answersAr": ["أنطونيو فيفالدي", "يوهان سباستيان باخ", "جورج فريدريك هاندل", "أركانجلو كوريلي"],
+    "answersEn": ["Antonio Vivaldi", "Johann Sebastian Bach", "George Frideric Handel", "Arcangelo Corelli"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-46",
+    "answersAr": ["الخامسة", "أوكتاف", "التاسعة", "العاشرة"],
+    "answersEn": ["Fifth", "Octave", "Ninth", "Tenth"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "music-new-47",
+    "answersAr": ["لويس أرمسترونغ", "كاونت بيسي", "ديوك إلينغتون", "بيني غودمان"],
+    "answersEn": ["Louis Armstrong", "Count Basie", "Duke Ellington", "Benny Goodman"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "music-new-48",
+    "answersAr": ["سوبرانو", "سوبرانو كولوراتورا", "ميزو-سوبرانو", "كونترالتو"],
+    "answersEn": ["Soprano", "Coloratura soprano", "Mezzo-soprano", "Contralto"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "music-new-49",
+    "answersAr": ["يان سيبيليوس", "إدفارد غريغ", "كارل نيلسن", "إدوارد إلغار"],
+    "answersEn": ["Jean Sibelius", "Edvard Grieg", "Carl Nielsen", "Edward Elgar"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "music-new-50",
+    "answersAr": ["لوحة المفاتيح اليدوية", "لوحة الدواسات", "مسجل النغمات", "منضدة العزف"],
+    "answersEn": ["Manual", "Pedalboard", "Stop", "Console"],
+    "correctAnswerIndex": 1
+  }
+]

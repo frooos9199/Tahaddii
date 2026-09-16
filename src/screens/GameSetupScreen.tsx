@@ -19,6 +19,7 @@ import { getQuestions } from '../services/questions/questionService';
 import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, getFairQuestionCountOptions, getRecommendedFairQuestionCount, loadQuestionBank } from '../services/questions/questionCatalog';
 import { createTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestionPrimaryImageUrl, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
+import { areAnswerOptionsEnabled } from '../utils/questionAnswerOptions';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'> };
 
@@ -163,11 +164,11 @@ export default function GameSetupScreen({ navigation }: Props) {
           revealMode: (firstQuestion.revealMode === 'blur' ? 'blur' : 'none') as 'blur' | 'none',
           blurAmount: Number(firstQuestion.blurAmount ?? 18),
         },
-        answers: answers.map(answer => ({
+        answers: (firstQuestion.type === 'true_false' || areAnswerOptionsEnabled(firstQuestion, createdGame.settings)) ? answers.map(answer => ({
           text: answer,
           isCorrect: false,
           isSelected: false,
-        })),
+        })) : [],
         currentPlayer: {
           id: firstPlayer.id,
           name: firstPlayer.name,
@@ -239,7 +240,6 @@ export default function GameSetupScreen({ navigation }: Props) {
         <View style={styles.summary}>
           <Text style={styles.summaryItem}>👥 {pendingPlayers.length} {participantUnit}</Text>
           <Text style={styles.summaryItem}>📂 {settings.categories.length} {t('common.categories')}</Text>
-          <Text style={styles.summaryItem}>⚡ {t(`difficulty.${settings.difficulty}`)}</Text>
           <Text style={styles.summaryItem}>❓ {availableQuestionCount} {t('gameSetup.availableQuestions')}</Text>
         </View>
 
@@ -283,6 +283,35 @@ export default function GameSetupScreen({ navigation }: Props) {
               </TouchableOpacity>
             ))}
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>{t('gameSetup.answerOptions')}</Text>
+          <Text style={styles.sectionDescription}>{t('gameSetup.answerOptionsHint')}</Text>
+          <Row label={t('gameSetup.textQuestions')}>
+            <Switch
+              value={settings.showTextAnswerOptions}
+              onValueChange={v => updateSettings({ showTextAnswerOptions: v })}
+              trackColor={{ true: Colors.primary }}
+              thumbColor={Colors.text}
+            />
+          </Row>
+          <Row label={t('gameSetup.imageQuestions')}>
+            <Switch
+              value={settings.showImageAnswerOptions}
+              onValueChange={v => updateSettings({ showImageAnswerOptions: v })}
+              trackColor={{ true: Colors.primary }}
+              thumbColor={Colors.text}
+            />
+          </Row>
+          <Row label={t('gameSetup.videoQuestions')}>
+            <Switch
+              value={settings.showVideoAnswerOptions}
+              onValueChange={v => updateSettings({ showVideoAnswerOptions: v })}
+              trackColor={{ true: Colors.primary }}
+              thumbColor={Colors.text}
+            />
+          </Row>
         </View>
 
         <View style={styles.section}>
@@ -336,41 +365,74 @@ export default function GameSetupScreen({ navigation }: Props) {
 
       <Modal visible={tvModalVisible} transparent animationType="slide" onRequestClose={() => setTvModalVisible(false)}>
         <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTvModalVisible(false)}>
-          <TouchableOpacity activeOpacity={1} style={styles.modalSheet}>
-            <Text style={styles.modalTitle}>📺 {t('tvDisplay.title')}</Text>
+          <TouchableOpacity activeOpacity={1} style={[styles.modalSheet, { paddingBottom: 28 + insets.bottom }]}>
+            <View style={[styles.modalHeader, language !== 'en' && styles.modalHeaderRtl]}>
+              <View style={styles.modalHeading}>
+                <Text style={[styles.modalTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.title')}</Text>
+                <Text style={[styles.modalSubtitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.chooseMethod')}</Text>
+              </View>
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel={t('common.close')}
+                style={styles.modalCloseBtn}
+                onPress={() => setTvModalVisible(false)}>
+                <Text style={styles.modalCloseText}>✕</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.displayCodeCard}>
+              <Text style={styles.modalCodeLabel}>{t('tvDisplay.displayCode')}</Text>
+              <Text style={styles.modalCode}>{pendingTvDisplayCode}</Text>
+            </View>
+
+            <View style={styles.tvMethods}>
+              <TouchableOpacity
+                style={[styles.tvMethodBtn, styles.tvMethodPrimary, language !== 'en' && styles.tvMethodRtl]}
+                onPress={() => { setTvModalVisible(false); openMirrorSettings(); }}>
+                <View style={[styles.tvMethodIcon, styles.tvMethodPrimaryIcon]}>
+                  <Text style={styles.tvMethodIconText}>▣</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.directTitle')}</Text>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.directHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={[styles.tvMethodBtn, styles.tvMethodRecommended, language !== 'en' && styles.tvMethodRtl]}
+                onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
+                <View style={[styles.tvMethodIcon, styles.tvMethodRecommendedIcon]}>
+                  <Text style={styles.tvMethodIconText}>⌗</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <View style={[styles.tvMethodTitleRow, language !== 'en' && styles.tvMethodTitleRowRtl]}>
+                    <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.scanActionTitle')}</Text>
+                    <Text style={styles.recommendedBadge}>{t('tvDisplay.recommended')}</Text>
+                  </View>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.scanActionHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
+              </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.modalMirrorBtn}
-              onPress={() => { setTvModalVisible(false); openMirrorSettings(); }}>
-              <Text style={styles.modalMirrorText}>📡 {t('tvDisplay.mirrorTitle')}</Text>
-              <Text style={styles.modalMirrorHint}>{t('tvDisplay.mirrorHint')}</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.modalDivider}>{t('tvDisplay.orUseCode')}</Text>
-
-            <Text style={styles.modalSubtitle}>{t('tvDisplay.openSite')}</Text>
-            <Text style={styles.modalSite}>tahaddii.com/tv</Text>
-            <Text style={styles.modalCodeLabel}>{t('tvDisplay.enterCode')}</Text>
-            <Text style={styles.modalCode}>{pendingTvDisplayCode}</Text>
-            <TouchableOpacity
-              style={styles.modalCopyBtn}
+                style={[styles.tvMethodBtn, language !== 'en' && styles.tvMethodRtl]}
               onPress={() => {
                 if (pendingTvDisplayCode) {
                   Clipboard.setString(getTvDisplayUrl(pendingTvDisplayCode));
-                  Alert.alert('✓', t('common.copied') ?? 'Copied!');
+                    Alert.alert('✓', t('tvDisplay.linkCopied'));
                 }
               }}>
-              <Text style={styles.modalCopyText}>📋 {t('common.copyLink')}</Text>
+                <View style={styles.tvMethodIcon}>
+                  <Text style={styles.tvMethodIconText}>□</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.copyLinkTitle')}</Text>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.copyLinkHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.modalScanBtn}
-              onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
-              <Text style={styles.modalScanText}>📷 {t('tvDisplay.scanQr')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.modalCloseBtn} onPress={() => setTvModalVisible(false)}>
-              <Text style={styles.modalCloseText}>{t('common.close')}</Text>
-            </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         </TouchableOpacity>
       </Modal>
@@ -402,6 +464,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, borderColor: Colors.border, gap: 12,
   },
   helperText: { fontSize: 13, color: Colors.warning, lineHeight: 20 },
+  sectionDescription: { fontSize: 13, color: Colors.textMuted, lineHeight: 20 },
   sectionTitle: { fontSize: 15, fontWeight: '700', color: Colors.textSecondary },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
@@ -449,36 +512,54 @@ const styles = StyleSheet.create({
   modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'flex-end' },
   modalSheet: {
     backgroundColor: Colors.backgroundCard,
-    borderTopLeftRadius: 28, borderTopRightRadius: 28,
-    padding: 28, gap: 12, alignItems: 'center',
+    borderTopLeftRadius: 24, borderTopRightRadius: 24,
+    paddingHorizontal: 20, paddingTop: 20, gap: 18,
     borderWidth: 1, borderColor: Colors.border,
   },
-  modalTitle: { color: Colors.text, fontSize: 20, fontWeight: '900' },
-  modalMirrorBtn: {
-    width: '100%', backgroundColor: Colors.success,
-    borderRadius: 16, paddingVertical: 16, paddingHorizontal: 14,
-    alignItems: 'center', gap: 2,
+  modalHeader: { width: '100%', flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  modalHeaderRtl: { flexDirection: 'row-reverse' },
+  modalHeading: { flex: 1, gap: 4 },
+  modalTitle: { color: Colors.text, fontSize: 21, fontWeight: '900' },
+  modalSubtitle: { color: Colors.textMuted, fontSize: 14, lineHeight: 20 },
+  textRtl: { textAlign: 'right', writingDirection: 'rtl' },
+  modalCloseBtn: {
+    width: 36, height: 36, borderRadius: 18,
+    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.background, borderWidth: 1, borderColor: Colors.border,
   },
-  modalMirrorText: { color: Colors.text, fontSize: 17, fontWeight: '900' },
-  modalMirrorHint: { color: Colors.text, opacity: 0.85, fontSize: 12, fontWeight: '600' },
-  modalDivider: { color: Colors.textMuted, fontSize: 12, fontWeight: '700', marginTop: 4 },
-  modalSubtitle: { color: Colors.textMuted, fontSize: 14, textAlign: 'center' },
-  modalSite: {
-    color: Colors.primaryLight, fontSize: 18, fontWeight: '800',
+  modalCloseText: { color: Colors.textMuted, fontSize: 16, fontWeight: '800' },
+  displayCodeCard: {
+    width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    paddingHorizontal: 16, paddingVertical: 12, borderRadius: 12,
+    backgroundColor: Colors.background, borderWidth: 1, borderColor: Colors.border,
+  },
+  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700' },
+  modalCode: { color: Colors.accent, fontSize: 28, fontWeight: '900', letterSpacing: 4 },
+  tvMethods: { width: '100%', gap: 10 },
+  tvMethodBtn: {
+    width: '100%', minHeight: 78, flexDirection: 'row', alignItems: 'center', gap: 12,
+    padding: 12, borderRadius: 14, backgroundColor: Colors.background,
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  tvMethodRtl: { flexDirection: 'row-reverse' },
+  tvMethodPrimary: { borderColor: Colors.primary },
+  tvMethodRecommended: { borderColor: Colors.success, backgroundColor: Colors.success + '12' },
+  tvMethodIcon: {
+    width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center',
     backgroundColor: Colors.primary + '22',
-    paddingHorizontal: 20, paddingVertical: 10,
-    borderRadius: 12, overflow: 'hidden',
   },
-  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700', marginTop: 4 },
-  modalCode: { color: Colors.accent, fontSize: 52, fontWeight: '900', letterSpacing: 10, textAlign: 'center' },
-  modalCopyBtn: { width: '100%', backgroundColor: Colors.primary, borderRadius: 14, padding: 14, alignItems: 'center' },
-  modalCopyText: { color: Colors.text, fontSize: 15, fontWeight: '800' },
-  modalScanBtn: {
-    width: '100%', backgroundColor: Colors.backgroundCard,
-    borderRadius: 14, padding: 14, alignItems: 'center',
-    borderWidth: 1, borderColor: Colors.border,
+  tvMethodPrimaryIcon: { backgroundColor: Colors.primary + '35' },
+  tvMethodRecommendedIcon: { backgroundColor: Colors.success + '35' },
+  tvMethodIconText: { color: Colors.text, fontSize: 23, fontWeight: '900' },
+  tvMethodContent: { flex: 1, gap: 3 },
+  tvMethodTitleRow: { flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' },
+  tvMethodTitleRowRtl: { flexDirection: 'row-reverse', justifyContent: 'flex-start' },
+  tvMethodTitle: { color: Colors.text, fontSize: 15, fontWeight: '900' },
+  tvMethodHint: { color: Colors.textMuted, fontSize: 12, lineHeight: 17 },
+  tvMethodArrow: { color: Colors.textMuted, fontSize: 27, fontWeight: '500' },
+  recommendedBadge: {
+    color: Colors.success, fontSize: 10, fontWeight: '900',
+    backgroundColor: Colors.success + '22', paddingHorizontal: 7, paddingVertical: 3,
+    borderRadius: 8, overflow: 'hidden',
   },
-  modalScanText: { color: Colors.text, fontSize: 15, fontWeight: '700' },
-  modalCloseBtn: { paddingVertical: 8 },
-  modalCloseText: { color: Colors.textMuted, fontSize: 14 },
 });

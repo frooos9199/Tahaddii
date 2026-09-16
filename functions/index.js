@@ -225,34 +225,46 @@ exports.cleanupEndedRooms = functions.region(REGION).https.onCall(async (_data, 
 
 exports.scheduledCleanupEndedRooms = functions.region(REGION).pubsub.schedule('every 30 minutes').onRun(() => cleanupEndedRooms());
 
-exports.assignCustomerNumberDirectly = functions.region(REGION).https.onCall(async (_data, context) => {
+exports.assignCustomerNumberDirectly = functions.region(REGION).https.onCall(async (data, context) => {
   const uid = context.auth?.uid;
   if (!uid) {
     throw new functions.https.HttpsError('unauthenticated', 'Authentication required.');
   }
-  if (isAnonymousContext(context)) {
-    return { skipped: true };
-  }
+
+  // Real accounts get a sequential "customer number" (counters/customers); guest
+  // (anonymous) accounts get their own separate sequence ("guestNumber", counters/guests)
+  // so the two identifier spaces never collide and stay visually distinguishable for
+  // an admin (e.g. "#3005" vs "Guest 3005"). Both let the admin find and activate a
+  // subscription for whoever messages them, guest or not.
+  const isGuest = isAnonymousContext(context);
+  const numberField = isGuest ? 'guestNumber' : 'customerNumber';
+  const counterId = isGuest ? 'guests' : 'customers';
+
+  // Only a genuinely brand-new account (first-ever document) is eligible for the
+  // automatic new-user trial. This function is also called lazily to backfill a
+  // number for accounts created before this system existed, and those must never
+  // retroactively qualify for a trial just because they were missing a number.
+  const isNewAccount = data?.isNewAccount === true;
 
   const userRef = db.collection('users').doc(uid);
-  const counterRef = db.collection('counters').doc('customers');
+  const counterRef = db.collection('counters').doc(counterId);
   const entitlementsConfigRef = db.collection('appConfig').doc('entitlements');
 
   return db.runTransaction(async tx => {
     const userSnap = await tx.get(userRef);
-    const existing = userSnap.exists ? userSnap.data()?.customerNumber : null;
+    const existing = userSnap.exists ? userSnap.data()?.[numberField] : null;
     if (existing) {
-      return { customerNumber: existing, alreadyAssigned: true };
+      return { [numberField]: existing, alreadyAssigned: true };
     }
 
     const [counterSnap, entitlementsConfigSnap] = await Promise.all([tx.get(counterRef), tx.get(entitlementsConfigRef)]);
     const next = counterSnap.exists ? (counterSnap.data().nextValue || 3000) : 3000;
     tx.set(counterRef, { nextValue: next + 1 }, { merge: true });
 
-    const userPayload = { customerNumber: next };
+    const userPayload = { [numberField]: next };
     const entitlementsConfig = entitlementsConfigSnap.exists ? entitlementsConfigSnap.data() : null;
     let trialGranted = false;
-    if (entitlementsConfig?.newUserTrialEnabled) {
+    if (isNewAccount && entitlementsConfig?.newUserTrialEnabled) {
       const trialDays = Number(entitlementsConfig.newUserTrialDays) > 0 ? Number(entitlementsConfig.newUserTrialDays) : 7;
       const grantedAtMs = Date.now();
       const expiresAtMs = grantedAtMs + trialDays * 86400000;
@@ -274,7 +286,7 @@ exports.assignCustomerNumberDirectly = functions.region(REGION).https.onCall(asy
     }
 
     tx.set(userRef, userPayload, { merge: true });
-    return { customerNumber: next, alreadyAssigned: false, trialGranted };
+    return { [numberField]: next, alreadyAssigned: false, trialGranted };
   });
 });
 
@@ -351,6 +363,132 @@ exports.grantEntitlement = functions.region(REGION).https.onCall(async (data, co
   }
 
   return { results };
+});
+
+exports.upsertGroupSubscription = functions.region(REGION).https.onCall(async (data, context) => {
+  await assertAdmin(context);
+
+  const requestedUids = Array.isArray(data?.uids)
+    ? [...new Set(data.uids.filter(uid => typeof uid === 'string' && uid.trim()).map(uid => uid.trim()))]
+    : [];
+  const requestedSubscriptionId = typeof data?.subscriptionId === 'string' ? data.subscriptionId.trim() : '';
+  const requestedPackageId = typeof data?.packageId === 'string' ? data.packageId.trim() : '';
+  const requestedName = typeof data?.name === 'string' ? data.name.trim().slice(0, 120) : '';
+  const note = typeof data?.note === 'string' ? data.note.trim().slice(0, 500) : null;
+
+  if (!requestedUids.length) {
+    throw new functions.https.HttpsError('invalid-argument', 'Select at least one user.');
+  }
+
+  const subscriptionRef = requestedSubscriptionId
+    ? db.collection('groupSubscriptions').doc(requestedSubscriptionId)
+    : db.collection('groupSubscriptions').doc();
+  const subscriptionSnap = requestedSubscriptionId ? await subscriptionRef.get() : null;
+  if (requestedSubscriptionId && !subscriptionSnap.exists) {
+    throw new functions.https.HttpsError('not-found', 'Group subscription not found.');
+  }
+
+  const existingSubscription = subscriptionSnap?.data() || null;
+  const packageId = existingSubscription?.packageId || requestedPackageId;
+  if (!packageId) {
+    throw new functions.https.HttpsError('invalid-argument', 'packageId is required.');
+  }
+
+  const packageSnap = await db.collection('packages').doc(packageId).get();
+  if (!packageSnap.exists) {
+    throw new functions.https.HttpsError('not-found', 'Package not found.');
+  }
+
+  const packageData = packageSnap.data();
+  const maxUsers = Math.min(200, Math.max(1, Math.floor(Number(packageData.maxUsers || 1))));
+  const existingUids = Array.isArray(existingSubscription?.memberUids) ? existingSubscription.memberUids : [];
+  const memberUids = [...new Set([...existingUids, ...requestedUids])];
+  if (memberUids.length > maxUsers) {
+    throw new functions.https.HttpsError(
+      'failed-precondition',
+      `This package allows ${maxUsers} users. The requested total is ${memberUids.length}.`,
+    );
+  }
+
+  const categoryIds = existingSubscription?.categoryIds || packageData.categoryIds || [];
+  if (!categoryIds.length) {
+    throw new functions.https.HttpsError('failed-precondition', 'The package has no categories.');
+  }
+
+  const now = Date.now();
+  const expiresAtMs = Number(existingSubscription?.expiresAtMs)
+    || now + Math.max(1, Number(packageData.durationDays || 1)) * 86400000;
+  if (expiresAtMs <= now) {
+    throw new functions.https.HttpsError('failed-precondition', 'This subscription has expired.');
+  }
+
+  const newUids = memberUids.filter(uid => !existingUids.includes(uid));
+  const userSnapshots = await Promise.all(newUids.map(uid => db.collection('users').doc(uid).get()));
+  const missingUids = userSnapshots.filter(snapshot => !snapshot.exists).map(snapshot => snapshot.id);
+  if (missingUids.length) {
+    throw new functions.https.HttpsError('not-found', `Users not found: ${missingUids.join(', ')}`);
+  }
+
+  const batch = db.batch();
+  userSnapshots.forEach(userSnapshot => {
+    const uid = userSnapshot.id;
+    const userData = userSnapshot.data();
+    const summary = mergeEntitlementIntoUserSummary({
+      existingCategoryIds: userData.unlockedCategoryIds,
+      existingExpiresAtMs: userData.entitlementExpiresAtMs,
+      newCategoryIds: categoryIds,
+      newExpiresAtMs: expiresAtMs,
+      mode: 'extend',
+    });
+    const entitlementRef = userSnapshot.ref.collection('entitlements').doc(subscriptionRef.id);
+    batch.set(entitlementRef, {
+      id: entitlementRef.id,
+      categoryIds,
+      grantedAtMs: now,
+      expiresAtMs,
+      origin: {
+        type: 'groupSubscription',
+        packageId,
+        groupSubscriptionId: subscriptionRef.id,
+        promoCode: null,
+        grantedByAdminUid: context.auth.uid,
+        note,
+      },
+      status: 'active',
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    batch.set(userSnapshot.ref, {
+      unlockedCategoryIds: summary.unlockedCategoryIds,
+      entitlementExpiresAtMs: summary.entitlementExpiresAtMs,
+      entitlementSource: `groupSubscription:${subscriptionRef.id}`,
+    }, { merge: true });
+  });
+
+  batch.set(subscriptionRef, {
+    id: subscriptionRef.id,
+    name: requestedName || existingSubscription?.name || packageData.nameAr || packageId,
+    packageId,
+    packageNameAr: packageData.nameAr || packageId,
+    categoryIds,
+    memberUids,
+    maxUsers,
+    startsAtMs: Number(existingSubscription?.startsAtMs) || now,
+    expiresAtMs,
+    note: note ?? existingSubscription?.note ?? null,
+    status: 'active',
+    createdByAdminUid: existingSubscription?.createdByAdminUid || context.auth.uid,
+    createdAtMs: Number(existingSubscription?.createdAtMs) || now,
+    updatedAtMs: now,
+  }, { merge: true });
+  await batch.commit();
+
+  return {
+    subscriptionId: subscriptionRef.id,
+    memberCount: memberUids.length,
+    addedCount: newUids.length,
+    maxUsers,
+    expiresAtMs,
+  };
 });
 
 exports.createPromoCode = functions.region(REGION).https.onCall(async (data, context) => {

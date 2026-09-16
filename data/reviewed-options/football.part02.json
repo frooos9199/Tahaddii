@@ -1,0 +1,242 @@
+[
+  {
+    "id": "football-hard-21",
+    "answersAr": ["بايرن ميونخ", "بوروسيا دورتموند", "شالكه 04", "باير ليفركوزن"],
+    "answersEn": ["Bayern Munich", "Borussia Dortmund", "Schalke 04", "Bayer Leverkusen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-22",
+    "answersAr": ["3", "4", "5", "6"],
+    "answersEn": ["3", "4", "5", "6"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "football-hard-23",
+    "answersAr": ["كريستيانو رونالدو", "ليونيل ميسي", "نيمار", "لوكا مودريتش"],
+    "answersEn": ["Cristiano Ronaldo", "Lionel Messi", "Neymar", "Luka Modrić"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-24",
+    "answersAr": ["كوبا أمريكا", "بطولة أمم أوروبا", "كأس آسيا", "كأس أمم أفريقيا"],
+    "answersEn": ["Copa América", "UEFA European Championship", "Asian Cup", "Africa Cup of Nations"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-25",
+    "answersAr": ["مارشيلو ليبي", "أنطونيو كونتي", "روبرتو مانشيني", "تشيزاري برانديللي"],
+    "answersEn": ["Marcello Lippi", "Antonio Conte", "Roberto Mancini", "Cesare Prandelli"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-26",
+    "answersAr": ["ملعب لوسيل", "ملعب البيت", "استاد 974", "استاد خليفة الدولي"],
+    "answersEn": ["Lusail Stadium", "Al Bayt Stadium", "Stadium 974", "Khalifa International Stadium"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-27",
+    "answersAr": ["دييغو مارادونا", "خورخي فالدانو", "ماريو كيمبيس", "غابرييل باتيستوتا"],
+    "answersEn": ["Diego Maradona", "Jorge Valdano", "Mario Kempes", "Gabriel Batistuta"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-28",
+    "answersAr": ["برشلونة", "ريال مدريد", "أتلتيكو مدريد", "إشبيلية"],
+    "answersEn": ["Barcelona", "Real Madrid", "Atlético Madrid", "Sevilla"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-29",
+    "answersAr": ["5", "6", "7", "8"],
+    "answersEn": ["5", "6", "7", "8"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "football-hard-30",
+    "answersAr": ["مانويل نوير", "أوليفر كان", "مارك أندريه تير شتيغن", "بيرند لينو"],
+    "answersEn": ["Manuel Neuer", "Oliver Kahn", "Marc-André ter Stegen", "Bernd Leno"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-31",
+    "answersAr": ["نيجيريا", "المغرب", "السنغال", "غانا"],
+    "answersEn": ["Nigeria", "Morocco", "Senegal", "Ghana"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-32",
+    "answersAr": ["يوهان كرويف", "دينيس بيركامب", "ماركو فان باستن", "رود خوليت"],
+    "answersEn": ["Johan Cruyff", "Dennis Bergkamp", "Marco van Basten", "Ruud Gullit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-33",
+    "answersAr": ["الفيفا", "اليويفا", "الكونكاكاف", "الكاف"],
+    "answersEn": ["FIFA", "UEFA", "CONCACAF", "CAF"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-34",
+    "answersAr": ["جورج ويا", "صامويل إيتو", "ديدييه دروغبا", "محمد صلاح"],
+    "answersEn": ["George Weah", "Samuel Eto'o", "Didier Drogba", "Mohamed Salah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-35",
+    "answersAr": ["ملعب الاتحاد", "أنفيلد", "أولد ترافورد", "ستامفورد بريدج"],
+    "answersEn": ["Etihad Stadium", "Anfield", "Old Trafford", "Stamford Bridge"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-36",
+    "answersAr": ["أليكس فيرغسون", "بيب غوارديولا", "جوزيه مورينيو", "أرسين فينغر"],
+    "answersEn": ["Alex Ferguson", "Pep Guardiola", "José Mourinho", "Arsène Wenger"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-37",
+    "answersAr": ["2", "3", "4", "5"],
+    "answersEn": ["2", "3", "4", "5"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-38",
+    "answersAr": ["محمد صلاح", "أحمد حسن", "محمد النني", "محمود حسن تريزيغيه"],
+    "answersEn": ["Mohamed Salah", "Ahmed Hassan", "Mohamed Elneny", "Mahmoud Hassan Trezeguet"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-39",
+    "answersAr": ["فرنسا", "الأرجنتين", "كرواتيا", "المغرب"],
+    "answersEn": ["France", "Argentina", "Croatia", "Morocco"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-40",
+    "answersAr": ["ليونيل ميسي", "كيليان مبابي", "أوليفييه جيرو", "جوليان ألفاريز"],
+    "answersEn": ["Lionel Messi", "Kylian Mbappé", "Olivier Giroud", "Julián Álvarez"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-41",
+    "answersAr": ["تشيلسي", "آرسنال", "توتنهام", "وست هام"],
+    "answersEn": ["Chelsea", "Arsenal", "Tottenham", "West Ham"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-42",
+    "answersAr": ["مرة واحدة", "مرتين", "ثلاث مرات", "أربع مرات"],
+    "answersEn": ["Once", "Twice", "Three times", "Four times"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-43",
+    "answersAr": ["إرلينغ هالاند", "روميلو لوكاكو", "أداما تراوري", "فيكتور أوسيمين"],
+    "answersEn": ["Erling Haaland", "Romelu Lukaku", "Adama Traoré", "Victor Osimhen"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-44",
+    "answersAr": ["الكاف", "الأفك (AFC)", "اليويفا", "الكونميبول"],
+    "answersEn": ["CAF", "AFC", "UEFA", "CONMEBOL"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-45",
+    "answersAr": ["حكيم زياش", "رومان سايس", "أشرف حكيمي", "سفيان بوفال"],
+    "answersEn": ["Hakim Ziyech", "Romain Saïss", "Achraf Hakimi", "Sofiane Boufal"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-46",
+    "answersAr": ["الدوري الأوروبي", "دوري أبطال أوروبا", "دوري المؤتمر الأوروبي", "كأس السوبر الأوروبي"],
+    "answersEn": ["Europa League", "UEFA Champions League", "UEFA Conference League", "UEFA Super Cup"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-47",
+    "answersAr": ["بيب غوارديولا", "لويس إنريكي", "أوناي إيمري", "رافائيل بينيتيز"],
+    "answersEn": ["Pep Guardiola", "Luis Enrique", "Unai Emery", "Rafael Benítez"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-hard-48",
+    "answersAr": ["بيليه", "نيمار", "رونالدو نازاريو", "روماريو"],
+    "answersEn": ["Pelé", "Neymar", "Ronaldo Nazário", "Romário"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-49",
+    "answersAr": ["كوبا أمريكا", "كأس أمم أفريقيا", "كأس آسيا", "بطولة أمم أوروبا"],
+    "answersEn": ["Copa América", "Africa Cup of Nations", "Asian Cup", "UEFA European Championship"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "football-hard-50",
+    "answersAr": ["ليونيل ميسي", "نيمار", "إنييستا", "تشافي"],
+    "answersEn": ["Lionel Messi", "Neymar", "Iniesta", "Xavi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-1",
+    "answersAr": ["الأرجنتين", "فرنسا", "كرواتيا", "المغرب"],
+    "answersEn": ["Argentina", "France", "Croatia", "Morocco"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-2",
+    "answersAr": ["هاتريك", "ثنائية", "سوبر هاتريك", "هدف عكسي"],
+    "answersEn": ["Hat-trick", "Brace", "Four-goal haul", "Own goal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-3",
+    "answersAr": ["رمية تماس", "ركلة ركنية", "ركلة مرمى", "ركلة حرة غير مباشرة"],
+    "answersEn": ["Throw-in", "Corner kick", "Goal kick", "Indirect free kick"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-4",
+    "answersAr": ["بطولة أمم أوروبا", "كوبا أمريكا", "كأس آسيا", "كأس الأمم الإفريقية"],
+    "answersEn": ["UEFA European Championship", "Copa América", "AFC Asian Cup", "Africa Cup of Nations"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-5",
+    "answersAr": ["الصفراء", "الحمراء", "الخضراء", "الزرقاء"],
+    "answersEn": ["Yellow", "Red", "Green", "Blue"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-6",
+    "answersAr": ["إسبانيا", "إنجلترا", "ألمانيا", "إيطاليا"],
+    "answersEn": ["Spain", "England", "Germany", "Italy"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-7",
+    "answersAr": ["فيفا", "اليويفا", "الكاف", "الأفك"],
+    "answersEn": ["FIFA", "UEFA", "CAF", "AFC"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-8",
+    "answersAr": ["ألمانيا", "إيطاليا", "إسبانيا", "فرنسا"],
+    "answersEn": ["Germany", "Italy", "Spain", "France"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-9",
+    "answersAr": ["مانشستر", "ليفربول", "لندن", "نيوكاسل"],
+    "answersEn": ["Manchester", "Liverpool", "London", "Newcastle"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "football-new-10",
+    "answersAr": ["تعادل سلبي", "تعادل إيجابي", "فوز بهدف واحد", "خسارة بهدف واحد"],
+    "answersEn": ["Goalless draw", "Score draw", "One-goal win", "One-goal defeat"],
+    "correctAnswerIndex": 0
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "general-new-15",
+    "answersAr": ["التكاثف", "التبخر", "التسامي", "الترسب"],
+    "answersEn": ["Condensation", "Evaporation", "Sublimation", "Deposition"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-16",
+    "answersAr": ["يناير", "مارس", "سبتمبر", "ديسمبر"],
+    "answersEn": ["January", "March", "September", "December"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-17",
+    "answersAr": ["القلب", "الطحال", "الكبد", "الكلى"],
+    "answersEn": ["Heart", "Spleen", "Liver", "Kidneys"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-18",
+    "answersAr": ["كندا", "لبنان", "المكسيك", "قبرص"],
+    "answersEn": ["Canada", "Lebanon", "Mexico", "Cyprus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-19",
+    "answersAr": ["ألبرت أينشتاين", "هندريك لورنتز", "ماكس بلانك", "نيلز بور"],
+    "answersEn": ["Albert Einstein", "Hendrik Lorentz", "Max Planck", "Niels Bohr"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-20",
+    "answersAr": ["عطارد", "الزهرة", "الأرض", "المريخ"],
+    "answersEn": ["Mercury", "Venus", "Earth", "Mars"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-21",
+    "answersAr": ["التلسكوب", "السدس", "الأسطرلاب", "المزولة"],
+    "answersEn": ["Telescope", "Sextant", "Astrolabe", "Sundial"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-22",
+    "answersAr": ["القمر", "فوبوس", "تيتان", "أوروبا"],
+    "answersEn": ["Moon", "Phobos", "Titan", "Europa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-23",
+    "answersAr": ["مثمن", "مثلث", "دائرة", "معيّن"],
+    "answersEn": ["Octagon", "Triangle", "Circle", "Diamond"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-24",
+    "answersAr": ["فيتامين د", "فيتامين أ", "فيتامين ج", "فيتامين هـ"],
+    "answersEn": ["Vitamin D", "Vitamin A", "Vitamin C", "Vitamin E"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-25",
+    "answersAr": ["شجرة البلوط", "شجرة الكستناء", "شجرة الزان", "شجرة البندق"],
+    "answersEn": ["Oak tree", "Chestnut tree", "Beech tree", "Hazel tree"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-26",
+    "answersAr": ["البرتغالية", "الإسبانية", "الفرنسية", "الإيطالية"],
+    "answersEn": ["Portuguese", "Spanish", "French", "Italian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-27",
+    "answersAr": ["الأسود", "الذئاب", "الضباع", "الأفيال"],
+    "answersEn": ["Lions", "Wolves", "Hyenas", "Elephants"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-28",
+    "answersAr": ["طبقة الأوزون", "الغلاف المغناطيسي", "طبقة التروبوسفير", "أحزمة فان ألن"],
+    "answersEn": ["Ozone layer", "Magnetosphere", "Troposphere", "Van Allen belts"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-29",
+    "answersAr": ["الرحيق", "حبوب اللقاح", "راتنج النبات", "النسغ"],
+    "answersEn": ["Nectar", "Pollen", "Plant resin", "Sap"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-30",
+    "answersAr": ["إفريقيا", "آسيا", "أوروبا", "أمريكا الجنوبية"],
+    "answersEn": ["Africa", "Asia", "Europe", "South America"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-31",
+    "answersAr": ["السيزموجراف", "مقياس الجاذبية", "مقياس المغناطيسية", "مقياس الميل"],
+    "answersEn": ["Seismograph", "Gravimeter", "Magnetometer", "Clinometer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-32",
+    "answersAr": ["0 درجات مئوية", "-1 درجة مئوية", "4 درجات مئوية", "32 درجة مئوية"],
+    "answersEn": ["0°C", "-1°C", "4°C", "32°C"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-33",
+    "answersAr": ["الصين", "مصر", "كوريا", "اليونان"],
+    "answersEn": ["China", "Egypt", "Korea", "Greece"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "general-new-34",
+    "answersAr": ["الياقوت الأحمر", "الإسبنيل الأحمر", "العقيق الأحمر", "البريل الأحمر"],
+    "answersEn": ["Ruby", "Red spinel", "Red garnet", "Red beryl"],
+    "correctAnswerIndex": 0
+  }
+]

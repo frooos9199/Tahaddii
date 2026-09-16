@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, orderBy, query, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, orderBy, query, setDoc } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CategoryCard, CategoryId } from '../../types';
 import { CATEGORY_EMOJIS } from '../../constants';
@@ -19,14 +19,6 @@ export interface CategoryCardInput {
 }
 
 export const DEFAULT_CATEGORY_CARDS: CategoryCard[] = [
-  { id: 'generalKnowledge', iconKey: 'generalKnowledge', nameAr: 'معلومات عامة', nameEn: 'General Knowledge', imageUrl: '', accentColor: '#7C3AED', sortOrder: 10, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'sports', iconKey: 'sports', nameAr: 'رياضة', nameEn: 'Sports', imageUrl: '', accentColor: '#10B981', sortOrder: 20, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'football', iconKey: 'football', nameAr: 'كرة القدم', nameEn: 'Football', imageUrl: '', accentColor: '#84CC16', sortOrder: 30, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'cars', iconKey: 'cars', nameAr: 'سيارات', nameEn: 'Cars', imageUrl: '', accentColor: '#EF4444', sortOrder: 40, isActive: true, questionTypes: ['multiple_choice', 'image'] },
-  { id: 'movies', iconKey: 'movies', nameAr: 'أفلام ومسلسلات', nameEn: 'Movies & TV', imageUrl: '', accentColor: '#8B5CF6', sortOrder: 50, isActive: true, questionTypes: ['multiple_choice', 'image'] },
-  { id: 'cartoons', iconKey: 'cartoons', nameAr: 'كرتون', nameEn: 'Cartoons', imageUrl: '', accentColor: '#EC4899', sortOrder: 60, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'anime', iconKey: 'anime', nameAr: 'أنمي', nameEn: 'Anime', imageUrl: '', accentColor: '#F97316', sortOrder: 70, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'history', iconKey: 'history', nameAr: 'تاريخ', nameEn: 'History', imageUrl: '', accentColor: '#A16207', sortOrder: 80, isActive: true, questionTypes: ['multiple_choice'] },
   { id: 'geography', iconKey: 'geography', nameAr: 'جغرافيا', nameEn: 'Geography', imageUrl: '', accentColor: '#22C55E', sortOrder: 90, isActive: true, questionTypes: ['multiple_choice'] },
   { id: 'science', iconKey: 'science', nameAr: 'علوم', nameEn: 'Science', imageUrl: '', accentColor: '#3B82F6', sortOrder: 100, isActive: true, questionTypes: ['multiple_choice'] },
   { id: 'space', iconKey: 'space', nameAr: 'فضاء', nameEn: 'Space', imageUrl: '', accentColor: '#06B6D4', sortOrder: 110, isActive: true, questionTypes: ['multiple_choice'] },
@@ -137,6 +129,11 @@ export const saveCategoryCard = async (input: CategoryCardInput) => {
 
 export const setCategoryCardActive = async (id: CategoryId, isActive: boolean) => {
   await setDoc(doc(getFirebaseDb(), CATEGORY_CARDS_COLLECTION, id), { isActive, updatedAtMs: Date.now() }, { merge: true });
+  await AsyncStorage.removeItem(CATEGORY_CARDS_CACHE_KEY).catch(() => {});
+};
+
+export const deleteCategoryCard = async (id: CategoryId) => {
+  await deleteDoc(doc(getFirebaseDb(), CATEGORY_CARDS_COLLECTION, id));
   await AsyncStorage.removeItem(CATEGORY_CARDS_CACHE_KEY).catch(() => {});
 };
 

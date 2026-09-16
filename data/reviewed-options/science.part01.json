@@ -1,0 +1,212 @@
+[
+  {
+    "id": "science-e1",
+    "answersAr": ["6", "8", "7", "5"],
+    "answersEn": ["6", "8", "7", "5"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-m1",
+    "answersAr": ["98", "105", "100", "95"],
+    "answersEn": ["98", "105", "100", "95"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-h1",
+    "answersAr": ["فولت", "أوم", "أمبير", "سيمنز"],
+    "answersEn": ["Volt", "Ohm", "Ampere", "Siemens"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-e2",
+    "answersAr": ["الكبد", "القلب", "الرئتان", "الكليتان"],
+    "answersEn": ["Liver", "Heart", "Lungs", "Kidneys"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-m2",
+    "answersAr": ["الأكسجين", "النيتروجين", "ثاني أكسيد الكربون", "بخار الماء"],
+    "answersEn": ["Oxygen", "Nitrogen", "Carbon dioxide", "Water vapor"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-h2",
+    "answersAr": ["المشتري", "أورانوس", "زحل", "نبتون"],
+    "answersEn": ["Jupiter", "Uranus", "Saturn", "Neptune"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g01",
+    "answersAr": ["القلب", "الكبد", "الرئتان", "الكليتان"],
+    "answersEn": ["Heart", "Liver", "Lungs", "Kidneys"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g02",
+    "answersAr": ["عطارد", "المريخ", "الزهرة", "الأرض"],
+    "answersEn": ["Mercury", "Mars", "Venus", "Earth"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g03",
+    "answersAr": ["5", "8", "7", "6"],
+    "answersEn": ["5", "8", "7", "6"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g04",
+    "answersAr": ["الساق", "الأوراق", "الأزهار", "الجذور"],
+    "answersEn": ["Stem", "Leaves", "Flowers", "Roots"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g05",
+    "answersAr": ["صلبة", "سائلة", "غازية", "بلازما"],
+    "answersEn": ["Solid", "Liquid", "Gas", "Plasma"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g06",
+    "answersAr": ["الأكسجين", "ثاني أكسيد الكربون", "النيتروجين", "بخار الماء"],
+    "answersEn": ["Oxygen", "Carbon dioxide", "Nitrogen", "Water vapor"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g07",
+    "answersAr": ["95", "105", "100", "98"],
+    "answersEn": ["95", "105", "100", "98"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g08",
+    "answersAr": ["القلب", "الكبد", "الرئتان", "الدماغ"],
+    "answersEn": ["Heart", "Liver", "Lungs", "Brain"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g09",
+    "answersAr": ["الغلاف الجوي", "الغلاف المائي", "الغلاف الصخري", "الغلاف الحيوي"],
+    "answersEn": ["Atmosphere", "Hydrosphere", "Lithosphere", "Biosphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g10",
+    "answersAr": ["النحاس", "المغناطيس", "الألومنيوم", "الفضة"],
+    "answersEn": ["Copper", "Magnet", "Aluminum", "Silver"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g11",
+    "answersAr": ["الزهرة", "المريخ", "عطارد", "الأرض"],
+    "answersEn": ["Venus", "Mars", "Mercury", "Earth"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g12",
+    "answersAr": ["الأكسجين", "النيتروجين", "بخار الماء", "ثاني أكسيد الكربون"],
+    "answersEn": ["Oxygen", "Nitrogen", "Water vapor", "Carbon dioxide"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g13",
+    "answersAr": ["أوم", "فولت", "أمبير", "سيمنز"],
+    "answersEn": ["Ohm", "Volt", "Ampere", "Siemens"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g14",
+    "answersAr": ["فولت", "أمبير", "أوم", "كولوم"],
+    "answersEn": ["Volt", "Ampere", "Ohm", "Coulomb"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g15",
+    "answersAr": ["المشتري", "أورانوس", "زحل", "نبتون"],
+    "answersEn": ["Jupiter", "Uranus", "Saturn", "Neptune"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g16",
+    "answersAr": ["الأرجون", "ثاني أكسيد الكربون", "الأكسجين", "النيتروجين"],
+    "answersEn": ["Argon", "Carbon dioxide", "Oxygen", "Nitrogen"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g17",
+    "answersAr": ["الماس", "الكوراندوم", "التوباز", "الكوارتز"],
+    "answersEn": ["Diamond", "Corundum", "Topaz", "Quartz"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g18",
+    "answersAr": ["التكاثف", "التبخر", "التسامي", "التجمد"],
+    "answersEn": ["Condensation", "Evaporation", "Sublimation", "Freezing"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g19",
+    "answersAr": ["الشم", "السمع", "التذوق", "اللمس"],
+    "answersEn": ["Smell", "Hearing", "Taste", "Touch"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g20",
+    "answersAr": ["القمر", "البرق", "النار", "الشمس"],
+    "answersEn": ["Moon", "Lightning", "Fire", "Sun"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g21",
+    "answersAr": ["عاشبة", "قارتة", "لاحمة", "آكلة للحشرات"],
+    "answersEn": ["Herbivores", "Omnivores", "Carnivores", "Insectivores"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g22",
+    "answersAr": ["28", "32", "30", "36"],
+    "answersEn": ["28", "32", "30", "36"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g23",
+    "answersAr": ["الاحتكاك", "المغناطيسية", "الجاذبية", "الطفو"],
+    "answersEn": ["Friction", "Magnetism", "Gravity", "Buoyancy"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g24",
+    "answersAr": ["دورة الكربون", "دورة النيتروجين", "دورة الصخور", "دورة الماء"],
+    "answersEn": ["Carbon cycle", "Nitrogen cycle", "Rock cycle", "Water cycle"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g25",
+    "answersAr": ["الذرة", "الجزيء", "النواة", "الإلكترون"],
+    "answersEn": ["Atom", "Molecule", "Nucleus", "Electron"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "sci-g26",
+    "answersAr": ["غازية", "البلازما", "سائلة", "صلبة"],
+    "answersEn": ["Gas", "Plasma", "Liquid", "Solid"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "sci-g27",
+    "answersAr": ["المريخ", "عطارد", "الزهرة", "نبتون"],
+    "answersEn": ["Mars", "Mercury", "Venus", "Neptune"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "sci-g28",
+    "answersAr": ["الكبد", "القلب", "المعدة", "الرئتان"],
+    "answersEn": ["Liver", "Heart", "Stomach", "Lungs"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "sci-g29",
+    "answersAr": ["أخضر", "أصفر", "برتقالي", "أحمر"],
+    "answersEn": ["Green", "Yellow", "Orange", "Red"],
+    "correctAnswerIndex": 0
+  }
+]

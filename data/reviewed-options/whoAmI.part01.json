@@ -1,0 +1,278 @@
+[
+  {
+    "id": "who-e1",
+    "answersAr": ["المريخ", "الزهرة", "الأرض", "عطارد"],
+    "answersEn": ["Mars", "Venus", "Earth", "Mercury"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-m1",
+    "answersAr": ["توماس إديسون", "غراهام بيل", "نيكولا تسلا", "غولييلمو ماركوني"],
+    "answersEn": ["Thomas Edison", "Graham Bell", "Nikola Tesla", "Guglielmo Marconi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-h1",
+    "answersAr": ["غاليليو غاليلي", "ألبرت أينشتاين", "نيوتن", "يوهانس كبلر"],
+    "answersEn": ["Galileo Galilei", "Albert Einstein", "Newton", "Johannes Kepler"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-e2",
+    "answersAr": ["المها العربي", "الجمل", "ثعلب الصحراء", "النعامة"],
+    "answersEn": ["Arabian oryx", "Camel", "Fennec fox", "Ostrich"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-m2",
+    "answersAr": ["الهاتف الذكي", "الحاسوب المحمول", "التلفاز الذكي", "الكاميرا الرقمية"],
+    "answersEn": ["Smartphone", "Laptop", "Smart TV", "Digital camera"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-h2",
+    "answersAr": ["أوروبا", "آسيا", "إفريقيا", "أستراليا"],
+    "answersEn": ["Europe", "Asia", "Africa", "Australia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g01",
+    "answersAr": ["الأسد", "النمر", "الفهد", "اليغور"],
+    "answersEn": ["Lion", "Tiger", "Leopard", "Jaguar"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g02",
+    "answersAr": ["المريخ", "الأرض", "الزهرة", "عطارد"],
+    "answersEn": ["Mars", "Earth", "Venus", "Mercury"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g03",
+    "answersAr": ["المها العربي", "ثعلب الصحراء", "الجمل", "النعامة"],
+    "answersEn": ["Arabian oryx", "Fennec fox", "Camel", "Ostrich"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g04",
+    "answersAr": ["الممحاة", "المسطرة", "المقص", "القلم"],
+    "answersEn": ["Eraser", "Ruler", "Scissors", "Pen"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g05",
+    "answersAr": ["البحر", "الغابة", "الصحراء", "الكهف"],
+    "answersEn": ["Sea", "Forest", "Desert", "Cave"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g06",
+    "answersAr": ["النيتروجين", "الأكسجين", "ثاني أكسيد الكربون", "الهيليوم"],
+    "answersEn": ["Nitrogen", "Oxygen", "Carbon dioxide", "Helium"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g07",
+    "answersAr": ["أوروبا", "إفريقيا", "آسيا", "أستراليا"],
+    "answersEn": ["Europe", "Africa", "Asia", "Australia"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g08",
+    "answersAr": ["المدينة المنورة", "القدس", "الرياض", "مكة المكرمة"],
+    "answersEn": ["Medina", "Jerusalem", "Riyadh", "Makkah"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g09",
+    "answersAr": ["نيوتن", "غاليليو غاليلي", "ألبرت أينشتاين", "يوهانس كبلر"],
+    "answersEn": ["Newton", "Galileo Galilei", "Albert Einstein", "Johannes Kepler"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g10",
+    "answersAr": ["الحاسوب المحمول", "الهاتف الذكي", "التلفاز الذكي", "الكاميرا الرقمية"],
+    "answersEn": ["Laptop", "Smartphone", "Smart TV", "Digital camera"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g11",
+    "answersAr": ["كريستوفر مارلو", "بن جونسون", "شكسبير", "موليير"],
+    "answersEn": ["Christopher Marlowe", "Ben Jonson", "Shakespeare", "Moliere"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g12",
+    "answersAr": ["أميرغو فسبوتشي", "جون كابوت", "فرديناند ماجلان", "كريستوفر كولومبوس"],
+    "answersEn": ["Amerigo Vespucci", "John Cabot", "Ferdinand Magellan", "Christopher Columbus"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g13",
+    "answersAr": ["التبخر", "التكاثف", "التجمد", "الانصهار"],
+    "answersEn": ["Evaporation", "Condensation", "Freezing", "Melting"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g14",
+    "answersAr": ["عظمة السندان", "عظمة الركاب", "عظمة المطرقة", "عظم الفخذ"],
+    "answersEn": ["Incus", "Stapes", "Malleus", "Femur"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g15",
+    "answersAr": ["البحر الأحمر", "بحر قزوين", "البحر الميت", "البحر الأسود"],
+    "answersEn": ["Red Sea", "Caspian Sea", "Dead Sea", "Black Sea"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g16",
+    "answersAr": ["النعامة", "طائر الإيمو", "طائر الكيوي", "البطريق"],
+    "answersEn": ["Ostrich", "Emu", "Kiwi", "Penguin"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g17",
+    "answersAr": ["البقرة", "الدجاجة", "الديك", "الديك الرومي"],
+    "answersEn": ["Cow", "Hen", "Rooster", "Turkey"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g18",
+    "answersAr": ["أستراليا", "إفريقيا", "أوروبا", "آسيا"],
+    "answersEn": ["Australia", "Africa", "Europe", "Asia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g19",
+    "answersAr": ["سول", "بكين", "طوكيو", "بانكوك"],
+    "answersEn": ["Seoul", "Beijing", "Tokyo", "Bangkok"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g20",
+    "answersAr": ["المشتري", "نبتون", "أورانوس", "زحل"],
+    "answersEn": ["Jupiter", "Neptune", "Uranus", "Saturn"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g21",
+    "answersAr": ["النحاس", "الحديد", "الذهب", "الفضة"],
+    "answersEn": ["Copper", "Iron", "Gold", "Silver"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g22",
+    "answersAr": ["الفولت", "أوم", "الأمبير", "الواط"],
+    "answersEn": ["Volt", "Ohm", "Ampere", "Watt"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g23",
+    "answersAr": ["الدوحة", "المنامة", "مدينة الكويت", "أبوظبي"],
+    "answersEn": ["Doha", "Manama", "Kuwait City", "Abu Dhabi"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g24",
+    "answersAr": ["التنس", "الإسكواش", "تنس الطاولة", "الريشة الطائرة"],
+    "answersEn": ["Tennis", "Squash", "Table tennis", "Badminton"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g25",
+    "answersAr": ["قناة السويس", "قناة بنما", "قناة كيل", "قناة كورنث"],
+    "answersEn": ["Suez Canal", "Panama Canal", "Kiel Canal", "Corinth Canal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g26",
+    "answersAr": ["توماس إديسون", "غراهام بيل", "نيكولا تسلا", "غولييلمو ماركوني"],
+    "answersEn": ["Thomas Edison", "Graham Bell", "Nikola Tesla", "Guglielmo Marconi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "who-g27",
+    "answersAr": ["الكوارتز", "الكوروند", "الماس", "التوباز"],
+    "answersEn": ["Quartz", "Corundum", "Diamond", "Topaz"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "who-g28",
+    "answersAr": ["باريس", "البندقية", "روما", "لندن"],
+    "answersEn": ["Paris", "Venice", "Rome", "London"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "who-g29",
+    "answersAr": ["البناء الضوئي", "التنفس الخلوي", "النتح", "الإنبات"],
+    "answersEn": ["Photosynthesis", "Cellular respiration", "Transpiration", "Germination"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "who-g30",
+    "answersAr": ["البحر الأحمر", "الخليج العربي", "البحر المتوسط", "خليج عُمان"],
+    "answersEn": ["Red Sea", "Arabian Gulf", "Mediterranean Sea", "Gulf of Oman"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-1",
+    "answersAr": ["الطبري", "ابن الأثير", "ابن خلدون", "المسعودي"],
+    "answersEn": ["al-Ṭabarī", "Ibn al-Athīr", "Ibn Khaldun", "al-Masʿūdī"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "whoAmI-hard-2",
+    "answersAr": ["ألبرت أينشتاين", "ماكس بلانك", "نيلز بور", "فيرنر هايزنبرغ"],
+    "answersEn": ["Albert Einstein", "Max Planck", "Niels Bohr", "Werner Heisenberg"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "whoAmI-hard-3",
+    "answersAr": ["روبرت كوخ", "ألكسندر فليمنغ", "جوزيف ليستر", "لويس باستور"],
+    "answersEn": ["Robert Koch", "Alexander Fleming", "Joseph Lister", "Louis Pasteur"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-4",
+    "answersAr": ["فاسكو دا غاما", "فرديناند ماجلان", "بارتولوميو دياز", "أميرغو فسبوتشي"],
+    "answersEn": ["Vasco da Gama", "Ferdinand Magellan", "Bartolomeu Dias", "Amerigo Vespucci"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-5",
+    "answersAr": ["إيرين جوليو-كوري", "ليز مايتنر", "روزاليند فرانكلين", "ماري كوري"],
+    "answersEn": ["Irène Joliot-Curie", "Lise Meitner", "Rosalind Franklin", "Marie Curie"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-6",
+    "answersAr": ["سكيبيو", "ماريوس", "بيروس", "هنيبعل"],
+    "answersEn": ["Scipio", "Marius", "Pyrrhus", "Hannibal"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-7",
+    "answersAr": ["البحتري", "المتنبي", "أبو تمام", "أبو العلاء المعري"],
+    "answersEn": ["al-Buḥturī", "al-Mutanabbī", "Abū Tammām", "Abū al-ʿAlāʾ al-Maʿarrī"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "whoAmI-hard-8",
+    "answersAr": ["بايزيد الأول", "محمد الفاتح", "سليمان القانوني", "سليم الأول"],
+    "answersEn": ["Bayezid I", "Mehmed the Conqueror", "Suleiman the Magnificent", "Selim I"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-9",
+    "answersAr": ["تشارلز داروين", "غريغور مندل", "توماس مورغان", "أنطوني فان ليفينهوك"],
+    "answersEn": ["Charles Darwin", "Gregor Mendel", "Thomas Hunt Morgan", "Antonie van Leeuwenhoek"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "whoAmI-hard-10",
+    "answersAr": ["أرسطو", "ديوجين", "سقراط", "أفلاطون"],
+    "answersEn": ["Aristotle", "Diogenes", "Socrates", "Plato"],
+    "correctAnswerIndex": 2
+  }
+]

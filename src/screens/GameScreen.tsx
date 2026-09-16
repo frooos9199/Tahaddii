@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import {
-  Alert, Animated, Dimensions, Image, Linking, Modal, Platform, StatusBar, StyleSheet,
+  Alert, Animated, Dimensions, Image, Linking, Modal, Platform, ScrollView, StatusBar, StyleSheet,
   Text, TouchableOpacity, View,
 } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { GameState, Player, RootStackParamList } from '../types';
@@ -12,10 +12,11 @@ import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { CATEGORY_EMOJIS, FAST_ANSWER_BONUS } from '../constants';
-import { createTvDisplaySession, getTvDisplayUrl, updateTvDisplaySession } from '../services/tv/tvDisplayService';
+import { createTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestions } from '../services/questions/questionService';
 import { getQuestionDisplayImageUrls, getQuestionPrimaryImageUrl, preloadQuestionMedia, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 import { markQuestionsAsSeen, syncQuestionHistory } from '../services/questions/questionHistoryService';
+import { areAnswerOptionsEnabled } from '../utils/questionAnswerOptions';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Game'> };
 
@@ -33,8 +34,9 @@ const getLeadingTie = (game: GameState): Player[] => {
 
 export default function GameScreen({ navigation }: Props) {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const language = useAppStore(s => s.language);
-  const { game, startGame, submitAnswer, nextQuestion, startTieBreaker, finishGame, clearSavedGame, pendingTvDisplayCode } = useGameStore();
+  const { game, startGame, submitAnswer, nextQuestion, startTieBreaker, finishGame, clearSavedGame, pendingTvDisplayCode, setPendingTvDisplayCode } = useGameStore();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [answeredCorrectly, setAnsweredCorrectly] = useState<boolean | null>(null);
   const [lastPointsEarned, setLastPointsEarned] = useState(0);
@@ -115,6 +117,11 @@ export default function GameScreen({ navigation }: Props) {
 
   const elapsed = isTimed ? Math.max(0, timeLimit - (timeLeft ?? timeLimit)) : 0;
   const fastAnswerLimit = isTimed ? Math.max(5, Math.ceil(timeLimit * 0.25)) : 0;
+  const isTrueFalseQuestion = question?.type === 'true_false' && answers.length >= 2;
+  const showAnswerOptions = !!question && !!game && (
+    isTrueFalseQuestion || (answers.length > 0 && areAnswerOptionsEnabled(question, game.settings))
+  );
+  const judgmentSubmitted = answeredCorrectly !== null;
 
   const buildTvDisplayState = useCallback(() => {
     if (!game || !question || !player) return null;
@@ -145,11 +152,11 @@ export default function GameScreen({ navigation }: Props) {
         revealMode: (question.revealMode === 'blur' ? 'blur' : 'none') as 'blur' | 'none',
         blurAmount: Number(question.blurAmount ?? 18),
       },
-      answers: answers.map((answer, index) => ({
+      answers: showAnswerOptions ? answers.map((answer, index) => ({
         text: answer,
         isCorrect: revealed && index === question.correctAnswerIndex,
         isSelected: selectedIndex === index,
-      })),
+      })) : [],
       currentPlayer: {
         id: player.id,
         name: player.name,
@@ -167,7 +174,7 @@ export default function GameScreen({ navigation }: Props) {
       correctAnswer: revealed ? correctAnswer : '',
       explanation: revealed ? (language === 'en' ? question.explanationEn || question.explanationAr || '' : question.explanationAr || question.explanationEn || '') : '',
     };
-  }, [answers, correctAnswer, displayCategoryEmoji, displayCategoryId, displayCategoryName, displayCategoryTransitionKey, displayQuestion, game, isTimed, language, player, previousDisplayCategoryId, question, questionImageUrl, revealed, selectedIndex, timeLeft, timeLimit]);
+  }, [answers, correctAnswer, displayCategoryEmoji, displayCategoryId, displayCategoryName, displayCategoryTransitionKey, displayQuestion, game, isTimed, language, player, previousDisplayCategoryId, question, questionImageUrl, revealed, selectedIndex, showAnswerOptions, timeLeft, timeLimit]);
 
   const syncTvDisplay = useCallback(() => {
     if (!tvDisplayCode || !game || !question || !player) return;
@@ -311,21 +318,30 @@ export default function GameScreen({ navigation }: Props) {
   // time up
   useEffect(() => {
     if (!isTimed || !question || !player || revealed || timeLeft !== 0) return;
+    if (!showAnswerOptions) {
+      setRevealed(true);
+      return;
+    }
     submitAnswer({ questionId: question.id, playerId: player.id, isCorrect: false, timeSpent: timeLimit, pointsEarned: 0 });
     setAnsweredCorrectly(false);
     setLastPointsEarned(0);
     setLastFastBonus(0);
     setRevealed(true);
-  }, [isTimed, player, question, revealed, submitAnswer, timeLeft, timeLimit]);
+  }, [isTimed, player, question, revealed, showAnswerOptions, submitAnswer, timeLeft, timeLimit]);
 
   const registerAnswer = (isCorrect: boolean) => {
-    if (!game || !question || !player || revealed) return;
+    if (!game || !question || !player || judgmentSubmitted) return;
     const fastBonus = isCorrect && isTimed && elapsed <= fastAnswerLimit ? FAST_ANSWER_BONUS : 0;
     const pointsEarned = isCorrect ? question.points + fastBonus : 0;
     submitAnswer({ questionId: question.id, playerId: player.id, isCorrect, timeSpent: elapsed, pointsEarned });
     setAnsweredCorrectly(isCorrect);
     setLastPointsEarned(pointsEarned);
     setLastFastBonus(fastBonus);
+    setRevealed(true);
+  };
+
+  const revealAnswer = () => {
+    if (judgmentSubmitted) return;
     setRevealed(true);
   };
 
@@ -387,7 +403,12 @@ export default function GameScreen({ navigation }: Props) {
   const startTvDisplay = async () => {
     if (!game || !question || !player) return;
     try {
-      const code = tvDisplayCode ?? await createTvDisplaySession();
+      let code = pendingTvDisplayCode ?? tvDisplayCode;
+      if (!code) {
+        code = await createTvDisplaySession();
+        await pairTvDisplaySession(code, language === 'en' ? 'en' : 'ar');
+        setPendingTvDisplayCode(code);
+      }
       const tvState = buildTvDisplayState();
       if (!tvState) return;
       await updateTvDisplaySession(code, tvState);
@@ -418,7 +439,6 @@ export default function GameScreen({ navigation }: Props) {
 
   const isLast = game.currentQuestionIndex >= game.questions.length - 1;
   const answerLetters = language === 'en' ? ['A', 'B', 'C', 'D'] : ['أ', 'ب', 'ج', 'د'];
-  const isTrueFalseQuestion = question.type === 'true_false' && answers.length >= 2;
   const transitionCategoryEmoji = transitionCategoryId ? CATEGORY_EMOJIS[transitionCategoryId] || '🎯' : displayCategoryEmoji;
   const transitionCategoryName = transitionCategoryId
     ? t(`categories.${transitionCategoryId}`, { defaultValue: transitionCategoryId })
@@ -490,7 +510,7 @@ export default function GameScreen({ navigation }: Props) {
                 );
               })}
             </View>
-          ) : answers.length > 0 ? (
+          ) : showAnswerOptions && answers.length > 0 ? (
             <View style={pStyles.answersGrid}>
               {answers.map((ans, i) => {
                 const isSelected = selectedIndex === i;
@@ -513,19 +533,26 @@ export default function GameScreen({ navigation }: Props) {
                 );
               })}
             </View>
+          ) : !revealed ? (
+            <TouchableOpacity style={pStyles.revealBtn} onPress={revealAnswer}>
+              <Text style={pStyles.revealBtnText}>{t('game.showAnswer')}</Text>
+            </TouchableOpacity>
           ) : (
-            <View style={pStyles.manualRow}>
-              <TouchableOpacity style={[pStyles.manualBtn, pStyles.correctBtn]} onPress={() => registerAnswer(true)}>
-                <Text style={pStyles.manualText}>✓ {t('common.correct')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={[pStyles.manualBtn, pStyles.wrongBtn]} onPress={() => registerAnswer(false)}>
-                <Text style={pStyles.manualText}>✕ {t('common.wrong')}</Text>
-              </TouchableOpacity>
+            <View style={pStyles.manualBlock}>
+              <Text style={pStyles.revealedAnswer}>{t('game.correctAnswer')}: {correctAnswer}</Text>
+              <View style={pStyles.manualRow}>
+                <TouchableOpacity style={[pStyles.manualBtn, pStyles.correctBtn]} disabled={judgmentSubmitted} onPress={() => registerAnswer(true)}>
+                  <Text style={pStyles.manualText}>✓ {t('common.correct')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[pStyles.manualBtn, pStyles.wrongBtn]} disabled={judgmentSubmitted} onPress={() => registerAnswer(false)}>
+                  <Text style={pStyles.manualText}>✕ {t('common.wrong')}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         </View>
 
-        {revealed && (
+        {judgmentSubmitted && (
           <View style={[pStyles.feedbackBar, answeredCorrectly ? pStyles.feedbackCorrect : pStyles.feedbackWrong]}>
             <Text style={pStyles.feedbackLabel}>
               {answeredCorrectly ? `✓ ${t('common.correct')} · ${t('game.pointsEarned', { points: lastPointsEarned })}` : `✕ ${t('game.correctAnswer')}: ${correctAnswer}`}
@@ -535,13 +562,13 @@ export default function GameScreen({ navigation }: Props) {
         )}
 
         {/* ── FLOATING HOST CONTROLS ── */}
-        <View style={pStyles.controlBar}>
+        <View style={[pStyles.controlBar, { bottom: 18 + insets.bottom }]}>
           <TouchableOpacity style={pStyles.controlExitBtn} onPress={() => setPresentationMode(false)}>
             <Text style={pStyles.controlExitText}>✕</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[pStyles.controlNextBtn, !revealed && pStyles.controlNextDisabled]}
-            disabled={!revealed}
+            style={[pStyles.controlNextBtn, !judgmentSubmitted && pStyles.controlNextDisabled]}
+            disabled={!judgmentSubmitted}
             onPress={goNext}>
             <Text style={pStyles.controlNextText}>
               {isLast ? `🏆 ${t('results.title')}` : `${t('common.next')} ›`}
@@ -570,8 +597,12 @@ export default function GameScreen({ navigation }: Props) {
         <View style={styles.pointsBadge}>
           <Text style={styles.pointsText}>{question.points}⭐</Text>
         </View>
-        <TouchableOpacity style={[styles.tvBtn, tvDisplayCode && styles.tvBtnActive]} onPress={() => { void startTvDisplay(); }}>
-          <Text style={styles.tvBtnText}>{tvDisplayCode ?? 'TV'}</Text>
+        <TouchableOpacity
+          style={[styles.tvBtn, tvDisplayCode && styles.tvBtnActive]}
+          onPress={() => { void startTvDisplay(); }}>
+          <Text style={styles.tvBtnText} numberOfLines={1}>
+            {tvDisplayCode ? `📺 ${tvDisplayCode}` : '📺'}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -587,6 +618,7 @@ export default function GameScreen({ navigation }: Props) {
         </View>
       </View>
 
+      <ScrollView style={styles.gameScroll} contentContainerStyle={styles.gameScrollContent} showsVerticalScrollIndicator={false} bounces={false}>
       {/* ── CATEGORY ── */}
       <View style={styles.categoryHeader}>
         <Text style={styles.categoryIcon}>{displayCategoryEmoji}</Text>
@@ -598,7 +630,7 @@ export default function GameScreen({ navigation }: Props) {
       <View style={[styles.playerRow, { borderColor: player.color }]}>
         <Text style={styles.playerEmoji}>{player.name.charAt(0).toUpperCase()}</Text>
         <View>
-          <Text style={styles.playerName}>{player.name}</Text>
+          <Text style={styles.playerName} numberOfLines={1}>{player.name}</Text>
           <Text style={styles.playerScore}>{player.score} {t('common.points')}</Text>
         </View>
       </View>
@@ -651,7 +683,7 @@ export default function GameScreen({ navigation }: Props) {
               );
             })}
           </View>
-        ) : answers.length > 0 ? (
+        ) : showAnswerOptions && answers.length > 0 ? (
           <View style={styles.answersGrid}>
             {answers.map((ans, i) => {
               const isSelected = selectedIndex === i;
@@ -675,20 +707,27 @@ export default function GameScreen({ navigation }: Props) {
               );
             })}
           </View>
+        ) : !revealed ? (
+          <TouchableOpacity style={styles.revealBtn} onPress={revealAnswer}>
+            <Text style={styles.revealBtnText}>{t('game.showAnswer')}</Text>
+          </TouchableOpacity>
         ) : (
-          <View style={styles.manualRow}>
-            <TouchableOpacity style={[styles.manualBtn, styles.correctBtn]} onPress={() => registerAnswer(true)}>
-              <Text style={styles.manualText}>✓ {t('common.correct')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.manualBtn, styles.wrongBtn]} onPress={() => registerAnswer(false)}>
-              <Text style={styles.manualText}>✕ {t('common.wrong')}</Text>
-            </TouchableOpacity>
+          <View style={styles.manualBlock}>
+            <Text style={styles.revealedAnswer}>{t('game.correctAnswer')}: {correctAnswer}</Text>
+            <View style={styles.manualRow}>
+              <TouchableOpacity style={[styles.manualBtn, styles.correctBtn]} disabled={judgmentSubmitted} onPress={() => registerAnswer(true)}>
+                <Text style={styles.manualText}>✓ {t('common.correct')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={[styles.manualBtn, styles.wrongBtn]} disabled={judgmentSubmitted} onPress={() => registerAnswer(false)}>
+                <Text style={styles.manualText}>✕ {t('common.wrong')}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         )}
       </View>
 
       {/* ── FEEDBACK ── */}
-      {revealed && (
+      {judgmentSubmitted && (
         <View style={[styles.feedbackBar, answeredCorrectly ? styles.feedbackCorrect : styles.feedbackWrong]}>
           <Text style={styles.feedbackLabel}>
             {answeredCorrectly ? `✓ ${t('common.correct')} · ${t('game.pointsEarned', { points: lastPointsEarned })}` : `✕ ${t('game.correctAnswer')}: ${correctAnswer}`}
@@ -699,12 +738,13 @@ export default function GameScreen({ navigation }: Props) {
           )}
         </View>
       )}
+      </ScrollView>
 
       {/* ── NEXT BTN ── */}
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[styles.nextBtn, !revealed && styles.nextDisabled]}
-          disabled={!revealed}
+          style={[styles.nextBtn, !judgmentSubmitted && styles.nextDisabled]}
+          disabled={!judgmentSubmitted}
           onPress={goNext}>
           <Text style={styles.nextText}>
             {isLast ? `🏆 ${t('results.title')}` : `${t('common.next')} ›`}
@@ -715,41 +755,71 @@ export default function GameScreen({ navigation }: Props) {
       {/* ── TV CONNECT MODAL ── */}
       <Modal visible={tvModalVisible} transparent animationType="slide" onRequestClose={() => setTvModalVisible(false)}>
         <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTvModalVisible(false)}>
-          <TouchableOpacity activeOpacity={1} style={styles.modalSheet}>
-            <Text style={styles.modalTitle}>📺 {t('tvDisplay.title')}</Text>
+          <TouchableOpacity activeOpacity={1} style={[styles.modalSheet, { paddingBottom: 28 + insets.bottom }]}>
+            <View style={[styles.modalHeader, language !== 'en' && styles.modalHeaderRtl]}>
+              <View style={styles.modalHeading}>
+                <Text style={[styles.modalTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.title')}</Text>
+                <Text style={[styles.modalSubtitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.chooseMethod')}</Text>
+              </View>
+              <TouchableOpacity style={styles.modalCloseBtn} onPress={() => setTvModalVisible(false)}>
+                <Text style={styles.modalCloseText}>✕</Text>
+              </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity
-              style={styles.modalMirrorBtn}
-              onPress={() => { setTvModalVisible(false); setPresentationMode(true); openMirrorSettings(); }}>
-              <Text style={styles.modalMirrorText}>📡 {t('tvDisplay.mirrorTitle')}</Text>
-              <Text style={styles.modalMirrorHint}>{t('tvDisplay.mirrorHint')}</Text>
-            </TouchableOpacity>
+            <View style={styles.displayCodeCard}>
+              <Text style={styles.modalCodeLabel}>{t('tvDisplay.displayCode')}</Text>
+              <Text style={styles.modalCode}>{tvDisplayCode}</Text>
+            </View>
 
-            <Text style={styles.modalDivider}>{t('tvDisplay.orUseCode')}</Text>
+            <View style={styles.tvMethods}>
+              <TouchableOpacity
+                style={[styles.tvMethodBtn, styles.tvMethodPrimary, language !== 'en' && styles.tvMethodRtl]}
+                onPress={() => { setTvModalVisible(false); setPresentationMode(true); openMirrorSettings(); }}>
+                <View style={[styles.tvMethodIcon, styles.tvMethodPrimaryIcon]}>
+                  <Text style={styles.tvMethodIconText}>▣</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.directTitle')}</Text>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.directHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
+              </TouchableOpacity>
 
-            <Text style={styles.modalSubtitle}>{t('tvDisplay.openSite')}</Text>
-            <Text style={styles.modalSite}>tahaddii.com/tv</Text>
-            <Text style={styles.modalCodeLabel}>{t('tvDisplay.enterCode')}</Text>
-            <Text style={styles.modalCode}>{tvDisplayCode}</Text>
-            <TouchableOpacity
-              style={styles.modalCopyBtn}
-              onPress={() => {
-                if (tvDisplayCode) {
-                  Clipboard.setString(getTvDisplayUrl(tvDisplayCode));
-                  Alert.alert('✓', t('common.copied') ?? 'Copied!');
-                }
-              }}>
-              <Text style={styles.modalCopyText}>📋 {t('common.copyLink')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.modalScanBtn}
-              onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
-              <Text style={styles.modalScanText}>📷 {t('tvDisplay.scanQr')}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.tvMethodBtn, styles.tvMethodRecommended, language !== 'en' && styles.tvMethodRtl]}
+                onPress={() => { setTvModalVisible(false); navigation.navigate('TvPairingScanner'); }}>
+                <View style={[styles.tvMethodIcon, styles.tvMethodRecommendedIcon]}>
+                  <Text style={styles.tvMethodIconText}>⌗</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <View style={[styles.tvMethodTitleRow, language !== 'en' && styles.tvMethodTitleRowRtl]}>
+                    <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.scanActionTitle')}</Text>
+                    <Text style={styles.recommendedBadge}>{t('tvDisplay.recommended')}</Text>
+                  </View>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.scanActionHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity style={styles.modalCloseBtn} onPress={() => setTvModalVisible(false)}>
-              <Text style={styles.modalCloseText}>{t('common.close')}</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.tvMethodBtn, language !== 'en' && styles.tvMethodRtl]}
+                onPress={() => {
+                  if (tvDisplayCode) {
+                    Clipboard.setString(getTvDisplayUrl(tvDisplayCode));
+                    Alert.alert('✓', t('tvDisplay.linkCopied'));
+                  }
+                }}>
+                <View style={styles.tvMethodIcon}>
+                  <Text style={styles.tvMethodIconText}>□</Text>
+                </View>
+                <View style={styles.tvMethodContent}>
+                  <Text style={[styles.tvMethodTitle, language !== 'en' && styles.textRtl]}>{t('tvDisplay.copyLinkTitle')}</Text>
+                  <Text style={[styles.tvMethodHint, language !== 'en' && styles.textRtl]}>{t('tvDisplay.copyLinkHint')}</Text>
+                </View>
+                <Text style={styles.tvMethodArrow}>{language === 'en' ? '›' : '‹'}</Text>
+              </TouchableOpacity>
+            </View>
+
           </TouchableOpacity>
         </TouchableOpacity>
       </Modal>
@@ -779,6 +849,8 @@ const { width: W } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: Colors.background },
+  gameScroll: { flex: 1 },
+  gameScrollContent: { flexGrow: 1 },
 
   topBar: {
     flexDirection: 'row', alignItems: 'center',
@@ -909,6 +981,10 @@ const styles = StyleSheet.create({
   answerText: { flex: 1, fontSize: 14, color: Colors.text, fontWeight: '500' },
   answerTextRtl: { textAlign: 'right', writingDirection: 'rtl' },
 
+  manualBlock: { flex: 1, gap: 12 },
+  revealedAnswer: { color: Colors.text, fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  revealBtn: { flex: 1, minHeight: 84, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.primary },
+  revealBtnText: { color: Colors.text, fontSize: 20, fontWeight: '800' },
   manualRow: { flex: 1, flexDirection: 'row', gap: 12 },
   manualBtn: { flex: 1, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   correctBtn: { backgroundColor: Colors.success },
@@ -977,45 +1053,56 @@ const styles = StyleSheet.create({
   },
   modalSheet: {
     backgroundColor: Colors.backgroundCard,
-    borderTopLeftRadius: 28, borderTopRightRadius: 28,
-    padding: 28, gap: 12,
+    borderTopLeftRadius: 24, borderTopRightRadius: 24,
+    paddingHorizontal: 20, paddingTop: 20, gap: 18,
     borderWidth: 1, borderColor: Colors.border,
-    alignItems: 'center',
   },
-  modalTitle: { color: Colors.text, fontSize: 20, fontWeight: '900' },
-  modalMirrorBtn: {
-    width: '100%', backgroundColor: Colors.success,
-    borderRadius: 16, paddingVertical: 16, paddingHorizontal: 14,
-    alignItems: 'center', gap: 2,
+  modalHeader: { width: '100%', flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  modalHeaderRtl: { flexDirection: 'row-reverse' },
+  modalHeading: { flex: 1, gap: 4 },
+  modalTitle: { color: Colors.text, fontSize: 21, fontWeight: '900' },
+  modalSubtitle: { color: Colors.textMuted, fontSize: 14, lineHeight: 20 },
+  textRtl: { textAlign: 'right', writingDirection: 'rtl' },
+  modalCloseBtn: {
+    width: 36, height: 36, borderRadius: 18,
+    alignItems: 'center', justifyContent: 'center',
+    backgroundColor: Colors.background, borderWidth: 1, borderColor: Colors.border,
   },
-  modalMirrorText: { color: Colors.text, fontSize: 17, fontWeight: '900' },
-  modalMirrorHint: { color: Colors.text, opacity: 0.85, fontSize: 12, fontWeight: '600' },
-  modalDivider: { color: Colors.textMuted, fontSize: 12, fontWeight: '700', marginTop: 4 },
-  modalSubtitle: { color: Colors.textMuted, fontSize: 14, textAlign: 'center' },
-  modalSite: {
-    color: Colors.primaryLight, fontSize: 18, fontWeight: '800',
+  modalCloseText: { color: Colors.textMuted, fontSize: 16, fontWeight: '800' },
+  displayCodeCard: {
+    width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    paddingHorizontal: 16, paddingVertical: 12, borderRadius: 12,
+    backgroundColor: Colors.background, borderWidth: 1, borderColor: Colors.border,
+  },
+  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700' },
+  modalCode: { color: Colors.accent, fontSize: 28, fontWeight: '900', letterSpacing: 4 },
+  tvMethods: { width: '100%', gap: 10 },
+  tvMethodBtn: {
+    width: '100%', minHeight: 78, flexDirection: 'row', alignItems: 'center', gap: 12,
+    padding: 12, borderRadius: 14, backgroundColor: Colors.background,
+    borderWidth: 1, borderColor: Colors.border,
+  },
+  tvMethodRtl: { flexDirection: 'row-reverse' },
+  tvMethodPrimary: { borderColor: Colors.primary },
+  tvMethodRecommended: { borderColor: Colors.success, backgroundColor: Colors.success + '12' },
+  tvMethodIcon: {
+    width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center',
     backgroundColor: Colors.primary + '22',
-    paddingHorizontal: 20, paddingVertical: 10,
-    borderRadius: 12, overflow: 'hidden',
   },
-  modalCodeLabel: { color: Colors.textMuted, fontSize: 13, fontWeight: '700', marginTop: 4 },
-  modalCode: {
-    color: Colors.accent, fontSize: 52, fontWeight: '900',
-    letterSpacing: 10, textAlign: 'center',
+  tvMethodPrimaryIcon: { backgroundColor: Colors.primary + '35' },
+  tvMethodRecommendedIcon: { backgroundColor: Colors.success + '35' },
+  tvMethodIconText: { color: Colors.text, fontSize: 23, fontWeight: '900' },
+  tvMethodContent: { flex: 1, gap: 3 },
+  tvMethodTitleRow: { flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' },
+  tvMethodTitleRowRtl: { flexDirection: 'row-reverse', justifyContent: 'flex-start' },
+  tvMethodTitle: { color: Colors.text, fontSize: 15, fontWeight: '900' },
+  tvMethodHint: { color: Colors.textMuted, fontSize: 12, lineHeight: 17 },
+  tvMethodArrow: { color: Colors.textMuted, fontSize: 27, fontWeight: '500' },
+  recommendedBadge: {
+    color: Colors.success, fontSize: 10, fontWeight: '900',
+    backgroundColor: Colors.success + '22', paddingHorizontal: 7, paddingVertical: 3,
+    borderRadius: 8, overflow: 'hidden',
   },
-  modalCopyBtn: {
-    width: '100%', backgroundColor: Colors.primary,
-    borderRadius: 14, padding: 14, alignItems: 'center',
-  },
-  modalCopyText: { color: Colors.text, fontSize: 15, fontWeight: '800' },
-  modalScanBtn: {
-    width: '100%', backgroundColor: Colors.backgroundCard,
-    borderRadius: 14, padding: 14, alignItems: 'center',
-    borderWidth: 1, borderColor: Colors.border,
-  },
-  modalScanText: { color: Colors.text, fontSize: 15, fontWeight: '700' },
-  modalCloseBtn: { paddingVertical: 8 },
-  modalCloseText: { color: Colors.textMuted, fontSize: 14 },
 });
 
 // Presentation-mode palette — mirrors the tahaddii.com/tv web display so a
@@ -1092,6 +1179,10 @@ const pStyles = StyleSheet.create({
   answerText: { flex: 1, fontSize: 18, color: P.text, fontWeight: '700' },
   answerTextRtl: { textAlign: 'right', writingDirection: 'rtl' },
 
+  manualBlock: { flex: 1, gap: 14 },
+  revealedAnswer: { color: P.text, fontSize: 22, fontWeight: '900', textAlign: 'center' },
+  revealBtn: { flex: 1, minHeight: 100, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: P.primary },
+  revealBtnText: { color: P.text, fontSize: 24, fontWeight: '900' },
   manualRow: { flex: 1, flexDirection: 'row', gap: 14 },
   manualBtn: { flex: 1, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   correctBtn: { backgroundColor: P.success },

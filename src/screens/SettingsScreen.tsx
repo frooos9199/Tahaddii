@@ -10,6 +10,7 @@ import { useTheme } from '../theme/ThemeContext';
 import { changeLanguage } from '../localization/i18n';
 import { RootStackParamList } from '../types';
 import { useAuthStore } from '../store/authStore';
+import { formatUserIdentifierLabel } from '../services/entitlements/entitlementService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Settings'> };
 
@@ -95,6 +96,16 @@ export default function SettingsScreen({ navigation }: Props) {
           </TouchableOpacity>
           <Text style={[styles.title, isArabic && styles.titleRtl]}>{t('settings.title')}</Text>
         </View>
+
+        {formatUserIdentifierLabel(userRecord) ? (
+          <View style={styles.panel}>
+            <Text style={[styles.panelTitle, isArabic && styles.textRtl]}>{t('settings.myNumberTitle')}</Text>
+            <Text style={[styles.panelNote, isArabic && styles.textRtl]}>{t('settings.myNumberHint')}</Text>
+            <View style={styles.numberBadge}>
+              <Text style={styles.numberBadgeText}>{formatUserIdentifierLabel(userRecord)}</Text>
+            </View>
+          </View>
+        ) : null}
 
         <View style={styles.panel}>
           <Text style={[styles.panelTitle, isArabic && styles.textRtl]}>{t('settings.language')}</Text>
@@ -191,6 +202,16 @@ const styles = StyleSheet.create({
   },
   panelTitle: { color: Colors.text, fontSize: 18, fontWeight: '700' },
   panelNote: { color: Colors.textMuted, fontSize: 13, lineHeight: 20 },
+  numberBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: Colors.primary + '22',
+    borderWidth: 1.5,
+    borderColor: Colors.primary,
+    borderRadius: 14,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+  },
+  numberBadgeText: { color: Colors.primaryLight, fontSize: 20, fontWeight: '900' },
   textRtl: { textAlign: 'right' },
   langRow: { flexDirection: 'row', gap: 10 },
   langRowRtl: { flexDirection: 'row-reverse' },

@@ -1,0 +1,206 @@
+[
+  {
+    "id": "anime-new-50",
+    "answersAr": ["باتوساي", "أوكاشيرا", "ذئب ميبو", "صياد السيوف"],
+    "answersEn": ["Battosai", "Okashira", "Wolf of Mibu", "Sword Hunter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-33",
+    "answersAr": ["ماكوتو يوكيمورا", "كينتارو ميورا", "هيرواكي سامورا", "شينيتشي ساكاموتو"],
+    "answersEn": ["Makoto Yukimura", "Kentaro Miura", "Hiroaki Samura", "Shinichi Sakamoto"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-34",
+    "answersAr": ["سوزاكو كوروروغي", "لولوش لامبروج", "كالين شتادتفِلد", "جيرمايا غوتفالد"],
+    "answersEn": ["Suzaku Kururugi", "Lelouch Lamperouge", "Kallen Stadtfeld", "Jeremiah Gottwald"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-35",
+    "answersAr": ["يوشيتوشي آبيه", "ياسوهيرو نايتو", "رانج موراتا", "موهيرو كيتو"],
+    "answersEn": ["Yoshitoshi ABe", "Yasuhiro Nightow", "Range Murata", "Mohiro Kitoh"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-36",
+    "answersAr": ["مادهاوس", "ساينس سارو", "شافت", "برودكشن آي جي"],
+    "answersEn": ["Madhouse", "Science SARU", "Shaft", "Production I.G"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-37",
+    "answersAr": ["كازويا تسورُماكي", "هيدياكي آنّو", "شينغو ناتسومي", "هيرويوكي إيمايشي"],
+    "answersEn": ["Kazuya Tsurumaki", "Hideaki Anno", "Shingo Natsume", "Hiroyuki Imaishi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-38",
+    "answersAr": ["ماكوتو شينكاي", "مامورو هوسودا", "ساتوشي كون", "مامورو أوشي"],
+    "answersEn": ["Makoto Shinkai", "Mamoru Hosoda", "Satoshi Kon", "Mamoru Oshii"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-39",
+    "answersAr": ["شافت", "مابا", "بونز", "أيه-1 بيكتشرز"],
+    "answersEn": ["Shaft", "MAPPA", "Bones", "A-1 Pictures"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-40",
+    "answersAr": ["غِن أوروبوتشي", "ناسو كينوكو", "ماري أوكادا", "جوكي هانادا"],
+    "answersEn": ["Gen Urobuchi", "Kinoko Nasu", "Mari Okada", "Jukki Hanada"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-41",
+    "answersAr": ["ريوكو إيكيدا", "موتو هاغيو", "كيكو تاكيميا", "ناوكو تاكيوتشي"],
+    "answersEn": ["Riyoko Ikeda", "Moto Hagio", "Keiko Takemiya", "Naoko Takeuchi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-42",
+    "answersAr": ["بويتشي", "ريوهي تامورا", "يوسوكي موراتا", "شينيتشي ساكاموتو"],
+    "answersEn": ["Boichi", "Ryuhei Tamura", "Yusuke Murata", "Shinichi Sakamoto"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-43",
+    "answersAr": ["أورانج", "بوليغون بيكتشرز", "سانزيغن", "غرافينيكا"],
+    "answersEn": ["Orange", "Polygon Pictures", "Sanzigen", "Graphinica"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-44",
+    "answersAr": ["كايمان", "نيكايدو", "إن", "شين"],
+    "answersEn": ["Kaiman", "Nikaido", "En", "Shin"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-45",
+    "answersAr": ["ماساكي يواسا", "ساتوشي كون", "شينيتشيرو واتانابي", "مامورو هوسودا"],
+    "answersEn": ["Masaaki Yuasa", "Satoshi Kon", "Shinichiro Watanabe", "Mamoru Hosoda"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-46",
+    "answersAr": ["تشياكي جيه. كوناكا", "داي ساتو", "كازونوري إيتو", "شو آيكاوا"],
+    "answersEn": ["Chiaki J. Konaka", "Dai Sato", "Kazunori Ito", "Sho Aikawa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-47",
+    "answersAr": ["دوميناتور", "كاستر", "سيبورو", "ماتبا أوتوريڤولفر"],
+    "answersEn": ["Dominator", "Caster", "Seburo", "Mateba Autorevolver"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-48",
+    "answersAr": ["شويتشي شيغينو", "ميشيهارو كوسونوكي", "ماساهيتو سودا", "كوسوكي فوجيشيما"],
+    "answersEn": ["Shuichi Shigeno", "Michiharu Kusunoki", "Masahito Soda", "Kosuke Fujishima"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-49",
+    "answersAr": ["كونيهيكو إيكوهارا", "مامورو هوسودا", "هاياو ميازاكي", "هيدياكي آنّو"],
+    "answersEn": ["Kunihiko Ikuhara", "Mamoru Hosoda", "Hayao Miyazaki", "Hideaki Anno"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-hard-50",
+    "answersAr": ["غايناكس", "تريغر", "بونز", "أيه-1 بيكتشرز"],
+    "answersEn": ["Gainax", "Trigger", "Bones", "A-1 Pictures"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-1",
+    "answersAr": ["هوكاغي", "كازيكاغي", "ميزوكاغي", "رايكاغي"],
+    "answersEn": ["Hokage", "Kazekage", "Mizukage", "Raikage"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-2",
+    "answersAr": ["قرية الورقة المخفية", "قرية الرمل المخفية", "قرية الضباب المخفية", "قرية السحاب المخفية"],
+    "answersEn": ["Hidden Leaf Village", "Hidden Sand Village", "Hidden Mist Village", "Hidden Cloud Village"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-3",
+    "answersAr": ["قراصنة قبعة القش", "قراصنة الشعر الأحمر", "قراصنة القلب", "قراصنة اللحية السوداء"],
+    "answersEn": ["Straw Hat Pirates", "Red Hair Pirates", "Heart Pirates", "Blackbeard Pirates"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-4",
+    "answersAr": ["سايان", "ناميكي", "ماجين", "سيريالي"],
+    "answersEn": ["Saiyan", "Namekian", "Majin", "Cerealian"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-5",
+    "answersAr": ["ألفونس إلريك", "روي موستانغ", "مايس هيوز", "سكار"],
+    "answersEn": ["Alphonse Elric", "Roy Mustang", "Maes Hughes", "Scar"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-6",
+    "answersAr": ["آش كيتشَم", "غاري أوك", "بروك", "تريسي سكتشيت"],
+    "answersEn": ["Ash Ketchum", "Gary Oak", "Brock", "Tracey Sketchit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-7",
+    "answersAr": ["أوساغي تسوكينو", "ري هينو", "آمي ميزونو", "ميناكو آينو"],
+    "answersEn": ["Usagi Tsukino", "Rei Hino", "Ami Mizuno", "Minako Aino"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-8",
+    "answersAr": ["تايتنز", "كايجو", "هولو", "لعنات"],
+    "answersEn": ["Titans", "Kaiju", "Hollows", "Curses"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-9",
+    "answersAr": ["U.A. الثانوية", "ثانوية شيكيتسو", "أكاديمية كيتسوبوتسو", "أكاديمية إيسامو"],
+    "answersEn": ["U.A. High School", "Shiketsu High School", "Ketsubutsu Academy", "Isamu Academy"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-10",
+    "answersAr": ["نيزوكو كامادو", "كاناو تسويوري", "آوي كانزاكي", "ميتسوري كانروجي"],
+    "answersEn": ["Nezuko Kamado", "Kanao Tsuyuri", "Aoi Kanzaki", "Mitsuri Kanroji"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-11",
+    "answersAr": ["كاكاشي هاتاكي", "مايت غاي", "أسوما ساروتوبي", "إيروكا أومينو"],
+    "answersEn": ["Kakashi Hatake", "Might Guy", "Asuma Sarutobi", "Iruka Umino"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-12",
+    "answersAr": ["نامي", "نيكو روبين", "سانجي", "يوسوب"],
+    "answersEn": ["Nami", "Nico Robin", "Sanji", "Usopp"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-13",
+    "answersAr": ["فيجيتا", "غوكو", "برولي", "غوهان"],
+    "answersEn": ["Vegeta", "Goku", "Broly", "Gohan"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-14",
+    "answersAr": ["التحويل البشري", "خيمياء اللهب", "الخيمياء الطبية", "تحويل المعادن"],
+    "answersEn": ["Human transmutation", "Flame alchemy", "Medical alchemy", "Metal transmutation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "anime-new-15",
+    "answersAr": ["مجتمع الأرواح", "هويكو موندو", "عالم الأحياء", "الجحيم"],
+    "answersEn": ["Soul Society", "Hueco Mundo", "World of the Living", "Hell"],
+    "correctAnswerIndex": 0
+  }
+]

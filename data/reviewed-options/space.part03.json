@@ -1,0 +1,242 @@
+[
+  {
+    "id": "space-new-11",
+    "answersAr": ["الغلاف الجوي", "الغلاف المغناطيسي", "القشرة الأرضية", "الغلاف المائي"],
+    "answersEn": ["Atmosphere", "Magnetosphere", "Earth's crust", "Hydrosphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-12",
+    "answersAr": ["مسبار", "كبسولة مأهولة", "مكوك فضائي", "مركبة هبوط مأهولة"],
+    "answersEn": ["Probe", "Crewed capsule", "Space shuttle", "Crewed lander"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-13",
+    "answersAr": ["المريخ", "الزهرة", "المشتري", "عطارد"],
+    "answersEn": ["Mars", "Venus", "Jupiter", "Mercury"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-14",
+    "answersAr": ["طور قمري", "خسوف قمري", "تحرر قمري", "قفل مدي"],
+    "answersEn": ["Lunar phase", "Lunar eclipse", "Lunar libration", "Tidal locking"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-15",
+    "answersAr": ["كويكبات", "مذنبات", "نيازك صغيرة", "كواكب قزمة"],
+    "answersEn": ["Asteroids", "Comets", "Meteoroids", "Dwarf planets"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-16",
+    "answersAr": ["من ضوء الشمس", "من ضوء الأرض", "من ضوئه الذاتي", "من ضوء النجوم البعيدة"],
+    "answersEn": ["From sunlight", "From Earthlight", "From its own light", "From distant starlight"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-17",
+    "answersAr": ["عطارد", "الزهرة", "الأرض", "المريخ"],
+    "answersEn": ["Mercury", "Venus", "Earth", "Mars"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-18",
+    "answersAr": ["المريخ", "الزهرة", "الأرض", "عطارد"],
+    "answersEn": ["Mars", "Venus", "Earth", "Mercury"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-19",
+    "answersAr": ["الميثان", "الهيدروجين", "الهيليوم", "الأمونيا"],
+    "answersEn": ["Methane", "Hydrogen", "Helium", "Ammonia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-20",
+    "answersAr": ["كواكب خارجية", "كواكب تائهة", "كواكب قزمة", "كواكب النظام الشمسي"],
+    "answersEn": ["Exoplanets", "Rogue planets", "Dwarf planets", "Solar System planets"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-21",
+    "answersAr": ["لأن دورانه حول نفسه يساوي زمن دورانه حول الأرض", "لأن القمر لا يدور حول نفسه", "لأن الأرض تدور بالسرعة نفسها حول الشمس", "لأن محور القمر لا يميل"],
+    "answersEn": ["Because its rotation period matches its orbit around Earth", "Because the Moon does not rotate on its axis", "Because Earth orbits the Sun at the same rate", "Because the Moon's axis has no tilt"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-22",
+    "answersAr": ["حزام كايبر", "سحابة أورت", "حزام الكويكبات", "الغلاف الشمسي"],
+    "answersEn": ["Kuiper Belt", "Oort Cloud", "Asteroid Belt", "Heliosphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-23",
+    "answersAr": ["المشتري", "زحل", "نبتون", "أورانوس"],
+    "answersEn": ["Jupiter", "Saturn", "Neptune", "Uranus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-24",
+    "answersAr": ["إنسيلادوس", "تيتان", "ميماس", "ريا"],
+    "answersEn": ["Enceladus", "Titan", "Mimas", "Rhea"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-25",
+    "answersAr": ["ضوء الشمس", "الرياح الشمسية", "الحرارة الداخلية", "الأشعة الكونية"],
+    "answersEn": ["Sunlight", "Solar wind", "Internal heat", "Cosmic rays"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-26",
+    "answersAr": ["المريخ", "الزهرة", "عطارد", "نبتون"],
+    "answersEn": ["Mars", "Venus", "Mercury", "Neptune"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-27",
+    "answersAr": ["الحضيض الشمسي", "الأوج الشمسي", "العقدة الصاعدة", "بؤرة المدار"],
+    "answersEn": ["Perihelion", "Aphelion", "Ascending node", "Orbital focus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-28",
+    "answersAr": ["أورانوس", "نبتون", "زحل", "المشتري"],
+    "answersEn": ["Uranus", "Neptune", "Saturn", "Jupiter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-29",
+    "answersAr": ["بحار قمرية", "مرتفعات قمرية", "فوهات قمرية", "أخاديد قمرية"],
+    "answersEn": ["Maria", "Lunar highlands", "Lunar craters", "Lunar rilles"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-30",
+    "answersAr": ["الشفق القطبي", "التوهج الجوي", "ضوء البروج", "الضوء المقابل"],
+    "answersEn": ["Aurora", "Airglow", "Zodiacal light", "Gegenschein"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-31",
+    "answersAr": ["الرياح الشمسية", "جاذبية الشمس", "سرعة المذنب المدارية", "الرياح بين النجمية"],
+    "answersEn": ["Solar wind", "Solar gravity", "The comet's orbital speed", "Interstellar wind"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-32",
+    "answersAr": ["أوروبا", "غانيميد", "كاليستو", "آيو"],
+    "answersEn": ["Europa", "Ganymede", "Callisto", "Io"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-33",
+    "answersAr": ["مجرة", "سديم", "عنقود نجمي", "كوكبة"],
+    "answersEn": ["Galaxy", "Nebula", "Star cluster", "Constellation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-34",
+    "answersAr": ["أورانوس", "نبتون", "زحل", "المشتري"],
+    "answersEn": ["Uranus", "Neptune", "Saturn", "Jupiter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-35",
+    "answersAr": ["كوبرنيكوس", "بطليموس", "كبلر", "غاليليو"],
+    "answersEn": ["Copernicus", "Ptolemy", "Kepler", "Galileo"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-36",
+    "answersAr": ["مدار ثابت بالنسبة للأرض", "مدار قطبي", "مدار متزامن مع الشمس", "مدار مولنيا"],
+    "answersEn": ["Geostationary orbit", "Polar orbit", "Sun-synchronous orbit", "Molniya orbit"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-37",
+    "answersAr": ["نبتون", "أورانوس", "زحل", "المشتري"],
+    "answersEn": ["Neptune", "Uranus", "Saturn", "Jupiter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-38",
+    "answersAr": ["هيليوبوز", "صدمة النهاية", "الغمد الشمسي", "صدمة القوس"],
+    "answersEn": ["Heliopause", "Termination shock", "Heliosheath", "Bow shock"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-39",
+    "answersAr": ["سيريس", "بلوتو", "إيريس", "هاوميا"],
+    "answersEn": ["Ceres", "Pluto", "Eris", "Haumea"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-40",
+    "answersAr": ["أحزمة فان ألن", "الغلاف المغناطيسي", "الغلاف الأيوني", "الغلاف البلازمي"],
+    "answersEn": ["Van Allen belts", "Magnetosphere", "Ionosphere", "Plasmasphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-41",
+    "answersAr": ["نيو هورايزنز", "فوييجر 1", "كاسيني", "جونو"],
+    "answersEn": ["New Horizons", "Voyager 1", "Cassini", "Juno"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-42",
+    "answersAr": ["المنطقة الصالحة للحياة", "خط الصقيع", "حد روش", "كرة هيل"],
+    "answersEn": ["Habitable zone", "Frost line", "Roche limit", "Hill sphere"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-43",
+    "answersAr": ["تيتان", "إنسيلادوس", "ريا", "إيابيتوس"],
+    "answersEn": ["Titan", "Enceladus", "Rhea", "Iapetus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-44",
+    "answersAr": ["ميسنجر", "مارينر 10", "بيبي كولومبو", "سولار أوربيتر"],
+    "answersEn": ["MESSENGER", "Mariner 10", "BepiColombo", "Solar Orbiter"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-45",
+    "answersAr": ["كانوبس", "السماك الرامح", "رجل القنطور", "النسر الواقع"],
+    "answersEn": ["Canopus", "Arcturus", "Alpha Centauri", "Vega"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-46",
+    "answersAr": ["تريتون", "بروتيوس", "نيريد", "لاريسا"],
+    "answersEn": ["Triton", "Proteus", "Nereid", "Larissa"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-47",
+    "answersAr": ["الانزياح الأحمر", "الانزياح الأزرق", "الانزياح الأحمر الجذبي", "اتساع دوبلر"],
+    "answersEn": ["Redshift", "Blueshift", "Gravitational redshift", "Doppler broadening"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-48",
+    "answersAr": ["كرو دراغون", "ستارلاينر", "أوريون", "دريم تشيسر"],
+    "answersEn": ["Crew Dragon", "Starliner", "Orion", "Dream Chaser"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-49",
+    "answersAr": ["زحل", "المشتري", "نبتون", "أورانوس"],
+    "answersEn": ["Saturn", "Jupiter", "Neptune", "Uranus"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "space-new-50",
+    "answersAr": ["السبق المحوري", "الترنح المحوري", "تغير الميل المحوري", "سبق الحضيض"],
+    "answersEn": ["Axial precession", "Nutation", "Obliquity variation", "Apsidal precession"],
+    "correctAnswerIndex": 0
+  }
+]

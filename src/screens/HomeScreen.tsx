@@ -14,10 +14,10 @@ import { useGameStore } from '../store/gameStore';
 import { useOnlineStore } from '../store/onlineStore';
 import { useProfileStore } from '../store/profileStore';
 import { useAuthStore } from '../store/authStore';
-import { CATEGORY_EMOJIS } from '../constants';
+import { CATEGORY_EMOJIS, PLAYER_COLORS } from '../constants';
 import { getCachedCategoryCards, getCategoryCardLabel, getCategoryFallbackEmoji, listCategoryCards } from '../services/categories/categoryCardService';
 import { getQuestionImageUrls, preloadImageUrl } from '../services/media/questionMediaService';
-import { getLockedCategoryIds } from '../services/entitlements/entitlementService';
+import { getLockedCategoryIds, formatUserIdentifierLabel } from '../services/entitlements/entitlementService';
 import { getContactConfig, buildWhatsAppUrl, getEntitlementsConfig, isGlobalUnlockActive } from '../services/config/appConfigService';
 import {
   getCategoryQuestionCount,
@@ -126,9 +126,12 @@ export default function HomeScreen({ navigation }: Props) {
   const stats = useAppStore(s => s.stats);
   const loadSavedGame = useGameStore(s => s.loadSavedGame);
   const updateSettings = useGameStore(s => s.updateSettings);
+  const addPlayer = useGameStore(s => s.addPlayer);
+  const setPendingPlayers = useGameStore(s => s.setPendingPlayers);
+  const setPendingTeams = useGameStore(s => s.setPendingTeams);
   const { publicRooms, subscribeDiscoverableRooms, clearDiscoverableRooms } = useOnlineStore();
   const profile = useProfileStore(s => s.profile);
-  const { userRecord, refreshUserRecord } = useAuthStore();
+  const { user, userRecord, refreshUserRecord } = useAuthStore();
   const [hasSaved, setHasSaved] = useState(false);
   const [categoryCards, setCategoryCards] = useState<CategoryCard[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<CategoryId[]>([]);
@@ -155,9 +158,13 @@ export default function HomeScreen({ navigation }: Props) {
 
   useEffect(() => {
     loadSavedGame().then(setHasSaved);
-    void subscribeDiscoverableRooms();
+    if (user && !user.isAnonymous) {
+      void subscribeDiscoverableRooms();
+    } else {
+      clearDiscoverableRooms();
+    }
     return () => clearDiscoverableRooms();
-  }, [clearDiscoverableRooms, loadSavedGame, subscribeDiscoverableRooms]);
+  }, [clearDiscoverableRooms, loadSavedGame, subscribeDiscoverableRooms, user]);
 
   useEffect(() => {
     let isMounted = true;
@@ -213,7 +220,7 @@ export default function HomeScreen({ navigation }: Props) {
     }
     const message = t('categories.whatsappUnlockMessage', {
       category: getCategoryCardLabel(card, language === 'en' ? 'en' : 'ar'),
-      customerNumber: userRecord?.customerNumber ?? '-',
+      customerNumber: formatUserIdentifierLabel(userRecord) ?? '-',
     });
     Linking.openURL(buildWhatsAppUrl(whatsappNumber, message)).catch(() => {
       Alert.alert('', t('categories.whatsappOpenFailed'));
@@ -231,6 +238,19 @@ export default function HomeScreen({ navigation }: Props) {
       : visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id);
     updateSettings({ categories });
     navigation.navigate('GameModeSelect');
+  };
+
+  const quickStart = () => {
+    const categories = unlockedSelectedCategories.length
+      ? unlockedSelectedCategories
+      : visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id);
+    const playerName = profile.name.trim() || userRecord?.displayName?.trim() || t('common.player');
+
+    updateSettings({ mode: 'solo', categories });
+    setPendingPlayers([]);
+    setPendingTeams([]);
+    addPlayer(playerName, 'boy', PLAYER_COLORS[0]);
+    navigation.navigate('GameSetup');
   };
 
   const onlineCount = publicRooms.length;
@@ -289,19 +309,21 @@ export default function HomeScreen({ navigation }: Props) {
         )}
 
         {/* ── ONLINE BANNER ── */}
-        <TouchableOpacity style={styles.onlineBanner} onPress={() => navigation.navigate('OnlinePlay')}>
-          <View style={styles.onlineBannerLeft}>
-            <Text style={styles.onlineBannerIcon}>🌐</Text>
-            <View>
-              <Text style={styles.onlineBannerTitle}>{t('home.onlineBannerTitle')}</Text>
-              <Text style={styles.onlineBannerSub}>
-                {onlineCount > 0 ? t('home.activeRoomsNow', { count: onlineCount }) : t('home.createRoomInvite')}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.onlineBannerBadge}>
-            <Text style={styles.onlineBannerBadgeText}>{t('home.newBadge')}</Text>
-          </View>
+        <TouchableOpacity
+          style={styles.onlineBanner}
+          accessibilityRole="button"
+          accessibilityLabel={t('home.onlineBannerTitle')}
+          onPress={() => navigation.navigate('OnlinePlay')}>
+          <Image source={require('../assets/home/online-play.png')} style={styles.homeActionImage} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.quickBtn, !visibleCards.length && styles.startChallengeDisabled]}
+          disabled={!visibleCards.length}
+          accessibilityRole="button"
+          accessibilityLabel={t('home.quickPlay')}
+          onPress={quickStart}>
+          <Image source={require('../assets/home/quick-play.png')} style={styles.homeActionImage} />
         </TouchableOpacity>
 
         <View style={styles.categoryHeader}>
@@ -352,9 +374,9 @@ export default function HomeScreen({ navigation }: Props) {
 
         {/* ── BOTTOM MENU ── */}
         <View style={styles.bottomMenu}>
-          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Profile')}>
+          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate(user && !user.isAnonymous ? 'Profile' : 'Auth')}>
             <Text style={styles.bottomIcon}>👤</Text>
-            <Text style={styles.bottomLabel}>{t('common.profile')}</Text>
+            <Text style={styles.bottomLabel}>{user && !user.isAnonymous ? t('common.profile') : t('home.accountMenuLabel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('LanguageSelect')}>
             <Text style={styles.bottomIcon}>🌐</Text>
@@ -363,10 +385,6 @@ export default function HomeScreen({ navigation }: Props) {
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Subscription')}>
             <Text style={styles.bottomIcon}>💳</Text>
             <Text style={styles.bottomLabel}>{t('home.subscriptionMenuLabel')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('PromoCodeRedeem')}>
-            <Text style={styles.bottomIcon}>🎫</Text>
-            <Text style={styles.bottomLabel}>{t('home.promoMenuLabel')}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.bottomBtn} onPress={() => navigation.navigate('Settings')}>
             <Text style={styles.bottomIcon}>⚙️</Text>
@@ -423,16 +441,22 @@ const styles = StyleSheet.create({
   onlineDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: Colors.success },
 
   quickBtn: {
-    marginHorizontal: 20, marginBottom: 10,
-    backgroundColor: Colors.primary,
-    borderRadius: 18, padding: 18,
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    width: W - 40,
+    alignSelf: 'center',
+    aspectRatio: 10 / 3,
+    marginBottom: 10,
+    borderRadius: 16,
+    overflow: 'hidden',
   },
-  quickLeft: { flexDirection: 'row', alignItems: 'center', gap: 14 },
-  quickIcon: { fontSize: 28 },
-  quickTitle: { fontSize: 18, fontWeight: '800', color: Colors.text },
-  quickSub: { fontSize: 12, color: Colors.primaryLight, marginTop: 2 },
-  quickArrow: { fontSize: 32, color: Colors.primaryLight, fontWeight: '300' },
+  homeActionImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: '#D6A928',
+    overflow: 'hidden',
+    resizeMode: 'cover',
+  },
 
   continueBtn: {
     marginHorizontal: 20, marginBottom: 10,
@@ -445,21 +469,13 @@ const styles = StyleSheet.create({
   continueText: { fontSize: 15, fontWeight: '700', color: Colors.success },
 
   onlineBanner: {
-    marginHorizontal: 20, marginBottom: 20,
-    backgroundColor: '#1E3A5F',
-    borderRadius: 18, padding: 16,
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    borderWidth: 1, borderColor: Colors.secondary + '88',
+    width: W - 40,
+    alignSelf: 'center',
+    aspectRatio: 10 / 3,
+    marginBottom: 12,
+    borderRadius: 16,
+    overflow: 'hidden',
   },
-  onlineBannerLeft: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  onlineBannerIcon: { fontSize: 28 },
-  onlineBannerTitle: { fontSize: 16, fontWeight: '800', color: Colors.text },
-  onlineBannerSub: { fontSize: 12, color: '#93C5FD', marginTop: 2 },
-  onlineBannerBadge: {
-    backgroundColor: Colors.success, borderRadius: 8,
-    paddingHorizontal: 8, paddingVertical: 4,
-  },
-  onlineBannerBadgeText: { fontSize: 11, fontWeight: '800', color: Colors.text },
 
   sectionTitle: {
     fontSize: 17, fontWeight: '800', color: Colors.text,

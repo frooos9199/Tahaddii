@@ -1,0 +1,242 @@
+[
+  {
+    "id": "kuwait-new-50",
+    "answersAr": ["محافظة الجهراء", "محافظة العاصمة", "محافظة الأحمدي", "محافظة الفروانية"],
+    "answersEn": ["Al Jahra Governorate", "Capital Governorate", "Al Ahmadi Governorate", "Farwaniya Governorate"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-21",
+    "answersAr": ["سوران", "ثلاثة أسوار", "أربعة أسوار", "خمسة أسوار"],
+    "answersEn": ["Two walls", "Three walls", "Four walls", "Five walls"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-22",
+    "answersAr": ["الشيخ صباح السالم الصباح", "الشيخ عبد الله السالم الصباح", "الشيخ جابر الأحمد الصباح", "الشيخ سعد العبد الله السالم الصباح"],
+    "answersEn": ["Sheikh Sabah Al-Salem Al-Sabah", "Sheikh Abdullah Al-Salem Al-Sabah", "Sheikh Jaber Al-Ahmad Al-Sabah", "Sheikh Saad Al-Abdullah Al-Salem Al-Sabah"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-23",
+    "answersAr": ["الشيخ عبد الله السالم الصباح", "الشيخ صباح السالم الصباح", "الشيخ جابر الأحمد الصباح", "الشيخ سعد العبد الله السالم الصباح"],
+    "answersEn": ["Sheikh Abdullah Al-Salem Al-Sabah", "Sheikh Sabah Al-Salem Al-Sabah", "Sheikh Jaber Al-Ahmad Al-Sabah", "Sheikh Saad Al-Abdullah Al-Salem Al-Sabah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-24",
+    "answersAr": ["ميناء الشعيبة", "ميناء الشويخ", "ميناء الدوحة", "ميناء الأحمدي"],
+    "answersEn": ["Shuaiba Port", "Shuwaikh Port", "Doha Port", "Ahmadi Port"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-25",
+    "answersAr": ["ميناء مبارك الكبير", "ميناء الشويخ", "ميناء الشعيبة", "ميناء الدوحة"],
+    "answersEn": ["Mubarak Al Kabeer Port", "Shuwaikh Port", "Shuaiba Port", "Doha Port"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-26",
+    "answersAr": ["مركز الشيخ جابر الأحمد الثقافي", "مركز عبد الله السالم الثقافي", "المركز العلمي", "بيت السدو"],
+    "answersEn": ["Sheikh Jaber Al-Ahmad Cultural Centre", "Abdullah Al Salem Cultural Centre", "The Scientific Center", "Bait Al Sadu"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-27",
+    "answersAr": ["السنبوك", "البوم", "الشوعي", "الجالبوت"],
+    "answersEn": ["Sambuk", "Boom", "Shu'i", "Jalbut"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-28",
+    "answersAr": ["فائق عبد الجليل", "أحمد العدواني", "خالد الفرج", "صقر الشبيب"],
+    "answersEn": ["Faik Abduljalil", "Ahmad العدواني", "Khalid Al-Faraj", "Saqr Al-Shabib"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-29",
+    "answersAr": ["زراعة القطن", "الغوص على اللؤلؤ", "تعدين النحاس", "صناعة الحرير"],
+    "answersEn": ["Cotton farming", "Pearl diving", "Copper mining", "Silk production"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-30",
+    "answersAr": ["بوبيان", "فيلكا", "وربة", "كُبَّر"],
+    "answersEn": ["Bubiyan", "Failaka", "Warbah", "Kubbar"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-31",
+    "answersAr": ["1976", "1979", "1982", "1986"],
+    "answersEn": ["1976", "1979", "1982", "1986"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-32",
+    "answersAr": ["مجلس الشورى", "مجلس الأمة", "المجلس الوطني", "المجلس التشريعي"],
+    "answersEn": ["Consultative Council", "National Assembly", "National Council", "Legislative Council"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-33",
+    "answersAr": ["1962", "1963", "1965", "1967"],
+    "answersEn": ["1962", "1963", "1965", "1967"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-34",
+    "answersAr": ["صياغة الذهب", "نسج السدو", "صناعة السفن", "الخزف الشعبي"],
+    "answersEn": ["Goldsmithing", "Sadu weaving", "Shipbuilding", "Folk pottery"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-35",
+    "answersAr": ["1979", "1982", "1986", "1990"],
+    "answersEn": ["1979", "1982", "1986", "1990"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-36",
+    "answersAr": ["سوق المباركية", "سوق شرق", "سوق السالمية", "سوق الفحيحيل"],
+    "answersEn": ["Souq Al-Mubarakiya", "Souq Sharq", "Souq Salmiya", "Souq Fahaheel"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-37",
+    "answersAr": ["برج الحمراء", "برج التحرير", "أبراج الكويت", "برج الاتصالات"],
+    "answersEn": ["Al Hamra Tower", "Liberation Tower", "Kuwait Towers", "Telecommunications Tower"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-38",
+    "answersAr": ["272 متراً", "312 متراً", "372 متراً", "412 متراً"],
+    "answersEn": ["272 meters", "312 meters", "372 meters", "412 meters"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-39",
+    "answersAr": ["وربة", "فيلكا", "مسكان", "عوهة"],
+    "answersEn": ["Warbah", "Failaka", "Miskan", "Auhah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-40",
+    "answersAr": ["الإسلام", "المسيحية", "لا يوجد دين رسمي", "اليهودية"],
+    "answersEn": ["Islam", "Christianity", "There is no official religion", "Judaism"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-41",
+    "answersAr": ["الإنجليزية", "العربية", "الفارسية", "الأردية"],
+    "answersEn": ["English", "Arabic", "Persian", "Urdu"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-42",
+    "answersAr": ["محافظة العاصمة", "محافظة حولي", "محافظة الجهراء", "محافظة مبارك الكبير"],
+    "answersEn": ["Capital Governorate", "Hawalli Governorate", "Jahra Governorate", "Mubarak Al-Kabeer Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-43",
+    "answersAr": ["محافظة الفروانية", "محافظة العاصمة", "محافظة حولي", "محافظة الأحمدي"],
+    "answersEn": ["Farwaniya Governorate", "Capital Governorate", "Hawalli Governorate", "Ahmadi Governorate"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-44",
+    "answersAr": ["محافظة الأحمدي", "محافظة الجهراء", "محافظة حولي", "محافظة مبارك الكبير"],
+    "answersEn": ["Ahmadi Governorate", "Jahra Governorate", "Hawalli Governorate", "Mubarak Al-Kabeer Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-45",
+    "answersAr": ["قصر بيان", "قصر دسمان", "قصر السيف", "قصر مشرف"],
+    "answersEn": ["Bayan Palace", "Dasman Palace", "Seif Palace", "Mishref Palace"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-hard-46",
+    "answersAr": ["مسجد الدولة الكبير", "مسجد الشايع", "مسجد الراشد", "مسجد بلال بن رباح"],
+    "answersEn": ["The Grand Mosque of Kuwait", "Al-Shaya Mosque", "Al-Rashed Mosque", "Bilal ibn Rabah Mosque"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-hard-47",
+    "answersAr": ["1913", "1920", "1928", "1938"],
+    "answersEn": ["1913", "1920", "1928", "1938"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-48",
+    "answersAr": ["الوفرة", "الصبية", "الفحيحيل", "السالمي"],
+    "answersEn": ["Wafra", "Subiyah", "Fahaheel", "Al-Salmi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-49",
+    "answersAr": ["خليج عمان", "خليج الكويت", "خور الزبير", "خليج سلمان"],
+    "answersEn": ["Gulf of Oman", "Kuwait Bay", "Khor al-Zubair", "Salman Bay"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-hard-50",
+    "answersAr": ["100 فلس", "500 فلس", "1000 فلس", "1200 فلس"],
+    "answersEn": ["100 fils", "500 fils", "1000 fils", "1200 fils"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-1",
+    "answersAr": ["محافظة العاصمة", "محافظة الجهراء", "محافظة الفروانية", "محافظة حولي"],
+    "answersEn": ["Capital Governorate", "Al Jahra Governorate", "Farwaniya Governorate", "Hawalli Governorate"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-2",
+    "answersAr": ["+966", "+965", "+973", "+974"],
+    "answersEn": ["+966", "+965", "+973", "+974"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-3",
+    "answersAr": ["الجهة اليسرى", "أي جهة حسب الطريق", "الجهة اليمنى", "منتصف الطريق"],
+    "answersEn": ["Left side", "Either side depending on the road", "Right side", "Middle of the road"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-4",
+    "answersAr": [".sa", ".bh", ".qa", ".kw"],
+    "answersEn": [".sa", ".bh", ".qa", ".kw"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-5",
+    "answersAr": ["الخطوط الجوية الكويتية", "الخطوط الجوية القطرية", "طيران الخليج", "الخطوط الجوية السعودية"],
+    "answersEn": ["Kuwait Airways", "Qatar Airways", "Gulf Air", "Saudia"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "kuwait-new-6",
+    "answersAr": ["الكبسة", "المجبوس", "المندي", "البرياني"],
+    "answersEn": ["Kabsa", "Machboos", "Mandi", "Biryani"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "kuwait-new-7",
+    "answersAr": ["جامعة عبدالله السالم", "الجامعة الأمريكية في الكويت", "جامعة الكويت", "جامعة الخليج للعلوم والتكنولوجيا"],
+    "answersEn": ["Abdullah Al-Salem University", "American University of Kuwait", "Kuwait University", "Gulf University for Science and Technology"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "kuwait-new-8",
+    "answersAr": ["بنك الكويت المركزي", "الهيئة العامة للبيئة", "الهيئة العامة للمعلومات المدنية", "الهيئة العامة للاستثمار"],
+    "answersEn": ["Central Bank of Kuwait", "Environment Public Authority", "Public Authority for Civil Information", "Kuwait Investment Authority"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "kuwait-new-9",
+    "answersAr": ["وكالة الأنباء الكويتية", "وكالة أنباء جامعة الكويت", "الجمعية الكويتية للأمم المتحدة", "هيئة الشبكة الكويتية الموحدة"],
+    "answersEn": ["Kuwait News Agency", "Kuwait University News Agency", "Kuwait United Nations Association", "Kuwait Unified Network Authority"],
+    "correctAnswerIndex": 0
+  }
+]

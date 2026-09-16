@@ -1,0 +1,194 @@
+[
+  {
+    "id": "islamicCulture-hard-7",
+    "answersAr": ["المسجد النبوي", "بيت المقدس", "المسجد الحرام", "مسجد قباء"],
+    "answersEn": ["The Prophet's Mosque", "Bayt al-Maqdis (Jerusalem)", "Al-Masjid al-Haram", "Quba Mosque"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-8",
+    "answersAr": ["حليمة السعدية", "آمنة بنت وهب", "برة بنت عبد العزى", "فاطمة بنت عمرو"],
+    "answersEn": ["Halimah al-Sa'diyyah", "Aminah bint Wahb", "Barrah bint Abd al-Uzza", "Fatimah bint Amr"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-9",
+    "answersAr": ["ثويبة الأسلمية", "حليمة السعدية", "بركة أم أيمن", "الشيماء بنت الحارث"],
+    "answersEn": ["Thuwaybah al-Aslamiyyah", "Halimah al-Sa'diyyah", "Barakah Umm Ayman", "Al-Shayma bint al-Harith"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-10",
+    "answersAr": ["غزوة أحد", "غزوة بدر", "غزوة الخندق", "غزوة حنين"],
+    "answersEn": ["Battle of Uhud", "Battle of Badr", "Battle of the Trench", "Battle of Hunayn"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-11",
+    "answersAr": ["خالد بن الوليد", "عمرو بن العاص", "سعد بن أبي وقاص", "أبو عبيدة بن الجراح"],
+    "answersEn": ["Khalid ibn al-Walid", "Amr ibn al-As", "Sa'd ibn Abi Waqqas", "Abu Ubaydah ibn al-Jarrah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-12",
+    "answersAr": ["سورة الأنفال", "سورة التوبة", "سورة النمل", "سورة الفتح"],
+    "answersEn": ["Surah al-Anfal", "Surah al-Tawbah", "Surah al-Naml", "Surah al-Fath"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-13",
+    "answersAr": ["سعد بن معاذ", "مصعب بن عمير", "جعفر بن أبي طالب", "عبد الله بن رواحة"],
+    "answersEn": ["Sa'd ibn Mu'adh", "Mus'ab ibn Umayr", "Ja'far ibn Abi Talib", "Abdullah ibn Rawahah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-14",
+    "answersAr": ["7 هـ", "8 هـ", "9 هـ", "10 هـ"],
+    "answersEn": ["7 AH", "8 AH", "9 AH", "10 AH"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-15",
+    "answersAr": ["الإمام البخاري", "الإمام مسلم بن الحجاج", "الإمام أبو داود", "الإمام النسائي"],
+    "answersEn": ["Imam al-Bukhari", "Imam Muslim ibn al-Hajjaj", "Imam Abu Dawud", "Imam al-Nasa'i"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-16",
+    "answersAr": ["مالك بن أنس", "الشافعي", "أحمد بن حنبل", "سفيان الثوري"],
+    "answersEn": ["Malik ibn Anas", "Al-Shafi'i", "Ahmad ibn Hanbal", "Sufyan al-Thawri"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-17",
+    "answersAr": ["عبد الله بن عمر", "عبد الله بن عباس", "عبد الله بن الزبير", "عبد الله بن عمرو بن العاص"],
+    "answersEn": ["Abdullah ibn Umar", "Abdullah ibn Abbas", "Abdullah ibn al-Zubayr", "Abdullah ibn Amr ibn al-As"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-18",
+    "answersAr": ["حذيفة بن اليمان", "سلمان الفارسي", "المقداد بن عمرو", "أبو الدرداء"],
+    "answersEn": ["Hudhayfah ibn al-Yaman", "Salman al-Farisi", "Al-Miqdad ibn Amr", "Abu al-Darda"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-19",
+    "answersAr": ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"],
+    "answersEn": ["Abu Bakr al-Siddiq", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-20",
+    "answersAr": ["بلال بن رباح", "عبد الله بن أم مكتوم", "أبو محذورة", "سعد القرظ"],
+    "answersEn": ["Bilal ibn Rabah", "Abdullah ibn Umm Maktum", "Abu Mahdhurah", "Sa'd al-Qaraz"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-21",
+    "answersAr": ["غار ثور", "غار حراء", "جبل أحد", "جبل النور"],
+    "answersEn": ["Cave Thawr", "Cave Hira", "Mount Uhud", "Jabal al-Nour"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-22",
+    "answersAr": ["أسماء بنت أبي بكر", "عائشة بنت أبي بكر", "أم سليم", "رفيدة الأسلمية"],
+    "answersEn": ["Asma bint Abi Bakr", "Aisha bint Abi Bakr", "Umm Sulaym", "Rufaydah al-Aslamiyyah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-23",
+    "answersAr": ["سودة بنت زمعة", "عائشة بنت أبي بكر", "خديجة بنت خويلد", "حفصة بنت عمر"],
+    "answersEn": ["Sawdah bint Zam'ah", "Aisha bint Abi Bakr", "Khadijah bint Khuwaylid", "Hafsah bint Umar"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-24",
+    "answersAr": ["غزوة حنين", "غزوة الخندق", "غزوة الطائف", "غزوة بدر"],
+    "answersEn": ["Battle of Hunayn", "Battle of the Trench", "Battle of Ta'if", "Battle of Badr"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-25",
+    "answersAr": ["عبد الرحمن بن عوف", "عثمان بن عفان", "طلحة بن عبيد الله", "أبو طلحة الأنصاري"],
+    "answersEn": ["Abd al-Rahman ibn Awf", "Uthman ibn Affan", "Talha ibn Ubayd Allah", "Abu Talhah al-Ansari"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-26",
+    "answersAr": ["مكة المكرمة", "المدينة المنورة", "الطائف", "القدس"],
+    "answersEn": ["Makkah", "Madinah", "Ta'if", "Jerusalem"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-27",
+    "answersAr": ["سورة الأنفال", "سورة الفتح", "سورة الصف", "سورة محمد"],
+    "answersEn": ["Surah al-Anfal", "Surah al-Fath", "Surah al-Saff", "Surah Muhammad"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-28",
+    "answersAr": ["8 هـ", "9 هـ", "10 هـ", "11 هـ"],
+    "answersEn": ["8 AH", "9 AH", "10 AH", "11 AH"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-29",
+    "answersAr": ["علي بن أبي طالب", "أبو بكر الصديق", "عبد الله بن أبي بكر", "عامر بن فهيرة"],
+    "answersEn": ["Ali ibn Abi Talib", "Abu Bakr al-Siddiq", "Abdullah ibn Abi Bakr", "Amir ibn Fuhayrah"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-30",
+    "answersAr": ["أبو بكر الصديق", "عمر بن الخطاب", "عثمان بن عفان", "علي بن أبي طالب"],
+    "answersEn": ["Abu Bakr al-Siddiq", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-31",
+    "answersAr": ["النووي", "ابن حجر العسقلاني", "الذهبي", "ابن كثير"],
+    "answersEn": ["Al-Nawawi", "Ibn Hajar al-Asqalani", "Al-Dhahabi", "Ibn Kathir"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-32",
+    "answersAr": ["النعمان بن ثابت", "محمد بن إدريس", "أحمد بن محمد", "مالك بن أنس"],
+    "answersEn": ["Al-Nu'man ibn Thabit", "Muhammad ibn Idris", "Ahmad ibn Muhammad", "Malik ibn Anas"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-33",
+    "answersAr": ["نيسابور", "سمرقند", "بخارى", "ترمذ"],
+    "answersEn": ["Nishapur", "Samarkand", "Bukhara", "Tirmidh"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-34",
+    "answersAr": ["الظاهر بيبرس", "سيف الدين قطز", "المنصور قلاوون", "الأشرف خليل"],
+    "answersEn": ["Al-Zahir Baybars", "Sayf al-Din Qutuz", "Al-Mansur Qalawun", "Al-Ashraf Khalil"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-35",
+    "answersAr": ["620 م", "622 م", "624 م", "630 م"],
+    "answersEn": ["620 CE", "622 CE", "624 CE", "630 CE"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "islamicCulture-hard-36",
+    "answersAr": ["أبو بكر الصديق", "عثمان بن عفان", "عمر بن الخطاب", "علي بن أبي طالب"],
+    "answersEn": ["Abu Bakr al-Siddiq", "Uthman ibn Affan", "Umar ibn al-Khattab", "Ali ibn Abi Talib"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "islamicCulture-hard-37",
+    "answersAr": ["المسجد الأقصى", "المسجد النبوي", "مسجد قباء", "المسجد الأموي"],
+    "answersEn": ["Al-Aqsa Mosque", "The Prophet's Mosque", "Quba Mosque", "Umayyad Mosque"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "islamicCulture-hard-38",
+    "answersAr": ["غزوة بدر", "غزوة أحد", "غزوة مؤتة", "غزوة خيبر"],
+    "answersEn": ["Battle of Badr", "Battle of Uhud", "Battle of Mu'tah", "Battle of Khaybar"],
+    "correctAnswerIndex": 1
+  }
+]

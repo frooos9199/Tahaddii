@@ -1,0 +1,212 @@
+[
+  {
+    "id": "sci-g30",
+    "answersAr": ["القرش", "الدلفين", "الأخطبوط", "السلحفاة البحرية"],
+    "answersEn": ["Shark", "Dolphin", "Octopus", "Sea turtle"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-1",
+    "answersAr": ["البروتون", "النيوترون", "الإلكترون", "البوزيترون"],
+    "answersEn": ["Proton", "Neutron", "Electron", "Positron"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-2",
+    "answersAr": ["الأكسجين", "ثاني أكسيد الكربون", "النيتروجين", "بخار الماء"],
+    "answersEn": ["Oxygen", "Carbon dioxide", "Nitrogen", "Water vapor"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-3",
+    "answersAr": ["غاليليو غاليلي", "إسحاق نيوتن", "يوهانس كيبلر", "روبرت هوك"],
+    "answersEn": ["Galileo Galilei", "Isaac Newton", "Johannes Kepler", "Robert Hooke"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-4",
+    "answersAr": ["2", "1", "8", "6"],
+    "answersEn": ["2", "1", "8", "6"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-5",
+    "answersAr": ["التكاثف", "التبخر", "التسامي", "التجمد"],
+    "answersEn": ["Condensation", "Evaporation", "Sublimation", "Freezing"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-6",
+    "answersAr": ["الرئتان", "الكليتان", "القلب", "الكبد"],
+    "answersEn": ["Lungs", "Kidneys", "Heart", "Liver"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-7",
+    "answersAr": ["الجول", "النيوتن", "الباسكال", "الواط"],
+    "answersEn": ["Joule", "Newton", "Pascal", "Watt"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-8",
+    "answersAr": ["نظرية توريث الصفات المكتسبة", "نظرية التطور", "نظرية الجراثيم", "نظرية الخلية"],
+    "answersEn": ["Theory of Inheritance of Acquired Characteristics", "Theory of Evolution", "Germ Theory", "Cell Theory"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-9",
+    "answersAr": ["RNA", "DNA", "mRNA", "tRNA"],
+    "answersEn": ["RNA", "DNA", "mRNA", "tRNA"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-10",
+    "answersAr": ["الغلاف المائي", "الغلاف الجوي", "الغلاف الصخري", "الغلاف الحيوي"],
+    "answersEn": ["Hydrosphere", "Atmosphere", "Lithosphere", "Biosphere"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-11",
+    "answersAr": ["الفولت", "الأمبير", "الأوم", "الواط"],
+    "answersEn": ["Volt", "Ampere", "Ohm", "Watt"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-12",
+    "answersAr": ["الفلور", "الحديد", "الكوبالت", "الفرانسيوم"],
+    "answersEn": ["Fluorine", "Iron", "Cobalt", "Francium"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-13",
+    "answersAr": ["غاليليو غاليلي", "إسحاق نيوتن", "هنري كافنديش", "يوهانس كيبلر"],
+    "answersEn": ["Galileo Galilei", "Isaac Newton", "Henry Cavendish", "Johannes Kepler"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-14",
+    "answersAr": ["44", "46", "48", "23"],
+    "answersEn": ["44", "46", "48", "23"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-15",
+    "answersAr": ["التنفس الخلوي", "البناء الضوئي", "النتح", "التخمر"],
+    "answersEn": ["Cellular respiration", "Photosynthesis", "Transpiration", "Fermentation"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-16",
+    "answersAr": ["الأكسجين", "النيتروجين", "الأرجون", "ثاني أكسيد الكربون"],
+    "answersEn": ["Oxygen", "Nitrogen", "Argon", "Carbon dioxide"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-17",
+    "answersAr": ["ألكسندر فلمنغ", "لويس باستور", "روبرت كوخ", "إدوارد جينر"],
+    "answersEn": ["Alexander Fleming", "Louis Pasteur", "Robert Koch", "Edward Jenner"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-18",
+    "answersAr": ["الجول", "الواط", "النيوتن", "الباسكال"],
+    "answersEn": ["Joule", "Watt", "Newton", "Pascal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-19",
+    "answersAr": ["المشبك العصبي", "العصبون (النيورون)", "المحور العصبي", "التغصن العصبي"],
+    "answersEn": ["Synapse", "Neuron", "Axon", "Dendrite"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-20",
+    "answersAr": ["الليثيوم", "الهيدروجين", "الهيليوم", "الكربون"],
+    "answersEn": ["Lithium", "Hydrogen", "Helium", "Carbon"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-21",
+    "answersAr": ["إسحاق نيوتن", "ألبرت أينشتاين", "هندريك لورنتز", "هيرمان مينكوفسكي"],
+    "answersEn": ["Isaac Newton", "Albert Einstein", "Hendrik Lorentz", "Hermann Minkowski"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-22",
+    "answersAr": ["الكبد", "الطحال", "البنكرياس", "المرارة"],
+    "answersEn": ["Liver", "Spleen", "Pancreas", "Gallbladder"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "science-hard-23",
+    "answersAr": ["95", "100", "105", "80"],
+    "answersEn": ["95", "100", "105", "80"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-24",
+    "answersAr": ["النيوترون", "الإلكترون", "البروتون", "البوزيترون"],
+    "answersEn": ["Neutron", "Electron", "Proton", "Positron"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-25",
+    "answersAr": ["الانقسام المنصف", "الانقسام المتساوي", "التبرعم", "الالتهام الخلوي"],
+    "answersEn": ["Meiosis", "Mitosis", "Budding", "Endocytosis"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-26",
+    "answersAr": ["طبقة التروبوسفير", "طبقة الأوزون", "طبقة الأيونوسفير", "طبقة الميزوسفير"],
+    "answersEn": ["Troposphere", "Ozone layer", "Ionosphere", "Mesosphere"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-27",
+    "answersAr": ["الجزيء", "الذرة", "البروتون", "النظير"],
+    "answersEn": ["Molecule", "Atom", "Proton", "Isotope"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-28",
+    "answersAr": ["تشارلز داروين", "غريغور مندل", "توماس هنت مورغان", "جان باتيست لامارك"],
+    "answersEn": ["Charles Darwin", "Gregor Mendel", "Thomas Hunt Morgan", "Jean-Baptiste Lamarck"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-29",
+    "answersAr": ["النيون", "الهيليوم", "الأرجون", "النيتروجين"],
+    "answersEn": ["Neon", "Helium", "Argon", "Nitrogen"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-30",
+    "answersAr": ["الدرجة المئوية", "الفهرنهايت", "كلفن", "درجة ريومور"],
+    "answersEn": ["Celsius", "Fahrenheit", "Kelvin", "Réaumur"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "science-hard-31",
+    "answersAr": ["الاختزال", "الأكسدة", "التعادل", "التحلل المائي"],
+    "answersEn": ["Reduction", "Oxidation", "Neutralization", "Hydrolysis"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-32",
+    "answersAr": ["الكبد", "البنكرياس", "الغدة الدرقية", "الغدة الكظرية"],
+    "answersEn": ["Liver", "Pancreas", "Thyroid gland", "Adrenal gland"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-33",
+    "answersAr": ["البروتونات", "النيوترونات", "الإلكترونات", "النيوترينوات"],
+    "answersEn": ["Protons", "Neutrons", "Electrons", "Neutrinos"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "science-hard-34",
+    "answersAr": ["يوهانس كيبلر", "نيكولاس كوبرنيكوس", "غاليليو غاليلي", "تيخو براهي"],
+    "answersEn": ["Johannes Kepler", "Nicolaus Copernicus", "Galileo Galilei", "Tycho Brahe"],
+    "correctAnswerIndex": 0
+  }
+]

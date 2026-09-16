@@ -1,0 +1,122 @@
+[
+  {
+    "id": "generalKnowledge-hard-5",
+    "answersAr": ["الحديد", "الأكسجين", "السيليكون", "الألمنيوم"],
+    "answersEn": ["Iron", "Oxygen", "Silicon", "Aluminum"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-6",
+    "answersAr": ["فيودور دوستويفسكي", "تولستوي", "إيفان تورغينيف", "بوريس باسترناك"],
+    "answersEn": ["Fyodor Dostoevsky", "Tolstoy", "Ivan Turgenev", "Boris Pasternak"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-7",
+    "answersAr": ["50", "51", "52", "54"],
+    "answersEn": ["50", "51", "52", "54"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-8",
+    "answersAr": ["جبل كينيا", "كليمنجارو", "جبل ستانلي", "رأس داشن"],
+    "answersEn": ["Mount Kenya", "Kilimanjaro", "Mount Stanley", "Ras Dashen"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-9",
+    "answersAr": ["سبوتنيك 1", "إكسبلورر 1", "فانغارد 1", "سبوتنيك 2"],
+    "answersEn": ["Sputnik 1", "Explorer 1", "Vanguard 1", "Sputnik 2"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-10",
+    "answersAr": ["الوون", "الين", "اليوان", "البات"],
+    "answersEn": ["Won", "Yen", "Yuan", "Baht"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-11",
+    "answersAr": ["توماس إديسون", "ألكسندر غراهام بيل", "غولييلمو ماركوني", "نيكولا تسلا"],
+    "answersEn": ["Thomas Edison", "Alexander Graham Bell", "Guglielmo Marconi", "Nikola Tesla"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-12",
+    "answersAr": ["المحيط الأطلسي", "المحيط الهندي", "المحيط الهادئ", "المحيط الجنوبي"],
+    "answersEn": ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Southern Ocean"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-13",
+    "answersAr": ["أفريقيا", "آسيا", "أستراليا", "أمريكا الجنوبية"],
+    "answersEn": ["Africa", "Asia", "Australia", "South America"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-14",
+    "answersAr": ["منظمة التجارة لشمال الأطلسي", "حلف شمال الأطلسي", "منظمة التحالف الوطني عبر الأطلسي", "هيئة الدفاع لشمال الأطلسي"],
+    "answersEn": ["North Atlantic Trade Organization", "North Atlantic Treaty Organization", "National Transatlantic Alliance Organization", "North Atlantic Defense Authority"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-15",
+    "answersAr": ["موتسارت", "باخ", "بيتهوفن", "شوبان"],
+    "answersEn": ["Mozart", "Bach", "Beethoven", "Chopin"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-16",
+    "answersAr": ["نيوغينيا", "غرينلاند", "بورنيو", "مدغشقر"],
+    "answersEn": ["New Guinea", "Greenland", "Borneo", "Madagascar"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-17",
+    "answersAr": ["250 ألف", "300 ألف", "350 ألف", "400 ألف"],
+    "answersEn": ["250,000", "300,000", "350,000", "400,000"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-18",
+    "answersAr": ["باز ألدرين", "نيل أرمسترونغ", "مايكل كولينز", "آلان شيبرد"],
+    "answersEn": ["Buzz Aldrin", "Neil Armstrong", "Michael Collins", "Alan Shepard"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-19",
+    "answersAr": ["جبال الأنديز", "جبال الروكي", "سلسلة جبال غريت ديفايدينغ", "جبال الهيمالايا"],
+    "answersEn": ["Andes", "Rocky Mountains", "Great Dividing Range", "Himalayas"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-20",
+    "answersAr": ["لندن", "باريس", "برلين", "فيينا"],
+    "answersEn": ["London", "Paris", "Berlin", "Vienna"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-21",
+    "answersAr": ["حرب الوردتين", "حرب المائة عام", "حرب الثلاثين عامًا", "حرب السنوات السبع"],
+    "answersEn": ["Wars of the Roses", "Hundred Years' War", "Thirty Years' War", "Seven Years' War"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-22",
+    "answersAr": ["المريخ", "عطارد", "الزهرة", "الأرض"],
+    "answersEn": ["Mars", "Mercury", "Venus", "Earth"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-23",
+    "answersAr": ["نيكولا تسلا", "توماس إديسون", "ألكسندر غراهام بيل", "غولييلمو ماركوني"],
+    "answersEn": ["Nikola Tesla", "Thomas Edison", "Alexander Graham Bell", "Guglielmo Marconi"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-24",
+    "answersAr": ["سور هادريان", "سور الصين العظيم", "السور الأنطوني", "سور جرجان العظيم"],
+    "answersEn": ["Hadrian's Wall", "Great Wall of China", "Antonine Wall", "Great Wall of Gorgan"],
+    "correctAnswerIndex": 1
+  }
+]

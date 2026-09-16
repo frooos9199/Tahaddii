@@ -1,0 +1,158 @@
+[
+  {
+    "id": "family-new-25",
+    "answersAr": ["100 درجة مئوية", "90 درجة مئوية", "80 درجة مئوية", "120 درجة مئوية"],
+    "answersEn": ["100°C", "90°C", "80°C", "120°C"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-26",
+    "answersAr": ["صحراء كالاهاري", "الصحراء الكبرى", "الصحراء العربية", "صحراء أتاكاما"],
+    "answersEn": ["Kalahari Desert", "The Sahara", "Arabian Desert", "Atacama Desert"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-27",
+    "answersAr": ["أبريل", "نوفمبر", "فبراير", "يونيو"],
+    "answersEn": ["April", "November", "February", "June"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-28",
+    "answersAr": ["الأرض", "المشتري", "القمر", "الشمس"],
+    "answersEn": ["Earth", "Jupiter", "The Moon", "The Sun"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-29",
+    "answersAr": ["التلسكوب", "المنظار", "المجهر", "المنظار البحري"],
+    "answersEn": ["Telescope", "Binoculars", "Microscope", "Periscope"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-30",
+    "answersAr": ["الفرات", "دجلة", "النيل", "نهر الأردن"],
+    "answersEn": ["Euphrates", "The Tigris", "Nile", "Jordan River"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-31",
+    "answersAr": ["الخليج العربي", "بحر العرب", "البحر الأحمر", "البحر المتوسط"],
+    "answersEn": ["Arabian Gulf", "Arabian Sea", "The Red Sea", "Mediterranean Sea"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-32",
+    "answersAr": ["سوزان كولينز", "ج. ر. ر. تولكين", "سي. إس. لويس", "ج. ك. رولينغ"],
+    "answersEn": ["Suzanne Collins", "J. R. R. Tolkien", "C. S. Lewis", "J. K. Rowling"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-33",
+    "answersAr": ["الحمار الوحشي", "النمر", "الظربان", "الأوكابي"],
+    "answersEn": ["Zebra", "Tiger", "Skunk", "Okapi"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-34",
+    "answersAr": ["آسيا", "أفريقيا", "أوروبا", "أمريكا الجنوبية"],
+    "answersEn": ["Asia", "Africa", "Europe", "South America"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-35",
+    "answersAr": ["1", "3", "2", "5"],
+    "answersEn": ["1", "3", "2", "5"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-36",
+    "answersAr": ["القلب", "الكبد", "المعدة", "الرئتان"],
+    "answersEn": ["Heart", "Liver", "Stomach", "The lungs"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-37",
+    "answersAr": ["باريس", "ليون", "روما", "لندن"],
+    "answersEn": ["Paris", "Lyon", "Rome", "London"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-38",
+    "answersAr": ["طبيب عام", "طبيب أسنان", "صيدلي", "أخصائي بصريات"],
+    "answersEn": ["General practitioner", "Dentist", "Pharmacist", "Optometrist"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-39",
+    "answersAr": ["الرصاص", "الفحم", "الغرافيت", "الحبر"],
+    "answersEn": ["Lead", "Charcoal", "Graphite", "Ink"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-40",
+    "answersAr": ["المريخ", "عطارد", "نبتون", "الزهرة"],
+    "answersEn": ["Mars", "Mercury", "Neptune", "Venus"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-41",
+    "answersAr": ["اليابان", "الصين", "كوريا الجنوبية", "تايلاند"],
+    "answersEn": ["Japan", "China", "South Korea", "Thailand"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-42",
+    "answersAr": ["الكوارتز", "الألماس", "الكوروندوم", "التوباز"],
+    "answersEn": ["Quartz", "Diamond", "Corundum", "Topaz"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-43",
+    "answersAr": ["الغلاف الأيوني", "طبقة التروبوسفير", "طبقة الأوزون", "طبقة الميزوسفير"],
+    "answersEn": ["Ionosphere", "Troposphere", "The ozone layer", "Mesosphere"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-44",
+    "answersAr": ["مقياس الارتفاع", "مقياس الرطوبة", "مقياس سرعة الرياح", "البارومتر"],
+    "answersEn": ["Altimeter", "Hygrometer", "Anemometer", "Barometer"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-45",
+    "answersAr": ["البناء الضوئي", "التنفس", "النتح", "الإنبات"],
+    "answersEn": ["Photosynthesis", "Respiration", "Transpiration", "Germination"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-46",
+    "answersAr": ["فلورنسا", "البندقية", "جنوة", "نابولي"],
+    "answersEn": ["Florence", "Venice", "Genoa", "Naples"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-47",
+    "answersAr": ["10", "100", "50", "500"],
+    "answersEn": ["10", "100", "50", "500"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-48",
+    "answersAr": ["الغوريلا", "الدب القطبي", "النعامة", "الكنغر"],
+    "answersEn": ["Gorilla", "Polar bear", "Ostrich", "Kangaroo"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-49",
+    "answersAr": ["إسحاق نيوتن", "غاليليو غاليلي", "يوهانس كبلر", "ألبرت أينشتاين"],
+    "answersEn": ["Isaac Newton", "Galileo Galilei", "Johannes Kepler", "Albert Einstein"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-50",
+    "answersAr": ["زحل", "المشتري", "نبتون", "أورانوس"],
+    "answersEn": ["Saturn", "Jupiter", "Neptune", "Uranus"],
+    "correctAnswerIndex": 1
+  }
+]

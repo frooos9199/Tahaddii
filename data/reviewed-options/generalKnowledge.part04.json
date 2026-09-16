@@ -1,0 +1,122 @@
+[
+  {
+    "id": "generalKnowledge-hard-25",
+    "answersAr": ["4", "6", "7", "8"],
+    "answersEn": ["4", "6", "7", "8"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-26",
+    "answersAr": ["سيام", "بورما", "كمبوتشيا", "أنام"],
+    "answersEn": ["Siam", "Burma", "Kampuchea", "Annam"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-27",
+    "answersAr": ["أمريغو فسبوتشي", "كولومبوس", "جون كابوت", "ليف إريكسون"],
+    "answersEn": ["Amerigo Vespucci", "Columbus", "John Cabot", "Leif Erikson"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-28",
+    "answersAr": ["صحراء الربع الخالي", "الصحراء الكبرى", "صحراء كالاهاري", "صحراء ثار"],
+    "answersEn": ["Rub' al Khali Desert", "Sahara Desert", "Kalahari Desert", "Thar Desert"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-29",
+    "answersAr": ["الهيروغليفية المصرية", "المسمارية", "الكتابة العيلامية البدائية", "كتابة وادي السند"],
+    "answersEn": ["Egyptian hieroglyphics", "Cuneiform", "Proto-Elamite script", "Indus script"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-30",
+    "answersAr": ["1944", "1946", "1945", "1947"],
+    "answersEn": ["1944", "1946", "1945", "1947"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-31",
+    "answersAr": ["بحيرة سوبيريور", "بحر قزوين", "بحيرة فيكتوريا", "بحيرة بايكال"],
+    "answersEn": ["Lake Superior", "Caspian Sea", "Lake Victoria", "Lake Baikal"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-32",
+    "answersAr": ["ستيف وزنياك", "بيل غيتس", "لاري إليسون", "مايكل ديل"],
+    "answersEn": ["Steve Wozniak", "Bill Gates", "Larry Ellison", "Michael Dell"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-33",
+    "answersAr": ["جسر هامبر", "جسر أكاشي كايكيو", "جسر الحزام الكبير الشرقي", "جسر فيرازانو ناروز"],
+    "answersEn": ["Humber Bridge", "Akashi Kaikyō Bridge", "Great Belt East Bridge", "Verrazzano-Narrows Bridge"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-34",
+    "answersAr": ["الإسبانية", "البرتغالية", "الهولندية", "الفرنسية"],
+    "answersEn": ["Spanish", "Portuguese", "Dutch", "French"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-35",
+    "answersAr": ["ساندرو بوتيتشيلي", "رافائيل", "ليوناردو دافنشي", "تيتيان"],
+    "answersEn": ["Sandro Botticelli", "Raphael", "Leonardo da Vinci", "Titian"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-36",
+    "answersAr": ["خندق الفلبين", "خندق ماريانا", "خندق تونغا", "خندق كيرمادك"],
+    "answersEn": ["Philippine Trench", "Mariana Trench", "Tonga Trench", "Kermadec Trench"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-37",
+    "answersAr": ["النرويج", "الولايات المتحدة", "المكسيك", "بلجيكا"],
+    "answersEn": ["Norway", "United States", "Mexico", "Belgium"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-38",
+    "answersAr": ["Homo heidelbergensis", "Homo antecessor", "Homo sapiens", "Homo neanderthalensis"],
+    "answersEn": ["Homo heidelbergensis", "Homo antecessor", "Homo sapiens", "Homo neanderthalensis"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-39",
+    "answersAr": ["نيوزيلندا", "فنلندا", "أستراليا", "النرويج"],
+    "answersEn": ["New Zealand", "Finland", "Australia", "Norway"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-40",
+    "answersAr": ["الحاجز المرجاني العظيم", "الحاجز المرجاني لأمريكا الوسطى", "الحاجز المرجاني لكاليدونيا الجديدة", "شعاب البحر الأحمر المرجانية"],
+    "answersEn": ["Great Barrier Reef", "Mesoamerican Barrier Reef", "New Caledonia Barrier Reef", "Red Sea Coral Reef"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "generalKnowledge-hard-41",
+    "answersAr": ["فلوريدا", "لويزيانا", "ألاسكا", "كاليفورنيا"],
+    "answersEn": ["Florida", "Louisiana", "Alaska", "California"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "generalKnowledge-hard-42",
+    "answersAr": ["جامعة نالاندا", "جامعة القرويين", "المدرسة النظامية", "بيت الحكمة"],
+    "answersEn": ["Nalanda University", "University of Al Quaraouiyine", "Nizamiyya", "House of Wisdom"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-43",
+    "answersAr": ["شلالات يومبيلا", "شلالات آنجل", "شلالات فينوفوسن", "شلالات بالاي"],
+    "answersEn": ["Yumbilla Falls", "Angel Falls", "Vinnufossen", "Balåifossen"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "generalKnowledge-hard-44",
+    "answersAr": ["إيسقراط", "أفلاطون", "أرسطو", "زينوقراط"],
+    "answersEn": ["Isocrates", "Plato", "Aristotle", "Xenocrates"],
+    "correctAnswerIndex": 2
+  }
+]

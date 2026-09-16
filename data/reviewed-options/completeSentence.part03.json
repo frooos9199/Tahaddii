@@ -1,0 +1,254 @@
+[
+  {
+    "id": "complete-new-9",
+    "answersAr": ["الفجر", "الظهر", "العصر", "المغرب"],
+    "answersEn": ["Fajr", "Dhuhr", "Asr", "Maghrib"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-10",
+    "answersAr": ["الزهرة", "عطارد", "الأرض", "المريخ"],
+    "answersEn": ["Venus", "Mercury", "Earth", "Mars"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-11",
+    "answersAr": ["لندن", "روما", "باريس", "مدريد"],
+    "answersEn": ["London", "Rome", "Paris", "Madrid"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-12",
+    "answersAr": ["النحاس", "الألومنيوم", "الذهب", "الحديد"],
+    "answersEn": ["copper", "aluminum", "gold", "iron"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-13",
+    "answersAr": ["المحيط الهادئ", "المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي"],
+    "answersEn": ["Pacific Ocean", "Atlantic Ocean", "Indian Ocean", "Arctic Ocean"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-14",
+    "answersAr": ["الأسد", "الفهد", "الغزال", "النعامة"],
+    "answersEn": ["lion", "cheetah", "gazelle", "ostrich"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-15",
+    "answersAr": ["أوروبا", "آسيا", "أفريقيا", "أمريكا الجنوبية"],
+    "answersEn": ["Europe", "Asia", "Africa", "South America"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-16",
+    "answersAr": ["جدة", "مكة المكرمة", "الدمام", "الرياض"],
+    "answersEn": ["Jeddah", "Makkah", "Dammam", "Riyadh"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-17",
+    "answersAr": ["شوال", "ذو القعدة", "محرم", "رجب"],
+    "answersEn": ["Shawwal", "Dhu al-Qidah", "Muharram", "Rajab"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-18",
+    "answersAr": ["البحر المتوسط", "البحر الأحمر", "البحر الأسود", "بحر العرب"],
+    "answersEn": ["Mediterranean Sea", "Red Sea", "Black Sea", "Arabian Sea"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-19",
+    "answersAr": ["فوجي", "دينالي", "إيفرست", "إلبروس"],
+    "answersEn": ["Fuji", "Denali", "Everest", "Elbrus"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-20",
+    "answersAr": ["سيدني", "ملبورن", "بيرث", "كانبيرا"],
+    "answersEn": ["Sydney", "Melbourne", "Perth", "Canberra"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-21",
+    "answersAr": ["ثاني أكسيد الكربون", "الأكسجين", "النيتروجين", "الميثان"],
+    "answersEn": ["carbon dioxide", "oxygen", "nitrogen", "methane"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-22",
+    "answersAr": ["ميلانو", "البندقية", "فلورنسا", "نابولي"],
+    "answersEn": ["Milan", "Venice", "Florence", "Naples"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-23",
+    "answersAr": ["اليورو", "الدولار الأمريكي", "الجنيه الإسترليني", "الفرنك السويسري"],
+    "answersEn": ["euro", "US dollar", "pound sterling", "Swiss franc"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-24",
+    "answersAr": ["إبراهيم", "موسى", "نوح", "يونس"],
+    "answersEn": ["Ibrahim", "Musa", "Nuh", "Yunus"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-25",
+    "answersAr": ["الحديد", "النحاس", "الفضة", "الزنك"],
+    "answersEn": ["iron", "copper", "silver", "zinc"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-26",
+    "answersAr": ["جبل طارق", "بيرينغ", "هرمز", "ملقا"],
+    "answersEn": ["Gibraltar", "Bering", "Hormuz", "Malacca"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-27",
+    "answersAr": ["غراهام بيل", "توماس إديسون", "يوهانس غوتنبرغ", "غولييلمو ماركوني"],
+    "answersEn": ["Graham Bell", "Thomas Edison", "Johannes Gutenberg", "Guglielmo Marconi"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-28",
+    "answersAr": ["التكاثف", "التجمد", "الانصهار", "التبخر"],
+    "answersEn": ["condensation", "freezing", "melting", "evaporation"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-29",
+    "answersAr": ["الكبد", "الرئتان", "الدماغ", "القلب"],
+    "answersEn": ["liver", "lungs", "brain", "heart"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-30",
+    "answersAr": ["فنسنت فان غوخ", "ليوناردو دا فينشي", "سلفادور دالي", "بابلو بيكاسو"],
+    "answersEn": ["Vincent van Gogh", "Leonardo da Vinci", "Salvador Dali", "Pablo Picasso"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-31",
+    "answersAr": ["آسيا", "أستراليا", "أفريقيا", "أمريكا الجنوبية"],
+    "answersEn": ["Asia", "Australia", "Africa", "South America"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-32",
+    "answersAr": ["اللاتينية", "العبرية", "الفينيقية", "اليونانية"],
+    "answersEn": ["Latin", "Hebrew", "Phoenician", "Greek"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-33",
+    "answersAr": ["آيسلندا", "غرينلاند", "أيرلندا", "نيوزيلندا"],
+    "answersEn": ["Iceland", "Greenland", "Ireland", "New Zealand"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-34",
+    "answersAr": ["الدار البيضاء", "الرباط", "مراكش", "فاس"],
+    "answersEn": ["Casablanca", "Rabat", "Marrakesh", "Fez"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-35",
+    "answersAr": ["المريخ", "الزهرة", "عطارد", "الأرض"],
+    "answersEn": ["Mars", "Venus", "Mercury", "Earth"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-36",
+    "answersAr": ["28", "30", "34", "32"],
+    "answersEn": ["28", "30", "34", "32"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-37",
+    "answersAr": ["ريختر", "نيوتن", "غاليليو", "ألفريد فيغنر"],
+    "answersEn": ["Richter", "Newton", "Galileo", "Alfred Wegener"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-38",
+    "answersAr": ["اليونان", "تركيا", "بلغاريا", "جورجيا"],
+    "answersEn": ["Greece", "Turkey", "Bulgaria", "Georgia"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-39",
+    "answersAr": ["الستراتوسفير", "التروبوسفير", "الأوزون", "الميزوسفير"],
+    "answersEn": ["stratosphere", "troposphere", "ozone", "mesosphere"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-40",
+    "answersAr": ["زحل", "نبتون", "المشتري", "أورانوس"],
+    "answersEn": ["Saturn", "Neptune", "Jupiter", "Uranus"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-41",
+    "answersAr": ["10", "9", "11", "12"],
+    "answersEn": ["10", "9", "11", "12"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-42",
+    "answersAr": ["روما", "بيزا", "فلورنسا", "البندقية"],
+    "answersEn": ["Rome", "Pisa", "Florence", "Venice"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-43",
+    "answersAr": ["عظم العضد", "عظم الساق", "عظم الفخذ", "عظم الكعبرة"],
+    "answersEn": ["humerus", "tibia", "femur", "radius"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-44",
+    "answersAr": ["الكاروتين", "الأنثوسيانين", "الزانثوفيل", "الكلوروفيل"],
+    "answersEn": ["carotene", "anthocyanin", "xanthophyll", "chlorophyll"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-45",
+    "answersAr": ["البارومتر", "مقياس الحرارة", "مقياس الرطوبة", "مقياس سرعة الرياح"],
+    "answersEn": ["barometer", "thermometer", "hygrometer", "anemometer"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-46",
+    "answersAr": ["ألماتي", "أستانا", "شيمكنت", "قراغندي"],
+    "answersEn": ["Almaty", "Astana", "Shymkent", "Karaganda"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "complete-new-47",
+    "answersAr": ["الستراتوسفير", "الميزوسفير", "التروبوسفير", "الثرموسفير"],
+    "answersEn": ["stratosphere", "mesosphere", "troposphere", "thermosphere"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "complete-new-48",
+    "answersAr": ["بحيرة سوبيريور", "بحيرة فيكتوريا", "بحيرة بايكال", "بحر قزوين"],
+    "answersEn": ["Lake Superior", "Lake Victoria", "Lake Baikal", "the Caspian Sea"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "complete-new-49",
+    "answersAr": ["البيانو", "الكمان", "الغيتار", "الطبول"],
+    "answersEn": ["piano", "violin", "guitar", "drums"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "complete-new-50",
+    "answersAr": ["البقرة", "يس", "الكهف", "الرحمن"],
+    "answersEn": ["Al-Baqarah", "Yasin", "Al-Kahf", "Ar-Rahman"],
+    "correctAnswerIndex": 1
+  }
+]

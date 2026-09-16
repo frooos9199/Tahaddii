@@ -139,7 +139,7 @@ export default function OnlineLobbyScreen({ navigation }: Props) {
         </View>
 
         <View style={styles.panel}>
-          <Text style={styles.panelTitle}>{t('online.players')}</Text>
+          <Text style={styles.panelTitle}>{room.status === 'results' ? t('results.finalScores') : t('online.players')}</Text>
           {players.map(player => (
             <View key={player.id} style={styles.playerRow}>
               <View>
@@ -156,14 +156,14 @@ export default function OnlineLobbyScreen({ navigation }: Props) {
           <Text style={styles.noticeMeta}>{t('online.fairRoomQuestionsHint', { players: players.length, questions: recommendedQuestionCount })}</Text>
         </View>
 
-        {isHost && (
+        {isHost && (room.status === 'lobby' || room.status === 'results') && (
           <TouchableOpacity
             style={[styles.startBtn, loading && styles.disabledBtn]}
             disabled={loading}
             onPress={() => {
               void startCurrentRoom();
             }}>
-            <Text style={styles.startBtnText}>{t('online.startOnline')}</Text>
+            <Text style={styles.startBtnText}>{room.status === 'results' ? t('common.playAgain') : t('online.startOnline')}</Text>
           </TouchableOpacity>
         )}
 

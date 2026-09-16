@@ -1,0 +1,164 @@
+[
+  {
+    "id": "family-e1",
+    "answersAr": ["أي لاعب يتم اختياره عشوائيًا", "أصغر لاعب دائمًا", "أكبر لاعب دائمًا", "الفائز في التحدي السابق"],
+    "answersEn": ["Any randomly chosen player", "Always the youngest player", "Always the oldest player", "The winner of the previous challenge"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-m1",
+    "answersAr": ["بدء الشخص نفسه كل مرة", "تبديل الدور بين الجميع", "منح فريق واحد وقتًا أطول", "السماح للفائز باختيار القواعد"],
+    "answersEn": ["Having the same person start every time", "Rotating turns between everyone", "Giving one team more time", "Letting the winner choose the rules"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-h1",
+    "answersAr": ["إلغاء نتائج الفريقين", "اختيار الفائز حسب العمر", "سؤال فاصل", "منح الفوز لمن بدأ أولًا"],
+    "answersEn": ["Cancel both teams' results", "Choose the winner by age", "A tie-break question", "Give the win to whoever started first"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-1",
+    "answersAr": ["الأرض", "المريخ", "الزهرة", "عطارد"],
+    "answersEn": ["Earth", "Mars", "Venus", "Mercury"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-2",
+    "answersAr": ["الليمون", "الموز", "الأناناس", "الكمثرى"],
+    "answersEn": ["Lemon", "Banana", "Pineapple", "Pear"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-3",
+    "answersAr": ["30", "45", "60", "90"],
+    "answersEn": ["30", "45", "60", "90"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-4",
+    "answersAr": ["الحليب", "الحرير", "شراب القيقب", "العسل"],
+    "answersEn": ["Milk", "Silk", "Maple syrup", "Honey"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-5",
+    "answersAr": ["الصيف", "الخريف", "الشتاء", "الربيع"],
+    "answersEn": ["Summer", "Autumn", "Winter", "Spring"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-6",
+    "answersAr": ["غرفة المعيشة", "المطبخ", "غرفة النوم", "الحمام"],
+    "answersEn": ["Living room", "Kitchen", "Bedroom", "Bathroom"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-7",
+    "answersAr": ["النيتروجين", "ثاني أكسيد الكربون", "الأكسجين", "الهيدروجين"],
+    "answersEn": ["Nitrogen", "Carbon dioxide", "Oxygen", "Hydrogen"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-8",
+    "answersAr": ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي", "المحيط الهادئ"],
+    "answersEn": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "The Pacific Ocean"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-9",
+    "answersAr": ["جرو", "هريرة", "عجل", "مهر"],
+    "answersEn": ["Puppy", "Kitten", "Calf", "Foal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-10",
+    "answersAr": ["الغيتار", "البيانو", "الكمان", "الناي"],
+    "answersEn": ["Guitar", "Piano", "Violin", "Flute"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-11",
+    "answersAr": ["الغرب", "الشمال", "الشرق", "الجنوب"],
+    "answersEn": ["West", "North", "The east", "South"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-12",
+    "answersAr": ["مقياس الحرارة", "التقويم", "مقياس الضغط", "الساعة"],
+    "answersEn": ["Thermometer", "Calendar", "Barometer", "Clock"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-13",
+    "answersAr": ["مصر", "الأردن", "المكسيك", "العراق"],
+    "answersEn": ["Egypt", "Jordan", "Mexico", "Iraq"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-14",
+    "answersAr": ["البصر", "الشم", "التذوق", "السمع"],
+    "answersEn": ["Sight", "Smell", "Taste", "Hearing"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-15",
+    "answersAr": ["البخار", "الماء السائل", "الجليد", "الندى"],
+    "answersEn": ["Steam", "Liquid water", "Ice", "Dew"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-16",
+    "answersAr": ["التنس", "الإسكواش", "تنس الطاولة", "الريشة الطائرة"],
+    "answersEn": ["Tennis", "Squash", "Table tennis", "Badminton"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-17",
+    "answersAr": ["مدريد", "لشبونة", "برشلونة", "روما"],
+    "answersEn": ["Madrid", "Lisbon", "Barcelona", "Rome"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-18",
+    "answersAr": ["المشتري", "زحل", "أورانوس", "نبتون"],
+    "answersEn": ["Jupiter", "Saturn", "Uranus", "Neptune"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-19",
+    "answersAr": ["الأوراق", "الساق", "الجذور", "الأزهار"],
+    "answersEn": ["Leaves", "Stem", "Roots", "Flowers"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-20",
+    "answersAr": ["الإسبانية", "الإنجليزية", "الفرنسية", "البرتغالية"],
+    "answersEn": ["Spanish", "English", "French", "Portuguese"],
+    "correctAnswerIndex": 3
+  },
+  {
+    "id": "family-new-21",
+    "answersAr": ["11", "10", "9", "12"],
+    "answersEn": ["11", "10", "9", "12"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "id": "family-new-22",
+    "answersAr": ["الفيل الإفريقي", "الحوت الأزرق", "الزرافة", "فرس النهر"],
+    "answersEn": ["African elephant", "Blue whale", "Giraffe", "Hippopotamus"],
+    "correctAnswerIndex": 1
+  },
+  {
+    "id": "family-new-23",
+    "answersAr": ["الفضة", "النحاس", "الذهب", "البلاتين"],
+    "answersEn": ["Silver", "Copper", "Gold", "Platinum"],
+    "correctAnswerIndex": 2
+  },
+  {
+    "id": "family-new-24",
+    "answersAr": ["النعامة", "طائر الإيمو", "طائر الكيوي", "البطريق"],
+    "answersEn": ["Ostrich", "Emu", "Kiwi", "Penguin"],
+    "correctAnswerIndex": 3
+  }
+]

@@ -52,6 +52,7 @@ const rowNumsInSheet = [];
 for (const sheetName of workbook.SheetNames) {
   const sheet = workbook.Sheets[sheetName];
   const sheetRows = XLSX.utils.sheet_to_json(sheet, { defval: '', raw: false });
+  if (!sheetRows.some((row) => Object.prototype.hasOwnProperty.call(row, 'questionAr'))) continue;
   sheetRows.forEach((row, i) => {
     raw.push(row);
     rowSheetNames.push(sheetName);
@@ -73,7 +74,13 @@ raw.forEach((cellRow, index) => {
   const rowNum = rowNumsInSheet[index];
   const draft = {};
   for (const column of COLUMNS) {
-    column.set(draft, cellRow[column.header]);
+    const value =
+      column.header === 'correctAnswerNumber' &&
+      cellRow[column.header] === undefined &&
+      cellRow.correctAnswerIndex !== undefined
+        ? Number(cellRow.correctAnswerIndex) + 1
+        : cellRow[column.header];
+    column.set(draft, value);
   }
 
   const prefix = `Sheet "${rowSheetNames[index]}" row ${rowNum} (id="${draft.id || ''}")`;
@@ -91,7 +98,7 @@ raw.forEach((cellRow, index) => {
   if (!draft.categoryId) {
     errors.push(`${prefix}: missing categoryId`);
   } else if (KNOWN_CATEGORY_IDS && !KNOWN_CATEGORY_IDS.has(draft.categoryId)) {
-    errors.push(`${prefix}: unknown categoryId "${draft.categoryId}" (not in questionCatalog.ts CATEGORY_IDS)`);
+    warnings.push(`${prefix}: unknown categoryId "${draft.categoryId}" (not in questionCatalog.ts CATEGORY_IDS)`);
   } else if (categoryIdToBaseSheetName(draft.categoryId) !== rowSheetNames[index].replace(/~\d+$/, '')) {
     // Not a hard error (a category's rows are allowed to live outside its "home" sheet — the
     // categoryId cell is what actually matters at runtime) but almost always indicates the row

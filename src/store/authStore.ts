@@ -3,7 +3,7 @@ import { User, onAuthStateChanged } from 'firebase/auth';
 import { AppUserRecord } from '../types';
 import {
   ensureUserDocument,
-  signInAsGuest,
+  requestPasswordReset,
   signInWithEmail,
   signOutCurrentUser,
   signUpWithEmail,
@@ -11,6 +11,10 @@ import {
 import { getFirebaseAuth, isFirebaseConfigured } from '../services/firebase/firebaseClient';
 import { useProfileStore } from './profileStore';
 import { mergeLocalHistoryWithFirebase, syncQuestionHistory } from '../services/questions/questionHistoryService';
+import i18n from '../localization/i18n';
+import { getAuthErrorTranslationKey } from '../utils/authError';
+
+const getAuthErrorMessage = (error: unknown) => i18n.t(getAuthErrorTranslationKey(error));
 
 const syncProfileFromUserRecord = async (userRecord: AppUserRecord) => {
   const profilePatch = {
@@ -34,9 +38,9 @@ interface AuthStore {
   initAuth: () => void;
   clearError: () => void;
   refreshUserRecord: () => Promise<void>;
-  continueAsGuest: (displayName?: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, displayName?: string) => Promise<void>;
+  resetPassword: (email: string) => Promise<boolean>;
   logout: () => Promise<void>;
 }
 
@@ -59,6 +63,12 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
     const auth = getFirebaseAuth();
     authUnsubscribe = onAuthStateChanged(auth, async user => {
+      if (user?.isAnonymous) {
+        await signOutCurrentUser().catch(() => {});
+        set({ user: null, userRecord: null, isReady: true, loading: false, error: null });
+        return;
+      }
+
       if (!user) {
         set({ user: null, userRecord: null, isReady: true, loading: false });
         return;
@@ -98,17 +108,6 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     set({ userRecord });
   },
 
-  continueAsGuest: async (displayName) => {
-    set({ loading: true, error: null });
-    try {
-      const user = await signInAsGuest(displayName);
-      const userRecord = await ensureUserDocument(user, displayName);
-      set({ user, userRecord, loading: false, isReady: true });
-    } catch (error) {
-      set({ loading: false, error: error instanceof Error ? error.message : 'Guest sign-in failed' });
-    }
-  },
-
   login: async (email, password) => {
     set({ loading: true, error: null });
     try {
@@ -120,7 +119,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       });
       set({ user, userRecord, loading: false, isReady: true });
     } catch (error) {
-      set({ loading: false, error: error instanceof Error ? error.message : 'Login failed' });
+      set({ loading: false, error: getAuthErrorMessage(error) });
     }
   },
 
@@ -135,7 +134,19 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       });
       set({ user, userRecord, loading: false, isReady: true });
     } catch (error) {
-      set({ loading: false, error: error instanceof Error ? error.message : 'Registration failed' });
+      set({ loading: false, error: getAuthErrorMessage(error) });
+    }
+  },
+
+  resetPassword: async email => {
+    set({ loading: true, error: null });
+    try {
+      await requestPasswordReset(email);
+      set({ loading: false });
+      return true;
+    } catch (error) {
+      set({ loading: false, error: getAuthErrorMessage(error) });
+      return false;
     }
   },
 
@@ -151,7 +162,7 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       await signOutCurrentUser();
       set({ user: null, userRecord: null, loading: false });
     } catch (error) {
-      set({ loading: false, error: error instanceof Error ? error.message : 'Logout failed' });
+      set({ loading: false, error: getAuthErrorMessage(error) });
     }
   },
 }));
