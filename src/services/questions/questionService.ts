@@ -33,18 +33,19 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
   const { categories, questionCount, questionLanguage, allowRepeat } = settings;
   const customQuestions = await listCustomQuestions().catch(() => []);
   const allQuestions = mergeQuestionBank(customQuestions);
-  const enabledCategoryIds = new Set((await listCategoryCards().catch(() => [])).map(card => card.id));
+  const publishedCategoryCards = await listCategoryCards({ includeInactive: true }).catch(() => []);
+  const hasPublishedCategoryConfig = publishedCategoryCards.length > 0;
+  const enabledCategoryIds = new Set(publishedCategoryCards.filter(card => card.isActive).map(card => card.id));
   const categoriesWithQuestions = [...new Set(allQuestions.filter(question => question.isActive).flatMap(getQuestionCategoryIds))];
   const requestedCategories = categories.length ? categories : categoriesWithQuestions;
-  const enabledRequestedCategories = requestedCategories.filter(categoryId => !enabledCategoryIds.size || enabledCategoryIds.has(categoryId));
+  const enabledRequestedCategories = requestedCategories.filter(categoryId => !hasPublishedCategoryConfig || enabledCategoryIds.has(categoryId));
   const activeCategories = enabledRequestedCategories.length
     ? enabledRequestedCategories
-    : requestedCategories.length && enabledCategoryIds.size
+    : requestedCategories.length && hasPublishedCategoryConfig
       ? []
       : requestedCategories.length
         ? requestedCategories
         : categoriesWithQuestions;
-  const shouldFallbackOutsideCategories = !categories.length && activeCategories.length > 0;
 
   const matchesLanguage = (question: Question) => {
     if (questionLanguage === 'ar') {
@@ -71,10 +72,6 @@ export async function getQuestions(settings: GameSettings): Promise<Question[]> 
       questionBelongsToAnyCategory(q, activeCategories) &&
       matchesLanguage(q),
     );
-  }
-
-  if (pool.length === 0 && shouldFallbackOutsideCategories) {
-    pool = allQuestions.filter(q => q.isActive && matchesLanguage(q));
   }
 
   const history = !allowRepeat && pool.length > 0 ? await getQuestionHistory() : EMPTY_QUESTION_HISTORY;
