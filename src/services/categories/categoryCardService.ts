@@ -18,30 +18,7 @@ export interface CategoryCardInput {
   isActive?: boolean;
 }
 
-export const DEFAULT_CATEGORY_CARDS: CategoryCard[] = [
-  { id: 'geography', iconKey: 'geography', nameAr: 'جغرافيا', nameEn: 'Geography', imageUrl: '', accentColor: '#22C55E', sortOrder: 90, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'science', iconKey: 'science', nameAr: 'علوم', nameEn: 'Science', imageUrl: '', accentColor: '#3B82F6', sortOrder: 100, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'space', iconKey: 'space', nameAr: 'فضاء', nameEn: 'Space', imageUrl: '', accentColor: '#06B6D4', sortOrder: 110, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'animals', iconKey: 'animals', nameAr: 'حيوانات', nameEn: 'Animals', imageUrl: '', accentColor: '#F59E0B', sortOrder: 120, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'capitals', iconKey: 'capitals', nameAr: 'دول وعواصم', nameEn: 'Countries & Capitals', imageUrl: '', accentColor: '#14B8A6', sortOrder: 130, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'riddles', iconKey: 'riddles', nameAr: 'ألغاز', nameEn: 'Riddles', imageUrl: '', accentColor: '#EC4899', sortOrder: 140, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'math', iconKey: 'math', nameAr: 'حساب ورياضيات', nameEn: 'Math', imageUrl: '', accentColor: '#84CC16', sortOrder: 150, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'arabicLang', iconKey: 'arabicLang', nameAr: 'لغة عربية', nameEn: 'Arabic Language', imageUrl: '', accentColor: '#F43F5E', sortOrder: 160, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'englishLang', iconKey: 'englishLang', nameAr: 'لغة إنجليزية', nameEn: 'English Language', imageUrl: '', accentColor: '#2563EB', sortOrder: 170, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'technology', iconKey: 'technology', nameAr: 'تكنولوجيا', nameEn: 'Technology', imageUrl: '', accentColor: '#6366F1', sortOrder: 180, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'inventions', iconKey: 'inventions', nameAr: 'اختراعات', nameEn: 'Inventions', imageUrl: '', accentColor: '#EAB308', sortOrder: 190, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'celebrities', iconKey: 'celebrities', nameAr: 'مشاهير', nameEn: 'Celebrities', imageUrl: '', accentColor: '#F59E0B', sortOrder: 200, isActive: true, questionTypes: ['multiple_choice', 'image'] },
-  { id: 'music', iconKey: 'music', nameAr: 'موسيقى', nameEn: 'Music', imageUrl: '', accentColor: '#D946EF', sortOrder: 210, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'islamicCulture', iconKey: 'islamicCulture', nameAr: 'ثقافة إسلامية', nameEn: 'Islamic Culture', imageUrl: '', accentColor: '#059669', sortOrder: 220, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'kuwait', iconKey: 'kuwait', nameAr: 'معلومات عن الكويت', nameEn: 'Kuwait Facts', imageUrl: '', accentColor: '#10B981', sortOrder: 230, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'flags', iconKey: 'flags', nameAr: 'أعلام الدول', nameEn: 'Country Flags', imageUrl: '', accentColor: '#06B6D4', sortOrder: 240, isActive: true, questionTypes: ['multiple_choice', 'image'] },
-  { id: 'guessImage', iconKey: 'guessImage', nameAr: 'تخمين الصورة', nameEn: 'Guess the Image', imageUrl: '', accentColor: '#0EA5E9', sortOrder: 250, isActive: true, questionTypes: ['image'] },
-  { id: 'trueFalse', iconKey: 'trueFalse', nameAr: 'صح أو خطأ', nameEn: 'True or False', imageUrl: '', accentColor: '#22C55E', sortOrder: 260, isActive: true, questionTypes: ['true_false'] },
-  { id: 'completeSentence', iconKey: 'completeSentence', nameAr: 'أكمل الجملة', nameEn: 'Complete the Sentence', imageUrl: '', accentColor: '#F97316', sortOrder: 270, isActive: true, questionTypes: ['complete'] },
-  { id: 'whoAmI', iconKey: 'whoAmI', nameAr: 'من أنا؟', nameEn: 'Who Am I?', imageUrl: '', accentColor: '#F97316', sortOrder: 280, isActive: true, questionTypes: ['who_am_i', 'image'] },
-  { id: 'wouldYouRather', iconKey: 'wouldYouRather', nameAr: 'ماذا تفضل؟', nameEn: 'Would You Rather?', imageUrl: '', accentColor: '#DB2777', sortOrder: 290, isActive: true, questionTypes: ['multiple_choice'] },
-  { id: 'familyChallenges', iconKey: 'familyChallenges', nameAr: 'تحديات عائلية', nameEn: 'Family Challenges', imageUrl: '', accentColor: '#14B8A6', sortOrder: 300, isActive: true, questionTypes: ['multiple_choice'] },
-];
+export const DEFAULT_CATEGORY_CARDS: CategoryCard[] = [];
 
 const toCategoryCard = (id: string, payload: any): CategoryCard => ({
   id,
