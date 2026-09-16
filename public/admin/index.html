@@ -1007,6 +1007,16 @@
 
     const getQuestionSource = question => customQuestions.some(item => item.id === question.id) ? 'custom' : 'builtin';
 
+    const buildPublishedQuestionPayload = (question, overrides = {}) => {
+      const { id, source, ...payload } = question;
+      return removeUndefinedFields({
+        ...payload,
+        ...overrides,
+        updatedAtMs: Date.now(),
+        source: 'admin',
+      });
+    };
+
     const getQuestionCategoryIds = question => [...new Set([question.categoryId, ...(Array.isArray(question.linkedCategoryIds) ? question.linkedCategoryIds : [])].filter(Boolean))];
 
     const questionBelongsToCategory = (question, categoryId) => getQuestionCategoryIds(question).includes(categoryId);
@@ -1332,7 +1342,7 @@
       const builtinIds = new Set(builtinQuestions.map(question => question.id));
       const mergedBuiltin = builtinQuestions.map(question => ({ ...question, ...(customById.get(question.id) || {}) }));
       const newCustom = customQuestions.filter(question => !builtinIds.has(question.id));
-      allQuestions = [...mergedBuiltin, ...newCustom].sort((left, right) => {
+      allQuestions = [...mergedBuiltin, ...newCustom].filter(question => question.isDeleted !== true).sort((left, right) => {
         const leftTime = Number(left.updatedAtMs || left.createdAtMs || 0);
         const rightTime = Number(right.updatedAtMs || right.createdAtMs || 0);
         return rightTime - leftTime || String(left.id || '').localeCompare(String(right.id || ''));
@@ -1364,6 +1374,7 @@
           const override = overridesById.get(categoryId);
           return { ...fallback, ...(override || {}), id: categoryId, source: override ? 'saved' : fallback.source };
         })
+        .filter(card => card.isDeleted !== true)
         .sort((a, b) => Number(a.sortOrder || 0) - Number(b.sortOrder || 0) || String(a.nameAr || a.id).localeCompare(String(b.nameAr || b.id)));
     };
 
@@ -1372,9 +1383,10 @@
       $('questionsShown').textContent = `المعروض ${visibleQuestions.length} من ${allQuestions.length} سؤال. اربط السؤال بالتصنيف عن طريق نفس categoryId، ثم ستظهر البطاقة في التطبيق إذا فيها سؤال فعال واحد على الأقل.`;
       $('questionsBody').replaceChildren(...visibleQuestions.map(question => {
         const tr = document.createElement('tr');
-        const source = getQuestionSource(question);
         const categoryText = [getCategoryLabel(question.categoryId || ''), ...(question.linkedCategoryIds || []).map(getCategoryLabel)].join(' + ');
-        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button>${source === 'custom' ? `<button class="danger" type="button" data-delete-question="${question.id}">حذف</button>` : ''}</div></td>`;
+        const statusLabel = question.isActive === false ? '<span class="badge paused">متوقف</span>' : '<span class="badge">فعال</span>';
+        const toggleLabel = question.isActive === false ? 'تفعيل' : 'إيقاف';
+        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}<br>${statusLabel}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-toggle-question="${question.id}">${toggleLabel}</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button><button class="danger" type="button" data-delete-question="${question.id}">حذف</button></div></td>`;
         return tr;
       }));
     };
@@ -1520,14 +1532,12 @@
         toggleButton.type = 'button';
         toggleButton.textContent = cardItem.isActive === false ? 'تفعيل' : 'إيقاف';
         actions.append(editButton, toggleButton);
-        if (hasSavedOverride) {
-          const deleteButton = document.createElement('button');
-          deleteButton.className = 'danger';
-          deleteButton.dataset.deleteCategory = cardItem.id;
-          deleteButton.type = 'button';
-          deleteButton.textContent = isBuiltIn ? 'إعادة ضبط' : 'حذف';
-          actions.append(deleteButton);
-        }
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'danger';
+        deleteButton.dataset.deleteCategory = cardItem.id;
+        deleteButton.type = 'button';
+        deleteButton.textContent = 'حذف';
+        actions.append(deleteButton);
 
         card.append(top, meta);
         if (categoryQuestionCount === 0) {
@@ -2002,7 +2012,7 @@
       setStatus($('questionStatus'), 'جاري حفظ السؤال...');
       try {
         const item = buildQuestionPayloadFromForm();
-        await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields(item.payload), { merge: true });
+        await setDoc(doc(firestore, 'customQuestions', item.id), removeUndefinedFields({ ...item.payload, isDeleted: false }), { merge: true });
         setStatus($('questionStatus'), 'تم حفظ السؤال وربطه بالكاتيجوري', 'success');
         clearQuestionForm();
         await loadData();
@@ -2017,6 +2027,7 @@
 
     $('questionsBody').addEventListener('click', async event => {
       const fillId = event.target.closest('[data-fill-question]')?.dataset.fillQuestion;
+      const toggleId = event.target.closest('[data-toggle-question]')?.dataset.toggleQuestion;
       const editId = event.target.closest('[data-edit-question]')?.dataset.editQuestion;
       const mediaId = event.target.closest('[data-media-question]')?.dataset.mediaQuestion;
       const deleteId = event.target.closest('[data-delete-question]')?.dataset.deleteQuestion;
@@ -2026,6 +2037,20 @@
         if (!question) return;
         fillQuestionForm(question);
         setStatus($('questionStatus'), 'تم تحميل السؤال في نموذج التعديل. عدل ثم اضغط حفظ السؤال.', 'success');
+      }
+
+      if (toggleId) {
+        const question = allQuestions.find(item => item.id === toggleId);
+        if (!question) return;
+        const nextActive = question.isActive === false;
+        setStatus($('questionStatus'), 'جاري حفظ حالة السؤال...');
+        try {
+          await setDoc(doc(firestore, 'customQuestions', toggleId), buildPublishedQuestionPayload(question, { isActive: nextActive, isDeleted: false }), { merge: true });
+          setStatus($('questionStatus'), nextActive ? 'تم تفعيل السؤال' : 'تم إيقاف السؤال وسيختفي من التطبيق خلال دقائق', 'success');
+          await loadData();
+        } catch (error) {
+          setStatus($('questionStatus'), `فشل تحديث السؤال: ${error.message}`, 'error');
+        }
       }
 
       if (editId) {
@@ -2042,15 +2067,12 @@
       }
 
       if (deleteId) {
-        const isOverrideOfBuiltin = builtinQuestions.some(item => item.id === deleteId);
-        const confirmMessage = isOverrideOfBuiltin
-          ? 'هذا تعديل على سؤال أساسي من التطبيق. حذفه يرجّع السؤال الأصلي (لن يختفي كليًا إلا بإزالته من ملف Excel وتحديث التطبيق). متابعة؟'
-          : 'حذف هذا السؤال نهائيًا؟ سيختفي من كل الأجهزة خلال دقائق.';
-        if (confirm(confirmMessage)) {
+        const question = allQuestions.find(item => item.id === deleteId);
+        if (question && confirm('حذف هذا السؤال؟ سيختفي من لوحة الإدارة ومن كل الأجهزة خلال دقائق.')) {
           setStatus($('questionStatus'), 'جاري الحذف...');
           try {
-            await deleteDoc(doc(firestore, 'customQuestions', deleteId));
-            setStatus($('questionStatus'), isOverrideOfBuiltin ? 'تم الحذف — رجع السؤال الأصلي للظهور' : 'تم حذف السؤال نهائيًا', 'success');
+            await setDoc(doc(firestore, 'customQuestions', deleteId), buildPublishedQuestionPayload(question, { isActive: false, isDeleted: true }), { merge: true });
+            setStatus($('questionStatus'), 'تم حذف السؤال من النظام المنشور', 'success');
             await loadData();
           } catch (error) {
             setStatus($('questionStatus'), `فشل الحذف: ${error.message}`, 'error');
@@ -2289,6 +2311,7 @@
         accentColor: $('categoryAccentColor').value.trim() || '#8b5cf6',
         sortOrder: Number($('categorySortOrder').value || 0),
         isActive: $('categoryActive').value !== 'FALSE',
+        isDeleted: false,
         questionTypes: ['multiple_choice', 'image'],
         updatedAtMs: Date.now(),
       };
@@ -2326,10 +2349,12 @@
       }
       if (toggleId) {
         const category = categoryCards.find(item => item.id === toggleId);
+        if (!category) return;
         const nextActive = category?.isActive === false;
         setStatus($('categoryStatus'), 'جاري الحفظ...');
         try {
-          await setDoc(doc(firestore, 'categoryCards', toggleId), { isActive: nextActive, updatedAtMs: Date.now() }, { merge: true });
+          const { id, source, ...categoryPayload } = category;
+          await setDoc(doc(firestore, 'categoryCards', toggleId), { ...categoryPayload, isActive: nextActive, isDeleted: false, updatedAtMs: Date.now() }, { merge: true });
           setStatus($('categoryStatus'), nextActive ? 'تم تفعيل التصنيف' : 'تم إيقاف التصنيف وسيختفي من التطبيق بعد التحديث', 'success');
           await loadData();
         } catch (error) {
@@ -2339,8 +2364,11 @@
       if (deleteId && confirm('حذف بطاقة التصنيف؟ الأسئلة لن تنحذف، فقط البطاقة من الرئيسية.')) {
         setStatus($('categoryStatus'), 'جاري الحذف...');
         try {
-          await deleteDoc(doc(firestore, 'categoryCards', deleteId));
-          setStatus($('categoryStatus'), 'تم حذف البطاقة', 'success');
+          const category = categoryCards.find(item => item.id === deleteId);
+          if (!category) return;
+          const { id, source, ...categoryPayload } = category;
+          await setDoc(doc(firestore, 'categoryCards', deleteId), { ...categoryPayload, isActive: false, isDeleted: true, updatedAtMs: Date.now() }, { merge: true });
+          setStatus($('categoryStatus'), 'تم حذف البطاقة من النظام المنشور', 'success');
           await loadData();
         } catch (error) {
           setStatus($('categoryStatus'), `فشل الحذف: ${error.message}`, 'error');
