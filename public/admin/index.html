@@ -157,6 +157,24 @@
     .preview-img { width: min(100%, 18rem); aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0.9rem; border: 1px solid var(--line); background: rgba(255,255,255,0.08); }
     .preview-images { display: flex; flex-wrap: wrap; gap: 0.75rem; }
     .preview-line { color: var(--muted); line-height: 1.55; font-size: 0.86rem; }
+    .game-preview-dialog { width: min(94vw, 720px); max-height: 92vh; border: 1px solid var(--line); border-radius: 1rem; padding: 0; color: var(--text); background: #100822; box-shadow: 0 32px 100px rgba(0,0,0,0.7); }
+    .game-preview-dialog::backdrop { background: rgba(3, 1, 10, 0.82); backdrop-filter: blur(5px); }
+    .game-preview-shell { display: grid; gap: 1rem; padding: clamp(1rem, 3vw, 1.6rem); overflow: auto; max-height: 92vh; }
+    .game-preview-head { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; }
+    .game-preview-meta { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: center; }
+    .game-preview-kicker { color: var(--blue); font-weight: 900; }
+    .game-preview-question { margin: 0; font-size: clamp(1.35rem, 4vw, 2.1rem); line-height: 1.55; text-align: center; }
+    .game-preview-media { display: grid; place-items: center; min-height: 2rem; }
+    .game-preview-media:empty { display: none; }
+    .game-preview-media img, .game-preview-media video { display: block; width: min(100%, 34rem); max-height: 48vh; object-fit: contain; border-radius: 0.8rem; border: 1px solid var(--line); background: #05020d; }
+    .game-preview-media img.blurred { filter: blur(var(--preview-blur, 18px)); transform: scale(0.98); }
+    .game-preview-answers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; }
+    .game-preview-answer { min-height: 3.4rem; display: flex; align-items: center; gap: 0.65rem; padding: 0.8rem; border: 1px solid var(--line); border-radius: 0.8rem; background: rgba(255,255,255,0.06); font-weight: 800; }
+    .game-preview-answer strong { display: grid; place-items: center; flex: 0 0 1.8rem; height: 1.8rem; border-radius: 50%; background: rgba(34,211,238,0.14); color: var(--blue); }
+    .game-preview-answer.correct { border-color: rgba(16,185,129,0.72); background: rgba(16,185,129,0.16); color: #a7f3d0; }
+    .game-preview-reveal { display: none; padding: 0.9rem; border: 1px solid rgba(16,185,129,0.42); border-radius: 0.8rem; background: rgba(16,185,129,0.1); line-height: 1.7; }
+    .game-preview-reveal.visible { display: block; }
+    .game-preview-close { width: 2.7rem; height: 2.7rem; padding: 0; border-radius: 50%; }
     details.advanced { border: 1px solid var(--line); border-radius: 1rem; background: rgba(255,255,255,0.035); padding: 0.85rem; }
     details.advanced summary { cursor: pointer; color: var(--primary-light); font-weight: 900; }
 
@@ -172,6 +190,7 @@
       .row { grid-template-columns: 1fr; }
       .toolbar { grid-template-columns: 1fr; }
       .question-form-grid, .answer-row { grid-template-columns: 1fr; }
+      .game-preview-answers { grid-template-columns: 1fr; }
       .section-head { align-items: flex-start; flex-direction: column; }
     }
   </style>
@@ -647,6 +666,26 @@
     </section>
   </main>
 
+  <dialog id="questionGamePreviewDialog" class="game-preview-dialog">
+    <div class="game-preview-shell">
+      <div class="game-preview-head">
+        <div>
+          <div id="gamePreviewCategory" class="game-preview-kicker"></div>
+          <div id="gamePreviewMeta" class="game-preview-meta"></div>
+        </div>
+        <button id="closeQuestionPreviewBtn" class="secondary game-preview-close" type="button" aria-label="إغلاق المعاينة">×</button>
+      </div>
+      <h2 id="gamePreviewQuestion" class="game-preview-question"></h2>
+      <div id="gamePreviewMedia" class="game-preview-media"></div>
+      <div id="gamePreviewAnswers" class="game-preview-answers"></div>
+      <div id="gamePreviewReveal" class="game-preview-reveal"></div>
+      <div class="actions">
+        <button id="toggleQuestionPreviewAnswerBtn" class="primary" type="button">كشف الإجابة</button>
+        <button id="closeQuestionPreviewFooterBtn" class="secondary" type="button">إغلاق</button>
+      </div>
+    </div>
+  </dialog>
+
   <script type="module">
     import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
@@ -715,6 +754,8 @@
     let pendingQuestionRows = [];
     let visibleQuestions = [];
     const selectedQuestionIds = new Set();
+    let previewedQuestion = null;
+    let isPreviewAnswerRevealed = false;
     const errorLogEntries = [];
     const MAX_ERROR_LOG_ENTRIES = 120;
     let logDomReady = false;
@@ -1085,6 +1126,82 @@
       `;
     };
 
+    const renderSavedQuestionPreview = () => {
+      const question = previewedQuestion;
+      if (!question) return;
+
+      const revealed = isPreviewAnswerRevealed;
+      const correctAnswer = question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex ?? 0] || '';
+      $('gamePreviewCategory').textContent = getCategoryLabel(question.categoryId || '');
+      $('gamePreviewQuestion').textContent = question.questionAr || question.questionEn || 'سؤال بدون نص';
+      $('gamePreviewMeta').replaceChildren();
+      [
+        `${question.points || 0} نقطة`,
+        question.isActive === false ? 'متوقف' : 'فعال',
+        question.type || 'multiple_choice',
+      ].forEach(value => {
+        const badge = document.createElement('span');
+        badge.className = value === 'متوقف' ? 'badge paused' : 'badge';
+        badge.textContent = value;
+        $('gamePreviewMeta').append(badge);
+      });
+
+      const media = $('gamePreviewMedia');
+      media.replaceChildren();
+      const mediaUrl = revealed && question.revealImageUrl ? question.revealImageUrl : question.imageUrl || question.thumbnailUrl;
+      if (question.videoUrl) {
+        const video = document.createElement('video');
+        video.src = question.videoUrl;
+        video.controls = true;
+        video.playsInline = true;
+        media.append(video);
+      } else if (mediaUrl) {
+        const image = document.createElement('img');
+        image.src = mediaUrl;
+        image.alt = revealed ? 'صورة الإجابة' : 'صورة السؤال';
+        if (!revealed && question.revealMode === 'blur') {
+          image.className = 'blurred';
+          image.style.setProperty('--preview-blur', `${Math.max(1, Number(question.blurAmount || 18))}px`);
+        }
+        media.append(image);
+      }
+
+      const answers = $('gamePreviewAnswers');
+      answers.replaceChildren();
+      (question.answersAr || []).forEach((answer, index) => {
+        const option = document.createElement('div');
+        option.className = `game-preview-answer${revealed && index === question.correctAnswerIndex ? ' correct' : ''}`;
+        const number = document.createElement('strong');
+        number.textContent = String(index + 1);
+        const text = document.createElement('span');
+        text.textContent = answer;
+        option.append(number, text);
+        answers.append(option);
+      });
+
+      const reveal = $('gamePreviewReveal');
+      reveal.classList.toggle('visible', revealed);
+      reveal.replaceChildren();
+      if (revealed) {
+        const answerLine = document.createElement('div');
+        answerLine.textContent = `الإجابة الصحيحة: ${correctAnswer || 'غير محددة'}`;
+        reveal.append(answerLine);
+        if (question.explanationAr) {
+          const explanation = document.createElement('div');
+          explanation.textContent = question.explanationAr;
+          reveal.append(explanation);
+        }
+      }
+      $('toggleQuestionPreviewAnswerBtn').textContent = revealed ? 'إخفاء الإجابة' : 'كشف الإجابة';
+    };
+
+    const openSavedQuestionPreview = question => {
+      previewedQuestion = question;
+      isPreviewAnswerRevealed = false;
+      renderSavedQuestionPreview();
+      $('questionGamePreviewDialog').showModal();
+    };
+
     const syncQuestionMediaControls = () => {
       const hasMedia = Boolean($('questionImageUrlInput').value.trim() || $('questionRevealImageUrlInput').value.trim());
       const revealMode = $('questionRevealModeInput').value;
@@ -1412,7 +1529,7 @@
         const statusLabel = question.isActive === false ? '<span class="badge paused">متوقف</span>' : '<span class="badge">فعال</span>';
         const toggleLabel = question.isActive === false ? 'تفعيل' : 'إيقاف';
         const isSelected = selectedQuestionIds.has(question.id) ? 'checked' : '';
-        tr.innerHTML = `<td><input type="checkbox" data-select-question="${question.id}" ${isSelected} style="width:auto;" aria-label="تحديد السؤال" /></td><td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}<br>${statusLabel}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-toggle-question="${question.id}">${toggleLabel}</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button><button class="danger" type="button" data-delete-question="${question.id}">حذف</button></div></td>`;
+        tr.innerHTML = `<td><input type="checkbox" data-select-question="${question.id}" ${isSelected} style="width:auto;" aria-label="تحديد السؤال" /></td><td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}<br>${statusLabel}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="primary" type="button" data-preview-question="${question.id}">معاينة</button><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-toggle-question="${question.id}">${toggleLabel}</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button><button class="danger" type="button" data-delete-question="${question.id}">حذف</button></div></td>`;
         return tr;
       }));
       updateQuestionSelectionControls();
@@ -2100,11 +2217,17 @@
     });
 
     $('questionsBody').addEventListener('click', async event => {
+      const previewId = event.target.closest('[data-preview-question]')?.dataset.previewQuestion;
       const fillId = event.target.closest('[data-fill-question]')?.dataset.fillQuestion;
       const toggleId = event.target.closest('[data-toggle-question]')?.dataset.toggleQuestion;
       const editId = event.target.closest('[data-edit-question]')?.dataset.editQuestion;
       const mediaId = event.target.closest('[data-media-question]')?.dataset.mediaQuestion;
       const deleteId = event.target.closest('[data-delete-question]')?.dataset.deleteQuestion;
+
+      if (previewId) {
+        const question = allQuestions.find(item => item.id === previewId);
+        if (question) openSavedQuestionPreview(question);
+      }
 
       if (fillId) {
         const question = allQuestions.find(item => item.id === fillId);
@@ -2153,6 +2276,17 @@
           }
         }
       }
+    });
+
+    $('toggleQuestionPreviewAnswerBtn').addEventListener('click', () => {
+      isPreviewAnswerRevealed = !isPreviewAnswerRevealed;
+      renderSavedQuestionPreview();
+    });
+    ['closeQuestionPreviewBtn', 'closeQuestionPreviewFooterBtn'].forEach(id => {
+      $(id).addEventListener('click', () => $('questionGamePreviewDialog').close());
+    });
+    $('questionGamePreviewDialog').addEventListener('click', event => {
+      if (event.target === $('questionGamePreviewDialog')) $('questionGamePreviewDialog').close();
     });
 
     $('questionsFile').addEventListener('change', async event => {
