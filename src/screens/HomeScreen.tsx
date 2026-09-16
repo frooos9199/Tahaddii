@@ -241,9 +241,7 @@ export default function HomeScreen({ navigation }: Props) {
   };
 
   const quickStart = () => {
-    const categories = unlockedSelectedCategories.length
-      ? unlockedSelectedCategories
-      : visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id);
+    const categories = visibleCards.filter(card => !lockedIds.includes(card.id)).map(card => card.id);
     const playerName = profile.name.trim() || userRecord?.displayName?.trim() || t('common.player');
 
     updateSettings({ mode: 'solo', categories });
