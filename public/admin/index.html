@@ -381,12 +381,20 @@
                 <label>التصنيف<select id="questionCategoryFilter"><option value="">كل التصنيفات</option></select></label>
                 <label>المصدر<select id="questionSourceFilter"><option value="">الكل</option><option value="custom">أسئلة الأدمن فقط</option><option value="builtin">أسئلة التطبيق فقط</option></select></label>
               </div>
-              <p class="hint">اضغط تعديل لتحميل صف السؤال في ملف CSV جاهز للتعديل، أو حذف لإزالة سؤال الأدمن. الأسئلة الأصلية من التطبيق لا تُحذف، لكن تقدر تعدلها برفع نفس الـ ID في CSV.</p>
+              <div class="actions">
+                <label style="display:flex; flex-direction:row; align-items:center; gap:0.45rem;">
+                  <input id="selectAllQuestions" type="checkbox" style="width:auto;" />
+                  تحديد كل الأسئلة المعروضة
+                </label>
+                <button id="deleteSelectedQuestionsBtn" class="danger" type="button" disabled>حذف المحدد</button>
+                <span id="selectedQuestionsCount" class="hint">لم يتم تحديد أسئلة</span>
+              </div>
+              <p class="hint">يمكنك تصفية الأسئلة حسب التصنيف ثم تحديد المعروض وحذفه دفعة واحدة. الحذف ينعكس على التطبيق ولا يعيد السؤال القديم.</p>
             </div>
             <p id="questionsShown" class="hint"></p>
             <div class="table-wrap">
               <table>
-                <thead><tr><th>ID</th><th>التصنيف</th><th>النقاط</th><th>السؤال</th><th>الإجابة الصحيحة</th><th>إدارة</th></tr></thead>
+                <thead><tr><th>تحديد</th><th>ID</th><th>التصنيف</th><th>النقاط</th><th>السؤال</th><th>الإجابة الصحيحة</th><th>إدارة</th></tr></thead>
                 <tbody id="questionsBody"></tbody>
               </table>
             </div>
@@ -643,7 +651,7 @@
     import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs';
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js';
     import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js';
-    import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
+    import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, initializeFirestore, orderBy, query, serverTimestamp, setDoc, writeBatch } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js';
     import { get, getDatabase, push, ref, remove, set, update } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js';
     import { getDownloadURL, getStorage, ref as storageRef, uploadBytes } from 'https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js';
 
@@ -706,6 +714,7 @@
     const FREE_CATEGORY_IDS = ['generalKnowledge'];
     let pendingQuestionRows = [];
     let visibleQuestions = [];
+    const selectedQuestionIds = new Set();
     const errorLogEntries = [];
     const MAX_ERROR_LOG_ENTRIES = 120;
     let logDomReady = false;
@@ -1347,6 +1356,22 @@
         const rightTime = Number(right.updatedAtMs || right.createdAtMs || 0);
         return rightTime - leftTime || String(left.id || '').localeCompare(String(right.id || ''));
       });
+      const availableQuestionIds = new Set(allQuestions.map(question => question.id));
+      selectedQuestionIds.forEach(questionId => {
+        if (!availableQuestionIds.has(questionId)) selectedQuestionIds.delete(questionId);
+      });
+    };
+
+    const updateQuestionSelectionControls = () => {
+      const visibleIds = visibleQuestions.map(question => question.id);
+      const selectedVisibleCount = visibleIds.filter(questionId => selectedQuestionIds.has(questionId)).length;
+      const selectAll = $('selectAllQuestions');
+      selectAll.checked = visibleIds.length > 0 && selectedVisibleCount === visibleIds.length;
+      selectAll.indeterminate = selectedVisibleCount > 0 && selectedVisibleCount < visibleIds.length;
+      $('deleteSelectedQuestionsBtn').disabled = selectedQuestionIds.size === 0;
+      $('selectedQuestionsCount').textContent = selectedQuestionIds.size
+        ? `تم تحديد ${selectedQuestionIds.size} سؤال`
+        : 'لم يتم تحديد أسئلة';
     };
 
     const createDefaultCategoryCard = (categoryId, index) => ({
@@ -1386,9 +1411,11 @@
         const categoryText = [getCategoryLabel(question.categoryId || ''), ...(question.linkedCategoryIds || []).map(getCategoryLabel)].join(' + ');
         const statusLabel = question.isActive === false ? '<span class="badge paused">متوقف</span>' : '<span class="badge">فعال</span>';
         const toggleLabel = question.isActive === false ? 'تفعيل' : 'إيقاف';
-        tr.innerHTML = `<td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}<br>${statusLabel}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-toggle-question="${question.id}">${toggleLabel}</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button><button class="danger" type="button" data-delete-question="${question.id}">حذف</button></div></td>`;
+        const isSelected = selectedQuestionIds.has(question.id) ? 'checked' : '';
+        tr.innerHTML = `<td><input type="checkbox" data-select-question="${question.id}" ${isSelected} style="width:auto;" aria-label="تحديد السؤال" /></td><td dir="ltr">${question.id}</td><td>${categoryText}</td><td>${question.points || 0}<br>${statusLabel}</td><td class="question-text">${question.questionAr || ''}</td><td>${question.correctAnswerAr || question.answersAr?.[question.correctAnswerIndex || 0] || ''}</td><td><div class="question-actions"><button class="secondary" type="button" data-fill-question="${question.id}">تعديل</button><button class="secondary" type="button" data-toggle-question="${question.id}">${toggleLabel}</button><button class="secondary" type="button" data-edit-question="${question.id}">CSV</button><button class="secondary" type="button" data-media-question="${question.id}">وسائط</button><button class="danger" type="button" data-delete-question="${question.id}">حذف</button></div></td>`;
         return tr;
       }));
+      updateQuestionSelectionControls();
     };
 
     const renderAds = () => {
@@ -1956,6 +1983,53 @@
     ['questionSearch', 'questionCategoryFilter', 'questionSourceFilter'].forEach(id => {
       $(id).addEventListener('input', renderQuestions);
       $(id).addEventListener('change', renderQuestions);
+    });
+
+    $('selectAllQuestions').addEventListener('change', event => {
+      visibleQuestions.forEach(question => {
+        if (event.target.checked) selectedQuestionIds.add(question.id);
+        else selectedQuestionIds.delete(question.id);
+      });
+      renderQuestions();
+    });
+
+    $('questionsBody').addEventListener('change', event => {
+      const questionId = event.target.closest('[data-select-question]')?.dataset.selectQuestion;
+      if (!questionId) return;
+      if (event.target.checked) selectedQuestionIds.add(questionId);
+      else selectedQuestionIds.delete(questionId);
+      updateQuestionSelectionControls();
+    });
+
+    $('deleteSelectedQuestionsBtn').addEventListener('click', async event => {
+      const questionsToDelete = allQuestions.filter(question => selectedQuestionIds.has(question.id));
+      if (!questionsToDelete.length) return;
+      if (!confirm(`حذف ${questionsToDelete.length} سؤال محدد؟ ستختفي من لوحة الإدارة ومن كل الأجهزة خلال دقائق.`)) return;
+
+      const button = event.currentTarget;
+      button.disabled = true;
+      setStatus($('questionStatus'), `جاري حذف ${questionsToDelete.length} سؤال...`);
+      try {
+        const batchSize = 400;
+        for (let index = 0; index < questionsToDelete.length; index += batchSize) {
+          const batch = writeBatch(firestore);
+          questionsToDelete.slice(index, index + batchSize).forEach(question => {
+            batch.set(
+              doc(firestore, 'customQuestions', question.id),
+              buildPublishedQuestionPayload(question, { isActive: false, isDeleted: true }),
+              { merge: true },
+            );
+          });
+          await batch.commit();
+        }
+        const deletedCount = questionsToDelete.length;
+        selectedQuestionIds.clear();
+        setStatus($('questionStatus'), `تم حذف ${deletedCount} سؤال من النظام المنشور`, 'success');
+        await loadData();
+      } catch (error) {
+        setStatus($('questionStatus'), `فشل الحذف الجماعي: ${error.message}`, 'error');
+        updateQuestionSelectionControls();
+      }
     });
 
     $('questionTypeInput').addEventListener('change', updateQuestionTypeFields);
