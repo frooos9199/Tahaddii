@@ -1,4 +1,4 @@
-import { GameSettings, Question } from '../types';
+import { GameSettings, Question, QuestionLanguage } from '../types';
 
 export type QuestionMediaKind = 'text' | 'image' | 'video';
 
@@ -18,4 +18,14 @@ export const areAnswerOptionsEnabled = (question: Question, settings: GameSettin
   if (mediaKind === 'video') return settings.showVideoAnswerOptions ?? false;
   if (mediaKind === 'image') return settings.showImageAnswerOptions ?? false;
   return settings.showTextAnswerOptions ?? false;
+};
+
+export const getQuestionAnswers = (
+  question: Question,
+  language: QuestionLanguage,
+): string[] => {
+  if (language === 'en') {
+    return question.answersEn?.length ? question.answersEn : question.answersAr ?? [];
+  }
+  return question.answersAr?.length ? question.answersAr : question.answersEn ?? [];
 };

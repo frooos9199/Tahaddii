@@ -1,5 +1,5 @@
 import { GameSettings, Question } from '../src/types';
-import { areAnswerOptionsEnabled, getQuestionMediaKind } from '../src/utils/questionAnswerOptions';
+import { areAnswerOptionsEnabled, getQuestionAnswers, getQuestionMediaKind } from '../src/utils/questionAnswerOptions';
 
 const settings: GameSettings = {
   mode: 'group', ageGroup: 'family', categories: [], difficulty: 'progressive',
@@ -27,5 +27,12 @@ describe('question answer options', () => {
     expect(areAnswerOptionsEnabled(question(), settings)).toBe(false);
     expect(areAnswerOptionsEnabled(question({ thumbnailUrl: 'thumb.jpg' }), settings)).toBe(true);
     expect(areAnswerOptionsEnabled(question({ mediaType: 'video' }), settings)).toBe(false);
+  });
+
+  test('returns an empty answer list for a manual question without options', () => {
+    const manualQuestion = question({ answersAr: undefined, answersEn: undefined });
+
+    expect(getQuestionAnswers(manualQuestion, 'ar')).toEqual([]);
+    expect(getQuestionAnswers(manualQuestion, 'en')).toEqual([]);
   });
 });

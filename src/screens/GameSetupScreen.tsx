@@ -19,7 +19,7 @@ import { getQuestions } from '../services/questions/questionService';
 import { getAvailableQuestionCount, getAvailableQuestionCountFromBank, getFairQuestionCountOptions, getRecommendedFairQuestionCount, loadQuestionBank } from '../services/questions/questionCatalog';
 import { createTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestionPrimaryImageUrl, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
-import { areAnswerOptionsEnabled } from '../utils/questionAnswerOptions';
+import { areAnswerOptionsEnabled, getQuestionAnswers } from '../utils/questionAnswerOptions';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'GameSetup'> };
 
@@ -142,9 +142,7 @@ export default function GameSetupScreen({ navigation }: Props) {
           : questionLanguage === 'mixed'
             ? firstQuestion.questionAr || firstQuestion.questionEn
             : firstQuestion.questionAr || firstQuestion.questionEn;
-      const answers = questionLanguage === 'en'
-        ? firstQuestion.answersEn?.length ? firstQuestion.answersEn : firstQuestion.answersAr
-        : firstQuestion.answersAr?.length ? firstQuestion.answersAr : firstQuestion.answersEn;
+      const answers = getQuestionAnswers(firstQuestion, questionLanguage);
       const displayCategoryId = firstQuestion.queueCategoryId || firstQuestion.categoryId;
       const displayCategoryName = t(`categories.${displayCategoryId}`, { defaultValue: displayCategoryId });
 
