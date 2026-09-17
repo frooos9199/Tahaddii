@@ -113,7 +113,15 @@ export default function GameSetupScreen({ navigation }: Props) {
     }
 
     setIsStarting(true);
-    const questions = await getQuestions(settings);
+    let questions;
+    try {
+      questions = await getQuestions(settings);
+    } catch (error) {
+      console.warn('Failed to load questions when starting game', error);
+      setIsStarting(false);
+      Alert.alert(t('common.error'), t('errors.loadError'));
+      return;
+    }
     if (questions.length < 1) {
       setIsStarting(false);
       Alert.alert('', t('errors.notEnoughQuestions'));
@@ -140,7 +148,7 @@ export default function GameSetupScreen({ navigation }: Props) {
       const displayCategoryId = firstQuestion.queueCategoryId || firstQuestion.categoryId;
       const displayCategoryName = t(`categories.${displayCategoryId}`, { defaultValue: displayCategoryId });
 
-      await updateTvDisplaySession(pendingTvDisplayCode, {
+      void updateTvDisplaySession(pendingTvDisplayCode, {
         gameId: createdGame.id,
         status: 'playing',
         syncSource: 'game-setup-start-button',
@@ -185,6 +193,8 @@ export default function GameSetupScreen({ navigation }: Props) {
         })),
         correctAnswer: '',
         explanation: '',
+      }).catch(error => {
+        console.warn('Failed to sync TV display while starting game', error);
       });
     }
 
