@@ -24,7 +24,7 @@ export type TvDisplayPlayer = {
 export type TvDisplayState = {
   code: string;
   gameId: string;
-  status: 'pairing' | 'playing' | 'revealed' | 'finished';
+  status: 'pairing' | 'playing' | 'revealed' | 'finished' | 'exited';
   syncSource?: string;
   syncVersion?: number;
   language: 'ar' | 'en';
@@ -131,6 +131,27 @@ export const updateTvDisplaySession = async (code: string, state: Omit<TvDisplay
     ...state,
     code,
     syncVersion: now,
+    updatedAtMs: now,
+    expiresAtMs: now + TV_DISPLAY_SESSION_TTL_MS,
+  });
+};
+
+export const exitTvDisplaySession = async (code: string, language: 'ar' | 'en') => {
+  const now = Date.now();
+  await writeTvDisplaySession(code, {
+    code,
+    gameId: '',
+    status: 'exited',
+    language,
+    questionIndex: 0,
+    totalQuestions: 0,
+    timeLeft: null,
+    question: null,
+    answers: [],
+    currentPlayer: null,
+    players: [],
+    correctAnswer: '',
+    explanation: '',
     updatedAtMs: now,
     expiresAtMs: now + TV_DISPLAY_SESSION_TTL_MS,
   });

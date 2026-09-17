@@ -1094,6 +1094,11 @@
     }
 
     function render(state) {
+      if (state.status === 'exited') {
+        window.location.replace('/');
+        return;
+      }
+
       const lang = state.language === 'ar' ? 'ar' : 'en';
       const copy = labels[lang];
       document.body.classList.toggle('rtl', lang === 'ar');

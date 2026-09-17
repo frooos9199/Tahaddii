@@ -8,7 +8,7 @@ import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { AVATAR_EMOJIS } from '../constants';
-import { updateTvDisplaySession } from '../services/tv/tvDisplayService';
+import { exitTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 
 type Props = { navigation: NativeStackNavigationProp<RootStackParamList, 'Results'> };
 
@@ -30,6 +30,7 @@ export default function ResultsScreen({ navigation }: Props) {
   const setPendingPlayers = useGameStore(s => s.setPendingPlayers);
   const setPendingTeams = useGameStore(s => s.setPendingTeams);
   const pendingTvDisplayCode = useGameStore(s => s.pendingTvDisplayCode);
+  const setPendingTvDisplayCode = useGameStore(s => s.setPendingTvDisplayCode);
   const clearSavedGame = useGameStore(s => s.clearSavedGame);
   const addGameResult = useAppStore(s => s.addGameResult);
   const saved = useRef(false);
@@ -150,6 +151,18 @@ export default function ResultsScreen({ navigation }: Props) {
     navigation.replace('GameSetup');
   };
 
+  const handleExitToHome = async () => {
+    const activeTvDisplayCode = pendingTvDisplayCode;
+    setPendingTvDisplayCode(null);
+    if (activeTvDisplayCode) {
+      await exitTvDisplaySession(activeTvDisplayCode, language === 'en' ? 'en' : 'ar').catch(error => {
+        console.warn('Failed to exit TV display session from results', error);
+      });
+    }
+    resetGame();
+    navigation.replace('Home');
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
@@ -220,7 +233,7 @@ export default function ResultsScreen({ navigation }: Props) {
         <TouchableOpacity style={styles.primaryBtn} onPress={() => { void handlePlayAgain(); }}>
           <Text style={styles.primaryBtnText}>🎮 {t('common.playAgain')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryBtn} onPress={() => { resetGame(); navigation.replace('Home'); }}>
+        <TouchableOpacity style={styles.secondaryBtn} onPress={() => { void handleExitToHome(); }}>
           <Text style={styles.secondaryBtnText}>🏠 {t('common.home')}</Text>
         </TouchableOpacity>
       </View>

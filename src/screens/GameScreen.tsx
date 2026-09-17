@@ -12,7 +12,7 @@ import { Colors } from '../theme/colors';
 import { useGameStore } from '../store/gameStore';
 import { useAppStore } from '../store/appStore';
 import { CATEGORY_EMOJIS, FAST_ANSWER_BONUS } from '../constants';
-import { createTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
+import { createTvDisplaySession, exitTvDisplaySession, getTvDisplayUrl, pairTvDisplaySession, updateTvDisplaySession } from '../services/tv/tvDisplayService';
 import { getQuestions } from '../services/questions/questionService';
 import { getQuestionDisplayImageUrls, getQuestionPrimaryImageUrl, preloadQuestionMedia, preloadUpcomingQuestionMedia } from '../services/media/questionMediaService';
 import { markQuestionsAsSeen, syncQuestionHistory } from '../services/questions/questionHistoryService';
@@ -52,6 +52,7 @@ export default function GameScreen({ navigation }: Props) {
   const categoryTransitionScale = useRef(new Animated.Value(0.96)).current;
   const previousCategoryIdRef = useRef<string | null>(null);
   const markedQuestionKeysRef = useRef<Set<string>>(new Set());
+  const isExitingGameRef = useRef(false);
 
   useEffect(() => {
     if (pendingTvDisplayCode && !tvDisplayCode) {
@@ -177,7 +178,7 @@ export default function GameScreen({ navigation }: Props) {
   }, [answers, correctAnswer, displayCategoryEmoji, displayCategoryId, displayCategoryName, displayCategoryTransitionKey, displayQuestion, game, isTimed, language, player, previousDisplayCategoryId, question, questionImageUrl, revealed, selectedIndex, showAnswerOptions, timeLeft, timeLimit]);
 
   const syncTvDisplay = useCallback(() => {
-    if (!tvDisplayCode || !game || !question || !player) return;
+    if (isExitingGameRef.current || !tvDisplayCode || !game || !question || !player) return;
     const tvState = buildTvDisplayState();
     if (!tvState) return;
 
@@ -390,9 +391,18 @@ export default function GameScreen({ navigation }: Props) {
         text: t('game.exitGame'),
         style: 'destructive',
         onPress: async () => {
+          isExitingGameRef.current = true;
+          const activeTvDisplayCode = tvDisplayCode ?? pendingTvDisplayCode;
+          setTvDisplayCode(null);
+          setPendingTvDisplayCode(null);
           await syncQuestionHistory().catch(error => {
             console.warn('Failed to sync question history on exit', error);
           });
+          if (activeTvDisplayCode) {
+            await exitTvDisplaySession(activeTvDisplayCode, language === 'en' ? 'en' : 'ar').catch(error => {
+              console.warn('Failed to exit TV display session', error);
+            });
+          }
           await clearSavedGame();
           navigation.replace('Home');
         },
