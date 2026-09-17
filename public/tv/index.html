@@ -126,7 +126,7 @@
     .stage { display: grid; grid-template-rows: minmax(2.8rem, 7vh) minmax(2.8rem, 8vh) minmax(0, 1fr) 72px auto; gap: clamp(0.38rem, 0.85vh, 0.9rem); min-height: 0; overflow: hidden; }
     .stage.compact-secondary { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) 72px auto; gap: clamp(0.28rem, 0.65vh, 0.7rem); }
     .stage.extreme-content .sponsor-ad { display: none; }
-    .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(0, 1fr) 72px; }
+    .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(2.4rem, 7vh) minmax(0, 1fr) 72px; }
     /* Pin each stage child to its own grid row so hiding one (e.g. category strip via
        display:none) doesn't shift the rest up and squeeze the question card into a
        tiny row. Without this, CSS grid auto-placement re-flows remaining items into
@@ -807,7 +807,7 @@
       .shell.layout-extreme-active { grid-template-rows: minmax(0, 1fr); }
       .shell.layout-extreme-active .topbar { display: none; }
       .topbar { min-height: 2.9rem; padding-block: 0.35rem; }
-      .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(0, 1fr) 72px; }
+      .stage.extreme-content { grid-template-rows: 0 minmax(2.4rem, 6vh) minmax(0, 1fr) 72px; }
       .stage.extreme-content .progress-row { display: none; }
       .category-strip { min-height: 2.6rem; padding-block: 0.36rem; border-radius: 16px; }
       .category-icon { width: 2rem; height: 2rem; border-radius: 12px; font-size: 1.1rem; }
@@ -827,7 +827,7 @@
       .shell.layout-extreme-active .topbar { display: none; }
       .topbar { padding: 0.45rem 0.7rem; border-radius: 16px; }
       .stage { gap: 0.35rem; }
-      .stage.extreme-content { grid-template-rows: minmax(2.4rem, 6vh) minmax(0, 1fr) 72px; }
+      .stage.extreme-content { grid-template-rows: 0 minmax(2.4rem, 6vh) minmax(0, 1fr) 72px; }
       .stage.extreme-content .progress-row { display: none; }
       .question-card { grid-template-rows: auto minmax(5rem, 1fr) minmax(4.8rem, var(--answers-row-size, 24vh)) auto; gap: 0.42rem; padding: 0.55rem 0.65rem; border-radius: 18px; }
       .question-card.layout-long { grid-template-rows: auto minmax(6.2rem, 1.5fr) minmax(4.2rem, 20vh) auto; }
